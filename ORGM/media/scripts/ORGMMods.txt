@@ -1,0 +1,246 @@
+/**        ORMtnMan's Real Gun Mod       **/
+
+module ORGM
+{   
+
+	item 2xScope
+	{
+		Type		=	WeaponMods,
+		DisplayName	=	Scope; 2x,
+		Icon		=	2xScope,
+		Weight 		=	0.2,
+		WeightModifier 	= 	0.2,
+		HitChanceModifier = 	6,
+		MaxRangeModifier = 	4,
+		MinRangeModifier = 	3,
+		AimingTimeModifier = 	3,
+		MountOn 	=	RugGP100; RugGP10038; Spas12; Spas12PA; Spas12Sl; Spas12PASl; HKSL8; HKSL8556; AIAW308; AIAW308762; SA80; SA80SA; SA80223; SA80223SA; ColtAnac; ColtPyth; ColtPyth38; RugAlas; RugAlas45C; RugGP100; RugGP10038; RugRH; SWM19; SWM1938; SWM29; SWM610; Taurus454; Taurus45445C; AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; FNP90; FNP90SA; AKM; AKMA; AKMSA; AR15; AR15556; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOSl; BenelliM3SOPA; BenelliM3SOPASl; BenelliM3PA; BenelliM3PASl; BenelliM3PASO; BenelliM3PASOSl; BenelliM3Sl; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOPASl; BenelliM3PASl; BenelliM3PASOSl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; Ithaca37; Ithaca37SO; Ithaca37Sl; Ithaca37SOSl; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Moss590SO; Moss590Sl; Moss590SOSl; Rem700; Rem870; Rem870SO; Rem870Sl; Rem870SOSl; Rug1022; SKS; Silverhawk; SilverhawkSO; SilverhawkSl; SilverhawkSOSl; WinM70; Kriss; KrissA; KrissSA; KTPLR; KTPLR556; M1216; M1216Sl; SVD; Mosin; VEPR12; VEPR12Sl; BLR; BLR762; HenryBB; Stevens320; Striker; Hawk982; Stevens320Sl; StrikerSl; Hawk982Sl; Marlin60; WinM94; Rem788; M249; M249223; SWM252; RugBH; RugBH38; Win1887; Win1887SO; Win1887Sl; Win1887SlSO; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+		PartType 	= 	Scope,
+		MountType   =   SD
+		Tooltip 	= 	Increases magnification 2x for more precise shooting,
+	}
+
+	item 4xScope
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Scope; 4x,
+		Icon		=	4xScope,
+        	Weight 		=	0.3,
+        	WeightModifier 	= 	0.3,
+       		HitChanceModifier = 	10,
+        	MaxRangeModifier = 	7,
+        	MinRangeModifier = 	6,
+        	AimingTimeModifier = 	5,
+        	MountOn 	=	HKSL8; HKSL8556AIAW308; AIAW308762;AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; SA80; SA80SA; SA80223; SA80223SA; AR15; AR15556; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Rem700; Rug1022; SKS; WinM70; Mosin; SVD; SR-25; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223; L96; LENo4; L96308; LENo4308; M1903,
+        	PartType 	= 	Scope,
+        	Tooltip 	= 	Increases magnification 4x for more combat purposes,
+	}
+	
+	item 8xScope
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Scope; 8x,
+		Icon		=	8xScope,
+        	Weight 		=	0.5,
+        	WeightModifier 	= 	0.5,
+       		HitChanceModifier = 	15,
+        	MaxRangeModifier = 	20,
+        	MinRangeModifier = 	10,
+        	AimingTimeModifier = 	10,
+        	MountOn 	=	HKSL8; HKSL8556AIAW308; AIAW308762;AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; SA80; SA80SA; SA80223; SA80223SA; AKM; AKMA; AKMSA; AR15; AR15556; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Rem700; Rug1022; SKS; WinM70; Mosin; SVD; BLR; BLR762; HenryBB; WinM94; Rem788; SR25; R25762; SR25; SR25308; L96; LENo4; L96308; LENo4308; M1903,
+        	PartType 	= 	Scope,
+        	Tooltip 	= 	Increases magnification 8x for long range hunting or sniping,
+	}
+	
+	item FibSig
+	{
+        	Type 		= 	WeaponPart,
+        	DisplayName 	= 	Fiberoptic Sights,
+        	Icon 		= 	FibSig,
+        	Weight 		= 	0.01,
+        	WeightModifier 	= 	0.01,
+        	HitChanceModifier = 	10,
+        	MountOn 	= 	Ber92; BrenTen; Colt38S; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; ColtAnac; ColtPyth; ColtPyth38; RugAlas; RugAlas45C; RugGP100; RugGP10038; RugRH; RugSec6; SWM19; SWM1938; SWM29; SWM36; SWM610; Taurus454; Taurus45445C; Ithaca37; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; Moss590; Rem870; Silverhawk; Spas12; Spas12PA; Spas12Sl; Spas12PASl; DEagle; KTPLR; KTPLR556; Mac10; Mac11; WaltherPPK; Uzi; M1216; M1216Sl; VEPR12; VEPR12Sl; Glock20; Stevens320; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Hawk982; Striker; CZ75; Ber93R; Ber93RSA; Glock18; Glock18SA; KTP32; TaurusP132; RugBH; RugBH38; SWM10; SWM252; Spr19119,
+        	PartType 	= 	Scope,
+        	Tooltip 	= 	Easy to see glow in the dark sights for increased accuracy when shooting,
+	}
+	
+	item Foregrip
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Foregrip,
+		Icon		=	Foregrip,
+        	Weight 		= 	0.2,
+        	WeightModifier 	= 	0.2,
+        	RecoilDelayModifier = 	10,
+        	MountOn 	=  	FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; FNP90; FNP90SA; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; SA80; SA80SA; SA80223; SA80223SA; Kriss; KrissA; KrissSA; VEPR12; VEPR12Sl; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A vertical foregrip to increase stability during repeated firing,
+	}
+	
+	item FullCh
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Full Choke,
+		Icon		=	FullCh,
+        	Weight 		= 	0.1,
+        	WeightModifier 	= 	0.1,
+        	AngleModifier	= 	0.1,
+        	DamageModifier 	= 	0.5,
+        	MaxRangeModifier = 	5,
+        	MountOn 	= 	Spas12; Spas12PA; Spas12Sl; Spas12PASl; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; Silverhawk; Moss590; Rem870; Ithaca37; VEPR12; VEPR12Sl; M1216; M1216Sl; Stevens320; Striker; Hawk982; Win1887,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A modified shotgun barrel insert that reduces the spread of the shot,
+	}
+	
+	item HalfCh
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Half Choke,
+		Icon		=	HalfCh,
+        	Weight 		= 	0.1,
+        	WeightModifier 	= 	0.1,
+        	AngleModifier	= 	0.05,
+        	DamageModifier 	= 	0.25,
+        	MaxRangeModifier = 	3,
+        	MountOn 	= 	Spas12; Spas12PA; Spas12Sl; Spas12PASl; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; Silverhawk; Moss590; Rem870; Ithaca37; VEPR12; VEPR12Sl; M1216; M1216Sl; Stevens320; Striker; Hawk982; Win1887,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A modified shotgun barrel insert that partially reduces the spread of the shot,
+	}
+
+	item PistolLas
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Pistol Laser Sight,
+		Icon		=	PistolLas,
+        	Weight 		= 	0.2,
+        	WeightModifier	= 	0.2,
+        	HitChanceModifier = 	10,
+        	AimingTimeModifier = 	-8,
+        	MountOn 	= 	Ber92; BrenTen; Colt38S; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; DEagle; Mac10; Mac11; WaltherPPK; Uzi; Glock20; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Ber93R; Ber93RSA; CZ75; Glock18; Glock18SA; Skorpion; Spr19119,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A pistol mounted laser targeter that speeds up target acquisition and accuracy,
+	}
+	
+	item PistolTL
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Pistol Tactical Light,
+		Icon		=	PistolTL,
+        	Weight 		= 	0.2,
+        	WeightModifier 	= 	0.2,
+		TorchCone	=	TRUE,
+		LightStrength	=	0.6,
+		LightDistance	=	15,
+       		MountOn 	= 	Ber92; BrenTen; Colt38S; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; DEagle; Mac10; Mac11; WaltherPPK; Uzi; Glock20; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Ber93R; Ber93RSA; CZ75; Glock18; Glock18SA; Skorpion; Spr19119,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A pistol mounted tactical flashlight,
+	}
+	
+	item RDS
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Red Dot Sight,
+		Icon		=	RDS,
+        	Weight 		=	0.2,
+        	WeightModifier 	= 	0.2,
+       		HitChanceModifier = 	8,
+        	MaxRangeModifier = 	2,
+		MountOn		=	RugGP100; RugGP10038; HKSL8; HKSL8556AIAW308; AIAW308762;SA80; SA80SA; SA80223; SA80223SA; ColtAnac; ColtPyth; ColtPyth38; RugAlas; RugAlas45C; RugGP100; RugGP10038; RugRH; SWM19; SWM1938; SWM29; SWM610; Taurus454; Taurus45445C; AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; AR15; AR15556; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOSl; BenelliM3SOPA; BenelliM3SOPASl; BenelliM3PA; BenelliM3PASl; BenelliM3PASO; BenelliM3PASOSl; BenelliM3Sl; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOPASl; BenelliM3PASl; BenelliM3PASOSl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; FNP90; FNP90SA; Ithaca37; Ithaca37SO; Ithaca37Sl; Ithaca37SOSl; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Moss590SO; Moss590Sl; Moss590SOSl; Rem700; Rem870; Rem870SO; Rem870Sl; Rem870SOSl; Rug1022; SKS; Silverhawk; SilverhawkSO; SilverhawkSl; SilverhawkSOSl; WinM70; Kriss; KrissA; KrissSA; KTPLR; KTPLR556; BLR; BLR762; HenryBB; Mosin; Stevens320; VEPR12; VEPR12Sl; M1216; M1216Sl; Hawk982; Striker; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG 551; RugBH; RugBH38; Win1887; Win1887SO; Win1887Sl; Win1887SlSO; SWM252; Skorpion,
+		PartType	=	Scope,
+		Tooltip		=	A sight that provides minor magnification and an easy to spot red dot targetting system,
+	}
+	
+	item Recoil
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Recoil Pad,
+		Icon		=	Recoil,
+        	Weight 		= 	0.2,
+        	WeightModifier 	= 	0.2,
+        	RecoilDelayModifier = 	5,
+        	MountOn 	=  	Spas12; Spas12PA; Spas12Sl; Spas12PASl; HKSL8; HKSL8556AIAW308; AIAW308762;BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; Silverhawk; Moss590; Rem870; Ithaca37; Garand; SKS; WinM70; Rem700; M21; M21308; AM180; M1A1; M1216; M1216Sl; SVD; Mosin; BLR; BLR762; HenryBB; Stevens320; Hawk982; Marlin60; WinM94; Rem788; M1903; L96; LENo4; L96308; LENo4308; Win1887,
+        	PartType 	= 	Canon,
+		Tooltip		=	A softened rifle recoil pad to decrease the effect of recoil,
+	}
+	
+	item Reflex
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Reflex Sight,
+		Icon		=	Reflex,
+        	Weight 		= 	0.2,
+        	WeightModifier 	= 	0.2,
+        	HitChanceModifier = 	15,
+        	AimingTimeModifier = 	-15,
+		MountOn		=	HKSL8; HKSL8556AIAW308; AIAW308762;SA80; SA80SA; SA80223; SA80223SA; AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; AR15; AR15556; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOSl; BenelliM3SOPA; BenelliM3SOPASl; BenelliM3PA; BenelliM3PASl; BenelliM3PASO; BenelliM3PASOSl; BenelliM3Sl; BenelliM3PASl; BenelliM3SOSl; BenelliM3SOPASl; BenelliM3PASl; BenelliM3PASOSl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; FNP90; FNP90SA; Ithaca37; Ithaca37SO; Ithaca37Sl; Ithaca37SOSl; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Moss590SO; Moss590Sl; Moss590SOSl; Rem700; Rem870; Rem870SO; Rem870Sl; Rem870SOSl; Rug1022; SKS; Silverhawk; SilverhawkSO; SilverhawkSl; SilverhawkSOSl; WinM70; Ber92; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; DEagle; Kriss; KrissA; KrissSA; KTPLR; KTPLR556; Mac10; Mac11; WaltherPPK; Uzi; M1216; M1216Sl; VEPR12; VEPR12Sl; BLR; BLR762; HenryBB; Glock20; Stevens320; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Hawk982; Striker; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; CZ75; Glock18; Glock18SA; Ber93R; Ber93RSA; KTP32; TaurusP132; Skorpion; SWM10; Spr19119,
+		PartType	=	Scope,
+		Tooltip		=	A mounted sight that speeds up target acquisition and eases sustained firing,
+	}
+	
+	item RifleLas
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Rifle Laser Sight,
+		Icon		=	RifleLas,
+        	Weight 		= 	0.2,
+        	WeightModifier	= 	0.2,
+        	HitChanceModifier = 	10,
+        	AimingTimeModifier = 	-8,
+        	MountOn 	= 	FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; FNP90; FNP90SA; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; SA80; SA80SA; SA80223; SA80223SA; Kriss; KrissA; KrissSA; KTPLR; KTPLR556; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A rifle mounted laser targeter that speeds up target acquisition and accuracy,
+	}
+
+	item RifleTL
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Rifle Tactical Light,
+		Icon		=	RifleTL,
+        	Weight 		= 	0.2,
+        	WeightModifier 	= 	0.2,
+		TorchCone	=	TRUE,
+		LightStrength	=	0.7,
+		LightDistance	=	18,
+       		MountOn 	= 	FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; HKMP5SA; HKUMP; HKUMPSA; FNP90; FNP90SA; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; SA80; SA80SA; SA80223; SA80223SA; Kriss; KrissA; KrissSA; KTPLR; KTPLR556; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+        	PartType 	= 	Canon,
+        	Tooltip 	= 	A rifle mounted tactical flashlight,
+	}
+	
+	item Rifsling
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Rifle Sling,
+		Icon		=	RifSling,
+        	Weight 		= 	0.1,
+        	WeightModifier 	= 	-0.25,
+        	MountOn 	=	Spas12; Spas12PA; Spas12Sl; Spas12PASl; HKSL8; HKSL8556AIAW308; AIAW308762;AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; AR15; AR15556; SA80; SA80SA; SA80223; SA80223SA; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; FNP90; FNP90SA; HKUMP; Ithaca37; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Rem700; Rem870; Rug1022; SKS; Silverhawk; WinM70; M1A1; AM180; Kriss; KrissA; KrissSA; M1216; M1216Sl; VEPR12; VEPR12Sl; SVD; Mosin; BLR; BLR762; HenryBB; Stevens320; Striker; Hawk982; Stevens320Sl; StrikerSl; Hawk982Sl; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223; L96; LENo4; L96308; LENo4308; M1903; Win1887,
+        	PartType 	= 	Sling,
+        	Tooltip 	= 	Makes carrying a weapon less of a burden,
+	}
+
+	item SkeletalStock
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Skeletal Stock,
+		Icon		=	SkeletalStock,
+        	Weight 		= 	0.05,
+        	WeightModifier 	= 	-0.15,
+        	MountOn 	=	Spas12; Spas12PA; Spas12Sl; Spas12PASl; HKSL8; HKSL8556AIAW308; AIAW308762;AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; AR15; AR15556; SA80; SA80SA; SA80223; SA80223SA; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; FNP90; FNP90SA; HKUMP; Ithaca37; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Rem700; Rem870; Rug1022; SKS; Silverhawk; WinM70; M1A1; AM180; VEPR12; VEPR12Sl; SVD; Mosin; Stevens320; Hawk982; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+        	PartType 	= 	Sling,
+        	Tooltip 	= 	A skeletal carbon fiber stock to lighten the gun,
+	}
+
+	item CollapsingStock
+	{
+		Type		=	WeaponPart,
+		DisplayName	=	Collapsing Stock,
+		Icon		=	CollapsingStock,
+        	Weight 		= 	0.05,
+        	WeightModifier 	= 	-0.10,
+        	MountOn 	=	Spas12; Spas12PA; Spas12Sl; Spas12PASl; HKSL8; HKSL8556AIAW308; AIAW308762;AR10; AR10SA; AR10308; AR10SA308; R25; R25762; SR25; SR25308; AKM; AKMA; AKMSA; AR15; AR15556; SA80; SA80SA; SA80223; SA80223SA; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3PA; BenelliM3PASl; FNFAL; FNFAL762; FNFALA; FNFALSA; FNFALA308; FNFALSA308; Garand; HK91; KH91762; HKG3; HKG3SA; HKG3308; HKG3SA308; HKMP5; FNP90; FNP90SA; HKUMP; Ithaca37; M4C; M4CSA; M4C223; M4CSA223; M16; M16SA; M16223; M16SA223; M21; M21308; Mini14556; Mini14; Moss590; Rem700; Rem870; Rug1022; SKS; Silverhawk; WinM70; M1A1; AM180; VEPR12; VEPR12Sl; SVD; Mosin; Stevens320; Hawk982; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550SA; SIG551SA; SIG550223; SIG551223; SIG550SA223; SIG551SA223,
+        	PartType 	= 	Sling,
+        	Tooltip 	= 	A stock that collapses to give the gun a smaller profile making it easier to carry,
+	}
+	
+}

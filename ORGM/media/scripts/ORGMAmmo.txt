@@ -1,0 +1,726 @@
+
+/**        ORMtnMan's Real Gun Mod       **/
+ 
+module ORGM
+{  
+ 
+	item 762Rounds
+	{
+		Count = 1,
+		Weight = 0.02,
+		Type = Normal,
+		DisplayName = 7.62x39mm rounds,
+        DisplayCategory = Ammo,
+		Icon = 762Rounds,
+	}
+ 
+	item 762Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x39mm - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 762Box,
+    }
+	
+	item 762Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x39mm - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 9mmRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = 9x19mm Parabellum rounds,
+		DisplayCategory = Ammo,
+		Icon = 9mmRounds,
+	}
+ 
+	item 9mmBox
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 9x19mm - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 9mmBox,
+    }
+ 
+	item 9mmCan
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 9x19mm - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 12gRounds
+	{
+		Count = 1,
+		Weight = 0.04,
+		Type = Normal,
+		DisplayName = 00 Buck 12 Gauge shells,
+		DisplayCategory = Ammo,
+		Icon = 12gRounds,
+	}
+ 
+	item 12gBox
+    {
+        Weight = 1,
+        Type = Normal,
+        DisplayName = 00 Buck 12 Gauge - 25 Shell Box,
+		DisplayCategory = Ammo,
+        Icon = 12gBox,
+    }
+	
+	item 12gCan
+    {
+        Weight = 10.0,
+        Type = Normal,
+        DisplayName = 00 Buck 12 Gauge - 250 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+	
+	item 12gSlugRounds
+	{
+		Count = 1,
+		Weight = 0.04,
+		Type = Normal,
+		DisplayName = Slug 12 Gauge shells,
+		DisplayCategory = Ammo,
+		Icon = 12gSlugRounds,
+	}
+ 
+	item 12gSlugBox
+    {
+        Weight = 1,
+        Type = Normal,
+        DisplayName = Slug 12 Gauge - 25 Shell Box,
+		DisplayCategory = Ammo,
+        Icon = 12gSlugBox,
+    }
+	
+	item 12gSlugCan
+    {
+        Weight = 10.0,
+        Type = Normal,
+        DisplayName = Slug 12 Gauge - 250 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 22Rounds
+	{
+		Count = 1,
+		Weight = 0.003,
+		Type = Normal,
+		DisplayName = .22 LR rounds,
+		DisplayCategory = Ammo,
+		Icon = 22Rounds,
+	}
+ 
+	item 22Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .22 LR - 100 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 22Box,
+    }
+	
+	item 22Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .22 LR - 1000 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 38Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .38 Special rounds,
+		DisplayCategory = Ammo,
+		Icon = 38Rounds,
+	}
+ 
+	item 38Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Special - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 38Box,
+    }
+	
+	item 38Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Special - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 40Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .40 S&W rounds,
+		DisplayCategory = Ammo,
+		Icon = 40Rounds,
+	}
+ 
+	item 40Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .40 S&W - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 40Box,
+    }
+	
+	item 40Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .40 S&W - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 44Rounds
+	{
+		Count = 1,
+		Weight = 0.012,
+		Type = Normal,
+		DisplayName = .44 Magnum rounds,
+		DisplayCategory = Ammo,
+		Icon = 44Rounds,
+	}
+ 
+	item 44Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .44 Magnum - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 44Box,
+    }
+	
+	item 44Can
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .44 Magnum - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 45Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .45 ACP rounds,
+		DisplayCategory = Ammo,
+		Icon = 45Rounds,
+	}
+ 
+	item 45Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 ACP - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 45Box,
+    }
+	
+	item 45Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 ACP - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 38SRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .38 Super rounds,
+		DisplayCategory = Ammo,
+		Icon = 38SRounds,
+	}
+ 
+	item 38SBox
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Super - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 38SBox,
+    }
+	
+	item 38SCan
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Super - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 357Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .357 Magnum rounds,
+		DisplayCategory = Ammo,
+		Icon = 357Rounds,
+	}
+ 
+	item 357Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .357 Magnum - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 357Box,
+    }
+	
+	item 357Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .357 Magnum - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 223Rounds
+	{
+		Count = 1,
+		Weight = 0.015,
+		Type = Normal,
+		DisplayName = .223 Remington rounds,
+		DisplayCategory = Ammo,
+		Icon = 223Rounds,
+	}
+ 
+	item 223RemBox
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = .223 Remington - 25 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 223Box,
+    }
+ 
+	item 223RemCan
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = .223 Remington - 250 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 556Rounds
+	{
+		Count = 1,
+		Weight = 0.015,
+		Type = Normal,
+		DisplayName = 5.56x45mm NATO rounds,
+		DisplayCategory = Ammo,
+		Icon = 556Rounds,
+	}
+ 
+	item 556Box
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = 5.56x45mm NATO - 25 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 556Box,
+    }
+	
+	item 556Can
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = 5.56x45mm NATO - 250 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 3006Rounds
+	{
+		Count = 1,
+		Weight = 0.02,
+		Type = Normal,
+		DisplayName = .30-06 Springfield rounds,
+		DisplayCategory = Ammo,
+		Icon = 3006Rounds,
+	}
+ 
+	item 3006Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-06 Springfield - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 3006Box,
+    }
+	
+	item 3006Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-06 Springfield - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 3030Rounds
+	{
+		Count = 1,
+		Weight = 0.02,
+		Type = Normal,
+		DisplayName = .30-30 Springfield rounds,
+		DisplayCategory = Ammo,
+		Icon = 3030Rounds,
+	}
+ 
+	item 3030Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-30 Springfield - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 3030Box,
+    }
+	
+	item 3030Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-30 Springfield - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 308Rounds
+	{
+		Count = 1,
+		Weight = 0.02,
+		Type = Normal,
+		DisplayName = .308 Winchester rounds,
+		DisplayCategory = Ammo,
+		Icon = 308Rounds,
+	}
+ 
+	item 308wBox
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .308 Winchester - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 308Box,
+    }
+	
+	item 308wCan
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .308 Winchester - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 762x51Rounds
+	{
+		Count = 1,
+		Weight = 0.02,
+		Type = Normal,
+		DisplayName = 7.62x51 rounds,
+		DisplayCategory = Ammo,
+		Icon = 762x51Rounds,
+	}
+ 
+	item 762x51Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x51 - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 762x51Box,
+    }
+	
+	item 762x51Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x51 - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 762x54Rounds
+	{
+		Count = 1,
+		Weight = 0.025,
+		Type = Normal,
+		DisplayName = 7.62x54R rounds,
+		DisplayCategory = Ammo,
+		Icon = 762x54Rounds,
+	}
+ 
+	item 762x54Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 7.62x54R - 20 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 762x54Box,
+    }
+	
+	item 762x54Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 7.62x54R - 200 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 454Rounds
+	{	
+		Count = 1,
+		Weight = 0.012,
+		Type = Normal,
+		DisplayName = .454 Casull rounds,
+		DisplayCategory = Ammo,
+		Icon = 454Rounds,
+	}
+ 
+	item 454Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .454 Casull - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 454Box,
+    }
+	
+	item 454Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .454 Casull - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 50AERounds
+	{
+		Count = 1,
+		Weight = 0.012,
+		Type = Normal,
+		DisplayName = .50 AE rounds,
+		DisplayCategory = Ammo,
+		Icon = 50AERounds,
+	}
+ 
+	item 50AEBox
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .50 AE - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 50AEBox,
+    }
+	
+	item 50AECan
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .50 AE - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item BBs
+	{
+		Count = 1,
+		Weight = 0.001,
+		Type = Normal,
+		DisplayName = .117 caliber BBs,
+		DisplayCategory = Ammo,
+		Icon = BBs,
+	}
+ 
+	item BBCan
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .117 caliber BBs - 250 Count Can,
+		DisplayCategory = Ammo,
+        Icon = BBCan,
+    }
+ 
+	item 57Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = FN 5.7x28mm rounds,
+		DisplayCategory = Ammo,
+		Icon = 57Rounds,
+	}
+ 
+	item 57Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 57Box,
+    }
+	
+	item 57Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 10mmRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = 10mm Auto rounds,
+		DisplayCategory = Ammo,
+		Icon = 10mmRounds,
+	}
+ 
+	item 10mmBox
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 10mm Auto - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 10mmBox,
+    }
+	
+	item 10mmCan
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 10mm Auto - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 45ColtRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .45 Colt rounds,
+		DisplayCategory = Ammo,
+		Icon = 45ColtRounds,
+	}
+ 
+	item 45ColtBox
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 Colt - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 45ColtBox,
+    }
+	
+	item 45ColtCan
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 Colt - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 380Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .380 ACP rounds,
+		DisplayCategory = Ammo,
+		Icon = 380Rounds,
+	}
+ 
+	item 380Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .380 ACP - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 380Box,
+    }
+	
+	item 380Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .380 ACP - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+	
+	item 32Rounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = .32 ACP rounds,
+		DisplayCategory = Ammo,
+		Icon = 32Rounds,
+	}
+ 
+	item 32Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .32 ACP - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = 32Box,
+    }
+ 
+	item 32Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .32 ACP - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+}

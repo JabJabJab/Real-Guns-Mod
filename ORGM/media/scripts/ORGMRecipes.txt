@@ -1,0 +1,1928 @@
+/**        ORMtnMan's Real Gun Mod       **/
+
+module ORGM
+{	
+	recipe Unbox 7.62x39mm rounds
+    	{
+        762Box,
+
+        Result:762Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        762Rounds=20,
+
+        Result:762Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762Rounds=200,
+
+        Result:762Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762Box=10,
+
+        Result:762Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        762Can,
+
+        Result:762Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        762Can,
+
+        Result:762Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox 9x19mm rounds
+    	{
+        9mmBox,
+
+        Result:9mmRounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        9mmRounds=50,
+
+        Result:9mmBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Put in a canister
+        {
+        9mmRounds=500,
+
+        Result:9mmCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        9mmBox=10,
+
+        Result:9mmCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        9mmCan,
+
+        Result:9mmBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        9mmCan,
+
+        Result:9mmRounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Unbox 12 gauge shells
+		{
+        12gBox,
+
+        Result:12gRounds=25,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        12gRounds=25,
+
+        Result:12gBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Put in a canister
+        {
+        12gRounds=250,
+
+        Result:12gCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        12gBox=10,
+
+        Result:12gCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        12gCan,
+
+        Result:12gBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        12gCan,
+
+        Result:12gRounds=250,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Unbox 12 gauge shells
+		{
+        12gSlugBox,
+
+        Result:12gSlugRounds=25,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        12gSlugRounds=25,
+
+        Result:12gSlugBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Put in a canister
+        {
+        12gSlugRounds=250,
+
+        Result:12gSlugCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        12gSlugBox=10,
+
+        Result:12gSlugCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        12gSlugCan,
+
+        Result:12gSlugBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        12gSlugCan,
+
+        Result:12gSlugRounds=250,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Unbox .22 LR rounds
+    	{
+        22Box,
+
+        Result:22Rounds=100,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        22Rounds=100,
+
+        Result:22Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        22Rounds=1000,
+
+        Result:22Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        22Box=10,
+
+        Result:22Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        22Can,
+
+        Result:22Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        22Can,
+
+        Result:22Rounds=1000,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .38 Special rounds
+    	{
+        38Box,
+
+        Result:38Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        38Rounds=50,
+
+        Result:38Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        38Rounds=500,
+
+        Result:38Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        38Box=10,
+
+        Result:38Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        38Can,
+
+        Result:38Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        38Can,
+
+        Result:38Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .40 S&W rounds
+    	{
+        40Box,
+
+        Result:40Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        40Rounds=50,
+
+        Result:40Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        40Rounds=500,
+
+        Result:40Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        40Box=10,
+
+        Result:40Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        40Can,
+
+        Result:40Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        40Can,
+
+        Result:40Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .44 Magnum rounds
+    	{
+        44Box,
+
+        Result:44Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        44Rounds=50,
+
+        Result:44Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        44Rounds=500,
+
+        Result:44Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        44Box=10,
+
+        Result:44Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        44Can,
+
+        Result:44Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        44Can,
+
+        Result:44Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .45 ACP Rounds
+    	{
+        45Box,
+
+        Result:45Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        45Rounds=50,
+
+        Result:45Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        45Rounds=500,
+
+        Result:45Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        45Box=10,
+
+        Result:45Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        45Can,
+
+        Result:45Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        45Can,
+
+        Result:45Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .223 Remington rounds
+    	{
+        223RemBox,
+
+        Result:223Rounds=25,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        223Rounds=25,
+
+        Result:223RemBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        223Rounds=250,
+
+        Result:223RemCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        223RemBox=10,
+
+        Result:223RemCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        223RemCan,
+
+        Result:223RemBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        223RemCan,
+
+        Result:223Rounds=250,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox 5.56x45mm NATO rounds
+    	{
+        556Box,
+
+        Result:556Rounds=25,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        556Rounds=25,
+
+        Result:556Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        556Rounds=250,
+
+        Result:556Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        556Box=10,
+
+        Result:556Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        556Can,
+
+        Result:556Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        556Can,
+
+        Result:556Rounds=250,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .38 Super Rounds
+    	{
+        38SBox,
+
+        Result:38SRounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        38SRounds=50,
+
+        Result:38SBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        38SRounds=500,
+
+        Result:38SCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        38SBox=10,
+
+        Result:38SCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        38SCan,
+
+        Result:38SBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        38SCan,
+
+        Result:38SRounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .357 Magnum rounds
+    	{
+        357Box,
+
+        Result:357Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        357Rounds=50,
+
+        Result:357Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        357Rounds=500,
+
+        Result:357Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        357Box=10,
+
+        Result:357Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        357Can,
+
+        Result:357Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        357Can,
+
+        Result:357Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .30-06 Springfield rounds
+    	{
+        3006Box,
+
+        Result:3006Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        3006Rounds=20,
+
+        Result:3006Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        3006Rounds=200,
+
+        Result:3006Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        3006Box=10,
+
+        Result:3006Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        3006Can,
+
+        Result:3006Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        3006Can,
+
+        Result:3006Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .30-30 Springfield rounds
+    	{
+        3030Box,
+
+        Result:3030Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        3030Rounds=20,
+
+        Result:3030Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        3030Rounds=200,
+
+        Result:3030Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        3030Box=10,
+
+        Result:3030Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        3030Can,
+
+        Result:3030Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        3030Can,
+
+        Result:3030Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .308 Winchester rounds
+    	{
+        308wBox,
+
+        Result:308Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        308Rounds=20,
+
+        Result:308wBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        308Rounds=200,
+
+        Result:308wCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        308wBox=10,
+
+        Result:308wCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        308wCan,
+
+        Result:308wBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        308wCan,
+
+        Result:308Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox 7.62x51 rounds
+    	{
+        762x51Box,
+
+        Result:762x51Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        762x51Rounds=20,
+
+        Result:762x51Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762x51Rounds=200,
+
+        Result:762x51Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762x51Box=10,
+
+        Result:762x51Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        762x51Can,
+
+        Result:762x51Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        762x51Can,
+
+        Result:762x51Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox 7.62x54R rounds
+    	{
+        762x54Box,
+
+        Result:762x54Rounds=20,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        762x54Rounds=20,
+
+        Result:762x54Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762x54Rounds=200,
+
+        Result:762x54Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        762x54Box=10,
+
+        Result:762x54Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        762x54Can,
+
+        Result:762x54Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        762x54Can,
+
+        Result:762x54Rounds=200,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .454 Casull rounds
+    	{
+        454Box,
+
+        Result:454Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        454Rounds=50,
+
+        Result:454Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        454Rounds=600,
+
+        Result:454Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        454Box=10,
+
+        Result:454Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        454Can,
+
+        Result:454Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        454Can,
+
+        Result:454Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .50 AE rounds
+    	{
+        50AEBox,
+
+        Result:50AERounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        50AERounds=50,
+
+        Result:50AEBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        50AERounds=500,
+
+        Result:50AECan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        50AEBox=10,
+
+        Result:50AECan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        50AECan,
+
+        Result:50AEBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        50AECan,
+
+        Result:50AERounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .45 Colt rounds
+    	{
+        45ColtBox,
+
+        Result:45ColtRounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        45ColtRounds=50,
+
+        Result:45ColtBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+	
+	recipe Put in a canister
+        {
+        45ColtRounds=500,
+
+        Result:45ColtCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        45ColtBox=10,
+
+        Result:45ColtCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        45ColtCan,
+
+        Result:45ColtBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        45ColtCan,
+
+        Result:45ColtRounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox FN5.7x28mm rounds
+    	{
+        57Box,
+
+        Result:57Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        57Rounds=50,
+
+        Result:57Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        57Rounds=500,
+
+        Result:57Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        57Box=10,
+
+        Result:57Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        57Can,
+
+        Result:57Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        57Can,
+
+        Result:57Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+	
+	recipe Unbox 10mm Auto rounds
+    	{
+        10mmBox,
+
+        Result:10mmRounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        10mmRounds=50,
+
+        Result:10mmBox,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        10mmRounds=500,
+
+        Result:10mmCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        10mmBox=10,
+
+        Result:10mmCan,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        10mmCan,
+
+        Result:10mmBox=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        10mmCan,
+
+        Result:10mmRounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+	
+	recipe Uncan .117 BBs rounds
+    	{
+        BBCan,
+
+        Result:BBs=250,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a can
+        {
+        BBs=250,
+
+        Result:BBCan,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Unbox .380 ACP rounds
+    	{
+        380Box,
+
+        Result:380Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        380Rounds=50,
+
+        Result:380Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        380Rounds=500,
+
+        Result:380Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        380Box=10,
+
+        Result:380Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        380Can,
+
+        Result:380Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        380Can,
+
+        Result:380Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Unbox .32 ACP rounds
+    	{
+        32Box,
+
+        Result:32Rounds=50,
+        Time:5.0,
+		OnCreate:unbox_OnCreate,
+    	}
+
+	recipe Put in a box
+        {
+        32Rounds=50,
+
+        Result:32Box,
+        Time:5.0,
+		OnCreate:putInBox_OnCreate,
+        }
+
+	recipe Put in a canister
+        {
+        32Rounds=500,
+
+        Result:32Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Put in a canister
+        {
+        32Box=10,
+
+        Result:32Can,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty into boxes
+        {
+        32Can,
+
+        Result:32Box=10,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+		
+	recipe Empty out canister
+        {
+        32Can,
+
+        Result:32Rounds=500,
+        Time:10.0,
+		OnCreate:putInBox_OnCreate,
+        }
+ 
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3,	
+
+	Result:BenelliM3SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3Sl,	
+
+	Result:BenelliM3SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3PASl,	
+
+	Result:BenelliM3PASOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3PA,	
+
+	Result:BenelliM3PASO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Ithaca37,
+
+	Result:Ithaca37SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Ithaca37Sl,
+
+	Result:Ithaca37SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Moss590,
+
+	Result:Moss590SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Moss590Sl,
+
+	Result:Moss590SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Rem870,
+
+	Result:Rem870SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Rem870Sl,
+
+	Result:Rem870SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Win1887,
+
+	Result:Win1887SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Win1887Sl,
+
+	Result:Win1887SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+
+	recipe Sawn-off
+	{
+	keep Saw,
+	Silverhawk,
+
+	Result:SilverHawkSO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	SilverhawkSl,
+
+	Result:SilverHawkSOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AKMA,
+
+	Result:AKMSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AKMSA,
+
+	Result:AKMA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M16,
+
+	Result:M16SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M16SA,
+
+	Result:M16,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M16223,
+
+	Result:M16SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M16SA223,
+
+	Result:M16223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M4C,
+
+	Result:M4CSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M4CSA,
+
+	Result:M4C,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M4C223,
+
+	Result:M4CSA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M4CSA223,
+
+	Result:M4C223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+
+	recipe Switch to semi-auto
+	{
+	SA80,
+
+	Result:SA80SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SA80SA,
+
+	Result:SA80,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SA80223,
+
+	Result:SA80223SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SA80223SA,
+
+	Result:SA80223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG550,
+
+	Result:SIG550SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG550SA,
+
+	Result:SIG550,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG550223,
+
+	Result:SIG550SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG550SA223,
+
+	Result:SIG550223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG551,
+
+	Result:SIG551SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG551SA,
+
+	Result:SIG551,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG551223,
+
+	Result:SIG551SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG551SA223,
+
+	Result:SIG551223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AR10,
+
+	Result:AR10SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AR10SA,
+
+	Result:AR10,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AR10308,
+
+	Result:AR10308SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AR10308SA,
+
+	Result:AR10308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNFALA,
+
+	Result:FNFALSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNFALSA,
+
+	Result:FNFALA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNFALA308,
+
+	Result:FNFALSA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNFALSA308,
+
+	Result:FNFALA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKG3,
+
+	Result:HKG3SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKG3SA,
+
+	Result:HKG3,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKG3308,
+
+	Result:HKG3SA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKG3SA308,
+
+	Result:HKG3308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+
+	recipe Switch to semi-auto
+	{
+	HKMP5,
+
+	Result:HKMP5SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKMP5SA,
+
+	Result:HKMP5,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	Glock18,
+
+	Result:Glock18SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	Glock18SA,
+
+	Result:Glock18,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	Ber93R,
+
+	Result:Ber93RSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	Ber93RSA,
+
+	Result:Ber93R,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKUMP,
+
+	Result:HKUMPSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKUMPSA,
+
+	Result:HKUMP,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNP90,
+
+	Result:FNP90SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNP90SA,
+
+	Result:FNP90,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	KrissA,
+
+	Result:KrissSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	KrissSA,
+
+	Result:KrissA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+}

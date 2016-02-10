@@ -1,0 +1,7 @@
+Extract the zipfile contents to your mods folder
+
+If your computer can support 3d models DO NOT CONTINUE ON WITH THE INSTRUCTIONS as you are now done :)
+
+Intallation instructions for no 3d models
+
+After extracting the zip file into the mods folder, open up No3dmodels folder and drag the contents into the media folder (in the ORGM mod folder) and replace all files

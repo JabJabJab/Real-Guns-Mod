@@ -1,0 +1,1673 @@
+/**        ORMtnMan's Real Gun Mod       **/
+
+module ORGM
+{ 	
+
+	item WD40
+	{
+		Weight 			=	0.3,
+		Type 			=	Drainable,
+		UseWhileEquipped 	=	FALSE,
+		UseDelta		=	0.5,
+		DisplayName		=	WD-40,
+		Icon			=	WD40,
+	}
+
+	item Brushkit
+	{
+		Weight 			=	0.5,
+		Type 			=	Drainable,
+		UseWhileEquipped 	=	FALSE,
+		UseDelta		=	0.1,
+		DisplayName		=	Gun Brush Kit,
+		Icon			=	Brushkit,
+	}
+
+	item Maintkit
+	{
+		Weight 			=	1,
+		Type 			=	Drainable,
+		UseWhileEquipped 	=	FALSE,
+		UseDelta		=	0.04,
+		DisplayName		=	Gun Maintenance Kit,
+		Icon			=	Maintkit,
+	}
+	
+    	fixing Repair Beretta 92FS
+	{
+		Require : Ber92,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Bren Ten
+	{
+		Require : BrenTen,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Browning Hi-Power
+	{
+		Require : BrownHP,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Colt Delta Elite
+	{
+		Require : ColtDelta,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Daisy Powerline Model 201
+	{
+		Require : BBPistol,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FN Five-seven
+	{
+		Require : FN57,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Glock 17
+	{
+		Require : Glock17,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Glock 22
+	{
+		Require : Glock22,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Glock 21
+	{
+		Require : Glock21,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M1911
+	{
+		Require : M1911,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Ruger MKII
+	{
+		Require : RugerMKII,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG P226
+	{
+		Require : SIGP226,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Walther P22
+	{
+		Require : WaltherP22,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Colt Government 38S
+	{
+		Require : Colt38S,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Taurus PT38S
+	{
+		Require : Taurus38,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Mossberg 590
+	{
+		Require : Moss590,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Mossberg 590 (Sawn Off)
+	{
+		Require : Moss590SO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Mossberg 590 (slug)
+	{
+		Require : Moss590Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Mossberg 590 (slug) (Sawn Off)
+	{
+		Require : Moss590SOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Norinco AKM
+	{
+		Require : AKM,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AKM
+	{
+		Require : AKMA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AKM (semi-auto)
+	{
+		Require : AKMSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair AR-10
+	{
+		Require : AR10,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AR-10 (.308)
+	{
+		Require : AR10308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AR-10 (semi-auto)
+	{
+		Require : AR10SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AR-10 (.308) (semi-auto)
+	{
+		Require : AR10SA308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair AR-15
+	{
+		Require : AR15,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AR-15 (5.56)
+	{
+		Require : AR15556,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Red Ryder
+	{
+		Require : BBGun,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Benelli M3
+	{
+		Require : BenelliM3,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Benelli M1014
+	{
+		Require : BenelliM1014,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Benelli M1014 (slug)
+	{
+		Require : BenelliM1014Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Benelli M3 (Sawn Off)
+	{
+		Require : BenelliM3SO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Benelli M3 (pump-action)
+	{
+		Require : BenelliM3PA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Benelli M3 (pump-action) (Sawn Off)
+	{
+		Require : BenelliM3PASO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Benelli M3 (slug)
+	{
+		Require : BenelliM3Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Benelli M3 (slug) (Sawn Off)
+	{
+		Require : BenelliM3SOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Benelli M3 (slug) (pump-action)
+	{
+		Require : BenelliM3PASl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Benelli M3 (slug) (pump-action) (Sawn Off)
+	{
+		Require : BenelliM3PASOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Colt Python
+	{
+		Require : ColtPyth,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Colt Python (.38)
+	{
+		Require : ColtPyth38,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Colt Single Action Army
+	{
+		Require : ColtSAA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair FSL LSR
+	{
+		Require : FNFAL,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FSL LSR (7.62x52)
+	{
+		Require : FNFAL762,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FN FAL
+	{
+		Require : FNFALA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FN FAL (semi-auto)
+	{
+		Require : FNFALSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FN FAL (.308)
+	{
+		Require : FNFALA308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair FN FAL (semi-auto) (.308)
+	{
+		Require : FNFALSA308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair H&K 91
+	{
+		Require : HK91,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K 91 (7.62x51)
+	{
+		Require : HK91762,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K G3
+	{
+		Require : HKG3,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K G3 (semi-auto)
+	{
+		Require : HKG3SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K G3 (.308)
+	{
+		Require : HKG3308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K G3 (semi-auto) (.308)
+	{
+		Require : HKG3SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair H&K MP5
+	{
+		Require : HKMP5,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair H&K UMP
+	{
+		Require : HKUMP,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K MP5 (semi-auto)
+	{
+		Require : HKMP5SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair H&K UMP (semi-auto)
+	{
+		Require : HKUMPSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ithaca Model 37
+	{
+		Require : Ithaca37,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ithaca Model 37 (Sawn Off)
+	{
+		Require : Ithaca37SO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Ithaca Model 37 (slug)
+	{
+		Require : Ithaca37Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ithaca Model 37 (slug) (Sawn Off)
+	{
+		Require : Ithaca37SOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair M4 Carbine 
+	{
+		Require : M4C,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M4 Carbine (semi-auto)
+	{
+		Require : M4CSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M4 Carbine (.223)
+	{
+		Require : M4C223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M4 Carbine (semi-auto) (.223)
+	{
+		Require : M4CSA223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair M16
+	{
+		Require : M16,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M16 (semi-auto)
+	{
+		Require : M16SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M16 (.223)
+	{
+		Require : M16223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M16 (semi-auto) (.223)
+	{
+		Require : M16SA223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair M21
+	{
+		Require : M21,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M21 (.308)
+	{
+		Require : M21308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger Mini-14
+	{
+		Require : Mini14,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Ruger Mini-14 (5.56)
+	{
+		Require : Mini14556,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Remington 700
+	{
+		Require : Rem700,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Remington 870
+	{
+		Require : Rem870,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Remington 870 (Sawn Off)
+	{
+		Require : Rem870SO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Remington 870 (slug)
+	{
+		Require : Rem870Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Remington 870 (slug) (Sawn Off)
+	{
+		Require : Rem870SOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger 10/22
+	{
+		Require : Rug1022,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger Alaskan
+	{
+		Require : RugAlas,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger Alaskan (.45 Colt)
+	{
+		Require : RugAlas,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger GP 100
+	{
+		Require : RugGP100,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger GP 100 (.38)
+	{
+		Require : RugGP10038,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger Redhawk
+	{
+		Require : RugRH,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger Security Six
+	{
+		Require : RugSec6,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Silverhawk
+	{
+		Require : Silverhawk,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Silverhawk (Sawn-Off)
+	{
+		Require : SilverhawkSO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Silverhawk (slug)
+	{
+		Require : SilverhawkSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Silverhawk (slug) (Sawn-Off)
+	{
+		Require : SilverhawkSOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair SKS
+	{
+		Require : SKS,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair S&W Model 19
+	{
+		Require : SWM19,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair S&W Model 19 (.38)
+	{
+		Require : SWM1938,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair S&W Model 29
+	{
+		Require : SWM29,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair S&W Model 36
+	{
+		Require : SWM36,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair S&W Model 610
+	{
+		Require : SWM610,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Taurus 454
+	{
+		Require : Taurus454,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Taurus 454 (.45 Colt)
+	{
+		Require : Taurus45445C,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Winchester Model 70
+	{
+		Require : WinM70,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair AI-AW .308
+	{
+		Require : AIAW308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair AI-AW .308 (7.62x51)
+	{
+		Require : AIAW308762,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair L85A2
+	{
+		Require : SA80,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair L85A2 (semi-auto)
+	{
+		Require : SA80SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair L85A2 (.223)
+	{
+		Require : SA80223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair L85A2 (semi-auto) (.223)
+	{
+		Require : SA80SA223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Spas-12
+	{
+		Require : Spas12,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Spas-12 (pump-action)
+	{
+		Require : Spas12PA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Spas-12 (slug)
+	{
+		Require : Spas12Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Spas-12 (slug) (pump-action)
+	{
+		Require : Spas12PASl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair IMI Desert Eagle
+	{
+		Require : DEagle,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Browning BLR
+	{
+		Require : BLR,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Browning BLR (7.62x51)
+	{
+		Require : BLR762,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Henry Big Boy
+	{
+		Require : HenryBB,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Dragunov SVD
+	{
+		Require : SVD,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Mosin Nagant
+	{
+		Require : Mosin,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair H&K SL8
+	{
+		Require : HKSL8,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair H&K SL8 (5.56)
+	{
+		Require : HKSL8556,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Stevens 320
+	{
+		Require : Stevens320,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair VEPR-12 Molot
+	{
+		Require : VEPR12,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair SRM Arms Model 1213
+	{
+		Require : M1213,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Stevens 320 (slug)
+	{
+		Require : Stevens320Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair VEPR-12 Molot (slug)
+	{
+		Require : VEPR12Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair SRM Arms Model 1213 (slug)
+	{
+		Require : M1213Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair M1A1 Thompson
+	{
+		Require : M1A1,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair American-180
+	{
+		Require : AM180,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Kriss Vector CRB
+	{
+		Require : Kriss,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Kriss Vector
+	{
+		Require : KrissA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Kriss Vector (semi-auto)
+	{
+		Require : KrissSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Kel-Tec PLR-16
+	{
+		Require : KTPLR,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Kel-Tec PLR-16 (5.56)
+	{
+		Require : KTPLR556,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Mac-11
+	{
+		Require : Mac11,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Mac-10
+	{
+		Require : Mac10,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Uzi
+	{
+		Require : Uzi,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair AMT Automag V
+	{
+		Require : AutomagV,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Desert Eagle XIX
+	{
+		Require : DEagleXIX,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Kahr P-380
+	{
+		Require : KahrP380,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Springfield XD-40
+	{
+		Require : XD40,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Kahr CT-40
+	{
+		Require : KahrCT40,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Ruger SR9
+	{
+		Require : RugerSR9,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Armsel Striker
+	{
+		Require : Striker,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Hawk Model 982 Defense
+	{
+		Require : Hawk982,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Armsel Striker (slug)
+	{
+		Require : StrikerSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Hawk Model 982 Defense (slug)
+	{
+		Require : Hawk982Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Marlin Model 60
+	{
+		Require : Marlin60,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Winchester Model 1894
+	{
+		Require : WinM94,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Remington Model 788
+	{
+		Require : Rem788,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair KAC SR-25
+	{
+		Require : SR25,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair KAC SR-25 (.308)
+	{
+		Require : SR25308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Remington R25
+	{
+		Require : R25,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Remington R25 (7.62x51)
+	{
+		Require : SR25308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair M249
+	{
+		Require : M249,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair M249 (.223)
+	{
+		Require : M249223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+
+	fixing Repair Springfield 1911 9mm
+	{
+		Require : Spr19119,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair CZ 75
+	{
+		Require : CZ75,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Kel-Tec P-32
+	{
+		Require : KTP32,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Taurus Millennium P132
+	{
+		Require : TaurusP132,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Skorpion vz. 61
+	{
+		Require : Skorpion,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Beretta 93R
+	{
+		Require : Ber93R,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Beretta 93R (semi-auto)
+	{
+		Require : Ber93RSA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Glock 18C
+	{
+		Require : Glock18,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Glock 18C (semi-auto)
+	{
+		Require : Glock18SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Winchester Model 1887
+	{
+		Require : Win1887,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Winchester Model 1887 (Sawn-Off)
+	{
+		Require : Win1887SO,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Winchester Model 1887 (slug)
+	{
+		Require : Win1887Sl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Winchester Model 1887 (slug) (Sawn-Off)
+	{
+		Require : Win1887SOSl,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Springfield M1903
+	{
+		Require : M1903,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Lee Enfield No. 4
+	{
+		Require : LENo4,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Lee Enfield No. 4 (.308)
+	{
+		Require : LENo4308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair L96A1
+	{
+		Require : L96,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair L96A1 (.308)
+	{
+		Require : L96308,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG550 (.223)
+	{
+		Require : SIG550223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG550
+	{
+		Require : SIG550,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG550 (semi-auto) (.223)
+	{
+		Require : SIG550SA223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG550 (semi-auto)
+	{
+		Require : SIG550SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG551 (.223)
+	{
+		Require : SIG551223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG551
+	{
+		Require : SIG551,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG551 (semi-auto) (.223)
+	{
+		Require : SIG551SA223,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair SIG SG551 (semi-auto)
+	{
+		Require : SIG551SA,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair S&W Model 10
+	{
+		Require : SWM10,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair S&W Model 25-2
+	{
+		Require : SWM252,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Ruger Blackhawk
+	{
+		Require : RugBH,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+	
+	fixing Repair Ruger Blackhawk (.38)
+	{
+		Require : RugBH38,
+		
+		Fixer 	: Maintkit; Aiming=2,
+		Fixer	: Brushkit; Aiming=1,
+		Fixer 	: WD40,
+	}
+}
