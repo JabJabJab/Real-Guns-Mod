@@ -1,0 +1,561 @@
+/**        ORMtnMan's Real Gun Mod       **/
+
+module ORGM
+{	
+
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3,	
+
+	Result:BenelliM3SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3Sl,	
+
+	Result:BenelliM3SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3PASl,	
+
+	Result:BenelliM3PASOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	BenelliM3PA,	
+
+	Result:BenelliM3PASO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Ithaca37,
+
+	Result:Ithaca37SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Ithaca37Sl,
+
+	Result:Ithaca37SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Moss590,
+
+	Result:Moss590SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Moss590Sl,
+
+	Result:Moss590SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Rem870,
+
+	Result:Rem870SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Rem870Sl,
+
+	Result:Rem870SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Win1887,
+
+	Result:Win1887SO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	Win1887Sl,
+
+	Result:Win1887SOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+
+	recipe Sawn-off
+	{
+	keep Saw,
+	Silverhawk,
+
+	Result:SilverHawkSO,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Sawn-off
+	{
+	keep Saw,
+	SilverhawkSl,
+
+	Result:SilverHawkSOSl,
+	Time:200.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AKMA,
+
+	Result:AKMSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AKMSA,
+
+	Result:AKMA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M16,
+
+	Result:M16SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M16SA,
+
+	Result:M16,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M16223,
+
+	Result:M16SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M16SA223,
+
+	Result:M16223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M4C,
+
+	Result:M4CSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M4CSA,
+
+	Result:M4C,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	M4C223,
+
+	Result:M4CSA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	M4CSA223,
+
+	Result:M4C223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+
+	recipe Switch to semi-auto
+	{
+	SA80,
+
+	Result:SA80SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SA80SA,
+
+	Result:SA80,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SA80223,
+
+	Result:SA80223SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SA80223SA,
+
+	Result:SA80223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG550,
+
+	Result:SIG550SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG550SA,
+
+	Result:SIG550,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG550223,
+
+	Result:SIG550SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG550SA223,
+
+	Result:SIG550223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG551,
+
+	Result:SIG551SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG551SA,
+
+	Result:SIG551,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	SIG551223,
+
+	Result:SIG551SA223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	SIG551SA223,
+
+	Result:SIG551223,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AR10,
+
+	Result:AR10SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AR10SA,
+
+	Result:AR10,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	AR10308,
+
+	Result:AR10308SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	AR10308SA,
+
+	Result:AR10308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNFALA,
+
+	Result:FNFALSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNFALSA,
+
+	Result:FNFALA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNFALA308,
+
+	Result:FNFALSA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNFALSA308,
+
+	Result:FNFALA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKG3,
+
+	Result:HKG3SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKG3SA,
+
+	Result:HKG3,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKG3308,
+
+	Result:HKG3SA308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKG3SA308,
+
+	Result:HKG3308,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+
+	recipe Switch to semi-auto
+	{
+	HKMP5,
+
+	Result:HKMP5SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKMP5SA,
+
+	Result:HKMP5,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	Glock18,
+
+	Result:Glock18SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	Glock18SA,
+
+	Result:Glock18,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	Ber93R,
+
+	Result:Ber93RSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	Ber93RSA,
+
+	Result:Ber93R,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	HKUMP,
+
+	Result:HKUMPSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	HKUMPSA,
+
+	Result:HKUMP,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	FNP90,
+
+	Result:FNP90SA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	FNP90SA,
+
+	Result:FNP90,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to semi-auto
+	{
+	KrissA,
+
+	Result:KrissSA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+	recipe Switch to full-auto
+	{
+	KrissSA,
+
+	Result:KrissA,
+	Time:10.0,
+	OnCreate:WeaponChg_OnCreate,
+	}
+	
+}
