@@ -1,0 +1,898 @@
+/**        ORMtnMan's Real Gun Mod       **/
+
+module ORGM
+{   
+
+	item Ber92
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	10,
+		WeaponSprite	=	glock22,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	1,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	0.9,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Handgun,
+		WeaponWeight	=	0.9,
+		DisplayName	=	Beretta 92FS,
+		MinRange	=	0.6,
+		SwingTime	=	0.7,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	WeapBeretta92,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 12,
+        	SoundGain = 1.5,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+	
+	item Ber93R
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	10,
+		WeaponSprite	=	glock22,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	0.2,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	1.17,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Handgun,
+		WeaponWeight	=	1.17,
+		DisplayName	=	Beretta 93R,
+		MinRange	=	0.6,
+		SwingTime	=	0.25,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	WeapBeretta93R,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 1,
+        	SoundGain = 1.5,
+        	ClipSize = 32,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+
+	item BerCX4
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	15,
+		WeaponSprite	=	g3,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	1,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	2.58,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Rifle,
+		WeaponWeight	=	2.58,
+		DisplayName	=	Beretta CX4 Storm,
+		MinRange	=	0.6,
+		SwingTime	=	0.7,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	BerCX4,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 12,
+        	SoundGain = 1.5,
+        	ClipSize = 15,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+	
+	item BerMag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Beretta 10 rnd Mag (9mm),
+		Icon		=	MagBerettaMag10,
+	}
+	
+	item BerMag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.22,
+		Type		=	Normal,
+		DisplayName	=	Beretta 15 rnd Mag (9mm),
+		Icon		=	MagBerettaMag15,
+	}
+	
+	item BerMag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	Beretta 17 rnd Mag (9mm),
+		Icon		=	MagBerettaMag17,
+	}
+	
+	item BerMag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.27,
+		Type		=	Normal,
+		DisplayName	=	Beretta 20 rnd Mag (9mm),
+		Icon		=	MagBerettaMag20,
+	}
+	
+	item BerMag30
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.34,
+		Type		=	Normal,
+		DisplayName	=	Beretta 30 rnd Mag (9mm),
+		Icon		=	MagBerettaMag30,
+	}
+	
+	item BerMag32
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.36,
+		Type		=	Normal,
+		DisplayName	=	Beretta 32 rnd Mag (9mm),
+		Icon		=	MagBerettaMag32,
+	}
+
+	item BerMX4
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	15,
+		WeaponSprite	=	g3,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	0.2,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	2.58,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Rifle,
+		WeaponWeight	=	2.58,
+		DisplayName	=	Beretta MX4 Storm,
+		MinRange	=	0.6,
+		SwingTime	=	0.25,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	BerMX4,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 1,
+        	SoundGain = 1.5,
+        	ClipSize = 32,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+
+	item BerPX4
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	10,
+		WeaponSprite	=	glock22,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	1,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	0.79,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Handgun,
+		WeaponWeight	=	0.79,
+		DisplayName	=	Beretta PX4 Storm,
+		MinRange	=	0.6,
+		SwingTime	=	0.7,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	BerPX4,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 12,
+        	SoundGain = 1.5,
+        	ClipSize = 15,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+
+	item BrownHPMag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Browning HP 10 rnd Mag (9mm),
+		Icon		=	MagBrownHPMag10,
+	}
+
+	item BrownHPMag13
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.21,
+		Type		=	Normal,
+		DisplayName	=	Browning HP 13 rnd Mag (9mm),
+		Icon		=	MagBrownHPMag13,
+	}
+
+	item BrownHPMag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.23,
+		Type		=	Normal,
+		DisplayName	=	Browning HP 15 rnd Mag (9mm),
+		Icon		=	MagBrownHPMag15,
+	}
+	item ChiappaM1-9
+	{
+		AmmoType	=	MaglistBeretta,
+		ImpactSound	=	null,
+		MaxRange	=	15,
+		WeaponSprite	=	g3,
+		SoundVolume	=	75,
+		MinAngle	=	0.95,
+		Type	=	Weapon,
+		MinimumSwingTime	=	1,
+		ToHitModifier	=	1.5,
+		NPCSoundBoost	=	1.5,
+		KnockBackOnNoDeath	=	TRUE,
+		Ranged	=	TRUE,
+		SwingAmountBeforeImpact	=	0,
+		ProjectileCount	=	1,
+		ConditionLowerChanceOneIn	=	60,
+		Weight	=	2.68,
+		SplatNumber	=	3,
+		PushBackMod	=	0.3,
+		MaxDamage	=	1.6,
+		SubCategory	=	Firearm,
+		ConditionMax	=	10,
+		ShareDamage	=	FALSE,
+		MaxHitCount	=	1,
+		IsAimedFirearm	=	TRUE,
+		DoorDamage	=	5,
+		UseEndurance	=	FALSE,
+		SwingAnim	=	Rifle,
+		WeaponWeight	=	2.68,
+		DisplayName	=	Chiappa M1-9,
+		MinRange	=	0.6,
+		SwingTime	=	0.7,
+		MultipleHitConditionAffected	=	FALSE,
+		SwingSound	=	ORGMBeretta,
+		SoundRadius	=	150,
+		MinDamage	=	1,
+		SplatSize	=	3,
+		KnockdownMod	=	2,
+		SplatBloodOnNoDeath	=	TRUE,
+		Icon	=	ChiappaM1-9,
+		RunAnim	=	Run_Weapon2,
+		CriticalChance = 20,
+        	AimingPerkCritModifier = 10,
+        	AimingPerkRangeModifier = 1.5,
+        	HitChance = 45,
+        	AimingPerkHitChanceModifier = 15,
+        	AimingPerkMinAngleModifier = 0.05,
+        	RecoilDelay = 12,
+        	SoundGain = 1.5,
+        	ClipSize = 15,
+        	ReloadTime = 10,
+        	AimingTime = 40,
+		BreakSound  =   PZ_MetalSnap,
+	}
+
+	item Glock9mmMag6
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.12,
+		Type		=	Normal,
+		DisplayName	=	Glock 6 rnd Mag (holdout)(9mm),
+		Icon		=	MagGlock9mmMag6,
+	}
+
+	item Glock9mmMag10comp
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.15,
+		Type		=	Normal,
+		DisplayName	=	Glock 10 rnd Mag (compact) (9mm),
+		Icon		=	MagGlock9mmMag10comp,
+	}
+
+	item Glock9mmMag10full
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.16,
+		Type		=	Normal,
+		DisplayName	=	Glock 10 rnd Mag (full-size) (9mm),
+		Icon		=	MagGlock9mmMag10full,
+	}
+
+	item Glock9mmMag10scomp
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.15,
+		Type		=	Normal,
+		DisplayName	=	Glock 10 rnd Mag (sub-compact) (9mm),
+		Icon		=	MagGlock9mmMag10scomp,
+	}
+
+	item Glock9mmMag12
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.16,
+		Type		=	Normal,
+		DisplayName	=	Glock 12 rnd Mag (sub-compact) (9mm),
+		Icon		=	MagGlock9mmMag12,
+	}
+
+	item Glock9mmMag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.17,
+		Type		=	Normal,
+		DisplayName	=	Glock 15 rnd Mag (compact) (9mm),
+		Icon		=	MagGlock9mmMag15,
+	}
+
+	item Glock9mmMag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.18,
+		Type		=	Normal,
+		DisplayName	=	Glock 17 rnd Mag (full-size)(9mm),
+		Icon		=	MagGlock9mmMag17,
+	}
+
+	item Glock9mmMag19
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.19,
+		Type		=	Normal,
+		DisplayName	=	Glock 19 rnd Mag (full-size)(9mm),
+		Icon		=	MagGlock9mmMag19,
+	}
+	
+	item Glock9mmMag31
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.28,
+		Type		=	Normal,
+		DisplayName	=	Glock 31 rnd Mag (full-size) (9mm),
+		Icon		=	MagGlock9mmMag31,
+	}
+	
+	item Glock9mmMag33
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.3,
+		Type		=	Normal,
+		DisplayName	=	Glock 33 rnd Mag (full-size) (9mm),
+		Icon		=	MagGlock9mmMag33,
+	}
+	
+	item Glock9mmMag50
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.41,
+		Type		=	Normal,
+		DisplayName	=	Glock 50 rnd Drum (full-size) (9mm),
+		Icon		=	MagGlock9mmMag50,
+	}
+
+	item HKMP5Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.15,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 10 rnd Mag (9mm),
+		Icon		=	MagHKMP5Mag10,
+	}
+
+	item HKMP5Mag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 15 rnd Mag (9mm),
+		Icon		=	MagHKMP5Mag15,
+	}
+
+	item HKMP5Mag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 20 rnd Mag (9mm),
+		Icon		=	MagHKMP5Mag20,
+	}
+
+	item HKMP5Mag30
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.3,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 30 rnd Mag (9mm),
+		Icon		=	MagHKMP5Mag30,
+	}
+
+	item HKMP5Mag40
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.38,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 40 rnd Mag (9mm),
+		Icon		=	MagHKMP5Mag40,
+	}
+
+	item HKMP5Mag50
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.46,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 50 rnd Drum (9mm),
+		Icon		=	MagHKMP5Mag50,
+	}
+
+	item HKMP5Mag100
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.70,
+		Type		=	Normal,
+		DisplayName	=	H&K MP5 100 rnd Beta-Mag (9mm),
+		Icon		=	MagHKMP5Mag100,
+	}
+
+	item HKP7Mag13
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	H&K P7 13 rnd Mag (9mm),
+		Icon		=	HKP7Mag13,
+	}
+
+	item KelTecP11Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Kel-Tec P11 10 rnd Mag (9mm),
+		Icon		=	KelTecP11Mag10,
+	}
+
+	item M19119Mag8
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.18,
+		Type		=	Normal,
+		DisplayName	=	M1911 9mm 8 rnd Mag (Officer) (9mm),
+		Icon		=	M19119mmMag8,
+	}
+
+	item M19119Mag9off
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.18,
+		Type		=	Normal,
+		DisplayName	=	M1911 9mm 9 rnd Mag (Officer) (9mm),
+		Icon		=	M19119mmMag9off,
+	}
+
+	item M19119Mag9std
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.2,
+		Type		=	Normal,
+		DisplayName	=	M1911 9mm 9 rnd Mag (Standard) (9mm),
+		Icon		=	M19119mmMag9std,
+	}
+
+	item M19119Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.22,
+		Type		=	Normal,
+		DisplayName	=	M1911 9mm 10 rnd Mag (Standard) (9mm),
+		Icon		=	M19119mmMag10,
+	}
+
+	item RugerP9mmMag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Ruger P 10 rnd Mag (9mm),
+		Icon		=	RugerP9Mag10,
+	}
+
+	item RugerP9mmMag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.23,
+		Type		=	Normal,
+		DisplayName	=	Ruger P 15 rnd Mag (9mm),
+		Icon		=	RugerP9Mag15,
+	}
+
+	item RugerP9mmMag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	Ruger P 17 rnd Mag (9mm),
+		Icon		=	RugerP9Mag17,
+	}
+
+	item RugerP9mmMag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.26,
+		Type		=	Normal,
+		DisplayName	=	Ruger P 20 rnd Mag (9mm),
+		Icon		=	RugerP9Mag20,
+	}
+
+	item RugerP9mmMag32
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.32,
+		Type		=	Normal,
+		DisplayName	=	Ruger P 32 rnd Mag (9mm),
+		Icon		=	RugerP9Mag32,
+	}
+
+	item RugerSR9Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Ruger SR9 10 rnd Mag (9mm),
+		Icon		=	RugerSR9Mag10,
+	}
+	
+	item RugerSR9Mag10comp
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.15,
+		Type		=	Normal,
+		DisplayName	=	Ruger SR9 10 rnd Mag (compact) (9mm),
+		Icon		=	RugerSR9Mag10comp,
+	}
+
+	item RugerSR9Mag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	Ruger SR9 17 rnd Mag (9mm),
+		Icon		=	RugerSR9Mag17,
+	}
+
+	item SW5906Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.2,
+		Type		=	Normal,
+		DisplayName	=	S&W 5906 10 rnd Mag (9mm),
+		Icon		=	S&W5906Mag10,
+	}
+
+	item SW5906Mag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	S&W 5906 15 rnd Mag (9mm),
+		Icon		=	S&W5906Mag15,
+	}
+
+	item SW5906Mag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	S&W 5906 17 rnd Mag (9mm),
+		Icon		=	S&W5906Mag17,
+	}
+
+	item SW5906Mag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.26,
+		Type		=	Normal,
+		DisplayName	=	S&W 5906 20 rnd Mag (9mm),
+		Icon		=	S&W5906Mag20,
+	}
+
+	item SWMP9Mag7shield
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.18,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 7 rnd Mag (Shield) (9mm),
+		Icon		=	S&WMP9Mag7shield,
+	}
+
+	item SWMP9Mag8shield
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.18,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 8 rnd Mag (Shield) (9mm),
+		Icon		=	S&WMP9Mag8shield,
+	}
+
+	item SWMP9Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 10 rnd Mag (9mm),
+		Icon		=	S&WMP9Mag10,
+	}
+
+	item SWMP9Mag10comp
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.19,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 10 rnd Mag (Compact) (9mm),
+		Icon		=	S&WMP9Mag10comp,
+	}
+
+	item SWMP9Mag12comp
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 12 rnd Mag (Compact) (9mm),
+		Icon		=	S&WMP9Mag12comp,
+	}
+
+	item SWMP9Mag15
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.22,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 15 rnd Mag (9mm),
+		Icon		=	S&WMP9Mag15,
+	}
+
+	item SWMP9Mag17
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	S&W M&P 9 17 rnd Mag (9mm),
+		Icon		=	S&WMP9Mag17,
+	}
+
+	item TaurusPT111Mag10
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.19,
+		Type		=	Normal,
+		DisplayName	=	Taurus PT111 10 rnd Mag (9mm),
+		Icon		=	TaurusPT111Mag10,
+	}
+
+	item TaurusPT111Mag12
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.20,
+		Type		=	Normal,
+		DisplayName	=	Taurus PT111 12 rnd Mag (9mm),
+		Icon		=	TaurusPT111Mag12,
+	}
+
+	item Tec9Mag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	Tec 9 20 rnd Mag (9mm),
+		Icon		=	Tec9Mag20,
+	}
+
+	item Tec9Mag32
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.34,
+		Type		=	Normal,
+		DisplayName	=	Tec 9 32 rnd Mag (9mm),
+		Icon		=	Tec9Mag32,
+	}
+
+	item Tec9Mag50
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.46,
+		Type		=	Normal,
+		DisplayName	=	Tec 9 50 rnd Mag (9mm),
+		Icon		=	Tec9Mag50,
+	}
+
+	item UziMag20
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.24,
+		Type		=	Normal,
+		DisplayName	=	Uzi 20 rnd Mag (9mm),
+		Icon		=	UziMag20,
+	}
+
+	item UziMag25
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.28,
+		Type		=	Normal,
+		DisplayName	=	Uzi 25 rnd Mag (9mm),
+		Icon		=	UziMag25,
+	}
+
+	item UziMag32
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.34,
+		Type		=	Normal,
+		DisplayName	=	Uzi 32 rnd Mag (9mm),
+		Icon		=	UziMag32,
+	}
+
+	item UziMag40
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.4,
+		Type		=	Normal,
+		DisplayName	=	Uzi 40 rnd Mag (9mm),
+		Icon		=	UziMag40,
+	}
+
+	item UziMag50
+	{
+		CanStack	=	FALSE,
+		Weight		=	0.46,
+		Type		=	Normal,
+		DisplayName	=	Uzi 50 rnd Mag (9mm),
+		Icon		=	UziMag50,
+	}
+
+}

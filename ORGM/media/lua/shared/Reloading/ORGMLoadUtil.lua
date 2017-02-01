@@ -59,6 +59,26 @@ function ORGMLoadUtil:getLoadableData(itemType)
     return nil;
 end
 
+function ORGMLoadUtil:needsCylRotate(loadable)
+	local ammoInTable = ORGMLoadUtil.tableCount(loadable.ammoLoaded)
+	local lastItem = loadable.ammoLoaded[ammoInTable]
+	if ammoInTable < loadable.maxCapacity then
+		return false
+	elseif lastItem ~= nil and ORGMLoadManager.ORGMindexfinder(lastItem, Ammoindexlist) ~= nil then
+		return true
+	else
+		return false
+	end
+end
+
+function ORGMLoadUtil:tableCount(tabletocheck) --Counts items currently in the table
+	local count = 0
+	for _ in pairs(tabletocheck) do
+		count = count + 1
+	end
+	return count
+end
+
 function ORGMLoadUtil:getLoadableForPlayer(loadClass, playerObj)
 	if not ORGMplayerData[playerObj] then
 		ORGMplayerData[playerObj] = {}

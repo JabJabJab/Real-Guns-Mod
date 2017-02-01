@@ -1,0 +1,27 @@
+
+/**        ORMtnMan's Real Gun Mod       **/
+ 
+module ORGM
+{  
+ 
+	item 9mmRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = 9x19mm rounds,
+		DisplayCategory = Ammo,
+		Icon = Am9mmRounds,
+	}
+ 
+	item 9mmHPRounds
+	{
+		Count = 1,
+		Weight = 0.01,
+		Type = Normal,
+		DisplayName = 9x19mm HP rounds,
+		DisplayCategory = Ammo,
+		Icon = Am9mmHPRounds,
+	}
+	
+}

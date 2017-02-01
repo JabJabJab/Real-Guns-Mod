@@ -30,16 +30,17 @@ end
 
 function ORGMLoadAction:perform() --for performing the loading actions
 	self.loadableData = self.loadWeapon:getModData()
+	local loadStyle = self.loadableData.loadStyle
 	if self.loadType == "open" then --open the gun for reloading
 		self.loadable:openClosePerform(self.character, self.square, self.mgr:getDifficulty(), self.loadWeapon)
 		self.mgr.loadable = self.loadable
 		ISBaseTimedAction.perform(self)
-	elseif self.loadableData.openClose ~= 1 and self.loadableData.openClose == 1 and self.loadableData.isOpen ~= nil and self.loadableData.isOpen ~= 1 then
+	elseif self.loadableData.openClose ~= nil and self.loadableData.openClose == 1 and self.loadableData.isOpen ~= nil and self.loadableData.isOpen ~= 1 then
 		self.loadable:openClosePerform(self.character, self.square, self.mgr:getDifficulty(), self.loadWeapon)
 		self.mgr.loadable = self.loadable
 		self.mgr:stopLoadSuccess() --a check to see if the gun can continue after the first action
 	elseif self.loadType == "reload" or self.loadType == "unload" then --if the loadType is reloading then is performs the loading action
-		self.loadable:loadPerform(self.character, self.square, self.mgr:getDifficulty(), self.loadWeapon, self.reloadAmmo, self.loadType)
+		self.loadable:loadPerform(self.character, self.square, self.mgr:getDifficulty(), self.loadWeapon, self.reloadAmmo, self.loadType, loadStyle)
 		self.mgr.loadable = self.loadable
 		self.mgr:stopLoadSuccess() --a check to see if the gun can continue after the first action
 		ISBaseTimedAction.perform(self)

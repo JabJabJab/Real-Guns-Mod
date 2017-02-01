@@ -21,21 +21,19 @@ ORGMInventoryLoadMenu.createMenu = function(player, context, items) --creating t
             testItem = v.items[1];
         end
 		testData = testItem:getModData()
-		if testData.reloadClass ~= nil then
-		
-		else
+		if testData.reloadClass == nil then
 			ORGMLoadUtil:setUpLoadable(testItem, playerObj)
+			testData = testItem:getModData()
 		end
-		testData = testItem:getModData()
 		if testData.reloadClass == 'ORGMLoadClass' then --a check to see if the item is an ORGM gun
 			local unloadTest = testData.currentCapacity;
 			if testData.roundChambered ~= nil and testData.roundChambered == 1 then
 				unloadTest = unloadTest + 1
 			end
-			if testData.magInserted ~= nil and testData.magInserted == 1 and difficulty ~= 1 then
+			if testData.containsMag ~= nil and testData.containsMag == 1 and difficulty ~= 1 then
 				--test to add eject mag option
 				isReloadableMag = true;
-			elseif testData.magInserted ~= nil and testData.magInserted ~= 1 and difficulty ~= 1 then
+			elseif testData.containsMag ~= nil and testData.containsMag ~= 1 and difficulty ~= 1 then
 				isReloadable = true;
 			elseif (difficulty == 1 or testData.loadStyle ~= 'magfed') and testData.currentCapacity < testData.maxCapacity then --test to add normal reload 
 				isReloadable = true;
@@ -62,15 +60,35 @@ ORGMInventoryLoadMenu.createMenu = function(player, context, items) --creating t
 		ammoTable = _G[tablename] --awesome function to get a table name from a string
 		magTable = _G[tablenamemag]
 		if magTable ~= nil and difficulty ~= 1 then
-			for i,v in ipairs(magTable) do --iterates adding an option to load for any mag type present
-				local testMag = v;
+			for index,testMag in ipairs(magTable) do --iterates adding an option to load for any mag type present
 				if playerObj:getInventory():FindAndReturn(testMag) ~= nil then
 					--looks to see if the mag is in your inventory
 					local reloadtextindex = ORGMLoadManager:ORGMindexfinder(testMag, Magindexlist);
 					local reloadtexttoadd = Magloadtext[reloadtextindex]
+					local indexForAction = ORGMLoadManager:ORGMindexfinder(testMag, magTable)
 					--finds the index and gets the reload text
 					if isReloadable and not isAction then --if the gun is reloadable and you are not performing an action, gives the option to reload
-						local reloadOption = context:addOption(reloadtexttoadd, items, ORGMLoadManager.startReloadFromUi(testItem, testMag), playerObj, testCal);
+						if indexForAction == 1 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm1, playerObj);
+						elseif indexForAction == 2 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm2, playerObj);
+						elseif indexForAction == 3 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm3, playerObj);
+						elseif indexForAction == 4 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm4, playerObj);
+						elseif indexForAction == 5 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm5, playerObj);
+						elseif indexForAction == 6 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm6, playerObj);
+						elseif indexForAction == 7 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm7, playerObj);
+						elseif indexForAction == 8 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm8, playerObj);
+						elseif indexForAction == 9 then
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm9, playerObj);
+						else
+							local reloadOption = context:addOption(reloadtexttoadd, items, ORGMInventoryLoadMenu.OnReloadm10, playerObj);
+						end	
 					end
 				end
 			end
@@ -113,7 +131,7 @@ ORGMInventoryLoadMenu.createMenu = function(player, context, items) --creating t
 			end
 		end
 		if isReloadableMag and not isAction then --if the gun is reloadable and you are not performing an action, gives the option to eject the mag in the gun
-			local reloadOption = context:addOption("Eject Mag.", items, ORGMLoadManager:startReloadFromUi(testItem), playerObj);
+			local reloadOption = context:addOption("Eject Mag.", items, ORGMInventoryLoadMenu.OnEject, playerObj);
 		end
 		if isUnloadable and not isAction then --if the gun is unloadable and you are not performing an action, gives the option to unload
 			local unloadOption = context:addOption("Unload Rounds", items, ORGMInventoryLoadMenu.OnUnload, playerObj)
@@ -266,6 +284,134 @@ ORGMInventoryLoadMenu.OnReload10 = function(items, player)
 	ammoTable = _G[tablename]
 	testCal = ammoTable[10]
 	ORGMLoadManager:startReloadFromUi(weapon, testCal);
+end
+
+ORGMInventoryLoadMenu.OnReloadm1 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[1]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm2 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[2]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm3 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[3]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm4 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[4]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm5 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testCal = magTable[5]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm6 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[6]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm7 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[7]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm8 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[8]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm9 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[9]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnReloadm10 = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	testData = weapon:getModData()
+	tablename = testData.magType
+	magTable = _G[tablename]
+	testMag = magTable[10]
+	ORGMLoadManager:startReloadFromUi(weapon, testMag);
+end
+
+ORGMInventoryLoadMenu.OnEject = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1];
+	end
+	ORGMLoadManager:startReloadFromUi(weapon);
 end
 
 ORGMInventoryLoadMenu.OnUnload = function(items, player)
@@ -458,6 +604,14 @@ Events.OnFillInventoryObjectContextMenu.Add(ORGMInventoryLoadMenu.createMenu); -
 	Ammolist303 = {
 			"303Rounds",
 			"303HPRounds",
+			};
+	AmmolistSmP = {
+			"9mmRounds",
+			"9mmHPRounds",
+			"32Rounds",
+			"32HPRounds",
+			"380Rounds",
+			"380HPRounds",
 			};
 			
 	Ammoindexlist = {
@@ -675,9 +829,140 @@ Events.OnFillInventoryObjectContextMenu.Add(ORGMInventoryLoadMenu.createMenu); -
 			
 
 	Magindexlist= {
-			"Ber92Mag"
+			"BerMag10",
+			"BerMag15",
+			"BerMag17",
+			"BerMag20",
+			"BerMag30",
+			"BerMag32",
+			"BrownHPMag10",
+			"BrownHPMag13",
+			"BrownHPMag15",
+			"Glock9mmMag6",
+			"Glock9mmMag10comp",
+			"Glock9mmMag10full",
+			"Glock9mmMag10scomp",
+			"Glock9mmMag12",
+			"Glock9mmMag15",
+			"Glock9mmMag17",
+			"Glock9mmMag19",
+			"Glock9mmMag31",
+			"Glock9mmMag33",
+			"Glock9mmMag50",
+			"HKMP5Mag10",
+			"HKMP5Mag15",
+			"HKMP5Mag20",
+			"HKMP5Mag30",
+			"HKMP5Mag40",
+			"HKMP5Mag50",
+			"HKMP5Mag100",
+			"HKP7Mag13",
+			"KelTecP11Mag10",
+			"M19119Mag8",
+			"M19119Mag9off",
+			"M19119Mag9std",
+			"M19119Mag10",
+			"RugerP9mmMag10",
+			"RugerP9mmMag15",
+			"RugerP9mmMag17",
+			"RugerP9mmMag20",
+			"RugerP9mmMag32",
+			"RugerSR9Mag10",
+			"RugerSR9Mag10comp",
+			"RugerSR9Mag17",
+			"S&W5906Mag10",
+			"S&W5906Mag15",
+			"S&W5906Mag17",
+			"S&W5906Mag20",
+			"S&WMP9Mag7shield",
+			"S&WMP9Mag8shield",
+			"S&WMP9Mag10",
+			"S&WMP9Mag10comp",
+			"S&WMP9Mag12comp",
+			"S&WMP9Mag15",
+			"S&WMP9Mag17",
+			"TaurusPT111Mag10",
+			"TaurusPT111Mag12",
+			"Tec9Mag20",
+			"Tec9Mag32",
+			"Tec9Mag50",
+			"UziMag20",
+			"UziMag25",
+			"UziMag32",
+			"UziMag40",
+			"UziMag50",
+			};
+			
+	MaglistBeretta= {
+			"BerMag10",
+			"BerMag15",
+			"BerMag17",
+			"BerMag20",
+			"BerMag30",
+			"BerMag32",
 			};
 			
 	Magloadtext= {
-			"Insert Standard Beretta Mag.",
+			"Insert Beretta 10 rnd Mag.",
+			"Insert Beretta 15 rnd Mag.",
+			"Insert Beretta 17 rnd Mag.",
+			"Insert Beretta 20 rnd Mag.",
+			"Insert Beretta 30 rnd Mag.",
+			"Insert Beretta 32 rnd Mag.",
+			"Insert Browning 10 rnd Mag.",
+			"Insert Browning 15 rnd Mag.",
+			"Insert Browning 17 rnd Mag.",
+			"Insert Glock 9mm (holdout) 6 rnd Mag.",
+			"Insert Glock 9mm (compact) 10 rnd Mag.",
+			"Insert Glock 9mm (full) 10 rnd Mag.",
+			"Insert Glock 9mm (sub-compact) 10 rnd Mag.",
+			"Insert Glock 9mm (sub-compact) 12 rnd Mag.",
+			"Insert Glock 9mm (compact) 15 rnd Mag.",
+			"Insert Glock 9mm (full) 17 rnd Mag.",
+			"Insert Glock 9mm (full) 19 rnd Mag.",
+			"Insert Glock 9mm (full) 31 rnd Mag.",
+			"Insert Glock 9mm (full) 33 rnd Mag.",
+			"Insert Glock 9mm (full) 50 rnd Mag.",
+			"Insert H&K MP5 10 rnd Mag.",
+			"Insert H&K MP5 15 rnd Mag.",
+			"Insert H&K MP5 20 rnd Mag.",
+			"Insert H&K MP5 30 rnd Mag.",
+			"Insert H&K MP5 40 rnd Mag.",
+			"Insert H&K MP5 50 rnd Mag.",
+			"Insert H&K MP5 100 rnd Mag.",
+			"Insert H&K P7 13 rnd Mag.",
+			"Insert Kel-Tec P11 10 rnd Mag.",
+			"Insert M1911 9mm (officer) 8 rnd Mag.",
+			"Insert M1911 9mm (officer) 9 rnd Mag.",
+			"Insert M1911 9mm (standard) 9 rnd Mag.",
+			"Insert M1911 9mm (standard) 10 rnd Mag.",
+			"Insert Ruger P 10 rnd Mag.",
+			"Insert Ruger P 15 rnd Mag.",
+			"Insert Ruger P 17 rnd Mag.",
+			"Insert Ruger P 20 rnd Mag.",
+			"Insert Ruger P 32 rnd Mag.",
+			"Insert Ruger SR9 10 rnd Mag.",
+			"Insert Ruger SR9 (compact) 10 rnd Mag.",
+			"Insert Ruger SR9 17 rnd Mag.",
+			"Insert S&W 5906 10 rnd Mag.",
+			"Insert S&W 5906 15 rnd Mag.",
+			"Insert S&W 5906 17 rnd Mag.",
+			"Insert S&W 5906 20 rnd Mag.",
+			"Insert S&W M&P 9 (shield) 7 rnd Mag.",
+			"Insert S&W M&P 9 (shield) 8 rnd Mag.",
+			"Insert S&W M&P 9 10 rnd Mag.",
+			"Insert S&W M&P 9 (compact) 10 rnd Mag.",
+			"Insert S&W M&P 9 (compact) 12 rnd Mag.",
+			"Insert S&W M&P 9 15 rnd Mag.",
+			"Insert S&W M&P 9 17 rnd Mag.",
+			"Insert Taurus PT111 10 rnd Mag.",
+			"Insert Taurus PT111 12 rnd Mag.",
+			"Insert Tec 9 20 rnd Mag.",
+			"Insert Tec 9 32 rnd Mag.",
+			"Insert Tec 9 50 rnd Mag.",
+			"Insert Uzi 20 rnd Mag.",
+			"Insert Uzi 25 rnd Mag.",
+			"Insert Uzi 32 rnd Mag.",
+			"Insert Uzi 40 rnd Mag.",
+			"Insert Uzi 50 rnd Mag.",
 			};

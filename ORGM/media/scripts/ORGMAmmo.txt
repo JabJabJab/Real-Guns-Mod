@@ -31,31 +31,21 @@ module ORGM
 		DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
-	item 9mmRounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = 9x19mm Parabellum rounds,
-		DisplayCategory = Ammo,
-		Icon = 9mmRounds,
-	}
- 
-	item 9mmBox
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = 9x19mm - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 9mmBox,
-    }
- 
+	
 	item 9mmCan
     {
         Weight = 5.0,
         Type = Normal,
         DisplayName = 9x19mm - 500 Round Canister,
+		DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+	item 9mmHPCan
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 9x19mm HP - 500 Round Canister,
 		DisplayCategory = Ammo,
         Icon = AmmoBox,
     }

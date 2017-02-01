@@ -1,0 +1,42 @@
+
+/**        ORMtnMan's Real Gun Mod       **/
+ 
+module ORGM
+{   
+	item Box9mm
+    {
+        Weight = 0.1,
+        Type = Normal,
+        DisplayName = 9x19mm - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = Am9mmBox,
+    }
+ 
+	item Box9mmHP
+    {
+        Weight = 0.1,
+        Type = Normal,
+        DisplayName = 9x19mm HP - 50 Round Box,
+		DisplayCategory = Ammo,
+        Icon = Am9mmHPBox,
+    }
+ 
+	item SmP50RndBox
+    {
+        Weight = 0.1,
+        Type = Normal,
+        DisplayName = Small Caliber Pistol 50 rnd Box,
+		DisplayCategory = Ammo,
+        Icon = AmSmP50RndBox,
+    }
+ 
+	item SmP100RndBox
+    {
+        Weight = 0.1,
+        Type = Normal,
+        DisplayName = Small Caliber Pistol 100 rnd Box,
+		DisplayCategory = Ammo,
+        Icon = AmSmP100RndBox,
+    }
+ 
+}

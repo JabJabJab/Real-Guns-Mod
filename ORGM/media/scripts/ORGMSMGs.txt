@@ -116,15 +116,6 @@ module ORGM
        		RequiresEquippedBothHands = TRUE,
 	}
 
-	item HKMP5Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	H&K MP5 Magazine,
-		Icon		=	HKMP5Mag,
-	}
-
 	item HKUMP
 	{
 		AmmoType	=	HKUMPMag,
@@ -917,15 +908,6 @@ module ORGM
         BreakSound  =   PZ_MetalSnap,
 	}
 
-	item UziMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Uzi Magazine (9mm),
-		Icon		=	UziMag,
-	}
-
 	item Mac10
 	{
 		AmmoType	=	Mac10Mag,
@@ -1102,127 +1084,6 @@ module ORGM
         	ReloadTime = 10,
         	AimingTime = 40,
 		BreakSound  =   PZ_MetalSnap,
-	}
-	
-	item Ber93R
-	{
-		AmmoType	=	Ber93RMag,
-		ImpactSound	=	null,
-		MaxRange	=	10,
-		WeaponSprite	=	glock22,
-		SoundVolume	=	75,
-		MinAngle	=	0.95,
-		Type	=	Weapon,
-		MinimumSwingTime	=	0.2,
-		ToHitModifier	=	1.5,
-		NPCSoundBoost	=	1.5,
-		KnockBackOnNoDeath	=	TRUE,
-		Ranged	=	TRUE,
-		SwingAmountBeforeImpact	=	0,
-		ProjectileCount	=	1,
-		ConditionLowerChanceOneIn	=	60,
-		Weight	=	1.17,
-		SplatNumber	=	3,
-		PushBackMod	=	0.3,
-		MaxDamage	=	1.6,
-		SubCategory	=	Firearm,
-		ConditionMax	=	10,
-		ShareDamage	=	FALSE,
-		MaxHitCount	=	1,
-		IsAimedFirearm	=	TRUE,
-		DoorDamage	=	5,
-		UseEndurance	=	FALSE,
-		SwingAnim	=	Handgun,
-		WeaponWeight	=	1.17,
-		DisplayName	=	Beretta 93R,
-		MinRange	=	0.6,
-		SwingTime	=	0.25,
-		MultipleHitConditionAffected	=	FALSE,
-		SwingSound	=	ORGMBeretta,
-		SoundRadius	=	150,
-		MinDamage	=	1,
-		SplatSize	=	3,
-		KnockdownMod	=	2,
-		SplatBloodOnNoDeath	=	TRUE,
-		Icon	=	Ber93R,
-		RunAnim	=	Run_Weapon2,
-		CriticalChance = 20,
-        	AimingPerkCritModifier = 10,
-        	AimingPerkRangeModifier = 1.5,
-        	HitChance = 45,
-        	AimingPerkHitChanceModifier = 15,
-        	AimingPerkMinAngleModifier = 0.05,
-        	RecoilDelay = 1,
-        	SoundGain = 1.5,
-        	ClipSize = 32,
-        	ReloadTime = 10,
-        	AimingTime = 40,
-		BreakSound  =   PZ_MetalSnap,
-	}
-	
-	item Ber93RSA
-	{
-		AmmoType	=	Ber93RMag,
-		ImpactSound	=	null,
-		MaxRange	=	10,
-		WeaponSprite	=	glock22,
-		SoundVolume	=	75,
-		MinAngle	=	0.95,
-		Type	=	Weapon,
-		MinimumSwingTime	=	0.2,
-		ToHitModifier	=	1.5,
-		NPCSoundBoost	=	1.5,
-		KnockBackOnNoDeath	=	TRUE,
-		Ranged	=	TRUE,
-		SwingAmountBeforeImpact	=	0,
-		ProjectileCount	=	1,
-		ConditionLowerChanceOneIn	=	60,
-		Weight	=	1.17,
-		SplatNumber	=	3,
-		PushBackMod	=	0.3,
-		MaxDamage	=	1.6,
-		SubCategory	=	Firearm,
-		ConditionMax	=	10,
-		ShareDamage	=	FALSE,
-		MaxHitCount	=	1,
-		IsAimedFirearm	=	TRUE,
-		DoorDamage	=	5,
-		UseEndurance	=	FALSE,
-		SwingAnim	=	Handgun,
-		WeaponWeight	=	1.17,
-		DisplayName	=	Beretta 93R (semi-auto),
-		MinRange	=	0.6,
-		SwingTime	=	0.7,
-		MultipleHitConditionAffected	=	FALSE,
-		SwingSound	=	ORGMBeretta,
-		SoundRadius	=	150,
-		MinDamage	=	1,
-		SplatSize	=	3,
-		KnockdownMod	=	2,
-		SplatBloodOnNoDeath	=	TRUE,
-		Icon	=	Ber93R,
-		RunAnim	=	Run_Weapon2,
-		CriticalChance = 20,
-        	AimingPerkCritModifier = 10,
-        	AimingPerkRangeModifier = 1.5,
-        	HitChance = 45,
-        	AimingPerkHitChanceModifier = 15,
-        	AimingPerkMinAngleModifier = 0.05,
-        	RecoilDelay = 12,
-        	SoundGain = 1.5,
-        	ClipSize = 32,
-        	ReloadTime = 10,
-        	AimingTime = 40,
-		BreakSound  =   PZ_MetalSnap,
-	}
-	
-	item Ber93RMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Beretta 93R Magazine (9x19mm),
-		Icon		=	Ber93RMag,
 	}
 	
 	item Skorpion
