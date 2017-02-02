@@ -66,7 +66,8 @@ function ORGMLoadManager:mostLoadedClipSearch(testData) --returns the most loade
 	local clip = nil
 	local tablename = testData.magType
 	local clipTable = _G[tablename]
-	local items = char:getInventory():getItems();
+	local player = getPlayer()
+	local items = player:getInventory():getItems();
 	if clipTable ~= nil then
 		for i = 0, items:size()-1 do
 			local currentItem = items:get(i);
@@ -89,16 +90,19 @@ function ORGMLoadManager:mostLoadedSearch(testData) --returns the most loaded ma
 	local mag = nil
 	local tablename = testData.magType
 	local magTable = _G[tablename]
-	local items = char:getInventory():getItems();
+	local player = getPlayer()
+	local items = player:getInventory():getItems();
 	if magTable ~= nil then
 		for i = 0, items:size()-1 do
 			local currentItem = items:get(i);
 			for index,testMag in ipairs(magTable) do
 				if testMag.type == currentItem.type then
 					local currentCap = currentItem:getModData().currentCapacity
-					if currentCap > mostAmmo then
-						mostAmmo = currentCap
-						mag = currentItem
+					if currentCap ~= nil then
+						if currentCap > mostAmmo then
+							mostAmmo = currentCap
+							mag = currentItem
+						end
 					end
 				end
 			end
@@ -110,7 +114,8 @@ end
 function ORGMLoadManager:mostLoadedSearch2(magType) --searches for the most loaded iteration of the selected mag
 	local mostAmmo = -1;
 	local mag = nil
-	local items = char:getInventory():getItems();
+	local player = getPlayer()
+	local items = player:getInventory():getItems();
 	for i = 0, items:size()-1 do
 		local currentItem = items:get(i);
 		local requiredMagData = ORGMLoadUtil:getLoadableData(magType)
@@ -374,13 +379,13 @@ function ORGMLoadManager:checkLoadConditions() -- allows reloading/unloading usi
 		if self:isWeaponReloadable(self.loadWeapon) then --checks if the weapon is reloadable
 			self.loadType = "reload" --sets the script to reload
 			if self.loadWeapon:getModData().loadStyle == 'magfed' and difficulty ~= 1 then
-				self.reloadAmmo = mostLoadedSearch(self.loadWeapon:getModData()) --otherwise it looks for the most loaded magazine, or any magazine if all are empty
+				self.reloadAmmo = self:mostLoadedSearch(self.loadWeapon:getModData()).type --otherwise it looks for the most loaded magazine, or any magazine if all are empty
 				self:startLoading();
 			elseif self.loadWeapon:getModData().speedLoader ~= nil and self.loadWeapon:getModData().speedLoader ~= 1 and difficulty ~= 1 then
-				self.reloadAmmo = mostLoadedClipSearch(self.loadWeapon:getModData()) --returns the most loaded speedloader, will not return anything if they are empty
+				self.reloadAmmo = self:mostLoadedClipSearch(self.loadWeapon:getModData()).type --returns the most loaded speedloader, will not return anything if they are empty
 				self:startLoading();
 			else
-				self.reloadAmmo = ammoSearch(self.loadWeapon:getModData()) --returns first bit of ammo available from the list
+				self.reloadAmmo = self:ammoSearch(self.loadWeapon:getModData()) --returns first bit of ammo available from the list
 				self:startLoading();
 			end
 		else
