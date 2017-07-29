@@ -1,270 +1,27 @@
+
 --************************************************************************--
---** ORGMReloadUtil
---**
---************************************************************************--
-ORGMReloadUtil = ISReloadUtil:derive("ORGMReloadUtil");
-
-local Ber92 = { type = "Ber92",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Ber92Mag',
-	clipName = 'Beretta 92 Magazine (9mm)',
-	clipIcon = 'Ber92Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Ber92Mag };
-
-local Ber92Mag = { type = "Ber92Mag",
+-- magazines, alphabetical order
+local AIAW308Mag = { type = "AIAW308Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'Ber92Mag',
-	ammoType = '9mmRounds',
+	clipType = 'AIAW308Mag',
+	ammoType = '308Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 15,
+	maxCapacity = 5,
 	reloadTime = 30,
 	rackTime = 10};
-
-local BrenTen = { type = "BrenTen",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'BrenTenMag',
-	clipName = 'Bren Ten Magazine (10mm)',
-	clipIcon = 'BrenTenMag',
-	shootSound = '10mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = BrenTenMag };
-
-local BrenTenMag = { type = "BrenTenMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'BrenTenMag',
-	ammoType = '10mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 12,
-	reloadTime = 30,
-	rackTime = 10};
-
-
-local Glock20 = { type = "Glock20",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock20Mag',
-	clipName = 'Glock 20 Magazine (10mm)',
-	clipIcon = 'Glock20Mag',
-	shootSound = '10mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock20Mag };
-
-local Glock20Mag = { type = "Glock20Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Glock20Mag',
-	ammoType = '10mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 15,
-	reloadTime = 30,
-	rackTime = 10};
-
-local BrownHP = { type = "BrownHP",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'BrownHPMag',
-	clipName = 'Browning HP Magazine (9mm)',
-	clipIcon = 'BrownHPMag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = BrownHPMag };
-
-local BrownHPMag = { type = "BrownHP",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'BrownHPMag',
-	ammoType = '9mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 13,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Glock17 = { type = "Glock17",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock17Mag',
-	clipName = 'Glock 17 Magazine (9mm)',
-	clipIcon = 'Glock17Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock17Mag };
+ReloadUtil:addMagazineType(AIAW308Mag)
 	
-local Glock18 = { type = "Glock18",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock17Mag',
-	clipName = 'Glock 17 Magazine (9mm)',
-	clipIcon = 'Glock17Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock17Mag };
-
-local Glock17Mag = { type = "Glock17Mag",
+local AKMMag = { type = "AKMMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'Glock17Mag',
-	ammoType = '9mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 17,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local Glock18 = { type = "Glock18",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock17Mag',
-	clipName = 'Glock 17 Magazine (9mm)',
-	clipIcon = 'Glock17Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock17Mag };
-
-local Glock17Mag = { type = "Glock17Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Glock17Mag',
-	ammoType = '9mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 17,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local Ber93R = { type = "Ber93R",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Ber93RMag',
-	clipName = 'Beretta 93R Magazine (9mm)',
-	clipIcon = 'Ber93RMag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Ber93RMag };
-
-local Ber93RMag = { type = "Ber93RMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Ber93RMag',
-	ammoType = '9mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 32,
-	reloadTime = 30,
-	rackTime = 10};
-
-local HKMP5 = { type = "HKMP5",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKMP5Mag',
-	clipName = 'H&K MP5 Magazine (9mm)',
-	clipIcon = 'HKMP5Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKMP5Mag };
-	
-local HKMP5SA = { type = "HKMP5SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKMP5Mag',
-	clipName = 'H&K MP5 Magazine (9mm)',
-	clipIcon = 'HKMP5Mag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKMP5Mag };	
-
-local HKMP5Mag = { type = "HKMP5Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'HKMP5Mag',
-	ammoType = '9mmRounds',
+	clipType = 'AKMMag',
+	ammoType = '762Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -274,666 +31,7 @@ local HKMP5Mag = { type = "HKMP5Mag",
 	maxCapacity = 30,
 	reloadTime = 30,
 	rackTime = 10};
-
-local Uzi = { type = "Uzi",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'UziMag',
-	clipName = 'Uzi Magazine (9mm)',
-	clipIcon = 'UziMag',
-	shootSound = '9mmFire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = UziMag };
-
-local UziMag = { type = "UziMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'UziMag',
-	ammoType = '9mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 32,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Mac11 = { type = "Mac11",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Mac11Mag',
-	clipName = 'Mac-11 Magazine (.380 ACP)',
-	clipIcon = 'Mac11Mag',
-	shootSound = '380Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Mac11Mag };
-
-local Mac11Mag = { type = "Mac11Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Mac11Mag',
-	ammoType = '380Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 32,
-	reloadTime = 30,
-	rackTime = 10};
-
-local WaltherPPK = { type = "WaltherPPK",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'WaltherPPKMag',
-	clipName = 'Walther PPK Magazine (.380 ACP)',
-	clipIcon = 'WaltherPPKMag',
-	shootSound = '380Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = WaltherPPKMag };
-
-local WaltherPPKMag = { type = "WaltherPPKMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'WaltherPPKMag',
-	ammoType = '380Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 6,
-	reloadTime = 30,
-	rackTime = 10};
-
-local ColtDelta = { type = "ColtDelta",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'ColtDeltaMag',
-	clipName = 'Colt Delta Elite Magazine (10mm)',
-	clipIcon = 'ColtDeltaMag',
-	shootSound = '10mmFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = ColtDeltaMag };
-
-local ColtDeltaMag = { type = "ColtDeltaMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'ColtDeltaMag',
-	ammoType = '10mmRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 8,
-	reloadTime = 30,
-	rackTime = 10};
-
-local BBPistol = { type = "BBPistol",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'BBPistolMag',
-	clipName = 'Daisy Powerline Model 201 Magazine (BBs)',
-	clipIcon = 'BBPistolMag',
-	shootSound = 'BBFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = BBPistolMag };
-
-local BBPistolMag = { type = "BBPistolMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'BBPistolMag',
-	ammoType = 'BBs',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagBBLoad',
-	insertSound = 'ORGMMagBBLoad',
-	rackSound = 'ORGMMagBBLoad',
-	containsClip = 0,
-	maxCapacity = 35,
-	reloadTime = 5,
-	rackTime = 10};
-
-local FN57 = { type = "FN57",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FN57Mag',
-	clipName = 'FN Five-seven Magazine (5.7mm)',
-	clipIcon = 'FN57Mag',
-	shootSound = '57Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FN57Mag };
-
-local FN57Mag = { type = "FN57Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'FN57Mag',
-	ammoType = '57Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 20,
-	reloadTime = 30,
-	rackTime = 10};
-
-local FNP90 = { type = "FNP90",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNP90Mag',
-	clipName = 'FN P90 Magazine (5.7mm)',
-	clipIcon = 'FNP90Mag',
-	shootSound = '57Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNP90Mag };
-	
-local FNP90SA = { type = "FNP90SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNP90Mag',
-	clipName = 'FN P90 Magazine (5.7mm)',
-	clipIcon = 'FNP90Mag',
-	shootSound = '57Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNP90Mag };
-
-local FNP90Mag = { type = "FNP90Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'FNP90Mag',
-	ammoType = '57Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 50,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Glock22 = { type = "Glock22",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock22Mag',
-	clipName = 'Glock 22 Magazine (.40)',
-	clipIcon = 'Glock22Mag',
-	shootSound = '40Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock22Mag };
-
-local Glock22Mag = { type = "Glock22Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Glock22Mag',
-	ammoType = '40Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local CZ75 = { type = "CZ75",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'CZ75Mag',
-	clipName = 'CZ 75 Magazine (.40)',
-	clipIcon = 'CZ75Mag',
-	shootSound = '40Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = CZ75Mag };
-
-local CZ75Mag = { type = "CZ75Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'CZ75Mag',
-	ammoType = '40Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-
-local SIGP226 = { type = "SIGP226",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIGP226Mag',
-	clipName = 'SIG P226 Magazine (.40)',
-	clipIcon = 'SIGP226Mag',
-	shootSound = '40Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIGP226Mag };
-
-local SIGP226Mag = { type = "SIGP226Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'SIGP226Mag',
-	ammoType = '40Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 12,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Glock21 = { type = "Glock21",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock21Mag',
-	clipName = 'Glock 21 Magazine (.45)',
-	clipIcon = 'Glock21Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock21Mag };
-
-local Kriss = { type = "Kriss",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock21Mag',
-	clipName = 'Glock 21 Magazine (.45)',
-	clipIcon = 'Glock21Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock21Mag };
-	
-local KrissA = { type = "KrissA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock21Mag',
-	clipName = 'Glock 21 Magazine (.45)',
-	clipIcon = 'Glock21Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock21Mag };
-	
-local KrissSA = { type = "KrissSA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Glock21Mag',
-	clipName = 'Glock 21 Magazine (.45)',
-	clipIcon = 'Glock21Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Glock21Mag };
-
-local Glock21Mag = { type = "Glock21Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Glock21Mag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 13,
-	reloadTime = 30,
-	rackTime = 10};
-
-local M1911 = { type = "M1911",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'M1911Mag',
-	clipName = 'M1911 Magazine (.45)',
-	clipIcon = 'M1911Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = ColtMag };
-
-local M1911Mag = { type = "M1911Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'M1911Mag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 7,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local HKMK23 = { type = "HKMK23",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKMK23Mag',
-	clipName = 'H&K MK 23 Magazine (.45)',
-	clipIcon = 'HKMK23Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKMK23Mag };
-
-local HKMK23Mag = { type = "HKMK23Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'HKMK23Mag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 12,
-	reloadTime = 30,
-	rackTime = 10};
-
-local HKUMP = { type = "HKUMP",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKUMPMag',
-	clipName = 'H&K UMP Magazine (.45)',
-	clipIcon = 'HKUMPMag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKUMPMag };
-	
-local HKUMPSA = { type = "HKUMPSA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKUMPMag',
-	clipName = 'H&K UMP Magazine (.45)',
-	clipIcon = 'HKUMPMag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKUMPMag };
-
-local HKUMPMag = { type = "HKUMPMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'HKUMPMag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 25,
-	reloadTime = 25,
-	rackTime = 10};
-
-local M1A1 = { type = "M1A1",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'M1A1Mag',
-	clipName = 'M1A1 Magazine (.45)',
-	clipIcon = 'M1A1Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = M1A1Mag };
-
-local M1A1Mag = { type = "M1A1Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'M1A1Mag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 30,
-	reloadTime = 25,
-	rackTime = 10};
-
-local Mac10 = { type = "Mac10",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Mac10Mag',
-	clipName = 'Mac-10 Magazine (.45)',
-	clipIcon = 'Mac10Mag',
-	shootSound = '45Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMGOut',
-	insertSound = 'ORGMSMGIn',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Mac10Mag };
-
-local Mac10Mag = { type = "Mac10Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Mac10Mag',
-	ammoType = '45Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 30,
-	reloadTime = 25,
-	rackTime = 10};
-
-local RugerMKII = { type = "RugerMKII",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'RugerMKIIMag',
-	clipName = 'Ruger MKII Magazine (.22)',
-	clipIcon = 'RugerMKIIMag',
-	shootSound = '22Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = RugerMKIIMag };
-
-local RugerMKIIMag = { type = "RugerMKIIMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'RugerMKIIMag',
-	ammoType = '22Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-
-local WaltherP22 = { type = "WaltherP22",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'WaltherP22Mag',
-	clipName = 'Walther P22 Magazine (.22)',
-	clipIcon = 'WaltherP22Mag',
-	shootSound = '22Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = WaltherP22Mag };
-
-local WaltherP22Mag = { type = "WaltherP22Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'WaltherP22Mag',
-	ammoType = '22Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Rug1022 = { type = "Rug1022",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Rug1022Mag',
-	clipName = 'Ruger 10/22 Magazine (.22)',
-	clipIcon = 'Rug1022Mag',
-	shootSound = '22Fire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Rug1022Mag };
-
-local Rug1022Mag = { type = "Rug1022Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Rug1022Mag',
-	ammoType = '22Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 25,
-	reloadTime = 30,
-	rackTime = 10};
-
-local AM180 = { type = "AM180",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AM180Mag',
-	clipName = 'American-180 Magazine (.22)',
-	clipIcon = 'AM180Mag',
-	shootSound = '22Fire',
-	clickSound = 'ORGMSMGEmpty',
-	ejectSound = 'ORGMSMG2Out',
-	insertSound = 'ORGMSMG2In',
-	rackSound = 'ORGMSMGRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AM180Mag };
+ReloadUtil:addMagazineType(AKMMag)
 
 local AM180Mag = { type = "AM180Mag",
 	moduleName = 'ORGM',
@@ -949,186 +47,7 @@ local AM180Mag = { type = "AM180Mag",
 	maxCapacity = 177,
 	reloadTime = 30,
 	rackTime = 10};
-
-local Colt38S = { type = "Colt38S",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Colt38SMag',
-	clipName = 'Colt Commander Super 38 Magazine (.38S)',
-	clipIcon = 'Colt38SMag',
-	shootSound = '38SFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Colt38SMag };
-
-local Colt38SMag = { type = "Colt38SMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Colt38SMag',
-	ammoType = '38SRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 9,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Taurus38 = { type = "Taurus38",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Taurus38Mag',
-	clipName = 'Taurus PT38S Magazine (.38S)',
-	clipIcon = 'Taurus38Mag',
-	shootSound = '38SFire',
-	clickSound = 'ORGMSmallPistolEmpty',
-	ejectSound = 'ORGMSmallPistolOut',
-	insertSound = 'ORGMSmallPistolIn',
-	rackSound = 'ORGMSmallPistolRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Taurus38Mag };
-
-local Taurus38Mag = { type = "Taurus38Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'Taurus38Mag',
-	ammoType = '38SRounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-
-local AKM = { type = "AKM",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AKMMag',
-	clipName = 'AKM Magazine (7.62x39)',
-	clipIcon = 'AKMMag',
-	shootSound = '762Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AKMMag };
-	
-local AKMSA = { type = "AKMSA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AKMMag',
-	clipName = 'AKM Magazine (7.62x39)',
-	clipIcon = 'AKMMag',
-	shootSound = '762Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AKMMag };
-	
-local AKMA = { type = "AKMA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AKMMag',
-	clipName = 'AKM Magazine (7.62x39)',
-	clipIcon = 'AKMMag',
-	shootSound = '762Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AKMMag };
-
-local AKMMag = { type = "AKMMag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'AKMMag',
-	ammoType = '762Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 30,
-	reloadTime = 30,
-	rackTime = 10};
-
-local AR10 = { type = "AR10",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AR10Mag',
-	clipName = 'AR-10 Magazine (7.62x51)',
-	clipIcon = 'AR10Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AR10Mag };
-	
-local AR10SA = { type = "AR10SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AR10Mag',
-	clipName = 'AR-10 Magazine (7.62x51)',
-	clipIcon = 'AR10Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AR10Mag };
-	
-local AR10308 = { type = "AR10308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AR10308Mag',
-	clipName = 'AR-10 Magazine (.308)',
-	clipIcon = 'AR10Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AR10308Mag };
-	
-local AR10SA308 = { type = "AR10SA308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'AR10308Mag',
-	clipName = 'AR-10 Magazine (.308)',
-	clipIcon = 'AR10Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AR10308Mag };
+ReloadUtil:addMagazineType(AM180Mag)
 
 local AR10Mag = { type = "AR10Mag",
 	moduleName = 'ORGM',
@@ -1144,6 +63,7 @@ local AR10Mag = { type = "AR10Mag",
 	maxCapacity = 20,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(AR10Mag)
 	
 local AR10308Mag = { type = "AR10308Mag",
 	moduleName = 'ORGM',
@@ -1159,27 +79,141 @@ local AR10308Mag = { type = "AR10308Mag",
 	maxCapacity = 20,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(AR10308Mag)
 	
-local R25 = { type = "R25",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'R25Mag',
-	clipName = 'Remington R25 Magazine (.308)',
-	clipIcon = 'R25Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = R25Mag };
-
-local R25Mag = { type = "R25Mag",
+local AutomagVMag = { type = "AutomagVMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'R25Mag',
-	ammoType = '308Rounds',
+	clipType = 'AutomagVMag',
+	ammoType = '50AERounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 5,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(AutomagVMag)
+
+local BBPistolMag = { type = "BBPistolMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'BBPistolMag',
+	ammoType = 'BBs',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagBBLoad',
+	insertSound = 'ORGMMagBBLoad',
+	rackSound = 'ORGMMagBBLoad',
+	containsClip = 0,
+	maxCapacity = 35,
+	reloadTime = 5,
+	rackTime = 10};
+ReloadUtil:addMagazineType(BBPistolMag)
+
+local Ber92Mag = { type = "Ber92Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Ber92Mag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 15,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Ber92Mag)
+
+local Ber93RMag = { type = "Ber93RMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Ber93RMag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 32,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Ber93RMag)
+
+local BrenTenMag = { type = "BrenTenMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'BrenTenMag',
+	ammoType = '10mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 12,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(BrenTenMag)
+
+local BrownHPMag = { type = "BrownHPMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'BrownHPMag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 13,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(BrownHPMag)
+
+local Colt38SMag = { type = "Colt38SMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Colt38SMag',
+	ammoType = '38SRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 9,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Colt38SMag)
+
+local ColtDeltaMag = { type = "ColtDeltaMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'ColtDeltaMag',
+	ammoType = '10mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 8,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(ColtDeltaMag)
+
+local CZ75Mag = { type = "CZ75Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'CZ75Mag',
+	ammoType = '40Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -1189,72 +223,45 @@ local R25Mag = { type = "R25Mag",
 	maxCapacity = 10,
 	reloadTime = 30,
 	rackTime = 10};
-	
-local R25762 = { type = "R25762",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'R25762Mag',
-	clipName = 'Remington R25 Magazine (7.62x51)',
-	clipIcon = 'R25Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = R25762Mag };
+ReloadUtil:addMagazineType(CZ75Mag)
 
-local R25762Mag = { type = "R25762Mag",
+local DEagleMag = { type = "DEagleMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'R25762Mag',
-	ammoType = '762x51Rounds',
+	clipType = 'DEagleMag',
+	ammoType = '44Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 10,
+	maxCapacity = 8,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(DEagleMag)
 
-local FNFAL = { type = "FNFAL",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALMag',
-	clipName = 'FSL LSR Magazine (.308)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALMag };
-	
-local FNFAL762 = { type = "FNFAL762",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALAMag',
-	clipName = 'FN FAL Magazine (7.62x51mm)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALAMag };	
-
-local FNFALMag = { type = "FNFALMag",
+local DEagleXIXMag = { type = "DEagleXIXMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'FNFALMag',
-	ammoType = '308Rounds',
+	clipType = 'DEagleXIXMag',
+	ammoType = '50AERounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 7,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(DEagleXIXMag)
+
+local FN57Mag = { type = "FN57Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'FN57Mag',
+	ammoType = '57Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -1264,66 +271,7 @@ local FNFALMag = { type = "FNFALMag",
 	maxCapacity = 20,
 	reloadTime = 30,
 	rackTime = 10};
-	
-local FNFALSA = { type = "FNFALSA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALAMag',
-	clipName = 'FN FAL Magazine (7.62x51mm)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALAMag };
-	
-local FNFALA = { type = "FNFALA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALAMag',
-	clipName = 'FN FAL Magazine (7.62x51mm)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALAMag };
-	
-local FNFALSA308 = { type = "FNFALSA308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALMag',
-	clipName = 'FSL LSR Magazine (.308)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALMag };
-	
-local FNFALA308 = { type = "FNFALA308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'FNFALMag',
-	clipName = 'FSL LSR Magazine (.308)',
-	clipIcon = 'FNFALMag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = FNFALMag };
+ReloadUtil:addMagazineType(FN57Mag)
 
 local FNFALAMag = { type = "FNFALAMag",
 	moduleName = 'ORGM',
@@ -1339,41 +287,12 @@ local FNFALAMag = { type = "FNFALAMag",
 	maxCapacity = 20,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(FNFALAMag)
 
-local HK91 = { type = "HK91",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HK91Mag',
-	clipName = 'H&K 91 Magazine (.308)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HK91Mag };
-	
-local HK91762 = { type = "HK91762",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKG3Mag',
-	clipName = 'H&K G3 Magazine (7.62x51mm)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKG3Mag };
-
-local HK91Mag = { type = "HK91Mag",
+local FNFALMag = { type = "FNFALMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'HK91Mag',
+	clipType = 'FNFALMag',
 	ammoType = '308Rounds',
 	shootSound = 'none',
 	clickSound = nil,
@@ -1384,306 +303,23 @@ local HK91Mag = { type = "HK91Mag",
 	maxCapacity = 20,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(FNFALMag)
 	
-local HKG3 = { type = "HKG3",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKG3Mag',
-	clipName = 'H&K G3 Magazine (7.62x51mm)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKG3Mag };
-	
-local HKG3SA = { type = "HKG3SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKG3Mag',
-	clipName = 'H&K G3 Magazine (7.62x51mm)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKG3Mag };
-	
-local HKG3308 = { type = "HKG3308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HK91Mag',
-	clipName = 'H&K 91 Magazine (.308)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HK91Mag };
-	
-local HKG3SA308 = { type = "HKG3SA308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HK91Mag',
-	clipName = 'H&K 91 Magazine (.308)',
-	clipIcon = 'HK91Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HK91Mag };
-
-local HKG3Mag = { type = "HKG3Mag",
+local FNP90Mag = { type = "FNP90Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'HKG3Mag',
-	ammoType = '762x51Rounds',
+	clipType = 'FNP90Mag',
+	ammoType = '57Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 20,
+	maxCapacity = 50,
 	reloadTime = 30,
 	rackTime = 10};
-
-local M21 = { type = "M21",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'M21Mag',
-	clipName = 'M21 Magazine (7.62x51)',
-	clipIcon = 'M21Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = M21Mag };
-
-local M21Mag = { type = "M21Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'M21Mag',
-	ammoType = '762x51Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 20,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local M21308 = { type = "M21308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'M21Mag308',
-	clipName = 'M21 Magazine (.308)',
-	clipIcon = 'M21Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = M21308Mag };
-
-local M21308Mag = { type = "M21308Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'M21308Mag',
-	ammoType = '308Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 20,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local LENo4 = { type = "LENo4",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'LENo4Mag',
-	clipName = 'Lee Enfield No. 4 Magazine (7.62x51)',
-	clipIcon = 'LENo4Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = LENo4Mag };
-
-local LENo4Mag = { type = "LENo4Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'LENo4Mag',
-	ammoType = '762x51Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local LENo4308 = { type = "LEN04308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'LENo4Mag308',
-	clipName = 'Lee Enfield No. 4 Magazine (.308)',
-	clipIcon = 'LENo4Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = LENo4308Mag };
-
-local LENo4308Mag = { type = "LEN04308Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'LENo4308Mag',
-	ammoType = '308Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 30,
-	rackTime = 10};
-
-local AIAW308 = { type = "AIAW308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualMF',
-	ammoType = 'AIAW308Mag',
-	clipName = 'AI-AW .308 Magazine (.308)',
-	clipIcon = 'AIAW308Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleBolt',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AIAW308Mag };
-	
-local AIAW308762 = { type = "AIAW308762",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualMF',
-	ammoType = 'L96Mag',
-	clipName = 'L96 Magazine (7.62x51)',
-	clipIcon = 'AIAW308Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleBolt',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = L96Mag };
-
-local AIAW308Mag = { type = "AIAW308Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'AIAW308Mag',
-	ammoType = '308Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 5,
-	reloadTime = 30,
-	rackTime = 10};
-	
-local L96 = { type = "L96",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualMF',
-	ammoType = 'L96Mag',
-	clipName = 'L96 Magazine (7.62x51)',
-	clipIcon = 'AIAW308Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleBolt',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = L96Mag };
-	
-local L96308 = { type = "L96308",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualMF',
-	ammoType = 'AIAW308Mag',
-	clipName = 'AI-AW .308 Magazine (.308)',
-	clipIcon = 'AIAW308Mag',
-	shootSound = '308Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleBolt',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = AIAW308Mag };
-
-local L96Mag = { type = "L96Mag",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMMagazine',
-	clipType = 'L96Mag',
-	ammoType = '762x51Rounds',
-	shootSound = 'none',
-	clickSound = nil,
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-	rackSound = 'ORGMMagLoad',
-	containsClip = 0,
-	maxCapacity = 5,
-	reloadTime = 30,
-	rackTime = 10};
-
-local Garand = { type = "Garand",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'GarandClip',
-	clipName = 'M1 Garand Clip (.30-06)',
-	clipIcon = 'GarandClip',
-	shootSound = '3006Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = GarandClip };
+ReloadUtil:addMagazineType(FNP90Mag)
 
 local GarandClip = { type = "GarandClip",
 	moduleName = 'ORGM',
@@ -1699,447 +335,77 @@ local GarandClip = { type = "GarandClip",
 	maxCapacity = 8,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(GarandClip)
 
-local AR15 = { type = "AR15",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-
-local KTPLR = { type = "KTPLR",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-	
-local AR15556 = { type = "AR15556",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-
-local KTPLR556 = { type = "KTPLR556",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-
-local M16 = { type = "M16",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local M16SA = { type = "M16SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local M16223 = { type = "M16223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-	
-local M16SA223 = { type = "M16SA223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-
-local M4C = { type = "M4C",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local M4CSA = { type = "M4CSA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local M4C223 = { type = "M4C223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-	
-local M4CSA223 = { type = "M4CSA223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-
-local SA80 = { type = "SA80",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local SA80SA = { type = "SA80SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAGMag',
-	clipName = 'Standard STANAG Magazine (5.56x45)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAGMag };
-	
-local SA80223 = { type = "SA80223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-	
-local SA80223SA = { type = "SA80223SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'STANAG223Mag',
-	clipName = 'Standard STANAG Magazine (.223)',
-	clipIcon = 'STANAGMag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = STANAG223Mag };
-
-local STANAGMag = { type = "STANAGMag",
+local Glock17Mag = { type = "Glock17Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'STANAGMag',
-	ammoType = '556Rounds',
+	clipType = 'Glock17Mag',
+	ammoType = '9mmRounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 30,
+	maxCapacity = 17,
 	reloadTime = 30,
 	rackTime = 10};
-
-local STANAG223Mag = { type = "STANAG223Mag",
+ReloadUtil:addMagazineType(Glock17Mag)
+	
+local Glock20Mag = { type = "Glock20Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'STANAG223Mag',
-	ammoType = '223Rounds',
+	clipType = 'Glock20Mag',
+	ammoType = '10mmRounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 30,
+	maxCapacity = 15,
 	reloadTime = 30,
 	rackTime = 10};
-	
-local SIG550 = { type = "SIG550",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG550SA = { type = "SIG550SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG550223 = { type = "SIG550223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG550223 = { type = "SIG550223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG551 = { type = "SIG551",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG551SA = { type = "SIG551SA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG551223 = { type = "SIG551223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG551223 = { type = "SIG551223",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SIG550Mag',
-	clipName = 'Sig SG550 Magazine (5.56x45)',
-	clipIcon = 'SIG550Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SIG550Mag };
-	
-local SIG550Mag = { type = "SIG550Mag",
+ReloadUtil:addMagazineType(Glock20Mag)
+
+local Glock21Mag = { type = "Glock21Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'SIG550Mag',
-	ammoType = '556Rounds',
+	clipType = 'Glock21Mag',
+	ammoType = '45Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 30,
+	maxCapacity = 13,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(Glock21Mag)
 
-local SIG550223Mag = { type = "SIG550223Mag",
+local Glock22Mag = { type = "Glock22Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'SIG550223Mag',
-	ammoType = '223Rounds',
+	clipType = 'Glock22Mag',
+	ammoType = '40Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 30,
+	maxCapacity = 10,
 	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(Glock22Mag)
 
-local Mini14 = { type = "Mini14",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Mini14Mag',
-	clipName = 'Ruger Mini-14 Magazine (.223)',
-	clipIcon = 'Mini14Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Mini14Mag };
-
-local Mini14Mag = { type = "Mini14Mag",
+local HK91Mag = { type = "HK91Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'Mini14Mag',
-	ammoType = '223Rounds',
+	clipType = 'HK91Mag',
+	ammoType = '308Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -2147,29 +413,15 @@ local Mini14Mag = { type = "Mini14Mag",
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
 	maxCapacity = 20,
-	reloadTime = 15,
+	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(HK91Mag)
 	
-local Mini14556 = { type = "Mini14556",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'Mini14556Mag',
-	clipName = 'Ruger Mini-14 Magazine (5.56x45)',
-	clipIcon = 'Mini14Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = Mini14556Mag };
-
-local Mini14556Mag = { type = "Mini14556Mag",
+local HKG3Mag = { type = "HKG3Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'Mini14556Mag',
-	ammoType = '556Rounds',
+	clipType = 'HKG3Mag',
+	ammoType = '762x51Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -2177,23 +429,41 @@ local Mini14556Mag = { type = "Mini14556Mag",
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
 	maxCapacity = 20,
-	reloadTime = 15,
+	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(HKG3Mag)
 
-local HKSL8 = { type = "HKSL8",
+local HKMK23Mag = { type = "HKMK23Mag",
 	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKSL8Mag',
-	clipName = 'H&K SL8 Magazine (.223)',
-	clipIcon = 'HKSL8Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKSL8Mag };
+	reloadClass = 'ORGMMagazine',
+	clipType = 'HKMK23Mag',
+	ammoType = '45Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 12,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(HKMK23Mag)
+
+local HKMP5Mag = { type = "HKMP5Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'HKMP5Mag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(HKMP5Mag)
 
 local HKSL8Mag = { type = "HKSL8Mag",
 	moduleName = 'ORGM',
@@ -2209,21 +479,7 @@ local HKSL8Mag = { type = "HKSL8Mag",
 	maxCapacity = 20,
 	reloadTime = 15,
 	rackTime = 10};
-	
-local HKSL8556 = { type = "HKSL8556",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'HKSL8556Mag',
-	clipName = 'H&K SL8 Magazine (5.56x45)',
-	clipIcon = 'HKSL8Mag',
-	shootSound = '223Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = HKSL8556Mag };
+ReloadUtil:addMagazineType(HKSL8Mag)
 
 local HKSL8556Mag = { type = "HKSL8556Mag",
 	moduleName = 'ORGM',
@@ -2239,85 +495,77 @@ local HKSL8556Mag = { type = "HKSL8556Mag",
 	maxCapacity = 20,
 	reloadTime = 15,
 	rackTime = 10};
+ReloadUtil:addMagazineType(HKSL8556Mag)
 
-local SVD = { type = "SVD",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'SVDMag',
-	clipName = 'SVD Magazine (7.62x54R)',
-	clipIcon = 'SVDMag',
-	shootSound = '762x54Fire',
-	clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMRifleOut',
-	insertSound = 'ORGMRifleIn',
-	rackSound = 'ORGMRifleRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = SVDMag };
-
-local SVDMag = { type = "SVDMag",
+local HKUMPMag = { type = "HKUMPMag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'SVDMag',
-	ammoType = '762x54Rounds',
+	clipType = 'HKUMPMag',
+	ammoType = '45Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 10,
-	reloadTime = 15,
+	maxCapacity = 25,
+	reloadTime = 25,
 	rackTime = 10};
+ReloadUtil:addMagazineType(HKUMPMag)
 
-local Mosin = { type = "Mosin",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIMNCSL',
-	ammoType = 'MosinStripperClip',
-	clipName = 'Mosin Nagant Stripper Clip',
-	clipIcon = 'MosinStripperClip',
-	shootSound = '762x54Fire',
-    clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-    rackSound = 'ORGMRifleEmpty',
-	rackTime = 10,
-	clipData = MosinStripperClip };
-	
-local MosinStripperClip = { type = "MosinStripperClip",
+local KahrCT40Mag = { type = "KahrCT40Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'MosinStripperClip',
-	ammoType = '762x54Rounds',
+	clipType = 'KahrCT40Mag',
+	ammoType = '40Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
 	insertSound = 'ORGMMagLoad',
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 5,
-	reloadTime = 15,
+	maxCapacity = 7,
+	reloadTime = 30,
 	rackTime = 10};
-	
-local M1903 = { type = "M1903",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIMNCSL',
-	ammoType = 'M1903StripperClip',
-	clipName = 'Springfield M1903 Stripper Clip',
-	clipIcon = 'M1903StripperClip',
-	shootSound = '3006Fire',
-    clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-    rackSound = 'ORGMRifleEmpty',
-	rackTime = 10,
-	clipData = M1903StripperClip };
-	
-local M1903StripperClip = { type = "M1903StripperClip",
+ReloadUtil:addMagazineType(KahrCT40Mag)
+
+local KahrP380Mag = { type = "KahrP380Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'M1903StripperClip',
-	ammoType = '3006Rounds',
+	clipType = 'KahrP380Mag',
+	ammoType = '380Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(KahrP380Mag)
+
+local KTP32Mag = { type = "KTP32Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'KTP32Mag',
+	ammoType = '32Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 7,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(KTP32Mag)
+
+local L96Mag = { type = "L96Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'L96Mag',
+	ammoType = '762x51Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -2325,88 +573,15 @@ local M1903StripperClip = { type = "M1903StripperClip",
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
 	maxCapacity = 5,
-	reloadTime = 15,
+	reloadTime = 30,
 	rackTime = 10};
-	
-local BBGun = { type = "BBGun",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = 'BBs',
-        rackSound = 'ORGMBBLever',
-        shootSound = 'BBFire',
-        shootSoundPartial = 'BBFire',
-        clickSound = 'ORGMPistolEmpty',
-        insertSound = 'ORGMMagBBLoad',
-        rackTime = 3,
-        bulletOutSound = "ORGMBBLever"};
+ReloadUtil:addMagazineType(L96Mag)
 
-local Rem700 = { type = "Rem700",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '3006Rounds',
-        rackSound = 'ORGMRifleBolt',
-        shootSound = '3006Fire',
-        shootSoundPartial = '3006Fire',
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        rackTime = 10,
-        bulletOutSound = "ORGMRifleBolt"};
-
-local WinM70 = { type = "WinM70",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '3006Rounds',
-        rackSound = 'ORGMRifleBolt',
-        shootSound = '3006Fire',
-        shootSoundPartial = '3006Fire',
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        rackTime = 10,
-        bulletOutSound = "ORGMRifleBolt"};
-
-local BLR = { type = "BLR",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '308Rounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '308Fire',
-        shootSoundPartial = '308Fire',
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-		
-local BLR762 = { type = "BLR762",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '762x51Rounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '308Fire',
-        shootSoundPartial = '308Fire',
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-
-local SKS = { type = "SKS",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIMNCSL',
-	ammoType = 'SKSStripperClip',
-	clipName = 'SKS Stripper Clip',
-	clipIcon = 'SKSStripperClip',
-	shootSound = '762Fire',
-    clickSound = 'ORGMRifleEmpty',
-	ejectSound = 'ORGMMagLoad',
-	insertSound = 'ORGMMagLoad',
-    rackSound = 'ORGMRifleEmpty',
-	rackTime = 10,
-	clipData = SKSStripperClip };
-		
-local SKSStripperClip = { type = "SKSStripperClip",
+local LENo4Mag = { type = "LENo4Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'SKSStripperClip',
-	ammoType = '762Rounds',
+	clipType = 'LENo4Mag',
+	ammoType = '762x51Rounds',
 	shootSound = 'none',
 	clickSound = nil,
 	ejectSound = 'ORGMMagLoad',
@@ -2414,257 +589,25 @@ local SKSStripperClip = { type = "SKSStripperClip",
 	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
 	maxCapacity = 10,
-	reloadTime = 15,
+	reloadTime = 30,
 	rackTime = 10};
+ReloadUtil:addMagazineType(LENo4Mag)
 
-local BenelliM3 = { type = "BenelliM3",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local BenelliM3SO = { type = "BenelliM3SO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-	
-local BenelliM3PA = { type = "BenelliM3PA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local BenelliM3PASO = { type = "BenelliM3PASO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Ithaca37 = { type = "Ithaca37",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Ithaca37SO = { type = "Ithaca37SO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-	
-local Win1887 = { type = "Win1887",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '12gRounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '12gFire',
-        shootSoundPartial = '12gFire',
-		clickSound = 'ORGMShotgunEmpty',
-		insertSound = 'ORGMShotgunRoundIn',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-		
-local Win1887SO = { type = "Win1887SO",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-        ammoType = '12gRounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '12gFire',
-        shootSoundPartial = '12gFire',
-		clickSound = 'ORGMShotgunEmpty',
-		insertSound = 'ORGMShotgunRoundIn',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-
-local Moss590 = { type = "Moss590",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Moss590SO = { type = "Moss590SO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Rem870 = { type = "Rem870",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Rem870SO = { type = "Rem870SO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Silverhawk = { type = "Silverhawk",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIMNC',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunDBRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunOpen'};
-
-local SilverHawkSO = { type = "SilverHawkSO",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIMNC',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunDBRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunOpen'};
-
-local Spas12 = { type = "Spas12",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-	
-local Spas12PA = { type = "Spas12PA",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Stevens320 = { type = "Stevens320",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local VEPR12 = { type = "VEPR12",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'VEPR12Mag',
-	clipName = 'VEPR-12 Magazine (12 gauge)',
-	clipIcon = 'VEPR12Mag',
-	shootSound = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = VEPR12Mag };
-
-local VEPR12Mag = { type = "VEPR12Mag",
+local LENo4308Mag = { type = "LENo4308Mag",
 	moduleName = 'ORGM',
 	reloadClass = 'ORGMMagazine',
-	clipType = 'VEPR12Mag',
-	ammoType = '12gRounds',
+	clipType = 'LENo4308Mag',
+	ammoType = '308Rounds',
 	shootSound = 'none',
 	clickSound = nil,
-	ejectSound = 'ORGMShotgunRoundIn',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackSound = 'ORGMShotgunRoundIn',
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
 	containsClip = 0,
-	maxCapacity = 8,
-	reloadTime = 15,
+	maxCapacity = 10,
+	reloadTime = 30,
 	rackTime = 10};
-
-local M1216 = { type = "M1216",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoMF',
-	ammoType = 'M1216Mag',
-	clipName = 'SRM Arms MOdel 1216 Magazine (12 gauge)',
-	clipIcon = 'M1216Mag',
-	shootSound = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	ejectSound = 'ORGMAROut',
-	insertSound = 'ORGMARIn',
-	rackSound = 'ORGMARRack',
-	containsClip = 1,
-	rackTime = 10,
-	clipData = M1216Mag };
+ReloadUtil:addMagazineType(LENo4308Mag)
 
 local M1216Mag = { type = "M1216Mag",
 	moduleName = 'ORGM',
@@ -2680,344 +623,3632 @@ local M1216Mag = { type = "M1216Mag",
 	maxCapacity = 16,
 	reloadTime = 15,
 	rackTime = 10};
-	
-local BenelliM3Sl = { type = "BenelliM3Sl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local BenelliM3SOSl = { type = "BenelliM3SOSl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponAutoIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-	
-local BenelliM3PASl = { type = "BenelliM3PASl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local BenelliM3PASOSl = { type = "BenelliM3PASOSl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Ithaca37Sl = { type = "Ithaca37Sl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Ithaca37SOSl = { type = "Ithaca37SOSl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-	
-local Win1887Sl = { type = "Win1887Sl",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-		ammoType = '12gSlugRounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '12gFire',
-        shootSoundPartial = '12gFire',
-		clickSound = 'ORGMShotgunEmpty',
-		insertSound = 'ORGMShotgunRoundIn',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-		
-local Win1887SOSl = { type = "Win1887SOSl",
-        moduleName = 'ORGM',
-        reloadClass = 'ORGMWeaponManualIM',
-		ammoType = '12gSlugRounds',
-        rackSound = 'ORGMRifleLever',
-        shootSound = '12gFire',
-        shootSoundPartial = '12gFire',
-		clickSound = 'ORGMShotgunEmpty',
-		insertSound = 'ORGMShotgunRoundIn',
-        rackTime = 10,
-        bulletOutSound = "bulletOutVarmint"};
-
-local Moss590Sl = { type = "Moss590Sl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Moss590SOSl = { type = "Moss590SOSl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Rem870Sl = { type = "Rem870Sl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
-local Rem870SOSl = { type = "Rem870SOSl",
-	moduleName = 'ORGM',
-	reloadClass = 'ORGMWeaponManualIM',
-	ammoType = '12gSlugRounds',
-	rackSound = 'ORGMShotgunRack',
-	shootSound = '12GShotgunFire',
-	shootSoundPartial = '12GShotgunFire',
-	clickSound = 'ORGMShotgunEmpty',
-	insertSound = 'ORGMShotgunRoundIn',
-	rackTime = 10,
-  	bulletOutSound = 'ORGMShotgunRack'};
-
---************************************************************************--
---** ReloadUtil
---**
---************************************************************************--
-
-ReloadUtil:addMagazineType(Ber92Mag)
-ReloadUtil:addMagazineType(BrenTenMag)
-ReloadUtil:addMagazineType(BrownHPMag)
-ReloadUtil:addMagazineType(ColtDeltaMag)
-ReloadUtil:addMagazineType(BBPistolMag)
-ReloadUtil:addMagazineType(FN57Mag)
-ReloadUtil:addMagazineType(Glock17Mag)
-ReloadUtil:addMagazineType(Glock22Mag)
-ReloadUtil:addMagazineType(Glock21Mag)
-ReloadUtil:addMagazineType(M1911Mag)
-ReloadUtil:addMagazineType(RugerMKIIMag)
-ReloadUtil:addMagazineType(SIGP226Mag)
-ReloadUtil:addMagazineType(WaltherP22Mag)
-ReloadUtil:addMagazineType(Colt38SMag)
-ReloadUtil:addMagazineType(Taurus38Mag)
-ReloadUtil:addMagazineType(HKMP5Mag)
-ReloadUtil:addMagazineType(HKUMPMag)
-ReloadUtil:addMagazineType(FNP90Mag)
-ReloadUtil:addMagazineType(AKMMag)
-ReloadUtil:addMagazineType(AR10Mag)
-ReloadUtil:addMagazineType(AR10308Mag)
-ReloadUtil:addMagazineType(STANAGMag)
-ReloadUtil:addMagazineType(STANAG223Mag)
-ReloadUtil:addMagazineType(FNFALMag)
-ReloadUtil:addMagazineType(FNFALAMag)
-ReloadUtil:addMagazineType(HK91Mag)
-ReloadUtil:addMagazineType(HKG3Mag)
-ReloadUtil:addMagazineType(GarandClip)
-ReloadUtil:addMagazineType(M21Mag)
-ReloadUtil:addMagazineType(M21308Mag)
-ReloadUtil:addMagazineType(Rug1022Mag)
-ReloadUtil:addMagazineType(Mini14Mag)
-ReloadUtil:addMagazineType(AIAW308Mag)
-ReloadUtil:addMagazineType(HKSL8Mag)
-ReloadUtil:addMagazineType(Mini14556Mag)
-ReloadUtil:addMagazineType(L96Mag)
-ReloadUtil:addMagazineType(HKSL8556Mag)
-ReloadUtil:addMagazineType(M1A1Mag)
-ReloadUtil:addMagazineType(AM180Mag)
-ReloadUtil:addMagazineType(Mac10Mag)
-ReloadUtil:addMagazineType(Mac11Mag)
-ReloadUtil:addMagazineType(WaltherPPKMag)
-ReloadUtil:addMagazineType(UziMag)
 ReloadUtil:addMagazineType(M1216Mag)
-ReloadUtil:addMagazineType(VEPR12Mag)
-ReloadUtil:addMagazineType(SVDMag)
-ReloadUtil:addMagazineType(Glock20Mag)
-ReloadUtil:addMagazineType(R25Mag)
-ReloadUtil:addMagazineType(R25762Mag)
-ReloadUtil:addMagazineType(SKSStripperClip)
-ReloadUtil:addMagazineType(MosinStripperClip)
-ReloadUtil:addMagazineType(CZ75Mag)
-ReloadUtil:addMagazineType(HKMK23Mag)
-ReloadUtil:addMagazineType(M1903StripperClip)
-ReloadUtil:addMagazineType(SIG550Mag)
-ReloadUtil:addMagazineType(SIG550223Mag)
-ReloadUtil:addMagazineType(Ber93RMag)
-ReloadUtil:addMagazineType(LENo4Mag)
-ReloadUtil:addMagazineType(LENo4308Mag)
 
-ReloadUtil:addWeaponType(Ber92)
-ReloadUtil:addWeaponType(BrenTen)
-ReloadUtil:addWeaponType(BrownHP)
-ReloadUtil:addWeaponType(ColtDelta)
-ReloadUtil:addWeaponType(BBPistol)
-ReloadUtil:addWeaponType(FN57)
-ReloadUtil:addWeaponType(Glock17)
-ReloadUtil:addWeaponType(Glock22)
-ReloadUtil:addWeaponType(Glock21)
-ReloadUtil:addWeaponType(M1911)
-ReloadUtil:addWeaponType(RugerMKII)
-ReloadUtil:addWeaponType(SIGP226)
-ReloadUtil:addWeaponType(WaltherP22)
-ReloadUtil:addWeaponType(Colt38S)
-ReloadUtil:addWeaponType(Taurus38)
-ReloadUtil:addWeaponType(HKMP5)
-ReloadUtil:addWeaponType(HKUMP)
-ReloadUtil:addWeaponType(FNP90)
-ReloadUtil:addWeaponType(HKMP5SA)
-ReloadUtil:addWeaponType(HKUMPSA)
-ReloadUtil:addWeaponType(FNP90SA)
-ReloadUtil:addWeaponType(AKM)
-ReloadUtil:addWeaponType(AKMA)
-ReloadUtil:addWeaponType(AKMSA)
-ReloadUtil:addWeaponType(AR10)
-ReloadUtil:addWeaponType(AR15)
-ReloadUtil:addWeaponType(FNFAL)
-ReloadUtil:addWeaponType(FNFALSA)
-ReloadUtil:addWeaponType(FNFALA)
-ReloadUtil:addWeaponType(HKG3)
-ReloadUtil:addWeaponType(HKG3A)
-ReloadUtil:addWeaponType(HK91)
-ReloadUtil:addWeaponType(AR10308)
-ReloadUtil:addWeaponType(AR15223)
-ReloadUtil:addWeaponType(FNFAL762)
-ReloadUtil:addWeaponType(FNFALSA308)
-ReloadUtil:addWeaponType(FNFALA308)
-ReloadUtil:addWeaponType(HKG3308)
-ReloadUtil:addWeaponType(HKG3A308)
-ReloadUtil:addWeaponType(HK91762)
-ReloadUtil:addWeaponType(Garand)
-ReloadUtil:addWeaponType(M16)
-ReloadUtil:addWeaponType(M16SA)
-ReloadUtil:addWeaponType(M21)
-ReloadUtil:addWeaponType(M4C)
-ReloadUtil:addWeaponType(M4CSA)
-ReloadUtil:addWeaponType(M16223)
-ReloadUtil:addWeaponType(M16SA223)
-ReloadUtil:addWeaponType(M21308)
-ReloadUtil:addWeaponType(M4C223)
-ReloadUtil:addWeaponType(M4CSA223)
-ReloadUtil:addWeaponType(BBGun)
-ReloadUtil:addWeaponType(Rem700)
-ReloadUtil:addWeaponType(Rug1022)
-ReloadUtil:addWeaponType(Mini14)
-ReloadUtil:addWeaponType(Mini14556)
-ReloadUtil:addWeaponType(SKS)
-ReloadUtil:addWeaponType(WinM70)
-ReloadUtil:addWeaponType(AIAW308)
-ReloadUtil:addWeaponType(AIAW308762)
-ReloadUtil:addWeaponType(SA80)
-ReloadUtil:addWeaponType(SA80SA)
-ReloadUtil:addWeaponType(SA80223)
-ReloadUtil:addWeaponType(SA80223SA)
-ReloadUtil:addWeaponType(HKSL8)
-ReloadUtil:addWeaponType(HKSL8556)
-ReloadUtil:addWeaponType(BenelliM3)
-ReloadUtil:addWeaponType(BenelliM3SO)
-ReloadUtil:addWeaponType(BenelliM3PA)
-ReloadUtil:addWeaponType(BenelliM3PASO)
-ReloadUtil:addWeaponType(Ithaca37)
-ReloadUtil:addWeaponType(Ithaca37SO)
-ReloadUtil:addWeaponType(Moss590)
-ReloadUtil:addWeaponType(Moss590SO)
-ReloadUtil:addWeaponType(Rem870)
-ReloadUtil:addWeaponType(Rem870SO)
-ReloadUtil:addWeaponType(Silverhawk)
-ReloadUtil:addWeaponType(SilverHawkSO)
-ReloadUtil:addWeaponType(Spas12)
-ReloadUtil:addWeaponType(Spas12PA)
-ReloadUtil:addWeaponType(BenelliM3Sl)
-ReloadUtil:addWeaponType(BenelliM3SOSl)
-ReloadUtil:addWeaponType(BenelliM3PASl)
-ReloadUtil:addWeaponType(BenelliM3PASOSl)
-ReloadUtil:addWeaponType(Ithaca37Sl)
-ReloadUtil:addWeaponType(Ithaca37SOSl)
-ReloadUtil:addWeaponType(Moss590Sl)
-ReloadUtil:addWeaponType(Moss590SOSl)
-ReloadUtil:addWeaponType(Rem870Sl)
-ReloadUtil:addWeaponType(Rem870SOSl)
-ReloadUtil:addWeaponType(M1A1)
-ReloadUtil:addWeaponType(AM180)
-ReloadUtil:addWeaponType(Kriss)
-ReloadUtil:addWeaponType(KrissA)
-ReloadUtil:addWeaponType(KrissSA)
-ReloadUtil:addWeaponType(KTPLR)
-ReloadUtil:addWeaponType(Mac10)
-ReloadUtil:addWeaponType(Mac11)
-ReloadUtil:addWeaponType(WaltherPPK)
-ReloadUtil:addWeaponType(Uzi)
-ReloadUtil:addWeaponType(M1216)
-ReloadUtil:addWeaponType(VEPR12)
-ReloadUtil:addWeaponType(SVD)
-ReloadUtil:addWeaponType(Mosin)
-ReloadUtil:addWeaponType(BLR)
-ReloadUtil:addWeaponType(BLR762)
-ReloadUtil:addWeaponType(Glock20)
-ReloadUtil:addWeaponType(Stevens320)
-ReloadUtil:addWeaponType(R25)
-ReloadUtil:addWeaponType(R25762)
-ReloadUtil:addWeaponType(CZ75)
-ReloadUtil:addWeaponType(HKMK23)
-ReloadUtil:addWeaponType(Ber93R)
-ReloadUtil:addWeaponType(Glock18)
-ReloadUtil:addWeaponType(L96)
-ReloadUtil:addWeaponType(LENo4)
-ReloadUtil:addWeaponType(L96308)
-ReloadUtil:addWeaponType(LENo4308)
-ReloadUtil:addWeaponType(SIG550)
-ReloadUtil:addWeaponType(SIG551)
-ReloadUtil:addWeaponType(SIG550223)
-ReloadUtil:addWeaponType(SIG551223)
-ReloadUtil:addWeaponType(SIG550SA)
-ReloadUtil:addWeaponType(SIG551SA)
-ReloadUtil:addWeaponType(SIG550SA223)
-ReloadUtil:addWeaponType(SIG551SA223)
-ReloadUtil:addWeaponType(M1903)
-ReloadUtil:addWeaponType(Win1887)
-ReloadUtil:addWeaponType(Win1887SO)
-ReloadUtil:addWeaponType(Win1887Sl)
-ReloadUtil:addWeaponType(Win1887SOSl)
+local M1216SlMag = { type = "M1216SlMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M1216SlMag',
+	ammoType = '12gSlugRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMShotgunRoundIn',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackSound = 'ORGMShotgunRoundIn',
+	containsClip = 0,
+	maxCapacity = 16,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M1216SlMag)
+
+local M1903StripperClip = { type = "M1903StripperClip",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M1903StripperClip',
+	ammoType = '3006Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 5,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M1903StripperClip)
+
+local M1911Mag = { type = "M1911Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M1911Mag',
+	ammoType = '45Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 7,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M1911Mag)
+	
+local M1A1Mag = { type = "M1A1Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M1A1Mag',
+	ammoType = '45Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 25,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M1A1Mag)
+
+local M21Mag = { type = "M21Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M21Mag',
+	ammoType = '762x51Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M21Mag)
+	
+local M21308Mag = { type = "M21308Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M21308Mag',
+	ammoType = '308Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M21308Mag)
+
+local M249Belt = { type = "M249Belt",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M249Belt',
+	ammoType = '556Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 200,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M249Belt)
+	
+local M249223Belt = { type = "M249223Belt",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'M249223Belt',
+	ammoType = '223Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 200,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(M249223Belt)
+
+local Mac10Mag = { type = "Mac10Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Mac10Mag',
+	ammoType = '45Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 25,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Mac10Mag)
+
+local Mac11Mag = { type = "Mac11Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Mac11Mag',
+	ammoType = '380Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 32,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Mac11Mag)
+
+local Mini14Mag = { type = "Mini14Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Mini14Mag',
+	ammoType = '223Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Mini14Mag)
+	
+local Mini14556Mag = { type = "Mini14556Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Mini14556Mag',
+	ammoType = '556Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Mini14556Mag)
+
+local MosinStripperClip = { type = "MosinStripperClip",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'MosinStripperClip',
+	ammoType = '762x54Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 5,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(MosinStripperClip)
+
+local R25Mag = { type = "R25Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'R25Mag',
+	ammoType = '308Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(R25Mag)
+	
+local R25762Mag = { type = "R25762Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'R25762Mag',
+	ammoType = '762x51Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(R25762Mag)
+
+local Rem788Mag = { type = "Rem788Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Rem788Mag',
+	ammoType = '3030Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 3,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Rem788Mag)
+
+local Rug1022Mag = { type = "Rug1022Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Rug1022Mag',
+	ammoType = '22Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 25,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Rug1022Mag)
+
+local RugerMKIIMag = { type = "RugerMKIIMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'RugerMKIIMag',
+	ammoType = '22Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(RugerMKIIMag)
+
+local RugerSR9Mag = { type = "RugerSR9Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'RugerSR9Mag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 17,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(RugerSR9Mag)
+
+local SIG550Mag = { type = "SIG550Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SIG550Mag',
+	ammoType = '556Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SIG550Mag)
+
+local SIG550223Mag = { type = "SIG550223Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SIG550223Mag',
+	ammoType = '223Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SIG550223Mag)
+
+local SIGP226Mag = { type = "SIGP226Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SIGP226Mag',
+	ammoType = '40Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 12,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SIGP226Mag)
+
+local SkorpionMag = { type = "SkorpionMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SkorpionMag',
+	ammoType = '32Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SkorpionMag)
+
+local SKSStripperClip = { type = "SKSStripperClip",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SKSStripperClip',
+	ammoType = '762Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SKSStripperClip)
+
+local SpeedLoader10mm6 = { type = "SpeedLoader10mm6",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader10mm6',
+	ammoType = '10mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader10mm6)
+
+local SpeedLoader3576 = { type = "SpeedLoader3576",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader3576',
+	ammoType = '357Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader3576)
+	
+local SpeedLoader385 = { type = "SpeedLoader385",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader385',
+	ammoType = '38Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 5,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader385)
+
+local SpeedLoader386 = { type = "SpeedLoader386",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader386',
+	ammoType = '38Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader386)
+
+local SpeedLoader446 = { type = "SpeedLoader446",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader446',
+	ammoType = '44Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader446)
+
+local SpeedLoader4546 = { type = "SpeedLoader4546",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader4546',
+	ammoType = '454Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader4546)
+		
+local SpeedLoader456 = { type = "SpeedLoader456",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader456',
+	ammoType = '45Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader456)
+		
+local SpeedLoader45C6 = { type = "SpeedLoader45C6",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SpeedLoader45C6',
+	ammoType = '45ColtRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SpeedLoader45C6)
+
+local Spr19119Mag = { type = "Spr19119Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Spr19119Mag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 9,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Spr19119Mag)
+
+local SR25Mag = { type = "SR25Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SR25Mag',
+	ammoType = '762x51Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SR25Mag)
+	
+local SR25308Mag = { type = "SR25308Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SR25308Mag',
+	ammoType = '308Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 20,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SR25308Mag)
+
+local STANAGMag = { type = "STANAGMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'STANAGMag',
+	ammoType = '556Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(STANAGMag)
+
+local STANAG223Mag = { type = "STANAG223Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'STANAG223Mag',
+	ammoType = '223Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 30,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(STANAG223Mag)
+
+local SVDMag = { type = "SVDMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'SVDMag',
+	ammoType = '762x54Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(SVDMag)
+
+local Taurus38Mag = { type = "Taurus38Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'Taurus38Mag',
+	ammoType = '38SRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(Taurus38Mag)
+
+local TaurusP132Mag = { type = "TaurusP132Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'TaurusP132Mag',
+	ammoType = '32Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(TaurusP132Mag)
+
+local UziMag = { type = "UziMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'UziMag',
+	ammoType = '9mmRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 32,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(UziMag)
+
+local VEPR12Mag = { type = "VEPR12Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'VEPR12Mag',
+	ammoType = '12gRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMShotgunRoundIn',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackSound = 'ORGMShotgunRoundIn',
+	containsClip = 0,
+	maxCapacity = 8,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(VEPR12Mag)
+
+local VEPR12SlMag = { type = "VEPR12SlMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'VEPR12SlMag',
+	ammoType = '12gSlugRounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMShotgunRoundIn',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackSound = 'ORGMShotgunRoundIn',
+	containsClip = 0,
+	maxCapacity = 8,
+	reloadTime = 15,
+	rackTime = 10};
+ReloadUtil:addMagazineType(VEPR12SlMag)
+
+local WaltherP22Mag = { type = "WaltherP22Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'WaltherP22Mag',
+	ammoType = '22Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 10,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(WaltherP22Mag)
+
+local WaltherPPKMag = { type = "WaltherPPKMag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'WaltherPPKMag',
+	ammoType = '380Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 6,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(WaltherPPKMag)
+
+local XD40Mag = { type = "XD40Mag",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMMagazine',
+	clipType = 'XD40Mag',
+	ammoType = '40Rounds',
+	shootSound = 'none',
+	clickSound = nil,
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+	rackSound = 'ORGMMagLoad',
+	containsClip = 0,
+	maxCapacity = 9,
+	reloadTime = 30,
+	rackTime = 10};
+ReloadUtil:addMagazineType(XD40Mag)
+
+--************************************************************************--
+-- revolvers
+--************************************************************************--
+
+ReloadUtil:addWeaponType({ type = "ColtAnac",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader446',
+	clipName = '.44 Magnum 6 round Speed Loader',
+	clipIcon = '44SpeedLoader6',
+	shootSound = 'ORGMColtAnac',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader446 
+})
+
+ReloadUtil:addWeaponType({ type = "ColtPyth",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader3576',
+	clipName = '.357 Magnum 6 round Speed Loader',
+	clipIcon = '357SpeedLoader6',
+	shootSound = 'ORGMColtPyth',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader3576 
+})
+
+ReloadUtil:addWeaponType({ type = "ColtPyth38",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader386',
+	clipName = '.38 Special 6 round Speed Loader',
+	clipIcon = '38SpeedLoader6',
+	shootSound = 'ORGMColtPyth38',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader386 
+})
+
+ReloadUtil:addWeaponType({ type = "ColtSAA",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIMNC',
+        ammoType = '45ColtRounds',
+        rackSound = 'ORGMRevolverCock',
+        shootSound = 'ORGMColtSAA',
+        shootSoundPartial = 'ORGMColtSAA',
+        clickSound = 'ORGMRevolverEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "ORGMRevolverCock"
+})
+		
+ReloadUtil:addWeaponType({ type = "RugAlas",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader4546',
+	clipName = '.454 Casull 6 round Speed Loader',
+	clipIcon = '454SpeedLoader6',
+	shootSound = 'ORGMRugAlas',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader4546 
+})
+
+ReloadUtil:addWeaponType({ type = "RugAlas45C",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader45C6',
+	clipName = '.45 Colt 6 round Speed Loader',
+	clipIcon = '454SpeedLoader6',
+	shootSound = 'ORGMRugAlas45C',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader45C6 
+})
+
+ReloadUtil:addWeaponType({ type = "RugBH",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '357Rounds',
+        rackSound = 'ORGMRevolverCock',
+        shootSound = '357Fire',
+        shootSoundPartial = '357Fire',
+        clickSound = 'ORGMRevolverEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "ORGMRevolverCock"
+})
+		
+ReloadUtil:addWeaponType({ type = "RugBH38",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '38Rounds',
+        rackSound = 'ORGMRevolverCock',
+        shootSound = '38Fire',
+        shootSoundPartial = '38Fire',
+        clickSound = 'ORGMRevolverEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "ORGMRevolverCock"
+})
+
+ReloadUtil:addWeaponType({ type = "RugGP100",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader3576',
+	clipName = '.357 Magnum 6 round Speed Loader',
+	clipIcon = '357SpeedLoader6',
+	shootSound = '357Fire',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader3576 
+})
+
+ReloadUtil:addWeaponType({ type = "RugGP10038",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader386',
+	clipName = '.38 Special 6 round Speed Loader',
+	clipIcon = '38SpeedLoader6',
+	shootSound = '38Fire',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader386 
+})
+
+ReloadUtil:addWeaponType({ type = "RugRH",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader446',
+	clipName = '.44 Magnum 6 round Speed Loader',
+	clipIcon = '44SpeedLoader6',
+	shootSound = 'ORGMRugBH',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader446 
+})
+
+ReloadUtil:addWeaponType({ type = "RugSec6",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader386',
+	clipName = '.38 Special 6 round Speed Loader',
+	clipIcon = '38SpeedLoader6',
+	shootSound = 'ORGMRugSec6',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader386 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM10",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader386',
+	clipName = '.38 Special 6 round Speed Loader',
+	clipIcon = '38SpeedLoader6',
+	shootSound = 'ORGMSWM10',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader386 
+})
+	
+ReloadUtil:addWeaponType({ type = "SWM19",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader3576',
+	clipName = '.357 Magnum 6 round Speed Loader',
+	clipIcon = '357SpeedLoader6',
+	shootSound = 'ORGMSWM19',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader3576 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM1938",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader386',
+	clipName = '.38 Special 6 round Speed Loader',
+	clipIcon = '38SpeedLoader6',
+	shootSound = 'ORGMSWM1938',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader386 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM252",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader456',
+	clipName = '.45 ACP 6 round Speed Loader',
+	clipIcon = '45SpeedLoader6',
+	shootSound = 'ORGMSWM252',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader456 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM29",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader446',
+	clipName = '.44 Magnum 6 round Speed Loader',
+	clipIcon = '44SpeedLoader6',
+	shootSound = 'ORGMSWM29',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader446 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM36",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader385',
+	clipName = '.38 Special 5 round Speed Loader',
+	clipIcon = '38SpeedLoader5',
+	shootSound = 'ORGMSWM36',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader385 
+})
+
+ReloadUtil:addWeaponType({ type = "SWM610",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader10mm6',
+	clipName = '10mm Auto 6 round Speed Loader',
+	clipIcon = '10mmSpeedLoader6',
+	shootSound = 'ORGMSWM610',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader10mm6 
+})
+
+ReloadUtil:addWeaponType({ type = "Taurus454",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader4546',
+	clipName = '.454 Casull 6 round Speed Loader',
+	clipIcon = '454SpeedLoader6',
+	shootSound = 'ORGMRagingBull',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader4546 
+})
+
+ReloadUtil:addWeaponType({ type = "Taurus45445C",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SpeedLoader45C6',
+	clipName = '.45 Colt 6 round Speed Loader',
+	clipIcon = '454SpeedLoader6',
+	shootSound = 'ORGMTRB45C',
+    clickSound = 'ORGMRevolverEmpty',
+	openSound = 'ORGMRevolverOpen',
+	insertSound = 'ORGMMagLoad',
+	closeSound = 'ORGMRevolverClose',
+    rackSound = 'ORGMRevolverCock',
+	rackTime = 10,
+	clipData = SpeedLoader45C6 
+})
+
+
+--************************************************************************--
+-- semi pistols
+--************************************************************************--
+ReloadUtil:addWeaponType({ type = "AutomagV",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'AutomagVMag',
+	clipName = 'AMT Automag V Magazine (.50)',
+	clipIcon = 'AutomagVMag',
+    shootSound = 'ORGMAutomag',
+	clickSound = 'ORGMPistolEmpty',
+	ejectSound = 'ORGMPistolOut',
+	insertSound = 'ORGMPistolIn',
+	rackSound = 'ORGMPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AutomagVMag 
+})
+
+ReloadUtil:addWeaponType({ type = "BBPistol",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'BBPistolMag',
+	clipName = 'Daisy Powerline Model 201 Magazine (BBs)',
+	clipIcon = 'BBPistolMag',
+	shootSound = 'ORGMDaisy',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = BBPistolMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Ber92",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Ber92Mag',
+	clipName = 'Beretta 92 Magazine (9mm)',
+	clipIcon = 'Ber92Mag',
+	shootSound = 'ORGMBeretta',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Ber92Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "BrenTen",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'BrenTenMag',
+	clipName = 'Bren Ten Magazine (10mm)',
+	clipIcon = 'BrenTenMag',
+	shootSound = 'ORGMBrenTen',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = BrenTenMag 
+})
+
+ReloadUtil:addWeaponType({ type = "BrownHP",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'BrownHPMag',
+	clipName = 'Browning HP Magazine (9mm)',
+	clipIcon = 'BrownHPMag',
+	shootSound = 'ORGMBrowningHP',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = BrownHPMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Colt38S",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Colt38SMag',
+	clipName = 'Colt Commander Super 38 Magazine (.38S)',
+	clipIcon = 'Colt38SMag',
+	shootSound = 'ORGMColtSuper38',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Colt38SMag 
+})
+
+ReloadUtil:addWeaponType({ type = "ColtDelta",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'ColtDeltaMag',
+	clipName = 'Colt Delta Elite Magazine (10mm)',
+	clipIcon = 'ColtDeltaMag',
+	shootSound = 'ORGMColtDelta',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = ColtDeltaMag 
+})
+
+ReloadUtil:addWeaponType({ type = "CZ75",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'CZ75Mag',
+	clipName = 'CZ 75 Magazine (.40)',
+	clipIcon = 'CZ75Mag',
+	shootSound = 'ORGMCZ75',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = CZ75Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "DEagle",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'DEagleMag',
+	clipName = 'IMI Desert Eagle Magazine (.44)',
+	clipIcon = 'DEagleMag',
+    shootSound = 'ORGMDeagle44',
+	clickSound = 'ORGMPistolEmpty',
+	ejectSound = 'ORGMPistolOut',
+	insertSound = 'ORGMPistolIn',
+	rackSound = 'ORGMPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = DEagleMag 
+})
+
+ReloadUtil:addWeaponType({ type = "DEagleXIX",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'DEagleXIXMag',
+	clipName = 'IMI Desert Eagle XIX Magazine (.50)',
+	clipIcon = 'DEagleXIXMag',
+    shootSound = 'ORGMDeagle50',
+	clickSound = 'ORGMPistolEmpty',
+	ejectSound = 'ORGMPistolOut',
+	insertSound = 'ORGMPistolIn',
+	rackSound = 'ORGMPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = DEagleXIXMag 
+})
+
+ReloadUtil:addWeaponType({ type = "FN57",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FN57Mag',
+	clipName = 'FN Five-seven Magazine (5.7mm)',
+	clipIcon = 'FN57Mag',
+	shootSound = 'ORGMFiveseven',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FN57Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Glock17",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock17Mag',
+	clipName = 'Glock 17 Magazine (9mm)',
+	clipIcon = 'Glock17Mag',
+	shootSound = 'ORGMGlock17',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock17Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "Glock20",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock20Mag',
+	clipName = 'Glock 20 Magazine (10mm)',
+	clipIcon = 'Glock20Mag',
+	shootSound = 'ORGMGlock20',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock20Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Glock21",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock21Mag',
+	clipName = 'Glock 21 Magazine (.45)',
+	clipIcon = 'Glock21Mag',
+	shootSound = 'ORGMGlock21',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock21Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Glock22",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock22Mag',
+	clipName = 'Glock 22 Magazine (.40)',
+	clipIcon = 'Glock22Mag',
+	shootSound = 'ORGMGlock22',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock22Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "HKMK23",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKMK23Mag',
+	clipName = 'H&K MK 23 Magazine (.45)',
+	clipIcon = 'HKMK23Mag',
+	shootSound = 'ORGMMK23',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKMK23Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "KahrCT40",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'KahrCT40Mag',
+	clipName = 'Kahr CT-40 Magazine (.40)',
+	clipIcon = 'KahrCT40Mag',
+	shootSound = 'ORGMKahrCT40',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = KahrCT40Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "KahrP380",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'KahrP380Mag',
+	clipName = 'Kahr P-380 Magazine (.380 ACP)',
+	clipIcon = 'KahrP380Mag',
+	shootSound = 'ORGMKahrP380',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = KahrP380Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "KTP32",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'KTP32Mag',
+	clipName = 'Kel-Tec P-32 Magazine (.32ACP)',
+	clipIcon = 'KTP32Mag',
+	shootSound = 'ORGMKelTecP32',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = KTP32Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M1911",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M1911Mag',
+	clipName = 'M1911 Magazine (.45)',
+	clipIcon = 'M1911Mag',
+	shootSound = 'ORGMM1911',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = ColtMag 
+})
+
+ReloadUtil:addWeaponType({ type = "RugerMKII",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'RugerMKIIMag',
+	clipName = 'Ruger MKII Magazine (.22)',
+	clipIcon = 'RugerMKIIMag',
+	shootSound = 'ORGMRugerMKII',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = RugerMKIIMag 
+})
+
+ReloadUtil:addWeaponType({ type = "RugerSR9",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'RugerSR9Mag',
+	clipName = 'Ruger SR9 Magazine (9mm)',
+	clipIcon = 'RugerSR9Mag',
+	shootSound = 'ORGMRugerSR9',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = RugerSR9Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "SIGP226",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIGP226Mag',
+	clipName = 'SIG P226 Magazine (.40)',
+	clipIcon = 'SIGP226Mag',
+	shootSound = 'ORGMSIGP226',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIGP226Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Spr19119",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Spr19119Mag',
+	clipName = 'Springfield 1911 9mm Magazine (9mm)',
+	clipIcon = 'Spr19119Mag',
+	shootSound = 'ORGMSpr19119',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Spr19119Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Taurus38",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Taurus38Mag',
+	clipName = 'Taurus PT38S Magazine (.38S)',
+	clipIcon = 'Taurus38Mag',
+	shootSound = 'ORGMTaurus38S',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Taurus38Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "TaurusP132",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'TaurusP132Mag',
+	clipName = 'Taurus Millennium P132 Magazine (.32ACP)',
+	clipIcon = 'TaurusP132Mag',
+	shootSound = 'ORGMTaurusP132',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = TaurusP132Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "WaltherP22",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'WaltherP22Mag',
+	clipName = 'Walther P22 Magazine (.22)',
+	clipIcon = 'WaltherP22Mag',
+	shootSound = 'ORGMWaltherP22',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = WaltherP22Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "WaltherPPK",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'WaltherPPKMag',
+	clipName = 'Walther PPK Magazine (.380 ACP)',
+	clipIcon = 'WaltherPPKMag',
+	shootSound = 'ORGMWaltherPPK',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = WaltherPPKMag 
+})
+
+ReloadUtil:addWeaponType({ type = "XD40",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'XD40Mag',
+	clipName = 'Springfield XD-40 Magazine (.40)',
+	clipIcon = 'XD40Mag',
+	shootSound = 'ORGMSprXD',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = XD40Mag 
+})
+
+
+
+--************************************************************************--
+-- smg/machine pistols
+--************************************************************************--
+
+ReloadUtil:addWeaponType({ type = "AM180",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AM180Mag',
+	clipName = 'American-180 Magazine (.22)',
+	clipIcon = 'AM180Mag',
+	shootSound = 'ORGMAM180',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMG2Out',
+	insertSound = 'ORGMSMG2In',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AM180Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Ber93R",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Ber93RMag',
+	clipName = 'Beretta 93R Magazine (9mm)',
+	clipIcon = 'Ber93RMag',
+	shootSound = 'ORGMBeretta',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Ber93RMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Ber93RSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Ber93RMag',
+	clipName = 'Beretta 93R Magazine (9mm)',
+	clipIcon = 'Ber93RMag',
+	shootSound = 'ORGMBeretta',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Ber93RMag 
+})
+
+ReloadUtil:addWeaponType({ type = "FNP90",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNP90Mag',
+	clipName = 'FN P90 Magazine (5.7mm)',
+	clipIcon = 'FNP90Mag',
+	shootSound = 'ORGMFNP90',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNP90Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "FNP90SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNP90Mag',
+	clipName = 'FN P90 Magazine (5.7mm)',
+	clipIcon = 'FNP90Mag',
+	shootSound = 'ORGMFNP90',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNP90Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Glock18",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock17Mag',
+	clipName = 'Glock 17 Magazine (9mm)',
+	clipIcon = 'Glock17Mag',
+	shootSound = 'ORGMGlock17',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock17Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Glock18SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock17Mag',
+	clipName = 'Glock 17 Magazine (9mm)',
+	clipIcon = 'Glock17Mag',
+	shootSound = 'ORGMGlock17',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock17Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKMP5",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKMP5Mag',
+	clipName = 'H&K MP5 Magazine (9mm)',
+	clipIcon = 'HKMP5Mag',
+	shootSound = 'ORGMHKMP5',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKMP5Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKMP5SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKMP5Mag',
+	clipName = 'H&K MP5 Magazine (9mm)',
+	clipIcon = 'HKMP5Mag',
+	shootSound = 'ORGMHKMP5',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKMP5Mag 
+})	
+
+ReloadUtil:addWeaponType({ type = "HKUMP",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKUMPMag',
+	clipName = 'H&K UMP Magazine (.45)',
+	clipIcon = 'HKUMPMag',
+	shootSound = 'ORGMUMP45',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKUMPMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKUMPSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKUMPMag',
+	clipName = 'H&K UMP Magazine (.45)',
+	clipIcon = 'HKUMPMag',
+	shootSound = 'ORGMUMP45',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKUMPMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Kriss",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock21Mag',
+	clipName = 'Glock 21 Magazine (.45)',
+	clipIcon = 'Glock21Mag',
+	shootSound = 'ORGMKriss',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock21Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "KrissA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock21Mag',
+	clipName = 'Glock 21 Magazine (.45)',
+	clipIcon = 'Glock21Mag',
+	shootSound = 'ORGMKriss',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock21Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "KrissSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Glock21Mag',
+	clipName = 'Glock 21 Magazine (.45)',
+	clipIcon = 'Glock21Mag',
+	shootSound = 'ORGMKriss',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Glock21Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "KTPLR",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMKTPLR',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "KTPLR556",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMKTPLR',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+
+ReloadUtil:addWeaponType({ type = "M1A1",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M1A1Mag',
+	clipName = 'M1A1 Magazine (.45)',
+	clipIcon = 'M1A1Mag',
+	shootSound = 'ORGMM1A1',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M1A1Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Mac10",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Mac10Mag',
+	clipName = 'Mac-10 Magazine (.45)',
+	clipIcon = 'Mac10Mag',
+	shootSound = 'ORGMMac10',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Mac10Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Mac11",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Mac11Mag',
+	clipName = 'Mac-11 Magazine (.380 ACP)',
+	clipIcon = 'Mac11Mag',
+	shootSound = 'ORGMMac11',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Mac11Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Skorpion",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SkorpionMag',
+	clipName = 'Skorpion vz. 61 Magazine (.32ACP)',
+	clipIcon = 'SkorpionMag',
+	shootSound = 'ORGMSkorpion',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SkorpionMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Uzi",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'UziMag',
+	clipName = 'Uzi Magazine (9mm)',
+	clipIcon = 'UziMag',
+	shootSound = 'ORGMUzi',
+	clickSound = 'ORGMSMGEmpty',
+	ejectSound = 'ORGMSMGOut',
+	insertSound = 'ORGMSMGIn',
+	rackSound = 'ORGMSMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = UziMag 
+})
+
+
+--************************************************************************--
+-- rifles
+--************************************************************************--
+ReloadUtil:addWeaponType({ type = "AIAW308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualMF',
+	ammoType = 'AIAW308Mag',
+	clipName = 'AI-AW .308 Magazine (.308)',
+	clipIcon = 'AIAW308Mag',
+	shootSound = 'ORGML96',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleBolt',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AIAW308Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AIAW308762",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualMF',
+	ammoType = 'L96Mag',
+	clipName = 'L96 Magazine (7.62x51)',
+	clipIcon = 'AIAW308Mag',
+	shootSound = 'ORGML96',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleBolt',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = L96Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "AKM",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AKMMag',
+	clipName = 'AKM Magazine (7.62x39)',
+	clipIcon = 'AKMMag',
+	shootSound = 'ORGMAKM',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AKMMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AKMSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AKMMag',
+	clipName = 'AKM Magazine (7.62x39)',
+	clipIcon = 'AKMMag',
+	shootSound = 'ORGMAKM',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AKMMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AKMA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AKMMag',
+	clipName = 'AKM Magazine (7.62x39)',
+	clipIcon = 'AKMMag',
+	shootSound = 'ORGMAKM',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AKMMag 
+})
+
+ReloadUtil:addWeaponType({ type = "AR10",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AR10Mag',
+	clipName = 'AR-10 Magazine (7.62x51)',
+	clipIcon = 'AR10Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AR10Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AR10SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AR10Mag',
+	clipName = 'AR-10 Magazine (7.62x51)',
+	clipIcon = 'AR10Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AR10Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AR10308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AR10308Mag',
+	clipName = 'AR-10 Magazine (.308)',
+	clipIcon = 'AR10Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AR10308Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "AR10SA308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'AR10308Mag',
+	clipName = 'AR-10 Magazine (.308)',
+	clipIcon = 'AR10Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AR10308Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "AR15",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "AR15556",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+
+ReloadUtil:addWeaponType({ type = "BBGun",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = 'BBs',
+        rackSound = 'ORGMBBLever',
+        shootSound = 'ORGMRedRyder',
+        shootSoundPartial = 'ORGMRedRyder',
+        clickSound = 'ORGMPistolEmpty',
+        insertSound = 'ORGMMagBBLoad',
+        rackTime = 3,
+        bulletOutSound = "ORGMBBLever"
+})
+
+ReloadUtil:addWeaponType({ type = "BLR",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '308Rounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = 'ORGMBLR',
+        shootSoundPartial = 'ORGMBLR',
+        clickSound = 'ORGMRifleEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+		
+ReloadUtil:addWeaponType({ type = "BLR762",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '762x51Rounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = 'ORGMBLR',
+        shootSoundPartial = 'ORGMBLR',
+        clickSound = 'ORGMRifleEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+
+ReloadUtil:addWeaponType({ type = "FNFAL",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALMag',
+	clipName = 'FSL LSR Magazine (.308)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "FNFAL762",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALAMag',
+	clipName = 'FN FAL Magazine (7.62x51mm)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALAMag 
+})	
+
+ReloadUtil:addWeaponType({ type = "FNFALSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALAMag',
+	clipName = 'FN FAL Magazine (7.62x51mm)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALAMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "FNFALA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALAMag',
+	clipName = 'FN FAL Magazine (7.62x51mm)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALAMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "FNFALSA308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALMag',
+	clipName = 'FSL LSR Magazine (.308)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "FNFALA308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'FNFALMag',
+	clipName = 'FSL LSR Magazine (.308)',
+	clipIcon = 'FNFALMag',
+	shootSound = 'ORGMFNFAL',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = FNFALMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Garand",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'GarandClip',
+	clipName = 'M1 Garand Clip (.30-06)',
+	clipIcon = 'GarandClip',
+	shootSound = 'ORGMM1Garand',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = GarandClip 
+})
+
+ReloadUtil:addWeaponType({ type = "HenryBB",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '45ColtRounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = 'ORGMHenryBB',
+        shootSoundPartial = 'ORGMHenryBB',
+        clickSound = 'ORGMRifleEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "ORGMRifleLever"
+})
+
+ReloadUtil:addWeaponType({ type = "HK91",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HK91Mag',
+	clipName = 'H&K 91 Magazine (.308)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HK91Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "HK91762",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKG3Mag',
+	clipName = 'H&K G3 Magazine (7.62x51mm)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKG3Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "HKG3",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKG3Mag',
+	clipName = 'H&K G3 Magazine (7.62x51mm)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKG3Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKG3SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKG3Mag',
+	clipName = 'H&K G3 Magazine (7.62x51mm)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKG3Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKG3308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HK91Mag',
+	clipName = 'H&K 91 Magazine (.308)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HK91Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "HKG3SA308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HK91Mag',
+	clipName = 'H&K 91 Magazine (.308)',
+	clipIcon = 'HK91Mag',
+	shootSound = 'ORGMG3',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HK91Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "HKSL8",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKSL8Mag',
+	clipName = 'H&K SL8 Magazine (.223)',
+	clipIcon = 'HKSL8Mag',
+	shootSound = 'ORGMHKSL8',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKSL8Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "HKSL8556",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'HKSL8556Mag',
+	clipName = 'H&K SL8 Magazine (5.56x45)',
+	clipIcon = 'HKSL8Mag',
+	shootSound = 'ORGMHKSL8',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = HKSL8556Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "L96",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualMF',
+	ammoType = 'L96Mag',
+	clipName = 'L96 Magazine (7.62x51)',
+	clipIcon = 'AIAW308Mag',
+	shootSound = 'ORGML96',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleBolt',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = L96Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "L96308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualMF',
+	ammoType = 'AIAW308Mag',
+	clipName = 'AI-AW .308 Magazine (.308)',
+	clipIcon = 'AIAW308Mag',
+	shootSound = 'ORGML96',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleBolt',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = AIAW308Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "LENo4",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'LENo4Mag',
+	clipName = 'Lee Enfield No. 4 Magazine (7.62x51)',
+	clipIcon = 'LENo4Mag',
+	shootSound = 'ORGMLENo4',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = LENo4Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "LENo4308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'LENo4308Mag',
+	clipName = 'Lee Enfield No. 4 Magazine (.308)',
+	clipIcon = 'LENo4Mag',
+	shootSound = 'ORGMLENo4',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = LENo4308Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M16",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M16SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M16223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M16SA223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M1903",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'M1903StripperClip',
+	clipName = 'Springfield M1903 Stripper Clip',
+	clipIcon = 'M1903StripperClip',
+	shootSound = 'ORGMM1903',
+    clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+    rackSound = 'ORGMRifleEmpty',
+	rackTime = 10,
+	clipData = M1903StripperClip 
+})
+
+ReloadUtil:addWeaponType({ type = "M21",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M21Mag',
+	clipName = 'M21 Magazine (7.62x51)',
+	clipIcon = 'M21Mag',
+	shootSound = 'ORGMM21',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M21Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M21308",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M21Mag308',
+	clipName = 'M21 Magazine (.308)',
+	clipIcon = 'M21Mag',
+	shootSound = 'ORGMM21',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M21308Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M249",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'M249Belt',
+	clipName = 'M249 Belt (5.56)',
+	clipIcon = 'M249Belt',
+    shootSound = 'ORGMM249',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMLMGOut',
+	insertSound = 'ORGMLMGIn',
+	rackSound = 'ORGMLMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M249Belt 
+})
+
+ReloadUtil:addWeaponType({ type = "M249223",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'M249223Belt',
+	clipName = 'M249 Belt (.223)',
+	clipIcon = 'M249Belt',
+    shootSound = 'ORGMM249',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMLMGOut',
+	insertSound = 'ORGMLMGIn',
+	rackSound = 'ORGMLMGRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M249223Belt 
+})
+
+ReloadUtil:addWeaponType({ type = "M4C",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M4CSA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M4C223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "M4CSA223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGMAR15',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Marlin60",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '22Rounds',
+	rackSound = 'ORGMRifleRack',
+	shootSound = 'ORGMMarlin60',
+	shootSoundPartial = 'ORGMMarlin60',
+	clickSound = 'ORGMSmallPistolEmpty',
+	insertSound = 'ORGMMagLoad',
+	rackTime = 10,
+  	bulletOutSound = 'none'
+})
+	
+ReloadUtil:addWeaponType({ type = "Mini14",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Mini14Mag',
+	clipName = 'Ruger Mini-14 Magazine (.223)',
+	clipIcon = 'Mini14Mag',
+	shootSound = 'ORGMMini14',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Mini14Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Mini14556",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Mini14556Mag',
+	clipName = 'Ruger Mini-14 Magazine (5.56x45)',
+	clipIcon = 'Mini14Mag',
+	shootSound = 'ORGMMini14',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Mini14556Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Mosin",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'MosinStripperClip',
+	clipName = 'Mosin Nagant Stripper Clip',
+	clipIcon = 'MosinStripperClip',
+	shootSound = 'ORGMMosin',
+    clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+    rackSound = 'ORGMRifleEmpty',
+	rackTime = 10,
+	clipData = MosinStripperClip 
+})
+
+ReloadUtil:addWeaponType({ type = "R25",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'R25Mag',
+	clipName = 'Remington R25 Magazine (.308)',
+	clipIcon = 'R25Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = R25Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "R25762",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'R25762Mag',
+	clipName = 'Remington R25 Magazine (7.62x51)',
+	clipIcon = 'R25Mag',
+	shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = R25762Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Rem700",
+    moduleName = 'ORGM',
+    reloadClass = 'ORGMWeaponManualIM',
+    ammoType = '3006Rounds',
+    rackSound = 'ORGMRifleBolt',
+    shootSound = 'ORGMRem700',
+    shootSoundPartial = 'ORGMRem700',
+    clickSound = 'ORGMRifleEmpty',
+    insertSound = 'ORGMMagLoad',
+    rackTime = 10,
+    bulletOutSound = "ORGMRifleBolt"
+})
+
+ReloadUtil:addWeaponType({ type = "Rem788",
+  	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualMF',
+    ammoType = 'Rem788Mag',
+	clipName = 'Remington Magazine (.30-30)',
+	clipIcon = 'Rem788Mag',
+    shootSound = 'ORGMRem788',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleBolt',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Rem788Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "Rug1022",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'Rug1022Mag',
+	clipName = 'Ruger 10/22 Magazine (.22)',
+	clipIcon = 'Rug1022Mag',
+	shootSound = 'ORGMRuger1022',
+	clickSound = 'ORGMSmallPistolEmpty',
+	ejectSound = 'ORGMSmallPistolOut',
+	insertSound = 'ORGMSmallPistolIn',
+	rackSound = 'ORGMSmallPistolRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = Rug1022Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "SA80",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGML85',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SA80SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAGMag',
+	clipName = 'Standard STANAG Magazine (5.56x45)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGML85',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAGMag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SA80223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGML85',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SA80SA223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'STANAG223Mag',
+	clipName = 'Standard STANAG Magazine (.223)',
+	clipIcon = 'STANAGMag',
+	shootSound = 'ORGML85',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = STANAG223Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "SIG550",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550Mag',
+	clipName = 'Sig SG550 Magazine (5.56x45)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG550SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550Mag',
+	clipName = 'Sig SG550 Magazine (5.56x45)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG550223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550223Mag',
+	clipName = 'Sig SG550 Magazine (.223)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG550SA223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550223Mag',
+	clipName = 'Sig SG550 Magazine (.223)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG551",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550Mag',
+	clipName = 'Sig SG550 Magazine (5.56x45)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG551SA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550Mag',
+	clipName = 'Sig SG550 Magazine (5.56x45)',
+	clipIcon = 'SIG550Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG551223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550Mag',
+	clipName = 'Sig SG550 Magazine (.223)',
+	clipIcon = 'SIG550223Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SIG551SA223",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SIG550223Mag',
+	clipName = 'Sig SG550 Magazine (.223)',
+	clipIcon = 'SIG550223Mag',
+	shootSound = 'ORGMSIG550',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SIG550Mag 
+})
+	
+ReloadUtil:addWeaponType({ type = "SKS",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNCSL',
+	ammoType = 'SKSStripperClip',
+	clipName = 'SKS Stripper Clip',
+	clipIcon = 'SKSStripperClip',
+	shootSound = 'ORGMSKS',
+    clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMMagLoad',
+	insertSound = 'ORGMMagLoad',
+    rackSound = 'ORGMRifleEmpty',
+	rackTime = 10,
+	clipData = SKSStripperClip 
+})
+
+ReloadUtil:addWeaponType({ type = "SR25",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'SR25Mag',
+	clipName = 'KAC SR-25 Magazine (7.62x51)',
+	clipIcon = 'SR25Mag',
+    shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SR25Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "SR25308",
+    moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+    ammoType = 'SR25308Mag',
+	clipName = 'KAC SR-25 Magazine (.308)',
+	clipIcon = 'SR25Mag',
+    shootSound = 'ORGMAR10',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SR25308Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "SVD",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'SVDMag',
+	clipName = 'SVD Magazine (7.62x54R)',
+	clipIcon = 'SVDMag',
+	shootSound = 'ORGMSVD',
+	clickSound = 'ORGMRifleEmpty',
+	ejectSound = 'ORGMRifleOut',
+	insertSound = 'ORGMRifleIn',
+	rackSound = 'ORGMRifleRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = SVDMag 
+})
+
+ReloadUtil:addWeaponType({ type = "WinM70",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '3006Rounds',
+        rackSound = 'ORGMRifleBolt',
+        shootSound = 'ORGMWinM70',
+        shootSoundPartial = 'ORGMWinM70',
+        clickSound = 'ORGMRifleEmpty',
+        insertSound = 'ORGMMagLoad',
+        rackTime = 10,
+        bulletOutSound = "ORGMRifleBolt"
+})
+
+ReloadUtil:addWeaponType({ type = "WinM94",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '3030Rounds',
+	rackSound = 'ORGMRifleLever',
+	shootSound = 'ORGMWinM1894',
+	shootSoundPartial = 'ORGMWinM1894',
+	clickSound = 'ORGMRifleEmpty',
+	insertSound = 'ORGMMagLoad',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMRifleLever'
+})
+	
+--************************************************************************--
+-- shotguns
+--************************************************************************--
+ReloadUtil:addWeaponType({ type = "BenelliM3",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliM3SO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "BenelliM3PA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliM3PASO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliM3Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliM3SOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "BenelliM3PASl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliM3PASOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "BenelliXM1014",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMARRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMARRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "BenelliXM1014Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMARRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMARRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "Hawk982",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Hawk982Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "Ithaca37",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Ithaca37SO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Ithaca37Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Ithaca37SOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+		
+ReloadUtil:addWeaponType({ type = "M1216",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M1216Mag',
+	clipName = 'SRM Arms Model 1216 Magazine (12 gauge)',
+	clipIcon = 'M1216Mag',
+	shootSound = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M1216Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "M1216Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'M1216SlMag',
+	clipName = 'SRM Arms Model 1216 Magazine (12 gauge slugs)',
+	clipIcon = 'M1216Mag',
+	shootSound = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = M1216SlMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Moss590",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Moss590SO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Moss590Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Moss590SOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Rem870",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Rem870SO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Rem870Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Rem870SOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Silverhawk",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIMNC',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunDBRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunOpen'
+})
+
+ReloadUtil:addWeaponType({ type = "SilverHawkSO",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIMNC',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunDBRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunOpen'
+})
+
+ReloadUtil:addWeaponType({ type = "SilverhawkSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIMNC',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunDBRack',
+	shootSound = 'ORGMSilverhawk',
+	shootSoundPartial = 'ORGMSilverhawk',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunOpen'
+})
+
+ReloadUtil:addWeaponType({ type = "SilverHawkSOSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIMNC',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunDBRack',
+	shootSound = 'ORGMSilverhawk',
+	shootSoundPartial = 'ORGMSilverhawk',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunOpen'
+})
+
+ReloadUtil:addWeaponType({ type = "Spas12",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = 'ORGMSPAS',
+	shootSoundPartial = 'ORGMSPAS',
+	--shootSound = '12GShotgunFire',
+	--shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "Spas12PA",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Spas12Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = 'ORGMSPAS',
+	shootSoundPartial = 'ORGMSPAS',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "Spas12PASl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = 'ORGMSPAS',
+	shootSoundPartial = 'ORGMSPAS',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Stevens320",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Stevens320Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponManualIM',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMShotgunRack',
+	shootSound = 'ORGMR870',
+	shootSoundPartial = 'ORGMR870',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+
+ReloadUtil:addWeaponType({ type = "Striker",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNC',
+	ammoType = '12gRounds',
+	rackSound = 'ORGMARRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "StrikerSl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoIMNC',
+	ammoType = '12gSlugRounds',
+	rackSound = 'ORGMARRack',
+	shootSound = '12GShotgunFire',
+	shootSoundPartial = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	insertSound = 'ORGMShotgunRoundIn',
+	rackTime = 10,
+  	bulletOutSound = 'ORGMShotgunRack'
+})
+	
+ReloadUtil:addWeaponType({ type = "VEPR12",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'VEPR12Mag',
+	clipName = 'VEPR-12 Magazine (12 gauge)',
+	clipIcon = 'VEPR12Mag',
+	shootSound = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = VEPR12Mag 
+})
+
+ReloadUtil:addWeaponType({ type = "VEPR12Sl",
+	moduleName = 'ORGM',
+	reloadClass = 'ORGMWeaponAutoMF',
+	ammoType = 'VEPR12SlMag',
+	clipName = 'VEPR-12 Magazine (12 gauge slugs)',
+	clipIcon = 'VEPR12Mag',
+	shootSound = '12GShotgunFire',
+	clickSound = 'ORGMShotgunEmpty',
+	ejectSound = 'ORGMAROut',
+	insertSound = 'ORGMARIn',
+	rackSound = 'ORGMARRack',
+	containsClip = 1,
+	rackTime = 10,
+	clipData = VEPR12SlMag 
+})
+
+ReloadUtil:addWeaponType({ type = "Win1887",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '12gRounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = '12gFire',
+        shootSoundPartial = '12gFire',
+		clickSound = 'ORGMShotgunEmpty',
+		insertSound = 'ORGMShotgunRoundIn',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+		
+ReloadUtil:addWeaponType({ type = "Win1887SO",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+        ammoType = '12gRounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = '12gFire',
+        shootSoundPartial = '12gFire',
+		clickSound = 'ORGMShotgunEmpty',
+		insertSound = 'ORGMShotgunRoundIn',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+
+ReloadUtil:addWeaponType({ type = "Win1887Sl",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+		ammoType = '12gSlugRounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = '12gFire',
+        shootSoundPartial = '12gFire',
+		clickSound = 'ORGMShotgunEmpty',
+		insertSound = 'ORGMShotgunRoundIn',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+		
+ReloadUtil:addWeaponType({ type = "Win1887SOSl",
+        moduleName = 'ORGM',
+        reloadClass = 'ORGMWeaponManualIM',
+		ammoType = '12gSlugRounds',
+        rackSound = 'ORGMRifleLever',
+        shootSound = '12gFire',
+        shootSoundPartial = '12gFire',
+		clickSound = 'ORGMShotgunEmpty',
+		insertSound = 'ORGMShotgunRoundIn',
+        rackTime = 10,
+        bulletOutSound = "bulletOutVarmint"
+})
+
