@@ -1,165 +1,48 @@
 ORGM = {}
 local MOD_ID = "ORGM";
-local MOD_NAME = "ORMtnMan's Real Gun Mod";
-local MOD_VERSION = "1.24";
-local MOD_AUTHOR = "ORMtnMan";
-local MOD_DESCRIPTION = "Adds in realistic weapons that might be found in the area.";
+local MOD_NAME = "ORGM Reloaded";
+local MOD_VERSION = "2.0";
+local MOD_AUTHOR = "ORMtnMan, updated by Fenris_Wolf";
+local MOD_DESCRIPTION = "YSP refactored version of ORGM.";
 
 
 local function info()
     
 	-- The directory of the mod folder. 
-	dir = getDir("ORGM");
-	
-	-- quick extension strings.
-	em = ".txt";
-	et = ".png"; 
-	
-	name = "ar15";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
+	local dir = getDir("ORGMReloaded");
+	local locationModel = dir .. "/media/models/weapons_";
+    local locationTexture = dir .. "/media/textures/Objects_";
+    
 	--                    (model name        , modelLocation, textureLocation )
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "fnfal";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "g3";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "kalash";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "kriss";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "krissciv";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "m16";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "mp5";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "revolverlarge";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "ump";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "uzi";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "shotgunsawn";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "ShotgunSawn" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "shotgunsawnblack";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "ShotgunSawn_Black" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "shotgun";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "Shotgun" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "shotgunblack";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "Shotgun_Black" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "spas12";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "glock22";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "glock23";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. name .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "model19bwg";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "model19_Black_WoodGrip" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "model19cwg";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "model19_Chrome_WoodGrip" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "model19cbg";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "model19_Chrome_BlackGrip" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "rugermkii";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "rugermkii" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "henry";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "henry" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "m14";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "m14" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "p90";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "p90" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "sa80";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "sa80" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "sks";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "sks" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "svd";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "svd" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
-	
-	name = "mini14";
-	locationModel = dir .. "/media/models/" .. "weapons_" .. name .. em;
-	locationTexture = dir .. "/media/textures/" .. "Objects_" .. "svd" .. et; 
-	loadStaticZomboidModel("weapons_" .. name, locationModel, locationTexture ) ;
+	loadStaticZomboidModel("weapons_ar15", locationModel .. "ar15.txt", locationTexture .. "ar15.png");
+	loadStaticZomboidModel("weapons_fnfal", locationModel .. "fnfal.txt", locationTexture .. "fnfal.png");
+	loadStaticZomboidModel("weapons_g3", locationModel .. "g3.txt", locationTexture .. "g3.png");
+	loadStaticZomboidModel("weapons_kalash", locationModel .. "kalash.txt", locationTexture .. "kalash.png");
+	loadStaticZomboidModel("weapons_kriss", locationModel .. "kriss.txt", locationTexture .. "kriss.png");
+	loadStaticZomboidModel("weapons_krissciv", locationModel .. "krissciv.txt", locationTexture .. "krissciv.png");
+	loadStaticZomboidModel("weapons_m16", locationModel .. "m16.txt", locationTexture .. "m16.png");
+	loadStaticZomboidModel("weapons_mp5", locationModel .. "mp5.txt", locationTexture .. "mp5.png");
+	loadStaticZomboidModel("weapons_revolverlarge", locationModel .. "revolverlarge.txt", locationTexture .. "revolverlarge.png");
+	loadStaticZomboidModel("weapons_ump", locationModel .. "ump.txt", locationTexture .. "ump.png");
+	loadStaticZomboidModel("weapons_uzi", locationModel .. "uzi.txt", locationTexture .. "uzi.png");
+	loadStaticZomboidModel("weapons_shotgunsawn", locationModel .. "shotgunsawn.txt", locationTexture .. "ShotgunSawn.png") ;
+	loadStaticZomboidModel("weapons_shotgunsawnblack", locationModel .. "shotgunsawnblack.txt", locationTexture .. "ShotgunSawn_Black.png") ;
+	loadStaticZomboidModel("weapons_shotgun", locationModel .. "shotgun.txt", locationTexture .. "Shotgun.png") ;
+	loadStaticZomboidModel("weapons_shotgunblack", locationModel .. "shotgunblack.txt", locationTexture .. "Shotgun_Black.png") ;
+	loadStaticZomboidModel("weapons_spas12", locationModel .. "spas12.txt", locationTexture .. "spas12.png") ;
+	loadStaticZomboidModel("weapons_glock22", locationModel .. "glock22.txt", locationTexture .. "glock22.png") ;
+	loadStaticZomboidModel("weapons_glock23", locationModel .. "glock23.txt", locationTexture .. "glock23.png") ;
+	loadStaticZomboidModel("weapons_model19bwg", locationModel .. "model19bwg.txt", locationTexture .. "model19_Black_WoodGrip.png") ;
+	loadStaticZomboidModel("weapons_model19cwg", locationModel .. "model19cwg.txt", locationTexture .. "model19_Chrome_WoodGrip.png") ;
+	loadStaticZomboidModel("weapons_model19cbg", locationModel .. "model19cbg.txt", locationTexture .. "model19_Chrome_BlackGrip.png") ;
+	loadStaticZomboidModel("weapons_rugermkii", locationModel .. "rugermkii.txt", locationTexture .. "rugermkii.png") ;
+	loadStaticZomboidModel("weapons_henry", locationModel .. "henry.txt", locationTexture .. "henry.png") ;
+	loadStaticZomboidModel("weapons_m14", locationModel .. "m14.txt", locationTexture .. "m14.png") ;
+	loadStaticZomboidModel("weapons_p90", locationModel .. "p90.txt", locationTexture .. "p90.png") ;
+	loadStaticZomboidModel("weapons_sa80", locationModel .. "sa80.txt", locationTexture .. "sa80.png") ;
+	loadStaticZomboidModel("weapons_sks", locationModel .. "sks.txt", locationTexture .. "sks.png") ;
+	loadStaticZomboidModel("weapons_svd", locationModel .. "svd.txt", locationTexture .. "svd.png") ;
+	loadStaticZomboidModel("weapons_mini14", locationModel .. "mini14.txt", locationTexture .. "mini14.png") ;
 	
 	 print("Mod Loaded: " .. MOD_NAME .. " by " .. MOD_AUTHOR .. " (v" .. MOD_VERSION .. ") " .. dir);
 	
