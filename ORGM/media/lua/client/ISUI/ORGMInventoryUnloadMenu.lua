@@ -1,6 +1,12 @@
-ORGMInventoryUnloadMenu = {}
+local OnUnload = function(items, player)
+	local weapon = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		weapon = items[1].items[1]
+	end
+	ORGMUnloadManager:startUnloadFromUi(weapon);
+end
 
-ORGMInventoryUnloadMenu.createMenu = function(player, context, items)
+Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
 
     local isUnloadable = false;
 	
@@ -11,18 +17,15 @@ ORGMInventoryUnloadMenu.createMenu = function(player, context, items)
         if not instanceof(v, "InventoryItem") then
             testItem = v.items[1];
         end
-		if testItem:getModData().currentCapacity ~= nil then
-			capacity = testItem:getModData().currentCapacity
-		else
-			capacity = 0
+        local capacity = 0
+        local data = testItem:getModData()
+		if data.currentCapacity ~= nil then
+			capacity = data.currentCapacity
 		end
-		if testItem:getModData().roundChambered ~= nil then
-			chambered = testItem:getModData().roundChambered
-		else
-			chambered = 0
+		if data.roundChambered ~= nil then
+			capacity = capacity + data.roundChambered
 		end
-			unloadtester = capacity + chambered
-		if(unloadtester > 0) then
+		if(capacity > 0) then
 			isUnloadable = true;
 		end
     end
@@ -32,16 +35,7 @@ ORGMInventoryUnloadMenu.createMenu = function(player, context, items)
 		if not instanceof(items[1], "InventoryItem") then
 			item = items[1].items[1];
 		end
-		context:addOption("Unload", items, ORGMInventoryUnloadMenu.OnUnload, playerObj);
+		context:addOption("Unload", items, OnUnload, playerObj);
 	end
 end
-
-ORGMInventoryUnloadMenu.OnUnload = function(items, player)
-	local weapon = items[1];
-	if not instanceof(items[1], "InventoryItem") then
-		weapon = items[1].items[1];
-	end
-	ORGMUnloadManager:startUnloadFromUi(weapon);
-end
-
-Events.OnFillInventoryObjectContextMenu.Add(ORGMInventoryUnloadMenu.createMenu);
+)
