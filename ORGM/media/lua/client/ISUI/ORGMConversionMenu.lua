@@ -1,6 +1,15 @@
 ORGMConversionMenu = {}
 
-ORGMConversionMenu.createMenu = function(player, context, items)
+local OnConvert = function(items, player)
+	local convItem = items[1];
+	if not instanceof(items[1], "InventoryItem") then
+		convItem = items[1].items[1];
+	end
+	ORGMConversions:StartConvertfromUi(convItem);
+end
+
+
+Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
 
     local isConvertable = false;
 	local isInInv = false;
@@ -28,16 +37,7 @@ ORGMConversionMenu.createMenu = function(player, context, items)
 			item = items[1].items[1];
 		end
 		ConvText = ConversionContextTable[testIndex]
-		context:addOption(ConvText, items, ORGMConversionMenu.OnConvert, playerObj);
+		context:addOption(ConvText, items, OnConvert, playerObj);
 	end
 end
-
-ORGMConversionMenu.OnConvert = function(items, player)
-	local convItem = items[1];
-	if not instanceof(items[1], "InventoryItem") then
-		convItem = items[1].items[1];
-	end
-	ORGMConversions:StartConvertfromUi(convItem);
-end
-
-Events.OnFillInventoryObjectContextMenu.Add(ORGMConversionMenu.createMenu);
+)
