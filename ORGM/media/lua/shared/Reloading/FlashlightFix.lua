@@ -1,5 +1,5 @@
-FlashlightFix = {};
-FlashlightFix.onKeyPressed = function(key)
+
+Events.OnKeyPressed.Add(function(key)
     local Player = getSpecificPlayer(0);
     if key == getCore():getKey("Equip/Turn On/Off Light Source") then
         local Item = Player:getPrimaryHandItem();
@@ -33,4 +33,4 @@ FlashlightFix.onKeyPressed = function(key)
         end
     end
 end
-Events.OnKeyPressed.Add(FlashlightFix.onKeyPressed);
+);
