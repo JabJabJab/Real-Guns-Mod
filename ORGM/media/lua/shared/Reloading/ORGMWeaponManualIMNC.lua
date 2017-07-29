@@ -95,7 +95,7 @@ function ORGMWeaponManualIMNC:isReloadValid(char, square, difficulty)
 	return false;
 end
 
-function ORGMWeaponManualIM:isUnloadValid(char, square, difficulty)
+function ORGMWeaponManualIMNC:isUnloadValid(char, square, difficulty)
 	if(self.currentCapacity > 0) then
 		return true;
 	end
@@ -116,7 +116,7 @@ function ORGMWeaponManualIMNC:reloadStart(char, square, difficulty)
 	self.reloadInProgress = true;
 end
 
-function ORGMWeaponManualIM:unloadStart(char, square, difficulty)
+function ORGMWeaponManualIMNC:unloadStart(char, square, difficulty)
 	self.unloadInProgress = true;
 end
 
@@ -188,7 +188,7 @@ function ORGMWeaponManualIMNC:rackingPerform(char, square, weapon)
 	self:syncReloadableToItem(weapon);
 end
 
-function ORGMWeaponManualIM:isChainUnloading()
+function ORGMWeaponManualIMNC:isChainUnloading()
 	return true;
 end
 
