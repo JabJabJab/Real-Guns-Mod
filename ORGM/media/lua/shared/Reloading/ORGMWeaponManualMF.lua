@@ -322,7 +322,7 @@ function ORGMWeaponManualMF:getRackTime()
 	return self.rackTime;
 end
 
-function ORGMWeaponAutoMF:isChainUnloading()
+function ORGMWeaponManualMF:isChainUnloading()
 	return true;
 end
 
