@@ -1506,7 +1506,7 @@ module ORGM
     {
         Ammo_308Winchester_FMJ_Box,
 
-        Result:Ammo_308Winchester=20,
+        Result:Ammo_308Winchester_FMJ=20,
         Time:5.0,
     }
 
@@ -1555,7 +1555,7 @@ module ORGM
     {
         Ammo_308Winchester_HP_Box,
 
-        Result:Ammo_308Winchester=20,
+        Result:Ammo_308Winchester_HP=20,
         Time:5.0,
     }
 
