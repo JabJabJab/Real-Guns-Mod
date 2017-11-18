@@ -270,8 +270,10 @@ ORGMAlternateMagTable = {
 }
 
 --[[ The Ammo Stats Table (Global)
-    This is used for guns that load alternating ammo types.  If a round is different from the last round loaded,
-    it changes several of the weapon properties to match the new ammo.
+    This is used for guns to change attributes based on ammo.  If a round is different from the last round 
+    loaded, it changes several of the weapon properties to match the new ammo.
+    Supported table keys:
+    MinDamage, MaxDamage, PiercingBullets (true/false or 0-100% chance ), MaxHitCount (for shotgun ammo)
 ]]
 ORGMAmmoStatsTable = {
     ["Ammo_117BB"]              = { MinDamage = 0.1, MaxDamage = 0.1, PiercingBullets = false },
@@ -961,6 +963,10 @@ ORGMMasterMagTable = {
     WeaponName = {
         gunType = "", -- the action and trigger type (see the GunTypes table above)
         soundProfile = "", -- the sound profile to apply (see the SoundProfiles table above)
+        isCivilian/isPolice/isMilitary = "Common|Rare|VeryRare", -- used to define what distribution tables to insert into
+        selectFire = nil|0|1, -- used on weapons that can select fire modes (leave nil if not select fire)
+                    -- if 1 the default fire mode is full-auto, 0 default mode is semi
+        altActionType = "", -- alternate action type for guns that can switch (ie: semi-auto shotguns that can also be pump action)
         data = { -- table passed to ReloadUtil:addWeaponType()
             -- any key = value pair that doesn't exist here (but should) is set to a default
             -- or inherited from the GunTypes and SoundProfiles tables
