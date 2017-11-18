@@ -1,10 +1,3 @@
-# Real-Guns-Mod
-
-Git repository for the Real Guns Mod for Project Zomboid.
-
-By ORMtmMan, Rechambered by Fenris_Wolf
-
-
 version 2.00alpha
 
 Changes of Note:

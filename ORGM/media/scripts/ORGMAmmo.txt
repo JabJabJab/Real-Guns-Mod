@@ -1,726 +1,1670 @@
 
 /**        ORMtnMan's Real Gun Mod       **/
+/** 
+    TODO: .40 S&W HP Icons
+    TODO: .30-30 HP Icons
+**/
  
 module ORGM
 {  
- 
-	item 762Rounds
-	{
-		Count = 1,
-		Weight = 0.02,
-		Type = Normal,
-		DisplayName = 7.62x39mm rounds,
+    /** .117 BB **/
+    item Ammo_117BB
+    {
+        Count = 1,
+        Weight = 0.001,
+        Type = Normal,
+        DisplayName = .117 BBs,
         DisplayCategory = Ammo,
-		Icon = 762Rounds,
-	}
- 
-	item 762Box
-    {
-        Weight = 0.4,
-        Type = Normal,
-        DisplayName = 7.62x39mm - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 762Box,
+        Icon = AmBBs,
     }
-	
-	item 762Can
+    /** This box only exist for spawning purposes, it is identical to Ammo_117BB_Can **/
+    item Ammo_117BB_Box
     {
-        Weight = 4.0,
+        Weight = 0.25,
         Type = Normal,
-        DisplayName = 7.62x39mm - 200 Round Canister,
-		DisplayCategory = Ammo,
+        DisplayName = .117 BBs - 250 Count Can,
+        DisplayCategory = Ammo,
+        Icon = AmBBCan,
+    }
+ 
+    item Ammo_117BB_Can
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .117 BBs - 250 Count Can,
+        DisplayCategory = Ammo,
+        Icon = AmBBCan,
+    }
+
+
+    /** 22LR **/
+    item Ammo_22LR
+    {
+        Count = 1,
+        Weight = 0.003,
+        Type = Normal,
+        DisplayName = .22 LR rounds,
+        DisplayCategory = Ammo,
+        Icon = Am22Rounds,
+    }
+
+    item Ammo_22LR_FMJ
+    {
+        Count = 1,
+        Weight = 0.003,
+        Type = Normal,
+        DisplayName = .22LR FMJ rounds,
+        DisplayCategory = Ammo,
+        Icon = Am22Rounds,
+    }
+ 
+    item Ammo_22LR_FMJ_Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .22LR FMJ - 100 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am22Box,
+    }
+    
+    item Ammo_22LR_FMJ_Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .22LR FMJ - 1000 Round Canister,
+        DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
+
+    item Ammo_22LR_HP
+    {
+        Count = 1,
+        Weight = 0.003,
+        Type = Normal,
+        DisplayName = .22LR HP rounds,
+        DisplayCategory = Ammo,
+        Icon = Am22HPRounds,
+    }
  
-	item 9mmRounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = 9x19mm Parabellum rounds,
-		DisplayCategory = Ammo,
-		Icon = 9mmRounds,
-	}
+    item Ammo_22LR_HP_Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .22LR HP - 100 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am22HPBox,
+    }
+    
+    item Ammo_22LR_HP_Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .22LR HP - 1000 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 32ACP **/
+    item Ammo_32ACP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .32 ACP rounds,
+        DisplayCategory = Ammo,
+        Icon = Am32ACPRounds,
+    }
+
+    item Ammo_32ACP_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .32 ACP FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am32ACPRounds,
+    }
  
-	item 9mmBox
+    item Ammo_32ACP_FMJ_Box
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 9x19mm - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 9mmBox,
+        DisplayName = .32 ACP FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am32ACPBox,
     }
  
-	item 9mmCan
+    item Ammo_32ACP_FMJ_Can
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 9x19mm - 500 Round Canister,
-		DisplayCategory = Ammo,
+        DisplayName = .32 ACP FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_32ACP_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .32 ACP HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am32ACPHPRounds,
+    }
+ 
+    item Ammo_32ACP_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .32 ACP HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am32ACPHPBox,
+    }
+ 
+    item Ammo_32ACP_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .32 ACP HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** .357 Magnum **/
+    item Ammo_357Magnum
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .357 Magnum rounds,
+        DisplayCategory = Ammo,
+        Icon = Am357Rounds,
+    }
+
+    item Ammo_357Magnum_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .357 Magnum FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am357Rounds,
+    }
+
+    item Ammo_357Magnum_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .357 Magnum FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am357Box,
+    }
+
+    item Ammo_357Magnum_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .357 Magnum FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_357Magnum_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .357 Magnum HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am357HPRounds,
+    }
+
+    item Ammo_357Magnum_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .357 Magnum HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am357HPBox,
+    }
+
+    item Ammo_357Magnum_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .357 Magnum HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 38 Special **/
+    item Ammo_38Special
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Special rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SpecialRounds,
+    }
+
+    item Ammo_38Special_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Special FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SpecialRounds,
+    }
+ 
+    item Ammo_38Special_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Special FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am38SpecialBox,
+    }
+    
+    item Ammo_38Special_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Special FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_38Special_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Special HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SpecialHPRounds,
+    }
+ 
+    item Ammo_38Special_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Special HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am38SpecialHPBox,
+    }
+    
+    item Ammo_38Special_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Special HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 38 Super **/
+    item Ammo_38Super
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Super rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SuperRounds,
+    }
+ 
+    item Ammo_38Super_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Super FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SuperRounds,
+    }
+    
+    item Ammo_38Super_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Super FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am38SuperBox,
+    }
+    
+    item Ammo_38Super_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Super FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
  
-	item 12gRounds
-	{
-		Count = 1,
-		Weight = 0.04,
-		Type = Normal,
-		DisplayName = 00 Buck 12 Gauge shells,
-		DisplayCategory = Ammo,
-		Icon = 12gRounds,
-	}
+    item Ammo_38Super_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .38 Super HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am38SuperHPRounds,
+    }
+    
+    item Ammo_38Super_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .38 Super HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am38SuperHPBox,
+    }
+    
+    item Ammo_38Super_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .38 Super HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
  
-	item 12gBox
+
+    /** .380 ACP **/
+    item Ammo_380ACP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .380 ACP rounds,
+        DisplayCategory = Ammo,
+        Icon = Am380ACPRounds,
+    }
+ 
+    item Ammo_380ACP_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .380 ACP FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am380ACPRounds,
+    }
+    
+    item Ammo_380ACP_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .380 ACP FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am380ACPBox,
+    }
+    
+    item Ammo_380ACP_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .380 ACP FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_380ACP_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .380 ACP HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am380ACPHPRounds,
+    }
+    
+    item Ammo_380ACP_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .380 ACP HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am380ACPHPBox,
+    }
+    
+    item Ammo_380ACP_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .380 ACP HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** .40 S&W **/
+    item Ammo_40SW
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .40 S&W rounds,
+        DisplayCategory = Ammo,
+        Icon = Am40SWRounds,
+    }
+ 
+    item Ammo_40SW_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .40 S&W FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am40SWRounds,
+    }
+ 
+    item Ammo_40SW_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .40 S&W FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am40SWBox,
+    }
+    
+    item Ammo_40SW_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .40 S&W FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_40SW_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .40 S&W HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am40SWRounds,
+    }
+ 
+    item Ammo_40SW_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .40 S&W HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am40SWBox,
+    }
+    
+    item Ammo_40SW_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .40 S&W HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+
+    /** .44 Magnum **/
+    item Ammo_44Magnum
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .44 Magnum rounds,
+        DisplayCategory = Ammo,
+        Icon = Am44Rounds,
+    }
+ 
+    item Ammo_44Magnum_FMJ
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .44 Magnum FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am44Rounds,
+    }
+ 
+    item Ammo_44Magnum_FMJ_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .44 Magnum FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am44Box,
+    }
+    
+    item Ammo_44Magnum_FMJ_Can
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .44 Magnum FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_44Magnum_HP
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .44 Magnum HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am44HPRounds,
+    }
+ 
+    item Ammo_44Magnum_HP_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .44 Magnum HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am44HPBox,
+    }
+    
+    item Ammo_44Magnum_HP_Can
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .44 Magnum HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+ 
+    /** .45 ACP **/
+    item Ammo_45ACP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 ACP rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ACPRounds,
+    }
+ 
+    item Ammo_45ACP_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 ACP FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ACPRounds,
+    }
+ 
+    item Ammo_45ACP_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 ACP FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am45ACPBox,
+    }
+    
+    item Ammo_45ACP_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 ACP FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_45ACP_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 ACP HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ACPHPRounds,
+    }
+ 
+    item Ammo_45ACP_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 ACP HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am45ACPHPBox,
+    }
+    
+    item Ammo_45ACP_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 ACP HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** .45 Colt **/
+    item Ammo_45Colt
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 Colt rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ColtRounds,
+    }
+ 
+    item Ammo_45Colt_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 Colt FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ColtRounds,
+    }
+ 
+    item Ammo_45Colt_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 Colt FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am45ColtBox,
+    }
+    
+    item Ammo_45Colt_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 Colt FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_45Colt_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .45 Colt HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am45ColtHPRounds,
+    }
+ 
+    item Ammo_45Colt_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .45 Colt HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am45ColtHPBox,
+    }
+    
+    item Ammo_45Colt_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .45 Colt HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+ 
+    /** .454 Casull **/
+    item Ammo_454Casull
+    {   
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .454 Casull rounds,
+        DisplayCategory = Ammo,
+        Icon = Am454Rounds,
+    }
+ 
+    item Ammo_454Casull_FMJ
+    {   
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .454 Casull FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am454Rounds,
+    }
+
+    item Ammo_454Casull_FMJ_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .454 Casull FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am454Box,
+    }
+    
+    item Ammo_454Casull_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .454 Casull FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_454Casull_HP
+    {   
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .454 Casull HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am454HPRounds,
+    }
+
+    item Ammo_454Casull_HP_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .454 Casull HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am454HPBox,
+    }
+    
+    item Ammo_454Casull_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = .454 Casull HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+
+    /** .50AE **/
+    item Ammo_50AE
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .50 AE rounds,
+        DisplayCategory = Ammo,
+        Icon = Am50AERounds,
+    }
+ 
+    item Ammo_50AE_FMJ
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .50 AE FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am50AERounds,
+    }
+
+    item Ammo_50AE_FMJ_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .50 AE FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am50AEBox,
+    }
+    
+    item Ammo_50AE_FMJ_Can
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .50 AE FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_50AE_HP
+    {
+        Count = 1,
+        Weight = 0.012,
+        Type = Normal,
+        DisplayName = .50 AE HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am50AEHPRounds,
+    }
+
+    item Ammo_50AE_HP_Box
+    {
+        Weight = 0.6,
+        Type = Normal,
+        DisplayName = .50 AE HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am50AEHPBox,
+    }
+    
+    item Ammo_50AE_HP_Can
+    {
+        Weight = 6.0,
+        Type = Normal,
+        DisplayName = .50 AE HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+
+    /** .223 Remington **/
+    item Ammo_223Remington
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = .223 Remington rounds,
+        DisplayCategory = Ammo,
+        Icon = Am223Rounds,
+    }
+ 
+    item Ammo_223Remington_FMJ
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = .223 Remington FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am223Rounds,
+    }
+ 
+    item Ammo_223Remington_FMJ_Box
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = .223 Remington FMJ - 25 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am223Box,
+    }
+ 
+    item Ammo_223Remington_FMJ_Can
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = .223 Remington FMJ - 250 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_223Remington_HP
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = .223 Remington HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am223HPRounds,
+    }
+ 
+    item Ammo_223Remington_HP_Box
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = .223 Remington HP - 25 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am223HPBox,
+    }
+ 
+    item Ammo_223Remington_HP_Can
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = .223 Remington HP - 250 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+ 
+    /** .30-06 Springfield **/
+    item Ammo_3006Springfield
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-06 Springfield rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3006Rounds,
+    }
+ 
+    item Ammo_3006Springfield_FMJ
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-06 Springfield FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3006Rounds,
+    }
+
+    item Ammo_3006Springfield_FMJ_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-06 Springfield FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am3006Box,
+    }
+    
+    item Ammo_3006Springfield_FMJ_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-06 Springfield FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_3006Springfield_HP
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-06 Springfield HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3006HPRounds,
+    }
+
+    item Ammo_3006Springfield_HP_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-06 Springfield HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am3006HPBox,
+    }
+    
+    item Ammo_3006Springfield_HP_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-06 Springfield HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+ 
+    /** .30-30 Winchester **/
+    item Ammo_3030Winchester
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-30 Winchester rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3030Rounds,
+    }
+ 
+    item Ammo_3030Winchester_FMJ
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-30 Winchester FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3030Rounds,
+    }
+ 
+    item Ammo_3030Winchester_FMJ_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-30 Winchester FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am3030Box,
+    }
+    
+    item Ammo_3030Winchester_FMJ_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-30 Winchester FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_3030Winchester_HP
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .30-30 Winchester HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am3030Rounds,
+    }
+ 
+    item Ammo_3030Winchester_HP_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .30-30 Winchester HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am3030Box,
+    }
+    
+    item Ammo_3030Winchester_HP_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .30-30 Winchester HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    
+    /** .308 Winchester **/
+    item Ammo_308Winchester
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .308 Winchester rounds,
+        DisplayCategory = Ammo,
+        Icon = Am308Rounds,
+    }
+ 
+    item Ammo_308Winchester_FMJ
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .308 Winchester FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am308Rounds,
+    }
+ 
+    item Ammo_308Winchester_FMJ_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .308 Winchester FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am308Box,
+    }
+    
+    item Ammo_308Winchester_FMJ_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .308 Winchester FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_308Winchester_HP
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = .308 Winchester HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am308HPRounds,
+    }
+ 
+    item Ammo_308Winchester_HP_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = .308 Winchester HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am308HPBox,
+    }
+    
+    item Ammo_308Winchester_HP_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = .308 Winchester HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+ 
+    /** 5.7x28mm **/
+    item Ammo_57x28mm
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm rounds,
+        DisplayCategory = Ammo,
+        Icon = Am57x28Rounds,
+    }
+ 
+    item Ammo_57x28mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am57x28Rounds,
+    }
+ 
+    item Ammo_57x28mm_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am57x28Box,
+    }
+    
+    item Ammo_57x28mm_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_57x28mm_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am57x28HPRounds,
+    }
+ 
+    item Ammo_57x28mm_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am57x28HPBox,
+    }
+    
+    item Ammo_57x28mm_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+ 
+    /** 9x19mm **/
+    item Ammo_9x19mm
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 9x19mm Parabellum rounds,
+        DisplayCategory = Ammo,
+        Icon = Am9x19Rounds,
+    }
+ 
+    item Ammo_9x19mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 9x19mm Parabellum FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am9x19Rounds,
+    }
+ 
+    item Ammo_9x19mm_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 9x19mm FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am9x19Box,
+    }
+ 
+    item Ammo_9x19mm_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 9x19mm FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_9x19mm_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 9x19mm Parabellum HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am9x19HPRounds,
+    }
+ 
+    item Ammo_9x19mm_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 9x19mm HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am9x19HPBox,
+    }
+ 
+    item Ammo_9x19mm_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 9x19mm HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 10x25mm **/
+    item Ammo_10x25mm
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 10x25mm rounds,
+        DisplayCategory = Ammo,
+        Icon = Am10x25Rounds,
+    }
+ 
+    item Ammo_10x25mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 10x25mm FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am10x25Rounds,
+    }
+ 
+    item Ammo_10x25mm_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 10x25mm FMJ - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am10x25Box,
+    }
+    
+    item Ammo_10x25mm_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 10x25mm FMJ - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_10x25mm_HP
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 10x25mm HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am10x25HPRounds,
+    }
+ 
+    item Ammo_10x25mm_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 10x25mm HP - 50 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am10x25HPBox,
+    }
+    
+    item Ammo_10x25mm_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 10x25mm HP - 500 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    /** 5.56x45mm **/
+    item Ammo_556x45mm
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = 5.56x45mm rounds,
+        DisplayCategory = Ammo,
+        Icon = Am556x45Rounds,
+    }
+ 
+    item Ammo_556x45mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = 5.56x45mm FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am556x45Rounds,
+    }
+ 
+    item Ammo_556x45mm_FMJ_Box
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = 5.56x45mm FMJ - 25 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am556x45Box,
+    }
+    
+    item Ammo_556x45mm_FMJ_Can
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = 5.56x45mm FMJ - 250 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_556x45mm_HP
+    {
+        Count = 1,
+        Weight = 0.015,
+        Type = Normal,
+        DisplayName = 5.56x45mm HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am556x45HPRounds,
+    }
+ 
+    item Ammo_556x45mm_HP_Box
+    {
+        Weight = 0.375,
+        Type = Normal,
+        DisplayName = 5.56x45mm HP - 25 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am556x45HPBox,
+    }
+    
+    item Ammo_556x45mm_HP_Can
+    {
+        Weight = 3.75,
+        Type = Normal,
+        DisplayName = 5.56x45mm HP - 250 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 762x39mm **/
+    item Ammo_762x39mm
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x39mm rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x39Rounds,
+    }
+
+    item Ammo_762x39mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x39mm FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x39Rounds,
+    }
+
+    item Ammo_762x39mm_FMJ_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x39mm FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x39Box,
+    }
+    
+    item Ammo_762x39mm_FMJ_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x39mm FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_762x39mm_HP
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x39mm HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x39HPRounds,
+    }
+
+    item Ammo_762x39mm_HP_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x39mm HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x39HPBox,
+    }
+    
+    item Ammo_762x39mm_HP_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x39mm HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+
+    /** 7.62x51mm **/
+    item Ammo_762x51mm
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x51mm rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x51Rounds,
+    }
+
+    item Ammo_762x51mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x51mm FMJ Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x51Rounds,
+    }
+    
+    item Ammo_762x51mm_FMJ_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x51mm FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x51Box,
+    }
+    
+    item Ammo_762x51mm_FMJ_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x51mm FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+    item Ammo_762x51mm_HP
+    {
+        Count = 1,
+        Weight = 0.02,
+        Type = Normal,
+        DisplayName = 7.62x51mm HP Rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x51HPRounds,
+    }
+    
+    item Ammo_762x51mm_HP_Box
+    {
+        Weight = 0.4,
+        Type = Normal,
+        DisplayName = 7.62x51mm HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x51HPBox,
+    }
+    
+    item Ammo_762x51mm_HP_Can
+    {
+        Weight = 4.0,
+        Type = Normal,
+        DisplayName = 7.62x51mm HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+  
+ 
+    /** 7.62x54R **/
+    item Ammo_762x54mm
+    {
+        Count = 1,
+        Weight = 0.025,
+        Type = Normal,
+        DisplayName = 7.62x54R rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x54Rounds,
+    }
+ 
+    item Ammo_762x54mm_FMJ
+    {
+        Count = 1,
+        Weight = 0.025,
+        Type = Normal,
+        DisplayName = 7.62x54R FMJ rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x54Rounds,
+    }
+    
+    item Ammo_762x54mm_FMJ_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 7.62x54R FMJ - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x54Box,
+    }
+    
+    item Ammo_762x54mm_FMJ_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 7.62x54R FMJ - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+
+    item Ammo_762x54mm_HP
+    {
+        Count = 1,
+        Weight = 0.025,
+        Type = Normal,
+        DisplayName = 7.62x54R HP rounds,
+        DisplayCategory = Ammo,
+        Icon = Am762x54HPRounds,
+    }
+    
+    item Ammo_762x54mm_HP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 7.62x54R HP - 20 Round Box,
+        DisplayCategory = Ammo,
+        Icon = Am762x54HPBox,
+    }
+    
+    item Ammo_762x54mm_HP_Can
+    {
+        Weight = 5.0,
+        Type = Normal,
+        DisplayName = 7.62x54R HP - 200 Round Canister,
+        DisplayCategory = Ammo,
+        Icon = AmmoBox,
+    }
+ 
+
+    /** 12g **/
+    item Ammo_12g
+    {
+        Count = 1,
+        Weight = 0.04,
+        Type = Normal,
+        DisplayName = 12 Gauge shells,
+        DisplayCategory = Ammo,
+        Icon = Am12gRounds,
+    }
+ 
+    item Ammo_12g_00Buck
+    {
+        Count = 1,
+        Weight = 0.04,
+        Type = Normal,
+        DisplayName = 00 Buck 12 Gauge shells,
+        DisplayCategory = Ammo,
+        Icon = Am12gRounds,
+    }
+ 
+    item Ammo_12g_00Buck_Box
     {
         Weight = 1,
         Type = Normal,
         DisplayName = 00 Buck 12 Gauge - 25 Shell Box,
-		DisplayCategory = Ammo,
-        Icon = 12gBox,
+        DisplayCategory = Ammo,
+        Icon = Am12gBox,
     }
-	
-	item 12gCan
+    
+    item Ammo_12g_00Buck_Can
     {
         Weight = 10.0,
         Type = Normal,
         DisplayName = 00 Buck 12 Gauge - 250 Round Canister,
-		DisplayCategory = Ammo,
+        DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
-	
-	item 12gSlugRounds
-	{
-		Count = 1,
-		Weight = 0.04,
-		Type = Normal,
-		DisplayName = Slug 12 Gauge shells,
-		DisplayCategory = Ammo,
-		Icon = 12gSlugRounds,
-	}
+
+    item Ammo_12g_Slug
+    {
+        Count = 1,
+        Weight = 0.04,
+        Type = Normal,
+        DisplayName = Slug 12 Gauge shells,
+        DisplayCategory = Ammo,
+        Icon = Am12gSlugRounds,
+    }
  
-	item 12gSlugBox
+    item Ammo_12g_Slug_Box
     {
         Weight = 1,
         Type = Normal,
         DisplayName = Slug 12 Gauge - 25 Shell Box,
-		DisplayCategory = Ammo,
-        Icon = 12gSlugBox,
+        DisplayCategory = Ammo,
+        Icon = Am12gSlugBox,
     }
-	
-	item 12gSlugCan
+    
+    item Ammo_12g_Slug_Can
     {
         Weight = 10.0,
         Type = Normal,
         DisplayName = Slug 12 Gauge - 250 Round Canister,
-		DisplayCategory = Ammo,
+        DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
-	item 22Rounds
-	{
-		Count = 1,
-		Weight = 0.003,
-		Type = Normal,
-		DisplayName = .22 LR rounds,
-		DisplayCategory = Ammo,
-		Icon = 22Rounds,
-	}
- 
-	item 22Box
-    {
-        Weight = 0.3,
-        Type = Normal,
-        DisplayName = .22 LR - 100 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 22Box,
-    }
-	
-	item 22Can
-    {
-        Weight = 3.0,
-        Type = Normal,
-        DisplayName = .22 LR - 1000 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 38Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .38 Special rounds,
-		DisplayCategory = Ammo,
-		Icon = 38Rounds,
-	}
- 
-	item 38Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .38 Special - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 38Box,
-    }
-	
-	item 38Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .38 Special - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 40Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .40 S&W rounds,
-		DisplayCategory = Ammo,
-		Icon = 40Rounds,
-	}
- 
-	item 40Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .40 S&W - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 40Box,
-    }
-	
-	item 40Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .40 S&W - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 44Rounds
-	{
-		Count = 1,
-		Weight = 0.012,
-		Type = Normal,
-		DisplayName = .44 Magnum rounds,
-		DisplayCategory = Ammo,
-		Icon = 44Rounds,
-	}
- 
-	item 44Box
-    {
-        Weight = 0.6,
-        Type = Normal,
-        DisplayName = .44 Magnum - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 44Box,
-    }
-	
-	item 44Can
-    {
-        Weight = 6.0,
-        Type = Normal,
-        DisplayName = .44 Magnum - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 45Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .45 ACP rounds,
-		DisplayCategory = Ammo,
-		Icon = 45Rounds,
-	}
- 
-	item 45Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .45 ACP - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 45Box,
-    }
-	
-	item 45Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .45 ACP - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 38SRounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .38 Super rounds,
-		DisplayCategory = Ammo,
-		Icon = 38SRounds,
-	}
- 
-	item 38SBox
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .38 Super - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 38SBox,
-    }
-	
-	item 38SCan
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .38 Super - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 357Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .357 Magnum rounds,
-		DisplayCategory = Ammo,
-		Icon = 357Rounds,
-	}
- 
-	item 357Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .357 Magnum - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 357Box,
-    }
-	
-	item 357Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .357 Magnum - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 223Rounds
-	{
-		Count = 1,
-		Weight = 0.015,
-		Type = Normal,
-		DisplayName = .223 Remington rounds,
-		DisplayCategory = Ammo,
-		Icon = 223Rounds,
-	}
- 
-	item 223RemBox
-    {
-        Weight = 0.375,
-        Type = Normal,
-        DisplayName = .223 Remington - 25 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 223Box,
-    }
- 
-	item 223RemCan
-    {
-        Weight = 3.75,
-        Type = Normal,
-        DisplayName = .223 Remington - 250 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 556Rounds
-	{
-		Count = 1,
-		Weight = 0.015,
-		Type = Normal,
-		DisplayName = 5.56x45mm NATO rounds,
-		DisplayCategory = Ammo,
-		Icon = 556Rounds,
-	}
- 
-	item 556Box
-    {
-        Weight = 0.375,
-        Type = Normal,
-        DisplayName = 5.56x45mm NATO - 25 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 556Box,
-    }
-	
-	item 556Can
-    {
-        Weight = 3.75,
-        Type = Normal,
-        DisplayName = 5.56x45mm NATO - 250 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 3006Rounds
-	{
-		Count = 1,
-		Weight = 0.02,
-		Type = Normal,
-		DisplayName = .30-06 Springfield rounds,
-		DisplayCategory = Ammo,
-		Icon = 3006Rounds,
-	}
- 
-	item 3006Box
-    {
-        Weight = 0.4,
-        Type = Normal,
-        DisplayName = .30-06 Springfield - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 3006Box,
-    }
-	
-	item 3006Can
-    {
-        Weight = 4.0,
-        Type = Normal,
-        DisplayName = .30-06 Springfield - 200 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 3030Rounds
-	{
-		Count = 1,
-		Weight = 0.02,
-		Type = Normal,
-		DisplayName = .30-30 Springfield rounds,
-		DisplayCategory = Ammo,
-		Icon = 3030Rounds,
-	}
- 
-	item 3030Box
-    {
-        Weight = 0.4,
-        Type = Normal,
-        DisplayName = .30-30 Springfield - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 3030Box,
-    }
-	
-	item 3030Can
-    {
-        Weight = 4.0,
-        Type = Normal,
-        DisplayName = .30-30 Springfield - 200 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 308Rounds
-	{
-		Count = 1,
-		Weight = 0.02,
-		Type = Normal,
-		DisplayName = .308 Winchester rounds,
-		DisplayCategory = Ammo,
-		Icon = 308Rounds,
-	}
- 
-	item 308wBox
-    {
-        Weight = 0.4,
-        Type = Normal,
-        DisplayName = .308 Winchester - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 308Box,
-    }
-	
-	item 308wCan
-    {
-        Weight = 4.0,
-        Type = Normal,
-        DisplayName = .308 Winchester - 200 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 762x51Rounds
-	{
-		Count = 1,
-		Weight = 0.02,
-		Type = Normal,
-		DisplayName = 7.62x51 rounds,
-		DisplayCategory = Ammo,
-		Icon = 762x51Rounds,
-	}
- 
-	item 762x51Box
-    {
-        Weight = 0.4,
-        Type = Normal,
-        DisplayName = 7.62x51 - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 762x51Box,
-    }
-	
-	item 762x51Can
-    {
-        Weight = 4.0,
-        Type = Normal,
-        DisplayName = 7.62x51 - 200 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 762x54Rounds
-	{
-		Count = 1,
-		Weight = 0.025,
-		Type = Normal,
-		DisplayName = 7.62x54R rounds,
-		DisplayCategory = Ammo,
-		Icon = 762x54Rounds,
-	}
- 
-	item 762x54Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = 7.62x54R - 20 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 762x54Box,
-    }
-	
-	item 762x54Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = 7.62x54R - 200 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 454Rounds
-	{	
-		Count = 1,
-		Weight = 0.012,
-		Type = Normal,
-		DisplayName = .454 Casull rounds,
-		DisplayCategory = Ammo,
-		Icon = 454Rounds,
-	}
- 
-	item 454Box
-    {
-        Weight = 0.6,
-        Type = Normal,
-        DisplayName = .454 Casull - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 454Box,
-    }
-	
-	item 454Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .454 Casull - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 50AERounds
-	{
-		Count = 1,
-		Weight = 0.012,
-		Type = Normal,
-		DisplayName = .50 AE rounds,
-		DisplayCategory = Ammo,
-		Icon = 50AERounds,
-	}
- 
-	item 50AEBox
-    {
-        Weight = 0.6,
-        Type = Normal,
-        DisplayName = .50 AE - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 50AEBox,
-    }
-	
-	item 50AECan
-    {
-        Weight = 6.0,
-        Type = Normal,
-        DisplayName = .50 AE - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item BBs
-	{
-		Count = 1,
-		Weight = 0.001,
-		Type = Normal,
-		DisplayName = .117 caliber BBs,
-		DisplayCategory = Ammo,
-		Icon = BBs,
-	}
- 
-	item BBCan
-    {
-        Weight = 0.25,
-        Type = Normal,
-        DisplayName = .117 caliber BBs - 250 Count Can,
-		DisplayCategory = Ammo,
-        Icon = BBCan,
-    }
- 
-	item 57Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = FN 5.7x28mm rounds,
-		DisplayCategory = Ammo,
-		Icon = 57Rounds,
-	}
- 
-	item 57Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = FN 5.7x28mm - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 57Box,
-    }
-	
-	item 57Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = FN 5.7x28mm - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 10mmRounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = 10mm Auto rounds,
-		DisplayCategory = Ammo,
-		Icon = 10mmRounds,
-	}
- 
-	item 10mmBox
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = 10mm Auto - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 10mmBox,
-    }
-	
-	item 10mmCan
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = 10mm Auto - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 45ColtRounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .45 Colt rounds,
-		DisplayCategory = Ammo,
-		Icon = 45ColtRounds,
-	}
- 
-	item 45ColtBox
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .45 Colt - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 45ColtBox,
-    }
-	
-	item 45ColtCan
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .45 Colt - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
-	item 380Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .380 ACP rounds,
-		DisplayCategory = Ammo,
-		Icon = 380Rounds,
-	}
- 
-	item 380Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .380 ACP - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 380Box,
-    }
-	
-	item 380Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .380 ACP - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
-	
-	item 32Rounds
-	{
-		Count = 1,
-		Weight = 0.01,
-		Type = Normal,
-		DisplayName = .32 ACP rounds,
-		DisplayCategory = Ammo,
-		Icon = 32Rounds,
-	}
- 
-	item 32Box
-    {
-        Weight = 0.5,
-        Type = Normal,
-        DisplayName = .32 ACP - 50 Round Box,
-		DisplayCategory = Ammo,
-        Icon = 32Box,
-    }
- 
-	item 32Can
-    {
-        Weight = 5.0,
-        Type = Normal,
-        DisplayName = .32 ACP - 500 Round Canister,
-		DisplayCategory = Ammo,
-        Icon = AmmoBox,
-    }
- 
+
 }

@@ -1,15 +1,15 @@
 ORGM = {}
 local MOD_ID = "ORGM";
-local MOD_NAME = "ORGM Reloaded";
-local MOD_VERSION = "2.0";
-local MOD_AUTHOR = "ORMtnMan, updated by Fenris_Wolf";
-local MOD_DESCRIPTION = "YSP refactored version of ORGM.";
+local MOD_NAME = "ORGM";
+local MOD_VERSION = "2.00alpha";
+local MOD_AUTHOR = "ORMtnMan, Rechamberd by Fenris_Wolf";
+local MOD_DESCRIPTION = "Rechambered version of ORMtnMan's Real Guns Mod.";
 
 
 local function info()
     
 	-- The directory of the mod folder. 
-	local dir = getDir("ORGMReloaded");
+	local dir = getDir("ORGM");
 	local locationModel = dir .. "/media/models/weapons_";
     local locationTexture = dir .. "/media/textures/Objects_";
     

@@ -1,1250 +1,2390 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{   
-    /** Ammo, 7.62x39 **/
-    recipe Unbox 7.62x39mm rounds
-    {
-        762Box,
-
-        Result:762Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        762Rounds=20,
-
-        Result:762Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762Rounds=200,
-
-        Result:762Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762Box=10,
-
-        Result:762Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        762Can,
-
-        Result:762Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        762Can,
-
-        Result:762Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, 9x19 **/
-    recipe Unbox 9x19mm rounds
-    {
-        9mmBox,
-
-        Result:9mmRounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        9mmRounds=50,
-
-        Result:9mmBox,
-        Time:5.0,
-    }
-
-    recipe Put in a canister
-    {
-        9mmRounds=500,
-
-        Result:9mmCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        9mmBox=10,
-
-        Result:9mmCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        9mmCan,
-
-        Result:9mmBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        9mmCan,
-
-        Result:9mmRounds=500,
-        Time:10.0,
-    }
-        
-    /** Ammo, 12gu shells **/
-    recipe Unbox 12 gauge shells
-    {
-        12gBox,
-
-        Result:12gRounds=25,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        12gRounds=25,
-
-        Result:12gBox,
-        Time:5.0,
-    }
-
-    recipe Put in a canister
-    {
-        12gRounds=250,
-
-        Result:12gCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        12gBox=10,
-
-        Result:12gCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        12gCan,
-
-        Result:12gBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        12gCan,
-
-        Result:12gRounds=250,
-        Time:10.0,
-        OnCreate:putInBox_OnCreate,
-    }
-        
-    /** Ammo, 12gu slugs **/
-    recipe Unbox 12 gauge shells
-    {
-        12gSlugBox,
-
-        Result:12gSlugRounds=25,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        12gSlugRounds=25,
-
-        Result:12gSlugBox,
-        Time:5.0,
-    }
-
-    recipe Put in a canister
-    {
-        12gSlugRounds=250,
-
-        Result:12gSlugCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        12gSlugBox=10,
-
-        Result:12gSlugCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        12gSlugCan,
-
-        Result:12gSlugBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        12gSlugCan,
-
-        Result:12gSlugRounds=250,
-        Time:10.0,
-    }
-        
-    /** Ammo, .22 LR **/
-    recipe Unbox .22 LR rounds
-    {
-        22Box,
-
-        Result:22Rounds=100,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        22Rounds=100,
-
-        Result:22Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        22Rounds=1000,
-
-        Result:22Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        22Box=10,
-
-        Result:22Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        22Can,
-
-        Result:22Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        22Can,
-
-        Result:22Rounds=1000,
-        Time:10.0,
-    }
-
-    /** Ammo, .38 special **/
-    recipe Unbox .38 Special rounds
-    {
-        38Box,
-
-        Result:38Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        38Rounds=50,
-
-        Result:38Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        38Rounds=500,
-
-        Result:38Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        38Box=10,
-
-        Result:38Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        38Can,
-
-        Result:38Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        38Can,
-
-        Result:38Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .40 SW **/
-    recipe Unbox .40 S&W rounds
-    {
-        40Box,
-
-        Result:40Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        40Rounds=50,
-
-        Result:40Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        40Rounds=500,
-
-        Result:40Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        40Box=10,
-
-        Result:40Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        40Can,
-
-        Result:40Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        40Can,
-
-        Result:40Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .44 Magnum **/
-    recipe Unbox .44 Magnum rounds
-    {
-        44Box,
-
-        Result:44Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        44Rounds=50,
-
-        Result:44Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        44Rounds=500,
-
-        Result:44Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        44Box=10,
-
-        Result:44Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        44Can,
-
-        Result:44Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        44Can,
-
-        Result:44Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .45 ACP **/
-    recipe Unbox .45 ACP Rounds
-    {
-        45Box,
-
-        Result:45Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        45Rounds=50,
-
-        Result:45Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        45Rounds=500,
-
-        Result:45Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        45Box=10,
-
-        Result:45Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        45Can,
-
-        Result:45Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        45Can,
-
-        Result:45Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .223 **/
-    recipe Unbox .223 Remington rounds
-    {
-        223RemBox,
-
-        Result:223Rounds=25,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        223Rounds=25,
-
-        Result:223RemBox,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        223Rounds=250,
-
-        Result:223RemCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        223RemBox=10,
-
-        Result:223RemCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        223RemCan,
-
-        Result:223RemBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        223RemCan,
-
-        Result:223Rounds=250,
-        Time:10.0,
-    }
-
-    /** Ammo, 5.56x45 **/
-    recipe Unbox 5.56x45mm NATO rounds
-    {
-        556Box,
-
-        Result:556Rounds=25,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        556Rounds=25,
-
-        Result:556Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        556Rounds=250,
-
-        Result:556Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        556Box=10,
-
-        Result:556Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        556Can,
-
-        Result:556Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        556Can,
-
-        Result:556Rounds=250,
-        Time:10.0,
-    }
-
-    /** Ammo, .38 super **/
-    recipe Unbox .38 Super Rounds
-    {
-        38SBox,
-
-        Result:38SRounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        38SRounds=50,
-
-        Result:38SBox,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        38SRounds=500,
-
-        Result:38SCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        38SBox=10,
-
-        Result:38SCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        38SCan,
-
-        Result:38SBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        38SCan,
-
-        Result:38SRounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .357 **/
-    recipe Unbox .357 Magnum rounds
-    {
-        357Box,
-
-        Result:357Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        357Rounds=50,
-
-        Result:357Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        357Rounds=500,
-
-        Result:357Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        357Box=10,
-
-        Result:357Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        357Can,
-
-        Result:357Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        357Can,
-
-        Result:357Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .30-06 **/
-    recipe Unbox .30-06 Springfield rounds
-    {
-        3006Box,
-
-        Result:3006Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        3006Rounds=20,
-
-        Result:3006Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        3006Rounds=200,
-
-        Result:3006Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        3006Box=10,
-
-        Result:3006Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        3006Can,
-
-        Result:3006Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        3006Can,
-
-        Result:3006Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, .30-30 **/
-    recipe Unbox .30-30 Springfield rounds
-    {
-        3030Box,
-
-        Result:3030Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        3030Rounds=20,
-
-        Result:3030Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        3030Rounds=200,
-
-        Result:3030Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        3030Box=10,
-
-        Result:3030Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        3030Can,
-
-        Result:3030Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        3030Can,
-
-        Result:3030Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, .308 **/
-    recipe Unbox .308 Winchester rounds
-    {
-        308wBox,
-
-        Result:308Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        308Rounds=20,
-
-        Result:308wBox,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        308Rounds=200,
-
-        Result:308wCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        308wBox=10,
-
-        Result:308wCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        308wCan,
-
-        Result:308wBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        308wCan,
-
-        Result:308Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, 7.62x51 **/
-    recipe Unbox 7.62x51 rounds
-    {
-        762x51Box,
-
-        Result:762x51Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        762x51Rounds=20,
-
-        Result:762x51Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762x51Rounds=200,
-
-        Result:762x51Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762x51Box=10,
-
-        Result:762x51Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        762x51Can,
-
-        Result:762x51Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        762x51Can,
-
-        Result:762x51Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, 7.62x54 **/
-    recipe Unbox 7.62x54R rounds
-    {
-        762x54Box,
-
-        Result:762x54Rounds=20,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        762x54Rounds=20,
-
-        Result:762x54Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762x54Rounds=200,
-
-        Result:762x54Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        762x54Box=10,
-
-        Result:762x54Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        762x54Can,
-
-        Result:762x54Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        762x54Can,
-
-        Result:762x54Rounds=200,
-        Time:10.0,
-    }
-
-    /** Ammo, .454 **/
-    recipe Unbox .454 Casull rounds
-    {
-        454Box,
-
-        Result:454Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        454Rounds=50,
-
-        Result:454Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        454Rounds=600,
-
-        Result:454Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        454Box=10,
-
-        Result:454Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        454Can,
-
-        Result:454Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        454Can,
-
-        Result:454Rounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .50AE **/
-    recipe Unbox .50 AE rounds
-    {
-        50AEBox,
-
-        Result:50AERounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        50AERounds=50,
-
-        Result:50AEBox,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        50AERounds=500,
-
-        Result:50AECan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        50AEBox=10,
-
-        Result:50AECan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        50AECan,
-
-        Result:50AEBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        50AECan,
-
-        Result:50AERounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, .45 Colt **/
-    recipe Unbox .45 Colt rounds
-    {
-        45ColtBox,
-
-        Result:45ColtRounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        45ColtRounds=50,
-
-        Result:45ColtBox,
-        Time:5.0,
-    }
-    
-    recipe Put in a canister
-    {
-        45ColtRounds=500,
-
-        Result:45ColtCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        45ColtBox=10,
-
-        Result:45ColtCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        45ColtCan,
-
-        Result:45ColtBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        45ColtCan,
-
-        Result:45ColtRounds=500,
-        Time:10.0,
-    }
-
-    /** Ammo, FN 5.7 **/
-    recipe Unbox FN5.7x28mm rounds
-    {
-        57Box,
-
-        Result:57Rounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        57Rounds=50,
-
-        Result:57Box,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        57Rounds=500,
-
-        Result:57Can,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        57Box=10,
-
-        Result:57Can,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        57Can,
-
-        Result:57Box=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        57Can,
-
-        Result:57Rounds=500,
-        Time:10.0,
-    }
-    
-    /** Ammo, 10mm **/
-    recipe Unbox 10mm Auto rounds
-    {
-        10mmBox,
-
-        Result:10mmRounds=50,
-        Time:5.0,
-    }
-
-    recipe Put in a box
-    {
-        10mmRounds=50,
-
-        Result:10mmBox,
-        Time:5.0,
-    }
-        
-    recipe Put in a canister
-    {
-        10mmRounds=500,
-
-        Result:10mmCan,
-        Time:10.0,
-    }
-        
-    recipe Put in a canister
-    {
-        10mmBox=10,
-
-        Result:10mmCan,
-        Time:10.0,
-    }
-        
-    recipe Empty into boxes
-    {
-        10mmCan,
-
-        Result:10mmBox=10,
-        Time:10.0,
-    }
-        
-    recipe Empty out canister
-    {
-        10mmCan,
-
-        Result:10mmRounds=500,
-        Time:10.0,
-    }
-    
+{
     /** Ammo, .117 BB **/
-    recipe Uncan .117 BBs rounds
+    recipe Uncan .117 Ammo_117BB rounds
     {
-        BBCan,
+        Ammo_117BB_Can,
 
-        Result:BBs=250,
+        Result:Ammo_117BB=250,
+        Time:5.0,
+    }
+
+    recipe Uncan .117 Ammo_117BB rounds
+    {
+        Ammo_117BB_Box,
+
+        Result:Ammo_117BB=250,
         Time:5.0,
     }
 
     recipe Put in a can
     {
-        BBs=250,
+        Ammo_117BB=250,
 
-        Result:BBCan,
+        Result:Ammo_117BB_Can,
         Time:5.0,
     }
 
-    /** Ammo, .380 ACP **/
-    recipe Unbox .380 ACP rounds
+    /** Ammo, .22LR FMJ **/
+    recipe Unbox .22LR rounds
     {
-        380Box,
+        Ammo_22LR_FMJ_Box,
 
-        Result:380Rounds=50,
+        Result:Ammo_22LR_FMJ=100,
         Time:5.0,
     }
 
     recipe Put in a box
     {
-        380Rounds=50,
+        Ammo_22LR_FMJ=100,
 
-        Result:380Box,
+        Result:Ammo_22LR_FMJ_Box,
         Time:5.0,
     }
         
     recipe Put in a canister
     {
-        380Rounds=500,
+        Ammo_22LR_FMJ=1000,
 
-        Result:380Can,
+        Result:Ammo_22LR_FMJ_Can,
         Time:10.0,
     }
         
     recipe Put in a canister
     {
-        380Box=10,
+        Ammo_22LR_FMJ_Box=10,
 
-        Result:380Can,
+        Result:Ammo_22LR_FMJ_Can,
         Time:10.0,
     }
         
     recipe Empty into boxes
     {
-        380Can,
+        Ammo_22LR_FMJ_Can,
 
-        Result:380Box=10,
+        Result:Ammo_22LR_FMJ_Box=10,
         Time:10.0,
     }
         
     recipe Empty out canister
     {
-        380Can,
+        Ammo_22LR_FMJ_Can,
 
-        Result:380Rounds=500,
+        Result:Ammo_22LR_FMJ=1000,
+        Time:10.0,
+    }
+
+    /** Ammo, .22LR FMJ **/
+    recipe Unbox .22LR rounds
+    {
+        Ammo_22LR_HP_Box,
+
+        Result:Ammo_22LR_HP=100,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_22LR_HP=100,
+
+        Result:Ammo_22LR_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_22LR_HP=1000,
+
+        Result:Ammo_22LR_HP_Can,
         Time:10.0,
     }
         
-    /** Ammo, .32 ACP **/
+    recipe Put in a canister
+    {
+        Ammo_22LR_HP_Box=10,
+
+        Result:Ammo_22LR_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_22LR_HP_Can,
+
+        Result:Ammo_22LR_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_22LR_HP_Can,
+
+        Result:Ammo_22LR_HP=1000,
+        Time:10.0,
+    }
+
+    /** Ammo, .32 ACP FMJ **/
     recipe Unbox .32 ACP rounds
     {
-        32Box,
+        Ammo_32ACP_FMJ_Box,
 
-        Result:32Rounds=50,
+        Result:Ammo_32ACP_FMJ=50,
         Time:5.0,
     }
 
     recipe Put in a box
     {
-        32Rounds=50,
+        Ammo_32ACP_FMJ=50,
 
-        Result:32Box,
+        Result:Ammo_32ACP_FMJ_Box,
         Time:5.0,
     }
 
     recipe Put in a canister
     {
-        32Rounds=500,
+        Ammo_32ACP_FMJ=500,
 
-        Result:32Can,
+        Result:Ammo_32ACP_FMJ_Can,
         Time:10.0,
     }
         
     recipe Put in a canister
     {
-        32Box=10,
+        Ammo_32ACP_FMJ_Box=10,
 
-        Result:32Can,
+        Result:Ammo_32ACP_FMJ_Can,
         Time:10.0,
     }
         
     recipe Empty into boxes
     {
-        32Can,
+        Ammo_32ACP_FMJ_Can,
 
-        Result:32Box=10,
+        Result:Ammo_32ACP_FMJ_Box=10,
         Time:10.0,
     }
         
     recipe Empty out canister
     {
-        32Can,
+        Ammo_32ACP_FMJ_Can,
 
-        Result:32Rounds=500,
+        Result:Ammo_32ACP_FMJ=500,
         Time:10.0,
     }
- 
+
+    /** Ammo, .32 ACP HP **/
+    recipe Unbox .32 ACP rounds
+    {
+        Ammo_32ACP_HP_Box,
+
+        Result:Ammo_32ACP_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_32ACP_HP=50,
+
+        Result:Ammo_32ACP_HP_Box,
+        Time:5.0,
+    }
+
+    recipe Put in a canister
+    {
+        Ammo_32ACP_HP=500,
+
+        Result:Ammo_32ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_32ACP_HP_Box=10,
+
+        Result:Ammo_32ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_32ACP_HP_Can,
+
+        Result:Ammo_32ACP_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_32ACP_HP_Can,
+
+        Result:Ammo_32ACP_HP=500,
+        Time:10.0,
+    }
+
+
+    /** Ammo, .357 FMJ **/
+    recipe Unbox .357 Magnum rounds
+    {
+        Ammo_357Magnum_FMJ_Box,
+
+        Result:Ammo_357Magnum_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_357Magnum_FMJ=50,
+
+        Result:Ammo_357Magnum_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_357Magnum_FMJ=500,
+
+        Result:Ammo_357Magnum_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_357Magnum_FMJ_Box=10,
+
+        Result:Ammo_357Magnum_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_357Magnum_FMJ_Can,
+
+        Result:Ammo_357Magnum_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_357Magnum_FMJ_Can,
+
+        Result:Ammo_357Magnum_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .357 HP **/
+    recipe Unbox .357 Magnum rounds
+    {
+        Ammo_357Magnum_HP_Box,
+
+        Result:Ammo_357Magnum_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_357Magnum_HP=50,
+
+        Result:Ammo_357Magnum_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_357Magnum_HP=500,
+
+        Result:Ammo_357Magnum_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_357Magnum_HP_Box=10,
+
+        Result:Ammo_357Magnum_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_357Magnum_HP_Can,
+
+        Result:Ammo_357Magnum_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_357Magnum_HP_Can,
+
+        Result:Ammo_357Magnum_HP=500,
+        Time:10.0,
+    }
+
+    
+    /** Ammo, .38 FMJ special **/
+    recipe Unbox .38 Special rounds
+    {
+        Ammo_38Special_FMJ_Box,
+
+        Result:Ammo_38Special_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_38Special_FMJ=50,
+
+        Result:Ammo_38Special_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Special_FMJ=500,
+
+        Result:Ammo_38Special_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Special_FMJ_Box=10,
+
+        Result:Ammo_38Special_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_38Special_FMJ_Can,
+
+        Result:Ammo_38Special_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_38Special_FMJ_Can,
+
+        Result:Ammo_38Special_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .38 HP special **/
+    recipe Unbox .38 Special rounds
+    {
+        Ammo_38Special_HP_Box,
+
+        Result:Ammo_38Special_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_38Special_HP=50,
+
+        Result:Ammo_38Special_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Special_HP=500,
+
+        Result:Ammo_38Special_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Special_HP_Box=10,
+
+        Result:Ammo_38Special_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_38Special_HP_Can,
+
+        Result:Ammo_38Special_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_38Special_HP_Can,
+
+        Result:Ammo_38Special_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .38 super FMJ **/
+    recipe Unbox .38 Super Rounds
+    {
+        Ammo_38Super_FMJ_Box,
+
+        Result:Ammo_38Super_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_38Super_FMJ=50,
+
+        Result:Ammo_38Super_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Super_FMJ=500,
+
+        Result:Ammo_38Super_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Super_FMJ_Box=10,
+
+        Result:Ammo_38Super_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_38Super_FMJ_Can,
+
+        Result:Ammo_38Super_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_38Super_FMJ_Can,
+
+        Result:Ammo_38Super_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .38 super HP **/
+    recipe Unbox .38 Super Rounds
+    {
+        Ammo_38Super_HP_Box,
+
+        Result:Ammo_38Super_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_38Super_HP=50,
+
+        Result:Ammo_38Super_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Super_HP=500,
+
+        Result:Ammo_38Super_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_38Super_HP_Box=10,
+
+        Result:Ammo_38Super_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_38Super_HP_Can,
+
+        Result:Ammo_38Super_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_38Super_HP_Can,
+
+        Result:Ammo_38Super_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .380 ACP FMJ **/
+    recipe Unbox .380 ACP rounds
+    {
+        Ammo_380ACP_FMJ_Box,
+
+        Result:Ammo_380ACP_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_380ACP_FMJ=50,
+
+        Result:Ammo_380ACP_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_380ACP_FMJ=500,
+
+        Result:Ammo_380ACP_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_380ACP_FMJ_Box=10,
+
+        Result:Ammo_380ACP_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_380ACP_FMJ_Can,
+
+        Result:Ammo_380ACP_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_380ACP_FMJ_Can,
+
+        Result:Ammo_380ACP_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .380 ACP HP **/
+    recipe Unbox .380 ACP rounds
+    {
+        Ammo_380ACP_HP_Box,
+
+        Result:Ammo_380ACP_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_380ACP_HP=50,
+
+        Result:Ammo_380ACP_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_380ACP_HP=500,
+
+        Result:Ammo_380ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_380ACP_HP_Box=10,
+
+        Result:Ammo_380ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_380ACP_HP_Can,
+
+        Result:Ammo_380ACP_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_380ACP_HP_Can,
+
+        Result:Ammo_380ACP_HP=500,
+        Time:10.0,
+    }
+
+
+    /** Ammo, .40 SW FMJ **/
+    recipe Unbox .40 S&W rounds
+    {
+        Ammo_40SW_FMJ_Box,
+
+        Result:Ammo_40SW_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_40SW_FMJ=50,
+
+        Result:Ammo_40SW_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_40SW_FMJ=500,
+
+        Result:Ammo_40SW_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_40SW_FMJ_Box=10,
+
+        Result:Ammo_40SW_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_40SW_FMJ_Can,
+
+        Result:Ammo_40SW_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_40SW_FMJ_Can,
+
+        Result:Ammo_40SW_FMJ=500,
+        Time:10.0,
+    }
+    
+    /** Ammo, .40 SW HP **/
+    recipe Unbox .40 S&W rounds
+    {
+        Ammo_40SW_HP_Box,
+
+        Result:Ammo_40SW_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_40SW_HP=50,
+
+        Result:Ammo_40SW_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_40SW_HP=500,
+
+        Result:Ammo_40SW_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_40SW_HP_Box=10,
+
+        Result:Ammo_40SW_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_40SW_HP_Can,
+
+        Result:Ammo_40SW_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_40SW_HP_Can,
+
+        Result:Ammo_40SW_HP=500,
+        Time:10.0,
+    }
+    
+    /** Ammo, .44 Magnum FMJ **/
+    recipe Unbox .44 Magnum rounds
+    {
+        Ammo_44Magnum_FMJ_Box,
+
+        Result:Ammo_44Magnum_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_44Magnum_FMJ=50,
+
+        Result:Ammo_44Magnum_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_44Magnum_FMJ=500,
+
+        Result:Ammo_44Magnum_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_44Magnum_FMJ_Box=10,
+
+        Result:Ammo_44Magnum_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_44Magnum_FMJ_Can,
+
+        Result:Ammo_44Magnum_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_44Magnum_FMJ_Can,
+
+        Result:Ammo_44Magnum_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .44 Magnum HP **/
+    recipe Unbox .44 Magnum rounds
+    {
+        Ammo_44Magnum_HP_Box,
+
+        Result:Ammo_44Magnum_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_44Magnum_HP=50,
+
+        Result:Ammo_44Magnum_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_44Magnum_HP=500,
+
+        Result:Ammo_44Magnum_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_44Magnum_HP_Box=10,
+
+        Result:Ammo_44Magnum_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_44Magnum_HP_Can,
+
+        Result:Ammo_44Magnum_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_44Magnum_HP_Can,
+
+        Result:Ammo_44Magnum_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .45 ACP FMJ **/
+    recipe Unbox .45 ACP Rounds
+    {
+        Ammo_45ACP_FMJ_Box,
+
+        Result:Ammo_45ACP_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_45ACP_FMJ=50,
+
+        Result:Ammo_45ACP_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45ACP_FMJ=500,
+
+        Result:Ammo_45ACP_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45ACP_FMJ_Box=10,
+
+        Result:Ammo_45ACP_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_45ACP_FMJ_Can,
+
+        Result:Ammo_45ACP_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_45ACP_FMJ_Can,
+
+        Result:Ammo_45ACP_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .45 ACP HP **/
+    recipe Unbox .45 ACP Rounds
+    {
+        Ammo_45ACP_HP_Box,
+
+        Result:Ammo_45ACP_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_45ACP_HP=50,
+
+        Result:Ammo_45ACP_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45ACP_HP=500,
+
+        Result:Ammo_45ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45ACP_HP_Box=10,
+
+        Result:Ammo_45ACP_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_45ACP_HP_Can,
+
+        Result:Ammo_45ACP_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_45ACP_HP_Can,
+
+        Result:Ammo_45ACP_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .45 Colt FMJ **/
+    recipe Unbox .45 Colt rounds
+    {
+        Ammo_45Colt_FMJ_Box,
+
+        Result:Ammo_45Colt_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_45Colt_FMJ=50,
+
+        Result:Ammo_45Colt_FMJ_Box,
+        Time:5.0,
+    }
+    
+    recipe Put in a canister
+    {
+        Ammo_45Colt_FMJ=500,
+
+        Result:Ammo_45Colt_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45Colt_FMJ_Box=10,
+
+        Result:Ammo_45Colt_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_45Colt_FMJ_Can,
+
+        Result:Ammo_45Colt_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_45Colt_FMJ_Can,
+
+        Result:Ammo_45Colt_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .45 Colt HP **/
+    recipe Unbox .45 Colt rounds
+    {
+        Ammo_45Colt_HP_Box,
+
+        Result:Ammo_45Colt_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_45Colt_HP=50,
+
+        Result:Ammo_45Colt_HP_Box,
+        Time:5.0,
+    }
+    
+    recipe Put in a canister
+    {
+        Ammo_45Colt_HP=500,
+
+        Result:Ammo_45Colt_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_45Colt_HP_Box=10,
+
+        Result:Ammo_45Colt_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_45Colt_HP_Can,
+
+        Result:Ammo_45Colt_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_45Colt_HP_Can,
+
+        Result:Ammo_45Colt_HP=500,
+        Time:10.0,
+    }
+
+
+    /** Ammo, .454 Casull FMJ **/
+    recipe Unbox .454 Casull rounds
+    {
+        Ammo_454Casull_FMJ_Box,
+
+        Result:Ammo_454Casull_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_454Casull_FMJ=50,
+
+        Result:Ammo_454Casull_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_454Casull_FMJ=500,
+
+        Result:Ammo_454Casull_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_454Casull_FMJ_Box=10,
+
+        Result:Ammo_454Casull_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_454Casull_FMJ_Can,
+
+        Result:Ammo_454Casull_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_454Casull_FMJ_Can,
+
+        Result:Ammo_454Casull_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .454 Casull HP **/
+    recipe Unbox .454 Casull rounds
+    {
+        Ammo_454Casull_HP_Box,
+
+        Result:Ammo_454Casull_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_454Casull_HP=50,
+
+        Result:Ammo_454Casull_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_454Casull_HP=500,
+
+        Result:Ammo_454Casull_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_454Casull_HP_Box=10,
+
+        Result:Ammo_454Casull_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_454Casull_HP_Can,
+
+        Result:Ammo_454Casull_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_454Casull_HP_Can,
+
+        Result:Ammo_454Casull_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .50AE FMJ **/
+    recipe Unbox .50 AE rounds
+    {
+        Ammo_50AE_FMJ_Box,
+
+        Result:Ammo_50AE_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_50AE_FMJ=50,
+
+        Result:Ammo_50AE_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_50AE_FMJ=500,
+
+        Result:Ammo_50AE_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_50AE_FMJ_Box=10,
+
+        Result:Ammo_50AE_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_50AE_FMJ_Can,
+
+        Result:Ammo_50AE_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_50AE_FMJ_Can,
+
+        Result:Ammo_50AE_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .50AE HP **/
+    recipe Unbox .50 AE rounds
+    {
+        Ammo_50AE_HP_Box,
+
+        Result:Ammo_50AE_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_50AE_HP=50,
+
+        Result:Ammo_50AE_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_50AE_HP=500,
+
+        Result:Ammo_50AE_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_50AE_HP_Box=10,
+
+        Result:Ammo_50AE_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_50AE_HP_Can,
+
+        Result:Ammo_50AE_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_50AE_HP_Can,
+
+        Result:Ammo_50AE_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, .223 FMJ **/
+    recipe Unbox .223 Remington rounds
+    {
+        Ammo_223Remington_FMJ_Box,
+
+        Result:Ammo_223Remington_FMJ=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_223Remington_FMJ=25,
+
+        Result:Ammo_223Remington_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_223Remington_FMJ=250,
+
+        Result:Ammo_223Remington_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_223Remington_FMJ_Box=10,
+
+        Result:Ammo_223Remington_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_223Remington_FMJ_Can,
+
+        Result:Ammo_223Remington_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_223Remington_FMJ_Can,
+
+        Result:Ammo_223Remington_FMJ=250,
+        Time:10.0,
+    }
+
+    /** Ammo, .223 HP **/
+    recipe Unbox .223 Remington rounds
+    {
+        Ammo_223Remington_HP_Box,
+
+        Result:Ammo_223Remington_HP=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_223Remington_HP=25,
+
+        Result:Ammo_223Remington_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_223Remington_HP=250,
+
+        Result:Ammo_223Remington_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_223Remington_HP_Box=10,
+
+        Result:Ammo_223Remington_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_223Remington_HP_Can,
+
+        Result:Ammo_223Remington_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_223Remington_HP_Can,
+
+        Result:Ammo_223Remington_HP=250,
+        Time:10.0,
+    }
+
+    /** Ammo, .30-06 FMJ **/
+    recipe Unbox .30-06 Springfield rounds
+    {
+        Ammo_3006Springfield_FMJ_Box,
+
+        Result:Ammo_3006Springfield_FMJ=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_3006Springfield_FMJ=20,
+
+        Result:Ammo_3006Springfield_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3006Springfield_FMJ=200,
+
+        Result:Ammo_3006Springfield_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3006Springfield_FMJ_Box=10,
+
+        Result:Ammo_3006Springfield_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_3006Springfield_FMJ_Can,
+
+        Result:Ammo_3006Springfield_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_3006Springfield_FMJ_Can,
+
+        Result:Ammo_3006Springfield_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, .30-06 HP **/
+    recipe Unbox .30-06 Springfield rounds
+    {
+        Ammo_3006Springfield_HP_Box,
+
+        Result:Ammo_3006Springfield_HP=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_3006Springfield_HP=20,
+
+        Result:Ammo_3006Springfield_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3006Springfield_HP=200,
+
+        Result:Ammo_3006Springfield_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3006Springfield_HP_Box=10,
+
+        Result:Ammo_3006Springfield_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_3006Springfield_HP_Can,
+
+        Result:Ammo_3006Springfield_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_3006Springfield_HP_Can,
+
+        Result:Ammo_3006Springfield_HP=200,
+        Time:10.0,
+    }
+    
+    /** Ammo, .30-30 FMJ **/
+    recipe Unbox .30-30 Springfield rounds
+    {
+        Ammo_3030Winchester_FMJ_Box,
+
+        Result:Ammo_3030Winchester_FMJ=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_3030Winchester_FMJ=20,
+
+        Result:Ammo_3030Winchester_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3030Winchester_FMJ=200,
+
+        Result:Ammo_3030Winchester_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3030Winchester_FMJ_Box=10,
+
+        Result:Ammo_3030Winchester_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_3030Winchester_FMJ_Can,
+
+        Result:Ammo_3030Winchester_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_3030Winchester_FMJ_Can,
+
+        Result:Ammo_3030Winchester_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, .30-30 HP **/
+    recipe Unbox .30-30 Springfield rounds
+    {
+        Ammo_3030Winchester_HP_Box,
+
+        Result:Ammo_3030Winchester_HP=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_3030Winchester_HP=20,
+
+        Result:Ammo_3030Winchester_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3030Winchester_HP=200,
+
+        Result:Ammo_3030Winchester_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_3030Winchester_HP_Box=10,
+
+        Result:Ammo_3030Winchester_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_3030Winchester_HP_Can,
+
+        Result:Ammo_3030Winchester_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_3030Winchester_HP_Can,
+
+        Result:Ammo_3030Winchester_HP=200,
+        Time:10.0,
+    }
+
+    /** Ammo, .308 FMJ **/
+    recipe Unbox .308 Winchester rounds
+    {
+        Ammo_308Winchester_FMJ_Box,
+
+        Result:Ammo_308Winchester=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_308Winchester_FMJ=20,
+
+        Result:Ammo_308Winchester_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_308Winchester_FMJ=200,
+
+        Result:Ammo_308Winchester_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_308Winchester_FMJ_Box=10,
+
+        Result:Ammo_308Winchester_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_308Winchester_FMJ_Can,
+
+        Result:Ammo_308Winchester_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_308Winchester_FMJ_Can,
+
+        Result:Ammo_308Winchester_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, .308 HP **/
+    recipe Unbox .308 Winchester rounds
+    {
+        Ammo_308Winchester_HP_Box,
+
+        Result:Ammo_308Winchester=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_308Winchester_HP=20,
+
+        Result:Ammo_308Winchester_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_308Winchester_HP=200,
+
+        Result:Ammo_308Winchester_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_308Winchester_HP_Box=10,
+
+        Result:Ammo_308Winchester_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_308Winchester_HP_Can,
+
+        Result:Ammo_308Winchester_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_308Winchester_HP_Can,
+
+        Result:Ammo_308Winchester_HP=200,
+        Time:10.0,
+    }
+    
+    /** Ammo, FN 5.7 FMJ **/
+    recipe Unbox FN5.7x28mm rounds
+    {
+        Ammo_57x28mm_FMJ_Box,
+
+        Result:Ammo_57x28mm_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_57x28mm_FMJ=50,
+
+        Result:Ammo_57x28mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_57x28mm_FMJ=500,
+
+        Result:Ammo_57x28mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_57x28mm_FMJ_Box=10,
+
+        Result:Ammo_57x28mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_57x28mm_FMJ_Can,
+
+        Result:Ammo_57x28mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_57x28mm_FMJ_Can,
+
+        Result:Ammo_57x28mm_FMJ=500,
+        Time:10.0,
+    }
+    
+    /** Ammo, FN 5.7 HP **/
+    recipe Unbox FN5.7x28mm rounds
+    {
+        Ammo_57x28mm_HP_Box,
+
+        Result:Ammo_57x28mm_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_57x28mm_HP=50,
+
+        Result:Ammo_57x28mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_57x28mm_HP=500,
+
+        Result:Ammo_57x28mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_57x28mm_HP_Box=10,
+
+        Result:Ammo_57x28mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_57x28mm_HP_Can,
+
+        Result:Ammo_57x28mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_57x28mm_HP_Can,
+
+        Result:Ammo_57x28mm_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, 9x19 FMJ **/
+    recipe Unbox 9x19mm rounds
+    {
+        Ammo_9x19mm_FMJ_Box,
+
+        Result:Ammo_9x19mm_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_9x19mm_FMJ=50,
+
+        Result:Ammo_9x19mm_FMJ_Box,
+        Time:5.0,
+    }
+
+    recipe Put in a canister
+    {
+        Ammo_9x19mm_FMJ=500,
+
+        Result:Ammo_9x19mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_9x19mm_FMJ_Box=10,
+
+        Result:Ammo_9x19mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_9x19mm_FMJ_Can,
+
+        Result:Ammo_9x19mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_9x19mm_FMJ_Can,
+
+        Result:Ammo_9x19mm_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, 9x19 HP **/
+    recipe Unbox 9x19mm rounds
+    {
+        Ammo_9x19mm_HP_Box,
+
+        Result:Ammo_9x19mm_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_9x19mm_HP=50,
+
+        Result:Ammo_9x19mm_HP_Box,
+        Time:5.0,
+    }
+
+    recipe Put in a canister
+    {
+        Ammo_9x19mm_HP=500,
+
+        Result:Ammo_9x19mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_9x19mm_HP_Box=10,
+
+        Result:Ammo_9x19mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_9x19mm_HP_Can,
+
+        Result:Ammo_9x19mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_9x19mm_HP_Can,
+
+        Result:Ammo_9x19mm_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, 10x25mm FMJ **/
+    recipe Unbox 10x25mm rounds
+    {
+        Ammo_10x25mm_FMJ_Box,
+
+        Result:Ammo_10x25mm_FMJ=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_10x25mm_FMJ=50,
+
+        Result:Ammo_10x25mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_10x25mm_FMJ=500,
+
+        Result:Ammo_10x25mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_10x25mm_FMJ_Box=10,
+
+        Result:Ammo_10x25mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_10x25mm_FMJ_Can,
+
+        Result:Ammo_10x25mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_10x25mm_FMJ_Can,
+
+        Result:Ammo_10x25mm_FMJ=500,
+        Time:10.0,
+    }
+
+    /** Ammo, 10x25mm HP **/
+    recipe Unbox 10x25mm rounds
+    {
+        Ammo_10x25mm_HP_Box,
+
+        Result:Ammo_10x25mm_HP=50,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_10x25mm_HP=50,
+
+        Result:Ammo_10x25mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_10x25mm_HP=500,
+
+        Result:Ammo_10x25mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_10x25mm_HP_Box=10,
+
+        Result:Ammo_10x25mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_10x25mm_HP_Can,
+
+        Result:Ammo_10x25mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_10x25mm_HP_Can,
+
+        Result:Ammo_10x25mm_HP=500,
+        Time:10.0,
+    }
+
+    /** Ammo, 5.56x45 FMJ **/
+    recipe Unbox 5.56x45mm rounds
+    {
+        Ammo_556x45mm_FMJ_Box,
+
+        Result:Ammo_556x45mm_FMJ=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_556x45mm_FMJ=25,
+
+        Result:Ammo_556x45mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_556x45mm_FMJ=250,
+
+        Result:Ammo_556x45mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_556x45mm_FMJ_Box=10,
+
+        Result:Ammo_556x45mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_556x45mm_FMJ_Can,
+
+        Result:Ammo_556x45mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_556x45mm_FMJ_Can,
+
+        Result:Ammo_556x45mm_FMJ=250,
+        Time:10.0,
+    }
+
+    /** Ammo, 5.56x45 HP **/
+    recipe Unbox 5.56x45mm rounds
+    {
+        Ammo_556x45mm_HP_Box,
+
+        Result:Ammo_556x45mm_HP=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_556x45mm_HP=25,
+
+        Result:Ammo_556x45mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_556x45mm_HP=250,
+
+        Result:Ammo_556x45mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_556x45mm_HP_Box=10,
+
+        Result:Ammo_556x45mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_556x45mm_HP_Can,
+
+        Result:Ammo_556x45mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_556x45mm_HP_Can,
+
+        Result:Ammo_556x45mm_HP=250,
+        Time:10.0,
+    }
+
+    /** Ammo, 7.62x39 FMJ **/
+    recipe Unbox 7.62x39mm rounds
+    {
+        Ammo_762x39mm_FMJ_Box,
+
+        Result:Ammo_762x39mm_FMJ=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x39mm_FMJ=20,
+
+        Result:Ammo_762x39mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x39mm_FMJ=200,
+
+        Result:Ammo_762x39mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x39mm_FMJ_Box=10,
+
+        Result:Ammo_762x39mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x39mm_FMJ_Can,
+
+        Result:Ammo_762x39mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x39mm_FMJ_Can,
+
+        Result:Ammo_762x39mm_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, 7.62x39 HP **/
+    recipe Unbox 7.62x39mm rounds
+    {
+        Ammo_762x39mm_HP_Box,
+
+        Result:Ammo_762x39mm_HP=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x39mm_HP=20,
+
+        Result:Ammo_762x39mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x39mm_HP=200,
+
+        Result:Ammo_762x39mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x39mm_HP_Box=10,
+
+        Result:Ammo_762x39mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x39mm_HP_Can,
+
+        Result:Ammo_762x39mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x39mm_HP_Can,
+
+        Result:Ammo_762x39mm_HP=200,
+        Time:10.0,
+    }
+
+
+    /** Ammo, 7.62x51 FMJ **/
+    recipe Unbox 7.62x51 rounds
+    {
+        Ammo_762x51mm_FMJ_Box,
+
+        Result:Ammo_762x51mm_FMJ=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x51mm_FMJ=20,
+
+        Result:Ammo_762x51mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x51mm_FMJ=200,
+
+        Result:Ammo_762x51mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x51mm_FMJ_Box=10,
+
+        Result:Ammo_762x51mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x51mm_FMJ_Can,
+
+        Result:Ammo_762x51mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x51mm_FMJ_Can,
+
+        Result:Ammo_762x51mm_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, 7.62x51 HP **/
+    recipe Unbox 7.62x51 rounds
+    {
+        Ammo_762x51mm_HP_Box,
+
+        Result:Ammo_762x51mm_HP=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x51mm_HP=20,
+
+        Result:Ammo_762x51mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x51mm_HP=200,
+
+        Result:Ammo_762x51mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x51mm_HP_Box=10,
+
+        Result:Ammo_762x51mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x51mm_HP_Can,
+
+        Result:Ammo_762x51mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x51mm_HP_Can,
+
+        Result:Ammo_762x51mm_HP=200,
+        Time:10.0,
+    }
+
+    /** Ammo, 7.62x54 FMJ **/
+    recipe Unbox 7.62x54R rounds
+    {
+        Ammo_762x54mm_FMJ_Box,
+
+        Result:Ammo_762x54mm_FMJ=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x54mm_FMJ=20,
+
+        Result:Ammo_762x54mm_FMJ_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x54mm_FMJ=200,
+
+        Result:Ammo_762x54mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x54mm_FMJ_Box=10,
+
+        Result:Ammo_762x54mm_FMJ_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x54mm_FMJ_Can,
+
+        Result:Ammo_762x54mm_FMJ_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x54mm_FMJ_Can,
+
+        Result:Ammo_762x54mm_FMJ=200,
+        Time:10.0,
+    }
+
+    /** Ammo, 7.62x54 HP **/
+    recipe Unbox 7.62x54R rounds
+    {
+        Ammo_762x54mm_HP_Box,
+
+        Result:Ammo_762x54mm_HP=20,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_762x54mm_HP=20,
+
+        Result:Ammo_762x54mm_HP_Box,
+        Time:5.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x54mm_HP=200,
+
+        Result:Ammo_762x54mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_762x54mm_HP_Box=10,
+
+        Result:Ammo_762x54mm_HP_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_762x54mm_HP_Can,
+
+        Result:Ammo_762x54mm_HP_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_762x54mm_HP_Can,
+
+        Result:Ammo_762x54mm_HP=200,
+        Time:10.0,
+    }
+
+    /** Ammo, 12gu 00Buck **/
+    recipe Unbox 12 gauge shells
+    {
+        Ammo_12g_00Buck_Box,
+
+        Result:Ammo_12g_00Buck=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_12g_00Buck=25,
+
+        Result:Ammo_12g_00Buck_Box,
+        Time:5.0,
+    }
+
+    recipe Put in a canister
+    {
+        Ammo_12g_00Buck=250,
+
+        Result:Ammo_12g_00Buck_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_12g_00Buck_Box=10,
+
+        Result:Ammo_12g_00Buck_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_12g_00Buck_Can,
+
+        Result:Ammo_12g_00Buck_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_12g_00Buck_Can,
+
+        Result:Ammo_12g_00Buck=250,
+        Time:10.0,
+    }
+        
+    /** Ammo, 12gu slugs **/
+    recipe Unbox 12 gauge shells
+    {
+        Ammo_12g_Slug_Box,
+
+        Result:Ammo_12g_Slug=25,
+        Time:5.0,
+    }
+
+    recipe Put in a box
+    {
+        Ammo_12g_Slug=25,
+
+        Result:Ammo_12g_Slug_Box,
+        Time:5.0,
+    }
+
+    recipe Put in a canister
+    {
+        Ammo_12g_Slug=250,
+
+        Result:Ammo_12g_Slug_Can,
+        Time:10.0,
+    }
+        
+    recipe Put in a canister
+    {
+        Ammo_12g_Slug_Box=10,
+
+        Result:Ammo_12g_Slug_Can,
+        Time:10.0,
+    }
+        
+    recipe Empty into boxes
+    {
+        Ammo_12g_Slug_Can,
+
+        Result:Ammo_12g_Slug_Box=10,
+        Time:10.0,
+    }
+        
+    recipe Empty out canister
+    {
+        Ammo_12g_Slug_Can,
+
+        Result:Ammo_12g_Slug=250,
+        Time:10.0,
+    }
+
+
 
     recipe Sawn-off
     {
@@ -1252,15 +2392,6 @@ module ORGM
     Ithaca37,
 
     Result:Ithaca37SO,
-    Time:200.0,
-    }
-    
-    recipe Sawn-off
-    {
-    keep Saw,
-    Ithaca37Sl,
-
-    Result:Ithaca37SOSl,
     Time:200.0,
     }
     
@@ -1276,27 +2407,9 @@ module ORGM
     recipe Sawn-off
     {
     keep Saw,
-    Moss590Sl,
-
-    Result:Moss590SOSl,
-    Time:200.0,
-    }
-    
-    recipe Sawn-off
-    {
-    keep Saw,
     Rem870,
 
     Result:Rem870SO,
-    Time:200.0,
-    }
-    
-    recipe Sawn-off
-    {
-    keep Saw,
-    Rem870Sl,
-
-    Result:Rem870SOSl,
     Time:200.0,
     }
     
@@ -1312,15 +2425,6 @@ module ORGM
     recipe Sawn-off
     {
     keep Saw,
-    Win1887Sl,
-
-    Result:Win1887SOSl,
-    Time:200.0,
-    }
-
-    recipe Sawn-off
-    {
-    keep Saw,
     Silverhawk,
 
     Result:SilverHawkSO,
@@ -1329,550 +2433,10 @@ module ORGM
     
     recipe Sawn-off
     {
-    keep Saw,
-    SilverhawkSl,
-
-    Result:SilverHawkSOSl,
-    Time:200.0,
-    }
-
-    /** BenelliM3 **/
-    recipe Sawn-off
-    {
         keep Saw,
         BenelliM3,
         Result:BenelliM3SO,
         Time:200.0,
     }
-    
-    recipe Sawn-off
-    {
-        keep Saw,
-        BenelliM3Sl,
-        Result:BenelliM3SOSl,
-        Time:200.0,
-    }
-    
-    recipe Sawn-off
-    {
-        keep Saw,
-        BenelliM3PASl,  
-        Result:BenelliM3PASOSl,
-        Time:200.0,
-    }
-    
-    recipe Sawn-off
-    {
-        keep Saw,
-        BenelliM3PA,    
-        Result:BenelliM3PASO,
-        Time:200.0,
-    }
-
-    recipe Switch to Pump-Action
-    {
-        BenelliM3,
-        Result:BenelliM3PA,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        BenelliM3PA,
-        Result:BenelliM3,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-    recipe Switch to Pump-Action
-    {
-        BenelliM3SO,
-        Result:BenelliM3PASO,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        BenelliM3PASO,
-        Result:BenelliM3SO,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-    recipe Switch to Pump-Action
-    {
-        BenelliM3Sl,
-        Result:BenelliM3PASl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        BenelliM3PASl,
-        Result:BenelliM3Sl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-    recipe Switch to Pump-Action
-    {
-        BenelliM3SOSl,
-        Result:BenelliM3PASOSl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        BenelliM3PASOSl,
-        Result:BenelliM3SOSl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-    /** SPAS12 **/
-    recipe Switch to Pump-Action
-    {
-        Spas12,
-        Result:Spas12PA,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        Spas12PA,
-        Result:Spas12,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-    recipe Switch to Pump-Action
-    {
-        Spas12Sl,
-        Result:Spas12PASl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-    recipe Switch to Semi-Auto
-    {
-        Spas12PASl,
-        Result:Spas12Sl,
-        Time:10.0,
-        OnCreate:ORGMActionModeChange_OnCreate,
-    }
-
-
-    /** Semi to Full Auto Conversions **/
-    recipe Switch to semi-auto
-    {
-        AKMA,
-
-        Result:AKMSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        AKMSA,
-
-        Result:AKMA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        M16,
-
-        Result:M16SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        M16SA,
-
-        Result:M16,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        M16223,
-
-        Result:M16SA223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        M16SA223,
-
-        Result:M16223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        M4C,
-
-        Result:M4CSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        M4CSA,
-
-        Result:M4C,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        M4C223,
-
-        Result:M4CSA223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        M4CSA223,
-
-        Result:M4C223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SA80,
-
-        Result:SA80SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SA80SA,
-
-        Result:SA80,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SA80223,
-
-        Result:SA80SA223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SA80SA223,
-
-        Result:SA80223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SIG550,
-
-        Result:SIG550SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SIG550SA,
-
-        Result:SIG550,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SIG550223,
-
-        Result:SIG550SA223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SIG550SA223,
-
-        Result:SIG550223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SIG551,
-
-        Result:SIG551SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SIG551SA,
-
-        Result:SIG551,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        SIG551223,
-
-        Result:SIG551SA223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        SIG551SA223,
-
-        Result:SIG551223,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        AR10,
-
-        Result:AR10SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        AR10SA,
-
-        Result:AR10,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        AR10308,
-
-        Result:AR10SA308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        AR10SA308,
-
-        Result:AR10308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        FNFALA,
-
-        Result:FNFALSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        FNFALSA,
-
-        Result:FNFALA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        FNFALA308,
-
-        Result:FNFALSA308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        FNFALSA308,
-
-        Result:FNFALA308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        HKG3,
-
-        Result:HKG3SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        HKG3SA,
-
-        Result:HKG3,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        HKG3308,
-
-        Result:HKG3SA308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        HKG3SA308,
-
-        Result:HKG3308,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-
-    recipe Switch to semi-auto
-    {
-        HKMP5,
-
-        Result:HKMP5SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        HKMP5SA,
-
-        Result:HKMP5,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        Glock18,
-
-        Result:Glock18SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        Glock18SA,
-
-        Result:Glock18,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        Ber93R,
-
-        Result:Ber93RSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        Ber93RSA,
-
-        Result:Ber93R,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        HKUMP,
-
-        Result:HKUMPSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        HKUMPSA,
-
-        Result:HKUMP,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        FNP90,
-
-        Result:FNP90SA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        FNP90SA,
-
-        Result:FNP90,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to semi-auto
-    {
-        KrissA,
-
-        Result:KrissSA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
-    
-    recipe Switch to full-auto
-    {
-        KrissSA,
-
-        Result:KrissA,
-        Time:10.0,
-        OnCreate:ORGMFireModeChange_OnCreate,
-    }
+        
 }

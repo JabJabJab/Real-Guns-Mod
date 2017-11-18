@@ -7,7 +7,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   AI-AW .308 magazine (.308),
+        DisplayName =   AI-AW .308 magazine (.308 or 7.62x51),
         Icon        =   AIAW308Mag,
     }
     
@@ -34,45 +34,36 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   AR-10 magazine (7.62x51),
+        DisplayName =   AR-10 magazine (7.62x51 or .308),
         Icon        =   AR10Mag,
     }
     
-    item AR10308Mag
+    item AutomagVMag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   AR-10 magazine (.308),
-        Icon        =   AR10Mag,
+        DisplayName =   AMT Automag V Magazine (.50),
+        Icon        =   AutomagVMag,
     }
     
-	item AutomagVMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	AMT Automag V Magazine (.50),
-		Icon		=	AutomagVMag,
-	}
-	
-	item BBPistolMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.1,
-		Type		=	Normal,
-		DisplayName	=	Daisy Powerline Model 201 Magazine (BBs),
-		Icon		=	BBPistolMag,
-	}
+    item BBPistolMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.1,
+        Type        =   Normal,
+        DisplayName =   Daisy Powerline Model 201 Magazine (.117 BBs),
+        Icon        =   BBPistolMag,
+    }
 
-	item Ber92Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Beretta 92 Magazine (9mm),
-		Icon		=	Ber92Mag,
-	}
+    item Ber92Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Beretta 92 Magazine (9mm),
+        Icon        =   Ber92Mag,
+    }
 
     item Ber93RMag
     {
@@ -83,84 +74,84 @@ module ORGM
         Icon        =   Ber93RMag,
     }
     
-	item BrenTenMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Bren Ten Magazine (10mm),
-		Icon		=	BrenTenMag,
-	}
+    item BrenTenMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Bren Ten Magazine (10mm),
+        Icon        =   BrenTenMag,
+    }
 
-	item BrownHPMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.3,
-		Type		=	Normal,
-		DisplayName	=	Browning Hi-Power Magazine (9mm),
-		Icon		=	BrownHPMag,
-	}
+    item BrownHPMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.3,
+        Type        =   Normal,
+        DisplayName =   Browning Hi-Power Magazine (9mm),
+        Icon        =   BrownHPMag,
+    }
 
-	item Colt38SMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Colt Commander Super 38 Magazine (.38S),
-		Icon		=	Colt38SMag,
-	}
+    item Colt38SMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Colt Commander Super 38 Magazine (.38S),
+        Icon        =   Colt38SMag,
+    }
 
-	item ColtDeltaMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Colt Delta Elite Magazine (10mm),
-		Icon		=	ColtDeltaMag,
-	}
+    item ColtDeltaMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Colt Delta Elite Magazine (10mm),
+        Icon        =   ColtDeltaMag,
+    }
 
-	item CZ75Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	CZ 75 Magazine (.40),
-		Icon		=	CZ75Mag,
-	}
+    item CZ75Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   CZ 75 Magazine (.40),
+        Icon        =   CZ75Mag,
+    }
 
-	item DEagleMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	IMI Desert Eagle Magazine (.44),
-		Icon		=	DEagleMag,
-	}
+    item DEagleMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   IMI Desert Eagle Magazine (.44),
+        Icon        =   DEagleMag,
+    }
 
     item DEagleXIXMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	IMI Desert Eagle XIX Magazine (.50),
-		Icon		=	DEagleXIXMag,
-	}
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   IMI Desert Eagle XIX Magazine (.50),
+        Icon        =   DEagleXIXMag,
+    }
 
-	item FN57Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	FN Five-seven Magazine (5.7mm),
-		Icon		=	FN57Mag,
-	}
+    item FN57Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   FN Five-seven Magazine (5.7x28),
+        Icon        =   FN57Mag,
+    }
 
     item FNFALMag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   FSL LSR magazine (.308),
+        DisplayName =   FSL LSR magazine (.308 or 7.62x51),
         Icon        =   FNFALMag,
     }   
     
@@ -169,7 +160,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   FN FAL magazine (7.62x51mm),
+        DisplayName =   FN FAL magazine (7.62x51 or .308),
         Icon        =   FNFALMag,
     }   
     
@@ -191,48 +182,48 @@ module ORGM
         Icon        =   GarandClip,
     }   
     
-	item Glock17Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Glock 17 Magazine (9mm),
-		Icon		=	Glock17Mag,
-	}
-	
-	item Glock20Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Glock 20 Magazine (10mm),
-		Icon		=	Glock20Mag,
-	}
+    item Glock17Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Glock 17 Magazine (9mm),
+        Icon        =   Glock17Mag,
+    }
+    
+    item Glock20Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Glock 20 Magazine (10mm),
+        Icon        =   Glock20Mag,
+    }
 
-	item Glock21Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Glock 21 Magazine (.45),
-		Icon		=	Glock21Mag,
-	}
-	
-	item Glock22Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Glock 22 Magazine (.40),
-		Icon		=	Glock22Mag,
-	}
-	
+    item Glock21Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Glock 21 Magazine (.45),
+        Icon        =   Glock21Mag,
+    }
+    
+    item Glock22Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Glock 22 Magazine (.40),
+        Icon        =   Glock22Mag,
+    }
+    
     item HK91Mag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   H&K 91 magazine (.308),
+        DisplayName =   H&K 91 magazine (.308 or 7.62x51),
         Icon        =   HK91Mag,
     }   
     
@@ -241,18 +232,18 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   H&K G3 magazine (7.62x51mm),
+        DisplayName =   H&K G3 magazine (7.62x51 or .308),
         Icon        =   HK91Mag,
     }   
     
-	item HKMK23Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	H&K Mark 23 Magazine (.45),
-		Icon		=	HKMK23Mag,
-	}
+    item HKMK23Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   H&K Mark 23 Magazine (.45),
+        Icon        =   HKMK23Mag,
+    }
 
     item HKMP5Mag
     {
@@ -268,19 +259,10 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   H&K SL8 magazine (.223),
+        DisplayName =   H&K SL8 magazine (.223 or 5.56x45),
         Icon        =   HKSL8Mag,
     }
     
-    item HKSL8556Mag
-    {
-        CanStack    =   FALSE,
-        Weight      =   0.2,
-        Type        =   Normal,
-        DisplayName =   H&K SL8 magazine (5.56x45),
-        Icon        =   HKSL8Mag,
-    }
-
     item HKUMPMag
     {
         CanStack    =   FALSE,
@@ -290,39 +272,39 @@ module ORGM
         Icon        =   HKUMPMag,
     }
     
-	item KahrCT40Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Kahr CT-40 Magazine (.40),
-		Icon		=	KahrCT40Mag,
-	}
+    item KahrCT40Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Kahr CT-40 Magazine (.40),
+        Icon        =   KahrCT40Mag,
+    }
 
-	item KahrP380Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Kahr P-380 Magazine (.380ACP),
-		Icon		=	KahrP380Mag,
-	}
+    item KahrP380Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Kahr P-380 Magazine (.380ACP),
+        Icon        =   KahrP380Mag,
+    }
 
-	item KTP32Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.05,
-		Type		=	Normal,
-		DisplayName	=	Kel-Tec P-32 Magazine (.32ACP),
-		Icon		=	KTP32Mag,
-	}
+    item KTP32Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.05,
+        Type        =   Normal,
+        DisplayName =   Kel-Tec P-32 Magazine (.32ACP),
+        Icon        =   KTP32Mag,
+    }
 
     item L96Mag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   L96 magazine (7.62x51),
+        DisplayName =   L96 magazine (7.62x51 or .38),
         Icon        =   AIAW308Mag,
     }
 
@@ -331,36 +313,18 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   Lee Enfield No. 4 magazine (7.62x51),
+        DisplayName =   Lee Enfield No. 4 magazine (7.62x51 or .308),
         Icon        =   LENo4Mag,
     }   
     
-    item LENo4308Mag
+    item M1216Mag
     {
         CanStack    =   FALSE,
-        Weight      =   0.2,
+        Weight      =   0.4,
         Type        =   Normal,
-        DisplayName =   Lee Enfield No. 4 magazine (.308),
-        Icon        =   LENo4Mag,
+        DisplayName =   SRM Arms Model 1216 magazine (12 gauge),
+        Icon        =   M1216Mag,
     }
-    
-	item M1216Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.4,
-		Type		=	Normal,
-		DisplayName	=	SRM Arms Model 1216 magazine (12 gauge),
-		Icon		=	M1216Mag,
-	}
-
-	item M1216SlMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.4,
-		Type		=	Normal,
-		DisplayName	=	SRM Arms Model 1216 magazine (12 gauge slugs),
-		Icon		=	M1216Mag,
-	}
 
     item M1903StripperClip
     {
@@ -371,14 +335,14 @@ module ORGM
         Icon        =   M1903StripperClip,
     }
     
-	item M1911Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	M1911 Magazine (.45),
-		Icon		=	M1911Mag,
-	}
+    item M1911Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   M1911 Magazine (.45),
+        Icon        =   M1911Mag,
+    }
 
     item M1A1Mag
     {
@@ -394,16 +358,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   M21 magazine (7.62x51),
-        Icon        =   M21Mag,
-    }   
-    
-    item M21308Mag
-    {
-        CanStack    =   FALSE,
-        Weight      =   0.2,
-        Type        =   Normal,
-        DisplayName =   M21 magazine (.308),
+        DisplayName =   M21 magazine (7.62x51 or .308),
         Icon        =   M21Mag,
     }   
     
@@ -412,19 +367,10 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   3.0,
         Type        =   Normal,
-        DisplayName =   M249 Belt (5.56),
+        DisplayName =   M249 Belt (5.56x45 or .223),
         Icon        =   M249Belt,
     }
     
-    item M249223Belt
-    {
-        CanStack    =   FALSE,
-        Weight      =   3.0,
-        Type        =   Normal,
-        DisplayName =   M249 Belt (.223),
-        Icon        =   M249Belt,
-    }
-
     item Mac10Mag
     {
         CanStack    =   FALSE,
@@ -448,18 +394,9 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   Ruger Mini-14 magazine (.223),
+        DisplayName =   Ruger Mini-14 magazine (.223 or 5.56x45),
         Icon        =   Mini14Mag,
     }   
-    
-    item Mini14556Mag
-    {
-        CanStack    =   FALSE,
-        Weight      =   0.2,
-        Type        =   Normal,
-        DisplayName =   Ruger Mini-14 magazine (5.56),
-        Icon        =   Mini14Mag,
-    }
     
     item MosinStripperClip
     {
@@ -506,50 +443,41 @@ module ORGM
         Icon        =   Rug1022Mag,
     }
     
-	item RugerMKIIMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Ruger MKII Magazine (.22),
-		Icon		=	RugerMKIIMag,
-	}
+    item RugerMKIIMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Ruger MKII Magazine (.22),
+        Icon        =   RugerMKIIMag,
+    }
 
-	item RugerSR9Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Ruger SR9 Magazine (9mm),
-		Icon		=	RugerSR9Mag,
-	}
+    item RugerSR9Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Ruger SR9 Magazine (9mm),
+        Icon        =   RugerSR9Mag,
+    }
 
     item SIG550Mag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   SIG SG550 magazine (5.56x45),
+        DisplayName =   SIG SG550 magazine (5.56x45 or .223),
         Icon        =   SIG550Mag,
     }
 
-    item SIG550223Mag
+    item SIGP226Mag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   SIG SG550 magazine (.223),
-        Icon        =   SIG550Mag,
-    }   
-    
-	item SIGP226Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	SIG P226 Magazine (.40),
-		Icon		=	SIGP226Mag,
-	}
+        DisplayName =   SIG P226 Magazine (.40),
+        Icon        =   SIGP226Mag,
+    }
 
     item SR25Mag
     {
@@ -560,33 +488,15 @@ module ORGM
         Icon        =   SR25Mag,
     }
     
-    item SR25308Mag
-    {
-        CanStack    =   FALSE,
-        Weight      =   0.2,
-        Type        =   Normal,
-        DisplayName =   KAC SR-25 magazine (.308),
-        Icon        =   SR25Mag,
-    }
-
     item STANAGMag
     {
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   Standard STANAG magazine (5.56x45),
+        DisplayName =   Standard STANAG magazine (5.56x45 or .223),
         Icon        =   STANAGMag,
     }
 
-    item STANAG223Mag
-    {
-        CanStack    =   FALSE,
-        Weight      =   0.2,
-        Type        =   Normal,
-        DisplayName =   Standard STANAG magazine (.223),
-        Icon        =   STANAGMag,
-    }   
-    
     item SkorpionMag
     {
         CanStack    =   FALSE,
@@ -605,86 +515,86 @@ module ORGM
         Icon        =   SKSStripperClip,
     }
     
-	item SpeedLoader10mm6
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	10mm Auto 6 round Speed Loader,
-		Icon		=	10mmSpeedLoader6,
-	}
+    item SpeedLoader10mm6
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   10mm Auto 6 round Speed Loader,
+        Icon        =   10mmSpeedLoader6,
+    }
 
-	item SpeedLoader3576
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.357 Magnum 6 round Speed Loader,
-		Icon		=	357SpeedLoader6,
-	}
-	
-	item SpeedLoader385
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.38 Special 5 round Speed Loader,
-		Icon		=	38SpeedLoader5,
-	}
-	
-	item SpeedLoader386
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.38 Special 6 round Speed Loader,
-		Icon		=	38SpeedLoader6,
-	}
-	
-	item SpeedLoader446
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.44 Magnum 6 round Speed Loader,
-		Icon		=	44SpeedLoader6,
-	}
-	
-	item SpeedLoader4546
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.454 Casull 6 round Speed Loader,
-		Icon		=	454SpeedLoader6,
-	}
-	
-	item SpeedLoader456
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.45 ACP 6 round Speed Loader,
-		Icon		=	45SpeedLoader6,
-	}
-	
-	item SpeedLoader45C6
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	.45 Colt 6 round Speed Loader,
-		Icon		=	454SpeedLoader6,
-	}
-	
-	item Spr19119Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Springfield 1911 9mm Magazine (9mm),
-		Icon		=	Spr19119mmMag,
-	}
+    item SpeedLoader3576
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .357 Magnum 6 round Speed Loader,
+        Icon        =   357SpeedLoader6,
+    }
+    
+    item SpeedLoader385
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .38 Special 5 round Speed Loader,
+        Icon        =   38SpeedLoader5,
+    }
+    
+    item SpeedLoader386
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .38 Special 6 round Speed Loader,
+        Icon        =   38SpeedLoader6,
+    }
+    
+    item SpeedLoader446
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .44 Magnum 6 round Speed Loader,
+        Icon        =   44SpeedLoader6,
+    }
+    
+    item SpeedLoader4546
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .454 Casull 6 round Speed Loader,
+        Icon        =   454SpeedLoader6,
+    }
+    
+    item SpeedLoader456
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .45 ACP 6 round Speed Loader,
+        Icon        =   45SpeedLoader6,
+    }
+    
+    item SpeedLoader45C6
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   .45 Colt 6 round Speed Loader,
+        Icon        =   454SpeedLoader6,
+    }
+    
+    item Spr19119Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Springfield 1911 9mm Magazine (9mm),
+        Icon        =   Spr19119mmMag,
+    }
 
     item SVDMag
     {
@@ -695,24 +605,24 @@ module ORGM
         Icon        =   SVDMag,
     }
 
-	item Taurus38Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Taurus PT38S Magazine (.38S),
-		Icon		=	Taurus38Mag,
-	}
+    item Taurus38Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Taurus PT38S Magazine (.38S),
+        Icon        =   Taurus38Mag,
+    }
 
-	item TaurusP132Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.05,
-		Type		=	Normal,
-		DisplayName	=	Taurus Millennium P132 Magazine (.32ACP),
-		Icon		=	TaurusP132Mag,
-	}
-	
+    item TaurusP132Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.05,
+        Type        =   Normal,
+        DisplayName =   Taurus Millennium P132 Magazine (.32ACP),
+        Icon        =   TaurusP132Mag,
+    }
+    
     item UziMag
     {
         CanStack    =   FALSE,
@@ -722,50 +632,41 @@ module ORGM
         Icon        =   UziMag,
     }
 
-	item VEPR12Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	VEPR-12 magazine (12 gauge),
-		Icon		=	VEPR12Mag,
-	}
+    item VEPR12Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   VEPR-12 magazine (12 gauge),
+        Icon        =   VEPR12Mag,
+    }
 
-	item VEPR12SlMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	VEPR-12 magazine (12 gauge slugs),
-		Icon		=	VEPR12Mag,
-	}
-
-	item WaltherP22Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Walther P22 Magazine (.22),
-		Icon		=	WaltherP22Mag,
-	}
-	
-	item WaltherPPKMag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Walther PPK Magazine (.380ACP),
-		Icon		=	WaltherPPKMag,
-	}
-	
-	item XD40Mag
-	{
-		CanStack	=	FALSE,
-		Weight		=	0.2,
-		Type		=	Normal,
-		DisplayName	=	Springfield XD-40 Magazine (.40),
-		Icon		=	XD40Mag,
-	}
+    item WaltherP22Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Walther P22 Magazine (.22),
+        Icon        =   WaltherP22Mag,
+    }
+    
+    item WaltherPPKMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Walther PPK Magazine (.380ACP),
+        Icon        =   WaltherPPKMag,
+    }
+    
+    item XD40Mag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Springfield XD-40 Magazine (.40),
+        Icon        =   XD40Mag,
+    }
 
 
 }
