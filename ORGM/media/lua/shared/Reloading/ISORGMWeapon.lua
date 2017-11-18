@@ -489,10 +489,8 @@ end
 ]]
 function ISORGMWeapon:unloadStart(char, square, difficulty)
     -- self:testDebug("unloadStart")
-    if self.actionType == "Rotary" then
-        self:openCylinder(char, true)
-    end
     self.unloadInProgress = true
+
 end
 
 
@@ -502,15 +500,16 @@ end
 function ISORGMWeapon:unloadPerform(char, square, difficulty, weapon)
     -- self:testDebug("unloadPerform")
     if self.actionType == "Rotary" then
+        self:openCylinder(char, true)
         -- revolvers drop them all at once
         self:emptyMagazineAtOnce(char, false)
-        self.reloadInProgress = false
+        self.unloadInProgress = false
         self:syncReloadableToItem(weapon)
         return false
     end
     -- we can just rack the weapon to unload it
     self:rackingPerform(char, square, weapon)
-    self.reloadInProgress = false
+    self.unloadInProgress = false
     self:syncReloadableToItem(weapon)
     if(self.currentCapacity == 0 and self.roundChambered == 0) then
         self.loadedAmmo = nil
@@ -523,6 +522,7 @@ end
 
 ]]
 function ISORGMWeapon:isChainUnloading()
+    if self.actionType == "Rotary" then return false end
     return true
 end
 
@@ -711,7 +711,7 @@ end
 
 ]]
 function ISORGMWeapon:canRack(char)
-    -- self:testDebug("canRack")
+    --self:testDebug("canRack")
     
     if (self.triggerType == "SingleAction" and self.hammerCocked == 0) then
         return true

@@ -17,6 +17,7 @@ require "Reloading/ISReloadManager"
 
 ]]
 function ISReloadManager:isWeaponUnloadable()
+    --if not self.unloadAction then 
     local playerObj = getSpecificPlayer(self.playerid)
     self.reloadWeapon = playerObj:getPrimaryHandItem()
     if(self.reloadWeapon == nil) then
@@ -24,7 +25,7 @@ function ISReloadManager:isWeaponUnloadable()
     end
 
     self.reloadable = ReloadUtil:getReloadableWeapon(self.reloadWeapon, playerObj)
-    if self.reloadable == nil then return false; end
+    if self.reloadable == nil then return false end
     local isUnloadable = self.reloadable:canUnload(playerObj)
     self.reloadable = nil
     return isUnloadable
@@ -93,7 +94,6 @@ end
 ]]
 function ISReloadManager:startUnloadFromUi(item)
     if (self:reloadStarted() or self:rackingStarted() or self:unloadStarted()) then return end
-    --print("Attempting unload")
     self.reloadWeapon = item
     self:startUnloading()
 end

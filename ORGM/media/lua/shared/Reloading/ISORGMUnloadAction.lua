@@ -28,6 +28,7 @@ function ORGMUnloadAction:perform()
 	self.mgr.reloadable = self.reloadable -- goes nil sometimes 
     -- note by fenris on the above PZ dev comment: maybe if you quit setting it to nil in the manager? specifically you guys have hooked a function 
     -- into OnPlayerUpdate, which calls :checkReloadConditions, which in turn calls :isWeaponReloadable....which sets it to nil.
+    self.mgr.reloadWeapon = self.reloadWeapon
 	self.mgr:stopUnloadSuccess()
 	-- needed to remove from queue / start next.
 	ISBaseTimedAction.perform(self)
@@ -44,6 +45,15 @@ function ORGMUnloadAction:new(unloadManager, char, square, time)
 	o.maxTime = time
 	-- Custom fields
 	o.mgr = unloadManager
+    local moodles = char:getMoodles();
+    local panicLevel = moodles:getMoodleLevel(MoodleType.Panic);
+    if instanceof(unloadManager.reloadWeapon, "HandWeapon") then
+        o.maxTime = unloadManager.reloadWeapon:getReloadTime() * char:getReloadingMod() + panicLevel*30
+    else
+        o.maxTime = time;
+    end
+
+
 	o.reloadable = unloadManager.reloadable
 	o.reloadWeapon = unloadManager.reloadWeapon
 	o.square = square
