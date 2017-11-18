@@ -409,6 +409,16 @@ function ISORGMWeapon:getReloadTime()
     return self.reloadTime
 end
 
+function ISORGMWeapon:getReloadText()
+    if self.containsClip == nil then
+        return getText('ContextMenu_Reload')
+    elseif self.containsClip == 1 then
+        return getText('ContextMenu_EjectMagazine')
+    else
+        return getText('ContextMenu_InsertMagazine')
+    end
+
+end
 
 --[[ ISORGMWeapon:isChainReloading()
     
