@@ -183,7 +183,7 @@ for roomName, room in pairs(SuburbsDistributions) do
     end
 end
 
-
+--[[
 for roomName, room in pairs(SuburbsDistributions) do
     if room.items ~= nil then
         local index=1;
@@ -203,3 +203,4 @@ for roomName, room in pairs(SuburbsDistributions) do
         end
     end
 end
+]]
