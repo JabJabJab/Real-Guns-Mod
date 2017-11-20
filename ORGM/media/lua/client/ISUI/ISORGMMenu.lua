@@ -39,7 +39,9 @@ end
 
 local OnBarrelToggle = function(item, player, data, reloadable)
     if reloadable.isOpen == 1 then
+        reloadable:openBreak(player, true, item)
     else
+        reloadable:closeBreak(player, true, item)
     end
     reloadable:syncReloadableToItem(item)
 end

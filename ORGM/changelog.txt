@@ -6,6 +6,8 @@ Changes of Note:
 
 * Many corrections and bug fixes.
 
+* Weapon and ammo spawn rates reduced, and now obey sandbox weapon loot rarity settings.
+
 * Added FMJ and HP versions of each round, with different stats
 
 * Conversion of guns to full-auto/semi-auto, pump/semi, and ammo conversions are no longer required.
@@ -92,8 +94,6 @@ Changes for modders and editors:
 
 ********************************************************************************************************
 TODO: 
-* server side configuration .ini file to set various loot frequency per container type, and forced reloading difficulty
-* tie item spawning into server frequency settings
 * fix speedloaders and stripperclips
 * add empty shells
 * add more guns and ammo types!
