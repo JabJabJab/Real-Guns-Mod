@@ -133,6 +133,14 @@ local OnResetWeapon = function(item, player, data, reloadable)
     reloadable:syncItemToReloadable(item)
     player:Say("weapon reset")
 end
+local OnAdminFillAmmo = function(item, player, data, ammoType)
+    data.currentCapacity = data.maxCapacity
+    for i=1, data.maxCapacity do
+        data.magazineData[i] = ammoType
+    end
+    data.loadedAmmo = ammoType
+--    dat:syncItemToReloadable(item)
+end
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
@@ -209,6 +217,9 @@ Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
         --context:addOption("* Debug Weapon", item, OnDebugWeapon, playerObj, data, reloadable)
         --context:addOption("* Test Function", item, OnTestFunction, playerObj, data, reloadable)
         --context:addOption("* Reset To Defaults", item, OnResetWeapon, playerObj, data, reloadable)
+        if isAdmin() then
+            context:addOption("Admin - Full Ammo", item, OnAdminFillAmmo, playerObj, data, reloadable)
+        end
     end
     
 
@@ -235,6 +246,10 @@ Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
                 -- need to find the item description
                 subMenuAmmo:addOption(getScriptManager():FindItem('ORGM.' .. value):getDisplayName(), item, OnSetPreferredAmmo, player, data, reloadable, value)
             end
+            if isAdmin() then
+                context:addOption("Admin - Full Ammo", item, OnAdminFillAmmo, playerObj, data, altTable[1])
+            end
+
         end
         
         ---------------------
