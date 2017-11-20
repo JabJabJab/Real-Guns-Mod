@@ -16,33 +16,22 @@
 WeaponUpgrades = { }
 
 --[[ AllRoundsTable
+
     A list of all rounds to use when spawning random ammo
     This table is automatically built on startup from ORGMAmmoStatsTable
 ]]
 local AllRoundsTable = { }
 
 --[[ WeaponsTable
+
     A list of all guns, sorted into civilian, police and military, and rarity.
-    TODO: this should actually be merged into the ORGMMasterWeaponTable then automatically built on load.
-    I dislike having to define crap in multiple places.
+    This table is automatically built on startup from ORGMMasterWeaponTable
     
 ]]
 local WeaponsTable = {
-    Civilian = {
-        Common = {},
-        Rare = {},
-        VeryRare = {},
-    },
-    Police = {
-        Common = {},
-        Rare = {},
-        VeryRare = {},
-    },
-    Military = { 
-        Common = {},
-        Rare = {},
-        VeryRare = {},
-    },
+    Civilian = { Common = {},Rare = {}, VeryRare = {} },
+    Police = { Common = {}, Rare = {}, VeryRare = {} },
+    Military = { Common = {}, Rare = {}, VeryRare = {} },
 }
 
 --[[ AllModsTable
@@ -88,7 +77,7 @@ local Rnd = function(maxValue)
     return ZombRand(maxValue) + 1;
 end
 
---[[ SpawnReloadable(container, itemType, ammoType, spawnChance, maxCount, lootType)
+--[[ SpawnReloadable(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
 
     Spawns a reloadable weapon or magazine.
     
@@ -97,12 +86,13 @@ end
     ammoType = the bullets to load into the gun (depending on lootType)
     spawnChance = the % chance to spawn the item.
     maxCount = the max number of items to spawn. A random # is chosen between 1 and maxCount
-    lootType = Generally the room or container the loot is spawning in. lootType controls if
-        the gun/magazine is loaded with ammoType
+    isLoaded = controls if the gun/magazine is loaded with ammoType
 
 ]]
-local SpawnReloadable = function(container, itemType, ammoType, spawnChance, maxCount, lootType)
-    if Rnd(100) > spawnChance then return end
+local SpawnReloadable = function(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
+    -- ZomboidGlobals.WeaponLootModifier
+    -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
+    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
     -- TODO: readd code that sets the weapon's condition
     local count = Rnd(maxCount)
     
@@ -122,20 +112,8 @@ local SpawnReloadable = function(container, itemType, ammoType, spawnChance, max
                 maxammo = maxammo + 1
             end
             
-            if lootType == "Body" then
+            if isLoaded then
                 if Rnd(10) >= 3 then fill = Rnd(maxammo) end
-                
-            elseif lootType == "House" then
-                if Rnd(10) > 7 then fill = maxammo end
-            
-            elseif lootType == "Gas" then
-                fill = maxammo
-            
-            elseif lootType == "Store" then
-                fill = 0
-            
-            elseif lootType == "Police" then
-                fill = 0
             end
             
             if fill > 0 then
@@ -192,7 +170,7 @@ end
 
 ]]
 local SpawnItem = function(container, itemType, spawnChance, maxCount)
-    if Rnd(100) > spawnChance then return end
+    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
     local count = Rnd(maxCount)
     for i=1, count do
         container:AddItem('ORGM.' .. itemType)
@@ -263,10 +241,10 @@ end
 ]]
 local AddToCorpse = function(container)
     local choice = SelectGun(80, 14, 6)
-    SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Body") -- has gun
-    SpawnMags(container, choice.gun, choice.ammo, 70, 3, "Body") -- has mags
-    SpawnItem(container, choice.ammo, 100, 15) -- loose shells
-    SpawnItem(container, choice.ammo .. "_Box", 10, 1) -- has box
+    SpawnReloadable(container, choice.gun, choice.ammo, 3, 1, true) -- has gun
+    SpawnMags(container, choice.gun, choice.ammo, 1, 3, true) -- has mags
+    SpawnItem(container, choice.ammo, 3, 15) -- loose shells
+    SpawnItem(container, choice.ammo .. "_Box", 1, 1) -- has box
 end
 
 
@@ -277,39 +255,178 @@ end
 ]]
 local AddToCivRoom = function(container)
     local choice = SelectGun(80, 14, 6)
-    SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, "House") -- has gun
-    SpawnMags(container, choice.gun, choice.ammo, 5, 1, "House") -- has mags
-    SpawnItem(container, choice.ammo, 20, 29) -- loose shells
-    SpawnItem(container, choice.ammo .. "_Box", 10, 1) -- has box
-    SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 5, 1) -- has a mod
-    SpawnItem(container, RepairTable[Rnd(#RepairTable)], 5, 1) -- has repair stuff
+    SpawnReloadable(container, choice.gun, choice.ammo, 3, 1, true) -- has gun
+    SpawnMags(container, choice.gun, choice.ammo, 1, 1, true) -- has mags
+    SpawnItem(container, choice.ammo, 2, 29) -- loose shells
+    SpawnItem(container, choice.ammo .. "_Box", 1, 1) -- has box
+    SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 1, 1) -- has a mod
+    SpawnItem(container, RepairTable[Rnd(#RepairTable)], 1, 1) -- has repair stuff
 end
 
 
---[[ SpawnAmmoStorage(container)
-    merged function for adding lots of ammo to a container.
+local SpawnRandomBox = function(container, spawnChance)
+    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
+    container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box')
+end
+
+
+local SpawnRandomCan = function(container, spawnChance)
+    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
+    container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Can')
+end
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+--[[
+
 ]]
-local SpawnAmmoStorage = function(container)
-    if Rnd(20) >= 1 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 2 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 3 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 4 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 5 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 6 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 7 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 9 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 11 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 13 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 15 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box') end
-    if Rnd(20) >= 17 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Can') end
-    if Rnd(20) >= 19 then container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Can') end
-    if Rnd(4) >= 1 then container:AddItem(RepairTable[Rnd(#RepairTable)]) end
-end
+Events.OnFillContainer.Add(function(roomName, containerType, container)
+    if roomName == "all" and containerType == "inventorymale" then
+        AddToCorpse(container)
+    elseif roomName == "all" and containerType == "inventoryfemale" then
+        AddToCorpse(container)
+    elseif roomName == "bedroom" and containerType == "wardrobe" then
+        AddToCivRoom(container)
+    elseif roomName == "zippeestore" and containerType == "counter" then
+        AddToCivRoom(container)
+    elseif roomName == "fossoil" and containerType == "counter" then
+        AddToCivRoom(container)
+    elseif roomName == "gasstore" and containerType == "counter" then
+        AddToCivRoom(container)
+    elseif roomName == "bar" and containerType == "counter" then
+        AddToCivRoom(container)
+    elseif roomName == "policestorage" then
+        local count = Rnd(3)
+        while count ~= 0 do
+            local choice = SelectGun(0, 70, 30)
+            SpawnReloadable(container, choice.gun, choice.ammo, 60, 1, false)
+            SpawnMags(container, choice.gun, choice.ammo, 80, 2, false)
 
+            SpawnItem(container, choice.ammo .. "_Box", 80, 4)
+            SpawnItem(container, choice.ammo .. "_Can", 20, 1)
+            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 30, 2)
+            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 40, 2)
+            if Rnd(10) > 4 then count = count -1 end
+        end
+    elseif roomName == "gunstore" then
+        if containerType == "locker" then
+            SpawnRandomBox(container, 70)
+            SpawnRandomBox(container, 60)
+            SpawnRandomBox(container, 50)
+            SpawnRandomBox(container, 40)
+            SpawnRandomBox(container, 30)
+            SpawnRandomCan(container, 10)
+            SpawnRandomCan(container, 5)
+            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+            
+        elseif containerType == "counter" then
+            SpawnRandomBox(container, 70)
+            SpawnRandomBox(container, 60)
+            SpawnRandomBox(container, 50)
+            SpawnRandomBox(container, 40)
+            SpawnRandomBox(container, 30)
+            SpawnRandomCan(container, 10)
+            SpawnRandomCan(container, 5)
+            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+            
+        elseif containerType == "displaycase" or containerType == "metal_shelves" then
+            local choice = SelectGun(85, 10, 5)
+            SpawnReloadable(container, choice.gun, choice.ammo, 60, 1, false)
+            SpawnMags(container, choice.gun, choice.ammo, 40, 2, false)
+            choice = SelectGun(85, 10, 5)
+            SpawnReloadable(container, choice.gun, choice.ammo, 40, 1, false)
+            SpawnMags(container, choice.gun, choice.ammo, 30, 2, false)
+            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 40, 2)
+            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 30, 2)
+        end
+    elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
+        local choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 60, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 40, 2, false)
+        choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 40, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 30, 2, false)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 40, 2)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 30, 2)
+
+        SpawnRandomBox(container, 70)
+        SpawnRandomBox(container, 60)
+        SpawnRandomBox(container, 50)
+        SpawnRandomBox(container, 40)
+        SpawnRandomBox(container, 30)
+        SpawnRandomCan(container, 10)
+        SpawnRandomCan(container, 5)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+    
+    elseif roomName == "storageunit" and containerType == "crate" then
+        local choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
+        choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 5, 2)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 2)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 10, 2)
+
+        SpawnRandomBox(container, 70)
+        SpawnRandomBox(container, 60)
+        SpawnRandomBox(container, 50)
+        SpawnRandomBox(container, 40)
+        SpawnRandomBox(container, 30)
+        SpawnRandomCan(container, 10)
+        SpawnRandomCan(container, 5)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+
+    elseif roomName == "garagestorage" and containerType == "smallbox" then
+        local choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
+        choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 5, 2)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 2)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 10, 2)
+
+        SpawnRandomBox(container, 70)
+        SpawnRandomBox(container, 60)
+        SpawnRandomBox(container, 50)
+        SpawnRandomBox(container, 40)
+        SpawnRandomBox(container, 30)
+        SpawnRandomCan(container, 10)
+        SpawnRandomCan(container, 5)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+
+    elseif roomName == "hunting" and containerType == "metal_shelves" or containerType == "locker" then
+        local choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 30, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 10, 3, false)
+        choice = SelectGun(85, 10, 5)
+        SpawnReloadable(container, choice.gun, choice.ammo, 20, 1, false)
+        SpawnMags(container, choice.gun, choice.ammo, 8, 3, false)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 15, 2)
+        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 1)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+
+        SpawnRandomBox(container, 70)
+        SpawnRandomBox(container, 60)
+        SpawnRandomBox(container, 50)
+        SpawnRandomBox(container, 40)
+        SpawnRandomBox(container, 30)
+        SpawnRandomCan(container, 10)
+        SpawnRandomCan(container, 5)
+        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+
+    end
+end)
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
+-- auto build all required tables
 do
     
     local modItems = {}
@@ -349,129 +466,3 @@ do
     end
 end
 
-
---[[
-
-]]
-Events.OnFillContainer.Add(function(roomName, containerType, container)
-    if roomName == "all" and containerType == "inventorymale" then
-        if Rnd(100) <= 2 then AddToCorpse(container) end -- 2% chance of a gun + ammo
-    elseif roomName == "all" and containerType == "inventoryfemale" then
-        if Rnd(100) <= 2 then AddToCorpse(container)  end -- 2% chance of a gun + ammo
-    elseif roomName == "bedroom" and containerType == "wardrobe" then
-        if Rnd(100) <= 30 then AddToCivRoom(container) end -- 30% chance to call the function. Note the function also has its own % chances to spawn each item
-    elseif roomName == "zippeestore" and containerType == "counter" then
-        if Rnd(100) <= 10 then AddToCivRoom(container) end -- 10% chance to call the function. Note the function also has its own % chances to spawn each item
-    elseif roomName == "fossoil" and containerType == "counter" then
-        if Rnd(100) <= 10 then AddToCivRoom(container) end -- 10% chance to call the function. Note the function also has its own % chances to spawn each item
-    elseif roomName == "gasstore" and containerType == "counter" then
-        if Rnd(100) <= 10 then AddToCivRoom(container) end -- 10% chance to call the function. Note the function also has its own % chances to spawn each item
-    elseif roomName == "bar" and containerType == "counter" then
-        if Rnd(100) <= 15 then AddToCivRoom(container) end -- 10% chance to call the function. Note the function also has its own % chances to spawn each item
-    elseif roomName == "policestorage" then
-        local count = Rnd(3)
-        while count ~= 0 do
-            local choice = SelectGun(0, 70, 30)
-            SpawnReloadable(container, choice.gun, choice.ammo, 60, 1, "Police")
-            SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Police") -- has mags
-
-            SpawnItem(container, choice.ammo .. "_Box", 80, 4) -- has box
-            SpawnItem(container, choice.ammo .. "_Can", 20, 1)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 30, 2)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 40, 2)
-            if Rnd(10) > 5 then count = count -1 end
-        end
-    elseif roomName == "gunstore" then
-        if containerType == "locker" then
-            SpawnAmmoStorage(container)
-            
-        elseif containerType == "counter" then
-            SpawnAmmoStorage(container)
-            
-        elseif containerType == "displaycase" then
-            if Rnd(100) <= 95 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 2, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            if Rnd(100) <= 75 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 90, 2)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
-        end
-    elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
-        if Rnd(100) <= 95 then
-            local choice = SelectGun(85, 10, 5)
-            SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-            SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-        end
-        if Rnd(100) <= 75 then
-            local choice = SelectGun(85, 10, 5)
-            SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-            SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-        end
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 90, 2)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
-
-        SpawnAmmoStorage(container)
-    elseif roomName == "storageunit" and containerType == "crate" then
-        if Rnd(100) <= 15 then
-            if Rnd(100) <= 95 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 3, "Store") -- has mags
-            end
-            if Rnd(100) <= 50 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 3, "Store") -- has mags
-            end
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 90, 2)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 20, 1)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 1)
-
-            SpawnAmmoStorage(container)
-        end
-    elseif roomName == "garagestorage" and containerType == "smallbox" then
-        if Rnd(100) <= 15 then
-            if Rnd(100) <= 95 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            if Rnd(100) <= 50 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 90, 2)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 20, 1)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 1)
-
-            SpawnAmmoStorage(container)
-        end
-
-    elseif roomName == "hunting" and containerType == "metal_shelves" then
-        if Rnd(100) <= 65 then
-            if Rnd(100) <= 95 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            if Rnd(100) <= 75 then
-                local choice = SelectGun(85, 10, 5)
-                SpawnReloadable(container, choice.gun, choice.ammo, 100, 1, "Store")
-                SpawnMags(container, choice.gun, choice.ammo, 80, 2, "Store") -- has mags
-            end
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 90, 2)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 20, 1)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 1)
-
-            SpawnAmmoStorage(container)
-        end
-    end
-end
-)
