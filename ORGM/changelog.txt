@@ -8,6 +8,8 @@ Changes of Note:
 
 * Weapon and ammo spawn rates reduced, and now obey sandbox weapon loot rarity settings.
 
+* Distant gunshot sounds now properly play in MP again.
+
 * Added FMJ and HP versions of each round, with different stats
 
 * Conversion of guns to full-auto/semi-auto, pump/semi, and ammo conversions are no longer required.
