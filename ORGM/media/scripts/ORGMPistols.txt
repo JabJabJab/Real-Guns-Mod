@@ -846,7 +846,7 @@ module ORGM
 
     item HKMK23
     {
-        AmmoType    =   HK23Mag,
+        AmmoType    =   HKMK23Mag,
         ImpactSound =   null,
         MaxRange    =   11,
         WeaponSprite    =   glock22,
