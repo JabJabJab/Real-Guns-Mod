@@ -9,82 +9,83 @@ for roomName, room in pairs(SuburbsDistributions) do
     if room.items ~= nil then
         local index=1;
         while index <= #room.items do
-            if room.items[index] == "Pistol" then 
+            local thisItem = room.items[index]
+            if thisItem == "Pistol" or thisItem == "Base.Pistol" then 
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "Shotgun" then
+            elseif thisItem == "Shotgun" or thisItem == "Base.Shotgun" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "Sawnoff" then
+            elseif thisItem == "Sawnoff" or thisItem == "Base.Sawnoff" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "VarmintRifle" then
+            elseif thisItem == "VarmintRifle" or thisItem == "Base.VarmintRifle" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "HuntingRifle" then
+            elseif thisItem == "HuntingRifle" or thisItem == "Base.HuntingRifle" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "Bullets9mm" then
+            elseif thisItem == "Bullets9mm" or thisItem == "Base.Bullets9mm" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "ShotgunShells" then
+            elseif thisItem == "ShotgunShells" or thisItem == "Base.ShotgunShells" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "223Bullets" then
+            elseif thisItem == "223Bullets" or thisItem == "Base.223Bullets" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "308Bullets" then
+            elseif thisItem == "308Bullets" or thisItem == "Base.308Bullets" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "BulletsBox" then
+            elseif thisItem == "BulletsBox" or thisItem == "Base.BulletsBox" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "ShotgunShellsBox" then
+            elseif thisItem == "ShotgunShellsBox" or thisItem == "Base.ShotgunShellsBox" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "223Box" then
+            elseif thisItem == "223Box" or thisItem == "Base.223Box" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "308Box" then
+            elseif thisItem == "308Box" or thisItem == "Base.308Box" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "HuntingRifleExtraClip" then
+            elseif thisItem == "HuntingRifleExtraClip" or thisItem == "Base.HuntingRifleExtraClip" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "IronSight" then
+            elseif thisItem == "IronSight" or thisItem == "Base.IronSight" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "x2Scope" then
+            elseif thisItem == "x2Scope" or thisItem == "Base.x2Scope" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "x4Scope" then
+            elseif thisItem == "x4Scope" or thisItem == "Base.x4Scope" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "x8Scope" then
+            elseif thisItem == "x8Scope" or thisItem == "Base.x8Scope" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "AmmoStraps" then
+            elseif thisItem == "AmmoStraps" or thisItem == "Base.AmmoStraps" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "Sling" then
+            elseif thisItem == "Sling" or thisItem == "Base.Sling" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "FiberglassStock" then
+            elseif thisItem == "FiberglassStock" or thisItem == "Base.FiberglassStock" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "RecoilPad" then
+            elseif thisItem == "RecoilPad" or thisItem == "Base.RecoilPad" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "Laser" then
+            elseif thisItem == "Laser" or thisItem == "Base.Laser" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "RedDot" then
+            elseif thisItem == "RedDot" or thisItem == "Base.RedDot" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "ChokeTubeFull" then
+            elseif thisItem == "ChokeTubeFull" or thisItem == "Base.ChokeTubeFull" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
-            elseif room.items[index] == "ChokeTubeImproved" then
+            elseif thisItem == "ChokeTubeImproved" or thisItem == "Base.ChokeTubeImproved" then
                 table.remove(room.items, index);
                 table.remove(room.items, index);
             else
@@ -96,82 +97,83 @@ for roomName, room in pairs(SuburbsDistributions) do
             if container.items ~= nil then
                 local index=1;
                 while index <= #container.items do
-                    if container.items[index] == "Pistol" then 
+                    local thisItem = container.items[index]
+                    if thisItem == "Pistol" or thisItem == "Base.Pistol" then 
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "Shotgun" then
+                    elseif thisItem == "Shotgun" or thisItem == "Base.Shotgun" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "Sawnoff" then
+                    elseif thisItem == "Sawnoff" or thisItem == "Base.Sawnoff" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "VarmintRifle" then
+                    elseif thisItem == "VarmintRifle" or thisItem == "Base.VarmintRifle" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "HuntingRifle" then
+                    elseif thisItem == "HuntingRifle" or thisItem == "Base.HuntingRifle" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "Bullets9mm" then
+                    elseif thisItem == "Bullets9mm" or thisItem == "Base.Bullets9mm" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "ShotgunShells" then
+                    elseif thisItem == "ShotgunShells" or thisItem == "Base.ShotgunShells" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "223Bullets" then
+                    elseif thisItem == "223Bullets" or thisItem == "Base.223Bullets" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "308Bullets" then
+                    elseif thisItem == "308Bullets" or thisItem == "Base.308Bullets" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "BulletsBox" then
+                    elseif thisItem == "BulletsBox" or thisItem == "Base.BulletsBox" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "ShotgunShellsBox" then
+                    elseif thisItem == "ShotgunShellsBox" or thisItem == "Base.ShotgunShellsBox" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "223Box" then
+                    elseif thisItem == "223Box" or thisItem == "Base.223Box" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "308Box" then
+                    elseif thisItem == "308Box" or thisItem == "Base.308Box" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "HuntingRifleExtraClip" then
+                    elseif thisItem == "HuntingRifleExtraClip" or thisItem == "Base.HuntingRifleExtraClip" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "IronSight" then
+                    elseif thisItem == "IronSight" or thisItem == "Base.IronSight" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "x2Scope" then
+                    elseif thisItem == "x2Scope" or thisItem == "Base.x2Scope" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "x4Scope" then
+                    elseif thisItem == "x4Scope" or thisItem == "Base.x4Scope" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "x8Scope" then
+                    elseif thisItem == "x8Scope" or thisItem == "Base.x8Scope" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "AmmoStraps" then
+                    elseif thisItem == "AmmoStraps" or thisItem == "Base.AmmoStraps" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "Sling" then
+                    elseif thisItem == "Sling" or thisItem == "Base.Sling" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "FiberglassStock" then
+                    elseif thisItem == "FiberglassStock" or thisItem == "Base.FiberglassStock" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "RecoilPad" then
+                    elseif thisItem == "RecoilPad" or thisItem == "Base.RecoilPad" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "Laser" then
+                    elseif thisItem == "Laser" or thisItem == "Base.Laser" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "RedDot" then
+                    elseif thisItem == "RedDot" or thisItem == "Base.RedDot" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "ChokeTubeFull" then
+                    elseif thisItem == "ChokeTubeFull" or thisItem == "Base.ChokeTubeFull" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
-                    elseif container.items[index] == "ChokeTubeImproved" then
+                    elseif thisItem == "ChokeTubeImproved" or thisItem == "Base.ChokeTubeImproved" then
                         table.remove(container.items, index);
                         table.remove(container.items, index);
                     else
