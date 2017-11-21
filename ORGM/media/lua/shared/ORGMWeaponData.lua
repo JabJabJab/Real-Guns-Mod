@@ -25,84 +25,31 @@
 
 ]]
 local GunTypes = {
-    ["Rotary-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Rotary"
-    },
-    ["Rotary-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Rotary"
-    },
-    ["Rotary-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Rotary"
-    },
-    ["Auto-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Auto"
-    },
-    ["Auto-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Auto"
-    },
-    ["Auto-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Auto"
-    },
-    ["Bolt-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Bolt"
-    },
-    ["Bolt-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Bolt"
-    },
-    ["Bolt-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Bolt",
-    },
-    ["Lever-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Lever",
-    },
-    ["Lever-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Lever"
-    },
-    ["Lever-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Lever"
-    },
-    ["Pump-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Pump"
-    },
-    ["Pump-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Pump"
-    },
-    ["Pump-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Pump"
-    },
-    ["Break-SA"] = {
-        triggerType = "SingleAction",
-        actionType = "Break"
-    },    
-    ["Break-DA"] = {
-        triggerType = "DoubleAction",
-        actionType = "Break"
-    },
-    ["Break-DAO"] = {
-        triggerType = "DoubleActionOnly",
-        actionType = "Break"
-    }    
+    ["Rotary-SA"] =     { triggerType = "SingleAction",     actionType = "Rotary" },
+    ["Rotary-DA"] =     { triggerType = "DoubleAction",     actionType = "Rotary" },
+    ["Rotary-DAO"] =    { triggerType = "DoubleActionOnly", actionType = "Rotary" },
+    ["Auto-SA"] =       { triggerType = "SingleAction",     actionType = "Auto" },
+    ["Auto-DA"] =       { triggerType = "DoubleAction",     actionType = "Auto" },
+    ["Auto-DAO"] =      { triggerType = "DoubleActionOnly", actionType = "Auto" },
+    ["Bolt-SA"] =       { triggerType = "SingleAction",     actionType = "Bolt" },
+    ["Bolt-DA"] =       { triggerType = "DoubleAction",     actionType = "Bolt" },
+    ["Bolt-DAO"] =      { triggerType = "DoubleActionOnly", actionType = "Bolt", },
+    ["Lever-SA"] =      { triggerType = "SingleAction",     actionType = "Lever", },
+    ["Lever-DA"] =      { triggerType = "DoubleAction",     actionType = "Lever" },
+    ["Lever-DAO"] =     { triggerType = "DoubleActionOnly", actionType = "Lever" },
+    ["Pump-SA"] =       { triggerType = "SingleAction",     actionType = "Pump" },
+    ["Pump-DA"] =       { triggerType = "DoubleAction",     actionType = "Pump" },
+    ["Pump-DAO"] =      { triggerType = "DoubleActionOnly", actionType = "Pump" },
+    ["Break-SA"] =      { triggerType = "SingleAction",     actionType = "Break" },
+    ["Break-DA"] =      { triggerType = "DoubleAction",     actionType = "Break" },
+    ["Break-DAO"] =     { triggerType = "DoubleActionOnly", actionType = "Break" },
 }
 
 --[[ The SoundProfiles table contains some basic sound profiles for working the action.
     Any key = value pairs here can be overridden by specific weapons, each key is only set in the 
     weapons data table if it doesn't already exist.
     Note: shootSound is not covered in these profiles, as they are specific to each weapon.
+    It doesnt look like its needed anyways
 ]]
 local SoundProfiles = {
     ["Revolver"] = {
@@ -230,9 +177,12 @@ local SoundProfiles = {
     }
 }
 
+local SoundBanksSetupTable = { } -- local table of sounds we have to setup OnLoadSoundBanks event
+
 --[[ The Alternate Ammo Table (Global)
-    This table defines what ammo can be used as replacements for other ammo. When searching the player 
-    inventory to find ammo to load into the gun/magazine, it will search these rounds in order.
+    This table defines what ammo can be used as replacements for the generic dummy ammo. When 
+    searching the player inventory to find ammo to load into the gun/magazine, it will search 
+    these rounds in order.
 ]]
 ORGMAlternateAmmoTable = {
     ["Ammo_117BB"]      = {"Ammo_117BB"},
@@ -265,9 +215,7 @@ ORGMAlternateAmmoTable = {
 --[[
     TODO: fill out this table.
 ]]
-ORGMAlternateMagTable = {
-
-}
+ORGMAlternateMagTable = {  }
 
 --[[ The Ammo Stats Table (Global)
     This is used for guns to change attributes based on ammo.  If a round is different from the last round 
@@ -331,11 +279,10 @@ ORGMAmmoStatsTable = {
     This table contains all magazine data (ammoType, maxCapacity, etc), it lists clipIcon and clipName 
     originally listed in each weapon's table (since multiple guns often use the same mag, it makes sense to
     just move those keys to the magazine instead).
-    It also contains any caliber conversion data (ie: 7.62 to .308)
 
     MagName = {
-        name = "", -- clipName used by any weapon that uses this mag
-        icon = "", -- clipIcon used by any weapon that uses this mag
+        name = "", -- clipName used by any weapon that uses this mag, auto generated from the matching script item
+        icon = "", -- clipIcon used by any weapon that uses this mag, auto generated from the matching script item
         data = { -- table passed to ReloadUtil:addMagazineType()
             -- any key = value pair that doesn't exist here (but should) is set to a default
             ammoType = "",
@@ -345,616 +292,79 @@ ORGMAmmoStatsTable = {
 ]]
 
 ORGMMasterMagTable = {
-    ["AIAW308Mag"] = {
-        name = 'AI-AW .308 Magazine (.308)',
-        icon = 'AIAW308Mag',
-        data = { 
-            ammoType = 'Ammo_308Winchester',
-            maxCapacity = 5,
-        },
-    },
-    ["AKMMag"] = {
-        name = 'AKM Magazine (7.62x39)',
-        icon = 'AKMMag',
-        data = {
-            ammoType = 'Ammo_762x39mm',
-            maxCapacity = 30,
-        },
-    },
-    ["AM180Mag"] = {
-        name = 'American-180 Magazine (.22)',
-        icon = 'AM180Mag',
-        data = {
-            ammoType = 'Ammo_22LR',
-            maxCapacity = 177,
-        },
-    },
-    ["AR10Mag"] = {
-        name = 'AR-10 Magazine (7.62x51)',
-        icon = 'AR10Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 20,
-        },
-    },
-    ["AutomagVMag"] = {
-        name = 'AMT Automag V Magazine (.50)',
-        icon = 'AutomagVMag',
-        data = {
-            ammoType = 'Ammo_50AE',
-            maxCapacity = 5,
-        },
-    },
-    ["BBPistolMag"] = {
-        name = 'Daisy Powerline Model 201 Magazine (.117 BBs)',
-        icon = 'BBPistolMag',
-        data = {
-            ammoType = 'Ammo_117BB',
-            maxCapacity = 35,
-            reloadTime = 5,
-        },
-    },
-    ["Ber92Mag"] = {
-        name = 'Beretta 92 Magazine (9mm)',
-        icon = 'Ber92Mag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 15,
-        },
-    },
-    ["Ber93RMag"] = {
-        name = 'Beretta 93R Magazine (9mm)',
-        icon = 'Ber93RMag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 32,
-        },
-    },
-    ["BrenTenMag"] = {
-        name = 'Bren Ten Magazine (10mm)',
-        icon = 'BrenTenMag',
-        data = {
-            ammoType = 'Ammo_10x25mm',
-            maxCapacity = 12,
-        },
-    },
-    ["BrownHPMag"] = {
-        name = 'Browning HP Magazine (9mm)',
-        icon = 'BrownHPMag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 13,
-        },
-    },
-    ["Colt38SMag"] = {
-        name = 'Colt Commander Super 38 Magazine (.38S)',
-        icon = 'Colt38SMag',
-        data = {
-            ammoType = 'Ammo_38Super',
-            maxCapacity = 9,
-        },
-    },
-    ["ColtDeltaMag"] = {
-        name = 'Colt Delta Elite Magazine (10mm)',
-        icon = 'ColtDeltaMag',
-        data = {
-            ammoType = 'Ammo_10x25mm',
-            maxCapacity = 8,
-        },
-    },
-    ["CZ75Mag"] = {
-        name = 'CZ 75 Magazine (.40)',
-        icon = 'CZ75Mag',
-        data = {
-            ammoType = 'Ammo_40SW',
-            maxCapacity = 10,
-        },
-    },
-    ["DEagleMag"] = {
-        name = 'IMI Desert Eagle Magazine (.44)',
-        icon = 'DEagleMag',
-        data = {
-            ammoType = 'Ammo_44Magnum',
-            maxCapacity = 8,
-        },
-    },
-    ["DEagleXIXMag"] = {
-        name = 'IMI Desert Eagle XIX Magazine (.50)',
-        icon = 'DEagleXIXMag',
-        data = {
-            ammoType = 'Ammo_50AE',
-            maxCapacity = 7,
-        },
-    },
-    ["FN57Mag"] = {
-        name = 'FN Five-seven Magazine (5.7mm)',
-        icon = 'FN57Mag',
-        data = {
-            ammoType = 'Ammo_57x28mm',
-            maxCapacity = 20,
-        },
-    },
-    ["FNFALAMag"] = {
-        name = 'FN FAL Magazine (7.62x51mm)',
-        icon = 'FNFALMag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 20,
-        },
-    },
-    ["FNFALMag"] = {
-        name = 'FSL LSR Magazine (.308)',
-        icon = 'FNFALMag',
-        data = {
-            ammoType = 'Ammo_308Winchester',
-            maxCapacity = 20,
-        },
-    },
-    ["FNP90Mag"] = {
-        name = 'FN P90 Magazine (5.7mm)',
-        icon = 'FNP90Mag',
-        data = {
-            ammoType = 'Ammo_57x28mm',
-            maxCapacity = 50,
-        },
-    },
-    ["GarandClip"] = {
-        name = 'M1 Garand Clip (.30-06)',
-        icon = 'GarandClip',
-        data = {
-            ammoType = 'Ammo_3006Springfield',
-            maxCapacity = 8,
-        },
-    },
-    ["Glock17Mag"] = {
-        name = 'Glock 17 Magazine (9mm)',
-        icon = 'Glock17Mag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 17,
-        },
-    },
-    ["Glock20Mag"] = {
-        name = 'Glock 20 Magazine (10mm)',
-        icon = 'Glock20Mag',
-        data = {
-            ammoType = 'Ammo_10x25mm',
-            maxCapacity = 15,
-        },
-    },
-    ["Glock21Mag"] = {
-        name = 'Glock 21 Magazine (.45)',
-        icon = 'Glock21Mag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 13,
-        },
-    },
-    ["Glock22Mag"] = {
-        name = 'Glock 22 Magazine (.40)',
-        icon = 'Glock22Mag',
-        data = {
-            ammoType = 'Ammo_40SW',
-            maxCapacity = 10,
-        },
-    },
-    ["HK91Mag"] = {
-        name = 'H&K 91 Magazine (.308)',
-        icon = 'HK91Mag',
-        data = {
-            ammoType = 'Ammo_308Winchester',
-            maxCapacity = 20,
-        },
-    },
-    ["HKG3Mag"] = {
-        name = 'H&K G3 Magazine (7.62x51mm)',
-        icon = 'HK91Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 20,
-        },
-    },
-    ["HKMK23Mag"] = {
-        name = 'H&K MK 23 Magazine (.45)',
-        icon = 'HKMK23Mag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 12,
-        },
-    },
-    ["HKMP5Mag"] = {
-        name = 'H&K MP5 Magazine (9mm)',
-        icon = 'HKMP5Mag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 30,
-        },
-    },
-    ["HKSL8Mag"] = {
-        name = 'H&K SL8 Magazine (.223)',
-        icon = 'HKSL8Mag',
-        data = {
-            ammoType = 'Ammo_223Remington',
-            maxCapacity = 20,
-            reloadTime = 15,
-        },
-    },
-    ["HKUMPMag"] = {
-        name = 'H&K UMP Magazine (.45)',
-        icon = 'HKUMPMag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 25,
-            reloadTime = 25,
-        },
-    },
-    ["KahrCT40Mag"] = {
-        name = 'Kahr CT-40 Magazine (.40)',
-        icon = 'KahrCT40Mag',
-        data = {
-            ammoType = 'Ammo_40SW',
-            maxCapacity = 7,
-        },
-    },
-    ["KahrP380Mag"] = {
-        name = 'Kahr P-380 Magazine (.380 ACP)',
-        icon = 'KahrP380Mag',
-        data = {
-            ammoType = 'Ammo_380ACP',
-            maxCapacity = 6,
-        },
-    },
-    ["KTP32Mag"] = {
-        name = 'Kel-Tec P-32 Magazine (.32ACP)',
-        icon = 'KTP32Mag',
-        data = {
-            ammoType = 'Ammo_32ACP',
-            maxCapacity = 7,
-        },
-    },
-    ["L96Mag"] = {
-        name = 'L96 Magazine (7.62x51)',
-        icon = 'AIAW308Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 5,
-        },
-    },
-    ["LENo4Mag"] = {
-        name = 'Lee Enfield No. 4 Magazine (7.62x51)',
-        icon = 'LENo4Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 10,
-        },
-    },
-    ["M1216Mag"] = {
-        name = 'SRM Arms Model 1216 Magazine (12 gauge)',
-        icon = 'M1216Mag',
-        data = {
-            ammoType = 'Ammo_12g',
-            ejectSound = 'ORGMShotgunRoundIn',
-            insertSound = 'ORGMShotgunRoundIn',
-            --rackSound = 'ORGMShotgunRoundIn',
-            maxCapacity = 16,
-            reloadTime = 15,
-        },
-    },
-    ["M1903StripperClip"] = {
-        name = 'Springfield M1903 Stripper Clip',
-        icon = 'M1903StripperClip',
-        data = {
-            ammoType = 'Ammo_3006Springfield',
-            maxCapacity = 5,
-            reloadTime = 15,
-        },
-    },
-    ["M1911Mag"] = {
-        name = 'M1911 Magazine (.45)',
-        icon = 'M1911Mag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 7,
-        },
-    },
-    ["M1A1Mag"] = {
-        name = 'M1A1 Magazine (.45)',
-        icon = 'M1A1Mag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 30,
-            reloadTime = 25,
-        },
-    },
-    ["M21Mag"] = {
-        name = 'M21 Magazine (7.62x51)',
-        icon = 'M21Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 20,
-        },
-    },
-    ["M249Belt"] = {
-        name = 'M249 Belt (5.56)',
-        icon = 'M249Belt',
-        data = {
-            ammoType = 'Ammo_556x45mm',
-            maxCapacity = 200,
-        },
-    },
-    ["Mac10Mag"] = {
-        name = 'Mac-10 Magazine (.45)',
-        icon = 'Mac10Mag',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 30,
-            reloadTime = 25,
-        },
-    },
-    ["Mac11Mag"] = {
-        name = 'Mac-11 Magazine (.380 ACP)',
-        icon = 'Mac11Mag',
-        data = {
-            ammoType = 'Ammo_380ACP',
-            maxCapacity = 32,
-        },
-    },
-    ["Mini14Mag"] = {
-        name = 'Ruger Mini-14 Magazine (.223)',
-        icon = 'Mini14Mag',
-        data = {
-            ammoType = 'Ammo_223Remington',
-            maxCapacity = 20,
-            reloadTime = 15,
-        },
-    },
-    ["MosinStripperClip"] = {
-        name = 'Mosin Nagant Stripper Clip',
-        icon = 'MosinStripperClip',
-        data = {
-            ammoType = 'Ammo_762x54mm',
-            maxCapacity = 5,
-            reloadTime = 15,
-        },
-    },
-    ["R25Mag"] = {
-        name = 'Remington R25 Magazine (.308)',
-        icon = 'R25Mag',
-        data = {
-            ammoType = 'Ammo_308Winchester',
-            maxCapacity = 10,
-        },
-    },
-    ["Rem788Mag"] = {
-        name = 'Remington Magazine (.30-30)',
-        icon = 'Rem788Mag',
-        data = {
-            ammoType = 'Ammo_3030Winchester',
-            maxCapacity = 3,
-        },
-    },
-    ["Rug1022Mag"] = {
-        name = 'Ruger 10/22 Magazine (.22)',
-        icon = 'Rug1022Mag',
-        data = {
-            ammoType = 'Ammo_22LR',
-            maxCapacity = 25,
-        },
-    },
-    ["RugerMKIIMag"] = {
-        name = 'Ruger MKII Magazine (.22)',
-        icon = 'RugerMKIIMag',
-        data = {
-            ammoType = 'Ammo_22LR',
-            maxCapacity = 10,
-        },
-    },
-    ["RugerSR9Mag"] = {
-        name = 'Ruger SR9 Magazine (9mm)',
-        icon = 'RugerSR9Mag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 17,
-        },
-    },
-    ["SIG550Mag"] = {
-        name = 'Sig SG550 Magazine (5.56x45)',
-        icon = 'SIG550Mag',
-        data = {
-            ammoType = 'Ammo_556x45mm',
-            maxCapacity = 30,
-        },
-    },
-    ["SIGP226Mag"] = {
-        name = 'SIG P226 Magazine (.40)',
-        icon = 'SIGP226Mag',
-        data = {
-            ammoType = 'Ammo_40SW',
-            maxCapacity = 12,
-        },
-    },
-    ["SkorpionMag"] = {
-        name = 'Skorpion vz. 61 Magazine (.32ACP)',
-        icon = 'SkorpionMag',
-        data = {
-            ammoType = 'Ammo_32ACP',
-            maxCapacity = 20,
-        },
-    },
-    ["SKSStripperClip"] = {
-        name = 'SKS Stripper Clip',
-        icon = 'SKSStripperClip',
-        data = {
-            ammoType = 'Ammo_762x39mm',
-            maxCapacity = 10,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader10mm6"] = {
-        name = '10mm Auto 6 round Speed Loader',
-        icon = '10mmSpeedLoader6',
-        data = {
-            ammoType = 'Ammo_10x25mm',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader3576"] = {
-        name = '.357 Magnum 6 round Speed Loader',
-        icon = '357SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_357Magnum',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader385"] = {
-        name = '.38 Special 5 round Speed Loader',
-        icon = '38SpeedLoader5',
-        data = {
-            ammoType = 'Ammo_38Special',
-            maxCapacity = 5,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader386"] = {
-        name = '.38 Special 6 round Speed Loader',
-        icon = '38SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_38Special',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader446"] = {
-        name = '.44 Magnum 6 round Speed Loader',
-        icon = '44SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_44Magnum',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader4546"] = {
-        name = '.454 Casull 6 round Speed Loader',
-        icon = '454SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_454Casull',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader456"] = {
-        name = '.45 ACP 6 round Speed Loader',
-        icon = '45SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_45ACP',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["SpeedLoader45C6"] = {
-        name = '.45 Colt 6 round Speed Loader',
-        icon = '454SpeedLoader6',
-        data = {
-            ammoType = 'Ammo_45Colt',
-            maxCapacity = 6,
-            reloadTime = 15,
-        },
-    },
-    ["Spr19119Mag"] = {
-        name = 'Springfield 1911 9mm Magazine (9mm)',
-        icon = 'Spr19119Mag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 9,
-        },
-    },
-    ["SR25Mag"] = {
-        name = 'KAC SR-25 Magazine (7.62x51)',
-        icon = 'SR25Mag',
-        data = {
-            ammoType = 'Ammo_762x51mm',
-            maxCapacity = 20,
-        },
-    },
-    ["STANAGMag"] = {
-        name = 'Standard STANAG Magazine (5.56x45)',
-        icon = 'STANAGMag',
-        data = {
-            ammoType = 'Ammo_556x45mm',
-            maxCapacity = 30,
-        },
-    },
-    ["SVDMag"] = {
-        name = 'SVD Magazine (7.62x54R)',
-        icon = 'SVDMag',
-        data = {
-            ammoType = 'Ammo_762x54mm',
-            maxCapacity = 10,
-            reloadTime = 15,
-        },
-    },
-    ["Taurus38Mag"] = {
-        name = 'Taurus PT38S Magazine (.38S)',
-        icon = 'Taurus38Mag',
-        data = {
-            ammoType = 'Ammo_38Super',
-            maxCapacity = 10,
-        },
-    },
-    ["TaurusP132Mag"] = {
-        name = 'Taurus Millennium P132 Magazine (.32ACP)',
-        icon = 'TaurusP132Mag',
-        data = {
-            ammoType = 'Ammo_32ACP',
-            maxCapacity = 10,
-        },
-    },
-    ["UziMag"] = {
-        name = 'Uzi Magazine (9mm)',
-        icon = 'UziMag',
-        data = {
-            ammoType = 'Ammo_9x19mm',
-            maxCapacity = 32,
-        },
-    },
-    ["VEPR12Mag"] = {
-        name = 'VEPR-12 Magazine (12 gauge)',
-        icon = 'VEPR12Mag',
-        data = {
-            ammoType = 'Ammo_12g',
-            ejectSound = 'ORGMShotgunRoundIn',
-            insertSound = 'ORGMShotgunRoundIn',
-            --rackSound = 'ORGMShotgunRoundIn',
-            maxCapacity = 8,
-            reloadTime = 15,
-        },
-    },
-    ["WaltherP22Mag"] = {
-        name = 'Walther P22 Magazine (.22)',
-        icon = 'WaltherP22Mag',
-        data = {
-            ammoType = 'Ammo_22LR',
-            maxCapacity = 10,
-        },
-    },
-    ["WaltherPPKMag"] = {
-        name = 'Walther PPK Magazine (.380 ACP)',
-        icon = 'WaltherPPKMag',
-        data = {
-            ammoType = 'Ammo_380ACP',
-            maxCapacity = 6,
-        },
-    },
-    ["XD40Mag"] = {
-        name = 'Springfield XD-40 Magazine (.40)',
-        icon = 'XD40Mag',
-        data = {
-            ammoType = 'Ammo_40SW',
-            maxCapacity = 9,
-        },
-    },
+    ["AIAW308Mag"] =        { data = { ammoType = 'Ammo_308Winchester',     maxCapacity = 5,    }, },
+    ["AKMMag"] =            { data = { ammoType = 'Ammo_762x39mm',          maxCapacity = 30,   }, },
+    ["AM180Mag"] =          { data = { ammoType = 'Ammo_22LR',              maxCapacity = 177,  }, },
+    ["AR10Mag"] =           { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 20,   }, },
+    ["AutomagVMag"] =       { data = { ammoType = 'Ammo_50AE',              maxCapacity = 5,    }, },
+    ["BBPistolMag"] =       { data = { ammoType = 'Ammo_117BB',             maxCapacity = 35,   reloadTime = 5, }, },
+    ["Ber92Mag"] =          { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 15,   }, },
+    ["Ber93RMag"] =         { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 32,   }, },
+    ["BrenTenMag"] =        { data = { ammoType = 'Ammo_10x25mm',           maxCapacity = 12,   }, },
+    ["BrownHPMag"] =        { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 13,   }, },
+    ["Colt38SMag"] =        { data = { ammoType = 'Ammo_38Super',           maxCapacity = 9,    }, },
+    ["ColtDeltaMag"] =      { data = { ammoType = 'Ammo_10x25mm',           maxCapacity = 8,    }, },
+    ["CZ75Mag"] =           { data = { ammoType = 'Ammo_40SW',              maxCapacity = 10,   }, },
+    ["DEagleMag"] =         { data = { ammoType = 'Ammo_44Magnum',          maxCapacity = 8,    }, },
+    ["DEagleXIXMag"] =      { data = { ammoType = 'Ammo_50AE',              maxCapacity = 7,    }, },
+    ["FN57Mag"] =           { data = { ammoType = 'Ammo_57x28mm',           maxCapacity = 20,   }, },
+    ["FNFALAMag"] =         { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 20,   }, },
+    ["FNFALMag"] =          { data = { ammoType = 'Ammo_308Winchester',     maxCapacity = 20,   }, },
+    ["FNP90Mag"] =          { data = { ammoType = 'Ammo_57x28mm',           maxCapacity = 50,   }, },
+    ["GarandClip"] =        { data = { ammoType = 'Ammo_3006Springfield',   maxCapacity = 8,    }, },
+    ["Glock17Mag"] =        { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 17,   }, },
+    ["Glock20Mag"] =        { data = { ammoType = 'Ammo_10x25mm',           maxCapacity = 15,   }, },
+    ["Glock21Mag"] =        { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 13,   }, },
+    ["Glock22Mag"] =        { data = { ammoType = 'Ammo_40SW',              maxCapacity = 10,   }, },
+    ["HK91Mag"] =           { data = { ammoType = 'Ammo_308Winchester',     maxCapacity = 20,   }, },
+    ["HKG3Mag"] =           { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 20,   }, },
+    ["HKMK23Mag"] =         { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 12,   }, },
+    ["HKMP5Mag"] =          { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 30,   }, },
+    ["HKSL8Mag"] =          { data = { ammoType = 'Ammo_223Remington',      maxCapacity = 20,   }, },
+    ["HKUMPMag"] =          { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 25,   }, },
+    ["KahrCT40Mag"] =       { data = { ammoType = 'Ammo_40SW',              maxCapacity = 7,    }, },
+    ["KahrP380Mag"] =       { data = { ammoType = 'Ammo_380ACP',            maxCapacity = 6,    }, },
+    ["KTP32Mag"] =          { data = { ammoType = 'Ammo_32ACP',             maxCapacity = 7,    }, },
+    ["L96Mag"] =            { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 5,    }, },
+    ["LENo4Mag"] =          { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 10,   }, },
+    ["M1216Mag"] =          { data = { ammoType = 'Ammo_12g',               maxCapacity = 16,   reloadTime = 15, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }, },
+    ["M1903StripperClip"] = { data = { ammoType = 'Ammo_3006Springfield',   maxCapacity = 5,    reloadTime = 15, }, },
+    ["M1911Mag"] =          { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 7,    }, },
+    ["M1A1Mag"] =           { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 30,   }, },
+    ["M21Mag"] =            { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 20,   }, },
+    ["M249Belt"] =          { data = { ammoType = 'Ammo_556x45mm',          maxCapacity = 200,  }, },
+    ["Mac10Mag"] =          { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 30,   }, },
+    ["Mac11Mag"] =          { data = { ammoType = 'Ammo_380ACP',            maxCapacity = 32,   }, },
+    ["Mini14Mag"] =         { data = { ammoType = 'Ammo_223Remington',      maxCapacity = 20,   }, },
+    ["MosinStripperClip"] = { data = { ammoType = 'Ammo_762x54mm',          maxCapacity = 5,    reloadTime = 15, }, },
+    ["R25Mag"] =            { data = { ammoType = 'Ammo_308Winchester',     maxCapacity = 10,   }, },
+    ["Rem788Mag"] =         { data = { ammoType = 'Ammo_3030Winchester',    maxCapacity = 3,    }, },
+    ["Rug1022Mag"] =        { data = { ammoType = 'Ammo_22LR',              maxCapacity = 25,   }, },
+    ["RugerMKIIMag"] =      { data = { ammoType = 'Ammo_22LR',              maxCapacity = 10,   }, },
+    ["RugerSR9Mag"] =       { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 17,   }, },
+    ["SIG550Mag"] =         { data = { ammoType = 'Ammo_556x45mm',          maxCapacity = 30,   }, },
+    ["SIGP226Mag"] =        { data = { ammoType = 'Ammo_40SW',              maxCapacity = 12,   }, },
+    ["SkorpionMag"] =       { data = { ammoType = 'Ammo_32ACP',             maxCapacity = 20,   }, },
+    ["SKSStripperClip"] =   { data = { ammoType = 'Ammo_762x39mm',          maxCapacity = 10,   reloadTime = 15, }, },
+    ["SpeedLoader10mm6"] =  { data = { ammoType = 'Ammo_10x25mm',           maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader3576"] =   { data = { ammoType = 'Ammo_357Magnum',         maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader385"] =    { data = { ammoType = 'Ammo_38Special',         maxCapacity = 5,    reloadTime = 15, }, },
+    ["SpeedLoader386"] =    { data = { ammoType = 'Ammo_38Special',         maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader446"] =    { data = { ammoType = 'Ammo_44Magnum',          maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader4546"] =   { data = { ammoType = 'Ammo_454Casull',         maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader456"] =    { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 6,    reloadTime = 15, }, },
+    ["SpeedLoader45C6"] =   { data = { ammoType = 'Ammo_45Colt',            maxCapacity = 6,    reloadTime = 15, }, },
+    ["Spr19119Mag"] =       { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 9,    }, },
+    ["SR25Mag"] =           { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 20,   }, },
+    ["STANAGMag"] =         { data = { ammoType = 'Ammo_556x45mm',          maxCapacity = 30,   }, },
+    ["SVDMag"] =            { data = { ammoType = 'Ammo_762x54mm',          maxCapacity = 10,   }, },
+    ["Taurus38Mag"] =       { data = { ammoType = 'Ammo_38Super',           maxCapacity = 10,   }, },
+    ["TaurusP132Mag"] =     { data = { ammoType = 'Ammo_32ACP',             maxCapacity = 10,   }, },
+    ["UziMag"] =            { data = { ammoType = 'Ammo_9x19mm',            maxCapacity = 32,   }, },
+    ["VEPR12Mag"] =         { data = { ammoType = 'Ammo_12g',               maxCapacity = 8,    reloadTime = 15, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }, },
+    ["WaltherP22Mag"] =     { data = { ammoType = 'Ammo_22LR',              maxCapacity = 10,   }, },
+    ["WaltherPPKMag"] =     { data = { ammoType = 'Ammo_380ACP',            maxCapacity = 6,    }, },
+    ["XD40Mag"] =           { data = { ammoType = 'Ammo_40SW',              maxCapacity = 9,    }, },
 }
 
 --[[ The Master Weapon Table (global)
@@ -967,11 +377,10 @@ ORGMMasterMagTable = {
         selectFire = nil|0|1, -- used on weapons that can select fire modes (leave nil if not select fire)
                     -- if 1 the default fire mode is full-auto, 0 default mode is semi
         altActionType = "", -- alternate action type for guns that can switch (ie: semi-auto shotguns that can also be pump action)
-        data = { -- table passed to ReloadUtil:addWeaponType()
+        data = { -- OPTIONAL table passed to ReloadUtil:addWeaponType()
             -- any key = value pair that doesn't exist here (but should) is set to a default
             -- or inherited from the GunTypes and SoundProfiles tables
-            ammoType = "",
-            shootSound = "",
+            ammoType = "", -- AUTO SET FROM SCRIPT ITEM
             speedLoader = "", -- optional, name of the speedloader/stripperclip used with this gun.
                     -- previously speedloaders were listed in the ammoType variable, but since use of
                     -- loaders or strippers is never actually required to load a gun, they have been
@@ -984,151 +393,89 @@ ORGMMasterWeaponTable = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader446',
-            ammoType = 'Ammo_44Magnum',
-            shootSound = 'ORGMColtAnac',
-        },
+        data = { speedLoader = 'SpeedLoader446', },
     },
     ["ColtPyth"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader3576',
-            ammoType = 'Ammo_357Magnum',
-            shootSound = 'ORGMColtPyth',
-        },
+        data = { speedLoader = 'SpeedLoader3576', },
     },
     ["ColtSAA"] = {
         gunType = "Rotary-SA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Ammo_45Colt',
-            shootSound = 'ORGMColtSAA',
-            shootSoundPartial = 'ORGMColtSAA',
-        },
     },
     ["RugAlas"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader4546',
-            ammoType = 'Ammo_454Casull',
-            shootSound = 'ORGMRugAlas',
-        },
+        data = {speedLoader = 'SpeedLoader4546', },
     },
     ["RugBH"] = {
         gunType = "Rotary-SA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Ammo_357Magnum',
-            shootSound = '357Fire',
-            shootSoundPartial = '357Fire',
-        },
     },
     ["RugGP100"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader3576',
-            ammoType = 'Ammo_357Magnum',
-            shootSound = '357Fire',
-        },
+        data = { speedLoader = 'SpeedLoader3576', },
     },
     ["RugRH"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader446',
-            ammoType = 'Ammo_44Magnum',
-            shootSound = 'ORGMRugBH',
-        },
+        data = { speedLoader = 'SpeedLoader446', },
     },
     ["RugSec6"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader386',
-            ammoType = 'Ammo_38Special',
-            shootSound = 'ORGMRugSec6',
-        },
+        data = { speedLoader = 'SpeedLoader386', },
     },
     ["SWM10"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader386',
-            ammoType = 'Ammo_38Special',
-            shootSound = 'ORGMSWM10',
-        },
+        data = { speedLoader = 'SpeedLoader386', },
     },
     ["SWM19"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader3576',
-            ammoType = 'Ammo_357Magnum',
-            shootSound = 'ORGMSWM19',
-        },
+        data = { speedLoader = 'SpeedLoader3576', },
     },
     ["SWM252"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader456',
-            ammoType = 'Ammo_45ACP',
-            shootSound = 'ORGMSWM252',
-        },
+        data = { speedLoader = 'SpeedLoader456', },
     },
     ["SWM29"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader446',
-            ammoType = 'Ammo_44Magnum',
-            shootSound = 'ORGMSWM29',
-        },
+        data = { speedLoader = 'SpeedLoader446', },
     },
     ["SWM36"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader385',
-            ammoType = 'Ammo_38Special',
-            shootSound = 'ORGMSWM36',
-        },
+        data = { speedLoader = 'SpeedLoader385', },
     },
     ["SWM610"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'SpeedLoader10mm6',
-            ammoType = 'Ammo_10x25mm',
-            shootSound = 'ORGMSWM610',
-        },
+        data = { speedLoader = 'SpeedLoader10mm6', },
     },
     ["Taurus454"] = {
         gunType = "Rotary-DA",
         soundProfile = "Revolver",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SpeedLoader4546',
-            ammoType = 'Ammo_454Casull',
-            shootSound = 'ORGMRagingBull',
-        },
+        data = { speedLoader = 'SpeedLoader4546', },
     },
         --************************************************************************--
         -- semi pistols
@@ -1137,262 +484,152 @@ ORGMMasterWeaponTable = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Large",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'AutomagVMag',
-            shootSound = 'ORGMAutomag',
-        },
     },
     ["BBPistol"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'BBPistolMag',
-            shootSound = 'ORGMDaisy',
-        },
     },
     ["Ber92"] = {
         gunType = "Auto-DA", -- this can be DAO, depending on model
         soundProfile = "Pistol-Small",
-        isCivilian = "Common", isPolice = "Common", isMilitary = "Common",
-        data = {
-            ammoType = 'Ber92Mag',
-            shootSound = 'ORGMBeretta',
-        },
+        isCivilian = "Common", 
+        isPolice = "Common", 
+        isMilitary = "Common",
     },
     ["BrenTen"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'BrenTenMag',
-            shootSound = 'ORGMBrenTen',
-        },
     },
     ["BrownHP"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'BrownHPMag',
-            shootSound = 'ORGMBrowningHP',
-        },
     },
     ["Colt38S"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Colt38SMag',
-            shootSound = 'ORGMColtSuper38',
-        },
     },
     ["ColtDelta"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'ColtDeltaMag',
-            shootSound = 'ORGMColtDelta',
-        },
     },
     ["CZ75"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'CZ75Mag',
-            shootSound = 'ORGMCZ75',
-        },
     },
     ["DEagle"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Large",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'DEagleMag',
-            shootSound = 'ORGMDeagle44',
-        },
     },
     ["DEagleXIX"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Large",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'DEagleXIXMag',
-            shootSound = 'ORGMDeagle50',
-        },
     },
     ["FN57"] = {
         gunType = "Auto-DAO", -- depending on model, this can be SA (FN57 Tactical)
         soundProfile = "Pistol-Small",
-        isCivilian = "Rare", isPolice = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'FN57Mag',
-            shootSound = 'ORGMFiveseven',
-        },
+        isCivilian = "Rare",
+        isPolice = "Rare",
+        isMilitary = "Rare",
     },
     ["Glock17"] = {
         gunType = "Auto-DAO", -- this is technically not quite true, but as close as its going to get
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Glock17Mag',
-            shootSound = 'ORGMGlock17',
-        },
     },
     ["Glock20"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Glock20Mag',
-            shootSound = 'ORGMGlock20',
-        },
     },
     ["Glock21"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Glock21Mag',
-            shootSound = 'ORGMGlock21',
-        },
     },
     ["Glock22"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Glock22Mag',
-            shootSound = 'ORGMGlock22',
-        },
     },
     ["HKMK23"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'HKMK23Mag',
-            shootSound = 'ORGMMK23',
-        },
     },
     ["KahrCT40"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'KahrCT40Mag',
-            shootSound = 'ORGMKahrCT40',
-        },
     },
     ["KahrP380"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'KahrP380Mag',
-            shootSound = 'ORGMKahrP380',
-        },
     },
     ["KTP32"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'KTP32Mag',
-            shootSound = 'ORGMKelTecP32',
-        },
     },
     ["M1911"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
-        isCivilian = "Common", isMilitary = "Common",
-        data = {
-            ammoType = 'M1911Mag',
-            shootSound = 'ORGMM1911',
-        },
+        isCivilian = "Common", 
+        isMilitary = "Common",
     },
     ["RugerMKII"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'RugerMKIIMag',
-            shootSound = 'ORGMRugerMKII',
-        },
     },
     ["RugerSR9"] = {
         gunType = "Auto-DAO", -- like the glock, this isnt really a DAO
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'RugerSR9Mag',
-            shootSound = 'ORGMRugerSR9',
-        },
     },
     ["SIGP226"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
-        isCivilian = "Common", isMilitary = "Rare",
-        data = {
-            ammoType = 'SIGP226Mag',
-            shootSound = 'ORGMSIGP226',
-        },
+        isCivilian = "Common", 
+        isMilitary = "Rare",
     },
     ["Spr19119"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Spr19119Mag',
-            shootSound = 'ORGMSpr19119',
-        },
     },
     ["Taurus38"] = {
         gunType = "Auto-SA",
         soundProfile = "Pistol-Small",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Taurus38Mag',
-            shootSound = 'ORGMTaurus38S',
-        },
     },
     ["TaurusP132"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'TaurusP132Mag',
-            shootSound = 'ORGMTaurusP132',
-        },
     },
     ["WaltherP22"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'WaltherP22Mag',
-            shootSound = 'ORGMWaltherP22',
-        },
     },
     ["WaltherPPK"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'WaltherPPKMag',
-            shootSound = 'ORGMWaltherPPK',
-        },
     },
     ["XD40"] = {
         gunType = "Auto-DAO", -- striker trigger mechanism, DAO is close enough
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'XD40Mag',
-            shootSound = 'ORGMSprXD',
-        },
     },
         --************************************************************************--
         -- smg/machine pistols
@@ -1402,136 +639,82 @@ ORGMMasterWeaponTable = {
         gunType = "Auto-DAO", -- again, not really, its closer to SA, but doesnt allow for manual decocking
         soundProfile = "SMG",
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'AM180Mag',
-            shootSound = 'ORGMAM180',
-            ejectSound = 'ORGMSMG2Out', -- unique
-            insertSound = 'ORGMSMG2In', -- unique
-        },
+        data = { ejectSound = 'ORGMSMG2Out',  insertSound = 'ORGMSMG2In', },
     },
     ["Ber93R"] = {
         gunType = "Auto-DA",
         soundProfile = "Pistol-Small",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'Ber93RMag',
-            shootSound = 'ORGMBeretta',
-        },
     },
     ["FNP90"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        isPolice = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'FNP90Mag',
-            shootSound = 'ORGMFNP90',
-        },
+        selectFire = 1,
+        isPolice = "Rare", 
+        isMilitary = "Rare",
     },
     ["Glock18"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'Glock17Mag',
-            shootSound = 'ORGMGlock17',
-        },
     },
     -- TODO: fix all gun triggerTypes to proper values below here
     ["HKMP5"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        isPolice = "Rare", isMilitary = "Common",
-        data = {
-            ammoType = 'HKMP5Mag',
-            shootSound = 'ORGMHKMP5',
-        },
+        selectFire = 1,
+        isPolice = "Rare", 
+        isMilitary = "Common",
     },
     ["HKUMP"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        isPolice = "Rare", isMilitary = "Common",
-        data = {
-            ammoType = 'HKUMPMag',
-            shootSound = 'ORGMUMP45',
-        },
+        selectFire = 1,
+        isPolice = "Rare", 
+        isMilitary = "Common",
     },
     ["Kriss"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Glock21Mag',
-            shootSound = 'ORGMKriss',
-        },
     },
     ["KrissA"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'Glock21Mag',
-            shootSound = 'ORGMKriss',
-        },
     },
     ["KTPLR"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'STANAGMag',
-            shootSound = 'ORGMKTPLR',
-        },
     },
     ["M1A1"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'M1A1Mag',
-            shootSound = 'ORGMM1A1',
-        },
     },
     ["Mac10"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Mac10Mag',
-            shootSound = 'ORGMMac10',
-        },
     },
     ["Mac11"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Mac11Mag',
-            shootSound = 'ORGMMac11',
-        },
     },
     ["Skorpion"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'SkorpionMag',
-            shootSound = 'ORGMSkorpion',
-        },
     },
     ["Uzi"] = {
         gunType = "Auto-DAO",
         soundProfile = "SMG",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'UziMag',
-            shootSound = 'ORGMUzi',
-        },
     },
         --************************************************************************--
         -- rifles
@@ -1539,195 +722,119 @@ ORGMMasterWeaponTable = {
     ["AIAW308"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt",
-        isCivilian = "Rare", isPolice = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'AIAW308Mag', -- or L96Mag
-            shootSound = 'ORGML96',
-        },
+        isCivilian = "Rare", 
+        isPolice = "Rare", 
+        isMilitary = "Rare",
     },
     ["AKM"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'AKMMag',
-            shootSound = 'ORGMAKM',
-        },
     },
     ["AKMA"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'AKMMag',
-            shootSound = 'ORGMAKM',
-        },
     },
     ["AR10"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isPolice = 'Rare',
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        data = {
-            ammoType = 'AR10Mag',
-            shootSound = 'ORGMAR10',
-        },
+        selectFire = 1,
     },
     ["AR15"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Common",
-        data = {
-            ammoType = 'STANAGMag',
-            shootSound = 'ORGMAR15',
-        },
     },
     ["BBGun"] = {
         gunType = "Lever-DAO",
         soundProfile = "Rifle-Lever",
         isCivilian = "Common",
         data = {
-            ammoType = 'Ammo_117BB',
-            shootSound = 'ORGMRedRyder',
-            shootSoundPartial = 'ORGMRedRyder',
-            rackSound = 'ORGMBBLever', -- override
-            clickSound = 'ORGMPistolEmpty', -- override
-            insertSound = 'ORGMMagBBLoad', -- override
-            rackTime = 3,  -- override
-            bulletOutSound = "ORGMBBLever" -- override
+            rackSound = 'ORGMBBLever',
+            clickSound = 'ORGMPistolEmpty',
+            insertSound = 'ORGMMagBBLoad',
+            rackTime = 3,
         },
     },
     ["BLR"] = {
         gunType = "Lever-DAO",
         soundProfile = "Rifle-Lever",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_308Winchester',
-            shootSound = 'ORGMBLR',
-            shootSoundPartial = 'ORGMBLR',
-        },
     },
     ["FNFAL"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'FNFALMag',
-            shootSound = 'ORGMFNFAL',
-        },
     },
     ["FNFALA"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'FNFALAMag',
-            shootSound = 'ORGMFNFAL',
-        },
     },
     ["Garand"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto",
         isCivilian = "Common",
-        data = {
-            ammoType = 'GarandClip',
-            shootSound = 'ORGMM1Garand',
-        },
     },
     ["HenryBB"] = {
         gunType = "Lever-DAO",
         soundProfile = "Rifle-Lever",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Ammo_45Colt',
-            shootSound = 'ORGMHenryBB',
-            shootSoundPartial = 'ORGMHenryBB',
-        },
     },
     ["HK91"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'HK91Mag',
-            shootSound = 'ORGMG3',
-        },
     },
     ["HKG3"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'HKG3Mag',
-            shootSound = 'ORGMG3',
-        },
     },
     ["HKSL8"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'HKSL8Mag',
-            shootSound = 'ORGMHKSL8',
-        },
     },
     ["L96"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt",
         isCivilian = "Common",
-        data = {
-            ammoType = 'L96Mag',
-            shootSound = 'ORGML96',
-        },
     },
     ["LENo4"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'LENo4Mag',
-            shootSound = 'ORGMLENo4',
-        },
     },
     ["M16"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        isPolice = "Rare", isMilitary = "Common",
-        data = {
-            ammoType = 'STANAGMag',
-            shootSound = 'ORGMAR15',
-        },
+        selectFire = 1,
+        isPolice = "Rare", 
+        isMilitary = "Common",
     },
     ["M1903"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto-IM",
         isCivilian = "Rare",
-        data = {
-            speedLoader = 'M1903StripperClip',
-            ammoType = 'Ammo_3006Springfield',
-            shootSound = 'ORGMM1903',
-        },
+        data = { speedLoader = 'M1903StripperClip', },
     },
     ["M21"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto",
-        isPolice = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'M21Mag',
-            shootSound = 'ORGMM21',
-        },
+        isPolice = "Rare", 
+        isMilitary = "Rare",
     },
     ["M249"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto",
         isMilitary = "Rare",
         data = {
-            ammoType = 'M249Belt',
-            shootSound = 'ORGMM249',
             clickSound = 'ORGMRifleEmpty',
             ejectSound = 'ORGMLMGOut',
             insertSound = 'ORGMLMGIn',
@@ -1737,160 +844,97 @@ ORGMMasterWeaponTable = {
     ["M4C"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
-        isPolice= "Rare", isMilitary = "Common",
-        data = {
-            ammoType = 'STANAGMag',
-            shootSound = 'ORGMAR15',
-        },
+        selectFire = 1,
+        isPolice= "Rare", 
+        isMilitary = "Common",
     },
     ["Marlin60"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto-IM",
         isCivilian = "Common",
         data = {
-            ammoType = 'Ammo_22LR',
             rackSound = 'ORGMRifleRack',
-            shootSound = 'ORGMMarlin60',
-            shootSoundPartial = 'ORGMMarlin60',
             clickSound = 'ORGMSmallPistolEmpty',
             insertSound = 'ORGMMagLoad',
-            bulletOutSound = 'none'
         },
     },
     ["Mini14"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        isCivilian = "Common", isPolice = "Rare",
-        data = {
-            ammoType = 'Mini14Mag',
-            shootSound = 'ORGMMini14',
-        },
+        isCivilian = "Common", 
+        isPolice = "Rare",
     },
     ["Mosin"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt-IM",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'MosinStripperClip',
-            ammoType = 'Ammo_762x54mm',
-            shootSound = 'ORGMMosin',
-        },
+        data = { speedLoader = 'MosinStripperClip', },
     },
     ["R25"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'R25Mag',
-            shootSound = 'ORGMAR10',
-        },
     },
     ["Rem700"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt-IM",
-        isCivilian = "Common", isPolice = "Rare",
-        data = {
-            ammoType = 'Ammo_3006Springfield',
-            shootSound = 'ORGMRem700',
-            shootSoundPartial = 'ORGMRem700',
-        },
+        isCivilian = "Common", 
+        isPolice = "Rare",
     },
     ["Rem788"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Rem788Mag',
-            shootSound = 'ORGMRem788',
-        },
     },
     ["Rug1022"] = {
         gunType = "Auto-DAO",
         soundProfile = "Pistol-Small",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Rug1022Mag',
-            shootSound = 'ORGMRuger1022',
-        },
     },
     ["SA80"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isMilitary = "Rare",
-        data = {
-            ammoType = 'STANAGMag',
-            shootSound = 'ORGML85',
-        },
     },
     ["SIG550"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'SIG550Mag',
-            shootSound = 'ORGMSIG550',
-        },
     },
     ["SIG551"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
-        selectFire = 1, -- 1 = full-auto, 0 = semi, nil = no select
+        selectFire = 1,
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'SIG550Mag',
-            shootSound = 'ORGMSIG550',
-        },
     },
     ["SKS"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto-IM",
         isCivilian = "Common",
-        data = {
-            speedLoader = 'SKSStripperClip',
-            ammoType = 'Ammo_762x39mm',
-            shootSound = 'ORGMSKS',
-        },
+        data = { speedLoader = 'SKSStripperClip', },
     },
     ["SR25"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isMilitary = "Common",
-        data = {
-            ammoType = 'SR25Mag',
-            shootSound = 'ORGMAR10',
-        },
     },
     ["SVD"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-Auto",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'SVDMag',
-            shootSound = 'ORGMSVD',
-        },
     },
     ["WinM70"] = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt-IM",
-        isCivilian = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'Ammo_3006Springfield',
-            shootSound = 'ORGMWinM70',
-            shootSoundPartial = 'ORGMWinM70',
-        },
+        isCivilian = "Rare", 
+        isMilitary = "Rare",
     },
     ["WinM94"] = {
         gunType = "Lever-DAO",
         soundProfile = "Rifle-Lever",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'Ammo_3030Winchester',
-            shootSound = 'ORGMWinM1894',
-            shootSoundPartial = 'ORGMWinM1894',
-        },
     },
         --************************************************************************--
         -- shotguns
@@ -1901,252 +945,192 @@ ORGMMasterWeaponTable = {
         soundProfile = "Shotgun",
         altActionType = "Pump",
         isPolice = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["BenelliM3SO"] = {
         gunType = "Auto-DAO",
         soundProfile = "Shotgun",
         altActionType = "Pump",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["BenelliXM1014"] = {
         gunType = "Auto-DAO",
         soundProfile = "Shotgun",
         isMilitary = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-            rackSound = 'ORGMARRack', -- override
-            bulletOutSound = 'ORGMARRack' -- override
-        },
+        data = { rackSound = 'ORGMARRack', },
     },
     ["Hawk982"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Ithaca37"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Ithaca37SO"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["M1216"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'M1216Mag',
-            shootSound = '12GShotgunFire',
-            clickSound = 'ORGMShotgunEmpty', -- override
-        },
     },
     ["Moss590"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Moss590SO"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Rem870"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
-        isCivilian = "Common", isPolice = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
+        isCivilian = "Common", 
+        isPolice = "Common",
     },
     ["Rem870SO"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Silverhawk"] = {
         gunType = "Break-SA",
         soundProfile = "Shotgun-Break",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["SilverHawkSO"] = {
         gunType = "Break-SA",
         soundProfile = "Shotgun-Break",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
     },
     ["Spas12"] = {
         gunType = "Auto-DAO",
         soundProfile = "Shotgun",
         altActionType = "Pump",
-        isCivilian = "Rare", isPolice = "Rare", isMilitary = "Rare",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = 'ORGMSPAS',
-            shootSoundPartial = 'ORGMSPAS',
-        },
+        isCivilian = "Rare", 
+        isPolice = "Rare", 
+        isMilitary = "Rare",
     },
     ["Stevens320"] = {
         gunType = "Pump-DAO",
         soundProfile = "Shotgun",
         isCivilian = "Common",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-        },
-
     },
     ["Striker"] = {
         gunType = "Rotary-DAO",
         soundProfile = "Shotgun",
-        isCivilian = "Rare", isPolice = "Rare",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12GShotgunFire',
-            shootSoundPartial = '12GShotgunFire',
-            rackSound = 'ORGMARRack', -- override
-        },
+        isCivilian = "Rare", 
+        isPolice = "Rare",
+        data = { rackSound = 'ORGMARRack', },
     },
     ["VEPR12"] = {
         gunType = "Auto-DAO",
         soundProfile = "Rifle-AR",
         isCivilian = "Rare",
-        data = {
-            ammoType = 'VEPR12Mag',
-            shootSound = '12GShotgunFire',
-            clickSound = 'ORGMShotgunEmpty', -- override
-        },
+        data = { clickSound = 'ORGMShotgunEmpty', },
     },
     ["Win1887"] = {
         gunType = "Lever-DAO",
         soundProfile = "Shotgun-Lever",
         isCivilian = "VeryRare",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12gFire',
-            shootSoundPartial = '12gFire',
-        },
     },
     ["Win1887SO"] = {
         gunType = "Lever-DAO",
         soundProfile = "Shotgun-Lever",
-        data = {
-            ammoType = 'Ammo_12g',
-            shootSound = '12gFire',
-            shootSoundPartial = '12gFire',
-        },
     },
 }
 
 -- setup all magazines
-for name, info in pairs(ORGMMasterMagTable) do
+-- this is a funky loop syntax, but allows us to use the break keyword to continue the loop
+-- keeps from using nasty nested if / else statements
+for name, info in pairs(ORGMMasterMagTable) do repeat
+    local magItem = getScriptManager():FindItem('ORGM.' .. name)
+    if not magItem then
+        print("*** WARNING: ORGM." .. name .. " defined in ORGMMasterMagTable but no matching script item!")
+        break
+    end
     local data = info.data
+    info.name = magItem:getDisplayName()
+    info.icon = magItem:getIcon()
     data.type = name
     data.moduleName = "ORGM"
     data.reloadClass = "ISORGMMagazine"
     data.clipType = name
     data.shootSound = 'none'
     data.clickSound = nil
+    -- TODO: add these to the SoundBanksSetupTable
     if data.ejectSound == nil then data.ejectSound = 'ORGMMagLoad' end
     if data.insertSound == nil then data.insertSound = 'ORGMMagLoad' end
     if data.rackSound == nil then data.rackSound = 'ORGMMagLoad' end
-    data.containsClip = 0
     if data.reloadTime == nil then data.reloadTime = 30 end
+    data.containsClip = 0
     data.rackTime = 10
     ReloadUtil:addMagazineType(data)
-end
+until true end
+
 
 -- setup all guns
-for name, info in pairs(ORGMMasterWeaponTable) do
-    -- check the weapon type
-    local data = info.data
-    data.type = name
-    data.moduleName = "ORGM"
-    data.reloadClass = 'ISORGMWeapon'
-    if data.rackTime == nil then data.rackTime = 10 end
-    if data.reloadTime == nil then data.reloadTime = 15 end
+-- this is a funky loop syntax, but allows us to use the break keyword to continue the loop
+-- keeps from using nasty nested if / else statements
 
+for name, info in pairs(ORGMMasterWeaponTable) do repeat
+    local gunItem = getScriptManager():FindItem('ORGM.' .. name)
+    if not gunItem then
+        print("*** WARNING: ORGM." .. name .. " defined in ORGMMasterWeaponTable but no matching script item!")
+        break
+    end
+    if not info.data then info.data = {} end
+    local data = info.data
+    data.ammoType = gunItem:getAmmoType() -- get the ammoType from the script item
+    if data.ammoType == nil then
+        print("*** ERROR: ORGM." .. name .. " missing AmmoType in script item!")
+        break
+    elseif getScriptManager():FindItem('ORGM.' .. data.ammoType) == nil then
+        print("*** ERROR: ORGM." .. name .. " AmmoType isn't valid! (no script item)")
+        break
+    end
+
+    -- apply any defaults from the GunTypes table
+    if (info.gunType == nil or GunTypes[info.gunType] == nil) then
+        print("*** ERROR: ORGM.".. name .. " has invalid gunType (ORGMReloadUtil.lua)")
+        break
+    end
+    for key, value in pairs(GunTypes[info.gunType]) do
+        if data[key] == nil then data[key] = value end
+    end
+
+    
     -- apply any defaults from the SoundProfiles table
     if (info.soundProfile and SoundProfiles[info.soundProfile]) then
         local profile = SoundProfiles[info.soundProfile]
         for key, value in pairs(profile) do
             if data[key] == nil then data[key] = value end
+            -- load value into SoundBanksSetupTable
+            -- TODO: This misses sounds that aren't in the soundProfile
+            if SoundBanksSetupTable[data[key]] == nil then
+                SoundBanksSetupTable[data[key]] = {gain = 1, minrange = 0.001, maxrange = 25, maxreverbrange = 25, reverbfactor = 1.0, priority = 5}
+            end
         end
     else
         print("*** WARNING: ORGM.".. name .. " has invalid soundProfile (ORGMReloadUtil.lua)")
     end
-
-    -- apply any defaults from the GunTypes table
-    if (info.gunType and GunTypes[info.gunType]) then
-        local gtype = GunTypes[info.gunType]
-        for key, value in pairs(gtype) do
-            if data[key] == nil then data[key] = value end
-        end
-    else
-        print("*** WARNING: ORGM.".. name .. " has invalid gunType (ORGMReloadUtil.lua)")
+    
+    -- load SwingSound into SoundBanksSetupTable
+    local swingSound = gunItem:getSwingSound()
+    if SoundBanksSetupTable[swingSound] == nil then
+        SoundBanksSetupTable[swingSound] = {gain = 2,  minrange = 0.001, maxrange = 1000, maxreverbrange = 1000, reverbfactor = 1.0, priority = 9 }
     end
     
     if info.altActionType then -- this gun has alternating action types (pump and auto, etc)
         data.altActionType = {data.actionType, info.altActionType}
     end
-    if info.selectFire then data.selectFire = info.selectFire end
+
     -- check if gun uses a mag, and link clipData
-    -- TODO: there should be error checking here in case of typos.
     local mag = ORGMMasterMagTable[data.ammoType] 
     if mag then
         data.clipName = mag.name
@@ -2154,9 +1138,23 @@ for name, info in pairs(ORGMMasterWeaponTable) do
         data.clipData = mag.data
         data.containsClip = 1
     end
+
+    -- setup remaining defaults
+    data.type = name
+    data.moduleName = "ORGM"
+    data.reloadClass = 'ISORGMWeapon'
+    data.selectFire = info.selectFire
+    if data.rackTime == nil then data.rackTime = 10 end
+    if data.reloadTime == nil then data.reloadTime = 15 end
     data.isOpen = 0
     data.hammerCocked = 0
 
     -- TODO: there should also be some strict error checking here insuring all required variables are set.
     ReloadUtil:addWeaponType(data)
-end
+until true end
+
+Events.OnLoadSoundBanks.Add(function()
+    for key, value in pairs(SoundBanksSetupTable) do
+        getFMODSoundBank():addSound(key, "media/sound/" .. key .. ".ogg", value.gain, value.minrange, value.maxrange, value.maxreverbrange, value.reverbfactor, value.priority, false)
+    end
+end)
