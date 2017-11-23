@@ -53,7 +53,7 @@ function ISORGMMagazine:reloadPerform(char, square, difficulty, magazine)
     local round = self:findBestAmmo(char):getType()
     
     self.currentCapacity = self.currentCapacity + 1
-    self.magazineData[self.currentCapacity] = round
+    self.magazineData[self.currentCapacity] = self:convertDummyRound(round)
     -- check if this round matches other rounds player loaded
     if self.loadedAmmo == nil then
         self.loadedAmmo = round
@@ -113,8 +113,11 @@ end
 
 function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
     getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
-    local round = self.magazineData[self.currentCapacity]
-    -- remove last entry from data table (Note: using #table to find the length is slow)
+    if self.currentCapacity > 0 and self.magazineData[self.currentCapacity] == nil then-- problem! round says its empty here?
+        self.magazineData[self.currentCapacity] = self.ammoType -- quick and dirty fix
+    end
+    local round = self:convertDummyRound(self.magazineData[self.currentCapacity])
+    -- remove last entry from data table (Note: using #table to find the length is slow)    
     self.magazineData[self.currentCapacity] = nil 
     self.currentCapacity = self.currentCapacity - 1
     char:getInventory():AddItem('ORGM.'.. round)
@@ -145,7 +148,7 @@ function ISORGMMagazine:canRack(chr)
 end
 
 function ISORGMMagazine:rackingStart(char, square, weapon)
-    getSoundManager():PlayWorldSound(self.rackSound, char:getSquare(), 0, 10, 1.0, false)
+    -- do nothing
 end
 
 function ISORGMMagazine:rackingPerform(char, square, weapon)
@@ -153,7 +156,7 @@ function ISORGMMagazine:rackingPerform(char, square, weapon)
 end
 
 function ISORGMMagazine:getRackTime()
-    return self.rackTime
+    return 0
 end
 
 
@@ -161,6 +164,17 @@ end
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 --      Misc functions
+--[[ ISORGMMagazine:convertDummyRound(round)
+    Converts a dummy round to a real round if required. Some mods like Survivors don't handle
+    the new ammo system properly, and guns are always loaded with dummy ammo.
+]]
+function ISORGMMagazine:convertDummyRound(round)
+    if round == self.ammoType then -- a dummy round is being used
+        print("CONVERTING DUMMY ROUND " .. round " > ".. ORGMAlternateAmmoTable[round][1])
+        round = ORGMAlternateAmmoTable[round][1]
+    end
+    return round
+end
 
 function ISORGMMagazine:findBestAmmo(char)
     --print("findBestAmmo()")

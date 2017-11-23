@@ -51,7 +51,6 @@
     for a complete list and descriptions, see ISORGMWeapon:setupReloadable()
     
     
-    TODO: fix break barrel code
     TODO: fix speed loader code
     TODO: slides should lock open after last shot
 
@@ -180,8 +179,6 @@ end
     return true|false
 ]] 
 function ISORGMWeapon:isLoaded(difficulty)
-    --self:testDebug("isLoaded")
-
     -- cant fire with a open slide
     if self.isOpen == 1 then 
         return false
@@ -192,7 +189,6 @@ function ISORGMWeapon:isLoaded(difficulty)
     end
 
     if self.actionType == "Rotary" then 
-        -- TODO: this needs to check if the hammer is cocked, if not, we need to check the NEXT chamber in the cylinder
         local round = nil
         if self.hammerCocked == 1 then
             round = self.magazineData[self.cylinderPosition]
@@ -221,8 +217,6 @@ end
     
 ]]
 function ISORGMWeapon:fireShot(weapon, difficulty)
-    -- self:testDebug("fireShot")
-
     if self.hammerCocked == 0 then -- SA already has hammer cocked by this point, 
         self:cockHammer(self.playerObj, false, weapon) -- chamber rotates here for revolvers
     end
@@ -267,7 +261,6 @@ end
 
 ]]
 function ISORGMWeapon:fireEmpty(char, weapon)
-    --self:testDebug("fireEmpty()")
     if self.hammerCocked == 1 then
         self:releaseHammer(char, false)
     elseif self.actionType ~= "SingleAction" then
@@ -288,8 +281,7 @@ end
     
 ]]
 function ISORGMWeapon:canReload(char)
-    --self:testDebug("canReload") -- NOISEY since we shortcutted isReloadValid to call this
-
+    -- TODO: implement SpeedLoader check
     local result = false
     if self.containsClip == 1 then -- a magazine is currently in place, we can unload
         result = true
@@ -299,9 +291,6 @@ function ISORGMWeapon:canReload(char)
     elseif self.containsClip == nil then -- doesn't use a clip, check for speedloaders or bullets
         if self.currentCapacity == self.maxCapacity then -- gun already at full
             result = false
-        --elseif self.speedLoader and self.currentCapacity == 0 then -- speed loaders only work if the gun is currently empty.
-        --    -- note this doesnt confirm the speedloader actually has ammo in it.
-        --    result = char:getInventory():FindAndReturn(self.speedLoader) ~= nil            
         elseif self.currentCapacity < self.maxCapacity then -- check for bullets
             result = self:findBestAmmo(char) ~= nil
         end
@@ -320,7 +309,6 @@ end
 
 ]]
 function ISORGMWeapon:isReloadValid(char, square, difficulty)
-    --self:testDebug("isReloadValid") -- NOISEY!
     -- this is actually almost identical to canReload, we can just call that instead of duplicating code
     local result = self:canReload(char)
     if result then
@@ -342,17 +330,14 @@ end
     
 ]]
 function ISORGMWeapon:reloadStart(char, square, difficulty)
-    -- self:testDebug("reloadStart")
-
     self.reloadInProgress = true
     if self.containsClip == 1 then
         getSoundManager():PlayWorldSound(self.ejectSound, char:getSquare(), 0, 10, 1.0, false)
     elseif self.containsClip == 0 then
         getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
     else
-        -- TODO: break barrels, revolvers and other some other guns need the slide open to effectively reload
-        -- that needs to be handled here 
         if self.actionType == "Rotary" then
+            -- TODO: this needs to sync, causes issues
             self:openCylinder(char, true, weapon) -- play the open sound
             -- if rotary and contains spent shells, we need to empty the cylinder. this is all or nothing
             if self:hasEmptyShellsInMagazine() > 0 then
@@ -374,10 +359,7 @@ end
     
 ]]
 function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
-    -- self:testDebug("reloadPerform")
-    -- TODO: this should check for a speedloader before checking for clips...
-    
-    
+    -- TODO: Implement SpeedLoaders
     if self.containsClip ~= nil then
         if self.containsClip == 1 then -- eject the current clip
             self:ejectMagazine(char, false)
@@ -386,19 +368,13 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         end
         self.reloadInProgress = false
         self:syncReloadableToItem(weapon)
-        --return false
         return
         
     else -- internal mag, rotary or break barrel
-        --if self.speedLoader and self.currentCapacity == 0 then
-        --    -- check if player has a full speedloader
-        --    local loader = self:findBestMagazine(char, self.speedLoader)
-        --end
         local round = self:findBestAmmo(char):getType()
         if self.actionType == "Rotary" then
             self:rotateCylinder(1, char, true, weapon)
             if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
-                --return true
                 return
             end
         end
@@ -468,7 +444,7 @@ function ISORGMWeapon:loadRoundIntoMagazine(round, weapon, position)
     if self.currentCapacity == self.maxCapacity then return end
     self.currentCapacity = self.currentCapacity + 1
     if position == nil then position = self.currentCapacity end
-    self.magazineData[position] = round
+    self.magazineData[position] = self:convertDummyRound(round)
 
     if self.loadedAmmo == nil then
         self.loadedAmmo = round
@@ -477,6 +453,22 @@ function ISORGMWeapon:loadRoundIntoMagazine(round, weapon, position)
     end
 end
 
+--[[ ISORGMWeapon:convertDummyRound(round)
+    Converts a dummy round to a real round if required. Some mods like Survivors don't handle
+    the new ammo system properly, and guns are always loaded with dummy ammo.
+]]
+function ISORGMWeapon:convertDummyRound(round)
+    ammoType = self.ammoType
+    if self.containsClip ~= nil then -- get the mag's ammo type
+        ammoType = ReloadUtil:getClipData(self.ammoType).ammoType
+    end
+    --print("R: " .. round .. " A: " .. ammoType)
+    if round == ammoType then -- a dummy round is being used
+        print("CONVERTING DUMMY ROUND " .. round .. " > ".. ORGMAlternateAmmoTable[round][1])
+        round = ORGMAlternateAmmoTable[round][1]
+    end
+    return round
+end
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
@@ -486,7 +478,6 @@ end
 
 ]]
 function ISORGMWeapon:canUnload(char)
-    -- self:testDebug("canUnload")
     if self.currentCapacity > 0 then return true end
     if (self.roundChambered ~= nil and self.roundChambered > 0) then
         return true
@@ -499,7 +490,6 @@ end
 
 ]]
 function ISORGMWeapon:isUnloadValid(char, square, difficulty)
-    -- self:testDebug("isUnloadValid")
     if self.currentCapacity > 0 then return true end
     if (self.roundChambered ~= nil and self.roundChambered > 0) then
         return true
@@ -517,9 +507,7 @@ end
 
 ]]
 function ISORGMWeapon:unloadStart(char, square, difficulty)
-    -- self:testDebug("unloadStart")
     self.unloadInProgress = true
-
 end
 
 
@@ -527,11 +515,16 @@ end
 
 ]]
 function ISORGMWeapon:unloadPerform(char, square, difficulty, weapon)
-    -- self:testDebug("unloadPerform")
     if self.actionType == "Rotary" then
         self:openCylinder(char, true)
         -- revolvers drop them all at once
         self:emptyMagazineAtOnce(char, false)
+        self.unloadInProgress = false
+        self:syncReloadableToItem(weapon)
+        return false
+    end
+    if self.actionType == "Break" then
+        self:openBreak()
         self.unloadInProgress = false
         self:syncReloadableToItem(weapon)
         return false
@@ -551,7 +544,7 @@ end
 
 ]]
 function ISORGMWeapon:isChainUnloading()
-    if self.actionType == "Rotary" then return false end
+    if self.actionType == "Rotary" or self.actionType == "Break" then return false end
     return true
 end
 
@@ -571,8 +564,6 @@ end
     
 ]]
 function ISORGMWeapon:ejectMagazine(char, sound)
-    -- self:testDebug("ejectMagazine")
-
     local clip = self:createMagazine()
     self.currentCapacity = 0
     self.magazineData = {}
@@ -596,8 +587,6 @@ end
     
 ]]
 function ISORGMWeapon:insertMagazine(char, sound)
-    -- self:testDebug("insertMagazine")
-
     local clip = self:findBestMagazine(char, self.ammoType)
     if clip == nil then return end
 
@@ -621,7 +610,6 @@ end
 
 ]]
 function ISORGMWeapon:createMagazine()
---  local magazine = InventoryItemFactory.CreateItem(self.moduleName, self.clipName, self.ammoType, self.clipIcon);
     local magazine = InventoryItemFactory.CreateItem(self.moduleName .. '.' .. self.ammoType)
     self:setupMagazine(magazine)
     data = magazine:getModData()
@@ -632,11 +620,6 @@ function ISORGMWeapon:createMagazine()
         --magazine:setAmmoType(self.preferredAmmoType)
     end
     data.loadedAmmo = self.loadedAmmo
-    if data.loadedAmmo == nil or data.loadedAmmo == 'mixed' then
-        -- magazine:setAmmoType(data.defaultAmmo)
-    else
-        -- magazine:setAmmoType(data.loadedAmmo)
-    end
     return magazine
 end
 
@@ -774,14 +757,13 @@ function ISORGMWeapon:emptyMagazineAtOnce(char, sound)
     if self.isOpen == 0 then return end
     local square = char:getCurrentSquare()
 
-    -- for index, value in pairs(self.magazineData) do -- cant use ipairs since it stops at the first nil (empty chamber)
     for index = 1, self.maxCapacity do
         local ammoType = self.magazineData[index]
         local round = nil
         if ammoType == 'shell' then -- eject shell
             -- round = InventoryItemFactory.CreateItem('ORGM.' .. self.ammoType .. '_shell')
         elseif ammoType then -- eject bullet
-            round = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
+            round = InventoryItemFactory.CreateItem('ORGM.' .. self:convertDummyRound(ammoType))
         end
         if (round and square) then 
             square:AddWorldInventoryItem(round, 0, 0, 0)        
@@ -804,7 +786,6 @@ end
 function ISORGMWeapon:hasEmptyShellsInMagazine()
     local shells = 0
     for index = 1, self.maxCapacity do
-    --for index, value in pairs(self.magazineData) do -- cant use ipairs since it stops at the first nil (empty chamber)
         if self.magazineData[index] == "shell" then
             shells = shells + 1
         end
@@ -829,8 +810,6 @@ end
 
 ]]
 function ISORGMWeapon:canRack(char)
-    --self:testDebug("canRack")
-    
     if (self.triggerType == "SingleAction" and self.hammerCocked == 0) then
         return true
     end
@@ -851,8 +830,6 @@ end
     
 ]]
 function ISORGMWeapon:rackingStart(char, square, weapon)
-    -- self:testDebug("rackingStart")
-
     if (self.actionType == "Break" or self.actionType == "Rotary") then
         return
     end
@@ -868,8 +845,6 @@ end
     
 ]]
 function ISORGMWeapon:rackingPerform(char, square, weapon)
-    -- self:testDebug("rackingPerform")
-
     if self.actionType == "Break" then
         if self.isOpen then self:closeBreak(char, true, weapon) end
         
@@ -914,8 +889,6 @@ end
     
 ]]
 function ISORGMWeapon:openSlide(char, sound, weapon)
-    -- self:testDebug("openSlide")
-
     if self.isOpen == 1 then -- already opened!
         return
     end
@@ -925,11 +898,11 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
     local square = char:getCurrentSquare()
     local round = self.lastRound
     
-    --if self.containsClip ~= nil then
-    --    round = ReloadUtil:getClipData(self.ammoType).ammoType
-    --end
     -- eject whatever is in the chamber
     if self.roundChambered == 1 then
+        if round == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
+            self.lastRound = self:convertDummyRound(self.ammoType)
+        end
         round = InventoryItemFactory.CreateItem('ORGM.' .. self.lastRound)
     elseif self.emptyShellChambered == 1 then
         -- round = InventoryItemFactory.CreateItem('ORGM.' .. round .. '_shell')
@@ -943,7 +916,6 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
         square:AddWorldInventoryItem(round, 0, 0, 0)        
         ISInventoryPage.dirtyUI()
     end
-    --if (sound and self.ejectSound) then char:playSound(self.ejectSound, true) end
 end
 
 
@@ -958,8 +930,6 @@ end
 
 ]]
 function ISORGMWeapon:closeSlide(char, sound, weapon)
-    -- self:testDebug("closeSlide")
-
     if self.isOpen == 0 then -- already closed!
         return
     end
@@ -989,6 +959,9 @@ function ISORGMWeapon:feedNextRound(weapon)
         return
     end
     local round = self.magazineData[self.currentCapacity]
+    if round == nil then -- problem, currentCapacity doesn't match our magazineData
+    
+    end
     -- remove last entry from data table (Note: using #table to find the length is slow)
     self.magazineData[self.currentCapacity] = nil 
     self.currentCapacity = self.currentCapacity - 1
@@ -1006,6 +979,7 @@ end
 ]]
 function ISORGMWeapon:setCurrentRound(round, weapon)
     if round == nil or round == 'shell' then return end
+    round = self:convertDummyRound(round)
     local roundData = ORGMAmmoStatsTable[round]
     if roundData == nil then
         self.lastRound = nil
@@ -1018,7 +992,6 @@ function ISORGMWeapon:setCurrentRound(round, weapon)
         -- but we can change the MaxHitCount, so while the slug ends up firing multiple projectiles, only 1 will hit
         -- in testing this works.
         if roundData.MaxHitCount then weapon:setMaxHitCount(roundData.MaxHitCount) end
-        -- TODO: move this outside this IF statement, and set it to a % chance instead of true/false
         
     end
     if roundData.PiercingBullets == true or roundData.PiercingBullets == false then
@@ -1047,8 +1020,6 @@ end
     
 ]]
 function ISORGMWeapon:cockHammer(char, sound, weapon)
-    -- self:testDebug("cockHammer")
-
     -- rotary cylinders rotate the chamber when the hammer is cocked
     if self.actionType == "Rotary" and self.isOpen == 0 then
         self:rotateCylinder(1, char, false, weapon)
@@ -1067,8 +1038,6 @@ end
     
 ]]
 function ISORGMWeapon:releaseHammer(char, sound)
-    --self:testDebug("releaseHammer")
-
     self.hammerCocked = 0
 end
 
@@ -1212,6 +1181,8 @@ function ISORGMWeapon:syncItemToReloadable(weapon)
     self.preferredAmmoType = modData.preferredAmmoType
     self.lastRound = modData.lastRound
     self.loadedAmmo = modData.loadedAmmo
+    
+    -- self.shootSound = modData.shootSound
 end
 
 function ISORGMWeapon:syncReloadableToItem(weapon)
@@ -1362,7 +1333,8 @@ function ISORGMWeapon:printReloadableWeaponDetails()
     end
     
     if self.magazineData then
-        for index, value in ipairs(self.magazineData) do
+        for index=1, self.maxCapacity do
+            value = self.magazineData[index]
             if value == nil then value = "nil" end
             print("magazineData #" .. index .. " = " .. value)
         end
