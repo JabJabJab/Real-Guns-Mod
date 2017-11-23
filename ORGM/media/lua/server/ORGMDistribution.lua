@@ -2,8 +2,10 @@
 
     This file controls spawning of weapons and ammo.
     It is no longer necessary to edit this file when new guns or ammo are added to the mod.
-    However, new upgrade parts still need to be added to the tables, as well as repair kits.
+    However, new upgrade parts still need to be added to the AllModsTable, as well as 
+    repair kit in the RepairTable.
     All guns and ammo are only defined in ORGMWeaponData.lua
+    
 ]]
 
 
@@ -400,7 +402,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnRandomCan(container, 5)
         SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
 
-    elseif roomName == "hunting" and containerType == "metal_shelves" or containerType == "locker" then
+    elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
         local choice = SelectGun(85, 10, 5)
         SpawnReloadable(container, choice.gun, choice.ammo, 30, 1, false)
         SpawnMags(container, choice.gun, choice.ammo, 10, 3, false)
