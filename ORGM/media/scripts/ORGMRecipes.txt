@@ -2,6 +2,67 @@
 
 module ORGM
 {
+    /** vanilla round conversion **/
+    recipe Convert vanilla to ORGM 9x19mm FMJ
+    {
+        Base.Bullets9mm,
+        
+        Result:Ammo_9x19mm_FMJ,
+        Time:1.0,
+    }
+    recipe Convert vanilla to ORGM 9x19mm FMJ
+    {
+        Base.BulletsBox,
+        
+        Result:Ammo_9x19mm_FMJ=6,
+        Time:1.0,
+    }
+    
+    recipe Convert vanilla to ORGM .223 Remington FMJ
+    {
+        Base.223Bullets,
+        
+        Result:Ammo_223Remington_FMJ,
+        Time:1.0,
+    }
+    recipe Convert vanilla to ORGM .223 Remington FMJ
+    {
+        Base.223Box,
+        
+        Result:Ammo_223Remington_FMJ=8,
+        Time:1.0,
+    }
+
+    recipe Convert vanilla to ORGM .308 Winchester FMJ
+    {
+        Base.308Bullets,
+        
+        Result:Ammo_308Winchester_FMJ,
+        Time:1.0,
+    }
+    recipe Convert vanilla to ORGM .308 Winchester FMJ
+    {
+        Base.308Box,
+        
+        Result:Ammo_308Winchester_FMJ=8,
+        Time:1.0,
+    }
+
+    recipe Convert vanilla to ORGM 12 Guage 00Buck
+    {
+        Base.ShotgunShells,
+        
+        Result:Ammo_12g_00Buck,
+        Time:1.0,
+    }
+    recipe Convert vanilla to ORGM 12 Guage 00Buck
+    {
+        Base.ShotgunShellsBox,
+        
+        Result:Ammo_12g_00Buck=4,
+        Time:1.0,
+    }
+
     /** Ammo, .117 BB **/
     recipe Uncan .117 Ammo_117BB rounds
     {
