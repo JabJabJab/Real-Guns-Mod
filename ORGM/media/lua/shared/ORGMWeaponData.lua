@@ -45,6 +45,7 @@ local GunTypes = {
     ["Break-DAO"] =     { triggerType = "DoubleActionOnly", actionType = "Break" },
 }
 
+
 --[[ The SoundProfiles table contains some basic sound profiles for working the action.
     Any key = value pairs here can be overridden by specific weapons, each key is only set in the 
     weapons data table if it doesn't already exist.
@@ -177,7 +178,12 @@ local SoundProfiles = {
     }
 }
 
-local SoundBanksSetupTable = { } -- local table of sounds we have to setup OnLoadSoundBanks event
+
+--[[ The SoundBanksSetupTable table contains sounds we have to setup OnLoadSoundBanks event.
+    It is automatically filled out after all guns are setup
+]]
+local SoundBanksSetupTable = { }
+
 
 --[[ The Alternate Ammo Table (Global)
     This table defines what ammo can be used as replacements for the generic dummy ammo. When 
@@ -212,10 +218,12 @@ ORGMAlternateAmmoTable = {
     ["Ammo_12g"]        = {"Ammo_12g_00Buck", "Ammo_12g_Slug"},
 }
 
+
 --[[
     TODO: fill out this table.
 ]]
 ORGMAlternateMagTable = {  }
+
 
 --[[ The Ammo Stats Table (Global)
     This is used for guns to change attributes based on ammo.  If a round is different from the last round 
@@ -275,14 +283,47 @@ ORGMAmmoStatsTable = {
     ["Ammo_12g_Slug"]           = { MinDamage = 2.0, MaxDamage = 2.8, MaxHitCount = 1, PiercingBullets = 95 }
 }
 
+
+--[[ ORGMWeaponModsTable (Global)
+    A list of weapon repair kits in ORGM, this is used for distribution tables, and so other mods can
+    list possible upgrades without having to hardcode the list
+]]
+ORGMRepairKitsTable = { "WD40", "Brushkit", "Maintkit" }
+
+
+--[[ ORGMWeaponModsTable (Global)
+    A list of standard weapon mods in ORGM, this is used for distribution tables, and so other mods can
+    list possible upgrades without having to hardcode the list
+]]
+ORGMWeaponModsTable = {
+    '2xScope', 
+    '4xScope', 
+    '8xScope', 
+    'FibSig', 
+    'Foregrip', 
+    'FullCh', 
+    'HalfCh', 
+    'PistolLas', 
+    'PistolTL', 
+    'RDS', 
+    'Recoil', 
+    'Reflex', 
+    'RifleLas', 
+    'RifleTL', 
+    'Rifsling', 
+    'SkeletalStock', 
+    'CollapsingStock'
+}
+
+
 --[[ The Master Magazine Table (global)
     This table contains all magazine data (ammoType, maxCapacity, etc), it lists clipIcon and clipName 
     originally listed in each weapon's table (since multiple guns often use the same mag, it makes sense to
     just move those keys to the magazine instead).
 
     MagName = {
-        name = "", -- clipName used by any weapon that uses this mag, auto generated from the matching script item
-        icon = "", -- clipIcon used by any weapon that uses this mag, auto generated from the matching script item
+        name = "", -- clipName used by any weapon that uses this mag, AUTO GENERATED FROM THE MATCHING SCRIPT ITEM
+        icon = "", -- clipIcon used by any weapon that uses this mag, AUTO GENERATED FROM THE MATCHING SCRIPT ITEM
         data = { -- table passed to ReloadUtil:addMagazineType()
             -- any key = value pair that doesn't exist here (but should) is set to a default
             ammoType = "",
@@ -290,7 +331,6 @@ ORGMAmmoStatsTable = {
         },
     }
 ]]
-
 ORGMMasterMagTable = {
     ["AIAW308Mag"] =        { data = { ammoType = 'Ammo_308Winchester',     maxCapacity = 5,    }, },
     ["AKMMag"] =            { data = { ammoType = 'Ammo_762x39mm',          maxCapacity = 30,   }, },
@@ -367,20 +407,22 @@ ORGMMasterMagTable = {
     ["XD40Mag"] =           { data = { ammoType = 'Ammo_40SW',              maxCapacity = 9,    }, },
 }
 
+
 --[[ The Master Weapon Table (global)
     This table contains all weapon data
     
     WeaponName = {
         gunType = "", -- the action and trigger type (see the GunTypes table above)
         soundProfile = "", -- the sound profile to apply (see the SoundProfiles table above)
-        isCivilian/isPolice/isMilitary = "Common|Rare|VeryRare", -- used to define what distribution tables to insert into
+        isCivilian/isPolice/isMilitary = nil|"Common|Rare|VeryRare", -- used to define what distribution tables to insert into
         selectFire = nil|0|1, -- used on weapons that can select fire modes (leave nil if not select fire)
                     -- if 1 the default fire mode is full-auto, 0 default mode is semi
         altActionType = "", -- alternate action type for guns that can switch (ie: semi-auto shotguns that can also be pump action)
         data = { -- OPTIONAL table passed to ReloadUtil:addWeaponType()
+            -- created automatically if it doesn't exist
             -- any key = value pair that doesn't exist here (but should) is set to a default
             -- or inherited from the GunTypes and SoundProfiles tables
-            ammoType = "", -- AUTO SET FROM SCRIPT ITEM
+            ammoType = "", -- AUTO GENERATED FROM SCRIPT ITEM
             speedLoader = "", -- optional, name of the speedloader/stripperclip used with this gun.
                     -- previously speedloaders were listed in the ammoType variable, but since use of
                     -- loaders or strippers is never actually required to load a gun, they have been
@@ -1045,6 +1087,7 @@ ORGMMasterWeaponTable = {
     },
 }
 
+
 -- setup all magazines
 -- this is a funky loop syntax, but allows us to use the break keyword to continue the loop
 -- keeps from using nasty nested if / else statements
@@ -1152,6 +1195,7 @@ for name, info in pairs(ORGMMasterWeaponTable) do repeat
     -- TODO: there should also be some strict error checking here insuring all required variables are set.
     ReloadUtil:addWeaponType(data)
 until true end
+
 
 Events.OnLoadSoundBanks.Add(function()
     for key, value in pairs(SoundBanksSetupTable) do

@@ -2,8 +2,6 @@
 
     This file controls spawning of weapons and ammo.
     It is no longer necessary to edit this file when new guns or ammo are added to the mod.
-    However, new upgrade parts still need to be added to the AllModsTable, as well as 
-    repair kit in the RepairTable.
     All guns and ammo are only defined in ORGMWeaponData.lua
     
 ]]
@@ -36,35 +34,6 @@ local WeaponsTable = {
     Military = { Common = {}, Rare = {}, VeryRare = {} },
 }
 
---[[ AllModsTable
-    A list of all ORGM weapon mods. Unfortunately I haven't found a way to auto generate this one yet
-]]
-local AllModsTable = {
-    '2xScope', 
-    '4xScope', 
-    '8xScope', 
-    'FibSig', 
-    'Foregrip', 
-    'FullCh', 
-    'HalfCh', 
-    'PistolLas', 
-    'PistolTL', 
-    'RDS', 
-    'Recoil', 
-    'Reflex', 
-    'RifleLas', 
-    'RifleTL', 
-    'Rifsling', 
-    'SkeletalStock', 
-    'CollapsingStock'
-}
-
-
-local RepairTable = {
-    "WD40",
-    "Brushkit",
-    "Maintkit",
-}
 
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
@@ -261,8 +230,8 @@ local AddToCivRoom = function(container)
     SpawnMags(container, choice.gun, choice.ammo, 1, 1, true) -- has mags
     SpawnItem(container, choice.ammo, 2, 29) -- loose shells
     SpawnItem(container, choice.ammo .. "_Box", 1, 1) -- has box
-    SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 1, 1) -- has a mod
-    SpawnItem(container, RepairTable[Rnd(#RepairTable)], 1, 1) -- has repair stuff
+    SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 1, 1) -- has a mod
+    SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 1, 1) -- has repair stuff
 end
 
 
@@ -308,8 +277,8 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
 
             SpawnItem(container, choice.ammo .. "_Box", 80, 4)
             SpawnItem(container, choice.ammo .. "_Can", 20, 1)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 30, 2)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 40, 2)
+            SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 30, 2)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 40, 2)
             if Rnd(10) > 4 then count = count -1 end
         end
     elseif roomName == "gunstore" then
@@ -321,7 +290,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
             SpawnRandomBox(container, 30)
             SpawnRandomCan(container, 10)
             SpawnRandomCan(container, 5)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
             
         elseif containerType == "counter" then
             SpawnRandomBox(container, 70)
@@ -331,7 +300,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
             SpawnRandomBox(container, 30)
             SpawnRandomCan(container, 10)
             SpawnRandomCan(container, 5)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
             
         elseif containerType == "displaycase" or containerType == "metal_shelves" then
             local choice = SelectGun(85, 10, 5)
@@ -340,8 +309,8 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
             choice = SelectGun(85, 10, 5)
             SpawnReloadable(container, choice.gun, choice.ammo, 40, 1, false)
             SpawnMags(container, choice.gun, choice.ammo, 30, 2, false)
-            SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 40, 2)
-            SpawnItem(container, RepairTable[Rnd(#RepairTable)], 30, 2)
+            SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 40, 2)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 30, 2)
         end
     elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
         local choice = SelectGun(85, 10, 5)
@@ -350,8 +319,8 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         choice = SelectGun(85, 10, 5)
         SpawnReloadable(container, choice.gun, choice.ammo, 40, 1, false)
         SpawnMags(container, choice.gun, choice.ammo, 30, 2, false)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 40, 2)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 30, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 40, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 30, 2)
 
         SpawnRandomBox(container, 70)
         SpawnRandomBox(container, 60)
@@ -360,7 +329,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnRandomBox(container, 30)
         SpawnRandomCan(container, 10)
         SpawnRandomCan(container, 5)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
     
     elseif roomName == "storageunit" and containerType == "crate" then
         local choice = SelectGun(85, 10, 5)
@@ -369,9 +338,9 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         choice = SelectGun(85, 10, 5)
         SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
         SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 5, 2)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 2)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 10, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 5, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 2, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 10, 2)
 
         SpawnRandomBox(container, 70)
         SpawnRandomBox(container, 60)
@@ -380,7 +349,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnRandomBox(container, 30)
         SpawnRandomCan(container, 10)
         SpawnRandomCan(container, 5)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
 
     elseif roomName == "garagestorage" and containerType == "smallbox" then
         local choice = SelectGun(85, 10, 5)
@@ -389,9 +358,9 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         choice = SelectGun(85, 10, 5)
         SpawnReloadable(container, choice.gun, choice.ammo, 10, 1, false)
         SpawnMags(container, choice.gun, choice.ammo, 5, 3, false)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 5, 2)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 2)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 10, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 5, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 2, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 10, 2)
 
         SpawnRandomBox(container, 70)
         SpawnRandomBox(container, 60)
@@ -400,7 +369,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnRandomBox(container, 30)
         SpawnRandomCan(container, 10)
         SpawnRandomCan(container, 5)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
 
     elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
         local choice = SelectGun(85, 10, 5)
@@ -409,9 +378,9 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         choice = SelectGun(85, 10, 5)
         SpawnReloadable(container, choice.gun, choice.ammo, 20, 1, false)
         SpawnMags(container, choice.gun, choice.ammo, 8, 3, false)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 15, 2)
-        SpawnItem(container, AllModsTable[Rnd(#AllModsTable)], 2, 1)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 15, 2)
+        SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 2, 1)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
 
         SpawnRandomBox(container, 70)
         SpawnRandomBox(container, 60)
@@ -420,7 +389,7 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnRandomBox(container, 30)
         SpawnRandomCan(container, 10)
         SpawnRandomCan(container, 5)
-        SpawnItem(container, RepairTable[Rnd(#RepairTable)], 20, 2)
+        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
 
     end
 end)
@@ -432,7 +401,7 @@ end)
 do
     
     local modItems = {}
-    for _, modName in ipairs(AllModsTable) do
+    for _, modName in ipairs(ORGMWeaponModsTable) do
         modItems[modName] = InventoryItemFactory.CreateItem('ORGM.' .. modName)
     end
     for gunName, gunData in pairs(ORGMMasterWeaponTable) do
