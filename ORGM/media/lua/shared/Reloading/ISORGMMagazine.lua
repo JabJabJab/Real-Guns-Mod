@@ -177,40 +177,7 @@ function ISORGMMagazine:convertDummyRound(round)
 end
 
 function ISORGMMagazine:findBestAmmo(char)
-    --print("findBestAmmo()")
-    if self.preferredAmmoType ~= nil and self.preferredAmmoType ~= "any" and self.preferredAmmoType ~= 'mixed' then
-        -- a preferred ammo is set, we only look for these bullets
-        --print("looking for preferred ".. self.preferredAmmoType)
-        return char:getInventory():FindAndReturn(self.preferredAmmoType)
-    end
-    local round = char:getInventory():FindAndReturn(self.ammoType) -- this shouldn't actually be here, self.ammoType is just a dummy round
-    if round then return round end
-    -- check if there are alternate ammo types we can use
-    local roundTable = ORGMAlternateAmmoTable[self.ammoType]
-    if roundTable == nil then
-        --print("NO ROUND TABLE for " .. self.ammoType)
-        return nil 
-    end -- there should always be a entry
-    if self.preferredAmmoType == 'mixed' then
-        --print("mixed preference")
-        local options = {}
-        for _, value in ipairs(roundTable) do
-            -- check what rounds the player has
-            if char:getInventory():FindAndReturn(value) then table.insert(options, value) end
-        end
-        -- randomly pick one
-        return char:getInventory():FindAndReturn(options[ZombRand(#options) + 1])
-        
-    else -- not a random picking, go through the list in order
-        for _, value in ipairs(roundTable) do
-            --print("checking for " .. value)
-            round = char:getInventory():FindAndReturn(value)
-            if round then return round end
-        end
-    end
-    if round then return round end
-    --print("NO AMMO!!!")
-    return nil
+    return ORGMUtil.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 function ISORGMMagazine:syncItemToReloadable(item)
@@ -249,8 +216,10 @@ function ISORGMMagazine:syncReloadableToItem(item)
     modData.loadedAmmo = self.loadedAmmo
 end
 
-function ISORGMMagazine:setupReloadable(item, v)
+function ISORGMMagazine:setupReloadable(item, magazineData)
     local modData = item:getModData()
+    ORGMUtil.setupMagazine(magazineData, item) --moved to save on duplicate code
+    --[[
     --modData.defaultAmmo = item:getAmmoType()
     modData.type = v.type
     modData.moduleName = v.moduleName
@@ -270,6 +239,7 @@ function ISORGMMagazine:setupReloadable(item, v)
     modData.preferredAmmoType = 'any'
     modData.loadedAmmo = nil
 --  modData.reloadText = v.reloadText;
+    ]]
 end
 
 function ISORGMMagazine:printItemDetails(item)

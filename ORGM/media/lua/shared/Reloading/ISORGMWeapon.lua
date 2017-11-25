@@ -644,41 +644,8 @@ end
 
 ]]
 function ISORGMWeapon:findBestMagazine(char, ammoType)
-    if ammoType == nil then
-        ammoType = self.ammoType
-    end
-    local clip = nil
-    local mostAmmo = -1
-    -- TODO: this needs a extra loop here, for possible alternate magazines
-    local items = char:getInventory():getItems()
-    local requiredClipData = ReloadUtil:getClipData(ammoType)
-    
-    for i = 0, items:size()-1 do
-        local currentItem = items:get(i)
-        -- This may be the first time the item is used
-        -- best call setupMagazine and see if it's a clip
-        local currentReloadable = ReloadUtil:setupMagazine(currentItem, requiredClipData, char)
-        -- Was the item a clip?
-        if currentReloadable ~= nil then
-            if currentReloadable.clipType == requiredClipData.clipType then
-                if currentReloadable.currentCapacity == nil then -- not properly setup? skip it
-                    -- pass
-                
-                elseif currentReloadable.currentCapacity > mostAmmo then -- check the amount of ammo
-                    if (self.preferredAmmoType == nil or self.preferredAmmoType == 'any') then
-                        -- this gun is configured to use any ammo, so this is best mag so far
-                        clip = currentItem
-                        mostAmmo = currentReloadable.currentCapacity
-                    elseif self.preferredAmmoType == currentReloadable.loadedAmmo then
-                        -- magazine is only loaded with our preferred type.
-                        clip = currentItem
-                        mostAmmo = currentReloadable.currentCapacity                    
-                    end
-                end
-            end
-        end
-    end
-    return clip
+    if ammoType == nil then ammoType = self.ammoType end
+    return ORGMUtil.findBestMagazineInContainer(ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 
@@ -689,31 +656,7 @@ end
 
 
 function ISORGMWeapon:findBestAmmo(char)
-    if self.preferredAmmoType ~= nil and self.preferredAmmoType ~= "any" and self.preferredAmmoType ~= 'mixed' then
-        -- a preferred ammo is set, we only look for these bullets
-        return char:getInventory():FindAndReturn(self.preferredAmmoType)
-    end
-    local round = char:getInventory():FindAndReturn(self.ammoType) -- this shouldn't actually be here, self.ammoType is just a dummy round
-    if round then return round end
-    -- check if there are alternate ammo types we can use
-    local roundTable = ORGMAlternateAmmoTable[self.ammoType]
-    if roundTable == nil then return nil end -- there should always be a entry
-    if self.preferredAmmoType == 'mixed' then
-        local options = {}
-        for _, value in ipairs(roundTable) do
-            -- check what rounds the player has
-            if char:getInventory():FindAndReturn(value) then table.insert(options, value) end
-        end
-        -- randomly pick one
-        return char:getInventory():FindAndReturn(options[ZombRand(#options) + 1])
-        
-    else -- not a random picking, go through the list in order
-        for _, value in ipairs(roundTable) do
-            round = char:getInventory():FindAndReturn(value)
-            if round then return round end
-        end
-    end
-    return nil
+    return ORGMUtil.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 
@@ -1214,6 +1157,9 @@ function ISORGMWeapon:syncReloadableToItem(weapon)
 end
 
 function ISORGMWeapon:setupReloadable(weapon, v)
+    ORGMUtil.setupGun(v, weapon) --moved to save on duplicate code
+
+    --[[
     local modData = weapon:getModData()
 
     ---------------------------------------------
@@ -1272,6 +1218,7 @@ function ISORGMWeapon:setupReloadable(weapon, v)
     -- what type of rounds are loaded, either ammo name, or 'mixed'. This is only really used when ejecting a magazine, so the mag's modData
     -- has this flagged (used when loading new mags to match self.preferredAmmoType)
     modData.loadedAmmo = nil 
+    ]]
 end
 
 
