@@ -219,9 +219,6 @@ Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
         --context:addOption("* Debug Weapon", item, OnDebugWeapon, playerObj, data, reloadable)
         --context:addOption("* Test Function", item, OnTestFunction, playerObj, data, reloadable)
         --context:addOption("* Reset To Defaults", item, OnResetWeapon, playerObj, data, reloadable)
-        if isAdmin() then
-            context:addOption("Admin - Full Ammo", item, OnAdminFillAmmo, playerObj, data, reloadable)
-        end
     end
     
 
