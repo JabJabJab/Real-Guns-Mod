@@ -72,7 +72,14 @@ local SpawnReloadable = function(container, itemType, ammoType, spawnChance, max
 
         for i=0, item:size()-1 do
             local additem = item:get(i)
-            ReloadUtil:syncItemToReloadable(additem, getPlayer()) -- seems this can cause a exception at times 
+            if ORGMMasterMagTable[itemType] then
+                ORGMUtil.setupMagazine(ReloadUtil:getClipData(itemType), additem)
+            elseif ORGMMasterWeaponTable[itemType] then
+                ORGMUtil.setupGun(ReloadUtil:getWeaponData(itemType), additem)
+            else
+                return nil
+            end
+            --ReloadUtil:syncItemToReloadable(additem, getPlayer()) -- seems this can cause a exception at times 
             -- like resetting the world while a player is in a place that spawns guns ie: gunstore.
             -- this is due to ISReloadUtil:getReloadableForPlayer() not having the required setup
             local data = additem:getModData()
