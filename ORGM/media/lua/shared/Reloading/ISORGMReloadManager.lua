@@ -134,12 +134,12 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
     local weapon = character:getPrimaryHandItem();
     if ReloadUtil:setUpGun(weapon, character) then
         self.reloadable = ReloadUtil:getReloadableWeapon(weapon, character);
-        if(self.reloadable:isLoaded(self:getDifficulty()) == true) then
+        if(self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
             ISTimedActionQueue.clear(character)
             if(chargeDelta == nil) then
                 character:DoAttack(0);
             else
-                character:DoAttack(chargeDelta);
+                character:DoAttack(chargeDelta)
             end
         elseif self:rackingNow() then
             -- Don't interrupt the racking action
@@ -147,7 +147,8 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
             -- interrupt actions so racking can begin before firing
             ISTimedActionQueue.clear(character)
         else
-            if self.reloadable.fireEmpty then -- This is our override here, we need to cock and release the hammer
+            -- call the :fireEmpty function if it exists, to cock and release the hammer
+            if self.reloadable.fireEmpty then 
                 self.reloadable:fireEmpty(character, weapon)
             end
             character:DoAttack(chargeDelta, true, self.reloadable.clickSound);

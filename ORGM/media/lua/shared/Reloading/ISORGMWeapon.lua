@@ -209,6 +209,32 @@ function ISORGMWeapon:isLoaded(difficulty)
 end
 
 
+function ISORGMWeapon:checkJam(char, weapon)
+    if self.isJammed then return true end
+    if self.actionType == "Rotary" or self.actionType == "Break" then
+        return nil
+    end
+    
+    local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
+    if char:HasTrait("Lucky") then 
+        chance = chance * 0.8
+    elseif char:HasTrait("Unlucky") then
+        chance = chance * 1.2
+    end
+
+    local result = ZombRand(300 - math.ceil(chance))+1
+    if result <= chance then
+        print("Start jam...")
+        char:Say("jammed!")
+        self.isJammed = true
+        weapon:getModData().isJammed = true
+        --self:syncReloadableToItem(weapon)
+        return true
+    end
+    return nil
+end
+
+
 --[[ ISORGMWeapon:fireShot(weapon, difficulty)
 
     called when the actual shot is fired
@@ -762,6 +788,7 @@ function ISORGMWeapon:canRack(char)
     end
     if self.emptyShellChambered == 1 then return true end
     if ReloadManager[1]:getDifficulty() < 3 or char:getJoypadBind() ~= -1 then
+        if self.isJammed then return true end
         return self.roundChambered == 0 and self.currentCapacity > 0
     end
 
@@ -837,6 +864,7 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
     end
     -- first open the slide...
     self.isOpen = 1
+    self.isJammed = nil 
     if (sound and self.openSound) then char:playSound(self.openSound, true) end
     local square = char:getCurrentSquare()
     local round = self.lastRound
@@ -884,7 +912,7 @@ function ISORGMWeapon:closeSlide(char, sound, weapon)
     -- load next shot, this isn't always true though: 
     -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
     -- a mag inserted while slide open will chamber when closed
-    self:feedNextRound(weapon)
+    self:feedNextRound(char, weapon)
 end
 
 
@@ -896,7 +924,7 @@ end
     is NOT called in this function.
         
 ]]
-function ISORGMWeapon:feedNextRound(weapon)
+function ISORGMWeapon:feedNextRound(char, weapon)
     if self.currentCapacity == 0 or self.currentCapacity == nil then
         self.loadedAmmo = nil
         return
@@ -911,6 +939,20 @@ function ISORGMWeapon:feedNextRound(weapon)
     self.roundChambered = 1
     -- a different round has been chambered, change the stats
     self:setCurrentRound(round, weapon)
+    
+    -- check for a jam
+    local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
+    if char:HasTrait("Lucky") then 
+        chance = chance * 0.8
+    elseif char:HasTrait("Unlucky") then
+        chance = chance * 1.2
+    end
+
+    local result = ZombRand(300 - math.ceil(chance)*2)+1
+    if result <= chance then
+        self.isJammed = true
+        weapon:getModData().isJammed = true
+    end    
 end
 
 
@@ -1109,7 +1151,7 @@ function ISORGMWeapon:syncItemToReloadable(weapon)
     self.preferredAmmoType = modData.preferredAmmoType
     self.lastRound = modData.lastRound
     self.loadedAmmo = modData.loadedAmmo
-    
+    self.isJammed = modData.isJammed
     -- self.shootSound = modData.shootSound
 end
 
@@ -1139,6 +1181,7 @@ function ISORGMWeapon:syncReloadableToItem(weapon)
     modData.preferredAmmoType = self.preferredAmmoType
     modData.lastRound = self.lastRound
     modData.loadedAmmo  = self.loadedAmmo 
+    modData.isJammed = self.isJammed
 end
 
 function ISORGMWeapon:setupReloadable(weapon, v)
@@ -1179,6 +1222,12 @@ function ISORGMWeapon:printReloadableWeaponDetails()
         print("currentCapacity == "..self.currentCapacity)
     else
         print("currentCapacity == nil")
+    end
+
+    if(self.isJammed ~= nil) then
+        print("isJammed == "..self.isJammed)
+    else
+        print("isJammed == nil")
     end
 
     print("isOpen == " .. self.isOpen)
