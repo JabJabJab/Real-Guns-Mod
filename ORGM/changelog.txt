@@ -1,4 +1,4 @@
-version 2.00alpha
+version 2.00beta-rc4
 
 Changes of Note:
 
@@ -31,6 +31,12 @@ Changes of Note:
     and what fire mode (Full/Semi) a gun is currently using.
 
 * Shotguns with buckshot loads now have a chance of missing.
+
+* Increased durability of all firearms, especially revolvers.
+
+* Guns now have a chance of jamming based on weapon condition. Racking the gun clears the jam. Revolvers
+    and break barrels are not susceptible to jamming. Easy and Normal difficulty will auto rack to clear.
+    At any rate, the jammed round will fall to the floor. This is affected by the lucky/unlucky traits.
 
 * When reloading a revolver, if there are empty shells in the cylinder the entire cylinder contents are
     dumped out and all cylinder spots must be reloaded. You can not just replace the empty shells.
