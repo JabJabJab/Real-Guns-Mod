@@ -203,3 +203,14 @@ function ORGMUtil.convertAllDummyRounds(dummyName, containerItem)
     containerItem:AddItems('ORGM'.. roundTable[1], count)
 end
 
+function ORGMUtil.setWeaponProjectileStats(weapon, roundData)
+    if roundData.MaxDamage then weapon:setMaxDamage(roundData.MaxDamage) end
+    if roundData.MinDamage then weapon:setMinDamage(roundData.MinDamage) end
+    if roundData.CriticalChance then weapon:setCriticalChance(roundData.CriticalChance) end
+    if roundData.DoorDamage then weapon:setDoorDamage(roundData.DoorDamage) end
+    
+    -- shotguns: we can't change the ProjectileCount for buckshot/slug swapping, theres no function for it.
+    -- but we can change the MaxHitCount, so while the slug ends up firing multiple projectiles, only 1 will hit
+    -- in testing this works.
+    if roundData.MaxHitCount then weapon:setMaxHitCount(roundData.MaxHitCount) end
+end

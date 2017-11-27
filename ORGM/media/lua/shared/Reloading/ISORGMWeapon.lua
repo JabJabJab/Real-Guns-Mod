@@ -929,13 +929,7 @@ function ISORGMWeapon:setCurrentRound(round, weapon)
         return
     end
     if round ~= self.lastRound then 
-        if roundData.MaxDamage then weapon:setMaxDamage(roundData.MaxDamage) end
-        if roundData.MinDamage then weapon:setMinDamage(roundData.MinDamage) end
-        -- shotguns: we can't change the ProjectileCount for buckshot/slug swapping, theres no function for it.
-        -- but we can change the MaxHitCount, so while the slug ends up firing multiple projectiles, only 1 will hit
-        -- in testing this works.
-        if roundData.MaxHitCount then weapon:setMaxHitCount(roundData.MaxHitCount) end
-        
+        ORGMUtil.setWeaponProjectileStats(weapon, roundData)
     end
     if roundData.PiercingBullets == true or roundData.PiercingBullets == false then
         weapon:setPiercingBullets(roundData.PiercingBullets)
@@ -944,7 +938,7 @@ function ISORGMWeapon:setCurrentRound(round, weapon)
         if result <= roundData.PiercingBullets then
             weapon:setPiercingBullets(true)
         else
-            weapon:setPiercingBullets(true)
+            weapon:setPiercingBullets(false)
         end
     end
     self.lastRound = round -- this is also used if the slide is cycled again before firing, so we know what to eject
@@ -1158,67 +1152,6 @@ end
 
 function ISORGMWeapon:setupReloadable(weapon, v)
     ORGMUtil.setupGun(v, weapon) --moved to save on duplicate code
-
-    --[[
-    local modData = weapon:getModData()
-
-    ---------------------------------------------
-    -- ISReloadableWeapon.setupReloadable(self, weapon, v)
-    modData.defaultAmmo = weapon:getAmmoType()
-    --weapon:setAmmoType(nil) -- this controls our tooltip
-    modData.defaultSwingSound = weapon:getSwingSound()
-    ---------------------------------------------
-
-    --ISReloadable:setupReloadable(item, v)
-    modData.type = v.type
-    modData.moduleName = v.moduleName
-    modData.reloadClass = v.reloadClass
-    modData.ammoType = v.ammoType
-    modData.loadStyle = v.reloadStyle
-    modData.ejectSound = v.ejectSound
-    modData.clickSound = v.clickSound
-    modData.insertSound = v.insertSound
-    modData.rackSound = v.rackSound
-    modData.maxCapacity = v.maxCapacity or weapon:getClipSize()
-    modData.reloadTime = v.reloadTime or weapon:getReloadTime()
-    modData.rackTime = v.rackTime
-    modData.currentCapacity = 0
-    ---------------------------------------------
-
-    -- custom stuff
-    if v.cockSound then modData.cockSound = v.cockSound end
-    if v.openSound then modData.openSound = v.openSound end
-    if v.closeSound then modData.closeSound = v.closeSound end
-    
-    if v.clipData then modData.containsClip = 1 end
-    if v.clipName then modData.clipName = v.clipName end
-    if v.clipIcon then modData.clipIcon = v.clipIcon end
-
-    modData.weaponType = v.weaponType -- Rifle, SMG, Shotgun, Pistol, Revolver, LMG (currently not used)
-    modData.actionType = v.actionType -- Auto, Pump, Lever, Rotary, Break
-    modData.triggerType = v.triggerType -- SingleAction, DoubleAction
-    if v.speedLoader then modData.speedLoader = v.speedLoader end -- speedloader/stripperclip name
-    -- alternate action type, ie: semi auto that can also be pump, etc. This is a table list of all actionTypes used by the gun
-    if v.altActionType then modData.altActionType = v.altActionType end 
-    -- selectFire is nil for no selection possible, 0 if the weapon is CURRENTLY in semi-auto, 1 if CURRENTLY in full-auto
-    if v.selectFire then modData.selectFire = v.selectFire end 
-    
-    if modData.actionType == "Rotary" then
-        modData.cylinderPosition = 1 -- position is 1 to maxCapacity (required for % oper to work properly)
-    else 
-        modData.roundChambered = 0 -- 0 or 1, a round is currently chambered
-        modData.emptyShellChambered = 0 -- 0 or 1, a empty shell is currently chambered
-    end
-    modData.isOpen = 0 -- 0 or 1, slide/bolt/cylinder is currently open
-    modData.hammerCocked = 0 -- 0 or 1, hammer is currently cocked
-    modData.magazineData = {} -- current rounds, LIFO list
-    modData.preferredAmmoType = nil -- preferred ammo type, this is set by the UI context menu
-    -- last round that was in the chamber, used for knowing what to eject, and if we should change weapon stats when chambering next round
-    modData.lastRound = nil 
-    -- what type of rounds are loaded, either ammo name, or 'mixed'. This is only really used when ejecting a magazine, so the mag's modData
-    -- has this flagged (used when loading new mags to match self.preferredAmmoType)
-    modData.loadedAmmo = nil 
-    ]]
 end
 
 
