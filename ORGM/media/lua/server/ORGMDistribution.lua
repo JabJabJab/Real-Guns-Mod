@@ -76,6 +76,7 @@ local SpawnReloadable = function(container, itemType, ammoType, spawnChance, max
                 ORGMUtil.setupMagazine(ReloadUtil:getClipData(itemType), additem)
             elseif ORGMMasterWeaponTable[itemType] then
                 ORGMUtil.setupGun(ReloadUtil:getWeaponData(itemType), additem)
+                if isLoaded then additem:setCondition(Rnd(additem:getConditionMax())) end
             else
                 return nil
             end
@@ -91,7 +92,7 @@ local SpawnReloadable = function(container, itemType, ammoType, spawnChance, max
             end
             
             if isLoaded then
-                if Rnd(10) >= 3 then fill = Rnd(maxammo) end
+                if Rnd(10) >= 3 then fill = Rnd(maxammo) end 
             end
             
             if fill > 0 then
