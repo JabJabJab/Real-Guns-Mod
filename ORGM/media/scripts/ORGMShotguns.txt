@@ -10,7 +10,7 @@ module ORGM
         RangeFalloff    =   TRUE,
         WeaponSprite    =   shotgunblack,
         SoundVolume =   200,
-        MinAngle    =   0.35,
+        MinAngle    =   0.75,
         Type    =   Weapon,
         MinimumSwingTime    =   2,
         ToHitModifier   =   10,
