@@ -155,7 +155,7 @@ local reloadWeaponOverride = function(primary, player)
     local ammoType = getAmmoBullets(primary, false)			
     if ammoType == nil then return true end
     local modData = primary:getModData()
-
+    modData.isJammed = nil -- lose any jammed flag
     if modData.roundChambered == 1 then return true end -- gun is already loaded
     if modData.currentCapacity and modData.currentCapacity > 0 then -- gun still has ammo, don't reload yet
         return true 
