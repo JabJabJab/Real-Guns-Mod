@@ -931,16 +931,7 @@ function ISORGMWeapon:setCurrentRound(round, weapon)
     if round ~= self.lastRound then 
         ORGMUtil.setWeaponProjectileStats(weapon, roundData)
     end
-    if roundData.PiercingBullets == true or roundData.PiercingBullets == false then
-        weapon:setPiercingBullets(roundData.PiercingBullets)
-    elseif roundData.PiercingBullets ~= nil then 
-        local result = ZombRand(roundData.PiercingBullets) + 1
-        if result <= roundData.PiercingBullets then
-            weapon:setPiercingBullets(true)
-        else
-            weapon:setPiercingBullets(false)
-        end
-    end
+    ORGMUtil.setWeaponProjectilePiercing(weapon, roundData)
     self.lastRound = round -- this is also used if the slide is cycled again before firing, so we know what to eject
 
 end
