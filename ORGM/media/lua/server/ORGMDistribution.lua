@@ -124,13 +124,15 @@ local SpawnMags = function(container, gunType, ammoType, spawnChance, maxCount, 
 
     local weaponData = ORGMMasterWeaponTable[gunType]
     local magType = weaponData.data.ammoType
-    if ORGMMasterMagTable[magType] == nil then -- gun doesnt use mags
-        return
+    if ORGMMasterMagTable[magType] ~= nil then -- gun uses mags
+        SpawnReloadable(container, magType, ammoType, spawnChance, maxCount, lootType)
     end
-    -- TODO: check for speedloaders
     
-    SpawnReloadable(container, magType, ammoType, spawnChance, maxCount, lootType)
-    --end
+    local magType = weaponData.data.speedLoader
+    if ORGMMasterMagTable[magType] ~= nil then -- gun uses speedloaders
+        SpawnReloadable(container, magType, ammoType, spawnChance, maxCount, lootType)
+    end
+    
 end
 
 
@@ -195,6 +197,7 @@ local SelectGun = function(civilian, police, military)
     local gunType = gunTbl[Rnd(#gunTbl)] -- randomly pick a gun
 
     local weaponData = ORGMMasterWeaponTable[gunType]
+    --print("spawning="..gunType)
     local ammoType = weaponData.data.ammoType
     if ORGMMasterMagTable[ammoType] then -- ammoType is a mag, get its default ammo
         ammoType = ORGMMasterMagTable[ammoType].data.ammoType

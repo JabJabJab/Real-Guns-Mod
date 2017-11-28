@@ -295,10 +295,27 @@ end
 function ISORGMWeapon:canReload(char)
     -- TODO: implement SpeedLoader check
     local result = false
+    if self.speedLoader ~= nil then
+        local speed = self:findBestMagazine(char, self.speedLoader)
+        -- we have a speedLoader, check if its .max is less then .max - .current
+        -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
+        if speed and self.containsClip ~= 0 then 
+            speed = speed:getModData()
+            -- revolver will dump out all ammo prior to load anyways, so capacity chcecks dont matter
+            if speed.currentCapacity > 0 and self.actionType == "Rotary" then 
+                return true
+            -- rifles however, do
+            elseif speed.currentCapacity > 0 and speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
+                return true
+            end
+        end
+    end
+        
     if self.containsClip == 1 then -- a magazine is currently in place, we can unload
         result = true
     elseif self.containsClip == 0 then -- gun uses magazines, but none loaded. check if player has some
-       result = char:getInventory():FindAndReturn(self.ammoType) ~= nil         
+        result = self:findBestMagazine(char, self.ammoType) ~= nil
+       -- result = char:getInventory():FindAndReturn(self.ammoType) ~= nil         
     
     elseif self.containsClip == nil then -- doesn't use a clip, check for speedloaders or bullets
         if self.currentCapacity == self.maxCapacity then -- gun already at full
@@ -372,6 +389,29 @@ end
 ]]
 function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
     -- TODO: Implement SpeedLoaders
+    if self.speedLoader ~= nil then
+        local speed = self:findBestMagazine(char, self.speedLoader)
+        -- we have a speedLoader, check if its .max is less then .max - .current
+        -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
+        if speed and self.containsClip ~= 0 then 
+            speed = speed:getModData()
+            if speed.currentCapacity > 0 and speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
+                getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
+                for i=1, speed.maxCapacity do repeat
+                    if speed.magazineData[i] == nil then break end
+                    self:loadRoundIntoMagazine(speed.magazineData[i], weapon)
+                    speed.magazineData[i] = nil
+                    speed.currentCapacity = speed.currentCapacity - 1
+                until true end
+                speed.loadedAmmo = nil
+                self.reloadInProgress = false
+                self:syncReloadableToItem(weapon)
+                char:getXp():AddXP(Perks.Reloading, 1)
+                return
+            end
+        end
+    end
+
     if self.containsClip ~= nil then
         if self.containsClip == 1 then -- eject the current clip
             self:ejectMagazine(char, false)
@@ -387,8 +427,10 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         if self.actionType == "Rotary" then
             self:rotateCylinder(1, char, true, weapon)
             if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
+                self:syncReloadableToItem(weapon)
                 return
             end
+            
         end
         getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
         
