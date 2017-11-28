@@ -317,6 +317,15 @@ module ORGM
         Icon        =   LENo4Mag,
     }   
     
+    item LENo4StripperClip
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.1,
+        Type        =   Normal,
+        DisplayName =   Lee Enfield No. 4 Stripper Clip (7.62x51 or .308),
+        Icon        =   MosinStripperClip,
+    }
+
     item M1216Mag
     {
         CanStack    =   FALSE,
@@ -331,7 +340,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.1,
         Type        =   Normal,
-        DisplayName =   Springfield M1903 Stipper Clip (.30-06),
+        DisplayName =   Springfield M1903 Stripper Clip (.30-06),
         Icon        =   M1903StripperClip,
     }
     
@@ -403,7 +412,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.1,
         Type        =   Normal,
-        DisplayName =   Mosin Nagant Stipper Clip (7.62x54R),
+        DisplayName =   Mosin Nagant Stripper Clip (7.62x54R),
         Icon        =   MosinStripperClip,
     }
     
@@ -502,7 +511,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.1,
         Type        =   Normal,
-        DisplayName =   SKS Stipper Clip (7.62x39mm),
+        DisplayName =   SKS Stripper Clip (7.62x39mm),
         Icon        =   SKSStripperClip,
     }
     
