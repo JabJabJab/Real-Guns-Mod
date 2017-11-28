@@ -52,7 +52,7 @@
     
     
     TODO: fix speed loader code
-    TODO: slides should lock open after last shot
+    TODO: some slides should lock open after last shot
 
     
     There are 3 main logic flows to this file: trigger, reload and unload.
@@ -160,23 +160,18 @@ function ISORGMWeapon:new()
     return o
 end
 
---[[ Debugging function, delete all instances in code before stable release
-]]
-function ISORGMWeapon:testDebug(text)
-    -- sometimes self.playerObj is not quite real and has no :Say() method.  Seems to be the case
-    -- when this class is accessed from odd places (like context menus). Strangely cant seem to find
-    -- where playerObj is actually set (must be in the java components on events?)
-    if self.playerObj and self.playerObj.Say then self.playerObj:Say(text) end
-    print(text)
-end
-
 
 --[[ ISORGMWeapon:isLoaded(difficulty)
 
     called when the player clicks to determine if ISORGMWeapon:fireShot should be called
-    also called after the shot is taken
+    (from ISReloadManager:checkLoaded)
+    Also called after the shot is taken (this is actually called a ridiculous number of 
+    times)
+    
+    difficulty is 1-3 (players reloading difficulty) and not used here
     
     return true|false
+
 ]] 
 function ISORGMWeapon:isLoaded(difficulty)
     -- cant fire with a open slide
@@ -190,16 +185,18 @@ function ISORGMWeapon:isLoaded(difficulty)
 
     if self.actionType == "Rotary" then 
         local round = nil
-        if self.hammerCocked == 1 then
+        if self.hammerCocked == 1 then -- hammer is cocked, check this position
             round = self.magazineData[self.cylinderPosition]
-        else
+        else -- uncocked doubleaction, the chamber will rotate when the player pulls
             round = self:getMagazineAtNextPosition(true)
         end
+        -- TODO: fix empty shell check here
         if round == nil or round == 'shell' then return false end
         return true
     
     elseif self.actionType == "Break" then
         local round = self.magazineData[self.cylinderPosition]
+        -- TODO: fix empty shell check here
         if round == nil or round == 'shell' then return false end
         return true        
     end
@@ -209,36 +206,15 @@ function ISORGMWeapon:isLoaded(difficulty)
 end
 
 
-function ISORGMWeapon:checkJam(char, weapon)
-    if self.isJammed then return true end
-    if self.actionType == "Rotary" or self.actionType == "Break" then
-        return nil
-    end
-    
-    local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
-    if char:HasTrait("Lucky") then 
-        chance = chance * 0.8
-    elseif char:HasTrait("Unlucky") then
-        chance = chance * 1.2
-    end
-
-    local result = ZombRand(300 - math.ceil(chance))+1
-    if result <= chance then
-        print("Start jam...")
-        char:Say("jammed!")
-        self.isJammed = true
-        weapon:getModData().isJammed = true
-        --self:syncReloadableToItem(weapon)
-        return true
-    end
-    return nil
-end
-
-
 --[[ ISORGMWeapon:fireShot(weapon, difficulty)
 
-    called when the actual shot is fired
+    called when the actual shot is fired from ISReloadManager:checkLoaded
 
+    weapon is a HandWeapon object.
+    difficulty is 1-3 (players reloading difficulty) and not used here
+    
+    returns nil
+    
     Note: self has variables changed and Reloadable is synced.
     
 ]]
@@ -257,14 +233,17 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == "Rotary" then
         -- fire shot
+        -- TODO: set a proper empty shell here
         self.magazineData[self.cylinderPosition] = "shell"
         self.currentCapacity = self.currentCapacity - 1
         
     elseif self.actionType == "Break" then
         -- fire shot
+        -- TODO: set a proper empty shell here
         self.magazineData[self.cylinderPosition] = "shell"
         self.currentCapacity = self.currentCapacity - 1
         self.cylinderPosition = self.cylinderPosition + 1 -- this can bypass our maxCapacity limit
+        -- TODO: if there are barrels left, auto recock the hammer (dual hammer double barrels)
         if self.magazineData[self.cylinderPosition] then -- set the next round
             self:setCurrentRound(self.magazineData[self.cylinderPosition], weapon)
         end
@@ -279,10 +258,17 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
     self:syncReloadableToItem(weapon)
 end
 
+
 --[[ ISORGMWeapon:fireEmpty(char, weapon)
 
-    called when the trigger is pulled on a empty chamber
+    called when the trigger is pulled on a empty chamber (from overloaded 
+    ISReloadManager:checkLoaded)
+    
+    char is a IsoGameCharacter object (the player)
+    weapon is a HandWeapon object
 
+    return nil
+    
     Note: self MIGHT have variable changed and Reloadable is synced.
 
 ]]
@@ -965,7 +951,7 @@ end
 function ISORGMWeapon:setCurrentRound(round, weapon)
     if round == nil or round == 'shell' then return end
     round = self:convertDummyRound(round)
-    local roundData = ORGMAmmoStatsTable[round]
+    local roundData = ORGMMasterAmmoTable[round]
     if roundData == nil then
         self.lastRound = nil
         return

@@ -8,8 +8,17 @@
 ORGMUtil = {}
 
 
---[[
+--[[ ORGMUtil.setupGun(gunData, item)
 
+    Sets up a gun, applying key/values into the items modData. Basically the same as 
+    ReloadUtil:setupGun and ISORGMWeapon:setupReloadable but called without needing 
+    a player or reloadable object.
+    
+    gunData is the data returned from ReloadUtil:getWeaponData(gunType)
+    item is a InventoryItem object
+    
+    return nil
+    
 ]]
 
 function ORGMUtil.setupGun(gunData, item)
@@ -76,8 +85,14 @@ end
 
 --[[ ORGMUtil.setupMagazine(magazineType, item)
     
-    Sets up a magazine. Basically the same as ReloadUtil:setupMagazine and ISORGMMagazine:setupReloadable
-    but called without needing a player or reloadable object.
+    Sets up a magazine, applying key/values into the items modData. Basically the same as 
+    ReloadUtil:setupMagazine and ISORGMMagazine:setupReloadable but called without needing 
+    a player or reloadable object.
+    
+    magazineData is the data returned from ReloadUtil:getClipData(magazineType)
+    item is a InventoryItem object
+    
+    return nil
     
 ]]
 function ORGMUtil.setupMagazine(magazineData, item)
@@ -102,7 +117,24 @@ function ORGMUtil.setupMagazine(magazineData, item)
     modData.loadedAmmo = nil
 end
 
+--[[ ORGMUtil.findBestMagazineInContainer(magazineType, preferredType, containerItem)
 
+    Finds the best matching magazine in a container based on the given magazine name and 
+    preferred type (can be specific round name, nil/any, or mixed)
+
+    This is called when reloading some guns, but placed here so mods like survivors can find 
+    the proper ammo without needing access to the actual reloadable object.
+    
+    Note magazineType and preferredType should NOT have the "ORGM." prefix.
+
+    magazineType is the name of the magazine (a key in ORGMAlternateAmmoTable)
+    preferredType is the ammo the magazine should be loaded with. Can be nil (or 'any'), 
+        'mixed', or a specific string matching a ORGMMasterAmmoTable key.
+    containerItem is a ItemContainer object.
+
+    returns nil or a InventoryItem
+
+]]
 function ORGMUtil.findBestMagazineInContainer(magazineType, preferredType, containerItem)
     if magazineType == nil then return nil end
     if ORGMMasterMagTable[magazineType] == nil then return nil end -- not a valid orgm mag
@@ -139,13 +171,18 @@ end
     Finds the best matching ammo (bullets only) in a container based on the given
     dummy round name and preferred type (can be specific round name, nil/any, or mixed)
 
-    returns a InventoryItem (not a string name)
-
     This is called when reloading some guns and all magazines, but placed here so mods
     like survivors can find the proper ammo without needing access to the actual reloadable
     object.
     
     Note dummyName and preferredType should NOT have the "ORGM." prefix.
+
+    dummyName is the name of the dummy round (a key in ORGMAlternateAmmoTable)
+    preferredType is nil (or 'any'), 'mixed' (a random pick from ORGMAlternateAmmoTable values)
+        or a specific string matching one of the ORGMAlternateAmmoTable values.
+    containerItem is a ItemContainer object.
+
+    returns nil or a InventoryItem
 
 ]]
 function ORGMUtil.findAmmoInContainer(dummyName, preferredType, containerItem)
@@ -189,6 +226,12 @@ end
 --[[ ORGMUtil.convertAllDummyRounds(dummyName, containerItem)
     
     Converts all dummy rounds of the given name to the first entry in the ORGMAlternateAmmoTable (FMJ or Buck)
+    Note dummyName and preferredType should NOT have the "ORGM." prefix.
+    
+    dummyName is the name of the dummy round (a key in ORGMAlternateAmmoTable)
+    containerItem is a ItemContainer object.
+
+    returns nil on error (invalid names), or the number of rounds converted
 
 ]]
 function ORGMUtil.convertAllDummyRounds(dummyName, containerItem)
@@ -198,11 +241,23 @@ function ORGMUtil.convertAllDummyRounds(dummyName, containerItem)
     -- there should always be a entry, unless we were given a bad dummyName
     if roundTable == nil then return nil end
     local count = containerItem:getNumberOfItem(dummyName)
-    if count == nil or count == 0 then return nil end
+    if count == nil or count == 0 then return 0 end
     containerItem:RemoveAll(dummyName)
     containerItem:AddItems('ORGM'.. roundTable[1], count)
+    return count
 end
 
+--[[ ORGMUtil.setWeaponProjectilePiercing(weapon, roundData)
+    
+    Sets the PiercingBullets flag on a gun, dependent on the round.
+    This is called when loading a new round into the chamber.
+    
+    weapon is a HandWeapon Item
+    roundData is a entry in the ORGMMasterAmmoTable
+
+    returns nil
+
+]]
 function ORGMUtil.setWeaponProjectilePiercing(weapon, roundData)
     if roundData.PiercingBullets == true or roundData.PiercingBullets == false then
         weapon:setPiercingBullets(roundData.PiercingBullets)
@@ -215,6 +270,18 @@ function ORGMUtil.setWeaponProjectilePiercing(weapon, roundData)
         end
     end
 end 
+
+--[[ ORGMUtil.setWeaponProjectileStats(weapon, roundData)
+
+    Sets various stats on the HandWeapon item to match a round.
+    This is called when loading a new round into the chamber.
+
+    weapon is a HandWeapon Item
+    roundData is a entry in the ORGMMasterAmmoTable
+
+    returns nil
+
+]]
 function ORGMUtil.setWeaponProjectileStats(weapon, roundData)
     if roundData.MaxDamage then weapon:setMaxDamage(roundData.MaxDamage) end
     if roundData.MinDamage then weapon:setMinDamage(roundData.MinDamage) end

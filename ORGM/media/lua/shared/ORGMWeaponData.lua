@@ -229,9 +229,10 @@ ORGMAlternateMagTable = {  }
     This is used for guns to change attributes based on ammo.  If a round is different from the last round 
     loaded, it changes several of the weapon properties to match the new ammo.
     Supported table keys:
-    MinDamage, MaxDamage, PiercingBullets (true/false or 0-100% chance ), MaxHitCount (for shotgun ammo)
+    MinDamage, MaxDamage, CriticalChance, DoorDamage, HitChance,
+    PiercingBullets (true/false or 0-100% chance ), MaxHitCount (for shotgun ammo)
 ]]
-ORGMAmmoStatsTable = {
+ORGMMasterAmmoTable = {
     ["Ammo_117BB"]              = { MinDamage = 0.1, MaxDamage = 0.1, PiercingBullets = false },
     ["Ammo_22LR_FMJ"]           = { MinDamage = 0.4, MaxDamage = 0.8, PiercingBullets = 10 },
     ["Ammo_22LR_HP"]            = { MinDamage = 0.5, MaxDamage = 0.9, PiercingBullets = 2 },
@@ -279,8 +280,8 @@ ORGMAmmoStatsTable = {
     ["Ammo_762x51mm_HP"]        = { MinDamage = 1.8, MaxDamage = 2.6, PiercingBullets = 20 },
     ["Ammo_762x54mm_FMJ"]       = { MinDamage = 1.6, MaxDamage = 2.8, PiercingBullets = 80 },
     ["Ammo_762x54mm_HP"]        = { MinDamage = 2.0, MaxDamage = 2.8, PiercingBullets = 20 },
-    ["Ammo_12g_00Buck"]         = { MinDamage = 1.5, MaxDamage = 2.2, MaxHitCount = 4, PiercingBullets = 4 },
-    ["Ammo_12g_Slug"]           = { MinDamage = 2.0, MaxDamage = 2.8, MaxHitCount = 1, PiercingBullets = 95 }
+    ["Ammo_12g_00Buck"]         = { MinDamage = 1.0, MaxDamage = 2.2, MaxHitCount = 4, PiercingBullets = false,  },
+    ["Ammo_12g_Slug"]           = { MinDamage = 2.0, MaxDamage = 2.8, MaxHitCount = 1, PiercingBullets = 95, }
 }
 
 
@@ -405,6 +406,19 @@ ORGMMasterMagTable = {
     ["WaltherP22Mag"] =     { data = { ammoType = 'Ammo_22LR',              maxCapacity = 10,   }, },
     ["WaltherPPKMag"] =     { data = { ammoType = 'Ammo_380ACP',            maxCapacity = 6,    }, },
     ["XD40Mag"] =           { data = { ammoType = 'Ammo_40SW',              maxCapacity = 9,    }, },
+}
+
+
+--[[ ORGMWeaponRarityTable (global)
+
+    A list of all guns, sorted into civilian, police and military, and rarity.
+    This table is automatically built on startup from ORGMMasterWeaponTable
+    
+]]
+ORGMWeaponRarityTable = {
+    Civilian = { Common = {},Rare = {}, VeryRare = {} },
+    Police = { Common = {}, Rare = {}, VeryRare = {} },
+    Military = { Common = {}, Rare = {}, VeryRare = {} },
 }
 
 
@@ -1194,6 +1208,19 @@ for name, info in pairs(ORGMMasterWeaponTable) do repeat
 
     -- TODO: there should also be some strict error checking here insuring all required variables are set.
     ReloadUtil:addWeaponType(data)
+    
+    -- build up the weapons table for spawning
+    if data.isCivilian then
+        if ORGMWeaponRarityTable.Civilian[data.isCivilian] ~= nil then table.insert(ORGMWeaponRarityTable.Civilian[data.isCivilian], name) end
+    end
+    if data.isPolice then
+        if ORGMWeaponRarityTable.Police[data.isPolice] ~= nil then table.insert(ORGMWeaponRarityTable.Police[data.isPolice], name) end
+    end
+    if data.isMilitary then
+        if ORGMWeaponRarityTable.Military[data.isMilitary] ~= nil then table.insert(ORGMWeaponRarityTable.Military[data.isMilitary], name) end
+    end
+
+    
 until true end
 
 

@@ -18,21 +18,9 @@ WeaponUpgrades = { }
 --[[ AllRoundsTable
 
     A list of all rounds to use when spawning random ammo
-    This table is automatically built on startup from ORGMAmmoStatsTable
+    This table is automatically built on startup from ORGMMasterAmmoTable
 ]]
 local AllRoundsTable = { }
-
---[[ WeaponsTable
-
-    A list of all guns, sorted into civilian, police and military, and rarity.
-    This table is automatically built on startup from ORGMMasterWeaponTable
-    
-]]
-local WeaponsTable = {
-    Civilian = { Common = {},Rare = {}, VeryRare = {} },
-    Police = { Common = {}, Rare = {}, VeryRare = {} },
-    Military = { Common = {}, Rare = {}, VeryRare = {} },
-}
 
 
 ----------------------------------------------------------------------------------
@@ -52,19 +40,20 @@ end
 
     Spawns a reloadable weapon or magazine.
     
-    container = the container object to spawn the item in.
-    itemType = the name of the gun or magazine (without the ORGM. prefix)
-    ammoType = the bullets to load into the gun (depending on lootType)
-    spawnChance = the % chance to spawn the item.
-    maxCount = the max number of items to spawn. A random # is chosen between 1 and maxCount
-    isLoaded = controls if the gun/magazine is loaded with ammoType
+    container is a ItemContainer object.
+    itemType is the name of the gun or magazine (without the ORGM. prefix)
+    ammoType is the bullets to load into the gun if isLoaded = true. (A key from ORGMMasterAmmoTable)
+    spawnChance is the % chance to spawn the item.
+    maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
+    isLoaded is true/false. controls if the gun/magazine is loaded with ammoType
+
+    returns nil
 
 ]]
 local SpawnReloadable = function(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
     -- ZomboidGlobals.WeaponLootModifier
     -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
     if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
-    -- TODO: readd code that sets the weapon's condition
     local count = Rnd(maxCount)
     
     for i=1, count do
@@ -119,9 +108,16 @@ end
 --[[ SpawnMags(container, gunType, ammoType, spawnChance, maxCount, lootType)
     
     A wrapper function for SpawnReloadable(), spawning magazines for the gun specified by gunType
-    
-    For a list of arguments, see SpawnReloadable()
 
+    container is a ItemContainer object.
+    gunType is the name of the gun to spawn magazines for (without the ORGM. prefix)
+    ammoType is the bullets to load into the gun if isLoaded = true. (A key from ORGMMasterAmmoTable)
+    spawnChance is the % chance to spawn the item.
+    maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
+    isLoaded is true/false. controls if the gun/magazine is loaded with ammoType
+
+    returns nil
+    
 ]]
 local SpawnMags = function(container, gunType, ammoType, spawnChance, maxCount, lootType)
     --if ReloadManager[1]:getDifficulty() >= 2 then -- has mags
@@ -142,10 +138,12 @@ end
 
     Spawns a basic ORGM item (ie: ammo or repair stuff)
     
-    container = the container object to spawn the item in.
-    itemType = the name of the item (without the ORGM. prefix)
-    spawnChance = the % chance to spawn the item.
-    maxCount = the max number of items to spawn. A random # is chosen between 1 and maxCount
+    container is a ItemContainer object.
+    itemType is the name of the item (without the ORGM. prefix)
+    spawnChance is the % chance to spawn the item.
+    maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
+    
+    returns nil
 
 ]]
 local SpawnItem = function(container, itemType, spawnChance, maxCount)
@@ -159,11 +157,11 @@ end
 
 --[[ SelectGun(civilian, police, military)
     
-    Chooses a gun from the WeaponsTable and appropriate ammo type.
+    Chooses a gun from the ORGMWeaponRarityTable and appropriate ammo type.
 
-    civilian = the chance of using the civilian table (int weight value)
-    police = the chance of using the police table (int weight value)
-    military = the chance of using the military table (int weight value)
+    civilian is the chance of using the civilian table (int weight value)
+    police is the chance of using the police table (int weight value)
+    military is the chance of using the military table (int weight value)
     
     returns a table with 2 keys: .gun and .ammo
 
@@ -174,11 +172,11 @@ local SelectGun = function(civilian, police, military)
     local roll = Rnd(civilian + police + military)
     local gunTbl = nil
     if roll <= civilian then -- civ
-        gunTbl = WeaponsTable.Civilian
+        gunTbl = ORGMWeaponRarityTable.Civilian
     elseif roll <= civilian + police then -- police
-        gunTbl = WeaponsTable.Police
+        gunTbl = ORGMWeaponRarityTable.Police
     else  -- military
-        gunTbl = WeaponsTable.Military
+        gunTbl = ORGMWeaponRarityTable.Military
     end
     
     -----------------------
@@ -216,7 +214,11 @@ end
 --[[ AddToCorpse(container)
     
     Function called when spawning items on corpses.
-    
+
+    container is a ItemContainer object.
+
+    returns nil
+
 ]]
 local AddToCorpse = function(container)
     local choice = SelectGun(80, 14, 6)
@@ -231,6 +233,10 @@ end
 
     Adds a gun to a civilian room: bedrooms, gas stations, etc.
 
+    container is a ItemContainer object.
+
+    returns nil
+
 ]]
 local AddToCivRoom = function(container)
     local choice = SelectGun(80, 14, 6)
@@ -243,12 +249,32 @@ local AddToCivRoom = function(container)
 end
 
 
+--[[ SpawnRandomBox(container, spawnChance)
+
+    Spawns a random box of ammo
+
+    container is a ItemContainer object.
+    spawnChance is the % chance to spawn the item.
+
+    returns nil
+
+]]
 local SpawnRandomBox = function(container, spawnChance)
     if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
     container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Box')
 end
 
 
+--[[ SpawnRandomCan(container, spawnChance)
+
+    Spawns a random can of ammo
+
+    container is a ItemContainer object.
+    spawnChance is the % chance to spawn the item.
+
+    returns nil
+
+]]
 local SpawnRandomCan = function(container, spawnChance)
     if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
     container:AddItem('ORGM.' .. AllRoundsTable[Rnd(#AllRoundsTable)] ..'_Can')
@@ -258,8 +284,10 @@ end
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
---[[
+--[[ Events.OnFillContainer.Add
 
+    Called when filling a container with loot. Controls the spawn chances.
+    
 ]]
 Events.OnFillContainer.Add(function(roomName, containerType, container)
     if roomName == "all" and containerType == "inventorymale" then
@@ -413,19 +441,6 @@ do
         modItems[modName] = InventoryItemFactory.CreateItem('ORGM.' .. modName)
     end
     for gunName, gunData in pairs(ORGMMasterWeaponTable) do
-        -- build up the weapons table for spawning
-        if gunData.isCivilian then
-            if WeaponsTable.Civilian[gunData.isCivilian] ~= nil then table.insert(WeaponsTable.Civilian[gunData.isCivilian], gunName) end
-            
-        end
-        if gunData.isPolice then
-            if WeaponsTable.Police[gunData.isPolice] ~= nil then table.insert(WeaponsTable.Police[gunData.isPolice], gunName) end
-            
-        end
-        if gunData.isMilitary then
-            if WeaponsTable.Military[gunData.isMilitary] ~= nil then table.insert(WeaponsTable.Military[gunData.isMilitary], gunName) end
-            
-        end
         
         -- build the WeaponUpgrades table
         local gunItem = getScriptManager():FindItem('ORGM.' .. gunName)
@@ -440,7 +455,7 @@ do
     end
     
     -- build the AllRoundsTable
-    for ammoType, _ in pairs(ORGMAmmoStatsTable) do
+    for ammoType, _ in pairs(ORGMMasterAmmoTable) do
         table.insert(AllRoundsTable, ammoType)
     end
 end
