@@ -1027,7 +1027,7 @@ module ORGM
 
     item M1903
     {
-        AmmoType    =   M1903StripperClip,
+        AmmoType    =   Ammo_3006Springfield,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   sks,
@@ -1387,7 +1387,7 @@ module ORGM
 
     item Mosin
     {
-        AmmoType    =   MosinStripperClip,
+        AmmoType    =   Ammo_762x54mm,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   sks,
@@ -1867,7 +1867,7 @@ module ORGM
     
     item SKS
     {
-        AmmoType    =   SKSStripperClip,
+        AmmoType    =   Ammo_762x39mm,
         ImpactSound =   null,
         MaxRange    =   24,
         WeaponSprite    =   sks,
