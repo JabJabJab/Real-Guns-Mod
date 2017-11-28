@@ -368,6 +368,7 @@ ORGMMasterMagTable = {
     ["KTP32Mag"] =          { data = { ammoType = 'Ammo_32ACP',             maxCapacity = 7,    }, },
     ["L96Mag"] =            { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 5,    }, },
     ["LENo4Mag"] =          { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 10,   }, },
+    ["LENo4StripperClip"] = { data = { ammoType = 'Ammo_762x51mm',          maxCapacity = 5,    }, },
     ["M1216Mag"] =          { data = { ammoType = 'Ammo_12g',               maxCapacity = 16,   reloadTime = 15, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }, },
     ["M1903StripperClip"] = { data = { ammoType = 'Ammo_3006Springfield',   maxCapacity = 5,    reloadTime = 15, }, },
     ["M1911Mag"] =          { data = { ammoType = 'Ammo_45ACP',             maxCapacity = 7,    }, },
@@ -866,6 +867,7 @@ ORGMMasterWeaponTable = {
         gunType = "Bolt-SA",
         soundProfile = "Rifle-Bolt",
         isCivilian = "Rare",
+        data = { speedLoader = "LENo4StripperClip", },
     },
     ["M16"] = {
         gunType = "Auto-DAO",
@@ -1210,14 +1212,14 @@ for name, info in pairs(ORGMMasterWeaponTable) do repeat
     ReloadUtil:addWeaponType(data)
     
     -- build up the weapons table for spawning
-    if data.isCivilian then
-        if ORGMWeaponRarityTable.Civilian[data.isCivilian] ~= nil then table.insert(ORGMWeaponRarityTable.Civilian[data.isCivilian], name) end
+    if info.isCivilian then
+        if ORGMWeaponRarityTable.Civilian[info.isCivilian] ~= nil then table.insert(ORGMWeaponRarityTable.Civilian[info.isCivilian], name) end
     end
-    if data.isPolice then
-        if ORGMWeaponRarityTable.Police[data.isPolice] ~= nil then table.insert(ORGMWeaponRarityTable.Police[data.isPolice], name) end
+    if info.isPolice then
+        if ORGMWeaponRarityTable.Police[info.isPolice] ~= nil then table.insert(ORGMWeaponRarityTable.Police[info.isPolice], name) end
     end
-    if data.isMilitary then
-        if ORGMWeaponRarityTable.Military[data.isMilitary] ~= nil then table.insert(ORGMWeaponRarityTable.Military[data.isMilitary], name) end
+    if info.isMilitary then
+        if ORGMWeaponRarityTable.Military[info.isMilitary] ~= nil then table.insert(ORGMWeaponRarityTable.Military[info.isMilitary], name) end
     end
 
     
