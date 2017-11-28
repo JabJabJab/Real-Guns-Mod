@@ -2,7 +2,6 @@
     This file handles all ORGM item context menus.
     
     TODO: remove debugging code
-    TODO: ensure magazines are setup properly
 ]]
 
 ---------------------------------------------------------------------------
@@ -88,6 +87,8 @@ local OnShootSelfConfirm = function(this, button, player, item)
         reloadable:fireShot(item, 3) -- TODO: play gunshot sound
         player:splatBlood(5, 0.5) -- this one vanishes after a while...
         player:splatBloodFloorBig(0.5)
+        
+        player:playSound(item:getSwingSound(), true)
         player:getBodyDamage():RestoreToFullHealth() -- cheap trick so the corpse doesn't rise
         player:setHealth(0)
     else
@@ -100,7 +101,7 @@ local OnShootSelfConfirm = function(this, button, player, item)
                 if boredom < 0 then bored = 0 end
                 player:getBodyDamage():setBoredomLevel(boredom) -- this is a absolute (not rel value)
             end
-            player:getBodyDamage():setPanicIncreaseValue(25) --not working properly?
+            -- TODO: add panic
         end
     end
 end
@@ -127,6 +128,8 @@ local OnDebugWeapon = function(item, player, data, reloadable)
 end
 
 local OnTestFunction = function(item, player, data, reloadable)
+    reloadable.isJammed = true
+    reloadable:syncReloadableToItem(item)
 end
 
 local OnResetWeapon = function(item, player, data, reloadable)
@@ -155,7 +158,6 @@ Events.OnFillInventoryObjectContextMenu.Add(function(player, context, items)
     if not instanceof(item, "InventoryItem") then
         item = items[1].items[1]
     end
-    
     if item:getModule() ~= "ORGM" then return end
     -- item must be in inventory
     if playerObj:getInventory():contains(item) == false then return end    
