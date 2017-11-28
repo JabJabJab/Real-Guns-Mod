@@ -1,4 +1,4 @@
-version 2.00beta-rc4
+version 2.00beta-rc5
 
 Changes of Note:
 
@@ -60,7 +60,8 @@ Changes of Note:
 * Code is now called when pulling the trigger on a gun that won't fire (unloaded etc). This will properly
     drop the hammer, or in the case of doubleaction revolvers: cock, rotate and release.
 
-* Speed Loaders and Stripper Clips have been separated from magazines and act independently.
+* Speed Loaders and Stripper Clips have been separated from magazines and act independently, a gun can used
+    both.
 
 * Clients on 'Easy Reloading' settings are effectively set to 'Normal'. This is a REAL GUNS MOD. Real guns
     have magazines.
@@ -102,6 +103,5 @@ Changes for modders and editors:
 
 ********************************************************************************************************
 TODO: 
-* fix speedloaders and stripperclips
 * add empty shells
 * add more guns and ammo types!
