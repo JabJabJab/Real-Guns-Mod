@@ -33,7 +33,8 @@ module ORGM
         MaxRangeModifier =  4,
         MinRangeModifier =  3,
         AimingTimeModifier =    3,
-        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugGP100; RugRH; RugSec6; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; FNP90; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
+        /** mounts on most revolvers and pistols, all rifles and shotguns (except double barrels) **/
+        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugGP100; RugRH; RugSec6; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; FNP90; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Scope,
         Tooltip     =   Increases magnification 2x for more precise shooting,
     }
@@ -49,6 +50,7 @@ module ORGM
         MaxRangeModifier =  7,
         MinRangeModifier =  6,
         AimingTimeModifier =    5,
+        /** mounts on all rifles **/
         MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Scope,
         Tooltip     =   Increases magnification 4x for more combat purposes,
@@ -65,6 +67,7 @@ module ORGM
         MaxRangeModifier =  20,
         MinRangeModifier =  10,
         AimingTimeModifier =    10,
+        /** mounts on all rifles **/
         MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Scope,
         Tooltip     =   Increases magnification 8x for long range hunting or sniping,
@@ -78,8 +81,8 @@ module ORGM
         Weight      =   0.01,
         WeightModifier  =   0.01,
         HitChanceModifier =     10,
-        /** TODO: Fix Mount On **/
-        MountOn     =   Ber92; BrenTen; Colt38S; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; ColtAnac; ColtPyth; ColtPyth38; RugAlas; RugAlas45C; RugGP100; RugGP10038; RugRH; RugSec6; SWM19; SWM1938; SWM29; SWM36; SWM610; Taurus454; Taurus45445C; Ithaca37; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; Moss590; Rem870; Silverhawk; Spas12; Spas12Sl; DEagle; KTPLR; KTPLR556; Mac10; Mac11; WaltherPPK; Uzi; M1216; M1216Sl; VEPR12; VEPR12Sl; Glock20; Stevens320; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Hawk982; Striker; StrikerSl; CZ75; Ber93R; Glock18; KTP32; TaurusP132; RugBH; RugBH38; SWM10; SWM252; Spr19119,
+        /** Mounts on most revolvers pistols, smgs and shotguns **/
+        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugBH; RugGP100; RugRH; RugSec6; SWM10; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; AM180; Ber93R; FNP90; Glock18; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; Mac10; Mac11; Skorpion; Uzi; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Spas12; Stevens320; Striker; VEPR12,
         PartType    =   Scope,
         Tooltip     =   Easy to see glow in the dark sights for increased accuracy when shooting,
     }
@@ -91,9 +94,9 @@ module ORGM
         Icon        =   AtForegrip,
         Weight      =   0.2,
         WeightModifier  =   0.2,
-        RecoilDelayModifier =   10,
-        /** TODO: Fix Mount On **/
-        MountOn     =   FNFAL; FNFAL762; FNFALA; FNFALA308; HK91; HK91762; HKG3; HKG3308; HKMP5; HKUMP; FNP90; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; SA80; SA80223; Kriss; KrissA; VEPR12; VEPR12Sl; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550223; SIG551223,
+        RecoilDelayModifier =   -5,
+        /** Most smgs, rifles, shotguns **/
+        MountOn     =   FNP90; HKMP5; HKUMP; Kriss; KrissA; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Spas12; Stevens320; VEPR12; AIAW308; AR10; AR15; FNFAL; FNFALA; HK91; HKG3; M16; M21; M4C; Mini14; R25; SA80; SIG550; SIG551; SR25; SVD,
         PartType    =   Canon,
         Tooltip     =   A vertical foregrip to increase stability during repeated firing,
     }
@@ -105,7 +108,7 @@ module ORGM
         Icon        =   AtFullCh,
         Weight      =   0.1,
         WeightModifier  =   0.1,
-        AngleModifier   =   0.1,
+        AngleModifier   =   -0.2,
         DamageModifier  =   0.5,
         MaxRangeModifier =  5,
         MountOn     =   BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
@@ -120,7 +123,7 @@ module ORGM
         Icon        =   AtHalfCh,
         Weight      =   0.1,
         WeightModifier  =   0.1,
-        AngleModifier   =   0.05,
+        AngleModifier   =   -0.10,
         DamageModifier  =   0.25,
         MaxRangeModifier =  3,
         MountOn     =   BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
@@ -137,7 +140,7 @@ module ORGM
         WeightModifier  =   0.2,
         HitChanceModifier =     10,
         AimingTimeModifier =    -8,
-        MountOn     =   AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; AM180; Ber93R; FNP90; Glock18; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; Mac10; Mac11; Skorpion; Uzi,
+        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugBH; RugGP100; RugSec6; SWM10; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; Ber93R; Glock18; Mac10; Mac11; Skorpion; Uzi,
         PartType    =   Canon,
         Tooltip     =   A pistol mounted laser targeter that speeds up target acquisition and accuracy,
     }
@@ -152,7 +155,7 @@ module ORGM
         TorchCone   =   TRUE,
         LightStrength   =   0.6,
         LightDistance   =   15,
-        MountOn     =   AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; AM180; Ber93R; FNP90; Glock18; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; Mac10; Mac11; Skorpion; Uzi,
+        MountOn     =   AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; Ber93R; Glock18; Mac10; Mac11; Skorpion; Uzi,
         PartType    =   Canon,
         Tooltip     =   A pistol mounted tactical flashlight,
     }
@@ -166,8 +169,7 @@ module ORGM
         WeightModifier  =   0.2,
         HitChanceModifier =     8,
         MaxRangeModifier =  2,
-        /** TODO: Fix Mount On **/
-        MountOn     =   RugGP100; RugGP10038; HKSL8; HKSL8556; AIAW308; AIAW308762; SA80; SA80223; ColtAnac; ColtPyth; ColtPyth38; RugAlas; RugAlas45C; RugGP100; RugGP10038; RugRH; SWM19; SWM1938; SWM29; SWM610; Taurus454; Taurus45445C; AR10; AR10308; R25; R25762; SR25; SR25308; AKM; AKMA; AR15; AR15556; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3SOSl; BenelliM3SOSl; BenelliM3Sl; BenelliM3SOSl; FNFAL; FNFAL762; FNFALA; FNFALA308; Garand; HK91; HK91762; HKG3; HKG3308; HKMP5; HKUMP; FNP90; Ithaca37; Ithaca37SO; Ithaca37Sl; Ithaca37SOSl; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; Moss590; Moss590SO; Moss590Sl; Moss590SOSl; Rem700; Rem870; Rem870SO; Rem870Sl; Rem870SOSl; Rug1022; SKS; Silverhawk; SilverhawkSO; SilverhawkSl; SilverhawkSOSl; WinM70; Kriss; KrissA; KTPLR; KTPLR556; BLR; BLR762; HenryBB; Mosin; Stevens320; VEPR12; VEPR12Sl; M1216; M1216Sl; Hawk982; Striker; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG 551; RugBH; RugBH38; Win1887; Win1887SO; Win1887Sl; Win1887SlSO; SWM252; Skorpion,
+        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugBH; RugGP100; RugSec6; SWM10; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Scope,
         Tooltip     =   A sight that provides minor magnification and an easy to spot red dot targetting system,
     }
@@ -179,7 +181,8 @@ module ORGM
         Icon        =   AtRecoil,
         Weight      =   0.2,
         WeightModifier  =   0.2,
-        RecoilDelayModifier =   5,
+        RecoilDelayModifier =   -5,
+        /** mounts on all shotguns and rifles **/
         MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
         PartType    =   Sling,
         Tooltip     =   A softened rifle recoil pad to decrease the effect of recoil,
@@ -194,8 +197,7 @@ module ORGM
         WeightModifier  =   0.2,
         HitChanceModifier =     15,
         AimingTimeModifier =    -15,
-        /** TODO: Fix Mount On **/
-        MountOn     =   HKSL8; HKSL8556; AIAW308; AIAW308762; SA80; SA80223; AR10; AR10308; R25; R25762; SR25; SR25308; AKM; AKMA; AR15; AR15556; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; BenelliM3SOSl; BenelliM3Sl; BenelliM3PASl; BenelliM3SOSl; FNFAL; FNFAL762; FNFALA; FNFALA308; Garand; HK91; HK91762; HKG3; HKG3308; HKMP5; HKUMP; FNP90; Ithaca37; Ithaca37SO; Ithaca37Sl; Ithaca37SOSl; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; Moss590; Moss590SO; Moss590Sl; Moss590SOSl; Rem700; Rem870; Rem870SO; Rem870Sl; Rem870SOSl; Rug1022; SKS; Silverhawk; SilverhawkSO; SilverhawkSl; SilverhawkSOSl; WinM70; Ber92; BrownHP; ColtDelta; FN57; Glock17; Glock21; Glock22; M1911; SIGP226; WaltherP22; Taurus38; DEagle; Kriss; KrissA; KTPLR; KTPLR556; Mac10; Mac11; WaltherPPK; Uzi; M1216; M1216Sl; VEPR12; VEPR12Sl; BLR; BLR762; HenryBB; Glock20; Stevens320; DEagleXIX; AutomagV; RugerSR9; XD40; KahrCT40; KahrP380; Hawk982; Striker; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; CZ75; Glock18; Ber93R; KTP32; TaurusP132; Skorpion; SWM10; Spr19119,
+        MountOn     =   ColtAnac; ColtPyth; RugAlas; RugBH; RugGP100; RugSec6; SWM10; SWM19; SWM252; SWM29; SWM36; SWM610; Taurus454; AutomagV; Ber92; BrenTen; BrownHP; Colt38S; ColtDelta; CZ75; DEagle; DEagleXIX; FN57; Glock17; Glock20; Glock21; Glock22; HKMK23; KahrCT40; KahrP380; KTP32; M1911; RugerMKII; RugerSR9; SIGP226; Spr19119; Taurus38; TaurusP132; WaltherP22; WaltherPPK; XD40; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Scope,
         Tooltip     =   A mounted sight that speeds up target acquisition and eases sustained firing,
     }
@@ -209,8 +211,7 @@ module ORGM
         WeightModifier  =   0.2,
         HitChanceModifier =     10,
         AimingTimeModifier =    -8,
-        /** TODO: Fix Mount On **/
-        MountOn     =   FNFAL; FNFAL762; FNFALA; FNFALA308; HK91; HK91762; HKG3; HKG3308; HKMP5; HKUMP; FNP90; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; SA80; SA80223; Kriss; KrissA; KTPLR; KTPLR556; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550223; SIG551223,
+        MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Canon,
         Tooltip     =   A rifle mounted laser targeter that speeds up target acquisition and accuracy,
     }
@@ -225,8 +226,7 @@ module ORGM
         TorchCone   =   TRUE,
         LightStrength   =   0.7,
         LightDistance   =   18,
-        /** TODO: Fix Mount On **/
-        MountOn     =   FNFAL; FNFAL762; FNFALA; FNFALA308; HK91; HK91762; HKG3; HKG3308; HKMP5; HKUMP; FNP90; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; SA80; SA80223; Kriss; KrissA; KTPLR; KTPLR556; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550223; SIG551223,
+        MountOn     =   AM180; FNP90; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Canon,
         Tooltip     =   A rifle mounted tactical flashlight,
     }
@@ -238,6 +238,7 @@ module ORGM
         Icon        =   AtRifSling,
         Weight      =   0.1,
         WeightModifier  =   -0.25,
+        /** mounts on all rifles, shotguns and SMGs, but not machine pistols **/
         MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
         PartType    =   Sling,
         Tooltip     =   Makes carrying a weapon less of a burden,
@@ -250,8 +251,7 @@ module ORGM
         Icon        =   AtSkeletalStock,
         Weight      =   0.05,
         WeightModifier  =   -0.15,
-        /** TODO: Fix Mount On **/
-        MountOn     =   Spas12; Spas12Sl; HKSL8; HKSL8556; AIAW308; AIAW308762; AR10; AR10308; R25; R25762; SR25; SR25308; AKM; AKMA; AR15; AR15556; SA80; SA80223; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; FNFAL; FNFAL762; FNFALA; FNFALA308; Garand; HK91; HK91762; HKG3; HKG3308; HKMP5; FNP90; HKUMP; Ithaca37; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; Moss590; Rem700; Rem870; Rug1022; SKS; Silverhawk; WinM70; M1A1; AM180; VEPR12; VEPR12Sl; SVD; Mosin; Stevens320; Hawk982; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550223; SIG551223,
+        MountOn     =   HKMP5; HKUMP; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Sling,
         Tooltip     =   A skeletal carbon fiber stock to lighten the gun,
     }
@@ -262,9 +262,8 @@ module ORGM
         DisplayName =   Collapsing Stock,
         Icon        =   AtCollapsingStock,
         Weight      =   0.05,
-        WeightModifier  =   -0.10,
-        /** TODO: Fix Mount On **/
-        MountOn     =   Spas12; Spas12Sl; HKSL8; HKSL8556; AIAW308; AIAW308762; AR10; AR10308; R25; R25762; SR25; SR25308; AKM; AKMA; AR15; AR15556; SA80; SA80223; BBGun; BenelliM3; BenelliM3Sl; BenelliXM1014; BenelliXM1014Sl; FNFAL; FNFAL762; FNFALA; FNFALA308; Garand; HK91; HK91762; HKG3; HKG3308; HKMP5; FNP90; HKUMP; Ithaca37; M4C; M4C223; M16; M16223; M21; M21308; Mini14556; Mini14; Moss590; Rem700; Rem870; Rug1022; SKS; Silverhawk; WinM70; M1A1; AM180; VEPR12; VEPR12Sl; SVD; Mosin; Stevens320; Hawk982; Marlin60; WinM94; Rem788; SR25; R25762; SR25; SR25308; M249; M249223; SIG550; SIG551; SIG550223; SIG551223,
+        WeightModifier  =   -0.25,
+        MountOn     =   HKMP5; HKUMP; M1A1; BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO; AIAW308; AKM; AKMA; AR10; AR15; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Sling,
         Tooltip     =   A stock that collapses to give the gun a smaller profile making it easier to carry,
     }

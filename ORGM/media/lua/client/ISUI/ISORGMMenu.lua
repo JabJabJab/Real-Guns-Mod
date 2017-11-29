@@ -84,15 +84,19 @@ local OnShootSelfConfirm = function(this, button, player, item)
         return
     end
     if reloadable:isLoaded(3) then
-        reloadable:fireShot(item, 3) -- TODO: play gunshot sound
+        reloadable:fireShot(item, 3)
         player:splatBlood(5, 0.5) -- this one vanishes after a while...
         player:splatBloodFloorBig(0.5)
         
-        player:playSound(item:getSwingSound(), true)
+        player:playSound(item:getSwingSound(), false)
         player:getBodyDamage():RestoreToFullHealth() -- cheap trick so the corpse doesn't rise
         player:setHealth(0)
     else
+        if reloadable.actionType == "SingleAction" and reloadable.hammerCocked == 0 then
+            return
+        end
         reloadable:fireEmpty(player, item)
+        player:playSound(reloadable.clickSound, false)
         if (reloadable.actionType == "Rotary" and reloadable.currentCapacity > 0) then
             local moodles = player:getMoodles()
             local boredom = moodles:getMoodleLevel(MoodleType.Bored)

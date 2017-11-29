@@ -1,4 +1,4 @@
-version 2.00beta-rc5
+version 2.00beta-rc6
 
 Changes of Note:
 
@@ -43,6 +43,9 @@ Changes of Note:
 
 * Unloading bullets from magazines places rounds in inventory. Unloading from a gun drops rounds on the 
     ground (from racking the slide, or dumping out the cylinder)
+    
+* Guns now litter the ground with empty shells when firing. These can be collected, boxed or put in canisters
+    like normal rounds.
     
 * Context menu has been added to set a preferred ammo type on guns and magazines.
     (ie: load only 5.56 FMJ). This can be set to "Any" (loads any available ammo),
@@ -101,7 +104,3 @@ Changes for modders and editors:
     *Reloading/ISReloadManager has several new functions injected into it.
 
 
-********************************************************************************************************
-TODO: 
-* add empty shells
-* add more guns and ammo types!
