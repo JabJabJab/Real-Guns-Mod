@@ -3,6 +3,7 @@
 /** 
     TODO: .40 S&W HP Icons
     TODO: .30-30 HP Icons
+    IGUI_ItemCat_Spent Shell
 **/
  
 module ORGM
@@ -38,6 +39,34 @@ module ORGM
 
 
     /** 22LR **/
+    item Case_22LR
+    {
+        Count = 1,
+        Weight = 0.002,
+        Type = Normal,
+        DisplayName = .22 LR cases,
+        DisplayCategory = Item,
+        Icon = Am22HPRounds,
+    }
+
+    item Case_22LR_Box
+    {
+        Weight = 0.15,
+        Type = Normal,
+        DisplayName = .22LR - 100 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am22Box,
+    }
+    
+    item Case_22LR_Can
+    {
+        Weight = 1.5,
+        Type = Normal,
+        DisplayName = .22LR - 1000 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_22LR
     {
         Count = 1,
@@ -106,6 +135,34 @@ module ORGM
 
 
     /** 32ACP **/
+    item Case_32ACP
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .32 ACP cases,
+        DisplayCategory = Item,
+        Icon = Am32ACPHPRounds,
+    }
+
+    item Case_32ACP_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .32 ACP - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am32ACPBox,
+    }
+ 
+    item Case_32ACP_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .32 ACP - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_32ACP
     {
         Count = 1,
@@ -174,6 +231,34 @@ module ORGM
 
 
     /** .357 Magnum **/
+    item Case_357Magnum
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .357 Magnum cases,
+        DisplayCategory = Item,
+        Icon = Am357HPRounds,
+    }
+
+    item Case_357Magnum_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .357 Magnum - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am357Box,
+    }
+
+    item Case_357Magnum_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .357 Magnum - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_357Magnum
     {
         Count = 1,
@@ -242,6 +327,34 @@ module ORGM
 
 
     /** 38 Special **/
+    item Case_38Special
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .38 Special cases,
+        DisplayCategory = Item,
+        Icon = Am38SpecialHPRounds,
+    }
+
+    item Case_38Special_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .38 Special - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am38SpecialBox,
+    }
+    
+    item Case_38Special_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .38 Special - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_38Special
     {
         Count = 1,
@@ -310,6 +423,34 @@ module ORGM
 
 
     /** 38 Super **/
+    item Case_38Super
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .38 Super cases,
+        DisplayCategory = Item,
+        Icon = Am38SuperHPRounds,
+    }
+ 
+    item Case_38Super_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .38 Super - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am38SuperBox,
+    }
+    
+    item Case_38Super_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .38 Super - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_38Super
     {
         Count = 1,
@@ -378,6 +519,34 @@ module ORGM
  
 
     /** .380 ACP **/
+    item Case_380ACP
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .380 ACP cases,
+        DisplayCategory = Item,
+        Icon = Am380ACPHPRounds,
+    }
+ 
+    item Case_380ACP_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = .380 ACP - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am380ACPBox,
+    }
+    
+    item Case_380ACP_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .380 ACP - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_380ACP
     {
         Count = 1,
@@ -446,6 +615,34 @@ module ORGM
 
 
     /** .40 S&W **/
+    item Case_40SW
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .40 S&W cases,
+        DisplayCategory = Item,
+        Icon = Am40SWRounds,
+    }
+ 
+    item Case_40SW_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .40 S&W - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am40SWBox,
+    }
+    
+    item Case_40SW_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .40 S&W - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_40SW
     {
         Count = 1,
@@ -514,6 +711,34 @@ module ORGM
  
 
     /** .44 Magnum **/
+    item Case_44Magnum
+    {
+        Count = 1,
+        Weight = 0.006,
+        Type = Normal,
+        DisplayName = .44 Magnum cases,
+        DisplayCategory = Item,
+        Icon = Am44HPRounds,
+    }
+ 
+    item Case_44Magnum_Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .44 Magnum - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am44Box,
+    }
+    
+    item Case_44Magnum_Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .44 Magnum - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_44Magnum
     {
         Count = 1,
@@ -582,6 +807,34 @@ module ORGM
  
  
     /** .45 ACP **/
+    item Case_45ACP
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .45 ACP cases,
+        DisplayCategory = Item,
+        Icon = Am45ACPHPRounds,
+    }
+ 
+    item Case_45ACP_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .45 ACP - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am45ACPBox,
+    }
+    
+    item Case_45ACP_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .45 ACP - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_45ACP
     {
         Count = 1,
@@ -650,6 +903,34 @@ module ORGM
 
 
     /** .45 Colt **/
+    item Case_45Colt
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = .45 Colt cases,
+        DisplayCategory = Item,
+        Icon = Am45ColtHPRounds,
+    }
+ 
+    item Case_45Colt_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = .45 Colt - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am45ColtBox,
+    }
+    
+    item Case_45Colt_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = .45 Colt - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_45Colt
     {
         Count = 1,
@@ -718,6 +999,34 @@ module ORGM
  
  
     /** .454 Casull **/
+    item Case_454Casull
+    {   
+        Count = 1,
+        Weight = 0.006,
+        Type = Normal,
+        DisplayName = .454 Casull cases,
+        DisplayCategory = Item,
+        Icon = Am454HPRounds,
+    }
+ 
+    item Case_454Casull_Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .454 Casull - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am454Box,
+    }
+    
+    item Case_454Casull_Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .454 Casull - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_454Casull
     {   
         Count = 1,
@@ -786,6 +1095,34 @@ module ORGM
  
 
     /** .50AE **/
+    item Case_50AE
+    {
+        Count = 1,
+        Weight = 0.006,
+        Type = Normal,
+        DisplayName = .50 AE cases,
+        DisplayCategory = Item,
+        Icon = Am50AEHPRounds,
+    }
+ 
+    item Case_50AE_Box
+    {
+        Weight = 0.3,
+        Type = Normal,
+        DisplayName = .50 AE - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am50AEBox,
+    }
+    
+    item Case_50AE_Can
+    {
+        Weight = 3.0,
+        Type = Normal,
+        DisplayName = .50 AE - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_50AE
     {
         Count = 1,
@@ -854,6 +1191,34 @@ module ORGM
  
 
     /** .223 Remington **/
+    item Case_223Remington
+    {
+        Count = 1,
+        Weight = 0.008,
+        Type = Normal,
+        DisplayName = .223 Remington cases,
+        DisplayCategory = Item,
+        Icon = Am223HPRounds,
+    }
+ 
+    item Case_223Remington_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = .223 Remington - 25 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am223Box,
+    }
+ 
+    item Case_223Remington_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = .223 Remington - 250 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_223Remington
     {
         Count = 1,
@@ -922,6 +1287,34 @@ module ORGM
  
  
     /** .30-06 Springfield **/
+    item Case_3006Springfield
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .30-06 Springfield cases,
+        DisplayCategory = Item,
+        Icon = Am3006HPRounds,
+    }
+ 
+    item Case_3006Springfield_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = .30-06 Springfield - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am3006Box,
+    }
+    
+    item Case_3006Springfield_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = .30-06 Springfield - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_3006Springfield
     {
         Count = 1,
@@ -990,6 +1383,34 @@ module ORGM
  
  
     /** .30-30 Winchester **/
+    item Case_3030Winchester
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .30-30 Winchester cases,
+        DisplayCategory = Item,
+        Icon = Am3030Rounds,
+    }
+ 
+    item Case_3030Winchester_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = .30-30 Winchester - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am3030Box,
+    }
+    
+    item Case_3030Winchester_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = .30-30 Winchester - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_3030Winchester
     {
         Count = 1,
@@ -1058,6 +1479,34 @@ module ORGM
 
     
     /** .308 Winchester **/
+    item Case_308Winchester
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = .308 Winchester cases,
+        DisplayCategory = Item,
+        Icon = Am308HPRounds,
+    }
+ 
+    item Case_308Winchester_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = .308 Winchester - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am308Box,
+    }
+    
+    item Case_308Winchester_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = .308 Winchester - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_308Winchester
     {
         Count = 1,
@@ -1126,6 +1575,34 @@ module ORGM
 
  
     /** 5.7x28mm **/
+    item Case_57x28mm
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm cases,
+        DisplayCategory = Item,
+        Icon = Am57x28HPRounds,
+    }
+ 
+    item Case_57x28mm_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am57x28Box,
+    }
+    
+    item Case_57x28mm_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = FN 5.7x28mm - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_57x28mm
     {
         Count = 1,
@@ -1194,6 +1671,34 @@ module ORGM
  
  
     /** 9x19mm **/
+    item Case_9x19mm
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = 9x19mm Parabellum cases,
+        DisplayCategory = Item,
+        Icon = Am9x19HPRounds,
+    }
+ 
+    item Case_9x19mm_Box
+    {
+        Weight = 0.5,
+        Type = Normal,
+        DisplayName = 9x19mm - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am9x19Box,
+    }
+ 
+    item Case_9x19mm_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = 9x19mm - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_9x19mm
     {
         Count = 1,
@@ -1262,6 +1767,34 @@ module ORGM
 
 
     /** 10x25mm **/
+    item Case_10x25mm
+    {
+        Count = 1,
+        Weight = 0.005,
+        Type = Normal,
+        DisplayName = 10x25mm cases,
+        DisplayCategory = Item,
+        Icon = Am10x25HPRounds,
+    }
+ 
+    item Case_10x25mm_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = 10x25mm - 50 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am10x25Box,
+    }
+    
+    item Case_10x25mm_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = 10x25mm - 500 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_10x25mm
     {
         Count = 1,
@@ -1329,6 +1862,34 @@ module ORGM
     }
 
     /** 5.56x45mm **/
+    item Case_556x45mm
+    {
+        Count = 1,
+        Weight = 0.008,
+        Type = Normal,
+        DisplayName = 5.56x45mm cases,
+        DisplayCategory = Item,
+        Icon = Am556x45HPRounds,
+    }
+ 
+    item Case_556x45mm_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = 5.56x45mm - 25 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am556x45Box,
+    }
+    
+    item Case_556x45mm_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = 5.56x45mm - 250 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_556x45mm
     {
         Count = 1,
@@ -1397,6 +1958,34 @@ module ORGM
 
 
     /** 762x39mm **/
+    item Case_762x39mm
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 7.62x39mm cases,
+        DisplayCategory = Item,
+        Icon = Am762x39HPRounds,
+    }
+
+    item Case_762x39mm_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = 7.62x39mm - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am762x39Box,
+    }
+    
+    item Case_762x39mm_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = 7.62x39mm - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_762x39mm
     {
         Count = 1,
@@ -1465,6 +2054,34 @@ module ORGM
 
 
     /** 7.62x51mm **/
+    item Case_762x51mm
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 7.62x51mm cases,
+        DisplayCategory = Item,
+        Icon = Am762x51HPRounds,
+    }
+
+    item Case_762x51mm_Box
+    {
+        Weight = 0.2,
+        Type = Normal,
+        DisplayName = 7.62x51mm - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am762x51Box,
+    }
+    
+    item Case_762x51mm_Can
+    {
+        Weight = 2.0,
+        Type = Normal,
+        DisplayName = 7.62x51mm - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+ 
     item Ammo_762x51mm
     {
         Count = 1,
@@ -1533,6 +2150,34 @@ module ORGM
   
  
     /** 7.62x54R **/
+    item Case_762x54mm
+    {
+        Count = 1,
+        Weight = 0.013,
+        Type = Normal,
+        DisplayName = 7.62x54R cases,
+        DisplayCategory = Item,
+        Icon = Am762x54HPRounds,
+    }
+
+    item Case_762x54mm_Box
+    {
+        Weight = 0.25,
+        Type = Normal,
+        DisplayName = 7.62x54R - 20 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am762x54Box,
+    }
+    
+    item Case_762x54mm_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = 7.62x54R - 200 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
     item Ammo_762x54mm
     {
         Count = 1,
@@ -1601,6 +2246,35 @@ module ORGM
  
 
     /** 12g **/
+    item Case_12g
+    {
+        Count = 1,
+        Weight = 0.01,
+        Type = Normal,
+        DisplayName = 12 Gauge cases,
+        DisplayCategory = Item,
+        Icon = Am12gRounds,
+    }
+
+    item Case_12g_Box
+    {
+        Weight = 0.1,
+        Type = Normal,
+        DisplayName = 12 Gauge - 25 Cases Box,
+        DisplayCategory = Item,
+        Icon = Am12gBox,
+    }
+    
+    item Case_12g_Can
+    {
+        Weight = 2.5,
+        Type = Normal,
+        DisplayName = 12 Gauge - 250 Cases Canister,
+        DisplayCategory = Item,
+        Icon = AmmoBox,
+    }
+
+    
     item Ammo_12g
     {
         Count = 1,

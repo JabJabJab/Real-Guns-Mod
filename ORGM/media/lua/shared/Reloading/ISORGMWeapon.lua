@@ -51,7 +51,6 @@
     for a complete list and descriptions, see ISORGMWeapon:setupReloadable()
     
     
-    TODO: fix speed loader code
     TODO: some slides should lock open after last shot
 
     
@@ -190,14 +189,12 @@ function ISORGMWeapon:isLoaded(difficulty)
         else -- uncocked doubleaction, the chamber will rotate when the player pulls
             round = self:getMagazineAtNextPosition(true)
         end
-        -- TODO: fix empty shell check here
-        if round == nil or round == 'shell' then return false end
+        if round == nil or round:sub(1, 5) == "Case_" then return false end
         return true
     
     elseif self.actionType == "Break" then
         local round = self.magazineData[self.cylinderPosition]
-        -- TODO: fix empty shell check here
-        if round == nil or round == 'shell' then return false end
+        if round == nil or round:sub(1, 5) == "Case_" then return false end
         return true        
     end
     
@@ -233,14 +230,22 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == "Rotary" then
         -- fire shot
-        -- TODO: set a proper empty shell here
-        self.magazineData[self.cylinderPosition] = "shell"
+        local round = ORGMMasterAmmoTable[self.magazineData[self.cylinderPosition]]
+        if round and round.Case then
+            self.magazineData[self.cylinderPosition] = round.Case
+        else
+            self.magazineData[self.cylinderPosition] = nil
+        end
         self.currentCapacity = self.currentCapacity - 1
         
     elseif self.actionType == "Break" then
         -- fire shot
-        -- TODO: set a proper empty shell here
-        self.magazineData[self.cylinderPosition] = "shell"
+        local round = ORGMMasterAmmoTable[self.magazineData[self.cylinderPosition]]
+        if round and round.Case then
+            self.magazineData[self.cylinderPosition] = round.Case
+        else
+            self.magazineData[self.cylinderPosition] = nil
+        end
         self.currentCapacity = self.currentCapacity - 1
         self.cylinderPosition = self.cylinderPosition + 1 -- this can bypass our maxCapacity limit
         -- TODO: if there are barrels left, auto recock the hammer (dual hammer double barrels)
@@ -293,7 +298,6 @@ end
     
 ]]
 function ISORGMWeapon:canReload(char)
-    -- TODO: implement SpeedLoader check
     local result = false
     if self.speedLoader ~= nil then
         local speed = self:findBestMagazine(char, self.speedLoader)
@@ -301,7 +305,7 @@ function ISORGMWeapon:canReload(char)
         -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
         if speed and self.containsClip ~= 0 then 
             speed = speed:getModData()
-            -- revolver will dump out all ammo prior to load anyways, so capacity chcecks dont matter
+            -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
             if speed.currentCapacity > 0 and self.actionType == "Rotary" then 
                 return true
             -- rifles however, do
@@ -315,7 +319,6 @@ function ISORGMWeapon:canReload(char)
         result = true
     elseif self.containsClip == 0 then -- gun uses magazines, but none loaded. check if player has some
         result = self:findBestMagazine(char, self.ammoType) ~= nil
-       -- result = char:getInventory():FindAndReturn(self.ammoType) ~= nil         
     
     elseif self.containsClip == nil then -- doesn't use a clip, check for speedloaders or bullets
         if self.currentCapacity == self.maxCapacity then -- gun already at full
@@ -388,7 +391,6 @@ end
     
 ]]
 function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
-    -- TODO: Implement SpeedLoaders
     if self.speedLoader ~= nil then
         local speed = self:findBestMagazine(char, self.speedLoader)
         -- we have a speedLoader, check if its .max is less then .max - .current
@@ -757,8 +759,9 @@ function ISORGMWeapon:emptyMagazineAtOnce(char, sound)
     for index = 1, self.maxCapacity do
         local ammoType = self.magazineData[index]
         local round = nil
-        if ammoType == 'shell' then -- eject shell
-            -- round = InventoryItemFactory.CreateItem('ORGM.' .. self.ammoType .. '_shell')
+        if ammoType and ammoType:sub(1, 5) == 'Case_' then -- eject shell
+            -- TODO: use the next line instead when empty shells are added
+            round = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
         elseif ammoType then -- eject bullet
             round = InventoryItemFactory.CreateItem('ORGM.' .. self:convertDummyRound(ammoType))
         end
@@ -783,7 +786,9 @@ end
 function ISORGMWeapon:hasEmptyShellsInMagazine()
     local shells = 0
     for index = 1, self.maxCapacity do
-        if self.magazineData[index] == "shell" then
+        local round = self.magazineData[index]
+        
+        if round and round:sub(1, 5) == "Case_" then
             shells = shells + 1
         end
     end
@@ -904,8 +909,13 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
         end
         round = InventoryItemFactory.CreateItem('ORGM.' .. self.lastRound)
     elseif self.emptyShellChambered == 1 then
-        -- round = InventoryItemFactory.CreateItem('ORGM.' .. round .. '_shell')
-        round = nil -- TODO: use the above line instead when empty shells are added
+        round = ORGMMasterAmmoTable[round]
+        if round == nil or round.Case == nil then
+            round = nil
+        else
+            round = InventoryItemFactory.CreateItem('ORGM.' .. round.Case)
+            --round = nil -- TODO: use the above line instead when empty shells are added
+        end
     else -- nothing actually chambered?
         return
     end
@@ -991,7 +1001,7 @@ end
     
 ]]
 function ISORGMWeapon:setCurrentRound(round, weapon)
-    if round == nil or round == 'shell' then return end
+    if round == nil or round:sub(1, 5) == 'Case_' then return end
     round = self:convertDummyRound(round)
     local roundData = ORGMMasterAmmoTable[round]
     if roundData == nil then
