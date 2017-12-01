@@ -519,7 +519,7 @@ function ISORGMWeapon:convertDummyRound(round)
         ammoType = ReloadUtil:getClipData(self.ammoType).ammoType
     end
     --print("R: " .. round .. " A: " .. ammoType)
-    if round == ammoType then -- a dummy round is being used
+    if round == ammoType and ORGMAlternateAmmoTable[round] ~= nil then -- a dummy round is being used
         print("CONVERTING DUMMY ROUND " .. round .. " > ".. ORGMAlternateAmmoTable[round][1])
         round = ORGMAlternateAmmoTable[round][1]
     end
@@ -1226,6 +1226,81 @@ function ISORGMWeapon:setupReloadable(weapon, v)
     ORGMUtil.setupGun(v, weapon) --moved to save on duplicate code
 end
 
+function ISORGMWeapon:printReloadableDetails()
+    --self:printReloadableDetails()
+    print("triggerType == " .. self.triggerType)
+    print("actionType == " .. self.actionType)
+    
+    if(self.roundChambered ~= nil) then
+        print("roundChambered == "..self.roundChambered)
+    else
+        print("roundChambered == nil")
+    end
+    
+    if(self.emptyShellChambered ~= nil) then
+        print("emptyShellChambered == "..self.emptyShellChambered)
+    else
+        print("emptyShellChambered == nil")
+    end
+
+    if(self.containsClip ~= nil) then
+        print("containsClip == "..self.containsClip)
+    else
+        print("containsClip == nil")
+    end
+    
+    if(self.maxCapacity ~= nil) then
+        print("maxCapacity == "..self.maxCapacity)
+    else
+        print("maxCapacity == nil")
+    end
+
+    if(self.currentCapacity ~= nil) then
+        print("currentCapacity == "..self.currentCapacity)
+    else
+        print("currentCapacity == nil")
+    end
+
+    if(self.isJammed ~= nil) then
+        print("isJammed == "..self.isJammed)
+    else
+        print("isJammed == nil")
+    end
+
+    print("isOpen == " .. self.isOpen)
+    print("hammerCocked == " .. self.hammerCocked)
+    if self.selectFire then print("selectFire == " .. self.selectFire) end
+    if self.cylinderPosition then print("cylinderPosition == " .. self.cylinderPosition) end
+
+    if(self.lastRound ~= nil) then
+        print("lastRound == "..self.lastRound)
+    else
+        print("lastRound == nil")
+    end
+    
+    if self.preferredAmmoType then
+        print("preferredAmmoType == "..self.preferredAmmoType)
+    else
+        print("preferredAmmoType == nil")
+    end
+    if self.loadedAmmo then
+        print("loadedAmmo == "..self.loadedAmmo)
+    else
+        print("loadedAmmo == nil")
+    end
+    
+    if self.magazineData then
+        for index=1, self.maxCapacity do
+            value = self.magazineData[index]
+            if value == nil then value = "nil" end
+            print("magazineData #" .. index .. " = " .. value)
+        end
+    end
+    
+    print("***************************************************************");
+    print();
+    print();
+end
 
 function ISORGMWeapon:printReloadableWeaponDetails()
     --self:printReloadableDetails()

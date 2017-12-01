@@ -169,8 +169,8 @@ end
     the new ammo system properly, and guns are always loaded with dummy ammo.
 ]]
 function ISORGMMagazine:convertDummyRound(round)
-    if round == self.ammoType then -- a dummy round is being used
-        print("CONVERTING DUMMY ROUND " .. round " > ".. ORGMAlternateAmmoTable[round][1])
+    if round == self.ammoType and ORGMAlternateAmmoTable[round] ~= nil then -- a dummy round is being used
+        --print("CONVERTING DUMMY ROUND " .. round " > ".. ORGMAlternateAmmoTable[round][1])
         round = ORGMAlternateAmmoTable[round][1]
     end
     return round
