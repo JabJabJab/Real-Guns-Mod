@@ -9,7 +9,7 @@ or use this direct download link:
 https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 ---------------------------------------------------------------------------------------
-version 2.00beta-rc6
+version 2.00 Stable
 
 Changes of Note:
 
