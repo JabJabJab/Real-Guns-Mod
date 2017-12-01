@@ -1,3 +1,14 @@
+ORMtnMan's Real Guns Mod for Project Zomboid
+
+Original mod by ORMtnMan, Rechambered version by Fenris_Wolf
+
+To get the latest stable version, visit theindiestone forums: 
+https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
+
+or use this direct download link:
+https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
+
+---------------------------------------------------------------------------------------
 version 2.00beta-rc6
 
 Changes of Note:
@@ -20,12 +31,12 @@ Changes of Note:
     5.56 HP, .223 FMJ and .223 HP all in the same magazine. This applies to other guns as well 
     (ie: mixing buck and slugs in shotguns)
 
-* Bullet penetration is no longer a simple true/false dependant on the gun item. Its now based on a % 
-    chance, dependant on the bullet type (HP rounds have low chance of penetration while FMJ is higher),
+* Bullet penetration is no longer a simple true/false dependent on the gun item. Its now based on a % 
+    chance, dependent on the bullet type (HP rounds have low chance of penetration while FMJ is higher),
     rechecked every round fired. Ideally this should check on every hit (ie: passing through multiple
     zombies) but its better then nothing.
 
-* Gun damage is now dependant on the bullet type loaded. FMJ have a lower min damage, while HP is higher.
+* Gun damage is now dependent on the bullet type loaded. FMJ have a lower min damage, while HP is higher.
 
 * The tooltip on inventory items now specifies what ammo type is currently loaded in a gun or magazine,
     and what fire mode (Full/Semi) a gun is currently using.
@@ -70,7 +81,7 @@ Changes of Note:
     have magazines.
 
 
-
+---------------------------------------------------------------------------------------
 Changes for modders and editors:
 
 * All lua files have been rewritten and documented for maintainability. Much redundant repetitive code and 
@@ -85,7 +96,7 @@ Changes for modders and editors:
     real rounds.
 
 * Weapon damage and other attributes are now determined by the current round in the chamber, instead of the definitions
-    in the .txt files. (see ORGMWeaponData.lua, ORGMAmmoStatsTable)
+    in the .txt files. (see ORGMWeaponData.lua, ORGMMasterAmmoTable)
 
 * ORGMDistributions.lua is now actually manageable. There is no longer a need to build guns or ammo tables. Or the
     WeaponsUpgrades table. These are now built automatically on loading the script using data from ORGMWeaponData.lua
@@ -95,7 +106,6 @@ Changes for modders and editors:
     actionType - Auto, Lever, Rotary, Pump, Bolt, Break (barrel)
     triggerType - SingleAction, DoubleAction, DoubleActionOnly
 
-
 * Overridden functions:
     ISUI/ISToolTipInv:render()
     Reloading/ISReloadManager:checkLoaded()
@@ -103,4 +113,63 @@ Changes for modders and editors:
     
     *Reloading/ISReloadManager has several new functions injected into it.
 
+
+---------------------------------------------------------------------------------------
+Integrating into your mod, creating addons and compatibility patches:
+
+    I've attempted to make compatibility as easy as possible.  All weapon, magazine, ammo
+and weapon upgrade information is in the ORGMWeaponData.lua file, in global tables that 
+can be accessed from your mod. Tables of note:
+
+    ORGMAlternateAmmoTable 
+this table contains a list of 'dummy rounds' keys and actual ammo that should be used in its place. For example: 
+["Ammo_556x45mm"]   = {"Ammo_556x45mm_FMJ", "Ammo_556x45mm_HP", "Ammo_223Remington_FMJ", "Ammo_223Remington_HP"}
+Shows that any gun/magazine that has its AmmoType as Ammo_556x45mm can fire any of the above rounds.
+    
+
+    ORGMMasterAmmoTable
+this table contains all real ammo, and its stats. It can be used to get a list of all the ammo in ORGM:
+for ammoType, ammoData in pairs(ORGMMasterAmmoTable) do 
+    ... 
+end
+
+
+    ORGMMasterMagTable
+this table contains all the magazines, and its stats. It can be used to get a list of all the magazines in ORGM:
+for magType, magData in pairs(ORGMMasterMagTable) do 
+    ... 
+end
+
+
+    ORGMMasterWeaponTable
+this table contains all the guns, and its stats. It can be used to get a list of all the guns in ORGM:
+for gunType, gunData in pairs(ORGMMasterWeaponTable) do 
+    ... 
+end
+
+
+    ORGMRepairKitsTable
+this table contains a list of all repair kits available:
+for index, repairType in ipairs(ORGMRepairKitsTable) do
+    ...
+end
+
+
+    ORGMWeaponModsTable
+this table contains a list of all repair kits available:
+for index, modType in ipairs(ORGMWeaponModsTable) do
+    ...
+end
+
+
+    media/lua/shared/ORGMUtil.lua
+this file contains helper functions that can be called from your mod. These functions are subject to change
+over time, but the 2 more useful ones are:
+
+ORGMUtil.findBestMagazineInContainer(magazineType, preferredType, containerItem)
+and
+ORGMUtil.findAmmoInContainer(dummyName, preferredType, containerItem)
+
+These 2 function help when finding ammo using ORGM's alternate ammo system. 
+See the documentation comments in ORGMUtil for more information.
 
