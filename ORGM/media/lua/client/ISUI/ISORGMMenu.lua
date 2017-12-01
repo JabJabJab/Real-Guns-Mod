@@ -97,15 +97,13 @@ local OnShootSelfConfirm = function(this, button, player, item)
         end
         reloadable:fireEmpty(player, item)
         player:playSound(reloadable.clickSound, false)
-        if (reloadable.actionType == "Rotary" and reloadable.currentCapacity > 0) then
-            local moodles = player:getMoodles()
-            local boredom = moodles:getMoodleLevel(MoodleType.Bored)
-            if boredom > 0 then
-                boredom = boredom - 10
-                if boredom < 0 then bored = 0 end
-                player:getBodyDamage():setBoredomLevel(boredom) -- this is a absolute (not rel value)
-            end
-            -- TODO: add panic
+        if reloadable.actionType == "Rotary" and reloadable.currentCapacity > 0 then
+            if player:HasTrait("Desensitized") ~= true then player:getStats():setPanic(95) end
+            local boredom = player:getBodyDamage():getBoredomLevel()
+            boredom = boredom - 20
+            if boredom < 0 then boredom = 0 end
+            player:getBodyDamage():setBoredomLevel(boredom)
+            player:getStats():setIdleboredom(0)
         end
     end
 end
