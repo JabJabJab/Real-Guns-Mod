@@ -47,13 +47,13 @@ end
     maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
     isLoaded is true/false. controls if the gun/magazine is loaded with ammoType
 
-    returns nil
+    returns false if nothing is spawned, true if the reloadable spawned
 
 ]]
 local SpawnReloadable = function(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
     -- ZomboidGlobals.WeaponLootModifier
     -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
-    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return end
+    if Rnd(100) > math.ceil(spawnChance*ZomboidGlobals.WeaponLootModifier) then return false end
     local count = Rnd(maxCount)
     
     for i=1, count do
@@ -102,6 +102,7 @@ local SpawnReloadable = function(container, itemType, ammoType, spawnChance, max
             end
         end
     end
+    return true
 end
 
 
@@ -381,14 +382,16 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 2, 2)
         SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 10, 2)
 
-        SpawnRandomBox(container, 70)
-        SpawnRandomBox(container, 60)
-        SpawnRandomBox(container, 50)
-        SpawnRandomBox(container, 40)
-        SpawnRandomBox(container, 30)
-        SpawnRandomCan(container, 10)
-        SpawnRandomCan(container, 5)
-        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
+        if Rnd(100) <= 3 then
+            SpawnRandomBox(container, 70)
+            SpawnRandomBox(container, 60)
+            SpawnRandomBox(container, 50)
+            SpawnRandomBox(container, 40)
+            SpawnRandomBox(container, 30)
+            SpawnRandomCan(container, 10)
+            SpawnRandomCan(container, 5)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
+        end
 
     elseif roomName == "garagestorage" and containerType == "smallbox" then
         local choice = SelectGun(85, 10, 5)
@@ -401,14 +404,16 @@ Events.OnFillContainer.Add(function(roomName, containerType, container)
         SpawnItem(container, ORGMWeaponModsTable[Rnd(#ORGMWeaponModsTable)], 2, 2)
         SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 10, 2)
 
-        SpawnRandomBox(container, 70)
-        SpawnRandomBox(container, 60)
-        SpawnRandomBox(container, 50)
-        SpawnRandomBox(container, 40)
-        SpawnRandomBox(container, 30)
-        SpawnRandomCan(container, 10)
-        SpawnRandomCan(container, 5)
-        SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
+        if Rnd(100) <= 3 then
+            SpawnRandomBox(container, 70)
+            SpawnRandomBox(container, 60)
+            SpawnRandomBox(container, 50)
+            SpawnRandomBox(container, 40)
+            SpawnRandomBox(container, 30)
+            SpawnRandomCan(container, 10)
+            SpawnRandomCan(container, 5)
+            SpawnItem(container, ORGMRepairKitsTable[Rnd(#ORGMRepairKitsTable)], 20, 2)
+        end
 
     elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
         local choice = SelectGun(85, 10, 5)
