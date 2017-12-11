@@ -9,9 +9,17 @@ or use this direct download link:
 https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 ---------------------------------------------------------------------------------------
-version 2.00 Stable
+version 2.01 Stable
 
-Changes of Note:
+* Reduced Shotgun spread to more realistic values
+
+* Removed screw-on shotgun chokes as a upgrade for sawnoff models.
+
+* Fixed bug causing excessive ammo spawning in storage units
+
+
+---------------------------------------------------------------------------------------
+2.00 Changes of Note:
 
 * Complete code rewrite and cleanup.
 
