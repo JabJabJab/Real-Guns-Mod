@@ -20,8 +20,7 @@ TODO: finish updating MountOn
 
 **/
 module ORGM
-{   
-
+{       
     item 2xScope
     {
         Type        =   WeaponPart,
@@ -108,10 +107,10 @@ module ORGM
         Icon        =   AtFullCh,
         Weight      =   0.1,
         WeightModifier  =   0.1,
-        AngleModifier   =   -0.2,
+        AngleModifier   =   0.05,
         DamageModifier  =   0.5,
         MaxRangeModifier =  5,
-        MountOn     =   BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
+        MountOn     =   BenelliM3; BenelliXM1014; Hawk982; Ithaca37; M1216; Moss590; Rem870; Silverhawk; Spas12; Stevens320; Striker; VEPR12; Win1887,
         PartType    =   Canon,
         Tooltip     =   A modified shotgun barrel insert that reduces the spread of the shot,
     }
@@ -123,10 +122,10 @@ module ORGM
         Icon        =   AtHalfCh,
         Weight      =   0.1,
         WeightModifier  =   0.1,
-        AngleModifier   =   -0.10,
+        AngleModifier   =   0.025,
         DamageModifier  =   0.25,
         MaxRangeModifier =  3,
-        MountOn     =   BenelliM3; BenelliM3SO; BenelliXM1014; Hawk982; Ithaca37; Ithaca37SO; M1216; Moss590; Moss590SO; Rem870; Rem870SO; Silverhawk; SilverHawkSO; Spas12; Stevens320; Striker; VEPR12; Win1887; Win1887SO,
+        MountOn     =   BenelliM3; BenelliXM1014; Hawk982; Ithaca37; M1216; Moss590; Rem870;  Silverhawk; Spas12; Stevens320; Striker; VEPR12; Win1887,
         PartType    =   Canon,
         Tooltip     =   A modified shotgun barrel insert that partially reduces the spread of the shot,
     }
