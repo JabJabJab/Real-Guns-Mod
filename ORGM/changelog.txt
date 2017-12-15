@@ -8,6 +8,26 @@ https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
 or use this direct download link:
 https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
+
+---------------------------------------------------------------------------------------
+version 2.03 Stable
+
+* Built in compatibility patch for Nolan's ORGM Silencers mod. Due to Rechambered code changes,
+  Silencers will only spawn on guns, not in containers.
+  
+* Added code to allow survivors mod NPC's to spawn with gun upgrades. Fixed bug in preset survivors
+  that spawned with Base.Huntingriflel (typo'd weapon name.. not my bug, but fixed anyways)
+
+* Fixed bug not allowing some SMG's to mount lasers.
+
+---------------------------------------------------------------------------------------
+version 2.02 Stable
+
+* Built in compatibility patch for necroforge and survivors mod.
+
+* fixed bug not allowing SMG's to mount reflex and red dot sights
+
+
 ---------------------------------------------------------------------------------------
 version 2.01 Stable
 
