@@ -452,7 +452,7 @@ do
         
         -- build the WeaponUpgrades table
         local gunItem = getScriptManager():FindItem('ORGM.' .. gunName)
-        WeaponUpgrades[gunName] = {}
+        if WeaponUpgrades[gunName] == nil then WeaponUpgrades[gunName] = {} end
         for modName, modItem in pairs(modItems) do
             if modItem:getMountOn():contains(gunItem:getDisplayName()) then
                 table.insert(WeaponUpgrades[gunName], 'ORGM.' .. modName)
@@ -467,4 +467,3 @@ do
         table.insert(AllRoundsTable, ammoType)
     end
 end
-
