@@ -1,8 +1,8 @@
 ORGM = {}
 local MOD_ID = "ORGM";
 local MOD_NAME = "ORGM";
-local MOD_VERSION = "2.00beta";
-local MOD_AUTHOR = "ORMtnMan, Rechamberd by Fenris_Wolf";
+local MOD_VERSION = "2.03-stable";
+local MOD_AUTHOR = "ORMtnMan, Rechambered by Fenris_Wolf";
 local MOD_DESCRIPTION = "Rechambered version of ORMtnMan's Real Guns Mod.";
 
 
