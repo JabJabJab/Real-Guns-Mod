@@ -210,7 +210,7 @@ module ORGM
         WeightModifier  =   0.2,
         HitChanceModifier =     10,
         AimingTimeModifier =    -8,
-        MountOn     =   AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
+        MountOn     =   AM180; FNP90; HKMP5; HKUMP; Kriss; KrissA; KTPLR; M1A1; AIAW308; AKM; AKMA; AR10; AR15; BBGun; BLR; FNFAL; FNFALA; Garand; HenryBB; HK91; HKG3; HKSL8; L96; LENo4; M16; M1903; M21; M249; M4C; Marlin60; Mini14; Mosin; R25; Rem700; Rem788; Rug1022; SA80; SIG550; SIG551; SKS; SR25; SVD; WinM70; WinM94,
         PartType    =   Canon,
         Tooltip     =   A rifle mounted laser targeter that speeds up target acquisition and accuracy,
     }
