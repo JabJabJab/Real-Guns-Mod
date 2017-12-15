@@ -8,6 +8,14 @@
 ORGMUtil = {}
 
 
+function ORGMUtil.isLoaded(mod)
+	local mods = getActivatedMods()
+	for i=0, mods:size()-1, 1 do
+		if mods:get(i) == mod then return true end
+	end
+	return false
+end
+
 --[[ ORGMUtil.setupGun(gunData, item)
 
     Sets up a gun, applying key/values into the items modData. Basically the same as 
