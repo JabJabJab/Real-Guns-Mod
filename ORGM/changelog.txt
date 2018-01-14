@@ -49,9 +49,16 @@ version 3.00-alpha
     
     MagazineSpawnModifier multiplier for fine tuning the spawn rate of spare magazines.
     
-    RepairKitSpawnModifier
+    RepairKitSpawnModifier multiplier for fine tuning the spawn rate of repair kits.
     
-    ComponentSpawnModifier
+    ComponentSpawnModifier multiplier for fine tuning the spawn rate of firearm components/upgrades.
+    
+    UseSilencersPatch inject compatibility patch for Nolan's ORGM Silencers mod.
+    
+    UseNecroforgePatch inject compatibility patch for Necroforge.
+    
+    UseSurvivorsPatch inject compatibility patch for Survivors mod.
+    
     
     **Note the spawn modifier settings work in addition to the sandbox loot rarity settings.
     Its now possible to have melee weapons abundant and reduce firearm spawn settings to next to 
@@ -62,6 +69,9 @@ version 3.00-alpha
     The txt file had it listed as 15, while lua data had 10.
     In reality, The CZ75 comes in both 9mm and .40, with magazine sizes of 15 for the 9mm 
     and 12 for the .40S&W
+
+* Firearm/ammo/upgrades/repairkits are no longer required to have the ORGM mod prefix. It
+    should now be possible to have other mods guns and ammo behave as ORGM weapons.
 
 * When using the ORGM Silencers mod, silencers now correctly spawn in containers not attached
     to guns. Also, Silencers will appear in necroforge.
