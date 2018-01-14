@@ -1,0 +1,10 @@
+This folder contains example template mods that customize ORGM.
+
+ORGM Custom Server Settings
+Shows how to create a Settings mod, that tweaks spawn rates, spent case ejection, 
+and other various aspects, for use with servers.
+
+
+ORGM Military Only Automatics
+A example of changing weapon class (civilian, police, military) and rarity values
+(common, rare, veryrare) of select-fire guns.
