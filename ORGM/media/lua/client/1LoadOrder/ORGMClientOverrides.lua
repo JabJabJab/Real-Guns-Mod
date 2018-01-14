@@ -8,7 +8,6 @@ require 'ISUI/ISToolTipInv'
 -- store our original function in a local variable that we'll call later
 local render = ISToolTipInv.render
 
-
 function ISToolTipInv:render()
 	if self.item:getModule() ~= "ORGM" then
         render(self)
@@ -23,7 +22,8 @@ function ISToolTipInv:render()
     elseif modData.loadedAmmo == 'mixed' then
         text = "Loaded Ammo:  Mixed Load"
     else
-        local ammoName = getScriptManager():FindItem('ORGM.' .. modData.loadedAmmo):getDisplayName()
+        local ammoData = ORGM.AmmoTable[modData.loadedAmmo]
+        local ammoName = getScriptManager():FindItem(ammoData.moduleName ..'.'.. modData.loadedAmmo):getDisplayName()
         text = "Loaded Ammo:  " .. ammoName
     end
     

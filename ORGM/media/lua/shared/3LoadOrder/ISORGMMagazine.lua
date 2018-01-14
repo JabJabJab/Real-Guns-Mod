@@ -120,7 +120,7 @@ function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
     -- remove last entry from data table (Note: using #table to find the length is slow)    
     self.magazineData[self.currentCapacity] = nil 
     self.currentCapacity = self.currentCapacity - 1
-    char:getInventory():AddItem('ORGM.'.. round)
+    char:getInventory():AddItem(ORGM.AmmoTable[round].moduleName ..'.'.. round)
     ISInventoryPage.dirtyUI()
     self.unloadInProgress = false
     char:getXp():AddXP(Perks.Reloading, 1)
@@ -169,15 +169,15 @@ end
     the new ammo system properly, and guns are always loaded with dummy ammo.
 ]]
 function ISORGMMagazine:convertDummyRound(round)
-    if round == self.ammoType and ORGMAlternateAmmoTable[round] ~= nil then -- a dummy round is being used
-        --print("CONVERTING DUMMY ROUND " .. round " > ".. ORGMAlternateAmmoTable[round][1])
-        round = ORGMAlternateAmmoTable[round][1]
+    if round == self.ammoType and ORGM.AlternateAmmoTable[round] ~= nil then -- a dummy round is being used
+        --print("CONVERTING DUMMY ROUND " .. round " > ".. ORGM.AlternateAmmoTable[round][1])
+        round = ORGM.AlternateAmmoTable[round][1]
     end
     return round
 end
 
 function ISORGMMagazine:findBestAmmo(char)
-    return ORGMUtil.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
+    return ORGM.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 function ISORGMMagazine:syncItemToReloadable(item)
@@ -218,28 +218,7 @@ end
 
 function ISORGMMagazine:setupReloadable(item, magazineData)
     local modData = item:getModData()
-    ORGMUtil.setupMagazine(magazineData, item) --moved to save on duplicate code
-    --[[
-    --modData.defaultAmmo = item:getAmmoType()
-    modData.type = v.type
-    modData.moduleName = v.moduleName
-    modData.reloadClass = v.reloadClass
-    modData.ammoType = v.ammoType
-    modData.loadStyle = v.reloadStyle
-    modData.ejectSound = v.ejectSound
-    modData.clickSound = v.clickSound
-    modData.insertSound = v.insertSound
-    modData.rackSound = v.rackSound;
-    modData.maxCapacity = v.maxCapacity or item:getClipSize()
-    modData.reloadTime = v.reloadTime or item:getReloadTime()
-    modData.rackTime = v.rackTime
-    modData.currentCapacity = 0
-    modData.clipType = v.clipType
-    modData.magazineData = { }
-    modData.preferredAmmoType = 'any'
-    modData.loadedAmmo = nil
---  modData.reloadText = v.reloadText;
-    ]]
+    ORGM.setupMagazine(magazineData, item) --moved to save on duplicate code
 end
 
 function ISORGMMagazine:printItemDetails(item)

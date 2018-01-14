@@ -230,7 +230,7 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == "Rotary" then
         -- fire shot
-        local round = ORGMMasterAmmoTable[self.magazineData[self.cylinderPosition]]
+        local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
         if round and round.Case then
             self.magazineData[self.cylinderPosition] = round.Case
         else
@@ -240,7 +240,7 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
         
     elseif self.actionType == "Break" then
         -- fire shot
-        local round = ORGMMasterAmmoTable[self.magazineData[self.cylinderPosition]]
+        local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
         if round and round.Case then
             self.magazineData[self.cylinderPosition] = round.Case
         else
@@ -518,10 +518,9 @@ function ISORGMWeapon:convertDummyRound(round)
     if self.containsClip ~= nil then -- get the mag's ammo type
         ammoType = ReloadUtil:getClipData(self.ammoType).ammoType
     end
-    --print("R: " .. round .. " A: " .. ammoType)
-    if round == ammoType and ORGMAlternateAmmoTable[round] ~= nil then -- a dummy round is being used
-        print("CONVERTING DUMMY ROUND " .. round .. " > ".. ORGMAlternateAmmoTable[round][1])
-        round = ORGMAlternateAmmoTable[round][1]
+    if round == ammoType and ORGM.AlternateAmmoTable[round] ~= nil then -- a dummy round is being used
+        ORGM.log(ORGM.DEBUG, "Converting dummy round ".. round .. " > ".. ORGM.AlternateAmmoTable[round][1])
+        round = ORGM.AlternateAmmoTable[round][1]
     end
     return round
 end
@@ -628,7 +627,7 @@ function ISORGMWeapon:ejectMagazine(char, sound)
     self.containsClip = 0
     self.reloadInProgress = false
     self.loadedAmmo = nil -- might still have a round in chamber, but this is only required for magazine setup anyways
-    if (sound and self.ejectSound) then char:playSound(self.ejectSound, true) end
+    if (sound and self.ejectSound) then char:playSound(self.ejectSound, false) end
 end
 
 
@@ -655,7 +654,7 @@ function ISORGMWeapon:insertMagazine(char, sound)
     self.containsClip = 1
     self.loadedAmmo = modData.loadedAmmo
     char:getXp():AddXP(Perks.Reloading, 1)
-    if (sound and self.insertSound) then char:playSound(self.insertSound, true) end
+    if (sound and self.insertSound) then char:playSound(self.insertSound, false) end
 end
 
 
@@ -701,7 +700,7 @@ end
 ]]
 function ISORGMWeapon:findBestMagazine(char, ammoType)
     if ammoType == nil then ammoType = self.ammoType end
-    return ORGMUtil.findBestMagazineInContainer(ammoType, self.preferredAmmoType, char:getInventory())
+    return ORGM.findBestMagazineInContainer(ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 
@@ -712,7 +711,7 @@ end
 
 
 function ISORGMWeapon:findBestAmmo(char)
-    return ORGMUtil.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
+    return ORGM.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 
@@ -760,10 +759,13 @@ function ISORGMWeapon:emptyMagazineAtOnce(char, sound)
         local ammoType = self.magazineData[index]
         local round = nil
         if ammoType and ammoType:sub(1, 5) == 'Case_' then -- eject shell
-            -- TODO: use the next line instead when empty shells are added
-            round = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
+            if ORGM.Settings.CasesEnabled then
+                -- TODO: cases need proper module checking
+                round = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
+            end
         elseif ammoType then -- eject bullet
-            round = InventoryItemFactory.CreateItem('ORGM.' .. self:convertDummyRound(ammoType))
+            round = self:convertDummyRound(ammoType)
+            round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[round].moduleName..'.' .. round)
         end
         if (round and square) then 
             square:AddWorldInventoryItem(round, 0, 0, 0)        
@@ -898,7 +900,7 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
     -- first open the slide...
     self.isOpen = 1
     self.isJammed = nil 
-    if (sound and self.openSound) then char:playSound(self.openSound, true) end
+    if (sound and self.openSound) then char:playSound(self.openSound, false) end
     local square = char:getCurrentSquare()
     local round = self.lastRound
     
@@ -907,14 +909,14 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
         if round == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
             self.lastRound = self:convertDummyRound(self.ammoType)
         end
-        round = InventoryItemFactory.CreateItem('ORGM.' .. self.lastRound)
+        round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[self.lastRound].moduleName ..'.'.. self.lastRound)
     elseif self.emptyShellChambered == 1 then
-        round = ORGMMasterAmmoTable[round]
-        if round == nil or round.Case == nil then
+        round = ORGM.AmmoTable[round]
+        if round == nil or round.Case == nil or ORGM.Settings.CasesEnabled == false then
             round = nil
         else
+            -- TODO: cases need proper module checking
             round = InventoryItemFactory.CreateItem('ORGM.' .. round.Case)
-            --round = nil -- TODO: use the above line instead when empty shells are added
         end
     else -- nothing actually chambered?
         return
@@ -946,7 +948,7 @@ function ISORGMWeapon:closeSlide(char, sound, weapon)
         self:cockHammer(char, false, weapon)
     end
     self.isOpen = 0
-    if (sound and self.closeSound) then char:playSound(self.closeSound, true) end
+    if (sound and self.closeSound) then char:playSound(self.closeSound, false) end
     -- load next shot, this isn't always true though: 
     -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
     -- a mag inserted while slide open will chamber when closed
@@ -979,18 +981,21 @@ function ISORGMWeapon:feedNextRound(char, weapon)
     self:setCurrentRound(round, weapon)
     
     -- check for a jam
-    local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
-    if char:HasTrait("Lucky") then 
-        chance = chance * 0.8
-    elseif char:HasTrait("Unlucky") then
-        chance = chance * 1.2
-    end
+    if ORGM.Settings.JammingEnabled then
+        -- TODO: chances need to be more dynamic, it assumes a max condition of 10
+        local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
+        if char:HasTrait("Lucky") then 
+            chance = chance * 0.8
+        elseif char:HasTrait("Unlucky") then
+            chance = chance * 1.2
+        end
 
-    local result = ZombRand(300 - math.ceil(chance)*2)+1
-    if result <= chance then
-        self.isJammed = true
-        weapon:getModData().isJammed = true
-    end    
+        local result = ZombRand(300 - math.ceil(chance)*2)+1
+        if result <= chance then
+            self.isJammed = true
+            weapon:getModData().isJammed = true
+        end
+    end
 end
 
 
@@ -1003,15 +1008,15 @@ end
 function ISORGMWeapon:setCurrentRound(round, weapon)
     if round == nil or round:sub(1, 5) == 'Case_' then return end
     round = self:convertDummyRound(round)
-    local roundData = ORGMMasterAmmoTable[round]
+    local roundData = ORGM.AmmoTable[round]
     if roundData == nil then
         self.lastRound = nil
         return
     end
     if round ~= self.lastRound then 
-        ORGMUtil.setWeaponProjectileStats(weapon, roundData)
+        ORGM.setWeaponStats(weapon, roundData)
     end
-    ORGMUtil.setWeaponProjectilePiercing(weapon, roundData)
+    ORGM.setWeaponProjectilePiercing(weapon, roundData)
     self.lastRound = round -- this is also used if the slide is cycled again before firing, so we know what to eject
 
 end
@@ -1032,7 +1037,7 @@ function ISORGMWeapon:cockHammer(char, sound, weapon)
     if self.actionType == "Rotary" and self.isOpen == 0 then
         self:rotateCylinder(1, char, false, weapon)
     end
-    if (sound and self.cockSound) then char:playSound(self.cockSound, true) end
+    if (sound and self.cockSound) then char:playSound(self.cockSound, false) end
     self.hammerCocked = 1
 end
 
@@ -1088,7 +1093,7 @@ function ISORGMWeapon:openCylinder(char, sound, weapon)
         return
     end
     self.isOpen = 1
-    if (sound and self.openSound) then char:playSound(self.openSound, true) end
+    if (sound and self.openSound) then char:playSound(self.openSound, false) end
 end
 
 --[[ ISORGMWeapon:closeCylinder(char, sound)
@@ -1107,7 +1112,7 @@ function ISORGMWeapon:closeCylinder(char, sound, weapon)
     end
     self.isOpen = 0
     self:setCurrentRound(self.magazineData[self.cylinderPosition], weapon)
-    if (sound and self.closeSound) then char:playSound(self.closeSound, true) end
+    if (sound and self.closeSound) then char:playSound(self.closeSound, false) end
 end
 
 ---------------------------------------------------------------------------
@@ -1119,7 +1124,7 @@ function ISORGMWeapon:openBreak(char, sound, weapon)
     if self.isOpen == 1 then return end
     self.isOpen = 1
     self.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire, set to 1 for reloading
-    if (sound and self.openSound) then char:playSound(self.openSound, true) end
+    if (sound and self.openSound) then char:playSound(self.openSound, false) end
     self:emptyMagazineAtOnce(char, false)
 end
 
@@ -1129,7 +1134,7 @@ function ISORGMWeapon:closeBreak(char, sound, weapon)
     self.isOpen = 0
     self.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire
     self:setCurrentRound(self.magazineData[1], weapon)
-    if (sound and self.closeSound) then char:playSound(self.closeSound, true) end    
+    if (sound and self.closeSound) then char:playSound(self.closeSound, false) end
 end
 ---------------------------------------------------------------------------
 --
@@ -1223,7 +1228,7 @@ function ISORGMWeapon:syncReloadableToItem(weapon)
 end
 
 function ISORGMWeapon:setupReloadable(weapon, v)
-    ORGMUtil.setupGun(v, weapon) --moved to save on duplicate code
+    ORGM.setupGun(v, weapon) --moved to save on duplicate code
 end
 
 function ISORGMWeapon:printReloadableDetails()

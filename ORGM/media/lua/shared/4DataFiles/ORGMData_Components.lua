@@ -1,0 +1,21 @@
+local register = ORGM.registerComponent
+
+register('2xScope', {} )
+register('4xScope', {} )
+register('8xScope', {} )
+register('FibSig', {} )
+register('Foregrip', {} )
+register('FullCh', {} )
+register('HalfCh', {} )
+register('PistolLas', {} )
+register('PistolTL', {} )
+register('RDS', {} )
+register('Recoil', {} )
+register('Reflex', {} )
+register('RifleLas', {} )
+register('RifleTL', {} )
+register('Rifsling', {} )
+register('SkeletalStock', {} )
+register('CollapsingStock', {} )
+
+ORGM.log(ORGM.INFO, "All default components/upgrades registered.")

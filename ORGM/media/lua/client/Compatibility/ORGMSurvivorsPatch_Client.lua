@@ -8,9 +8,9 @@
 ]]
 
 local RangeWeaponsOverride = {}
-for name, data in pairs(ORGMMasterWeaponTable) do
+for name, def in pairs(ORGM.FirearmTable) do
     -- this doesn't take into account weapon rarity but meh w/e
-    table.insert(RangeWeaponsOverride, "ORGM." .. name)
+    table.insert(RangeWeaponsOverride, def.moduleName .. '.' .. name)
 end
 
 -----------------------------------------------------------------------------
@@ -97,7 +97,7 @@ local NPCLoot = {
     "ORGM.Ammo_9x19mm_FMJ_Box",
 }
 
-if ORGMUtil.isLoaded("Hydrocraft") then
+if ORGM.isModLoaded("Hydrocraft") then
     table.insert(NPCLoot,"Hydrocraft.HCJackknife")
     table.insert(NPCLoot,"Hydrocraft.HCMeatcleaver")
     table.insert(NPCLoot,"Hydrocraft.HCMasontrowel")
@@ -151,7 +151,7 @@ local reloadWeaponOverride = function(primary, player)
     if primary == nil or player == nil then
         return true
     end
-    if primary:getModule() ~= "ORGM" then 
+    if not ORGM.FirearmTable[primary:getType()] then
         -- not a orgm gun, call the original function
         return reloadWeaponOriginal(primary, player)
     end
@@ -170,14 +170,14 @@ local reloadWeaponOverride = function(primary, player)
     
     local secondaryHand = player:getSecondaryHandItem()
     local container = player:getInventory()
-    local ammoItem = ORGMUtil.findAmmoInContainer(ammoType, 'any', container)
+    local ammoItem = ORGM.findAmmoInContainer(ammoType, 'any', container)
     if ammoItem == nil and secondaryHand ~= nil and secondaryHand:getCategory() == "Container" then
         container = secondaryHand:getItemContainer()
-        ammoItem = ORGMUtil.findAmmoInContainer(ammoType, 'any', container)
+        ammoItem = ORGM.findAmmoInContainer(ammoType, 'any', container)
     end
     if ammoItem == nil and player:getClothingItem_Back() ~= nil then 
         container = player:getClothingItem_Back():getItemContainer()
-        ammoItem = ORGMUtil.findAmmoInContainer(ammoType, 'any', container)
+        ammoItem = ORGM.findAmmoInContainer(ammoType, 'any', container)
     end
     if ammoItem == nil then return false end
     ammoType = ammoItem:getType()
@@ -201,7 +201,7 @@ end
 
 -----------------------------------------------------------------------------
 -- giveWeapon function
--- this needs to call ORGMUtil.setupGun to properly setup the modData
+-- this needs to call ORGM.setupGun to properly setup the modData
 -- it also needs to pick a alternate ammo instead of the dummy rounds
 local giveWeaponOverride = function(player, weaponType, seenZombie)
     local weapon = InventoryItemFactory.CreateItem(weaponType)
@@ -210,22 +210,24 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
     --local weapon = player:getInventory():AddItem(weaponType)
     
     local ammoType = nil
-    if weapon:getModule() == "ORGM" then
+    if ORGM.FirearmTable[primary:getType()] then
         if WeaponUpgrades[weapon:getType()] then
             ItemPicker.doWeaponUpgrade(weapon)
         end
 
-        ORGMUtil.setupGun(ReloadUtil:getWeaponData(weapon:getType()), weapon)
+        ORGM.setupGun(ReloadUtil:getWeaponData(weapon:getType()), weapon)
         ammoType = getAmmoBullets(weapon, false)
-        if ORGMAlternateAmmoTable[ammoType] then
-            local AmmoTbl = ORGMAlternateAmmoTable[ammoType]
-            ammoType = "ORGM." .. AmmoTbl[ZombRand(#AmmoTbl) + 1] -- randomly pick ammo
-        else -- huh?
-            ammoType = "ORGM." .. ammoType
+        if ORGM.AlternateAmmoTable[ammoType] then
+            local AmmoTbl = ORGM.AlternateAmmoTable[ammoType]
+            ammoType = AmmoTbl[ZombRand(#AmmoTbl) + 1] -- randomly pick ammo
+            ammoType = ORGM.AmmoTable[ammoType].moduleName ..'.'.. ammoType
+        elseif ORGM.AmmoTable[ammoType] == nil then
+            ORGM.log(ORGM.WARN, "Survivors mod tried to give non-registered and non-dummy round ammo for a gun.")
         end
     else
         ammoType = getAmmoBullets(weapon, true)
     end
+    
     if ammoType then
         local tempammoitem = player:getInventory():AddItem(ammoType)
         
@@ -242,13 +244,9 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
 
 end
 
--- cant use OnGameStart, for survivor overrides, some survivors have already spawned, so use
--- OnGameBoot instead. However this will fail if the lua is reloaded while the game is running 
--- (debug mode reload?)...
-
 Events.OnGameBoot.Add(function()
-    if ORGMUtil.isLoaded("Survivors") == true and ORGMUtil.isLoaded("SurvivorsORGMPatch") == false then 
-        print("ORGM Rechambered - Injecting Survivors Mod Overwrites")
+    if ORGM.isModLoaded("Survivors") == true then 
+        ORGM.log(ORGM.INFO, "Injecting Survivors Mod Overwrites")
 
         RangeWeapons = RangeWeaponsOverride
         reloadWeaponOriginal = reloadWeapon

@@ -26,8 +26,6 @@ end
 function ORGMUnloadAction:perform()
 	self.reloadable:unloadPerform(self.character, self.square, self.mgr:getDifficulty(), self.reloadWeapon)
 	self.mgr.reloadable = self.reloadable -- goes nil sometimes 
-    -- note by fenris on the above PZ dev comment: maybe if you quit setting it to nil in the manager? specifically you guys have hooked a function 
-    -- into OnPlayerUpdate, which calls :checkReloadConditions, which in turn calls :isWeaponReloadable....which sets it to nil.
     self.mgr.reloadWeapon = self.reloadWeapon
 	self.mgr:stopUnloadSuccess()
 	-- needed to remove from queue / start next.
