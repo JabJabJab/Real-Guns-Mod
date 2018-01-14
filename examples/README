@@ -8,3 +8,7 @@ and other various aspects, for use with servers.
 ORGM Military Only Automatics
 A example of changing weapon class (Civilian, Police, Military) and rarity values
 (Common, Rare, VeryRare) of select-fire guns.
+
+ORGM Night Spawn
+Shows how to overwrite specific functions in ORGM. This one overwrites the function
+that spawns guns and ammo on corpses to only trigger between 12 and 6 AM.
