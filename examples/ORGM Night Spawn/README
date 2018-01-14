@@ -1,0 +1,3 @@
+This is a template example mod that shows a example of overwriting a specific
+function in ORGM. It replaces the function that spawns guns and ammo on corpses
+to one that only spawns between 12 and 6 AM.
