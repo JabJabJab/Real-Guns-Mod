@@ -46,16 +46,17 @@ Settings.PoliceFirearmSpawnModifier = 1.0
 -- MilitaryFirearmSpawnModifier: Multiplier for the chances a firearm is military class.
 Settings.MilitaryFirearmSpawnModifier = 1.0
 
--- AmmoSpawnModifier:
+-- AmmoSpawnModifier: Multiplier for controlling the spawn rate of ammo, boxes and cans.
 Settings.AmmoSpawnModifier = 1.0
 
--- MagazineSpawnModifier:
+-- MagazineSpawnModifier: Multiplier for controlling the spawn rate of spare magazines
 Settings.MagazineSpawnModifier = 1.0
 
--- RepairKitSpawnModifier:
+-- RepairKitSpawnModifier: Multiplier for controlling the spawn rate of repair kits
 Settings.RepairKitSpawnModifier = 1.0
 
--- ComponentSpawnModifier:
+-- ComponentSpawnModifier: Multiplier for controlling the spawn rate of weapon upgrades
+-- and parts. Note this only effects upgrades not attached to guns.
 Settings.ComponentSpawnModifier = 1.0
 
 ----------------------------------
