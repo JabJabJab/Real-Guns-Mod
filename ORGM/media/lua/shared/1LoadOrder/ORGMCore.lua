@@ -1,9 +1,9 @@
 --[[
 
-    This file contains the core functions and data of ORGM Rechambered.
+    This file contains the core table of ORGM Rechambered.
     It is kept in the shared/1LoadOrder folder to ensure is loaded before any other ORGM files.
-    All functions and tables can be accessed via the global table named ORGM
-
+    All functions and tables can be accessed via the global table named ORGM.
+    Functions are not listed in this file, they are loaded into it by the other files in the mod.
 ]]
 
 
@@ -21,14 +21,15 @@ ORGM = {
         JammingEnabled = true,
         CasesEnabled = true,
         RemoveBaseFirearms = true,
-        DefaultMagazineReoadTime = 30,
+        DefaultMagazineReoadTime = 5,
         -- spawn modifiers
-        FirearmSpawnModifier = 1.0,
+        LimitYear = nil, -- set to the max production year (ie: 1993, no guns produced after 1993 will spawn)
+        FirearmSpawnModifier = 10.0,
         CivilianFirearmSpawnModifier = 1.0,
         PoliceFirearmSpawnModifier = 1.0,
         MilitaryFirearmSpawnModifier = 1.0,
-        AmmoSpawnModifier = 1.0,
-        MagazineSpawnModifier = 1.0,
+        AmmoSpawnModifier = 10.0,
+        MagazineSpawnModifier = 10.0,
         RepairKitSpawnModifier = 1.0,
         ComponentSpawnModifier = 1.0,
         
