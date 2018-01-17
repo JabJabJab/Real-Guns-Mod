@@ -128,6 +128,11 @@ MenuCallbacks.onSetPreferredAmmo = function(item, player, data, reloadable, valu
     
 end
 
+MenuCallbacks.onInspectFunction = function(item, player, data, reloadable)
+    ORGMFirearmWindow:setFirearm(item)
+    ORGMFirearmWindow:setVisible(true)
+end
+
 ----------------------------------------------------
 ----------------------------------------------------
 MenuCallbacks.onDebugWeapon = function(item, player, data, reloadable)
@@ -163,6 +168,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     local reloadable = ReloadUtil:getReloadableWeapon(item, player)
     reloadable.playerObj = player -- not sure where this is actually set in the code, but apparently sometimes its not...
 
+    context:addOption("Inspect Weapon", item, MenuCallbacks.onInspectFunction, playerObj, data, reloadable)
     ---------------------
     -- hammer actions
     if (data.hammerCocked == 1 and data.triggerType ~= "DoubleActionOnly") then
@@ -227,7 +233,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         context:addSubMenu(debugMenu, subMenuDebug)
         
         subMenuDebug:addOption("* Debug Weapon", item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
-        --context:addOption("* Test Function", item, OnTestFunction, playerObj, data, reloadable)
+        subMenuDebug:addOption("* Test Function", item, MenuCallbacks.onTestFunction, playerObj, data, reloadable)
         subMenuDebug:addOption("* Reset To Defaults", item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
     end
 end
