@@ -28,6 +28,13 @@ local Rnd = function(maxValue)
     return ZombRand(maxValue) + 1;
 end
 
+Server.generateSerialNumber = function(item)
+    local sn = {}
+    for i=1, 6 do
+        sn[i] = tostring(ZombRand(10))
+    end
+    item:getModData().serialnumber = table.concat(sn, '')
+end
 
 --[[ Server.spawnReloadable(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
 
@@ -72,6 +79,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
         ORGM.log(ORGM.DEBUG, "Spawned " .. itemOrgmData.moduleName .. '.' .. itemType)
         if isFirearm then
             ORGM.setupGun(ReloadUtil:getWeaponData(itemType), additem)
+            Server.generateSerialNumber(additem)
             if isLoaded then additem:setCondition(Rnd(additem:getConditionMax())) end
         else
             ORGM.setupMagazine(ReloadUtil:getClipData(itemType), additem)
