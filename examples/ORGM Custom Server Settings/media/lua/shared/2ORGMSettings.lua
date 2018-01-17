@@ -28,6 +28,10 @@ Settings.RemoveBaseFirearms = true
 -- valid options are any integer number greater then 0 (default: 30)
 Settings.DefaultMagazineReoadTime = 30
 
+-- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
+-- firearms manufactured after 1993, if nil then no year limits will be applied.
+Settings.LimitYear = nil
+
 ----------------------------------
 -- Spawn Rate Multipliers
 -- These values tweak the various spawn rates, and stack with the sandbox weapon loot rarity 
