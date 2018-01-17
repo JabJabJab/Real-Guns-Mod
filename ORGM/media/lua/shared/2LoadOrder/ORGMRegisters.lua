@@ -123,13 +123,19 @@ ORGM.registerFirearm = function(name, definition)
     -- setup defaults
     definition.type = name
     --definition.moduleName = "ORGM"
-    definition.reloadClass = 'ISORGMWeapon'
+    definition.reloadClass = definition.reloadClass or 'ISORGMWeapon'
     definition.ammoType = scriptItem:getAmmoType() -- get the ammoType from the script item
     definition.rackTime = definition.rackTime or 10
     definition.reloadTime = definition.reloadTime or 15
     definition.isOpen = 0
     definition.hammerCocked = 0
 
+    
+    definition.classification = definition.classification or "Unknown"
+    definition.country = definition.country or "Unknown"
+    definition.manufacturer = definition.manufacturer or "Unknown"
+    definition.description = definition.description or "No description available"
+    
     --ORGM.log(ORGM.DEBUG, "Set ammoType to ".. tostring(definition.ammoType))
 
     
