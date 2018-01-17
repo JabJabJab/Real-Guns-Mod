@@ -26,6 +26,114 @@ ORGM.isModLoaded = function(mod)
 end
 
 
+--[[ ORGM.validateSettings()
+
+    Checks the values in the ORGM.Settings table and ensures they conform to expected
+    values. Sets to defaults and logs errors.
+    
+    returns nil
+    
+]]
+
+ORGM.validateSettings = function()
+    -- this function is messy IMO, but a necessary evil to ensure peoples custom settings don't cause code exceptions.
+    -- TODO: think fenris..theres a more graceful way of writing this slop...alot of repetitive stuff here..
+    local Settings = ORGM.Settings
+    if Settings.LogLevel ~= ORGM.ERROR and Settings.LogLevel ~= ORGM.WARN and Settings.LogLevel ~= ORGM.INFO and Settings.LogLevel ~= ORGM.DEBUG then
+        ORGM.log(ORGM.ERROR, "Settings.LogLevel is invalid (value " .. tostring(Settings.LogLevel) .. " should be 0-3), setting to 2 (ORGM.INFO)")
+        Settings.LogLevel = ORGM.INFO
+    end
+    if type(Settings.JammingEnabled) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.JammingEnabled is invalid (value " .. tostring(Settings.JammingEnabled) .. " should be boolen true|false), setting to true")
+        Settings.JammingEnabled = true
+    end
+    if type(Settings.CasesEnabled) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.CasesEnabled is invalid (value " .. tostring(Settings.CasesEnabled) .. " should be boolen true|false), setting to true")
+        Settings.CasesEnabled = true
+    end
+    if type(Settings.RemoveBaseFirearms) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.RemoveBaseFirearms is invalid (value " .. tostring(Settings.RemoveBaseFirearms) .. " should be boolen true|false), setting to true")
+        Settings.RemoveBaseFirearms = true
+    end
+    if type(Settings.DefaultMagazineReoadTime) ~= "number" or Settings.DefaultMagazineReoadTime <= 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.DefaultMagazineReoadTime is invalid (value " .. tostring(Settings.DefaultMagazineReoadTime) .. " should be integer > 0), setting to 30")
+        Settings.DefaultMagazineReoadTime = 30
+    end
+    if math.floor(Settings.DefaultMagazineReoadTime) ~= Settings.DefaultMagazineReoadTime then
+        ORGM.log(ORGM.ERROR, "Settings.DefaultMagazineReoadTime is invalid (value " .. Settings.DefaultMagazineReoadTime .. " should be integer > 0), setting to ".. math.floor(Settings.DefaultMagazineReoadTime))
+        Settings.DefaultMagazineReoadTime = math.floor(Settings.DefaultMagazineReoadTime)
+    end
+
+    -- spawn modifiers
+    if Settings.LimitYear ~= nil and type(Settings.LimitYear) ~= "number" then
+        ORGM.log(ORGM.ERROR, "Settings.LimitYear is invalid (value " .. tostring(Settings.LimitYear) .. " should be nil or integer), setting to nil")
+    end
+    
+    if type(Settings.FirearmSpawnModifier) ~= "number" or Settings.FirearmSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.FirearmSpawnModifier is invalid (value " .. tostring(Settings.FirearmSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.FirearmSpawnModifier = 1.0
+    end
+    if type(Settings.CivilianFirearmSpawnModifier) ~= "number" or Settings.CivilianFirearmSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.CivilianFirearmSpawnModifier is invalid (value " .. tostring(Settings.CivilianFirearmSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.CivilianFirearmSpawnModifier = 1.0
+    end
+    if type(Settings.PoliceFirearmSpawnModifier) ~= "number" or Settings.PoliceFirearmSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.PoliceFirearmSpawnModifier is invalid (value " .. tostring(Settings.PoliceFirearmSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.PoliceFirearmSpawnModifier = 1.0
+    end
+    if type(Settings.MilitaryFirearmSpawnModifier) ~= "number" or Settings.MilitaryFirearmSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.MilitaryFirearmSpawnModifier is invalid (value " .. tostring(Settings.MilitaryFirearmSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.MilitaryFirearmSpawnModifier = 1.0
+    end
+    if type(Settings.AmmoSpawnModifier) ~= "number" or Settings.AmmoSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.AmmoSpawnModifier is invalid (value " .. tostring(Settings.AmmoSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.AmmoSpawnModifier = 1.0
+    end
+    if type(Settings.MagazineSpawnModifier) ~= "number" or Settings.MagazineSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.MagazineSpawnModifier is invalid (value " .. tostring(Settings.MagazineSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.MagazineSpawnModifier = 1.0
+    end
+    if type(Settings.RepairKitSpawnModifier) ~= "number" or Settings.RepairKitSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.RepairKitSpawnModifier is invalid (value " .. tostring(Settings.RepairKitSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.RepairKitSpawnModifier = 1.0
+    end
+    if type(Settings.ComponentSpawnModifier) ~= "number" or Settings.ComponentSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.ComponentSpawnModifier is invalid (value " .. tostring(Settings.ComponentSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.ComponentSpawnModifier = 1.0
+    end
+    
+    if type(Settings.UseSilencersPatch) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.UseSilencersPatch is invalid (value " .. tostring(Settings.UseSilencersPatch) .. " should be boolen true|false), setting to true")
+        Settings.UseSilencersPatch = true
+    end
+    if type(Settings.UseNecroforgePatch) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.UseNecroforgePatch is invalid (value " .. tostring(Settings.UseNecroforgePatch) .. " should be boolen true|false), setting to true")
+        Settings.UseNecroforgePatch = true
+    end
+    if type(Settings.UseSurvivorsPatch) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.UseSurvivorsPatch is invalid (value " .. tostring(Settings.UseSurvivorsPatch) .. " should be boolen true|false), setting to true")
+        Settings.UseSurvivorsPatch = true
+    end
+    if type(Settings.Debug) ~= "boolean" then
+        ORGM.log(ORGM.ERROR, "Settings.Debug is invalid (value " .. tostring(Settings.Debug) .. " should be boolen true|false), setting to false")
+        Settings.Debug = false
+    end
+    ORGM.log(ORGM.INFO, "Settings validation complete.")
+end
+
+ORGM.limitFirearmYear = function()
+    local limit = ORGM.Settings.LimitYear
+    if limit == nil then return end
+    ORGM.log(ORGM.INFO, "Removing spawning of firearms manufactured later after "..limit)    
+    for name, definition in pairs(ORGM.FirearmTable) do
+        if definition.year ~= nil and definition.year > limit then
+            definition.isCivilian = nil
+            definition.isPolice = nil
+            definition.isMilitary = nil
+        end
+    end
+end
+
 --[[ ORGM.setupGun(gunData, item)
 
     Sets up a gun, applying key/values into the items modData. Basically the same as 
