@@ -139,14 +139,22 @@ MenuCallbacks.onDebugWeapon = function(item, player, data, reloadable)
     reloadable:printReloadableWeaponDetails() -- debug data
 end
 
-MenuCallbacks.onTestFunction = function(item, player, data, reloadable)
+MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
+    data.BUILD_ID = 1
+    
+    if not ORGM.FirearmTable[item:getType()].lastChanged then
+        player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
+        return
+    end
+    player:Say('BUILD_ID set to 1, unequip and re-equip to test backwards compatibility function.')
 end
 
 MenuCallbacks.onResetWeapon = function(item, player, data, reloadable)
-    local gunData = ORGM.FirearmTable[item:getType()]
-    reloadable:setupReloadable(item, gunData)
-    reloadable:syncItemToReloadable(item)
-    player:Say("weapon reset")
+    --local gunData = ORGM.FirearmTable[item:getType()]
+    ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
+    --reloadable:setupReloadable(item, gunData)
+    --reloadable:syncItemToReloadable(item)
+    --player:Say("weapon reset")
 end
 
 MenuCallbacks.onAdminFillAmmo = function(item, player, data, ammoType)
@@ -233,7 +241,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         context:addSubMenu(debugMenu, subMenuDebug)
         
         subMenuDebug:addOption("* Debug Weapon", item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
-        subMenuDebug:addOption("* Test Function", item, MenuCallbacks.onTestFunction, playerObj, data, reloadable)
+        subMenuDebug:addOption("* Backwards Compatibility Test", item, MenuCallbacks.onBackwardsTestFunction, playerObj, data, reloadable)
         subMenuDebug:addOption("* Reset To Defaults", item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
     end
 end
