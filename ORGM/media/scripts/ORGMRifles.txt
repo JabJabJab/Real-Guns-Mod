@@ -367,6 +367,7 @@ module ORGM
     
     item BLR
     {
+        /** TODO: BLR is should have a detachable 3-5 round magazine **/
         AmmoType    =   Ammo_308Winchester,
         ImpactSound =   null,
         MaxRange    =   26,
@@ -778,6 +779,7 @@ module ORGM
         RecoilDelay = 1,
         PiercingBullets = TRUE,
         SoundGain = 2,
+        /** TODO: clipsize should be 10 **/
         ClipSize = 20,
         ReloadTime = 10,
         AimingTime = 20,
