@@ -15,6 +15,18 @@ ORGM = {
     DEBUG = 3,
     VERSION = "3.00-alpha",
     AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf",
+    -- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
+    -- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
+    -- gun index number < changed index number then the gun needs to be reset to default values (fixed for the 
+    -- new version.)
+    BUILD_HISTORY = {
+        "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
+        "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
+        "3.00-alpha", -- 12
+    },
+    BUILD_ID = nil, -- set automatically at the end of this file
+    -- table containing changes to firearms for backwards compatibilty. these are all set in shared/ORGMBackwardsCompatibility.lua
+    FIREARM_HISTORY = {},
     -- tables
     Settings = { -- Settings table to be overwritten
         LogLevel = 2,
@@ -218,5 +230,5 @@ ORGM.SoundProfiles = {
     }
 }
 
-
+ORGM.BUILD_ID = #ORGM.BUILD_HISTORY
 ORGM.log(ORGM.INFO, "ORGM Rechambered Core Loaded v" .. ORGM.VERSION)
