@@ -1,4 +1,4 @@
-function ORGM.Client.loadModels()
+ORGM.Client.loadModels = function()
 	local dir = getDir("ORGM")
 	local locationModel = dir .. "/media/models/weapons_"
     local locationTexture = dir .. "/media/textures/Objects_"
@@ -37,4 +37,16 @@ function ORGM.Client.loadModels()
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end	
 
+--[[  ORGM.Client.checkFirearmBuildID(player, item)
+    
+    Note this function has the same name as the shared function ORGM.checkFirearmBuildID()
+    but is client specific, and has slightly different arguments. It is meant to be called from
+    Events.OnEquipPrimary listed in ORGMClientEventHooks.
 
+]]
+ORGM.Client.checkFirearmBuildID = function(player, item)
+    if item == nil or player == nil then return end
+    if ORGM.checkFirearmBuildID(item, player:getInventory()) then
+        player:Say("Resetting this weapon to defaults due to ORGM changes. Unequipping.")
+    end
+end
