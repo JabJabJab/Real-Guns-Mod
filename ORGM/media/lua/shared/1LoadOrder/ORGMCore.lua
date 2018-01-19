@@ -8,12 +8,7 @@
 
 
 ORGM = {
-    -- constants
-    ERROR = 0,
-    WARN = 1,
-    INFO = 2,
-    DEBUG = 3,
-    VERSION = "3.00-alpha",
+    VERSION = "3.00-beta-rc1",
     AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf",
     -- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
     -- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
@@ -22,11 +17,30 @@ ORGM = {
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
-        "3.00-alpha", -- 12
+        "3.00-alpha", "2.00-beta-rc1", -- 13
     },
     BUILD_ID = nil, -- set automatically at the end of this file
-    -- table containing changes to firearms for backwards compatibilty. these are all set in shared/ORGMBackwardsCompatibility.lua
-    FIREARM_HISTORY = {},
+    -- constants
+    -- logging
+    ERROR = 0,
+    WARN = 1,
+    INFO = 2,
+    DEBUG = 3,
+    -- trigger types
+    SINGLEACTION = 1,
+    DOUBLEACTION = 2,
+    DOUBLEACTIONONLY = 3,
+    -- action/feed types
+    AUTO = 1,
+    BOLT = 2,
+    LEVER = 3,
+    PUMP = 4,
+    BREAK = 5,
+    ROTARY = 6,
+    -- select fire modes
+    SEMIAUTOMODE = 0,
+    FULLAUTOMODE = 1,
+    
     -- tables
     Settings = { -- Settings table to be overwritten
         LogLevel = 2,
@@ -36,12 +50,12 @@ ORGM = {
         DefaultMagazineReoadTime = 5,
         -- spawn modifiers
         LimitYear = nil, -- set to the max production year (ie: 1993, no guns produced after 1993 will spawn)
-        FirearmSpawnModifier = 10.0,
+        FirearmSpawnModifier = 1.0,
         CivilianFirearmSpawnModifier = 1.0,
         PoliceFirearmSpawnModifier = 1.0,
         MilitaryFirearmSpawnModifier = 1.0,
-        AmmoSpawnModifier = 10.0,
-        MagazineSpawnModifier = 10.0,
+        AmmoSpawnModifier = 1.0,
+        MagazineSpawnModifier = 1.0,
         RepairKitSpawnModifier = 1.0,
         ComponentSpawnModifier = 1.0,
         
@@ -73,7 +87,7 @@ ORGM = {
     
     LogLevelStrings = { [0] = "ERROR", [1] = "WARN", [2] = "INFO", [3] = "DEBUG"},
     -- The ActionTypes table contains all valid firearm.actionType values. It is used for error checking in ORGM.registerFirearm
-    ActionTypes = {"Bolt", "Auto", "Pump", "Lever", "Rotary", "Break"},
+    ActionTypes = {"Auto", "Bolt", "Lever", "Pump", "Break", "Rotary"},
 
     -- The TriggerTypes table contains all valid firearm.triggerType values. It is used for error checking in ORGM.registerFirearm
     TriggerTypes = {"SingleAction", "DoubleAction", "DoubleActionOnly"},
