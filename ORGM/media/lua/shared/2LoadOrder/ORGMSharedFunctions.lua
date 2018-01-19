@@ -205,7 +205,9 @@ ORGM.setupGun = function(gunData, item)
     modData.lastRound = nil 
     -- what type of rounds are loaded, either ammo name, or 'mixed'. This is only really used when ejecting a magazine, so the mag's modData
     -- has this flagged (used when loading new mags to match self.preferredAmmoType). Also used in tooltips
-    modData.loadedAmmo = nil 
+    modData.loadedAmmo = nil
+    
+    modData.BUILD_ID = ORGM.BUILD_ID
 end
 
 
@@ -427,6 +429,89 @@ ORGM.setWeaponStats = function(weapon, roundData)
     -- in testing this works.
     if roundData.MaxHitCount then weapon:setMaxHitCount(roundData.MaxHitCount) end
 end
+
+
+ORGM.resetFirearmToDefaults = function(item, container)
+    if item == nil then return end
+    local data = item:getModData()
+
+    local scriptItem = item:getScriptItem()
+    -- change the item properties to the new scriptItem values.
+    item:setAmmoType(def.ammoType)
+    if ORGM.MagazineTable[def.ammoType] then
+        -- we can only fetch the clip size for magazines, internal mags theres no scriptItem:getClipSize()
+       item:setClipSize(ORGM.MagazineTable[ammoType].maxCapacity) 
+    end
+
+    ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
+end
+
+
+--[[  ORGM.checkFirearmBuildID(item, container)
+
+    item is a HandWeapon/InventoryItem
+    container is the ItemContainer the item exists in
+
+    returns a new HandWeapon/InventoryItem or nil
+
+]]
+ORGM.checkFirearmBuildID = function(item, container)
+    if item == nil then return end
+    local data = item:getModData()
+    if ORGM.FIREARM_HISTORY[item:getType()] and (data.BUILD_ID == nil or data.BUILD_ID < ORGM.BUILD_ID) then
+        ORGM.log(ORGM.INFO, "Obsolete firearm detected (" .. item:getType() .."). Running update function.")
+        -- this gun has changed. reset it.
+        return ORGM.replaceFirearmWithNewCopy(item, container) -- returns a new item
+    end
+    -- update the gun's build ID value.
+    data.BUILD_ID = ORGM.BUILD_ID
+    return nil
+end
+
+
+--[[  ORGM.replaceFirearmWithNewCopy(item, container)
+
+    Replaces a firearm with a brand new copy of itself, using default values.
+    This is primarily for backwards compatibility with older versions of ORGM when the guns stats
+    have changed.  The new gun will be in the same condition as the old, and have the same upgrades
+    attached. Any ammo loaded will be returned to the container.
+    
+    item is a HandWeapon/InventoryItem
+    container is the ItemContainer the item exists in
+    
+    returns a new HandWeapon/InventoryItem
+    
+]]
+ORGM.replaceFirearmWithNewCopy = function(item, container)
+    if item == nil then return end
+    
+    local newItem = InventoryItemFactory.CreateItem(item:getModule()..'.' .. item:getType())
+    ORGM.setupGun(ORGM.FirearmTable[newItem:getType()], newItem)
+    local data = item:getModData()
+    local newData = newItem:getModData()
+
+    newItem:setCondition(item:getCondition())
+    newItem:setCanon(item:getCanon())
+    newItem:setScope(item:getScope())
+    newItem:setSling(item:getSling())
+    newData.serialnumber = data.serialnumber -- copy the guns serial number
+    
+    -- empty the magazine, return all rounds to the container.
+    for _, value in pairs(data.magazineData) do
+        local def = ORGM.AmmoTable[value]
+        if def then container:AddItem(def.moduleName ..'.'.. value) end
+    end
+    if data.roundChambered ~= nil and data.roundChambered > 0 then
+        for i=1, data.roundChambered do
+            local def = ORGM.AmmoTable[data.lastRound]
+            if def then container:AddItem(def.moduleName ..'.'.. data.lastRound) end
+        end
+    end
+    container:Remove(item)
+    container:AddItem(newItem)
+    return newItem
+end
+
 
 ORGM.toggleTacticalLight = function(player)
     local item = player:getPrimaryHandItem()
