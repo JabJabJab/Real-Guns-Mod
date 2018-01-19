@@ -1,5 +1,8 @@
 --[[    Nolan's Survivors Mod Compatibility
 
+    Due to the extensive amount of changes that need to be patched into,
+    Survivors mod compatibility requires a seperate file.
+
     This file needs to do several things to make the survivors mod compatible.
     1) Replace the ranged weapon list that npcs can spawn with.
     2) Replace the loot lists
@@ -245,7 +248,7 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
 end
 
 Events.OnGameBoot.Add(function()
-    if ORGM.isModLoaded("Survivors") == true then 
+    if ORGM.isModLoaded("Survivors") == true and ORGM.Settings.UseSurvivorsPatch then 
         ORGM.log(ORGM.INFO, "Injecting Survivors Mod Overwrites")
 
         RangeWeapons = RangeWeaponsOverride
