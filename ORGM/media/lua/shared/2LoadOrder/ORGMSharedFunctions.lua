@@ -456,16 +456,19 @@ end
 
 ]]
 ORGM.checkFirearmBuildID = function(item, container)
-    if item == nil then return end
+    if item == nil then return nil end
     local data = item:getModData()
-    if ORGM.FIREARM_HISTORY[item:getType()] and (data.BUILD_ID == nil or data.BUILD_ID < ORGM.BUILD_ID) then
+    local def = ORGM.FirearmTable[item:getType()]
+    if not def then return nil end
+    
+    if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < ORGM.BUILD_ID) then
         ORGM.log(ORGM.INFO, "Obsolete firearm detected (" .. item:getType() .."). Running update function.")
         -- this gun has changed. reset it.
-        return ORGM.replaceFirearmWithNewCopy(item, container) -- returns a new item
+        return true 
     end
     -- update the gun's build ID value.
     data.BUILD_ID = ORGM.BUILD_ID
-    return nil
+    return false
 end
 
 
@@ -484,7 +487,7 @@ end
 ]]
 ORGM.replaceFirearmWithNewCopy = function(item, container)
     if item == nil then return end
-    
+
     local newItem = InventoryItemFactory.CreateItem(item:getModule()..'.' .. item:getType())
     ORGM.setupGun(ORGM.FirearmTable[newItem:getType()], newItem)
     local data = item:getModData()
@@ -507,8 +510,12 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
             if def then container:AddItem(def.moduleName ..'.'.. data.lastRound) end
         end
     end
+    if data.containsClip ~= nil and newData.containsClip ~= nil then
+        newData.containsClip = data.containsClip
+    end
     container:Remove(item)
     container:AddItem(newItem)
+    container:setDrawDirty(true)
     return newItem
 end
 
