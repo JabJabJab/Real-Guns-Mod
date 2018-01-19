@@ -115,7 +115,7 @@ module ORGM
         CanStack    =   FALSE,
         Weight      =   0.2,
         Type        =   Normal,
-        DisplayName =   CZ 75 Magazine (.40),
+        DisplayName =   CZ 75 Magazine (9x19mm),
         Icon        =   CZ75Mag,
     }
 
