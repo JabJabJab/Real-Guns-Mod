@@ -91,8 +91,8 @@ ORGM.Client.loadCompatibilityPatches = function()
         -- add new event hooks
         Events.OnEquipPrimary.Add(onEquipHook)
         Events.OnGameStart.Add(function() -- make sure our player is setup on game start
-            --local player = getPlayer()
-            local player = getSpecificPlayer(0)
+            local player = getPlayer()
+            --local player = getSpecificPlayer(0)
             onEquipHook(player, player:getPrimaryHandItem())
         end) 
     end
