@@ -309,6 +309,7 @@ register("CZ75", {
     triggerType = "DoubleAction",
     soundProfile = "Pistol-Small",
     isCivilian = "Rare",
+    lastChanged = 12, -- changed in 3.00-alpha
     
     classification = "Semi-Automatic Pistol",
     year = 1975,
@@ -536,6 +537,7 @@ register("Taurus38", {
     triggerType = "DoubleAction",
     soundProfile = "Pistol-Small",
     isCivilian = "Rare",
+    lastChanged = 12, -- changed in 3.00-alpha
 
     classification = "Semi-Automatic Pistol",
     year = 2005,
@@ -893,7 +895,8 @@ register("BLR", {
     triggerType = "SingleAction",
     soundProfile = "Rifle-Lever",
     isCivilian = "Common",
-    
+    lastChanged = 12, -- changed in 3.00-alpha
+
     classification = "Lever-Action Rifle",
     year = 1969,
     country = "United States",
@@ -946,7 +949,8 @@ register("HenryBB", {
     triggerType = "SingleAction",
     soundProfile = "Rifle-Lever",
     isCivilian = "Rare",
-    
+    lastChanged = 12, -- changed in 3.00-alpha
+
     classification = "Lever-Action Rifle",
     year = 2001,
     country = "United States",
@@ -1047,6 +1051,7 @@ register("M1903", {
     soundProfile = "Rifle-Auto-IM",
     isCivilian = "Rare",
     speedLoader = 'M1903StripperClip', 
+    lastChanged = 12, -- changed in 3.00-alpha
     
     classification = "Bolt-Action Rifle",
     year = 1903,
