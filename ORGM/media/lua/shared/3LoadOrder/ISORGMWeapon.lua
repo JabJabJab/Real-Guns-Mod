@@ -646,6 +646,19 @@ function ISORGMWeapon:insertMagazine(char, sound)
     if clip == nil then return end
 
     modData = clip:getModData()
+    local def = ORGM.MagazineTable[clip:getType()]
+    if modData.currentCapacity > def.maxCapacity then
+        -- this mag is holding more then it should. possibly was loaded in a previous 
+        -- ORGM version and the maxCapacity has changed.
+        char:Say("Magazine contains more then it should. Sending some rounds back to inventory")
+        local container = char:getInventory()
+        for i=def.maxCapacity+1, modData.currentCapacity do
+            local round = modData.magazineData[i]
+            modData.magazineData[i] = nil
+            container:AddItem(ORGM.AmmoTable[round].moduleName ..'.'.. round)
+        end
+        modData.currentCapacity = def.maxCapacity
+    end
     self.currentCapacity = modData.currentCapacity
     self.magazineData = modData.magazineData
     char:getInventory():Remove(clip)
