@@ -62,7 +62,7 @@ ORGM = {
         UseSilencersPatch = true,
         UseNecroforgePatch = true,
         UseSurvivorsPatch = true,
-        Debug = true, -- development/debug flag. Note this is not related to debug logging
+        Debug = false, -- development/debug flag. Note this is not related to debug logging
     },
 
     Server = { -- table containing all ORGM server-side functions
