@@ -25,9 +25,10 @@ local DetailsPanel = ISPanelJoypad:derive("DetailsPanel")
 
 function DetailsPanel:new(x, y, width, height)
 	local o = ISPanelJoypad:new(x, y, width, height)
-	o:noBackground()
 	setmetatable(o, self)
+	self:noBackground()
     self.__index = self
+    self.resizable = false
     return o
 end
 
@@ -64,7 +65,7 @@ end
 function ORGMFirearmWindow:setFirearm(item)
     local itemType = item:getType()
     local def = ORGM.FirearmTable[itemType]
-    local scriptItem = getScriptManager():FindItem(def.moduleName ..'.' .. itemType)
+    local scriptItem = item:getScriptItem() -- getScriptManager():FindItem(def.moduleName ..'.' .. itemType)
     local data = item:getModData()
     
     
