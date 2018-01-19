@@ -19,45 +19,52 @@ version 3.00-alpha
     all functions and data. It is no longer necessary to directly edit ORGM's lua code to customize 
     it, every aspect of the mod can be edited/replaced by creating a extra patch mod.
 
-    
-* Item Spawning now obeys container weight limits.
+
+* All guns now record the ORGM version number they were last used with. Guns that get changed in
+    ORGM updates are logged in a 'internal changelog' of the version they were last changed in.
+    Any 'in game' gun that has had obsolete stats will now reset to defaults values on equipping.
+    Any ammo loaded will be placed in the players inventory.
+    This allows for major changes to made to guns without breaking existing saves or breaking existing
+    in game guns.
 
 
 * Added a ORGM.Settings table to allow for easier configuration, including many options:
     
-    JammingEnabled to enable/disable weapon jamming
+    JammingEnabled - enable/disable weapon jamming
     
-    CasesEnabled to enable/disable ejecting of spent cases
+    CasesEnabled - enable/disable ejecting of spent cases
     
-    LogLevel (0 to 3) to control the amount of text printed to the logfile 
+    LogLevel (0 to 3) - control the amount of text printed to the logfile 
         (errors only, warnings, info or debug)
     
-    RemoveBaseFirearms to enable/disable the removal of vanilla firearms and ammo
+    RemoveBaseFirearms - enable/disable the removal of vanilla firearms and ammo
     
-    DefaultMagazineReoadTime to control the time it takes to load bullets into a magazine 
+    DefaultMagazineReoadTime - control the time it takes to load bullets into a magazine 
         (unless the specific magazine overrides)
     
-    FirearmSpawnModifier multiplier for fine tuning the spawn rate of any firearm.
+    LimitYear - A spawn year cutoff, to remove spawning of guns manufactured after the specified year
     
-    CivilianFirearmSpawnModifier multiplier for fine tuning the chances a firearm is civilian.
+    FirearmSpawnModifier - multiplier for fine tuning the spawn rate of any firearm.
     
-    PoliceFirearmSpawnModifier multiplier for fine tuning the chances a firearm is police.
+    CivilianFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is civilian.
     
-    MilitaryFirearmSpawnModifier multiplier for fine tuning the chances a firearm is  military.
+    PoliceFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is police.
     
-    AmmoSpawnModifier multiplier for fine tuning the spawn rate of ammo, boxes and cans.
+    MilitaryFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is  military.
     
-    MagazineSpawnModifier multiplier for fine tuning the spawn rate of spare magazines.
+    AmmoSpawnModifier - multiplier for fine tuning the spawn rate of ammo, boxes and cans.
     
-    RepairKitSpawnModifier multiplier for fine tuning the spawn rate of repair kits.
+    MagazineSpawnModifier - multiplier for fine tuning the spawn rate of spare magazines.
     
-    ComponentSpawnModifier multiplier for fine tuning the spawn rate of firearm components/upgrades.
+    RepairKitSpawnModifier - multiplier for fine tuning the spawn rate of repair kits.
     
-    UseSilencersPatch inject compatibility patch for Nolan's ORGM Silencers mod.
+    ComponentSpawnModifier - multiplier for fine tuning the spawn rate of firearm components/upgrades.
     
-    UseNecroforgePatch inject compatibility patch for Necroforge.
+    UseSilencersPatch - inject compatibility patch for Nolan's ORGM Silencers mod.
     
-    UseSurvivorsPatch inject compatibility patch for Survivors mod.
+    UseNecroforgePatch - inject compatibility patch for Necroforge.
+    
+    UseSurvivorsPatch - inject compatibility patch for Survivors mod.
     
     
     **Note the spawn modifier settings work in addition to the sandbox loot rarity settings.
@@ -65,17 +72,44 @@ version 3.00-alpha
     nothing, or have lots of guns but limited ammo.
 
 
+* Basic Firearm inspection window (accessed via content menu for guns in hand). Showing details
+    such as basic information on the gun, manufacturer, country of origin, initial production year, 
+    as well as item specific info such as condition, round chambered, attachments etc.
+
+    
+* All guns that spawn naturally have serial numbers generated. Gun spawned with necroforge or other
+    admin methods do not. This can be seen via the new firearm inspection window (immersion feature)
+
+
+* Firearm/ammo/upgrades/repairkits are no longer required to have the ORGM mod prefix. It
+    should now be possible to have other mods guns and ammo behave as ORGM weapons.
+
+    
+* When using the ORGM Silencers mod, silencers now correctly spawn in containers not attached
+    to guns. Also, Silencers will appear in necroforge.
+
+
+* Item Spawning now obeys container weight limits.
+
+
 * CZ75 Pistol is now a 9x19mm instead of .40S&W, fixed inconsistencies in magazine size.
     The txt file had it listed as 15, while lua data had 10.
     In reality, The CZ75 comes in both 9mm and .40, with magazine sizes of 15 for the 9mm 
     and 12 for the .40S&W
 
-* Firearm/ammo/upgrades/repairkits are no longer required to have the ORGM mod prefix. It
-    should now be possible to have other mods guns and ammo behave as ORGM weapons.
+* Taurus P38S is now a double action instead of single action.
 
-* When using the ORGM Silencers mod, silencers now correctly spawn in containers not attached
-    to guns. Also, Silencers will appear in necroforge.
 
+* Browning BLR is now single action instead of double action only.
+
+
+* Henry Big Boy is now single action instead of double action only.
+
+
+* M1903 is now single action instead of double action only.
+    
+
+    
 ---------------------------------------------------------------------------------------
 version 2.03 Stable
 
