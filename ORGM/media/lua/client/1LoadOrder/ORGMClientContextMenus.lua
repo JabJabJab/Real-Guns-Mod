@@ -149,6 +149,19 @@ MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     player:Say('BUILD_ID set to 1, unequip and re-equip to test backwards compatibility function.')
 end
 
+MenuCallbacks.onMagOverflowTestFunction = function(item, player, data)
+    local ammoType = data.ammoType
+    if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
+        ammoType = ReloadUtil:getClipData(ammoType).ammoType
+    end
+    ammoType = ORGM.AlternateAmmoTable[ammoType][1]
+    data.currentCapacity = data.maxCapacity + 10
+    for i=1, data.currentCapacity do
+        data.magazineData[i] = ammoType
+    end
+    data.loadedAmmo = ammoType
+end
+
 MenuCallbacks.onResetWeapon = function(item, player, data, reloadable)
     --local gunData = ORGM.FirearmTable[item:getType()]
     ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
@@ -242,6 +255,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         
         subMenuDebug:addOption("* Debug Weapon", item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
         subMenuDebug:addOption("* Backwards Compatibility Test", item, MenuCallbacks.onBackwardsTestFunction, playerObj, data, reloadable)
+        subMenuDebug:addOption("* Magazine Overflow Test", item, MenuCallbacks.onMagOverflowTestFunction, playerObj, data)
         subMenuDebug:addOption("* Reset To Defaults", item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
     end
 end
@@ -306,7 +320,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     end
 
     if isAdmin() then
-        context:addOption("Admin - Full Ammo", item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])        
+        context:addOption("Admin - Full Ammo", item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
     end
 end
 
