@@ -47,7 +47,7 @@ ORGM = {
         JammingEnabled = true,
         CasesEnabled = true,
         RemoveBaseFirearms = true,
-        DefaultMagazineReoadTime = 5,
+        DefaultMagazineReoadTime = 30,
         -- spawn modifiers
         LimitYear = nil, -- set to the max production year (ie: 1993, no guns produced after 1993 will spawn)
         FirearmSpawnModifier = 1.0,
