@@ -991,6 +991,7 @@ register("HKSL8", {
     triggerType = "DoubleActionOnly",
     soundProfile = "Rifle-AR",
     isCivilian = "Rare",
+    lastChanged = 12, -- changed in 3.00-alpha
     
     classification = "Semi-Automatic Rifle",
     year = 1998,
