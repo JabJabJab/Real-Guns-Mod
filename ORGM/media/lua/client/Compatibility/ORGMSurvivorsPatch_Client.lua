@@ -202,6 +202,7 @@ local reloadWeaponOverride = function(primary, player)
 end
 
 
+
 -----------------------------------------------------------------------------
 -- giveWeapon function
 -- this needs to call ORGM.setupGun to properly setup the modData
@@ -213,7 +214,7 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
     --local weapon = player:getInventory():AddItem(weaponType)
     
     local ammoType = nil
-    if ORGM.FirearmTable[primary:getType()] then
+    if ORGM.FirearmTable[weapon:getType()] then
         if WeaponUpgrades[weapon:getType()] then
             ItemPicker.doWeaponUpgrade(weapon)
         end
@@ -246,7 +247,16 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
     if seenZombie then player:setPrimaryHandItem(weapon) end
 
 end
-
+local LoadSurvivorOriginal = nil
+local LoadSurvivorOverride = function(ID, square)
+    if LoadSurvivorOriginal(ID, square) == false then return end
+    local survivor = Survivors[ID]
+    if survivor == nil then return end
+    -- requip the primary hand item, to handle orgm backwards compatibility functions.
+    local primary = survivor:getPrimaryHandItem()
+    survivor:setPrimaryHandItem(nil)
+    survivor:setPrimaryHandItem(primary)
+end
 Events.OnGameBoot.Add(function()
     if ORGM.isModLoaded("Survivors") == true and ORGM.Settings.UseSurvivorsPatch then 
         ORGM.log(ORGM.INFO, "Injecting Survivors Mod Overwrites")
@@ -258,6 +268,8 @@ Events.OnGameBoot.Add(function()
         giveWeapon = giveWeaponOverride
         getNPCLoot = getNPCLootOverride
         getRareNPCLoot = getRareNPCLootOverride
+        LoadSurvivorOriginal = LoadSurvivor
+        LoadSurvivor = LoadSurvivorOverride
 
     end
 end)
