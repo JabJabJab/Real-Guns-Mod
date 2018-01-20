@@ -367,8 +367,7 @@ module ORGM
     
     item BLR
     {
-        /** TODO: BLR is should have a detachable 3-5 round magazine **/
-        AmmoType    =   Ammo_308Winchester,
+        AmmoType    =   BLRMag,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   henry,

@@ -25,6 +25,9 @@ register("Ber92Mag",
 register("Ber93RMag", 
     { ammoType = 'Ammo_9x19mm', maxCapacity = 32, }
 )
+register("BLRMag", 
+    { ammoType = 'Ammo_308Winchester', maxCapacity = 4, }
+)
 register("BrenTenMag", 
     { ammoType = 'Ammo_10x25mm', maxCapacity = 12, }
 )

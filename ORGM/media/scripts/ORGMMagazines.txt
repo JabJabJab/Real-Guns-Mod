@@ -74,6 +74,15 @@ module ORGM
         Icon        =   Ber93RMag,
     }
     
+    item BLRMag
+    {
+        CanStack    =   FALSE,
+        Weight      =   0.2,
+        Type        =   Normal,
+        DisplayName =   Browning BLR Magazine (.308 or 7.62x51),
+        Icon        =   Rem788Mag,
+    }
+
     item BrenTenMag
     {
         CanStack    =   FALSE,
