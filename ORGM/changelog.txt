@@ -13,12 +13,11 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
-version 3.00-alpha
+version 3.00
 
 * Complete code rewrite. Replaced all global tables with a single ORGM table. This table contains 
     all functions and data. It is no longer necessary to directly edit ORGM's lua code to customize 
     it, every aspect of the mod can be edited/replaced by creating a extra patch mod.
-
 
 * All guns now record the ORGM version number they were last used with. Guns that get changed in
     ORGM updates are logged in a 'internal changelog' of the version they were last changed in.
@@ -27,8 +26,8 @@ version 3.00-alpha
     This allows for major changes to made to guns without breaking existing saves or breaking existing
     in game guns.
 
-
-* Added a ORGM.Settings table to allow for easier configuration, including many options:
+* Added a ORGM.Settings table to allow for easier configuration, these settings are meant to be overwritten 
+    by extra 'patch mods' that can be loaded just like any normal PZ mod. Options include:
     
     JammingEnabled - enable/disable weapon jamming
     
@@ -75,22 +74,17 @@ version 3.00-alpha
 * Basic Firearm inspection window (accessed via content menu for guns in hand). Showing details
     such as basic information on the gun, manufacturer, country of origin, initial production year, 
     as well as item specific info such as condition, round chambered, attachments etc.
-
     
 * All guns that spawn naturally have serial numbers generated. Gun spawned with necroforge or other
     admin methods do not. This can be seen via the new firearm inspection window (immersion feature)
 
-
 * Firearm/ammo/upgrades/repairkits are no longer required to have the ORGM mod prefix. It
     should now be possible to have other mods guns and ammo behave as ORGM weapons.
 
-    
 * When using the ORGM Silencers mod, silencers now correctly spawn in containers not attached
-    to guns. Also, Silencers will appear in necroforge.
-
+    to guns. Also, Silencers will now appear in necroforge.
 
 * Item Spawning now obeys container weight limits.
-
 
 * CZ75 Pistol is now a 9x19mm instead of .40S&W, fixed inconsistencies in magazine size.
     The txt file had it listed as 15, while lua data had 10.
@@ -99,17 +93,15 @@ version 3.00-alpha
 
 * Taurus P38S is now a double action instead of single action.
 
-
-* Browning BLR is now single action instead of double action only.
-
+* Browning BLR is now single action instead of double action only, it now uses a detachable 4 round
+    magazine instead of a internal one.
 
 * Henry Big Boy is now single action instead of double action only.
 
-
 * M1903 is now single action instead of double action only.
-    
 
-    
+* H&K SL8 magazine capacity reduced from 20 to 10 (all SL8's imported into the US use 10 round mags)
+
 ---------------------------------------------------------------------------------------
 version 2.03 Stable
 
