@@ -1,11 +1,11 @@
 -- function for silencer handling
-local function onEquipHook(player, item)
+local onEquipHook = function(player, item)
     -- we only need to check for silencers when the weapon is equipped, not on every attack
     if item == nil then return end
     local itemType = item:getType()
     if ORGM.FirearmTable[itemType] == nil then return end
     -- get the scriptItem
-    local scriptItem = getScriptManager():FindItem(ORGM.FirearmTable[itemType].moduleName ..'.' .. itemType)
+    local scriptItem = item:getScriptItem()
     
     local soundVolume = scriptItem:getSoundVolume()
     local soundRadius = scriptItem:getSoundRadius()
