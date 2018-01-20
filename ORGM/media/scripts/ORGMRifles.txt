@@ -1162,7 +1162,7 @@ module ORGM
         Ranged  =   TRUE,
         SwingAmountBeforeImpact =   0,
         ProjectileCount =   1,
-        ConditionLowerChanceOneIn   =   100,
+        ConditionLowerChanceOneIn   =   500,
         Weight  =   7.5,
         SplatNumber =   3,
         PushBackMod =   0.4,
