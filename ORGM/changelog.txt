@@ -71,7 +71,7 @@ version 3.00
     nothing, or have lots of guns but limited ammo.
 
 
-* Basic Firearm inspection window (accessed via content menu for guns in hand). Showing details
+* Basic Firearm inspection window (accessed via context menu for guns in hand). Showing details
     such as basic information on the gun, manufacturer, country of origin, initial production year, 
     as well as item specific info such as condition, round chambered, attachments etc.
     
@@ -101,6 +101,8 @@ version 3.00
 * M1903 is now single action instead of double action only.
 
 * H&K SL8 magazine capacity reduced from 20 to 10 (all SL8's imported into the US use 10 round mags)
+
+* M249 decreased chance condition will lower from 1-in-100 to 1-in-500
 
 ---------------------------------------------------------------------------------------
 version 2.03 Stable
