@@ -178,11 +178,11 @@ function ISORGMWeapon:isLoaded(difficulty)
         return false
     end
     -- single action with hammer at rest cant fire
-    if (self.hammerCocked == 0 and self.triggerType == "SingleAction") then
+    if (self.hammerCocked == 0 and self.triggerType == ORGM.SINGLEACTION) then
         return false
     end
 
-    if self.actionType == "Rotary" then 
+    if self.actionType == ORGM.ROTARY then 
         local round = nil
         if self.hammerCocked == 1 then -- hammer is cocked, check this position
             round = self.magazineData[self.cylinderPosition]
@@ -192,7 +192,7 @@ function ISORGMWeapon:isLoaded(difficulty)
         if round == nil or round:sub(1, 5) == "Case_" then return false end
         return true
     
-    elseif self.actionType == "Break" then
+    elseif self.actionType == ORGM.BREAK then
         local round = self.magazineData[self.cylinderPosition]
         if round == nil or round:sub(1, 5) == "Case_" then return false end
         return true        
@@ -221,14 +221,14 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
     end
     self:releaseHammer(self.playerObj, false)
     
-    if self.actionType == "Auto" then
+    if self.actionType == ORGM.AUTO then
         --fire shot
         self.roundChambered = 0
         self.emptyShellChambered = 1
         self:openSlide(self.playerObj, false, weapon)
         self:closeSlide(self.playerObj, false, weapon) -- chambers next shot, cocks hammer for SA/DA
 
-    elseif self.actionType == "Rotary" then
+    elseif self.actionType == ORGM.ROTARY then
         -- fire shot
         local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
         if round and round.Case then
@@ -238,7 +238,7 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
         end
         self.currentCapacity = self.currentCapacity - 1
         
-    elseif self.actionType == "Break" then
+    elseif self.actionType == ORGM.BREAK then
         -- fire shot
         local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
         if round and round.Case then
@@ -280,7 +280,7 @@ end
 function ISORGMWeapon:fireEmpty(char, weapon)
     if self.hammerCocked == 1 then
         self:releaseHammer(char, false)
-    elseif self.actionType ~= "SingleAction" then
+    elseif self.actionType ~= ORGM.SINGLEACTION then
         self:cockHammer(char, false, weapon)
         self:releaseHammer(char, false)
     end
@@ -306,7 +306,7 @@ function ISORGMWeapon:canReload(char)
         if speed and self.containsClip ~= 0 then 
             speed = speed:getModData()
             -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
-            if speed.currentCapacity > 0 and self.actionType == "Rotary" then 
+            if speed.currentCapacity > 0 and self.actionType == ORGM.ROTARY then 
                 return true
             -- rifles however, do
             elseif speed.currentCapacity > 0 and speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
@@ -368,14 +368,14 @@ function ISORGMWeapon:reloadStart(char, square, difficulty)
     elseif self.containsClip == 0 then
         getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
     else
-        if self.actionType == "Rotary" then
+        if self.actionType == ORGM.ROTARY then
             -- TODO: this needs to sync, causes issues
             self:openCylinder(char, true, weapon) -- play the open sound
             -- if rotary and contains spent shells, we need to empty the cylinder. this is all or nothing
             if self:hasEmptyShellsInMagazine() > 0 then
                 self:emptyMagazineAtOnce(char, true)
             end
-        elseif self.actionType == "Break" then
+        elseif self.actionType == ORGM.BREAK then
             self:openBreak(char, true, weapon)
         end
     end
@@ -426,7 +426,7 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         
     else -- internal mag, rotary or break barrel
         local round = self:findBestAmmo(char):getType()
-        if self.actionType == "Rotary" then
+        if self.actionType == ORGM.ROTARY then
             self:rotateCylinder(1, char, true, weapon)
             if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
                 self:syncReloadableToItem(weapon)
@@ -437,7 +437,7 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
         
         self:loadRoundIntoMagazine(round, weapon, self.cylinderPosition) -- cylinderPosition will be nil for non-rotary
-        if self.actionType == "Break" then
+        if self.actionType == ORGM.BREAK then
             self.cylinderPosition = self.cylinderPosition + 1 -- increment to load the next chamber, it resets on close
         end
         -- remove the necessary ammo
@@ -570,7 +570,7 @@ end
 
 ]]
 function ISORGMWeapon:unloadPerform(char, square, difficulty, weapon)
-    if self.actionType == "Rotary" then
+    if self.actionType == ORGM.ROTARY then
         self:openCylinder(char, true)
         -- revolvers drop them all at once
         self:emptyMagazineAtOnce(char, false)
@@ -578,7 +578,7 @@ function ISORGMWeapon:unloadPerform(char, square, difficulty, weapon)
         self:syncReloadableToItem(weapon)
         return false
     end
-    if self.actionType == "Break" then
+    if self.actionType == ORGM.BREAK then
         self:openBreak()
         self.unloadInProgress = false
         self:syncReloadableToItem(weapon)
@@ -599,7 +599,7 @@ end
 
 ]]
 function ISORGMWeapon:isChainUnloading()
-    if self.actionType == "Rotary" or self.actionType == "Break" then return false end
+    if self.actionType == ORGM.ROTARY or self.actionType == ORGM.BREAK then return false end
     return true
 end
 
@@ -827,10 +827,10 @@ end
 
 ]]
 function ISORGMWeapon:canRack(char)
-    if (self.triggerType == "SingleAction" and self.hammerCocked == 0) then
+    if (self.triggerType == ORGM.SINGLEACTION and self.hammerCocked == 0) then
         return true
     end
-    if (self.actionType == "Break" or self.actionType == "Rotary") then
+    if (self.actionType == ORGM.BREAK or self.actionType == ORGM.ROTARY) then
         if self.isOpen == 1 then return true end
         return false
     end
@@ -848,7 +848,7 @@ end
     
 ]]
 function ISORGMWeapon:rackingStart(char, square, weapon)
-    if (self.actionType == "Break" or self.actionType == "Rotary") then
+    if (self.actionType == ORGM.BREAK or self.actionType == ORGM.ROTARY) then
         return
     end
     if self.rackSound then
@@ -863,10 +863,10 @@ end
     
 ]]
 function ISORGMWeapon:rackingPerform(char, square, weapon)
-    if self.actionType == "Break" then
+    if self.actionType == ORGM.BREAK then
         if self.isOpen then self:closeBreak(char, true, weapon) end
         
-    elseif self.actionType == "Rotary" then 
+    elseif self.actionType == ORGM.ROTARY then 
         if self.isOpen == 1 then self:closeCylinder(char, true, weapon) end
         
     else
@@ -874,7 +874,7 @@ function ISORGMWeapon:rackingPerform(char, square, weapon)
         self:closeSlide(char, false, weapon)
     end
     
-    if (self.triggerType == "SingleAction" and self.hammerCocked == 0) then
+    if (self.triggerType == ORGM.SINGLEACTION and self.hammerCocked == 0) then
         self:cockHammer(char, true, weapon) -- play the cock sound
     end
     
@@ -957,7 +957,7 @@ function ISORGMWeapon:closeSlide(char, sound, weapon)
     if self.isOpen == 0 then -- already closed!
         return
     end
-    if self.triggerType ~= "DoubleActionOnly" then -- some double action only actions don't cock the hammer on close
+    if self.triggerType ~= ORGM.DOUBLEACTIONONLY then
         self:cockHammer(char, false, weapon)
     end
     self.isOpen = 0
@@ -1047,7 +1047,7 @@ end
 ]]
 function ISORGMWeapon:cockHammer(char, sound, weapon)
     -- rotary cylinders rotate the chamber when the hammer is cocked
-    if self.actionType == "Rotary" and self.isOpen == 0 then
+    if self.actionType == ORGM.ROTARY and self.isOpen == 0 then
         self:rotateCylinder(1, char, false, weapon)
     end
     if (sound and self.cockSound) then char:playSound(self.cockSound, false) end

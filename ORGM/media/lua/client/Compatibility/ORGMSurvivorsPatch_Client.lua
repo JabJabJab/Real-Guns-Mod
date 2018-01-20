@@ -187,7 +187,7 @@ local reloadWeaponOverride = function(primary, player)
     local ammoCount = container:getNumItems(ammoType)
     if SurvivorInfiniteAmmo then ammoCount = 999 end
     if ammoCount < 20 then player:Say("Almost out of ammo here!") end
-    if ammoCount > 0 and (modData.actionType ~= "Rotary" and modData.actionType ~= "Break") then 
+    if ammoCount > 0 and (modData.actionType ~= ORGM.ROTARY and modData.actionType ~= ORGM.BREAK) then 
         modData.roundChambered = 1
         ammoCount = ammoCount -1
         if not SurvivorInfiniteAmmo then container:RemoveOneOf(ammoType) end

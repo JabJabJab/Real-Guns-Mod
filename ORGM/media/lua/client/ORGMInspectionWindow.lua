@@ -1,22 +1,25 @@
+--[[ This file is still very much a work in progress. expect it to be rewritten to
+    conform to ORGM's new standards
 
+]]
 -------------------------------------------------------------------------------------------
 
 local InfoPanel = ISPanelJoypad:derive("InfoPanel")
 
 function InfoPanel:new(x, y, width, height)
-	local o = ISPanelJoypad:new(x, y, width, height)
-	o:noBackground()
-	setmetatable(o, self)
+    local o = ISPanelJoypad:new(x, y, width, height)
+    o:noBackground()
+    setmetatable(o, self)
     self.__index = self
     return o
 end
 
 function InfoPanel:createChildren()
-	self.textPanel = ISRichTextPanel:new(8, 16, self.width-8, self.height-8)
-	self.textPanel:initialise()
-	self.textPanel.autosetheight = false
-	self.textPanel:ignoreHeightChange()
-	self:addChild(self.textPanel)
+    self.textPanel = ISRichTextPanel:new(8, 16, self.width-8, self.height-8)
+    self.textPanel:initialise()
+    self.textPanel.autosetheight = false
+    self.textPanel:ignoreHeightChange()
+    self:addChild(self.textPanel)
 end
 
 
@@ -24,20 +27,20 @@ end
 local DetailsPanel = ISPanelJoypad:derive("DetailsPanel")
 
 function DetailsPanel:new(x, y, width, height)
-	local o = ISPanelJoypad:new(x, y, width, height)
-	setmetatable(o, self)
-	self:noBackground()
+    local o = ISPanelJoypad:new(x, y, width, height)
+    setmetatable(o, self)
+    self:noBackground()
     self.__index = self
     self.resizable = false
     return o
 end
 
 function DetailsPanel:createChildren()
-	self.textPanel = ISRichTextPanel:new(8, 16, self.width-8, self.height-8)
-	self.textPanel:initialise()
-	self.textPanel.autosetheight = false
-	self.textPanel:ignoreHeightChange()
-	self:addChild(self.textPanel)
+    self.textPanel = ISRichTextPanel:new(8, 16, self.width-8, self.height-8)
+    self.textPanel:initialise()
+    self.textPanel.autosetheight = false
+    self.textPanel:ignoreHeightChange()
+    self:addChild(self.textPanel)
 end
 
 -------------------------------------------------------------------------------------------
@@ -47,17 +50,17 @@ ORGMFirearmWindow.view = {}
 
 
 function ORGMFirearmWindow:initialise()
-	ISCollapsableWindow.initialise(self)
+    ISCollapsableWindow.initialise(self)
 end
 
 function ORGMFirearmWindow:new(x, y, width, height)
-	local o = ISCollapsableWindow:new(x, y, width, height);
-	setmetatable(o, self)
-	self.__index = self;
-	o.title = "Firearm Inspection"
-	o.pin = false
-	o:noBackground()
-	return o
+    local o = ISCollapsableWindow:new(x, y, width, height);
+    setmetatable(o, self)
+    self.__index = self;
+    o.title = "Firearm Inspection"
+    o.pin = false
+    o:noBackground()
+    return o
 end
 
 
@@ -76,7 +79,7 @@ function ORGMFirearmWindow:setFirearm(item)
     text = text .. "Manufacturer: " .. def.manufacturer .. "\n\n"
     text = text .. def.description
     self.infoPanel.textPanel.text = text
-	self.infoPanel.textPanel:paginate()
+    self.infoPanel.textPanel:paginate()
     
     text = scriptItem:getDisplayName() .. "\n"
     
@@ -86,9 +89,9 @@ function ORGMFirearmWindow:setFirearm(item)
         text = text .. "It is currently set to full-auto mode.\n"
     end
     local feed = "slide"
-    if data.actionType == "Rotary" then feed = "cylinder" end
-    if data.actionType == "Bolt" then feed = "bolt" end
-    if data.actionType == "Break" then feed = "breech" end
+    if data.actionType == ORGM.ROTARY then feed = "cylinder" end
+    if data.actionType == ORGM.BOLT then feed = "bolt" end
+    if data.actionType == ORGM.BREAK then feed = "breech" end
     if data.isOpen == 1 then
         text = text .. "The " .. feed .. " is currently open.\n"
     else
@@ -100,7 +103,7 @@ function ORGMFirearmWindow:setFirearm(item)
     elseif data.containsClip == 0 then
         text = text .. "The magazine is missing.\n"
     end
-    if data.actionType ~= "DoubleActionOnly" then
+    if data.actionType ~= ORGM.DOUBLEACTIONONLY then
         if data.hammerCocked then
             text = text .. "The hammer is cocked.\n"
         else
@@ -108,7 +111,7 @@ function ORGMFirearmWindow:setFirearm(item)
         end
     end
     
-    if data.actionType == "Rotary" then
+    if data.actionType == ORGM.ROTARY then
         if data.currentCapacity > 0 then
             text = text .. "There are rounds in the cylinder.\n"
         else
@@ -164,39 +167,39 @@ function ORGMFirearmWindow:setFirearm(item)
     end
     
     self.detailsPanel.textPanel.text = text
-	self.detailsPanel.textPanel:paginate()
+    self.detailsPanel.textPanel:paginate()
 
 end
 
 
 function ORGMFirearmWindow:createChildren()
-	ISCollapsableWindow.createChildren(self)
-	local th = self:titleBarHeight()
-	local rh = self:resizeWidgetHeight()
-	self.panel = ISTabPanel:new(0, th, self.width, self.height-th-rh)
-	self.panel:initialise()
+    ISCollapsableWindow.createChildren(self)
+    local th = self:titleBarHeight()
+    local rh = self:resizeWidgetHeight()
+    self.panel = ISTabPanel:new(0, th, self.width, self.height-th-rh)
+    self.panel:initialise()
     self.panel.allowDraggingTab = false
-	self:addChild(self.panel)
+    self:addChild(self.panel)
 
     self.infoPanel = InfoPanel:new(0, 8, self.width, self.height-8)
-	self.infoPanel:initialise()
-	self.panel:addView("Information", self.infoPanel)
+    self.infoPanel:initialise()
+    self.panel:addView("Information", self.infoPanel)
     
     self.detailsPanel = DetailsPanel:new(0, 8, self.width, self.height-8)
-	self.detailsPanel:initialise()
-	self.panel:addView("Details", self.detailsPanel)
+    self.detailsPanel:initialise()
+    self.panel:addView("Details", self.detailsPanel)
     
 end
 
 function ORGMFirearmWindow:isActive(viewName)
-	-- first test, is the view still inside our tab panel ?
-	for ind,value in ipairs(self.panel.viewList) do
-		-- we get the view we want to display
-		if value.name == viewName then
-			return value.view:getIsVisible() and self:getIsVisible()
-		end
-	end
-	return false
+    -- first test, is the view still inside our tab panel ?
+    for ind,value in ipairs(self.panel.viewList) do
+        -- we get the view we want to display
+        if value.name == viewName then
+            return value.view:getIsVisible() and self:getIsVisible()
+        end
+    end
+    return false
 end
 
 
@@ -204,9 +207,9 @@ end
 -------------------------------------------------------------------------------------------
 
 Events.OnGameStart.Add(function()
-	ORGMFirearmWindow = ORGMFirearmWindow:new(35, 250, 375, 455)
-	ORGMFirearmWindow:addToUIManager()
-	ORGMFirearmWindow:setVisible(false)
-	ORGMFirearmWindow.pin = true
-	ORGMFirearmWindow.resizable = true
+    ORGMFirearmWindow = ORGMFirearmWindow:new(35, 250, 375, 455)
+    ORGMFirearmWindow:addToUIManager()
+    ORGMFirearmWindow:setVisible(false)
+    ORGMFirearmWindow.pin = true
+    ORGMFirearmWindow.resizable = true
 end)

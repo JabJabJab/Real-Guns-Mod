@@ -2,6 +2,7 @@
     This file handles all ORGM item context menus.
     
 ]]
+-- all callback functions from context menus go into this table.
 local MenuCallbacks = { }
 ORGM.Client.MenuCallbacks = MenuCallbacks
 
@@ -54,14 +55,15 @@ end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
     local itemType = item:getFullType()
-    local scriptItem = getScriptManager():FindItem(itemType)
+    --local scriptItem = getScriptManager():FindItem(itemType)
+    local scriptItem = item:getScriptItem()
     if not scriptItem then
         return
     end
-    if newmode == 0 then
+    if newmode == ORGM.SEMIAUTOMODE then
         item:setSwingTime(0.7)
         item:setRecoilDelay(12)
-    elseif newmode == 1 then
+    elseif newmode == ORGM.FULLAUTOMODE then
         item:setSwingTime(scriptItem:getSwingTime())
         item:setRecoilDelay(1)
     end
@@ -75,11 +77,6 @@ MenuCallbacks.onSpinCylinder = function(item, player, data, reloadable)
 end
 
 MenuCallbacks.onUnload = function(item, player)
-    -- TODO: Clear player action queue
-    --if player:getPrimaryHandItem() ~= item then
-    --    ISTimedActionQueue.add(ISEquipWeaponAction:new(player, item, 0, true, false))
-    --end
-    --ISTimedActionQueue.add()
     ReloadManager[player:getPlayerNum()+1]:startUnloadFromUi(item)
 end
 
@@ -97,12 +94,12 @@ MenuCallbacks.onShootSelfConfirm = function(this, button, player, item)
         player:getBodyDamage():RestoreToFullHealth() -- cheap trick so the corpse doesn't rise
         player:setHealth(0)
     else
-        if reloadable.actionType == "SingleAction" and reloadable.hammerCocked == 0 then
-            return
+        if reloadable.actionType == ORGM.SINGLEACTION and reloadable.hammerCocked == 0 then
+            return -- cant shoot with a SA if its not cocked
         end
         reloadable:fireEmpty(player, item)
         player:playSound(reloadable.clickSound, false)
-        if reloadable.actionType == "Rotary" and reloadable.currentCapacity > 0 then
+        if reloadable.actionType == ORGM.ROTARY and reloadable.currentCapacity > 0 then
             if player:HasTrait("Desensitized") ~= true then player:getStats():setPanic(95) end
             local boredom = player:getBodyDamage():getBoredomLevel()
             boredom = boredom - 20
@@ -139,6 +136,7 @@ MenuCallbacks.onDebugWeapon = function(item, player, data, reloadable)
     reloadable:printReloadableWeaponDetails() -- debug data
 end
 
+-- test for backwards  compatibility function: item update
 MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     data.BUILD_ID = 1
     
@@ -149,6 +147,7 @@ MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     player:Say('BUILD_ID set to 1, unequip and re-equip to test backwards compatibility function.')
 end
 
+-- test to validate magazine overflow checking works (mag has more ammo then it should)
 MenuCallbacks.onMagOverflowTestFunction = function(item, player, data)
     local ammoType = data.ammoType
     if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
@@ -162,14 +161,13 @@ MenuCallbacks.onMagOverflowTestFunction = function(item, player, data)
     data.loadedAmmo = ammoType
 end
 
+-- reset weapon to defaults
 MenuCallbacks.onResetWeapon = function(item, player, data, reloadable)
-    --local gunData = ORGM.FirearmTable[item:getType()]
     ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
-    --reloadable:setupReloadable(item, gunData)
-    --reloadable:syncItemToReloadable(item)
-    --player:Say("weapon reset")
+    player:Say("weapon reset")
 end
 
+-- fill the gun/magazine to max ammo
 MenuCallbacks.onAdminFillAmmo = function(item, player, data, ammoType)
     data.currentCapacity = data.maxCapacity
     for i=1, data.maxCapacity do
@@ -181,6 +179,12 @@ end
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
+--[[ ORGM.Client.firearmContextMenu(player, context, item)
+
+    builds the context menu for firearms. Note this will return instantly
+    unless the item is in hand.
+
+]]
 ORGM.Client.firearmContextMenu = function(player, context, item)
     local playerObj = getSpecificPlayer(player)
     if playerObj:getPrimaryHandItem() ~= item then return end
@@ -192,9 +196,9 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     context:addOption("Inspect Weapon", item, MenuCallbacks.onInspectFunction, playerObj, data, reloadable)
     ---------------------
     -- hammer actions
-    if (data.hammerCocked == 1 and data.triggerType ~= "DoubleActionOnly") then
+    if (data.hammerCocked == 1 and data.triggerType ~= ORGM.DOUBLEACTIONONLY) then
         context:addOption("Release Hammer", item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
-    elseif (data.hammerCocked == 0 and data.triggerType ~= "DoubleActionOnly") then
+    elseif (data.hammerCocked == 0 and data.triggerType ~= ORGM.DOUBLEACTIONONLY) then
         context:addOption("Cock Hammer", item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
     end
     
@@ -202,13 +206,13 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     -- add open/close bolt, cylinder etc
     local text = "Slide"
     local callback = MenuCallbacks.onBoltToggle
-    if data.actionType == "Rotary" then
+    if data.actionType == ORGM.ROTARY then
         text = "Cylinder"
         callback = MenuCallbacks.onCylinderToggle
-    elseif data.actionType == "Break" then
+    elseif data.actionType == ORGM.BREAK then
         text = "Barrel"
         callback = MenuCallbacks.onBarrelToggle
-    elseif data.actionType == "Bolt" then 
+    elseif data.actionType == ORGM.BOLT then 
         text = "Bolt" 
     end
     if data.isOpen == 1 then
@@ -234,7 +238,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         context:addOption("Switch to Semi-Auto", item, MenuCallbacks.onFireModeToggle, playerObj, data, reloadable, 0)
     end
     ---------------------
-    if data.actionType == "Rotary" then
+    if data.actionType == ORGM.ROTARY then
         context:addOption("Spin Cylinder", item, MenuCallbacks.onSpinCylinder, playerObj, data, reloadable)
     end
     ---------------------
@@ -247,7 +251,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     context:addOption("Shoot Yourself", item, MenuCallbacks.onShootSelf, playerObj, data, reloadable)
     -- TODO: if open and has bullets insert round into chamber option
     
-
+    -- add debug/development submenu.
     if ORGM.Settings.Debug == true then
         local debugMenu = context:addOption("DEBUG", item, nil)
         local subMenuDebug = context:getNew(context)

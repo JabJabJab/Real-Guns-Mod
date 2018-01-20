@@ -189,7 +189,7 @@ ORGM.setupGun = function(gunData, item)
     -- selectFire is nil for no selection possible, 0 if the weapon is CURRENTLY in semi-auto, 1 if CURRENTLY in full-auto
     modData.selectFire = gunData.selectFire
     
-    if modData.actionType == "Rotary" or modData.actionType == "Break" then
+    if modData.actionType == ORGM.ROTARY or modData.actionType == ORGM.BREAK then
         modData.cylinderPosition = 1 -- position is 1 to maxCapacity (required for % oper to work properly)
         modData.roundChambered = nil
         modData.emptyShellChambered = nil
