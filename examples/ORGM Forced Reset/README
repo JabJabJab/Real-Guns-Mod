@@ -1,0 +1,4 @@
+This is a 'utility mod' that tricks all existing ORGM guns to thinking there has been a update.
+It forces a reset to default values and empties all ammo.
+This will happen whenever a gun is equipped for the first time after a server restart.
+Its main purpose is to fix errors.

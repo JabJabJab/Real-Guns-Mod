@@ -1,0 +1,5 @@
+name=ORGM Forced Firearm Reset
+poster=
+id=ORGMForcedRest
+description=Utility script forcing all existing ORGM firearms to reset to defaults. Essentially tricks the game into thinking the guns have been updated.
+url=
