@@ -1,3 +1,47 @@
+--[[
+    This file contains all the default firearm data
+]]
+
+--[[  ORGM.registerFirearm(name, definition)
+
+    Registers a firearm type with ORGM.
+    
+    name = string name of the firearm (without module prefix)
+    definition = a table containing the firearm stats. Valid table keys/value pairs are:
+        moduleName = nil, or string module name this item is from. If nil, ORGM is used
+        actionType = ORGM.AUTO | ORGM.BOLT | ORGM.LEVER | ORGM.PUMP | ORGM.BREAK | ORGM.ROTARY
+        triggerType = ORGM.SINGLEACTION | ORGM.DOUBLEACTION | ORGM.DOUBLEACTIONONLY
+        lastChanged = nil| integer > 0 <= ORGM.BUILD_ID, the ORGM version this firearm was 
+            last changed in (see shared\1LoadOrder\ORGMCore.lua)
+        rackTime = nil | integer > 0, if nil then ORGM.Settings.DefaultRackTime is used
+        reloadTime = nil | integer > 0, if nil then ORGM.Settings.DefaultReloadTime is used
+        selectFire = nil | ORGM.SEMIAUTOMODE | ORGM.FULLAUTOMODE
+        speedLoader = nil | string name of registered magazine
+        isCivilian = nil | "Common" | "Rare" | "VeryRare"
+        isPolice = nil | "Common" | "Rare" | "VeryRare"
+        isMilitary = nil | "Common" | "Rare" | "VeryRare"
+        
+        -- sound options
+        soundProfile = string name of a key in ORGM.SoundProfiles (see shared\1LoadOrder\ORGMCore.lua)
+        
+        -- these sound keys are automatically set by the soundProfile, but can be over written.
+        -- they are all nil or the string name of a sound file in media/sound/*.ogg
+        clickSound = nil | filename
+        insertSound = nil | filename
+        ejectSound = nil | filename
+        rackSound = nil | filename
+        openSound = nil | filename
+        closeSound = nil | filename
+        cockSound = nil | filename
+        
+        -- firearm details, these string fill out the 'Inspection' window.  
+        classification = nil | string, the 'type' of weapon (Revolver, Assault Rifle, etc)
+        country = nil | string, the initial country of manufacture
+        manufacturer = nil | string, the initial company (or factory) of manufacture
+        year = nil | integer, the initial year of manufacture, this is used by ORGM.Settings.LimitYear
+        description = nil | string, background information
+
+]]
 local register = ORGM.registerFirearm
 
 register("ColtAnac", {

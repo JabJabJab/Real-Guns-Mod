@@ -1,3 +1,27 @@
+--[[
+    This file contains all default ammo data.
+]]
+
+--[[  ORGM.registerAmmo(name, definition)
+    
+    Registers a ammo type with ORGM.  This must be called before any registerMagazine or registerFirearm that plans
+    to use that ammo.
+    NOTE: this should only be called with real ammo (ie: Ammo_9x19mm_FMJ) and not dummy rounds (ie: Ammo_9x19mm)
+    
+    name = string name of the ammo (without module prefix)
+    definition = a table containing the ammo stats. Valid table keys/value pairs are:
+        moduleName = nil, or string module name this item is from. If nil, ORGM is used
+        MinDamage = float, the min damage of the bullet. This overrides the firearm item MinDamage 
+        MaxDamage = float, the max damage of the bullet. This overrides the firearm item MaxDamage 
+        PiercingBullets = boolean | integer (% chance). This overrides the firearm item PiercingBullets
+        MaxHitCount = nil | integer. This overrides the firearm item MaxHitCount. Only valid for firearms with multiple 
+            projectiles (ie: shotguns)
+        Case = string | the empty case to eject
+        UseWith = nil | table, the 'dummy round' names this ammo can be used for. if nil, the name parameter is used
+
+    returns true on success, false if the ammo fails to register
+
+]]
 local register = ORGM.registerAmmo
 
 register("Ammo_117BB", 
