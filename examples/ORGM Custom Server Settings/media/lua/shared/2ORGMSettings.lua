@@ -28,6 +28,18 @@ Settings.RemoveBaseFirearms = true
 -- valid options are any integer number greater then 0 (default: 30)
 Settings.DefaultMagazineReoadTime = 30
 
+-- DefaultReoadTime:  The base time it takes to load a magazine or round into a firearm
+-- before modifiers for panic levels and reloading skill are applied. Note specific 
+-- magazines may override this value.
+-- valid options are any integer number greater then 0 (default: 15)
+Settings.DefaultReloadTime = 15
+
+-- DefaultRackTime:  The base time it takes to rack a firearm before modifiers for panic 
+-- levels and reloading skill are applied. Note specific magazines may override this value.
+-- valid options are any integer number greater then 0 (default: 10)
+Settings.DefaultRackTime = 10
+
+
 -- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
 -- firearms manufactured after 1993, if nil then no year limits will be applied.
 Settings.LimitYear = nil
