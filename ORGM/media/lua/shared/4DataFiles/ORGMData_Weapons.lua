@@ -1129,6 +1129,7 @@ register("M249", {
     ejectSound = 'ORGMLMGOut',
     insertSound = 'ORGMLMGIn',
     rackSound = 'ORGMLMGRack',
+    lastChanged = 14
     
     classification = "Light Machine Gun",
     year = 1979,
