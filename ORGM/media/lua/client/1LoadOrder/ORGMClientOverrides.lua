@@ -9,13 +9,13 @@ require 'ISUI/ISToolTipInv'
 local render = ISToolTipInv.render
 
 function ISToolTipInv:render()
-	if self.item:getModule() ~= "ORGM" then
+    if self.item:getModule() ~= "ORGM" then
         render(self)
     end
 
-	local modData = self.item:getModData() -- gets the item's mod data
+    local modData = self.item:getModData() -- gets the item's mod data
     
-	local text = nil
+    local text = nil
     -- set the text to show what the item is currently loaded with
     if modData.loadedAmmo == nil then
         -- pass
@@ -42,9 +42,9 @@ function ISToolTipInv:render()
         end
     end
     
-	if text ~= nil then
-		self.item:setTooltip(text)
-	end
-	-- call the original function
-	render(self)
+    if text ~= nil then
+        self.item:setTooltip(text)
+    end
+    -- call the original function
+    render(self)
 end
