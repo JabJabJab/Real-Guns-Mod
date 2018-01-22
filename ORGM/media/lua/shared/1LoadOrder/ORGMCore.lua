@@ -43,6 +43,11 @@ ORGM = {
     SEMIAUTOMODE = 0,
     FULLAUTOMODE = 1,
     
+    -- rarity constants
+    COMMON = "Common", -- TODO: replace string with int 1
+    RARE = "Rare", -- TODO: replace string with int 2
+    VERYRARE = "VeryRare", -- TODO: replace string with int 3
+    
     -- Settings table to be overwritten by 'Patch Mods'. See the Patch Mod Examples.zip
     Settings = {
         -- LogLevel: This controls how much text ORGM prints to the console and log file.

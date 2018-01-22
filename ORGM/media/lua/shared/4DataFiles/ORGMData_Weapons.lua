@@ -17,9 +17,9 @@
         reloadTime = nil | integer > 0, if nil then ORGM.Settings.DefaultReloadTime is used
         selectFire = nil | ORGM.SEMIAUTOMODE | ORGM.FULLAUTOMODE
         speedLoader = nil | string name of registered magazine
-        isCivilian = nil | "Common" | "Rare" | "VeryRare"
-        isPolice = nil | "Common" | "Rare" | "VeryRare"
-        isMilitary = nil | "Common" | "Rare" | "VeryRare"
+        isCivilian = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
+        isPolice = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
+        isMilitary = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
         
         -- sound options
         soundProfile = string name of a key in ORGM.SoundProfiles (see shared\1LoadOrder\ORGMCore.lua)
@@ -45,11 +45,12 @@
 local register = ORGM.registerFirearm
 
 register("ColtAnac", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
+    soundProfile = "Revolver",
     
     classification = "Revolver",
     year = 1990,
@@ -59,11 +60,12 @@ register("ColtAnac", {
     serialnumber = "MM#####",
 })
 register("ColtPyth", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader3576', 
+    soundProfile = "Revolver",
     
     classification = "Revolver",
     year = 1955,
@@ -74,10 +76,11 @@ register("ColtPyth", {
     serialnumber = "######"
 })
 register("ColtSAA", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
-    isCivilian = "Rare",
     
     classification = "Revolver",
     year = 1873,
@@ -88,11 +91,12 @@ register("ColtSAA", {
         "The Colt SAA 'Peacemaker' revolver is a famous piece of Americana known as 'The Gun That Won the West'."
 })
 register("RugAlas", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader4546', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 2005,
@@ -101,10 +105,11 @@ register("RugAlas", {
     description = "Introduced in 2005, the Ruger Alaskan is Ruger's first short-barrelled, big-bore revolver, conceived by Ruger president Steve Sanetti and intended for defense against large, dangerous animals. The ​2 1⁄2-inch barrel on the Alaskan ends at the end of the frame, and the scope bases are omitted. The interchangeable front sight is replaced with a pinned-in ramp sight, but the adjustable rear sight is retained. The Alaskan is available in .44 Magnum, .454 Casull/.45 Colt, and .480 Ruger, with the .480 model originally a 6-shot, replaced in 2008 with a 5-shot model to aid in spent cartridge extraction. All Alaskans feature a brushed stainless finish and a Hogue Tamer rubber finger groove grip, rather than the standard GP100 style. The .454 and .480 versions have an unfluted cylinder while the .44 Magnum features a fluted cylinder.",
 })
 register("RugBH", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
-    isCivilian = "Rare",
 
     classification = "Revolver",
     year = 1955,
@@ -114,11 +119,12 @@ register("RugBH", {
         "Ruger introduced the Blackhawk in 1955. Chambered for the .357 Magnum, the Blackhawk was a simple and strong design, and it sold well. In 1956, as Smith & Wesson was introducing the new .44 Magnum, Ruger quickly developed a variant of the Blackhawk in the new cartridge. Ruger achieved wide popularity with this firearm in a hotly anticipated new cartridge, which was both cheaper and more readily available than the Smith & Wesson Model 29 revolver. According to popular legend, Ruger was able to field a .44 Magnum revolver at nearly the same time as Smith & Wesson due to a Ruger employee finding expended .44 Magnum cartridge cases at a scrapyard and deducing that Smith & Wesson was about to launch a new cartridge.",
 })
 register("RugGP100", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader3576', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1985,
@@ -127,11 +133,12 @@ register("RugGP100", {
     description = "The GP100 is a family/line of double action six or seven -shot (.357 Magnum) seven-shot (.327 Federal Magnum) or ten-shot (.22 LR) revolvers made by Sturm, Ruger & Co., manufactured in the United States. It was introduced in 1985 as a second generation of the Ruger double-action, exposed-hammer revolvers intended to replace Ruger's Security- / Service- / Speed-Six line. It was made stronger with the intent to fire an unlimited number of full-power .357 Magnum rounds and has been produced in a number of variations with three basic barrel lengths (3 in / 76 mm, 4 in / 102 mm, and 6 in / 152 mm), various barrel profiles (with offset full or short ejector rod shrouds), fixed or adjustable sights, and in blued carbon steel, and polished or satin stainless steel.",
 })
 register("RugRH", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1979,
@@ -140,11 +147,12 @@ register("RugRH", {
     description = "The Ruger Redhawk is a DA/SA, large-frame revolver that was first introduced in 1979 by Sturm, Ruger & Company. Made from high-grade steel, it is available in a stainless steel finish. The Redhawk is reinforced to handle extra stress, making it very popular for use by handloaders as it handles the hottest of Magnum loads with ease. In addition, the cylinder itself is longer than most competitors', allowing ammunition to be loaded to a longer overall length. This allows for either increased powder capacity, heavier (and therefore longer) bullets without compromising the powder load, or a combination of both. Custom ammunition manufacturers even have loads made specifically for Ruger revolvers that cannot fit in shorter chambers or revolvers of weaker construction (such as the Smith & Wesson Model 29). This makes the Redhawk popular as a bear defense gun among hunters and trappers.",
 })
 register("RugSec6", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader386', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1972,
@@ -154,11 +162,12 @@ register("RugSec6", {
         "The introduction of the Security-Six and its variants marked Sturm Ruger's first attempt to enter the double-action revolver market. The corporation's earlier designs had been Colt Peacemaker-style single-action revolvers. Ruger used investment casting for most parts in an effort to hold down production costs. As with all Ruger firearms, the Security-Six revolvers were robustly designed with large, heavy-duty parts for durability and to allow for investment casting. The 'six series' line enjoyed sales success because of their basic features, solid construction, and competitive pricing.",
 })
 register("SWM10", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader386', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1899,
@@ -167,11 +176,12 @@ register("SWM10", {
     description = "The Smith & Wesson Model 10, previously known as the Smith & Wesson .38 Hand Ejector Model of 1899, the Smith & Wesson Military & Police or the Smith & Wesson Victory Model, is a revolver of worldwide popularity. It was the successor to the Smith & Wesson .32 Hand Ejector Model of 1896 and was the first Smith & Wesson revolver to feature a cylinder release latch on the left side of the frame like the Colt M1889. In production since 1899, it is a six-shot double-action revolver with fixed sights. Over its long production run it has been available with barrel lengths of 2 in (51 mm), 3 in (76 mm), 4 in (100 mm), 5 in (130 mm), and 6 in (150 mm). Barrels of 2.5 inches (64 mm) are also known to have been made for special contracts. Some 6,000,000 of the type have been produced over the years, making it the most popular centerfire revolver of the 20th century.",
 })
 register("SWM19", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader3576', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1957,
@@ -181,11 +191,12 @@ register("SWM19", {
         "Retired Assistant Chief Patrol Inspector of the U.S. Border Patrol, famous gunfighter, and noted firearms and shooting skills writer Bill Jordan consulted with Smith & Wesson on the design and characteristics of the Model 19. Jordan's idea for a 'peace officer's dream' sidearm was a heavy-barreled four-inch K-Frame .357 Magnum with a shrouded barrel like the big N-frame .357 and adjustable sights. After a year of experimentation with improved-strength steels and special heat-treating processes, the result was the .357 Combat Magnum (later designated Model 19), with the first serial-number gun (K260,000) presented to Jordan on November 15, 1955.",
 })
 register("SWM252", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader456', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1955,
@@ -194,11 +205,12 @@ register("SWM252", {
     description = "The Smith & Wesson Model 25-2 is designed with both a single-action and double-action trigger, in .45 Automatic Colt Pistol caliber. It is designed with a barrel length of 6 1/2 inches, and it has a N-frame with a bright blue finish. The pistol comes with a firm grip and the hammer is imprinted with three T’s that denotes Target hammer, Target trigger and Target grips. The Model 25-2 is the manual ejector model of 1955, which is the result of attaching a heavier barrel to the manual ejector model of 1950. The Model 25-2 is what the manufacturer called by the manual ejector form of the year 1955, naming started in 1957. This Model 25-2 Gun pistol is to designate an alteration to the left hand ejector rod threads. This revolver has virtually been exclusively 45 Automatic Colt Pistol.",
 })
 register("SWM29", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446',
+    soundProfile = "Revolver",
     
     classification = "Revolver",
     year = 1955,
@@ -209,11 +221,12 @@ register("SWM29", {
         "At the time of its introduction, the Model 29 was the most powerful production handgun. It was made famous by association with the fictional character 'Dirty Harry' Callahan.",
 })
 register("SWM36", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader385', 
+    soundProfile = "Revolver",
 
     classification = "Revolver",
     year = 1950,
@@ -223,11 +236,12 @@ register("SWM36", {
         "The design was introduced at the International Association of Chiefs of Police (IACP) convention in 1950, and was favorably received. A vote was held to name the new revolver, and the name 'Chiefs Special' won. A three-inch barreled version of this design went into production immediately, due to high demand. It was available in either a blued or nickel-plated finish. It was produced as the 'Chiefs Special' until 1957, when it then became the Model 36. The 'Chiefs Special' continued to be manufactured as a separate variant.",
 })
 register("SWM610", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader10mm6', 
+    soundProfile = "Revolver",
     
     classification = "Revolver",
     year = 1990,
@@ -237,11 +251,12 @@ register("SWM610", {
         "The 610 was manufactured by Smith & Wesson on the N-frame, similar to the Smith & Wesson Model 29 in .44 Magnum, and the Model 28 in .357 Magnum. The 10mm Auto is a rimless automatic pistol cartridge so moon clips are used to hold cartridges when loading and extracting spent cases en bloc. Since the .40 Smith & Wesson is a shorter, less powerful variant of the 10mm Auto but has the same diameter, the Model 610 can chamber and fire .40 Smith & Wesson rounds.",
 })
 register("Taurus454", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Revolver",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader4546', 
+    soundProfile = "Revolver",
     
     classification = "Revolver",
     year = 1997,
@@ -255,10 +270,11 @@ register("Taurus454", {
     -- semi pistols
     --************************************************************************--
 register("AutomagV", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
-    isCivilian = "Rare",
     
     classification = "Semi-Automatic Pistol",
     year = 1993,
@@ -267,10 +283,11 @@ register("AutomagV", {
     description = "The AMT Automag V is a large single action semi-automatic pistol made by Arcadia Machine and Tool (AMT). The weapon was created by Harry Sanford, who also invented the original .44 AutoMag pistol. One of the extremely small number of handguns that fire a .50 caliber cartridge, it is also one of the few semi automatic guns that fires the .50 Action Express cartridge, it is said to be 'the most ergonomic and lightweight of all of those autoloaders'. Its built-in compensator ports in the barrel assist in keeping muzzle rise to tolerable levels. The recoil, however, is still surprisingly brisk even for the most experienced shooter. The Automag V has a 5-shot magazine capacity (5+1 total) and is, like all of the AMT pistols, made primarily of cast stainless steel."
 })
 register("BBPistol", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Air Pistol",
     year = 2007, -- unknown, earliest reference i can find for this model dates to 2008
@@ -279,12 +296,13 @@ register("BBPistol", {
     description = "The Daisy Powerline 201 is a dual spring air powered/CO2 powered BB pistol with manual safety.",
 })
 register("Ber92", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
+    isCivilian = ORGM.COMMON, 
+    isPolice = ORGM.COMMON, 
+    isMilitary = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common", 
-    isPolice = "Common", 
-    isMilitary = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1975,
@@ -295,10 +313,11 @@ register("Ber92", {
         "The Beretta 92 pistol evolved from earlier Beretta designs, most notably the M1923 and M1951. From the M1923 comes the open slide design, while the alloy frame and locking block barrel, originally from Walther P38, were first used in the M1951. The grip angle and the front sight integrated with the slide were also common to earlier Beretta pistols. What were perhaps the Model 92's two most important advanced design features had first appeared on its immediate predecessor, the 1974 .380 caliber Model 84. These improvements both involved the magazine, which featured direct feed; that is, there was no feed ramp between the magazine and the chamber. In addition, the magazine was a 'double-stacked' design, a feature originally introduced in 1935 on the Browning Hi-Power.",
 })
 register("BrenTen", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1983,
@@ -308,10 +327,11 @@ register("BrenTen", {
         "The Bren Ten remains a weapon of some controversy. Many enthusiasts consider it to be one of the best pistols of its era, and the 10mm Auto is one of the most powerful semi-automatic pistol rounds. Issues reported with the gun when it was in its original production run included some of the units delivered with missing or inoperable magazines. Spare magazines were hard to find and were relatively expensive.",
 })
 register("BrownHP", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1935,
@@ -321,10 +341,11 @@ register("BrownHP", {
         "The Hi Power name alludes to the 13-round magazine capacity, almost twice that of contemporary designs such as the Luger or Colt M1911. The pistol is often referred to as an HP (for 'Hi-Power' or 'High-Power'), GP (for the French term, 'Grande Puissance') or BHP (Browning High-Power). The terms P-35 and HP-35 are also used, based on the introduction of the pistol in 1935. It is most often called the 'Hi Power', even in Belgium.",
 })
 register("Colt38S", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1950,
@@ -335,10 +356,11 @@ register("Colt38S", {
         "The Colt Commander was Colt's Manufacturing Company's candidate in a U.S. government post-World War II trial to find a lighter replacement for the M1911 pistol that would be issued to officers. Requirements were issued in 1949 that the pistol had to be chambered for 9 mm Parabellum and could not exceed 7 inches in length or weigh more than 25 ounces.",
 })
 register("ColtDelta", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1987,
@@ -349,11 +371,11 @@ register("ColtDelta", {
         "The Delta Elite is a standard M1911 design, with a few minor differences from the latest Series 80 derivative of that pistol. It carries the rowel 'Commander' type hammer of that pistol and the same overall features of the 1911 that have made it so popular with users. However, the Delta Elite carries a stiffer double recoil spring to handle the increased recoil of the 10mm round.",
 })
 register("CZ75", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
-    lastChanged = 12, -- changed in 3.00-alpha
     
     classification = "Semi-Automatic Pistol",
     year = 1975,
@@ -365,10 +387,11 @@ register("CZ75", {
         "The CZ 75 is a short recoil operated, locked breech pistol. It uses the Browning linkless cam locking system similar to that used in the Browning Hi-Power pistol, where the barrel and slide are locked together on firing, using locking lugs milled into the barrel mating with recesses in the roof of the slide. An enclosed cam track integral with the barrel is actuated by the slide release lever's transverse pin. After the first few millimetres of the recoil stroke, the barrel is cammed downwards at the rear, enabling the slide to continue the recoil stroke and eject the spent cartridge.",
 })
 register("DEagle", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1982,
@@ -378,10 +401,11 @@ register("DEagle", {
         "The Desert Eagle is fed with a detachable magazine. Magazine capacity is 9 rounds in .357 Magnum, 8 rounds in .44 Magnum, and 7 rounds in .50 Action Express. The Desert Eagle's barrel features polygonal rifling. The pistol is primarily used for hunting, target shooting, and silhouette shooting.",
 })
 register("DEagleXIX", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1982,
@@ -391,12 +415,13 @@ register("DEagleXIX", {
         "The Desert Eagle is fed with a detachable magazine. Magazine capacity is 9 rounds in .357 Magnum, 8 rounds in .44 Magnum, and 7 rounds in .50 Action Express. The Desert Eagle's barrel features polygonal rifling. The pistol is primarily used for hunting, target shooting, and silhouette shooting.",
 })
 register("FN57", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- depending on model, this can be SA (FN57 Tactical)
+    isCivilian = ORGM.RARE,
+    isPolice = ORGM.RARE,
+    isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
-    isPolice = "Rare",
-    isMilitary = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1998,
@@ -406,10 +431,11 @@ register("FN57", {
         "The Five-seven pistol was developed in conjunction with the FN P90 personal defense weapon and the FN 5.7×28mm cartridge. The P90 was introduced in 1990, and the Five-seven was introduced in 1998 as a pistol using the same 5.7×28mm ammunition. Developed as a companion pistol to the P90, the Five-seven shares many of its design features: it is a lightweight polymer-based weapon with a large magazine capacity, ambidextrous controls, low recoil, and the ability to penetrate body armor when using certain cartridge types.",
 })
 register("Glock17", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- this is technically not quite true, but as close as its going to get
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1982,
@@ -419,10 +445,11 @@ register("Glock17", {
         "The Glock 17 is the original 9×19mm Parabellum model, with a standard magazine capacity of 17 rounds, introduced in 1982. Several modified versions of the Glock 17 have been introduced.",
 })
 register("Glock20", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1991,
@@ -432,10 +459,11 @@ register("Glock20", {
         "The Glock 20, introduced in 1991, was developed for the then-growing law enforcement and security forces market for the 10mm Auto. The pistol handles both full-power and reduced 'FBI' loads that have reduced muzzle velocity. Due to the longer cartridge and higher pressures, the pistol is slightly larger than the Glock 17, having a roughly 2.5mm (0.1in) greater width and 7mm (0.3in) greater length.",
 })
 register("Glock21", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
     
     classification = "Semi-Automatic Pistol",
     year = 1991,
@@ -445,10 +473,11 @@ register("Glock21", {
         "The Glock 21 is a .45 ACP version of the Glock 20 designed primarily for the American market. Compared to the Glock 20 chambered in 10mm Auto, the slide of the Glock 21 is lighter to compensate for the lower-energy .45 ACP cartridge. The standard Glock 21 magazine is of the single-position-feed, staggered-column type with a capacity of 13 rounds.",
 })
 register("Glock22", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1990,
@@ -458,10 +487,11 @@ register("Glock22", {
         "The Glock 22 is a .40 S&W version of the full-sized Glock 17 introduced in 1990. The pistol uses a modified slide, frame, and barrel to account for the differences in size and power of the .40 S&W cartridge. The standard magazine capacity is 15 rounds. The Glock Model 22 is favored and used by several police agencies around the world.",
 })
 register("HKMK23", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1991,
@@ -470,10 +500,11 @@ register("HKMK23", {
     description = "The Heckler & Koch MK 23, MK 23 MOD 0, Mark 23, or USSOCOM MARK 23, is a semi-automatic large-frame pistol chambered in .45 ACP. designed specifically to be an offensive pistol. The USSOCOM version of the MK23 came paired with a laser aiming module (LAM), and suppressor. The USSOCOM MK23 was adopted by the United States Special Operations Command (USSOCOM) for special operations units beating out the nearest competitor, Colt's OHWS. Development of the pistol began in 1991 as special operations representatives identified the need for an 'Offensive Handgun Weapons System-Special Operations Peculiar', and delivery of the pistols began in May 1996 to the special operation units.",
 })
 register("KahrCT40", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
     
     classification = "Semi-Automatic Pistol",
     year = 2014,
@@ -483,10 +514,11 @@ register("KahrCT40", {
         "CT Series pistols have Kahr's same patented features, but reduce production cost by use of barrels with conventional rifling, fewer operations on the slide exterior resulting in simple roll markings and pinned front sights. CT Series pistols use a metal-injection-molded slide stop, and come in .380 (CT380), 9mm (CT9), .40 (CT40) and .45 (CT45).",
 })
 register("KahrP380", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1999,
@@ -497,10 +529,11 @@ register("KahrP380", {
         "P pistols are known for having very smooth and consistent DAO trigger pulls of approximately six pounds, and large and easy to see sights in various configurations, including night sights. Simplified controls exemplified by the lack of a manual safety lever are also positive attributes and contribute to a desirable package for concealment use.",
 })
 register("KTP32", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1999,
@@ -510,11 +543,12 @@ register("KTP32", {
         "Similar in concept to a revolver, the P-32 has no manual safety, relying instead on the long double-action trigger pull and an internal hammer block to provide safe operation. The pistol meets SAAMI guidelines, and will not fire if dropped. The P-32 has passed extensive SAAMI drop-testing at the H. P. White labs, as well as drop tests to military specifications. The trigger must physically be pulled for the gun to fire.",
 })
 register("M1911", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON, 
+    isMilitary = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common", 
-    isMilitary = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1911,
@@ -524,10 +558,11 @@ register("M1911", {
         "The U.S. procured around 2.7 million M1911 and M1911A1 pistols in military contracts during its service life. The M1911 was replaced by the 9mm Beretta M9 pistol as the standard U.S. sidearm in October 1986, but due to its popularity among users, it has not been completely phased out. Modernized derivative variants of the M1911 are still in use by some units of the U.S. Army Special Forces, the U.S. Navy and U.S. Marine Corps.",
 })
 register("RugerMKII", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1982,
@@ -537,10 +572,11 @@ register("RugerMKII", {
         "The MK II ('Mark Two') was made from 1982 to 2005. Previous models include the Standard, Ruger's first model, made from 1949 to 1982, and the MK I Target, made from 1951 to 1982. MK II variations include the Target models, which have heavier barrels and adjustable sights, and the 22/45 models, which have a polymer frame with a grip-angle that matches the Colt 1911 rather than the steel frame's Luger P08-like layout. All Ruger rimfire pistols are chambered in .22 Long Rifle only.",
 })
 register("RugerSR9", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- like the glock, this isnt really a DAO
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 2007,
@@ -550,11 +586,12 @@ register("RugerSR9", {
         "The SR9 is the first large-caliber striker fired pistol designed and manufactured by Sturm Ruger. Similar to Glock's 'safe action', the striker fired SR9 features a pre-set trigger. With this type of action, the striker is partially cocked when the slide is cycled, then is fully cocked and released when the trigger is pulled. Due to safety concerns, the moderately long and heavy trigger pull of this type is seen as ideal for law enforcement and self-defense applications.",
 })
 register("SIGP226", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.COMMON, 
+    isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common", 
-    isMilitary = "Rare",
 
     classification = "Semi-Automatic Pistol",
     year = 1983,
@@ -564,10 +601,11 @@ register("SIGP226", {
         "The P226 was designed for entry into the XM9 Service Pistol Trials (see also Joint Service Small Arms Program) that were held by the US Army in 1984 on behalf of the US armed forces to find a replacement for the M1911A1 and 24 other makes of handgun in US military service. Only the Beretta 92SBF and the SIG P226 satisfactorily completed the trials. According to a GAO report, Beretta was awarded the M9 contract for the 92F due to a lower total package price. The P226 cost less per pistol than the 92F, but SIG's package price with magazines and spare parts was higher than Beretta's. The Navy SEALs, however, later chose to adopt the P226 as the P226 MK25 with special corrosion protection.",
 })
 register("Spr19119", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1985,
@@ -577,11 +615,11 @@ register("Spr19119", {
         "In 1985 Springfield started producing new M1911's for the general public, in .45ACP, 9x19mm, .40S&W and 10mm.",
 })
 register("Taurus38", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "Rare",
-    lastChanged = 12, -- changed in 3.00-alpha
 
     classification = "Semi-Automatic Pistol",
     year = 2005,
@@ -591,10 +629,11 @@ register("Taurus38", {
         "It features a integrated locking mechanism that requires a 'key' to unlock.  When the Security System is engaged, the pistol cannot be fired or cocked and the gun's manual safety cannot be disengaged. It also features a Loaded Chamber Indicator that provides 'at-a-glance' verification that there is a round in the chamber. When a round is in the chamber, the ejector pops out of the slide, exposing a red strip just behind the ejection port.",
 })
 register("TaurusP132", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 2005,
@@ -604,10 +643,11 @@ register("TaurusP132", {
         "Taurus Millennium series pistols are manufactured with injection molded polymer frames, and blued carbon steel, stainless steel, or titanium slides. The Millennium line includes several innovative safety features including a positive firing pin block as well as the 'Taurus Safety Latch', a transfer bar safety which prevents firing of the pistol unless the trigger is pulled. Together these safeties are intended to assure that the pistol will not fire if it is accidentally dropped. All Millennium models also include a frame-mounted safety lever. This safety feature was found to fail under some circumstances, leading to a recall.",
 })
 register("WaltherP22", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 2002,
@@ -617,10 +657,11 @@ register("WaltherP22", {
         "The P22 may be fired double action at about 11 pounds of force, and operates as a single action with slightly more than 4 pounds of force. The P22 operates by blowback where pressure generated by a firing cartridge is countered by a combination of the inertial weight of the slide assembly and the force of the recoil spring. The action will not open until the projectile has left the barrel and the pressures have dropped to safe levels.",
 })
 register("WaltherPPK", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1935,
@@ -631,10 +672,11 @@ register("WaltherPPK", {
         "Adolf Hitler shot and killed himself with his PPK (a 7.65mm/.32 ACP) in the Führerbunker in Berlin. South Korean dictator Park Chung-hee was shot and killed by Kim Jae-gyu, using the Walther PPK. The Walther PPK pistol is famous as fictional secret agent James Bond's gun in many of the films and novels",
 })
 register("XD40", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- striker trigger mechanism, DAO is close enough
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic Pistol",
     year = 1999,
@@ -647,10 +689,11 @@ register("XD40", {
     --************************************************************************--
 
 register("AM180", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
+    isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
-    isCivilian = "VeryRare",
     ejectSound = 'ORGMSMG2Out',
     insertSound = 'ORGMSMG2In', 
 
@@ -662,11 +705,12 @@ register("AM180", {
         "The American-180 was purchased mostly by private parties prior to the American ban on production of machine guns for the US civilian market. The A180 was adopted by the Utah Department of Corrections to arm correctional officers.",
 })
 register("Ber93R", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
-    soundProfile = "Pistol-Small",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Pistol-Small",
     
     classification = "Machine Pistol",
     year = 1979,
@@ -676,12 +720,13 @@ register("Ber93R", {
         "The Beretta 93R was designed to be used by the Italian counter-terrorism forces of Nucleo Operativo Centrale di Sicurezza and Gruppo di Intervento Speciale but was also adopted by other police and military forces who required a concealable weapon with rapid fire capabilities. The pistol is a development of the Beretta 92 design."
 })
 register("FNP90", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "SMG",
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.RARE,
     selectFire = 1,
-    isPolice = "Rare", 
-    isMilitary = "Rare",
+    soundProfile = "SMG",
 
     classification = "Submachine Gun",
     year = 1990,
@@ -691,11 +736,12 @@ register("FNP90", {
         "Designed in conjunction with the FN Five-seven pistol and FN 5.7×28mm ammunition, development of the weapon began in 1986, and production commenced in 1990 (from which the '90' in its name is derived), whereupon the 5.7×28mm ammunition was redesigned and shortened. A modified version of the P90 with a magazine adapted to use the new ammunition was introduced in 1993",
 })
 register("Glock18", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "SMG",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "SMG",
 
     classification = "Machine Pistol",
     year = 1986,
@@ -705,12 +751,13 @@ register("Glock18", {
         "The Glock 18 is a selective-fire variant of the Glock 17, developed at the request of the Austrian counter-terrorist unit EKO Cobra, and as a way to internally test Glock components under high strain conditions. Originally produced in 1986, this machine pistol–class firearm has a lever-type fire-control selector switch, installed on the serrated portion of the rear left side of the slide. With the selector lever in the bottom position, the pistol fires fully automatically, and with the selector lever in the top position, the pistol fires semiautomatically.",
 })
 register("HKMP5", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "SMG",
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.COMMON,
     selectFire = 1,
-    isPolice = "Rare", 
-    isMilitary = "Common",
+    soundProfile = "SMG",
 
     classification = "Submachine Gun",
     year = 1966,
@@ -720,12 +767,13 @@ register("HKMP5", {
         "The MP5 is one of the most widely used submachine guns in the world, having been adopted by 40 nations and numerous military, law enforcement, intelligence, and security organizations. It is widely used by SWAT teams in North America.",
 })
 register("HKUMP", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "SMG",
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.COMMON,
     selectFire = 1,
-    isPolice = "Rare", 
-    isMilitary = "Common",
+    soundProfile = "SMG",
 
     classification = "Submachine Gun",
     year = 1999,
@@ -735,10 +783,11 @@ register("HKUMP", {
         "As originally designed, the UMP is chambered for larger cartridges (.45 ACP and .40 S&W) than other submachine guns like the MP5, to provide more stopping power against unarmored targets (with slightly lower effectiveness at longer range) than the MP5.",
 })
 register("Kriss", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    isCivilian = "Rare",
 
     classification = "Submachine Gun",
     year = 2009,
@@ -748,11 +797,12 @@ register("Kriss", {
         "The Vector CRB (carbine) is a semi-automatic carbine with a permanently affixed extension to the standard 5.5-inch barrel, extending it to 16-inch (410 mm), intended for states with short-barrel rifle bans.",
 })
 register("KrissA", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "SMG",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "SMG",
 
     classification = "Submachine Gun",
     year = 2009,
@@ -762,10 +812,11 @@ register("KrissA", {
         "The name Kriss comes from a Southeast Asian dagger with a flame-shaped blade.",
 })
 register("KTPLR", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
 
     classification = "Submachine Gun",
     year = 2006,
@@ -775,10 +826,11 @@ register("KTPLR", {
         "The PLR (Pistol, Long Range) was designed for recreational target shooting, and small game, varmint, or predator hunting. Due to the PLR's 9.25 in (235mm) barrel, the 5.56×45mm bullet's velocity is slightly reduced compared to its velocity from a traditionally 20in (510mm) barrel.",
 })
 register("M1A1", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    isCivilian = "Rare",
 
     classification = "Submachine Gun",
     year = 1921,
@@ -788,10 +840,11 @@ register("M1A1", {
         "The Thompson was favored by soldiers, criminals, police, and civilians alike for its large .45 ACP cartridge, accuracy, and high volume of fully automatic fire. It has since gained popularity among civilian collectors for its historical significance.",
 })
 register("Mac10", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    isCivilian = "Rare",
 
     classification = "Submachine Gun",
     year = 1970,
@@ -801,10 +854,11 @@ register("Mac10", {
         "Noting the weapon's poor accuracy, in the 1970s International Association of Police Chiefs weapons researcher David Steele described the MAC series as 'fit only for combat in a phone booth'.",
 })
 register("Mac11", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    isCivilian = "Rare",
 
     classification = "Machine Pistol",
     year = 1972,
@@ -814,10 +868,11 @@ register("Mac11", {
         "Noting the weapon's poor accuracy, in the 1970s International Association of Police Chiefs weapons researcher David Steele described the MAC series as 'fit only for combat in a phone booth'.",
 })
 register("Skorpion", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.VERYRARE,
     soundProfile = "Pistol-Small",
-    isCivilian = "VeryRare",
 
     classification = "Machine Pistol",
     year = 1961,
@@ -829,10 +884,11 @@ register("Skorpion", {
         "It was also used by armed groups, including the Irish Republican Army, Irish National Liberation Army and the Italian Red Brigades. The latter used the Skorpion in the 1978 kidnapping of Aldo Moro and was used to kill Moro. In the 1990s the Gang de Roubaix used the Skorpion in a series of attacks in France.",
 })
 register("Uzi", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    isCivilian = "Rare",
 
     classification = "Submachine Gun",
     year = 1950,
@@ -846,12 +902,13 @@ register("Uzi", {
     -- rifles
     --************************************************************************--
 register("AIAW308", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE, 
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
-    isCivilian = "Rare", 
-    isPolice = "Rare", 
-    isMilitary = "Rare",
     
     classification = "Bolt-Action Rifle",
     year = 1983,
@@ -861,10 +918,11 @@ register("AIAW308", {
         "The AIAW features special de-icing features allowing it to be used effectively at temperatures as low as −40 °C (−40 °F). The stockhole, bolt, magazine release and trigger guard on the AW are large enough to allow use with heavy Arctic mittens. This version was accepted into use by the Swedish Army in 1991 as the Prickskyttegevar 90 (Psg 90)",
 })
 register("AKM", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
     
     classification = "Assault Rifle",
     year = 1982,
@@ -876,11 +934,12 @@ register("AKM", {
         
 })
 register("AKMA", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Rifle-AR",
     
     classification = "Assault Rifle",
     year = 1959,
@@ -890,11 +949,12 @@ register("AKMA", {
         "Introduced into service with the Soviet Army in 1959, the AKM is the most ubiquitous variant of the entire AK series of firearms and it has found widespread use with most member states of the former Warsaw Pact and its African and Asian allies as well as being widely exported and produced in many other countries. The production of these Soviet rifles was carried out at both the Tula Arms Plant and Izhmash. It was officially replaced in Soviet frontline service by the AK-74 in the late 1970s, but remains in use worldwide.",
 })
 register("AR10", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
-    isPolice = 'Rare',
+    isPolice = ORGM.RARE,
     selectFire = 1,
+    soundProfile = "Rifle-AR",
     
     classification = "Battle Rifle",
     year = 1956,
@@ -904,10 +964,11 @@ register("AR10", {
         "In 1957, the basic AR-10 design was rescaled and substantially modified by ArmaLite to accommodate the .223 Remington cartridge, and given the designation ArmaLite AR-15. ArmaLite licensed the AR-10 and AR-15 designs to Colt Firearms. The AR-15 eventually became the M16 rifle.",
 })
 register("AR15", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-AR",
-    isCivilian = "Common",
     
     classification = "Semi-Automatic Rifle",
     year = 1963,
@@ -917,14 +978,15 @@ register("AR15", {
         "The first mass production version was the Colt AR-15 Sporter, in .223 Remington, with a 20-inch barrel and issued with 5-round magazines. Over the decades, Colt has made many different types of AR-15 rifle and carbine models, including the AR-15, AR-15A2, AR-15A3, AR-15A4, and many other models.",
 })
 register("BBGun", {
+    lastChanged = nil,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
+    rackTime = 3,
     soundProfile = "Rifle-Lever",
-    isCivilian = "Common",
     rackSound = 'ORGMBBLever',
     clickSound = 'ORGMPistolEmpty',
     insertSound = 'ORGMMagBBLoad',
-    rackTime = 3,
         
     classification = "Air Rifle",
     year = 1940,
@@ -935,11 +997,11 @@ register("BBGun", {
         "Hogarth Hughes owns and uses a Red Ryder BB Gun in Brad Bird's 1999 film The Iron Giant.",
 })
 register("BLR", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Lever",
-    isCivilian = "Common",
-    lastChanged = 12, -- changed in 3.00-alpha
 
     classification = "Lever-Action Rifle",
     year = 1969,
@@ -949,10 +1011,11 @@ register("BLR", {
         "The BLR uses a detachable box magazine. Because of this, the BLR can be chambered for rounds with pointed tip bullets that would be inappropriate for the tubular magazines more commonly used in lever-action rifles. Another difference is the geared lever and bolt design that can accommodate high-pressure modern magnum rounds. Another notable feature is that the trigger moves with the lever when it is operated, which prevents the shooter's trigger finger from being pinched between the lever and the stock when the lever is closed.",
 })
 register("FNFAL", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
     
     classification = "Semi-Automatic Rifle",
     year = 1982,
@@ -962,11 +1025,12 @@ register("FNFAL", {
         "The LSR is a semi-automatic version intended for the civilian market.",
 })
 register("FNFALA", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Rifle-AR",
     
     classification = "Battle Rifle",
     year = 1953,
@@ -976,10 +1040,11 @@ register("FNFALA", {
         "During the Cold War the FAL was adopted by many countries of the North Atlantic Treaty Organization (NATO), with the notable exception of the United States. It is one of the most widely used rifles in history, having been used by more than 90 countries. Because of its prevalence and widespread usage among the militaries of many NATO and first world countries during the Cold War it was given the title 'The right arm of the Free World'.",
 })
 register("Garand", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto",
-    isCivilian = "Common",
     
     classification = "Semi-Automatic Rifle",
     year = 1934,
@@ -989,11 +1054,11 @@ register("Garand", {
         "The M1 rifle was named after its Canadian-American designer, John Garand. It was the first standard-issue semi-automatic military rifle. By all accounts the M1 rifle served with distinction. General George S. Patton called it 'the greatest battle implement ever devised'.",
 })
 register("HenryBB", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Lever",
-    isCivilian = "Rare",
-    lastChanged = 12, -- changed in 3.00-alpha
 
     classification = "Lever-Action Rifle",
     year = 2001,
@@ -1003,10 +1068,11 @@ register("HenryBB", {
         "Henry's motto is 'Made in America, or not made at all",
 })
 register("HK91", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
     
     classification = "Semi-Automatic Rifle",
     year = 1974,
@@ -1017,11 +1083,12 @@ register("HK91", {
         "The HK91 is rather valuable in the United States firearm market since it was banned from further importation by 1989. Only 48,817 HK91s were imported into the U.S. prior to 1989.",
 })
 register("HKG3", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Rifle-AR",
     
     classification = "Battle Rifle",
     year = 1958,
@@ -1031,11 +1098,11 @@ register("HKG3", {
         "The G3 served as a basis for many other weapons, among them: the PSG1 and MSG90 precision rifles, the HK11 and HK21 family of light machine guns, a semi-automatic version known as the HK41, a 'sporterized' model called the SR9 (designed for the civilian market in countries where the HK91 would not qualify, primarily the US after the 1989 importation restrictions) and the MC51 carbine.",
 })
 register("HKSL8", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
-    lastChanged = 12, -- changed in 3.00-alpha
     
     classification = "Semi-Automatic Rifle",
     year = 1998,
@@ -1046,10 +1113,11 @@ register("HKSL8", {
         "To adapt the G36 for the civilian market, its pistol grip and folding stock have been replaced by a fixed stock with a thumbhole. The receiver has also been modified to prevent attachment of a folding stock. In addition, to comply with the Gun Control Act of 1968 SL8 rifles exported to the United States have been modified so that they will not accept staggered 20- and 30-round G36 magazines. U.S. SL8 rifles accept only a single-column, 10-round magazine.",
 })
 register("L96", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Bolt",
-    isCivilian = "Common",
 
     classification = "Bolt-Action Rifle",
     year = 1982,
@@ -1059,11 +1127,12 @@ register("L96", {
         "The Accuracy International PM (Precision Marksman) rifle was entered into a British competition in the early 1980s as a replacement for the Lee–Enfield derived sniper rifles then in use by the British Army (e.g. L42A1). The Accuracy International rifle was selected over the Parker Hale M85. The British Army adopted the Accuracy International PM in 1982 into service as the L96A1.",
 })
 register("LENo4", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
-    soundProfile = "Rifle-Bolt",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = "LENo4StripperClip", 
+    soundProfile = "Rifle-Bolt",
 
     classification = "Bolt-Action Rifle",
     year = 1941,
@@ -1075,12 +1144,13 @@ register("LENo4", {
         "After the war, may No. 4's in the United States were rechambered to fire 7.62 NATO from the original .303 British."
 })
 register("M16", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
     selectFire = 1,
-    isPolice = "Rare", 
-    isMilitary = "Common",
     
     classification = "Assault Rifle",
     year = 1964,
@@ -1091,12 +1161,12 @@ register("M16", {
         "The M16 has also been widely adopted by other militaries around the world. Total worldwide production of M16s has been approximately 8 million, making it the most-produced firearm of its 5.56 mm caliber.",
 })
 register("M1903", {
+    lastChanged = 12, -- changed in 3.00-alpha
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
-    soundProfile = "Rifle-Auto-IM",
-    isCivilian = "Rare",
+    isCivilian = ORGM.RARE,
     speedLoader = 'M1903StripperClip', 
-    lastChanged = 12, -- changed in 3.00-alpha
+    soundProfile = "Rifle-Auto-IM",
     
     classification = "Bolt-Action Rifle",
     year = 1903,
@@ -1106,11 +1176,12 @@ register("M1903", {
         "It was officially adopted as a United States military bolt-action rifle on June 19, 1903, and saw service in World War I. It was officially replaced as the standard infantry rifle by the faster-firing semi-automatic eight-round M1 Garand starting in 1936. However, the M1903 Springfield remained in service as a standard issue infantry rifle during World War II, since the U.S. entered the war without sufficient M1 rifles to arm all troops. It also remained in service as a sniper rifle during World War II, the Korean War, and even in the early stages of the Vietnam War. It remains popular as a civilian firearm, historical collector's piece, and as a military drill rifle.",
 })
 register("M21", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
-    isPolice = "Rare", 
-    isMilitary = "Rare",
     
     classification = "Semi-Automatic Rifle",
     year = 1969,
@@ -1121,15 +1192,15 @@ register("M21", {
         "This version, called the XM21, had a specially selected walnut stock and was first fielded in the second half of 1969. An improved version with a fiberglass stock was designated the M21 in 1975. The M21 remained the Army's primary sniper rifle until 1988, when it was replaced by the M24 Sniper Weapon System.",
 })
 register("M249", {
+    lastChanged = 14,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
-    isMilitary = "Rare",
     clickSound = 'ORGMRifleEmpty',
     ejectSound = 'ORGMLMGOut',
     insertSound = 'ORGMLMGIn',
     rackSound = 'ORGMLMGRack',
-    lastChanged = 14
     
     classification = "Light Machine Gun",
     year = 1979,
@@ -1138,12 +1209,13 @@ register("M249", {
     description = "The M249 light machine gun, formerly designated the M249 Squad Automatic Weapon (SAW), is the American adaptation of the Belgian FN Minimi, a light machine gun manufactured by the Belgian company FN Herstal. The M249 is manufactured in the United States by the local subsidiary FN Manufacturing LLC in South Carolina and is widely used in the U.S. Armed Forces. The weapon was introduced in 1984 after being judged the most effective of a number of candidate weapons to address the lack of automatic firepower in small units. The M249 provides infantry squads with the high rate of fire of a machine gun combined with accuracy and portability approaching that of a rifle.",
 })
 register("M4C", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isPolice= ORGM.RARE, 
+    isMilitary = ORGM.COMMON,
     selectFire = 1,
-    isPolice= "Rare", 
-    isMilitary = "Common",
+    soundProfile = "Rifle-AR",
     
     classification = "Assault Carbine",
     year = 1984,
@@ -1153,10 +1225,11 @@ register("M4C", {
         "The M4 carbine is extensively used by the United States Armed Forces and is largely replacing the M16 rifle in United States Army and United States Marine Corps combat units as the primary infantry weapon.",
 })
 register("Marlin60", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto-IM",
-    isCivilian = "Common",
     rackSound = 'ORGMRifleRack',
     clickSound = 'ORGMSmallPistolEmpty',
     insertSound = 'ORGMMagLoad',
@@ -1168,11 +1241,12 @@ register("Marlin60", {
     description = "The Marlin Model 60, also known as the Marlin Glenfield Model 60, is a semi-automatic rifle that fires the .22 LR rimfire cartridge. Produced by Marlin Firearms Company of North Haven, Connecticut, it has been in continuous production since 1960 and the company says it is the most popular rifle of its kind in the world. Major features include a micro-groove barrel, a cross-bolt safety, hardwood stock with Monte Carlo comb, and brass inner magazine tube. The Marlin Model 795 is a very similar rifle and based on the Marlin Model 60, changed only to accept a detachable box magazine.",
 })
 register("Mini14", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON, 
+    isPolice = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Common", 
-    isPolice = "Rare",
     
     classification = "Semi-Automatic Rifle",
     year = 1973,
@@ -1183,11 +1257,12 @@ register("Mini14", {
         "The Ruger Mini-14 was seen extensively in many episodes of The A-Team, an NBC television series that aired from 1983 to 1987. It was chosen because of its reputation for reliably firing blanks, which tend to clog a gun's action.",
 })
 register("Mosin", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
-    soundProfile = "Rifle-Bolt-IM",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'MosinStripperClip', 
+    soundProfile = "Rifle-Bolt-IM",
     
     classification = "Bolt-Action Rifle",
     year = 1891,
@@ -1196,10 +1271,11 @@ register("Mosin", {
     description = "The 3-line rifle M1891, colloquially known as Mosin–Nagant is a five-shot, bolt-action, internal magazine–fed, military rifle developed from 1882 to 1891, and used by the armed forces of the Russian Empire, the Soviet Union and various other nations. It is one of the most mass-produced military bolt-action rifles in history with over 37 million units having been made since its inception in 1891, and, in spite of its age, it has been used in various conflicts around the world even up to the modern day.",
 })
 register("R25", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
     
     classification = "Semi-Automatic Rifle",
     year = 2008,
@@ -1208,11 +1284,12 @@ register("R25", {
     description = "The Remington Model R-25 is semi-automatic gas-operated rifle manufactured by Remington Arms. The R-25 is Remington's attempt to join the AR market. It features a free-floating Chrom-Moly fluted barrel and is modeled after the classic AR-10. It has no built in iron sights and instead has a Picatinny rail mounted atop the receiver to allow the user to mount their choice of scope or other sighting system. The R-25 is advertised primarily as a hunting rifle, and as such normally comes painted in Mossy Oak camouflage.",
 })
 register("Rem700", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON, 
+    isPolice = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
-    isCivilian = "Common", 
-    isPolice = "Rare",
     
     classification = "Bolt-Action Rifle",
     year = 1962,
@@ -1222,10 +1299,11 @@ register("Rem700", {
         "Both the U.S. Army's M24 Sniper Weapon System and U.S. Marine Corps' M40 sniper rifles are built from the Remington Model 700 rifle, in different degrees of modification.",
 })
 register("Rem788", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
-    isCivilian = "Rare",
     
     classification = "Bolt-Action Rifle",
     year = 1967,
@@ -1234,10 +1312,11 @@ register("Rem788", {
     description = "The Remington 788 is a bolt-action, centerfire rifle that was made by Remington Arms from 1967 to 1983. It was marketed as an inexpensive yet accurate hunting rifle to compete with other gun companies' less expensive rifles alongside their more expensive Model 700 line. The 788 utilizes a single-column detachable magazine holding 3 rounds. A .22 rimfire model was also produced known as the 580, 581, or 582 depending on its method of feed. A target version of the .22 caliber 58x series, the 540X, was used by the US military as a training rifle and later disposed through the Civilian Marksmanship Program.",
 })
 register("Rug1022", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    isCivilian = "Common",
 
     classification = "Semi-Automatic",
     year = 1964,
@@ -1246,11 +1325,12 @@ register("Rug1022", {
     description = "The Ruger 10/22 is a series of semi-automatic rifles produced by American firearm manufacturer Sturm, Ruger & Co., chambered for the .22 Long Rifle rimfire cartridge. It uses a patented 10-round rotary magazine, though higher capacity box magazines are also available. The standard Carbine version of the Ruger 10/22 has been in production continuously since 1964, making it one of, if not the, most successful rimfire rifle design in history, with numerous third party manufacturers making parts and accessories for upgrading and customization. In fact, the 10/22's aftermarket is so prolific, that a 10/22 can be built with completely non-Ruger made components.",
 })
 register("SA80", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isMilitary = ORGM.RARE,
     selectFire = 1,
-    isMilitary = "Rare",
+    soundProfile = "Rifle-AR",
 
     classification = "Assault Rifle",
     year = 1985,
@@ -1261,11 +1341,12 @@ register("SA80", {
         "The family is built in a bullpup layout (the action is behind the trigger group), with a forward-mounted pistol grip. The main advantage of this type of arrangement is the overall compactness of the weapon, which can be achieved without compromising the barrel length, hence the overall length of the L85 rifle is shorter than a carbine, but the barrel length is that of an assault rifle.",
 })
 register("SIG550", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Rifle-AR",
 
     classification = "Assault Rifle",
     year = 1986,
@@ -1275,11 +1356,12 @@ register("SIG550", {
         "In February 1983, the decision to adopt the SG 541 was publicly announced (the designation of the rifle was changed in October of the following year to SG 550, while the carbine version became known as the SG 551). Production began in 1986 and four years later the rifle was officially accepted into service in 1990, hence the military designation Stgw 90. ",
 })
 register("SIG551", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-AR",
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
-    isCivilian = "VeryRare",
+    soundProfile = "Rifle-AR",
 
     classification = "Assault Carbine",
     year = 1986,
@@ -1289,11 +1371,12 @@ register("SIG551", {
         "The SG 551 carbine has a short pattern 363 mm (14.3 in) barrel, gas tube and piston compared to the SG 550. The SG 551 series rifles have a 466 mm (18.3 in) long sight radius. The handguards were also changed and the bipod removed. The SG 551 cannot be used with a bayonet or fire rifle grenades. The SG 551 comes in several specialized variants designed for use with security and special forces.",
 })
 register("SKS", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Rifle-Auto-IM",
-    isCivilian = "Common",
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SKSStripperClip', 
+    soundProfile = "Rifle-Auto-IM",
 
     classification = "Semi-Automatic Carbine",
     year = 1945,
@@ -1303,10 +1386,11 @@ register("SKS", {
         "The SKS was widely exported, and was also licensed for production by then Eastern Bloc nations, Romania and East Germany, as well as China, where it was designated the 'Type 56 Carbine'. The East German version was known as the Karabiner S, the Albanian as the Model 561 and North Korean as the 'Type 63'. The SKS is popular on the civilian surplus market as a hunting and marksmanship semi-automatic rifle in many countries, including the United States, Canada, and New Zealand.",
 })
 register("SR25", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
-    isMilitary = "Common",
 
     classification = "Semi-Automatic Rifle",
     year = 1990,
@@ -1317,10 +1401,11 @@ register("SR25", {
         "The original SR-25 was released in the early 1990s and had a heavy free-floating 24 in (610mm) match grade barrel with a fiberglass handguard. It had a flat top upper receiver with a Mil-Std 1913 rail for mounting optics and a 2-stage match grade trigger. The bolt carrier was similar to the AR-10's, being chrome plated and having a captive firing pin retainer pin. The SR-25 was designed specifically to fire 168 gr (10.9 g) open-tip match cartridges. Accuracy was guaranteed at or under 1 minute of angle.",
 })
 register("SVD", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Auto",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Rifle",
     year = 1963,
@@ -1330,11 +1415,12 @@ register("SVD", {
         "The Dragunov has become the standard squad support weapon of several countries, including those of the former Warsaw Pact. China, while having produced an unlicensed copy of the SVD through reverse-engineered samples captured from Sino-Vietnamese War as the Type 79 and 85, never officially purchased or was given SVD Dragunov by the Soviets, as the Sino-Soviet split had already occurred when the SVD entered service and relations were strained between the two, halting further military cooperations and aid. Iran also produced a clone as the Nakhjir 3 (as a direct copy of the Chinese Type 79).",
 })
 register("WinM70", {
+    lastChanged = nil,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.RARE, 
+    isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
-    isCivilian = "Rare", 
-    isMilitary = "Rare",
 
     classification = "Bolt-Action Rifle",
     year = 1936,
@@ -1345,10 +1431,11 @@ register("WinM70", {
         "One of the best known U.S. Marine Corps snipers who used the Winchester Model 70 during the Vietnam War was Gunnery Sergeant Carlos Hathcock, who used a Winchester Model 70 sniper rifle chambered in .30-06. It was this rifle, equipped with a standard 8×43 Unertl scope, that Hathcock used to kill a North Vietnamese enemy sniper by shooting him in the eye, through the scope of his Mosin–Nagant rifle.",
 })
 register("WinM94", {
+    lastChanged = nil,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Lever",
-    isCivilian = "Rare",
 
     classification = "Lever-Action Rifle",
     year = 1894,
@@ -1362,11 +1449,12 @@ register("WinM94", {
     --************************************************************************--
 
 register("BenelliM3", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Shotgun",
     altActionType = ORGM.PUMP,
-    isPolice = "Common",
+    isPolice = ORGM.COMMON,
+    soundProfile = "Shotgun",
 
     classification = "Dual-mode Shotgun",
     year = 1989,
@@ -1376,10 +1464,11 @@ register("BenelliM3", {
     "Pump-action operation is employed when shooting less powerful shells—such as rubber bullets—that do not generate enough recoil to operate the semi-automatic mechanism. Conversely, the semi-automatic mode can be employed with more powerful shells, absorbing some of the recoil. Switching between the two modes is done by manipulating the ring located at the front of the forend grip.",
 })
 register("BenelliM3SO", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Shotgun",
     altActionType = ORGM.PUMP,
+    soundProfile = "Shotgun",
 
     classification = ORGM.FirearmTable["BenelliM3"].classification,
     year = ORGM.FirearmTable["BenelliM3"].year,
@@ -1388,10 +1477,11 @@ register("BenelliM3SO", {
     description = ORGM.FirearmTable["BenelliM3"].description,
 })
 register("BenelliXM1014", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isMilitary = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isMilitary = "Common",
     rackSound = 'ORGMARRack', 
 
     classification = "Semi-Automatic Shotgun",
@@ -1403,10 +1493,11 @@ register("BenelliXM1014", {
         "The weapon requires little maintenance and operates in all climates and weather conditions."
 })
 register("Hawk982", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = "Pump-Action Shotgun",
     year = 2008,
@@ -1417,10 +1508,11 @@ register("Hawk982", {
         "Longer barreled versions (18in minimum) are also available for purchase in the US, where ownership of short barreled shotguns requires a $200 tax stamp. In the United States, where Norinco products are specifically non-importable, this gun is imported and sold under the names Norinco Hawk 982 and Interstate Hawk 982.",
 })
 register("Ithaca37", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = "Pump-Action Shotgun",
     year = 1937,
@@ -1430,10 +1522,11 @@ register("Ithaca37", {
         "The Model 37 was used by the United States armed forces in World War II, the Korean War, and especially the Vietnam War, where it gained a great reputation for reliability in the jungles of Vietnam. The largest single users outside the US Military were the New York City Police Department in 2 versions- 13in barrel with forend hand-strap for the Emergency Service Unit and 18in barrel for the Highway Patrol and the Los Angeles Police Department. Along with the Los Angeles County Sheriff's Department, numerous other users include military, police, security agencies, and prisons around the world. The Ithaca 37 remains a popular choice among civilians for both sport and personal protection. The Model 37 featherlight was commonly seen in the hands of farmers and hunters in the midwestern United States.",
 })
 register("Ithaca37SO", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = ORGM.FirearmTable["Ithaca37"].classification,
     year = ORGM.FirearmTable["Ithaca37"].year,
@@ -1442,10 +1535,11 @@ register("Ithaca37SO", {
     description = ORGM.FirearmTable["Ithaca37"].description,
 })
 register("M1216", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
 
     classification = "Semi-Automatic Shotgun",
     year = 2012,
@@ -1455,10 +1549,11 @@ register("M1216", {
         "The most unusual feature of the M1216 is the detachable magazine. The magazine which runs parallel to the barrel is made of four tubes, each with its own spring and follower. Each tube can hold four 2 3/4in or 3in shells for a total of sixteen. When inserted into the gun, the operator can flip a switch and manually rotate the entire magazine, either clockwise or counter clockwise, to choose which tube feeds into the receiver. In a tactical application, by loading different shells in different tubes, this would allow the operator to switch between different types of shells to adapt to a changing scenario, or it could allow rapid fire of all 16 rounds.",
 })
 register("Moss590", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = "Pump-Action Shotgun",
     year = 1960,
@@ -1468,10 +1563,11 @@ register("Moss590", {
         "The primary difference between the Model 500 and Model 590 is in magazine tube design. The Model 500 magazines are closed at the muzzle end, and the barrel is held in place by bolting into a threaded hole at the end of the magazine tube. Model 590 magazines are designed to be opened at the muzzle end, and the barrels fit around the magazine tube and are held on by a capnut at the end.",
 })
 register("Moss590SO", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = ORGM.FirearmTable["Moss590"].classification,
     year = ORGM.FirearmTable["Moss590"].year,
@@ -1480,11 +1576,12 @@ register("Moss590SO", {
     description = ORGM.FirearmTable["Moss590"].description,
 })
 register("Rem870", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON, 
+    isPolice = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common", 
-    isPolice = "Common",
 
     classification = "Pump-Action Shotgun",
     year = 1951,
@@ -1494,10 +1591,11 @@ register("Rem870", {
         "The Remington 870 was the fourth major design in a series of Remington pump shotguns. John Pedersen designed the fragile Remington Model 10 (and later the improved Remington Model 29). John Browning designed the Remington Model 17 (which was later adapted by Ithaca into the Ithaca 37), which served as the basis for the Remington 31. The Model 31 was well liked, but struggled for sales in the shadow of the Winchester Model 12. Remington sought to correct that in 1951 by introducing a modern, streamlined, rugged, reliable, and relatively inexpensive shotgun – the 870."
 })
 register("Rem870SO", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = ORGM.FirearmTable["Rem870"].classification,
     year = ORGM.FirearmTable["Rem870"].year,
@@ -1506,10 +1604,11 @@ register("Rem870SO", {
     description = ORGM.FirearmTable["Rem870"].description,
 })
 register("Silverhawk", {
+    lastChanged = nil,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
-    isCivilian = "Common",
 
     classification = "Double Barrel Shotgun",
     year = 1996,
@@ -1520,10 +1619,11 @@ register("Silverhawk", {
         "The Silver Hawk has a single, selective trigger, which has an inertial block that sets the second barrel to fire.",
 })
 register("SilverHawkSO", {
+    lastChanged = nil,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
-    isCivilian = "Common",
 
     classification = ORGM.FirearmTable["Silverhawk"].classification,
     year = ORGM.FirearmTable["Silverhawk"].year,
@@ -1532,13 +1632,14 @@ register("SilverHawkSO", {
     description = ORGM.FirearmTable["Silverhawk"].description
 })
 register("Spas12", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    soundProfile = "Shotgun",
     altActionType = ORGM.PUMP,
-    isCivilian = "Rare", 
-    isPolice = "Rare", 
-    isMilitary = "Rare",
+    isCivilian = ORGM.RARE, 
+    isPolice = ORGM.RARE, 
+    isMilitary = ORGM.RARE,
+    soundProfile = "Shotgun",
 
     classification = "Dual-mode Shotgun",
     year = nil,
@@ -1548,10 +1649,11 @@ register("Spas12", {
         "The appearance and intended purpose of the SPAS-12 initially led to its 'military' designation as a combat shotgun. The SPAS-12 was designed from the ground up as a rugged military shotgun, and it was named the Special Purpose Automatic Shotgun. In 1990, Franchi renamed the shotgun the Sporting Purpose Automatic Shotgun, which allowed continued sales to the United States as a limited-magazine-capacity, fixed-stock model until 1994. Following the United States Federal Assault Weapons Ban, imports of SPAS-12 shotguns to the United States were stopped.",
 })
 register("Stevens320", {
+    lastChanged = nil,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
-    isCivilian = "Common",
 
     classification = "Pump-Action Shotgun",
     year = 2012,
@@ -1561,11 +1663,12 @@ register("Stevens320", {
         "The 320 is essentially a reproduction of the Winchester Model 1300. Like the Winchester, the Stevens 320 is a value-priced, no-frills pump gun, costing under $300 USD."
 })
 register("Striker", {
+    lastChanged = nil,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     soundProfile = "Shotgun",
-    isCivilian = "Rare", 
-    isPolice = "Rare",
     rackSound = 'ORGMARRack', 
 
     classification = "Semi-Automatic Shotgun",
@@ -1577,10 +1680,11 @@ register("Striker", {
         "Beyond the original Striker and the improved Protecta, the weapon system evolved into a handful of useful variants in the shortened 'Protecta Bulldog', the American-market 'Sentinel Arms Striker-12', the 'Cobray/SWD Streetsweeper' with 18-inch barrel for the budget conscious and the small 'Cobray/SWD Ladies Home Companion'. Viewed as an 'assault weapon', the Striker was banned in Canada and its availability in the United States was limited though not impossible.",
 })
 register("VEPR12", {
+    lastChanged = nil,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    isCivilian = "Rare",
     clickSound = 'ORGMShotgunEmpty', 
 
     classification = "Semi-Automatic Shotgun",
@@ -1592,10 +1696,11 @@ register("VEPR12", {
         "The Vepr-12 is exported worldwide. Ownership in Russia requires only a smoothbore-gun license. Due to Russian law, domestic and many export versions of the shotgun are equipped with a disconnector that will render the gun unable to fire while the stock is folded. The shotgun is also imported into the United States. American export models have no muzzle brake and have a fixed stock rather than a folding stock.",
 })
 register("Win1887", {
+    lastChanged = nil,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isCivilian = ORGM.VERYRARE,
     soundProfile = "Shotgun-Lever",
-    isCivilian = "VeryRare",
 
     classification = "Lever-Action Shotgun",
     year = 1887,
@@ -1605,6 +1710,7 @@ register("Win1887", {
         "The Model 1887 was prominently used by the title character in the film Terminator 2: Judgment Day, portrayed by Arnold Schwarzenegger. One of the guns used in the film was modified with a pistol grip and an oversized loop on the trigger guard, allowing the character to fire and cycle the action by spinning the weapon backwards around the trigger hand. This in turn has popularised the gun's portrayal in various pop culture, mostly in shooter video games, which mimic the cycling and reloading actions from the movie."
 })
 register("Win1887SO", {
+    lastChanged = nil,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     soundProfile = "Shotgun-Lever",
