@@ -40,7 +40,13 @@ version 3.00
     
     DefaultMagazineReoadTime - control the time it takes to load bullets into a magazine 
         (unless the specific magazine overrides)
-    
+        
+    DefaultReloadTime - control the time it takes to load a magazine into a firearm
+        (unless the specific magazine overrides)
+
+    DefaultRackTime - control the time it takes to rack a firearm. 
+        (unless the specific magazine overrides)
+
     LimitYear - A spawn year cutoff, to remove spawning of guns manufactured after the specified year
     
     FirearmSpawnModifier - multiplier for fine tuning the spawn rate of any firearm.
