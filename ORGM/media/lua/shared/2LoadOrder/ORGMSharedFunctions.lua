@@ -572,8 +572,10 @@ ORGM.addToSoundBankQueue = function(name, data)
 end
 
 
---[[
+--[[  ORGM.onLoadSoundBanks()
 
+    Adds any sounds in the ORGM.SoundBankQueueTable to the FMOD soundbanks.
+    This is only called by the OnLoadSoundBanks event in shared/ORGMSharedEventHooks.lua
 
 ]]
 ORGM.onLoadSoundBanks = function()
