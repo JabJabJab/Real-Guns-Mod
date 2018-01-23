@@ -27,17 +27,17 @@ ORGM = {
     DEBUG = 3,
 
     -- trigger type constants
-    SINGLEACTION = "SingleAction", -- TODO: replace string with int 1
-    DOUBLEACTION = "DoubleAction", -- TODO: replace string with int 2
-    DOUBLEACTIONONLY = "DoubleActionOnly", -- TODO: replace string with int 3
+    SINGLEACTION = 1, -- TODO: replace string with int 1
+    DOUBLEACTION = 2, -- TODO: replace string with int 2
+    DOUBLEACTIONONLY = 3, -- TODO: replace string with int 3
 
     -- action/feed type constants
-    AUTO = "Auto", -- TODO: replace string with int 1
-    BOLT = "Bolt", -- TODO: replace string with int 2
-    LEVER = "Lever", -- TODO: replace string with int 3
-    PUMP = "Pump", -- TODO: replace string with int 4
-    BREAK = "Break", -- TODO: replace string with int 5
-    ROTARY = "Rotary", -- TODO: replace string with int 6
+    AUTO = 1, -- TODO: replace string with int 1
+    BOLT = 2, -- TODO: replace string with int 2
+    LEVER = 3, -- TODO: replace string with int 3
+    PUMP = 4, -- TODO: replace string with int 4
+    BREAK = 5, -- TODO: replace string with int 5
+    ROTARY = 6, -- TODO: replace string with int 6
 
     -- select fire mode constants
     SEMIAUTOMODE = 0,
