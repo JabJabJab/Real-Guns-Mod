@@ -447,15 +447,14 @@ ORGM.resetFirearmToDefaults = function(item, container)
 end
 
 
---[[  ORGM.checkFirearmBuildID(item, container)
+--[[  ORGM.checkFirearmBuildID(item)
 
     item is a HandWeapon/InventoryItem
-    container is the ItemContainer the item exists in
 
     returns a new HandWeapon/InventoryItem or nil
 
 ]]
-ORGM.checkFirearmBuildID = function(item, container)
+ORGM.checkFirearmBuildID = function(item)
     if item == nil then return nil end
     local data = item:getModData()
     local def = ORGM.FirearmTable[item:getType()]
