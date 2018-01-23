@@ -1,7 +1,5 @@
 
 ORGM.Server.loadCompatibilityPatches = function()
-    if ORGM.isModLoaded("ORGMSilencer") and ORGM.Settings.UseSilencersPatch then
-        ORGM.registerComponent("Silencer", {moduleName = "Silencer"})
-    end
+    -- nothing to do here
     ORGM.log(ORGM.INFO, "All server compatibility patches injected")
 end
