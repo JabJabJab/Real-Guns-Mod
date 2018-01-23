@@ -152,8 +152,7 @@ function ISORGMWeapon:initialise()
 end
 
 function ISORGMWeapon:new()
-    local o = {}
-    o = ISReloadableWeapon:new()
+    local o = ISReloadableWeapon:new()
     setmetatable(o, self)
     self.__index = self
     return o
@@ -1322,72 +1321,36 @@ end
 
 function ISORGMWeapon:printReloadableWeaponDetails()
     --self:printReloadableDetails()
-    print("triggerType == " .. self.triggerType)
-    print("actionType == " .. self.actionType)
     
-    if(self.roundChambered ~= nil) then
-        print("roundChambered == "..self.roundChambered)
-    else
-        print("roundChambered == nil")
-    end
     
-    if(self.emptyShellChambered ~= nil) then
-        print("emptyShellChambered == "..self.emptyShellChambered)
-    else
-        print("emptyShellChambered == nil")
-    end
+    print("type == " .. tostring(self.type))
+--    print("BUILD_ID == ".. tostring(self.type))
+    print("triggerType == " .. tostring(self.triggerType))
+    print("actionType == " .. tostring(self.actionType))
+    print("roundChambered == "..tostring(self.roundChambered))
+    print("emptyShellChambered == "..tostring(self.emptyShellChambered))
 
-    if(self.containsClip ~= nil) then
-        print("containsClip == "..self.containsClip)
-    else
-        print("containsClip == nil")
-    end
+    print("containsClip == "..tostring(self.containsClip))
+    print("maxCapacity == "..tostring(self.maxCapacity))
+    print("currentCapacity == "..tostring(self.currentCapacity))
+
+    print("isJammed == "..tostring(self.isJammed))
+
+    print("isOpen == " .. tostring(self.isOpen))
+    print("hammerCocked == " .. tostring(self.hammerCocked))
+    print("selectFire == " .. tostring(self.selectFire))
+    print("cylinderPosition == " .. tostring(self.cylinderPosition))
+
+    print("lastRound == "..tostring(self.lastRound))
     
-    if(self.maxCapacity ~= nil) then
-        print("maxCapacity == "..self.maxCapacity)
-    else
-        print("maxCapacity == nil")
-    end
-
-    if(self.currentCapacity ~= nil) then
-        print("currentCapacity == "..self.currentCapacity)
-    else
-        print("currentCapacity == nil")
-    end
-
-    if(self.isJammed ~= nil) then
-        print("isJammed == "..self.isJammed)
-    else
-        print("isJammed == nil")
-    end
-
-    print("isOpen == " .. self.isOpen)
-    print("hammerCocked == " .. self.hammerCocked)
-    if self.selectFire then print("selectFire == " .. self.selectFire) end
-    if self.cylinderPosition then print("cylinderPosition == " .. self.cylinderPosition) end
-
-    if(self.lastRound ~= nil) then
-        print("lastRound == "..self.lastRound)
-    else
-        print("lastRound == nil")
-    end
-    
-    if self.preferredAmmoType then
-        print("preferredAmmoType == "..self.preferredAmmoType)
-    else
-        print("preferredAmmoType == nil")
-    end
-    if self.loadedAmmo then
-        print("loadedAmmo == "..self.loadedAmmo)
-    else
-        print("loadedAmmo == nil")
-    end
+    print("preferredAmmoType == "..tostring(self.preferredAmmoType))
+    print("loadedAmmo == "..tostring(self.loadedAmmo))
+    print("loadedAmmo == nil")
     
     if self.magazineData then
         for index=1, self.maxCapacity do
             value = self.magazineData[index]
-            if value == nil then value = "nil" end
-            print("magazineData #" .. index .. " = " .. value)
+            print("magazineData #" .. index .. " = " .. tostring(value))
         end
     end
     
