@@ -39,7 +39,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMM3,
@@ -105,7 +105,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
 
@@ -173,7 +173,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
         
         SwingSound                  = ORGMM3,
@@ -240,7 +240,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870,
@@ -306,7 +306,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870,
@@ -372,7 +372,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870SO,
@@ -438,7 +438,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMM1216,
@@ -504,7 +504,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870,
@@ -570,7 +570,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870SO,
@@ -636,7 +636,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870,
@@ -702,7 +702,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870SO,
@@ -768,7 +768,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMSilverhawk,
@@ -834,7 +834,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMSilverhawk,
@@ -900,7 +900,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMSPAS,
@@ -966,7 +966,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870,
@@ -1032,7 +1032,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMStriker,
@@ -1098,7 +1098,7 @@ module ORGM
         AimingTime                  = 40,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMVEPR,
@@ -1164,7 +1164,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMWinM1887,
@@ -1230,7 +1230,7 @@ module ORGM
         AimingTime                  = 55,
 
         ConditionMax                = 10,
-        ConditionLowerChanceOneIn   = 100,
+        ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
 
         SwingSound                  = ORGMR870SO,
