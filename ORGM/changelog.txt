@@ -108,7 +108,11 @@ version 3.00
 
 * H&K SL8 magazine capacity reduced from 20 to 10 (all SL8's imported into the US use 10 round mags)
 
-* M249 decreased chance condition will lower from 1-in-100 to 1-in-500
+* Increased durability of all weapons. 
+    Pistols and SMG's now have a base chance of lowering condition 1-in-150 (was 100).
+    Revolvers to 1-in-300 (was 200)
+    Rifles and shotguns to 1-in-200 (was 100)
+    Except the M249, which is now 1-in-500 (was 100)
 
 ---------------------------------------------------------------------------------------
 version 2.03 Stable
