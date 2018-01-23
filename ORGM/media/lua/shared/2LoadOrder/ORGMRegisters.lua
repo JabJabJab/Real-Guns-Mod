@@ -268,19 +268,16 @@ ORGM.registerFirearm = function(name, definition)
         return
     end
 
-    -- TODO: change if statement to 'if not definition.triggerType or not ORGM.TriggerTypeStrings[definition.triggerType] == nil then' once const are converted to int values
-    if not definition.triggerType or not ORGM.tableContains(ORGM.TriggerTypeStrings, definition.triggerType) then
+    if not definition.triggerType or ORGM.TriggerTypeStrings[definition.triggerType] == nil then
         ORGM.log(ORGM.ERROR, "Invalid triggerType for " .. fullName .. " ("..tostring(definition.triggerType)..")")
         return
     end
-    -- TODO: change if statement to 'if ORGM.ActionTypeStrings[definition.actionType] == nil then' once const are converted to int values
-    if not definition.actionType or not ORGM.tableContains(ORGM.ActionTypeStrings, definition.actionType) then
+    if not definition.actionType or ORGM.ActionTypeStrings[definition.actionType] == nil then
         ORGM.log(ORGM.ERROR, "Invalid actionType for " .. fullName .. " ("..tostring(definition.actionType)..")")
         return
     end
     if definition.altActionType then -- this gun has alternating action types (pump and auto, etc)
-        -- TODO: change if statement to 'if ORGM.ActionTypeStrings[definition.altActionType] == nil then' once const are converted to int values
-        if not ORGM.tableContains(ORGM.ActionTypeStrings, definition.altActionType) then
+        if ORGM.ActionTypeStrings[definition.altActionType] == nil then
             ORGM.log(ORGM.ERROR, "Invalid altActionType for " .. fullName .. " ("..tostring(definition.altActionType)..")")
             return
         end
