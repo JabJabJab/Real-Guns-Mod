@@ -1,5 +1,7 @@
 --[[
     This file handles all ORGM item context menus.
+
+    TODO: cleanup and document this file
     
 ]]
 -- all callback functions from context menus go into this table.

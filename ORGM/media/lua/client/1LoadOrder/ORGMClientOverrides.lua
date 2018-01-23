@@ -9,6 +9,7 @@ require 'ISUI/ISToolTipInv'
 local render = ISToolTipInv.render
 
 function ISToolTipInv:render()
+    -- TODO: this should actually check the ORGM tables to see
     if self.item:getModule() ~= "ORGM" then
         render(self)
     end
