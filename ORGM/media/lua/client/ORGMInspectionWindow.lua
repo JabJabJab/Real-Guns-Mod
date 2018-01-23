@@ -60,6 +60,7 @@ function ORGMFirearmWindow:new(x, y, width, height)
     o.title = "Firearm Inspection"
     o.pin = false
     o:noBackground()
+    self.resizable = false
     return o
 end
 
@@ -211,5 +212,5 @@ Events.OnGameStart.Add(function()
     ORGMFirearmWindow:addToUIManager()
     ORGMFirearmWindow:setVisible(false)
     ORGMFirearmWindow.pin = true
-    ORGMFirearmWindow.resizable = true
+    ORGMFirearmWindow.resizable = false
 end)
