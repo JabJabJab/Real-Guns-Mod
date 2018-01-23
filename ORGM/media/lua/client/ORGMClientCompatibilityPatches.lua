@@ -1,6 +1,19 @@
+--[[
+
+    This file handles 'most' build in compatibility patches for 3rd party mods. Mainly necroforge and 
+    the ORGM Silencers mod.
+    
+]]
+
+--[[ silencerCheck(player, item)
+
+    Edits the sound properties of firearms depending if a silencer is attached or not.
+    Unlike the original silencers mod's check which checked every attack, this only checks
+    OnGameBoot and OnEquipPrimary.
+    
+]]
 -- function for silencer handling
-local onEquipHook = function(player, item)
-    -- we only need to check for silencers when the weapon is equipped, not on every attack
+local silencerCheck = function(player, item)
     if item == nil then return end
     local itemType = item:getType()
     if ORGM.FirearmTable[itemType] == nil then return end
@@ -83,17 +96,25 @@ local necroforgePatch = function()
     end
 end
 
+
+--[[  ORGM.Client.loadCompatibilityPatches()
+
+    Loads all specified compatibility patches depending on what mods are loaded, and 
+    ORGM's Settings.
+    This is triggered by a OnGameBoot event in client/ORGMClientEventHooks.lua
+
+]]
 ORGM.Client.loadCompatibilityPatches = function()
     -- ORGMSilencers
     if ORGM.isModLoaded("ORGMSilencer") and ORGM.Settings.UseSilencersPatch then
         -- first remove the old hook
         Events.OnWeaponSwing.Remove(Silencer.onAttack)
         -- add new event hooks
-        Events.OnEquipPrimary.Add(onEquipHook)
+        Events.OnEquipPrimary.Add(silencerCheck)
         Events.OnGameStart.Add(function() -- make sure our player is setup on game start
             local player = getPlayer()
             --local player = getSpecificPlayer(0)
-            onEquipHook(player, player:getPrimaryHandItem())
+            silencerCheck(player, player:getPrimaryHandItem())
         end) 
     end
     

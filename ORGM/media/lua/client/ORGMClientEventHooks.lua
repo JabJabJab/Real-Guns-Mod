@@ -1,10 +1,23 @@
+--[[
+
+    This file handles all client side event hooks.
+    
+]]
 
 -- function in client/1LoadOrder/ORGMClientContextMenus.lua
 Events.OnFillInventoryObjectContextMenu.Add(ORGM.Client.inventoryContextMenu) 
 
 -- function in client/1LoadOrder/ORGMClientFunctions.lua
 Events.OnGameBoot.Add(ORGM.Client.loadModels)
+
+-- function in client/1LoadOrder/ORGMClientCompatibilityPatches.lua
+-- Note this function may inject addition event hooks.
 Events.OnGameBoot.Add(ORGM.Client.loadCompatibilityPatches)
+
+-----------------------------------------------------------------
+-- Backwards compatibility firearm updating
+
+-- function in client/1LoadOrder/ORGMClientFunctions.lua
 Events.OnEquipPrimary.Add(ORGM.Client.checkFirearmBuildID)
 
 -- TODO: this should really not be written like this, as it doesn't allow

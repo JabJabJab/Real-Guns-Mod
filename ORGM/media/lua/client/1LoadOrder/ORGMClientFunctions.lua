@@ -1,3 +1,13 @@
+--[[
+    This file defines client specific functions, inserting them into the ORGM.Client table.
+
+]]
+
+--[[    ORGM.Client.loadModels()
+
+    Loads all 3d models. Trigged by OnGameBoot event in client/ORGMClientEventHooks.lua
+]]
+
 ORGM.Client.loadModels = function()
     local dir = getDir("ORGM")
     local modelPrefix = dir .. "/media/models/weapons_"
@@ -40,8 +50,10 @@ end
 --[[  ORGM.Client.checkFirearmBuildID(player, item)
     
     Note this function has the same name as the shared function ORGM.checkFirearmBuildID()
-    but is client specific, and has slightly different arguments. It is meant to be called from
-    Events.OnEquipPrimary listed in ORGMClientEventHooks.
+    but is client specific. It handles the actual upgrading/replacing of firearms that require it. 
+    It is meant to be called from Events.OnEquipPrimary and OnGameStart listed in 
+    client/ORGMClientEventHooks.lua and is also called by the Survivors mod compatibility patch 
+    LoadSurvivor() function
 
 ]]
 ORGM.Client.checkFirearmBuildID = function(player, item)
@@ -56,6 +68,13 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
     end
 end
 
+
+--[[ ORGM.Client.unequipItemNow(player, item)
+
+    Instantly unequip the item if it's in the player's primary hand, skipping timed actions. 
+    Used by ORGM.Client.checkFirearmBuildID() above when upgrading weapons to new ORGM versions.
+
+]]
 ORGM.Client.unequipItemNow = function(player, item)
     item:getContainer():setDrawDirty(true)
     local primary = player:getPrimaryHandItem()
