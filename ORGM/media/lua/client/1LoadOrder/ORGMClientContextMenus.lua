@@ -228,6 +228,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     if data.altActionType then
         for _, atype in ipairs(data.altActionType) do
             if atype ~= data.actionType then
+                atype = ORGM.ActionTypeStrings[atype]
                 context:addOption("Switch to " .. atype .. " Action", item, MenuCallbacks.onActionTypeToggle, playerObj, data, reloadable, atype)
             end
         end
