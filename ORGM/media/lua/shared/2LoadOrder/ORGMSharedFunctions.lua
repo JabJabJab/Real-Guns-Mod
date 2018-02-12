@@ -499,9 +499,11 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     newData.serialnumber = data.serialnumber -- copy the guns serial number
     
     -- empty the magazine, return all rounds to the container.
-    for _, value in pairs(data.magazineData) do
-        local def = ORGM.AmmoTable[value]
-        if def then container:AddItem(def.moduleName ..'.'.. value) end
+    if data.magazineData then -- no mag data, this gun has not properly been setup, or is legacy orgm
+        for _, value in pairs(data.magazineData) do
+            local def = ORGM.AmmoTable[value]
+            if def then container:AddItem(def.moduleName ..'.'.. value) end
+        end
     end
     if data.roundChambered ~= nil and data.roundChambered > 0 then
         for i=1, data.roundChambered do
@@ -547,6 +549,26 @@ ORGM.toggleTacticalLight = function(player)
 
 end
 
+-- TODO: finish this function.
+ORGM.filterGuns = function(filters)
+    local compiledFilters = { }
+    local resuts = { }
+    for key, value in pairs(filters) do
+        if type(value) == 'number' or type(value) == number then
+            compiledFilters[key] = function(v) return v == value end
+        end
+    end
+    for name, definition in pairs(ORGM.FirearmTable) do
+        local isValid = true
+        for key, code in pairs(compiledFilters) do
+            if definition[key] == nil or code(definition[key]) == false then
+                isValid = false
+            end
+        end
+        if isValid then table.insert(results, name) end
+    end
+    return results
+end
 
 --[[  ORGM.addToSoundBankQueue(name, data)
 
