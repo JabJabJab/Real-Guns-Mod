@@ -20,3 +20,7 @@ This is a 'utility mod' that tricks all existing ORGM guns to thinking there has
 It forces a reset to default values and empties all ammo.
 This will happen whenever a gun is equipped for the first time after a server restart.
 Its main purpose is to fix errors.
+
+ORGM Cheat Key
+Re-enables the original ORGM's cheat/testing key, spawning 1 of every gun, magazine, upgrade and
+ammo canister in the players inventory
