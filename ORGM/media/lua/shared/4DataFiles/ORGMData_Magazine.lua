@@ -109,7 +109,6 @@ register("HKMK23Mag",
 register("HKMP5Mag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 30, }
 )
--- TODO: maxCapacity should be 10
 register("HKSL8Mag",
     { ammoType = 'Ammo_223Remington', maxCapacity = 10, }
 )
