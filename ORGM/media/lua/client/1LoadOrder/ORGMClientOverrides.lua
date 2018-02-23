@@ -42,10 +42,11 @@ function ISToolTipInv:render()
             text = fireMode
         end
     end
-    
+    local old = self.item:getTooltip()
     if text ~= nil then
-        self.item:setTooltip(text)
+        self.item:setTooltip(text .. "\n"..(old or ""))
     end
     -- call the original function
     render(self)
+    self.item:setTooltip(old)
 end
