@@ -16,7 +16,7 @@ ORGM = {
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
-        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", -- 14
+        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", -- 15
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
@@ -27,17 +27,17 @@ ORGM = {
     DEBUG = 3,
 
     -- trigger type constants
-    SINGLEACTION = 1, -- TODO: replace string with int 1
-    DOUBLEACTION = 2, -- TODO: replace string with int 2
-    DOUBLEACTIONONLY = 3, -- TODO: replace string with int 3
+    SINGLEACTION = 1,
+    DOUBLEACTION = 2,
+    DOUBLEACTIONONLY = 3,
 
     -- action/feed type constants
-    AUTO = 1, -- TODO: replace string with int 1
-    BOLT = 2, -- TODO: replace string with int 2
-    LEVER = 3, -- TODO: replace string with int 3
-    PUMP = 4, -- TODO: replace string with int 4
-    BREAK = 5, -- TODO: replace string with int 5
-    ROTARY = 6, -- TODO: replace string with int 6
+    AUTO = 1,
+    BOLT = 2,
+    LEVER = 3,
+    PUMP = 4,
+    BREAK = 5,
+    ROTARY = 6,
 
     -- select fire mode constants
     SEMIAUTOMODE = 0,
