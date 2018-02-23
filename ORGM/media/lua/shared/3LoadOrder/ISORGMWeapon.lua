@@ -578,7 +578,7 @@ function ISORGMWeapon:unloadPerform(char, square, difficulty, weapon)
         return false
     end
     if self.actionType == ORGM.BREAK then
-        self:openBreak()
+        self:openBreak(char, false, weapon)
         self.unloadInProgress = false
         self:syncReloadableToItem(weapon)
         return false
