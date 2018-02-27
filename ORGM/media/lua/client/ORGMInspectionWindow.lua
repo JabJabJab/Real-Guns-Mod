@@ -118,6 +118,15 @@ function ORGMFirearmWindow:setFirearm(item)
         else
             text = text .. "No rounds are loaded.\n"
         end
+    elseif data.actionType == ORGM.BREAK then
+        if data.currentCapacity > 1 then
+            text = text .. "There are "..data.currentCapacity.." rounds loaded.\n"
+        elseif data.currentCapacity == 1 then
+            text = text .. "There is 1 round loaded.\n"
+        else
+            text = text .. "No rounds are loaded.\n"
+        end
+    
     else
         if data.roundChambered > 0 then
             text = text .. "There is a round in the chamber.\n"

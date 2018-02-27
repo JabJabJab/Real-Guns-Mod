@@ -523,6 +523,7 @@ end
 
 ORGM.toggleTacticalLight = function(player)
     local item = player:getPrimaryHandItem()
+    if not item then return end
     if not ORGM.FirearmTable[item:getType()] then return end
     if item:getCondition() == 0 then return end
     local cannon = item:getCanon()
@@ -543,9 +544,9 @@ ORGM.toggleTacticalLight = function(player)
     end
     
     item:setTorchCone(true)
-    Item:setLightStrength(strength)
-    Item:setLightDistance(distance)
-    Item:setActivated(not item:isActivated())
+    item:setLightStrength(strength)
+    item:setLightDistance(distance)
+    item:setActivated(not item:isActivated())
 
 end
 
