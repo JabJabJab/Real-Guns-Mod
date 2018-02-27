@@ -13,6 +13,18 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.01
+* Fixed bug unloading break barrel shotguns (introduced ???)
+
+* Fixed bug with inspection window on break barrel shotguns
+
+* Fixed multiple bugs with tactical light code
+
+* Adjusted tooltip code for allowing custom tooltips via other mods
+
+* Added basic patch mod example for disabling empty shell ejection
+
+---------------------------------------------------------------------------------------
 version 3.00
 
 * Complete code rewrite. Replaced all global tables with a single ORGM table. This table contains 
