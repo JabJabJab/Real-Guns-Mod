@@ -24,3 +24,6 @@ Its main purpose is to fix errors.
 ORGM Cheat Key
 Re-enables the original ORGM's cheat/testing key, spawning 1 of every gun, magazine, upgrade and
 ammo canister in the players inventory
+
+ORGM No Shells
+Disables ORGM's spent case ejection setting.
