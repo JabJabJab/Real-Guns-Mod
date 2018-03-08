@@ -62,6 +62,7 @@ local necroforgePatch = function()
             local scriptItem = getScriptManager():FindItem(itemName)
             if not scriptItem then return end
             NecroList.Items["ORGM"..index] = {"Mods", "ORGM", nil, "ORGM - " .. scriptItem:getDisplayName(), itemName, "media/textures/Item_" .. scriptItem:getIcon() .. ".png", nil, nil, nil} 
+            ORGM.log(ORGM.DEBUG, "Adding "..itemName.." to necroforge")
         end
         
         local index = 1
@@ -89,7 +90,7 @@ local necroforgePatch = function()
             index = index+1
         end
         -- add repair stuff
-        for name, def in ipairs(ORGM.RepairKitTable) do
+        for name, def in pairs(ORGM.RepairKitTable) do
             addORGMItem(index, def.moduleName ..'.'..name)
             index = index+1
         end
