@@ -13,6 +13,23 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.02
+* Fixed bug adding repair kit items to NecroForge (introduced 3.00)
+
+* Spawn rates now use a float value instead of integer, values of less then 1% are now possible
+
+* Adding spawn multiplier settings for specific containers/locations:
+    CorpseSpawnModifier
+    CivilianBuildingSpawnModifier
+    PoliceStorageSpawnModifier
+    GunStoreSpawnModifier
+    StorageUnitSpawnModifier
+    GarageSpawnModifier
+    HuntingSpawnModifier
+
+* Updated Custom Server Settings patch mod example to reflect new settings
+
+---------------------------------------------------------------------------------------
 version 3.01
 * Fixed bug unloading break barrel shotguns (introduced ???)
 
