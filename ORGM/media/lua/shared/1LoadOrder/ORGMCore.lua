@@ -16,7 +16,7 @@ ORGM = {
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
-        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", -- 16
+        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable",-- 17
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
@@ -117,6 +117,27 @@ ORGM = {
         -- ComponentSpawnModifier: Multiplier for controlling the spawn rate of weapon upgrades
         -- and parts. Note this only effects upgrades not attached to guns.
         ComponentSpawnModifier = 1.0,
+        
+        -- CorpseSpawnModifier: Multiplier for controlling the spawn rate on corpses
+        CorpseSpawnModifier = 1.0,
+
+        -- CivilianBuildingSpawnModifier: Multiplier for controlling the spawn rate in civilian buildings
+        CivilianBuildingSpawnModifier = 1.0,
+
+        -- PoliceStorageSpawnModifier: Multiplier for controlling the spawn rate in police storage rooms
+        PoliceStorageSpawnModifier = 1.0,
+
+        -- GunStoreSpawnModifier: Multiplier for controlling the spawn rate in the gun store
+        GunStoreSpawnModifier = 1.0,
+        
+        -- StorageUnitSpawnModifier: Multiplier for controlling the spawn rate in storage units
+        StorageUnitSpawnModifier = 1.0,
+        
+        -- GarageSpawnModifier: Multiplier for controlling the spawn rate in garages
+        GarageSpawnModifier = 1.0,
+        
+        -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
+        HuntingSpawnModifier = 1.0,
         
         ----------------------------------
         -- Compatibility Patch Toggles

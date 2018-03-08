@@ -75,6 +75,28 @@ Settings.RepairKitSpawnModifier = 1.0
 -- and parts. Note this only effects upgrades not attached to guns.
 Settings.ComponentSpawnModifier = 1.0
 
+-- CorpseSpawnModifier: Multiplier for controlling the spawn rate on corpses
+Settings.CorpseSpawnModifier = 1.0
+
+-- CivilianBuildingSpawnModifier: Multiplier for controlling the spawn rate in civilian buildings
+Settings.CivilianBuildingSpawnModifier = 1.0
+
+-- PoliceStorageSpawnModifier: Multiplier for controlling the spawn rate in police storage rooms
+Settings.PoliceStorageSpawnModifier = 1.0
+
+-- GunStoreSpawnModifier: Multiplier for controlling the spawn rate in the gun store
+Settings.GunStoreSpawnModifier = 1.0
+
+-- StorageUnitSpawnModifier: Multiplier for controlling the spawn rate in storage units
+Settings.StorageUnitSpawnModifier = 1.0
+
+-- GarageSpawnModifier: Multiplier for controlling the spawn rate in garages
+Settings.GarageSpawnModifier = 1.0
+
+-- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
+Settings.HuntingSpawnModifier = 1.0
+
+
 ----------------------------------
 -- Compatibility Patch Toggles
 -- These determine if the built in compatibility patches should be used. These are only valid

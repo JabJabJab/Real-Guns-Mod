@@ -6,7 +6,7 @@
 
 
 local Server = ORGM.Server
-
+local Settings = ORGM.Settings
 --[[ AllRoundsTable
 
     A list of all rounds to use when spawning random ammo
@@ -55,7 +55,9 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
     -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
     ORGM.log(ORGM.DEBUG, "Server.spawnReloadable called for " .. itemType .. " with " .. spawnChance .. "% chance.")
     
-    if Rnd(100) > math.ceil(spawnChance) then return false end
+    --if Rnd(100) > math.ceil(spawnChance) then return false end
+    
+    if ZombRandFloat(0,100) > spawnChance then return false end
     local count = Rnd(maxCount)
     
     local itemOrgmData = nil
@@ -93,7 +95,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
         end
         
         if isLoaded then
-            if Rnd(100) >= 30*ORGM.Settings.AmmoSpawnModifier then fill = Rnd(maxammo) end 
+            if Rnd(100) >= 30*Settings.AmmoSpawnModifier then fill = Rnd(maxammo) end 
         end
         
         if fill > 0 then
@@ -133,7 +135,7 @@ end
     
 ]]
 Server.spawnFirearm = function(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.FirearmSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.FirearmSpawnModifier
     Server.spawnReloadable(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
 end
 
@@ -153,7 +155,7 @@ end
     
 ]]
 Server.spawnMagazine = function(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.MagazineSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
     local weaponData = ORGM.FirearmTable[gunType]
     local magType = weaponData.ammoType
     if ORGM.MagazineTable[magType] ~= nil then -- gun uses mags
@@ -182,7 +184,8 @@ end
 ]]
 Server.spawnItem = function(container, itemType, spawnChance, maxCount)
     ORGM.log(ORGM.DEBUG, "Server.spawnItem called for " .. itemType .. " with " .. spawnChance .. "% chance.")
-    if Rnd(100) > math.ceil(spawnChance) then return end
+    --if Rnd(100) > math.ceil(spawnChance) then return end
+    if ZombRandFloat(0,100) > spawnChance then return false end
     local count = Rnd(maxCount)
     for i=1, count do
         if not ItemPicker.tryAddItemToContainer(container, itemType) then return end
@@ -191,17 +194,17 @@ end
 
 
 Server.spawnAmmo = function(container, ammoType, spawnChance, maxCount)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.AmmoSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
     Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType, spawnChance, maxCount)
 end
 
 Server.spawnAmmoBox = function(container, ammoType, spawnChance, maxCount)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.AmmoSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
     Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType .. '_Box', spawnChance, maxCount)
 end
 
 Server.spawnAmmoCan = function(container, ammoType, spawnChance, maxCount)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.AmmoSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
     Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType .. '_Can', spawnChance, maxCount)
 end
 
@@ -236,13 +239,13 @@ Server.spawnRandomCan = function(container, spawnChance, maxCount)
 end
 
 Server.spawnRepairKit = function(container, spawnChance, maxCount)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.RepairKitSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.RepairKitSpawnModifier
     local choice = AllRepairKitsTable[Rnd(#AllRepairKitsTable)]
     Server.spawnItem(container, ORGM.RepairKitTable[choice].moduleName .. '.' .. choice, spawnChance, maxCount)
 end
 
 Server.spawnFirearmPart = function(container, spawnChance, maxCount)
-    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * ORGM.Settings.ComponentSpawnModifier
+    spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.ComponentSpawnModifier
     local choice = AllComponentsTable[Rnd(#AllComponentsTable)]
     Server.spawnItem(container, ORGM.ComponentTable[choice].moduleName .. '.' .. choice, spawnChance, maxCount)
 end
@@ -261,9 +264,9 @@ end
 Server.selectFirearm = function(civilian, police, military)
     -----------------------
     -- select the table
-    civilian = civilian * ORGM.Settings.CivilianFirearmSpawnModifier
-    police = police * ORGM.Settings.PoliceFirearmSpawnModifier
-    military = military * ORGM.Settings.MilitaryFirearmSpawnModifier
+    civilian = civilian * Settings.CivilianFirearmSpawnModifier
+    police = police * Settings.PoliceFirearmSpawnModifier
+    military = military * Settings.MilitaryFirearmSpawnModifier
     local roll = Rnd(civilian + police + military)
     local gunTbl = nil
     if roll <= civilian then -- civ
@@ -324,10 +327,10 @@ end
 ]]
 Server.addToCorpse = function(container)
     local choice = Server.selectFirearm(80, 14, 6)
-    Server.spawnFirearm(container, choice.gun, choice.ammo, 3, 1, true) -- has gun
-    Server.spawnMagazine(container, choice.gun, choice.ammo, 1, 3, true) -- has mags
-    Server.spawnAmmo(container, choice.ammo, 3, 15) -- loose shells
-    Server.spawnAmmoBox(container, choice.ammo, 1, 1) -- has box
+    Server.spawnFirearm(container, choice.gun, choice.ammo, 3*Settings.CorpseSpawnModifier, 1, true) -- has gun
+    Server.spawnMagazine(container, choice.gun, choice.ammo, 1*Settings.CorpseSpawnModifier, 3, true) -- has mags
+    Server.spawnAmmo(container, choice.ammo, 3*Settings.CorpseSpawnModifier, 15) -- loose shells
+    Server.spawnAmmoBox(container, choice.ammo, 1*Settings.CorpseSpawnModifier, 1) -- has box
 end
 
 
@@ -342,12 +345,12 @@ end
 ]]
 Server.addToCivRoom = function(container)
     local choice = Server.selectFirearm(80, 14, 6)
-    Server.spawnFirearm(container, choice.gun, choice.ammo, 3, 1, true) -- has gun
-    Server.spawnMagazine(container, choice.gun, choice.ammo, 1, 1, true) -- has mags
-    Server.spawnAmmo(container, choice.ammo, 2, 29) -- loose shells
-    Server.spawnAmmoBox(container, choice.ammo, 1, 1) -- has box
-    Server.spawnFirearmPart(container, 1, 1) -- has a mod
-    Server.spawnRepairKit(container, 1, 1) -- has repair stuff
+    Server.spawnFirearm(container, choice.gun, choice.ammo, 3*Settings.CivilianBuildingSpawnModifier, 1, true) -- has gun
+    Server.spawnMagazine(container, choice.gun, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1, true) -- has mags
+    Server.spawnAmmo(container, choice.ammo, 2*Settings.CivilianBuildingSpawnModifier, 29) -- loose shells
+    Server.spawnAmmoBox(container, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has box
+    Server.spawnFirearmPart(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has a mod
+    Server.spawnRepairKit(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has repair stuff
 end
 
 
@@ -391,132 +394,138 @@ Server.onFillContainer = function(roomName, containerType, container)
     elseif roomName == "bar" and containerType == "counter" then
         addToCivRoom(container)
     elseif roomName == "policestorage" then
+        local mod = Settings.PoliceStorageSpawnModifier
         local count = Rnd(3)
         while count ~= 0 do
-            local choice = Server.selectFirearm(0, 70, 30)
-            spawnFirearm(container, choice.gun, choice.ammo, 60, 1, false)
-            spawnMagazine(container, choice.gun, choice.ammo, 80, 2, false)
+            local choice = Server.selectFirearm(0, 70*mod, 30)
+            spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            spawnMagazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
-            spawnAmmoBox(container, choice.ammo, 80, 4)
-            spawnAmmoCan(container, choice.ammo, 20, 1)
-            spawnFirearmPart(container, 30, 2)
-            spawnRepairKit(container, 40, 2)
+            spawnAmmoBox(container, choice.ammo, 80*mod, 4)
+            spawnAmmoCan(container, choice.ammo, 20*mod, 1)
+            spawnFirearmPart(container, 30*mod, 2)
+            spawnRepairKit(container, 40*mod, 2)
             if Rnd(10) > 4 then count = count -1 end
         end
     elseif roomName == "gunstore" then
+        local mod = Settings.GunStoreSpawnModifier
         if containerType == "locker" then
-            spawnRandomBox(container, 70, 1)
-            spawnRandomBox(container, 60, 1)
-            spawnRandomBox(container, 50, 1)
-            spawnRandomBox(container, 40, 1)
-            spawnRandomBox(container, 30, 1)
-            spawnRandomCan(container, 10, 1)
-            spawnRandomCan(container, 5, 1)
-            spawnRepairKit(container, 20, 2)
+            spawnRandomBox(container, 70*mod, 1)
+            spawnRandomBox(container, 60*mod, 1)
+            spawnRandomBox(container, 50*mod, 1)
+            spawnRandomBox(container, 40*mod, 1)
+            spawnRandomBox(container, 30*mod, 1)
+            spawnRandomCan(container, 10*mod, 1)
+            spawnRandomCan(container, 5*mod, 1)
+            spawnRepairKit(container, 20*mod, 2)
             
         elseif containerType == "counter" then
-            spawnRandomBox(container, 70, 1)
-            spawnRandomBox(container, 60, 1)
-            spawnRandomBox(container, 50, 1)
-            spawnRandomBox(container, 40, 1)
-            spawnRandomBox(container, 30, 1)
-            spawnRandomCan(container, 10, 1)
-            spawnRandomCan(container, 5, 1)
-            spawnRepairKit(container, 20, 2)
+            spawnRandomBox(container, 70*mod, 1)
+            spawnRandomBox(container, 60*mod, 1)
+            spawnRandomBox(container, 50*mod, 1)
+            spawnRandomBox(container, 40*mod, 1)
+            spawnRandomBox(container, 30*mod, 1)
+            spawnRandomCan(container, 10*mod, 1)
+            spawnRandomCan(container, 5*mod, 1)
+            spawnRepairKit(container, 20*mod, 2)
             
         elseif containerType == "displaycase" or containerType == "metal_shelves" then
             local choice = Server.selectFirearm(85, 10, 5)
-            spawnFirearm(container, choice.gun, choice.ammo, 60, 1, false)
-            spawnMagazine(container, choice.gun, choice.ammo, 40, 2, false)
+            spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            spawnMagazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
             choice = Server.selectFirearm(85, 10, 5)
-            spawnFirearm(container, choice.gun, choice.ammo, 40, 1, false)
-            spawnMagazine(container, choice.gun, choice.ammo, 30, 2, false)
-            spawnFirearmPart(container, 40, 2)
-            spawnRepairKit(container, 30, 2)
+            spawnFirearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
+            spawnMagazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+            spawnFirearmPart(container, 40*mod, 2)
+            spawnRepairKit(container, 30*mod, 2)
         end
     elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
+        local mod = Settings.GunStoreSpawnModifier
         local choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 60, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 40, 2, false)
+        spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
         choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 40, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 30, 2, false)
-        spawnFirearmPart(container, 40, 2)
-        spawnRepairKit(container, 30, 2)
+        spawnFirearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+        spawnFirearmPart(container, 40*mod, 2)
+        spawnRepairKit(container, 30*mod, 2)
 
-        spawnRandomBox(container, 70, 1)
-        spawnRandomBox(container, 60, 1)
-        spawnRandomBox(container, 50, 1)
-        spawnRandomBox(container, 40, 1)
-        spawnRandomBox(container, 30, 1)
-        spawnRandomCan(container, 10, 1)
-        spawnRandomCan(container, 5, 1)
-        spawnRepairKit(container, 20, 2)
+        spawnRandomBox(container, 70*mod, 1)
+        spawnRandomBox(container, 60*mod, 1)
+        spawnRandomBox(container, 50*mod, 1)
+        spawnRandomBox(container, 40*mod, 1)
+        spawnRandomBox(container, 30*mod, 1)
+        spawnRandomCan(container, 10*mod, 1)
+        spawnRandomCan(container, 5*mod, 1)
+        spawnRepairKit(container, 20*mod, 2)
     
     elseif roomName == "storageunit" and containerType == "crate" then
+        local mod = Settings.StorageUnitSpawnModifier
         local choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 10, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 5, 3, false)
+        spawnFirearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
         choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 10, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 5, 3, false)
-        spawnFirearmPart(container, 5, 2)
-        spawnFirearmPart(container, 2, 2)
-        spawnRepairKit(container, 10, 2)
+        spawnFirearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        spawnFirearmPart(container, 5*mod, 2)
+        spawnFirearmPart(container, 2*mod, 2)
+        spawnRepairKit(container, 10*mod, 2)
 
         if Rnd(100) <= 3 then
-            spawnRandomBox(container, 70, 1)
-            spawnRandomBox(container, 60, 1)
-            spawnRandomBox(container, 50, 1)
-            spawnRandomBox(container, 40, 1)
-            spawnRandomBox(container, 30, 1)
-            spawnRandomCan(container, 10, 1)
-            spawnRandomCan(container, 5, 1)
-            spawnRepairKit(container, 20, 2)
+            spawnRandomBox(container, 70*mod, 1)
+            spawnRandomBox(container, 60*mod, 1)
+            spawnRandomBox(container, 50*mod, 1)
+            spawnRandomBox(container, 40*mod, 1)
+            spawnRandomBox(container, 30*mod, 1)
+            spawnRandomCan(container, 10*mod, 1)
+            spawnRandomCan(container, 5*mod, 1)
+            spawnRepairKit(container, 20*mod, 2)
         end
 
     elseif roomName == "garagestorage" and containerType == "smallbox" then
+        local mod = Settings.GarageSpawnModifier
         local choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 10, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 5, 3, false)
+        spawnFirearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
         choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 10, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 5, 3, false)
-        spawnFirearmPart(container, 5, 2)
-        spawnFirearmPart(container, 2, 2)
-        spawnRepairKit(container, 10, 2)
+        spawnFirearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        spawnFirearmPart(container, 5*mod, 2)
+        spawnFirearmPart(container, 2*mod, 2)
+        spawnRepairKit(container, 10*mod, 2)
 
         if Rnd(100) <= 3 then
-            spawnRandomBox(container, 70, 1)
-            spawnRandomBox(container, 60, 1)
-            spawnRandomBox(container, 50, 1)
-            spawnRandomBox(container, 40, 1)
-            spawnRandomBox(container, 30, 1)
-            spawnRandomCan(container, 10, 1)
-            spawnRandomCan(container, 5, 1)
-            spawnRepairKit(container, 20, 2)
+            spawnRandomBox(container, 70*mod, 1)
+            spawnRandomBox(container, 60*mod, 1)
+            spawnRandomBox(container, 50*mod, 1)
+            spawnRandomBox(container, 40*mod, 1)
+            spawnRandomBox(container, 30*mod, 1)
+            spawnRandomCan(container, 10*mod, 1)
+            spawnRandomCan(container, 5*mod, 1)
+            spawnRepairKit(container, 20*mod, 2)
         end
 
     elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
+        local mod = Settings.HuntingSpawnModifier
         local choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 30, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 10, 3, false)
+        spawnFirearm(container, choice.gun, choice.ammo, 30*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 10*mod, 3, false)
         
         choice = Server.selectFirearm(85, 10, 5)
-        spawnFirearm(container, choice.gun, choice.ammo, 20, 1, false)
-        spawnMagazine(container, choice.gun, choice.ammo, 8, 3, false)
-        spawnFirearmPart(container, 15, 2)
-        spawnFirearmPart(container, 2, 1)
-        spawnRepairKit(container, 20, 2)
+        spawnFirearm(container, choice.gun, choice.ammo, 20*mod, 1, false)
+        spawnMagazine(container, choice.gun, choice.ammo, 8*mod, 3, false)
+        spawnFirearmPart(container, 15*mod, 2)
+        spawnFirearmPart(container, 2*mod, 1)
+        spawnRepairKit(container, 20*mod, 2)
 
-        spawnRandomBox(container, 70, 1)
-        spawnRandomBox(container, 60, 1)
-        spawnRandomBox(container, 50, 1)
-        spawnRandomBox(container, 40, 1)
-        spawnRandomBox(container, 30, 1)
-        spawnRandomCan(container, 10, 1)
-        spawnRandomCan(container, 5, 1)
-        spawnRepairKit(container, 20, 2)
+        spawnRandomBox(container, 70*mod, 1)
+        spawnRandomBox(container, 60*mod, 1)
+        spawnRandomBox(container, 50*mod, 1)
+        spawnRandomBox(container, 40*mod, 1)
+        spawnRandomBox(container, 30*mod, 1)
+        spawnRandomCan(container, 10*mod, 1)
+        spawnRandomCan(container, 5*mod, 1)
+        spawnRepairKit(container, 20*mod, 2)
 
     end
 end
