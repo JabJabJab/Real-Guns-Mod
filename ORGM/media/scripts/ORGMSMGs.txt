@@ -58,6 +58,7 @@ module ORGM
         ClipSize = 177,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -172,6 +173,7 @@ module ORGM
         ClipSize = 50,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -286,6 +288,7 @@ module ORGM
         ClipSize = 30,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -344,6 +347,7 @@ module ORGM
         ClipSize = 25,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -402,6 +406,7 @@ module ORGM
         ClipSize = 13,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -460,6 +465,7 @@ module ORGM
         ClipSize = 13,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -520,6 +526,7 @@ module ORGM
         ClipSize = 30,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
@@ -578,6 +585,7 @@ module ORGM
         ClipSize = 30,
         ReloadTime = 10,
         AimingTime = 20,
+        TwoHandWeapon = TRUE,
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
