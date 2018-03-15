@@ -186,6 +186,7 @@ end
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
         actionType = ORGM.AUTO | ORGM.BOLT | ORGM.LEVER | ORGM.PUMP | ORGM.BREAK | ORGM.ROTARY
         triggerType = ORGM.SINGLEACTION | ORGM.DOUBLEACTION | ORGM.DOUBLEACTIONONLY
+        category = ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN
         lastChanged = nil| integer > 0 <= ORGM.BUILD_ID, the ORGM version this firearm was 
             last changed in (see shared\1LoadOrder\ORGMCore.lua)
         rackTime = nil | integer > 0, if nil then ORGM.Settings.DefaultRackTime is used
@@ -259,6 +260,11 @@ ORGM.registerFirearm = function(name, definition)
             ORGM.log(ORGM.ERROR, "Invalid lastChanged for " .. fullName .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
             return
         end
+    end
+    if definition.category == nil then
+        ORGM.log(ORGM.WARN, "category for " .. fullName .. " is set to nil")
+    elseif definition.category ~= ORGM.REVOLVER and definition.category ~= ORGM.PISTOL and definition.category ~= ORGM.SUBMACHINEGUN and definition.category ~= ORGM.RIFLE and definition.category ~= ORGM.SHOTGUN then
+        ORGM.log(ORGM.WARN, "category for " .. fullName .. " is set to "..definition.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
     end
     if definition.ammoType == nil then
         ORGM.log(ORGM.ERROR, "Missing AmmoType for " .. fullName .. " (scripts/*.txt)")
