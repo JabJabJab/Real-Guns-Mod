@@ -10,3 +10,8 @@ Events.OnFillContainer.Add(ORGM.Server.onFillContainer)
 
 -- function in server/ORGMServerCompatibilityPatches.lua
 Events.OnDistributionMerge.Add(ORGM.Server.loadCompatibilityPatches)
+
+-- remove PZ's default itemBindingHandler
+Events.OnKeyPressed.Remove(ItemBindingHandler.onKeyPressed)
+-- function in server/1LoadOrder/ORGMServerFunctions.lua
+Events.OnKeyPressed.Add(ORGM.itemBindingHandler)
