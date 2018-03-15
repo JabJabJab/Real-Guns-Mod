@@ -11,6 +11,29 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 
+---------------------------------------------------------------------------------------
+version 3.03
+* Fixed bug where firearm update function was triggered every ORGM new version, instead of new versions
+    where that firearm had been modified.
+
+* Fixed multiplayer bug where tactical lights couldn't be properly shut off.
+
+* Fixed bug where pressing the "Equip/Turn On/Off Light Source" hotkey would try and equip a light
+    source in the secondary hand (if the player had one) instead of activating a equipped tactical 
+    light.
+    
+* Changed "Equip/Unequip Firearm" hotkey behavior. Instead of always equipping the gun with best 
+    damage regardless of if the player actually had ammo for it, the hotkey now checks a number of 
+    conditions: is it loaded, does the player have extra ammo, then by best damage.
+    
+* Added 3 new hotkeys: "Equip/Unequip Pistol", "Equip/Unequip Rifle", and "Equip/Unequip Shotgun".
+    These default to the keys 4, 5, and 6 respectively, and can be edited by going to the PZ options
+    screen, selecting the Key Bindings tab, and are under the Hotkeys section.
+
+* Added validation checks for new spawn settings introduced in v3.02
+
+* Added new constants to ORGMData_Weapons.lua and the 'category' key to simply detecting weapon type:
+    ORGM.REVOLVER, ORGM.PISTOL, ORGM.SUBMACHINEGUN, ORGM.RIFLE, ORGM.SHOTGUN
 
 ---------------------------------------------------------------------------------------
 version 3.02
