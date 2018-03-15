@@ -101,6 +101,35 @@ ORGM.validateSettings = function()
         ORGM.log(ORGM.ERROR, "Settings.ComponentSpawnModifier is invalid (value " .. tostring(Settings.ComponentSpawnModifier) .. " should be float >= 0), setting to 1.0")
         Settings.ComponentSpawnModifier = 1.0
     end
+    if type(Settings.CorpseSpawnModifier) ~= "number" or Settings.CorpseSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.CorpseSpawnModifier is invalid (value " .. tostring(Settings.CorpseSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.CorpseSpawnModifier = 1.0
+    end
+    if type(Settings.CivilianBuildingSpawnModifier) ~= "number" or Settings.CivilianBuildingSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.CivilianBuildingSpawnModifier is invalid (value " .. tostring(Settings.CivilianBuildingSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.CivilianBuildingSpawnModifier = 1.0
+    end
+    if type(Settings.PoliceStorageSpawnModifier) ~= "number" or Settings.PoliceStorageSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.PoliceStorageSpawnModifier is invalid (value " .. tostring(Settings.PoliceStorageSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.PoliceStorageSpawnModifier = 1.0
+    end
+    if type(Settings.GunStoreSpawnModifier) ~= "number" or Settings.GunStoreSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.GunStoreSpawnModifier is invalid (value " .. tostring(Settings.GunStoreSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.GunStoreSpawnModifier = 1.0
+    end
+    if type(Settings.StorageUnitSpawnModifier) ~= "number" or Settings.StorageUnitSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.StorageUnitSpawnModifier is invalid (value " .. tostring(Settings.StorageUnitSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.StorageUnitSpawnModifier = 1.0
+    end
+    if type(Settings.GarageSpawnModifier) ~= "number" or Settings.GarageSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.GarageSpawnModifier is invalid (value " .. tostring(Settings.GarageSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.GarageSpawnModifier = 1.0
+    end
+    if type(Settings.HuntingSpawnModifier) ~= "number" or Settings.HuntingSpawnModifier < 0 then 
+        ORGM.log(ORGM.ERROR, "Settings.HuntingSpawnModifier is invalid (value " .. tostring(Settings.HuntingSpawnModifier) .. " should be float >= 0), setting to 1.0")
+        Settings.HuntingSpawnModifier = 1.0
+    end
+
     
     if type(Settings.UseSilencersPatch) ~= "boolean" then
         ORGM.log(ORGM.ERROR, "Settings.UseSilencersPatch is invalid (value " .. tostring(Settings.UseSilencersPatch) .. " should be boolen true|false), setting to true")
