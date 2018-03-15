@@ -58,6 +58,7 @@ end
 ]]
 ORGM.Client.checkFirearmBuildID = function(player, item)
     if item == nil or player == nil then return end
+
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
     if ORGM.checkFirearmBuildID(item) then
         player:Say("Resetting this weapon to defaults due to ORGM changes. Ammo returned to inventory.")
