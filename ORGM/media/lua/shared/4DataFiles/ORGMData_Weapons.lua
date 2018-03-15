@@ -46,6 +46,7 @@ local register = ORGM.registerFirearm
 
 register("ColtAnac", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -61,6 +62,7 @@ register("ColtAnac", {
 })
 register("ColtPyth", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -77,6 +79,7 @@ register("ColtPyth", {
 })
 register("ColtSAA", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -92,6 +95,7 @@ register("ColtSAA", {
 })
 register("RugAlas", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -106,6 +110,7 @@ register("RugAlas", {
 })
 register("RugBH", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -120,6 +125,7 @@ register("RugBH", {
 })
 register("RugGP100", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -134,6 +140,7 @@ register("RugGP100", {
 })
 register("RugRH", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -148,6 +155,7 @@ register("RugRH", {
 })
 register("RugSec6", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -163,6 +171,7 @@ register("RugSec6", {
 })
 register("SWM10", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -177,6 +186,7 @@ register("SWM10", {
 })
 register("SWM19", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -192,6 +202,7 @@ register("SWM19", {
 })
 register("SWM252", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -206,6 +217,7 @@ register("SWM252", {
 })
 register("SWM29", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -222,6 +234,7 @@ register("SWM29", {
 })
 register("SWM36", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -237,6 +250,7 @@ register("SWM36", {
 })
 register("SWM610", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -252,6 +266,7 @@ register("SWM610", {
 })
 register("Taurus454", {
     lastChanged = 16,
+    category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -271,6 +286,7 @@ register("Taurus454", {
     --************************************************************************--
 register("AutomagV", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -284,6 +300,7 @@ register("AutomagV", {
 })
 register("BBPistol", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -297,6 +314,7 @@ register("BBPistol", {
 })
 register("Ber92", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
     isCivilian = ORGM.COMMON, 
@@ -314,6 +332,7 @@ register("Ber92", {
 })
 register("BrenTen", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -328,6 +347,7 @@ register("BrenTen", {
 })
 register("BrownHP", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -342,6 +362,7 @@ register("BrownHP", {
 })
 register("Colt38S", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -357,6 +378,7 @@ register("Colt38S", {
 })
 register("ColtDelta", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -372,6 +394,7 @@ register("ColtDelta", {
 })
 register("CZ75", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -388,6 +411,7 @@ register("CZ75", {
 })
 register("DEagle", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -402,6 +426,7 @@ register("DEagle", {
 })
 register("DEagleXIX", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -416,6 +441,7 @@ register("DEagleXIX", {
 })
 register("FN57", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- depending on model, this can be SA (FN57 Tactical)
     isCivilian = ORGM.RARE,
@@ -432,6 +458,7 @@ register("FN57", {
 })
 register("Glock17", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- this is technically not quite true, but as close as its going to get
     isCivilian = ORGM.COMMON,
@@ -446,6 +473,7 @@ register("Glock17", {
 })
 register("Glock20", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -460,6 +488,7 @@ register("Glock20", {
 })
 register("Glock21", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -474,6 +503,7 @@ register("Glock21", {
 })
 register("Glock22", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -488,6 +518,7 @@ register("Glock22", {
 })
 register("HKMK23", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -501,6 +532,7 @@ register("HKMK23", {
 })
 register("KahrCT40", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -515,6 +547,7 @@ register("KahrCT40", {
 })
 register("KahrP380", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -530,6 +563,7 @@ register("KahrP380", {
 })
 register("KTP32", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -544,6 +578,7 @@ register("KTP32", {
 })
 register("M1911", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON, 
@@ -559,6 +594,7 @@ register("M1911", {
 })
 register("RugerMKII", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -573,6 +609,7 @@ register("RugerMKII", {
 })
 register("RugerSR9", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- like the glock, this isnt really a DAO
     isCivilian = ORGM.COMMON,
@@ -587,6 +624,7 @@ register("RugerSR9", {
 })
 register("SIGP226", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON, 
@@ -602,6 +640,7 @@ register("SIGP226", {
 })
 register("Spr19119", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -616,6 +655,7 @@ register("Spr19119", {
 })
 register("Taurus38", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
@@ -630,6 +670,7 @@ register("Taurus38", {
 })
 register("TaurusP132", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -644,6 +685,7 @@ register("TaurusP132", {
 })
 register("WaltherP22", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -658,6 +700,7 @@ register("WaltherP22", {
 })
 register("WaltherPPK", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
@@ -673,6 +716,7 @@ register("WaltherPPK", {
 })
 register("XD40", {
     lastChanged = 16,
+    category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- striker trigger mechanism, DAO is close enough
     isCivilian = ORGM.COMMON,
@@ -689,7 +733,8 @@ register("XD40", {
     --************************************************************************--
 
 register("AM180", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
     isCivilian = ORGM.VERYRARE,
@@ -705,7 +750,8 @@ register("AM180", {
         "The American-180 was purchased mostly by private parties prior to the American ban on production of machine guns for the US civilian market. The A180 was adopted by the Utah Department of Corrections to arm correctional officers.",
 })
 register("Ber93R", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.VERYRARE,
@@ -720,7 +766,8 @@ register("Ber93R", {
         "The Beretta 93R was designed to be used by the Italian counter-terrorism forces of Nucleo Operativo Centrale di Sicurezza and Gruppo di Intervento Speciale but was also adopted by other police and military forces who required a concealable weapon with rapid fire capabilities. The pistol is a development of the Beretta 92 design."
 })
 register("FNP90", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE, 
@@ -736,7 +783,8 @@ register("FNP90", {
         "Designed in conjunction with the FN Five-seven pistol and FN 5.7×28mm ammunition, development of the weapon began in 1986, and production commenced in 1990 (from which the '90' in its name is derived), whereupon the 5.7×28mm ammunition was redesigned and shortened. A modified version of the P90 with a magazine adapted to use the new ammunition was introduced in 1993",
 })
 register("Glock18", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -751,7 +799,8 @@ register("Glock18", {
         "The Glock 18 is a selective-fire variant of the Glock 17, developed at the request of the Austrian counter-terrorist unit EKO Cobra, and as a way to internally test Glock components under high strain conditions. Originally produced in 1986, this machine pistol–class firearm has a lever-type fire-control selector switch, installed on the serrated portion of the rear left side of the slide. With the selector lever in the bottom position, the pistol fires fully automatically, and with the selector lever in the top position, the pistol fires semiautomatically.",
 })
 register("HKMP5", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE, 
@@ -767,7 +816,8 @@ register("HKMP5", {
         "The MP5 is one of the most widely used submachine guns in the world, having been adopted by 40 nations and numerous military, law enforcement, intelligence, and security organizations. It is widely used by SWAT teams in North America.",
 })
 register("HKUMP", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE, 
@@ -783,7 +833,8 @@ register("HKUMP", {
         "As originally designed, the UMP is chambered for larger cartridges (.45 ACP and .40 S&W) than other submachine guns like the MP5, to provide more stopping power against unarmored targets (with slightly lower effectiveness at longer range) than the MP5.",
 })
 register("Kriss", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -797,7 +848,8 @@ register("Kriss", {
         "The Vector CRB (carbine) is a semi-automatic carbine with a permanently affixed extension to the standard 5.5-inch barrel, extending it to 16-inch (410 mm), intended for states with short-barrel rifle bans.",
 })
 register("KrissA", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -812,7 +864,8 @@ register("KrissA", {
         "The name Kriss comes from a Southeast Asian dagger with a flame-shaped blade.",
 })
 register("KTPLR", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -826,7 +879,8 @@ register("KTPLR", {
         "The PLR (Pistol, Long Range) was designed for recreational target shooting, and small game, varmint, or predator hunting. Due to the PLR's 9.25 in (235mm) barrel, the 5.56×45mm bullet's velocity is slightly reduced compared to its velocity from a traditionally 20in (510mm) barrel.",
 })
 register("M1A1", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -840,7 +894,8 @@ register("M1A1", {
         "The Thompson was favored by soldiers, criminals, police, and civilians alike for its large .45 ACP cartridge, accuracy, and high volume of fully automatic fire. It has since gained popularity among civilian collectors for its historical significance.",
 })
 register("Mac10", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -854,7 +909,8 @@ register("Mac10", {
         "Noting the weapon's poor accuracy, in the 1970s International Association of Police Chiefs weapons researcher David Steele described the MAC series as 'fit only for combat in a phone booth'.",
 })
 register("Mac11", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -868,7 +924,8 @@ register("Mac11", {
         "Noting the weapon's poor accuracy, in the 1970s International Association of Police Chiefs weapons researcher David Steele described the MAC series as 'fit only for combat in a phone booth'.",
 })
 register("Skorpion", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -884,7 +941,8 @@ register("Skorpion", {
         "It was also used by armed groups, including the Irish Republican Army, Irish National Liberation Army and the Italian Red Brigades. The latter used the Skorpion in the 1978 kidnapping of Aldo Moro and was used to kill Moro. In the 1990s the Gang de Roubaix used the Skorpion in a series of attacks in France.",
 })
 register("Uzi", {
-    lastChanged = 16,
+    lastChanged = 18,
+    category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -903,6 +961,7 @@ register("Uzi", {
     --************************************************************************--
 register("AIAW308", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE, 
@@ -919,6 +978,7 @@ register("AIAW308", {
 })
 register("AKM", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -935,6 +995,7 @@ register("AKM", {
 })
 register("AKMA", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -950,6 +1011,7 @@ register("AKMA", {
 })
 register("AR10", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE,
@@ -965,6 +1027,7 @@ register("AR10", {
 })
 register("AR15", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -979,6 +1042,7 @@ register("AR15", {
 })
 register("BBGun", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -998,6 +1062,7 @@ register("BBGun", {
 })
 register("BLR", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -1012,6 +1077,7 @@ register("BLR", {
 })
 register("FNFAL", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1026,6 +1092,7 @@ register("FNFAL", {
 })
 register("FNFALA", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -1041,6 +1108,7 @@ register("FNFALA", {
 })
 register("Garand", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1055,6 +1123,7 @@ register("Garand", {
 })
 register("HenryBB", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -1069,6 +1138,7 @@ register("HenryBB", {
 })
 register("HK91", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1084,6 +1154,7 @@ register("HK91", {
 })
 register("HKG3", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -1099,6 +1170,7 @@ register("HKG3", {
 })
 register("HKSL8", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1114,6 +1186,7 @@ register("HKSL8", {
 })
 register("L96", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -1128,6 +1201,7 @@ register("L96", {
 })
 register("LENo4", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -1145,6 +1219,7 @@ register("LENo4", {
 })
 register("M16", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE, 
@@ -1162,6 +1237,7 @@ register("M16", {
 })
 register("M1903", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -1177,6 +1253,7 @@ register("M1903", {
 })
 register("M21", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE, 
@@ -1193,6 +1270,7 @@ register("M21", {
 })
 register("M249", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
@@ -1210,6 +1288,7 @@ register("M249", {
 })
 register("M4C", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice= ORGM.RARE, 
@@ -1226,6 +1305,7 @@ register("M4C", {
 })
 register("Marlin60", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1242,6 +1322,7 @@ register("Marlin60", {
 })
 register("Mini14", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON, 
@@ -1258,6 +1339,7 @@ register("Mini14", {
 })
 register("Mosin", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -1272,6 +1354,7 @@ register("Mosin", {
 })
 register("R25", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1285,6 +1368,7 @@ register("R25", {
 })
 register("Rem700", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON, 
@@ -1300,6 +1384,7 @@ register("Rem700", {
 })
 register("Rem788", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
@@ -1313,6 +1398,7 @@ register("Rem788", {
 })
 register("Rug1022", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1326,6 +1412,7 @@ register("Rug1022", {
 })
 register("SA80", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
@@ -1342,6 +1429,7 @@ register("SA80", {
 })
 register("SIG550", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -1357,6 +1445,7 @@ register("SIG550", {
 })
 register("SIG551", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -1372,6 +1461,7 @@ register("SIG551", {
 })
 register("SKS", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1387,6 +1477,7 @@ register("SKS", {
 })
 register("SR25", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.COMMON,
@@ -1402,6 +1493,7 @@ register("SR25", {
 })
 register("SVD", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1416,6 +1508,7 @@ register("SVD", {
 })
 register("WinM70", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE, 
@@ -1432,6 +1525,7 @@ register("WinM70", {
 })
 register("WinM94", {
     lastChanged = 16,
+    category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1450,6 +1544,7 @@ register("WinM94", {
 
 register("BenelliM3", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
@@ -1465,6 +1560,7 @@ register("BenelliM3", {
 })
 register("BenelliM3SO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
@@ -1478,6 +1574,7 @@ register("BenelliM3SO", {
 })
 register("BenelliXM1014", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.COMMON,
@@ -1494,6 +1591,7 @@ register("BenelliXM1014", {
 })
 register("Hawk982", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1509,6 +1607,7 @@ register("Hawk982", {
 })
 register("Ithaca37", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1523,6 +1622,7 @@ register("Ithaca37", {
 })
 register("Ithaca37SO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1536,6 +1636,7 @@ register("Ithaca37SO", {
 })
 register("M1216", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1550,6 +1651,7 @@ register("M1216", {
 })
 register("Moss590", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1564,6 +1666,7 @@ register("Moss590", {
 })
 register("Moss590SO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1577,6 +1680,7 @@ register("Moss590SO", {
 })
 register("Rem870", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON, 
@@ -1592,6 +1696,7 @@ register("Rem870", {
 })
 register("Rem870SO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1605,6 +1710,7 @@ register("Rem870SO", {
 })
 register("Silverhawk", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -1620,6 +1726,7 @@ register("Silverhawk", {
 })
 register("SilverHawkSO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
@@ -1633,6 +1740,7 @@ register("SilverHawkSO", {
 })
 register("Spas12", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
@@ -1650,6 +1758,7 @@ register("Spas12", {
 })
 register("Stevens320", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
@@ -1664,6 +1773,7 @@ register("Stevens320", {
 })
 register("Striker", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE, 
@@ -1681,6 +1791,7 @@ register("Striker", {
 })
 register("VEPR12", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
@@ -1697,6 +1808,7 @@ register("VEPR12", {
 })
 register("Win1887", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
@@ -1711,6 +1823,7 @@ register("Win1887", {
 })
 register("Win1887SO", {
     lastChanged = 16,
+    category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     soundProfile = "Shotgun-Lever",
