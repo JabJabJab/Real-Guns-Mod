@@ -431,6 +431,8 @@ ORGM.setWeaponStats = function(weapon, roundData)
 end
 
 
+-- currently not used
+--[[
 ORGM.resetFirearmToDefaults = function(item, container)
     if item == nil then return end
     local data = item:getModData()
@@ -445,6 +447,7 @@ ORGM.resetFirearmToDefaults = function(item, container)
 
     ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
 end
+]]
 
 
 --[[  ORGM.checkFirearmBuildID(item)
@@ -460,7 +463,7 @@ ORGM.checkFirearmBuildID = function(item)
     local def = ORGM.FirearmTable[item:getType()]
     if not def then return nil end
     
-    if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < ORGM.BUILD_ID) then
+    if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
         ORGM.log(ORGM.INFO, "Obsolete firearm detected (" .. item:getType() .."). Running update function.")
         -- this gun has changed. reset it.
         return true 
@@ -547,7 +550,7 @@ ORGM.toggleTacticalLight = function(player)
     item:setLightStrength(strength)
     item:setLightDistance(distance)
     item:setActivated(not item:isActivated())
-
+    return true
 end
 
 -- TODO: finish this function.
