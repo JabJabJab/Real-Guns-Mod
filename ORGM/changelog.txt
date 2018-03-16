@@ -12,6 +12,12 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.04
+* Fixed bug with new hotkeys that equipped shotguns when the rifle key was pressed.
+
+* Added compatibility patch for nolan's new Super Survivors mod.
+
+---------------------------------------------------------------------------------------
 version 3.03
 * Fixed bug where firearm update function was triggered every ORGM new version, instead of new versions
     where that firearm had been modified.
