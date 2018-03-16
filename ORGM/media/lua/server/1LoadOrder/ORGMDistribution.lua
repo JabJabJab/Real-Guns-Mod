@@ -15,6 +15,35 @@ local Settings = ORGM.Settings
 local AllRoundsTable = { }
 local AllRepairKitsTable = { }
 local AllComponentsTable = { } 
+
+Server.ReplacementsTable = {
+    ["Base.Pistol"] = "ORGM.Beretta92",
+    ["Base.Shotgun"] = "ORGM.Rem870",
+    ["Base.Sawnoff"] = "ORGM.Rem870SO",
+    ["Base.VarmintRifle"] = "ORGM.Mini14",
+    ["Base.HuntingRifle"] = "ORGM.LENo4",
+    ["Base.Bullets9mm"] = "ORGM.Ammo_9x19mm_FMJ",
+    ["Base.ShotgunShells"] = "ORGM.Ammo_12g_00Buck",
+    ["Base.223Bullets"] = "ORGM.Ammo_223Remington_FMJ",
+    ["Base.308Bullets"] = "ORGM.Ammo_308Winchester_FMJ",
+    ["Base.BulletsBox"] = "ORGM.Ammo_9x19mm_FMJ_Box",
+    ["Base.ShotgunShellsBox"] = "ORGM.Ammo_12g_00Buck_Box",
+    ["Base.223Box"] = "ORGM.Ammo_223Remington_FMJ_Box",
+    ["Base.308Box"] = "ORGM.Ammo_308Winchester_FMJ_Box",
+    ["Base.HuntingRifleExtraClip"] = "ORGM.LENo4Mag",
+    ["Base.IronSight"] = "ORGM.FibSig",
+    ["Base.x2Scope"] = "ORGM.2xScope",
+    ["Base.x4Scope"] = "ORGM.4xScope",
+    ["Base.x8Scope"] = "ORGM.8xScope",
+    ["Base.AmmoStraps"] = "ORGM.Rifsling",
+    ["Base.Sling"] = "ORGM.Rifsling",
+    ["Base.FiberglassStock"] = "ORGM.CollapsingStock",
+    ["Base.RecoilPad"] = "ORGM.Recoil",
+    ["Base.Laser"] = "ORGM.PistolLas",
+    ["Base.RedDot"] = "ORGM.RDS",
+    ["Base.ChokeTubeFull"] = "ORGM.FullCh",
+    ["Base.ChokeTubeImproved"] = "ORGM.HalfCh",
+}
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
@@ -377,6 +406,20 @@ Server.onFillContainer = function(roomName, containerType, container)
     local spawnRandomCan = Server.spawnRandomCan
     local spawnFirearmPart = Server.spawnFirearmPart
     local spawnRepairKit = Server.spawnRepairKit
+    
+    -- find and remove any default base weapons, ie: stash handling
+    -- damnit...not didnt work for removing stashes...
+    --[[
+    if ORGM.Settings.RemoveBaseFirearms then 
+        for key, value in pairs(Server.ReplacementsTable) do
+            local count = container:FindAll(key):size()
+            if count > 0 then
+                container:RemoveAll(key)
+                container:AddItems(value, count)
+            end
+        end    
+    end
+    ]]
     
     -- room control
     if roomName == "all" and containerType == "inventorymale" then
