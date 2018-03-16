@@ -95,7 +95,7 @@ ORGM.equipBestFirearm = function(playerObj, subCategory)
             end
         elseif subCategory == "Shotgun" and category == ORGM.SHOTGUN then 
             table.insert(choices, item)
-        elseif subCategory == "Rifle" then -- anything else is a rifle, smg, or unknown. bind these to the rifle key
+        elseif subCategory == "Rifle" and (category == ORGM.RIFLE or category == ORGM.SUBMACHINEGUN) then -- anything else is a rifle, smg, or unknown. bind these to the rifle key
             table.insert(choices, item)
         end
 	until true end
