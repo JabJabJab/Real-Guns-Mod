@@ -9,6 +9,7 @@
     3) Replace the functions that give firearms to npcs, and handle attacking.
 
 ]]
+local isSuperSurvivor = false
 
 local RangeWeaponsOverride = {}
 for name, def in pairs(ORGM.FirearmTable) do
@@ -257,6 +258,51 @@ local LoadSurvivorOverride = function(ID, square)
     survivor:setPrimaryHandItem(nil)
     survivor:setPrimaryHandItem(primary)
 end
+
+
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+local SSWeaponReadyOriginal = nil
+
+local SSWeaponReadyOverride = function(self)
+	local primary = self.player:getPrimaryHandItem()
+    
+    if primary == nil or self.player == nil then
+        return true
+    end
+
+    if not ORGM.FirearmTable[primary:getType()] then
+        -- not a orgm gun, call the original function
+        return SSWeaponReadyOriginal(self)
+    end
+    -- code is basically the same as the old survivors reloadWeapon, we can just call our legacy patch function
+    return reloadWeaponOverride(primary, self.player)
+end
+
+local SSgiveWeaponOverride = function(self, weaponType, equipIt)
+--function SuperSurvivor:giveWeapon(weaponType,equipIt )
+    if weaponType == "Base.Pistol" then
+        weaponType = RangeWeaponsOverride[ZombRand(#RangeWeaponsOverride) +1]
+    end
+	giveWeaponOverride(self.player, weaponType, equipIt)
+end
+
+local SSloadPlayerOriginal = nil
+local SSloadPlayerOverride = function(self, square, ID)
+    local player = SSloadPlayerOriginal(self, square, ID)
+    if not player then return end
+    local primary = player:getPrimaryHandItem()
+    player:setPrimaryHandItem(nil)
+    player:setPrimaryHandItem(primary)
+    return player
+end
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 Events.OnGameBoot.Add(function()
     if ORGM.isModLoaded("Survivors") == true and ORGM.Settings.UseSurvivorsPatch then 
         ORGM.log(ORGM.INFO, "Injecting Survivors Mod Overwrites")
@@ -270,6 +316,17 @@ Events.OnGameBoot.Add(function()
         getRareNPCLoot = getRareNPCLootOverride
         LoadSurvivorOriginal = LoadSurvivor
         LoadSurvivor = LoadSurvivorOverride
+    end
 
+    if ORGM.isModLoaded("SuperSurvivors") == true and ORGM.Settings.UseSurvivorsPatch then
+        ORGM.log(ORGM.INFO, "Injecting SuperSurvivors Mod Overwrites")
+        isSuperSurvivor = true
+        
+        SSloadPlayerOriginal = SuperSurvivor.loadPlayer
+        SuperSurvivor.loadPlayer = SSloadPlayerOverride
+        getWeapon = getWeaponOverride -- this override is kinda useless with super
+        SSWeaponReadyOriginal = SuperSurvivor.WeaponReady
+        SuperSurvivor.WeaponReady = SSWeaponReadyOverride
+        SuperSurvivor.giveWeapon = SSgiveWeaponOverride
     end
 end)
