@@ -16,7 +16,7 @@ ORGM = {
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
-        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable",-- 19
+        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
