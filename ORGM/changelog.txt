@@ -10,6 +10,28 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 
+---------------------------------------------------------------------------------------
+version 3.05
+* M1903 Springfield is now properly a bolt action instead of semi-auto
+
+* Fixed bug when firearms got updated, reattached components did not properly modify stats.
+
+* Components/Weapon Mods now track what ORGM they were created in, allowing them to be properly updated
+  on attaching and removing from weapons.
+  
+* Adjusted Weapon Mods mounting points:
+    Tactical lights and laser sights, and foregrips  now fit on the 'Clip' slot instead of 'Canon', allowing 
+    these to be mounted on shotguns with chokes, or properly used with Nolan's Silencers mod.
+    
+    Recoilpads now properly fit on the 'Recoilpad' slot instead of 'Sling'
+    
+    Skeletal and Collapsing Stocks now properly fit on the 'Stock' slot instead of 'Sling'
+
+* Reduced weight of some weapon mods.
+
+* Increased effectiveness of rifle slings.
+
+* Compatibility patch for Nolan's Silencers mod now changes the display name on items from "Silencer" to "Suppressor"
 
 ---------------------------------------------------------------------------------------
 version 3.04
