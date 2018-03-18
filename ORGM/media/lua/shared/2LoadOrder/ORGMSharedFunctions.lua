@@ -272,6 +272,7 @@ ORGM.setupMagazine = function(magazineData, item)
     modData.magazineData = { }
     modData.preferredAmmoType = 'any'
     modData.loadedAmmo = nil
+    modData.BUILD_ID = ORGM.BUILD_ID
 end
 
 
@@ -525,9 +526,27 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     local newData = newItem:getModData()
 
     newItem:setCondition(item:getCondition())
-    newItem:setCanon(item:getCanon())
-    newItem:setScope(item:getScope())
-    newItem:setSling(item:getSling())
+
+    local upgrades = {}
+    if item:getCanon() then table.insert(upgrades, item:getCanon()) end
+    if item:getScope() then table.insert(upgrades, item:getScope()) end
+    if item:getSling() then table.insert(upgrades, item:getSling()) end
+    if item:getStock() then table.insert(upgrades, item:getStock()) end
+    if item:getClip() then table.insert(upgrades, item:getClip()) end
+    if item:getRecoilpad() then table.insert(upgrades, item:getRecoilpad()) end
+    for _, mod in ipairs(upgrades) do
+        local new = InventoryItemFactory.CreateItem(mod:getFullType())
+        local nmd = new:getModData()
+        local omd = mod:getModData()
+        for k,v in pairs(omd) do nmd[k] = v end
+        nmd.BUILD_ID = ORGM.BUILD_ID
+        newItem:attachWeaponPart(new)
+    end
+    --newItem:setCanon(item:getCanon())
+    --newItem:setScope(item:getScope())
+    --newItem:setSling(item:getSling())
+
+
     newData.serialnumber = data.serialnumber -- copy the guns serial number
     
     -- empty the magazine, return all rounds to the container.
@@ -558,7 +577,7 @@ ORGM.toggleTacticalLight = function(player)
     if not item then return end
     if not ORGM.FirearmTable[item:getType()] then return end
     if item:getCondition() == 0 then return end
-    local cannon = item:getCanon()
+    local cannon = item:getClip()
     if not cannon then return end
     
     local strength = 0
