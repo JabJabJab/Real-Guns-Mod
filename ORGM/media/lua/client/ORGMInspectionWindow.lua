@@ -164,11 +164,20 @@ function ORGMFirearmWindow:setFirearm(item)
     if item:getCanon() then
         text = text.. "A " .. item:getCanon():getDisplayName() .. " is attached to the barrel.\n"
     end
+    if item:getClip() then
+        text = text.. "It has a " .. item:getClip():getDisplayName() .. " under the barrel.\n"
+    end
     if item:getScope() then
         text = text.. "It has a " .. item:getScope():getDisplayName() .. " attached.\n"
     end
+    if item:getStock() then
+        text = text.. "It has a " .. item:getStock():getDisplayName() .. ".\n"
+    end
     if item:getSling() then
-        text = text.. "It has a " .. item:getSling():getDisplayName() .. ".\n"
+        text = text.. "It has a " .. item:getSling():getDisplayName() .. " attached.\n"
+    end
+    if item:getRecoilpad() then
+        text = text.. "It has a " .. item:getRecoilpad():getDisplayName() .. ".\n"
     end
     if data.serialnumber == nil then
         text = text.. "The serial number appears to have been filed off.\n"
