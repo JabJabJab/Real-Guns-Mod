@@ -50,3 +50,50 @@ function ISToolTipInv:render()
     render(self)
     self.item:setTooltip(old)
 end
+
+
+
+function ISRemoveWeaponUpgrade:perform()
+    self.weapon:detachWeaponPart(self.part)
+    -- delete the original part, give a fresh copy
+    local new = InventoryItemFactory.CreateItem(self.part:getFullType())
+    local ndata = new:getModData()
+    for k,v in pairs(self.part:getModData()) do ndata[k] = v end -- copy any mod data
+    ndata.BUILD_ID = ORGM.BUILD_ID
+    new:setCondition(self.part:getCondition())
+
+    --self.character:getInventory():AddItem(self.part)
+    self.character:getInventory():AddItem(new)
+    -- needed to remove from queue / start next.
+    ISBaseTimedAction.perform(self)
+end
+
+function ISUpgradeWeapon:perform()
+    local def = ORGM.ComponentTable[self.part:getType()]
+    local data = self.part:getModData()
+    if def and def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
+        -- handle orgm component update...
+        ORGM.log(ORGM.INFO, "Obsolete component detected (" .. self.part:getType() .."). Running update function.")
+        self.character:Say("Weapon Modification changed due to ORGM updates, resetting to default. Try attaching again.")
+        local new = InventoryItemFactory.CreateItem(self.part:getFullType())
+        local ndata = new:getModData()
+        for k,v in pairs(self.part:getModData()) do ndata[k] = v end -- copy any mod data
+        ndata.BUILD_ID = ORGM.BUILD_ID
+        new:setCondition(self.part:getCondition())
+
+        self.character:getInventory():AddItem(new)    
+        self.character:getInventory():Remove(self.part)
+        ISBaseTimedAction.perform(self)
+        return
+    end
+    
+    
+    self.weapon:setJobDelta(0.0)
+    self.part:setJobDelta(0.0)
+
+    self.weapon:attachWeaponPart(self.part)
+    self.character:getInventory():Remove(self.part)
+    self.character:setSecondaryHandItem(nil)
+    -- needed to remove from queue / start next.
+    ISBaseTimedAction.perform(self)
+end

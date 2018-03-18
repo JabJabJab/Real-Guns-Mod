@@ -16,7 +16,7 @@ local AllRoundsTable = { }
 local AllRepairKitsTable = { }
 local AllComponentsTable = { } 
 
-Server.ReplacementsTable = {
+Server.ReplacementsTable = { -- testing stuff
     ["Base.Pistol"] = "ORGM.Beretta92",
     ["Base.Shotgun"] = "ORGM.Rem870",
     ["Base.Sawnoff"] = "ORGM.Rem870SO",
@@ -64,6 +64,19 @@ Server.generateSerialNumber = function(item)
     end
     item:getModData().serialnumber = table.concat(sn, '')
 end
+
+
+Server.doWeaponUpgrade = function(item)
+    local upgradeList = WeaponUpgrades[item:getType()]
+    local randUpgrade = ZombRand(#upgradeList)
+    for i=1,randUpgrade do
+        local upgrade = WeaponUpgrades[item:getType()][ZombRand(#upgradeList) + 1]
+        local part = InventoryItemFactory.CreateItem(upgrade)
+        part:getModData().BUILD_ID = ORGM.BUILD_ID
+        item:attachWeaponPart(part)
+    end
+end
+
 
 --[[ Server.spawnReloadable(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
 
@@ -141,7 +154,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
             data.loadedAmmo = ammoType
         end
         if WeaponUpgrades[additem:getType()] then
-            ItemPicker.doWeaponUpgrade(additem)
+            Server.doWeaponUpgrade(additem)
         end
 
     end
@@ -208,17 +221,21 @@ end
     spawnChance is the % chance to spawn the item.
     maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
     
-    returns nil
+    returns table of spawned items
 
 ]]
 Server.spawnItem = function(container, itemType, spawnChance, maxCount)
     ORGM.log(ORGM.DEBUG, "Server.spawnItem called for " .. itemType .. " with " .. spawnChance .. "% chance.")
     --if Rnd(100) > math.ceil(spawnChance) then return end
-    if ZombRandFloat(0,100) > spawnChance then return false end
+    local result = {}
+    if ZombRandFloat(0,100) > spawnChance then return result end
     local count = Rnd(maxCount)
     for i=1, count do
-        if not ItemPicker.tryAddItemToContainer(container, itemType) then return end
+        local item = ItemPicker.tryAddItemToContainer(container, itemType)
+        if not item then break end
+        table.insert(result, item)
     end
+    return result
 end
 
 
@@ -276,7 +293,10 @@ end
 Server.spawnFirearmPart = function(container, spawnChance, maxCount)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.ComponentSpawnModifier
     local choice = AllComponentsTable[Rnd(#AllComponentsTable)]
-    Server.spawnItem(container, ORGM.ComponentTable[choice].moduleName .. '.' .. choice, spawnChance, maxCount)
+    local result = Server.spawnItem(container, ORGM.ComponentTable[choice].moduleName .. '.' .. choice, spawnChance, maxCount)
+    for _, item in ipairs(result) do
+        item:getModData().BUILD_ID = ORGM.BUILD_ID
+    end
 end
 
 --[[ Server.selectFirearm(civilian, police, military)
