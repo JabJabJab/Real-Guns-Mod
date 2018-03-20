@@ -1,0 +1,225 @@
+Tooltip_EN = {
+	-- Item tooltip
+    Tooltip_2xScope = "Increases magnification 2x for more precise shooting",
+    Tooltip_4xScope = "Increases magnification 4x for more combat purposes",
+    Tooltip_8xScope = "Increases magnification 8x for long range hunting or sniping",
+    Tooltip_FibSig = "Easy to see glow in the dark sights for increased accuracy when shooting",
+    Tooltip_Foregrip = "A vertical foregrip to increase stability during repeated firing",
+    Tooltip_FullCh = "A shotgun barrel insert that reduces the spread of the shot",
+    Tooltip_HalfCh = "A shotgun barrel insert that partially reduces the spread of the shot",
+    Tooltip_PistolLas = "A pistol mounted laser targeter that speeds up target acquisition and accuracy",
+    Tooltip_PistolTL = "A pistol mounted tactical flashlight",
+    Tooltip_RDS = "A sight that provides minor magnification and an easy to spot red dot targetting system",
+    Tooltip_Recoil = "A softened rifle recoil pad to decrease the effect of recoil",
+    Tooltip_Reflex = "A mounted sight that speeds up target acquisition and eases sustained firing",
+    Tooltip_RifleLas = "A rifle mounted laser targeter that speeds up target acquisition and accuracy",
+    Tooltip_RifleTL = "A rifle mounted tactical flashlight",
+    Tooltip_Rifsling = "A strap that makes carrying a weapon less of a burden",
+    Tooltip_SkeletalStock = "A skeletal carbon fiber stock to lighten the gun",
+    Tooltip_CollapsingStock = "A stock that collapses to give the gun a smaller profile making it easier to carry",
+    
+    -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
+    Tooltip_loaded_SA = "Fire Mode:   Semi-Auto",
+    Tooltip_loaded_FA = "Fire Mode:   Full-Auto",
+    Tooltip_loaded_mixed = "Loaded Ammo:  Mixed Load",
+    Tooltip_loaded_mixed_SA = "Loaded Ammo:  Mixed Load (Semi-Auto)",
+    Tooltip_loaded_mixed_FA = "Loaded Ammo:  Mixed Load (Full-Auto)",
+
+    Tooltip_loaded_Ammo_117BB = "Loaded Ammo:  .117 BBs",
+    Tooltip_loaded_Ammo_117BB_SA = "Loaded Ammo:  .117 BBs (Semi-Auto)",
+    Tooltip_loaded_Ammo_117BB_FA = "Loaded Ammo:  .117 BBs (Full-Auto)",
+    
+    ----------------------------------
+    Tooltip_loaded_Ammo_22LR_FMJ = "Loaded Ammo:  .22LR FMJ",
+    Tooltip_loaded_Ammo_22LR_FMJ_SA = "Loaded Ammo:  .22LR FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_22LR_FMJ_FA = "Loaded Ammo:  .22LR FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_22LR_HP = "Loaded Ammo:  .22LR HP",
+    Tooltip_loaded_Ammo_22LR_HP_SA = "Loaded Ammo:  .22LR HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_22LR_HP_FA = "Loaded Ammo:  .22LR HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_32ACP_FMJ = "Loaded Ammo:  .32 ACP FMJ",
+    Tooltip_loaded_Ammo_32ACP_FMJ_SA = "Loaded Ammo:  .32 ACP FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_32ACP_FMJ_FA = "Loaded Ammo:  .32 ACP FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_32ACP_HP = "Loaded Ammo:  .32 ACP HP",
+    Tooltip_loaded_Ammo_32ACP_HP_SA = "Loaded Ammo:  .32 ACP HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_32ACP_HP_FA = "Loaded Ammo:  .32 ACP HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_357Magnum_FMJ = "Loaded Ammo:  .357 Magnum FMJ",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_SA = "Loaded Ammo:  .357 Magnum FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_FA = "Loaded Ammo:  .357 Magnum FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_357Magnum_HP = "Loaded Ammo:  .357 Magnum HP",
+    Tooltip_loaded_Ammo_357Magnum_HP_SA = "Loaded Ammo:  .357 Magnum HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_357Magnum_HP_FA = "Loaded Ammo:  .357 Magnum HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Special_FMJ = "Loaded Ammo:  .38 Special FMJ",
+    Tooltip_loaded_Ammo_38Special_FMJ_SA = "Loaded Ammo:  .38 Special FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_38Special_FMJ_FA = "Loaded Ammo:  .38 Special FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_38Special_HP = "Loaded Ammo:  .38 Special HP",
+    Tooltip_loaded_Ammo_38Special_HP_SA = "Loaded Ammo:  .38 Special HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_38Special_HP_FA = "Loaded Ammo:  .38 Special HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Super_FMJ = "Loaded Ammo:  .38 Super FMJ",
+    Tooltip_loaded_Ammo_38Super_FMJ_SA = "Loaded Ammo:  .38 Super FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_38Super_FMJ_FA = "Loaded Ammo:  .38 Super FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_38Super_HP = "Loaded Ammo:  .38 Super HP",
+    Tooltip_loaded_Ammo_38Super_HP_SA = "Loaded Ammo:  .38 Super HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_38Super_HP_FA = "Loaded Ammo:  .38 Super HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_380ACP_FMJ = "Loaded Ammo:  .380 ACP FMJ",
+    Tooltip_loaded_Ammo_380ACP_FMJ_SA = "Loaded Ammo:  .380 ACP FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_380ACP_FMJ_FA = "Loaded Ammo:  .380 ACP FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_380ACP_HP = "Loaded Ammo:  .380 ACP HP",
+    Tooltip_loaded_Ammo_380ACP_HP_SA = "Loaded Ammo:  .380 ACP HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_380ACP_HP_FA = "Loaded Ammo:  .380 ACP HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_40SW_FMJ = "Loaded Ammo:  .40 S&W FMJ",
+    Tooltip_loaded_Ammo_40SW_FMJ_SA = "Loaded Ammo:  .40 S&W FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_40SW_FMJ_FA = "Loaded Ammo:  .40 S&W FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_40SW_HP = "Loaded Ammo:  .40 S&W HP",
+    Tooltip_loaded_Ammo_40SW_HP_SA = "Loaded Ammo:  .40 S&W HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_40SW_HP_FA = "Loaded Ammo:  .40 S&W HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_44Magnum_FMJ = "Loaded Ammo:  .44 Magnum FMJ",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_SA = "Loaded Ammo:  .44 Magnum FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_FA = "Loaded Ammo:  .44 Magnum FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_44Magnum_HP = "Loaded Ammo:  .44 Magnum HP",
+    Tooltip_loaded_Ammo_44Magnum_HP_SA = "Loaded Ammo:  .44 Magnum HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_44Magnum_HP_FA = "Loaded Ammo:  .44 Magnum HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45ACP_FMJ = "Loaded Ammo:  .45 ACP FMJ",
+    Tooltip_loaded_Ammo_45ACP_FMJ_SA = "Loaded Ammo:  .45 ACP FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_45ACP_FMJ_FA = "Loaded Ammo:  .45 ACP FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_45ACP_HP = "Loaded Ammo:  .45 ACP HP",
+    Tooltip_loaded_Ammo_45ACP_HP_SA = "Loaded Ammo:  .45 ACP HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_45ACP_HP_FA = "Loaded Ammo:  .45 ACP HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45Colt_FMJ = "Loaded Ammo:  .45 Colt FMJ",
+    Tooltip_loaded_Ammo_45Colt_FMJ_SA = "Loaded Ammo:  .45 Colt FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_45Colt_FMJ_FA = "Loaded Ammo:  .45 Colt FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_45Colt_HP = "Loaded Ammo:  .45 Colt HP",
+    Tooltip_loaded_Ammo_45Colt_HP_SA = "Loaded Ammo:  .45 Colt HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_45Colt_HP_FA = "Loaded Ammo:  .45 Colt HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_454Casull_FMJ = "Loaded Ammo:  .454 Casull FMJ",
+    Tooltip_loaded_Ammo_454Casull_FMJ_SA = "Loaded Ammo:  .454 Casull FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_454Casull_FMJ_FA = "Loaded Ammo:  .454 Casull FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_454Casull_HP = "Loaded Ammo:  .454 Casull HP",
+    Tooltip_loaded_Ammo_454Casull_HP_SA = "Loaded Ammo:  .454 Casull HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_454Casull_HP_FA = "Loaded Ammo:  .454 Casull HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_50AE_FMJ = "Loaded Ammo:  .50 AE FMJ",
+    Tooltip_loaded_Ammo_50AE_FMJ_SA = "Loaded Ammo:  .50 AE FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_50AE_FMJ_FA = "Loaded Ammo:  .50 AE FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_50AE_HP = "Loaded Ammo:  .50 AE HP",
+    Tooltip_loaded_Ammo_50AE_HP_SA = "Loaded Ammo:  .50 AE HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_50AE_HP_FA = "Loaded Ammo:  .50 AE HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_223Remington_FMJ = "Loaded Ammo:  .223 Remington FMJ",
+    Tooltip_loaded_Ammo_223Remington_FMJ_SA = "Loaded Ammo:  .223 Remington FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_223Remington_FMJ_FA = "Loaded Ammo:  .223 Remington FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_223Remington_HP = "Loaded Ammo:  .223 Remington HP",
+    Tooltip_loaded_Ammo_223Remington_HP_SA = "Loaded Ammo:  .223 Remington HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_223Remington_HP_FA = "Loaded Ammo:  .223 Remington HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3006Springfield_FMJ = "Loaded Ammo:  .30-06 Springfield FMJ",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_SA = "Loaded Ammo:  .30-06 Springfield FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_FA = "Loaded Ammo:  .30-06 Springfield FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_3006Springfield_HP = "Loaded Ammo:  .30-06 Springfield HP",
+    Tooltip_loaded_Ammo_3006Springfield_HP_SA = "Loaded Ammo:  .30-06 Springfield HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_3006Springfield_HP_FA = "Loaded Ammo:  .30-06 Springfield HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3030Winchester_FMJ = "Loaded Ammo:  .30-30 Winchester FMJ",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_SA = "Loaded Ammo:  .30-30 Winchester FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_FA = "Loaded Ammo:  .30-30 Winchester FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_3030Winchester_HP = "Loaded Ammo:  .30-30 Winchester HP",
+    Tooltip_loaded_Ammo_3030Winchester_HP_SA = "Loaded Ammo:  .30-30 Winchester HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_3030Winchester_HP_FA = "Loaded Ammo:  .30-30 Winchester HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_308Winchester_FMJ = "Loaded Ammo:  .308 Winchester FMJ",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_SA = "Loaded Ammo:  .308 Winchester FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_FA = "Loaded Ammo:  .308 Winchester FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_308Winchester_HP = "Loaded Ammo:  .308 Winchester HP",
+    Tooltip_loaded_Ammo_308Winchester_HP_SA = "Loaded Ammo:  .308 Winchester HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_308Winchester_HP_FA = "Loaded Ammo:  .308 Winchester HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_57x28mm_FMJ = "Loaded Ammo:  FN 5.7x28mm FMJ",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_SA = "Loaded Ammo:  FN 5.7x28mm FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_FA = "Loaded Ammo:  FN 5.7x28mm FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_57x28mm_HP = "Loaded Ammo:  FN 5.7x28mm HP",
+    Tooltip_loaded_Ammo_57x28mm_HP_SA = "Loaded Ammo:  FN 5.7x28mm HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_57x28mm_HP_FA = "Loaded Ammo:  FN 5.7x28mm HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_9x19mm_FMJ = "Loaded Ammo:  9x19mm Parabellum FMJ",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_SA = "Loaded Ammo:  9x19mm Parabellum FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_FA = "Loaded Ammo:  9x19mm Parabellum FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_9x19mm_HP = "Loaded Ammo:  9x19mm Parabellum HP",
+    Tooltip_loaded_Ammo_9x19mm_HP_SA = "Loaded Ammo:  9x19mm Parabellum HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_9x19mm_HP_FA = "Loaded Ammo:  9x19mm Parabellum HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_10x25mm_FMJ = "Loaded Ammo:  10x25mm FMJ",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_SA = "Loaded Ammo:  10x25mm FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_FA = "Loaded Ammo:  10x25mm FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_10x25mm_HP = "Loaded Ammo:  10x25mm HP",
+    Tooltip_loaded_Ammo_10x25mm_HP_SA = "Loaded Ammo:  10x25mm HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_10x25mm_HP_FA = "Loaded Ammo:  10x25mm HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_556x45mm_FMJ = "Loaded Ammo:  5.56x45mm FMJ",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_SA = "Loaded Ammo:  5.56x45mm FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_FA = "Loaded Ammo:  5.56x45mm FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_556x45mm_HP = "Loaded Ammo:  5.56x45mm HP",
+    Tooltip_loaded_Ammo_556x45mm_HP_SA = "Loaded Ammo:  5.56x45mm HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_556x45mm_HP_FA = "Loaded Ammo:  5.56x45mm HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x39mm_FMJ = "Loaded Ammo:  7.62x39mm FMJ",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_SA = "Loaded Ammo:  7.62x39mm FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_FA = "Loaded Ammo:  7.62x39mm FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_762x39mm_HP = "Loaded Ammo:  7.62x39mm HP",
+    Tooltip_loaded_Ammo_762x39mm_HP_SA = "Loaded Ammo:  7.62x39mm HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x39mm_HP_FA = "Loaded Ammo:  7.62x39mm HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x51mm_FMJ = "Loaded Ammo:  7.62x51mm FMJ",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_SA = "Loaded Ammo:  7.62x51mm FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_FA = "Loaded Ammo:  7.62x51mm FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_762x51mm_HP = "Loaded Ammo:  7.62x51mm HP",
+    Tooltip_loaded_Ammo_762x51mm_HP_SA = "Loaded Ammo:  7.62x51mm HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x51mm_HP_FA = "Loaded Ammo:  7.62x51mm HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x54mm_FMJ = "Loaded Ammo:  7.62x54R FMJ",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_SA = "Loaded Ammo:  7.62x54R FMJ (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_FA = "Loaded Ammo:  7.62x54R FMJ (Full-Auto)",
+    Tooltip_loaded_Ammo_762x54mm_HP = "Loaded Ammo:  7.62x54R HP",
+    Tooltip_loaded_Ammo_762x54mm_HP_SA = "Loaded Ammo:  7.62x54R HP (Semi-Auto)",
+    Tooltip_loaded_Ammo_762x54mm_HP_FA = "Loaded Ammo:  7.62x54R HP (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_00Buck = "Loaded Ammo:  00 Buck 12 Gauge",
+    Tooltip_loaded_Ammo_12g_00Buck_SA = "Loaded Ammo:  00 Buck 12 Gauge (Semi-Auto)",
+    Tooltip_loaded_Ammo_12g_00Buck_FA = "Loaded Ammo:  00 Buck 12 Gauge (Full-Auto)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_Slug = "Loaded Ammo:  Slug 12 Gauge",
+    Tooltip_loaded_Ammo_12g_Slug_SA = "Loaded Ammo:  Slug 12 Gauge (Semi-Auto)",
+    Tooltip_loaded_Ammo_12g_Slug_FA = "Loaded Ammo:  Slug 12 Gauge (Full-Auto)",
+}

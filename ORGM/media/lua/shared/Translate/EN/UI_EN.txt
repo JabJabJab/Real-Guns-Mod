@@ -1,0 +1,5 @@
+UI_EN = {
+	UI_optionscreen_binding_Equip/Unequip Pistol = "Equip/Unequip Pistol",
+	UI_optionscreen_binding_Equip/Unequip Rifle = "Equip/Unequip Rifle",
+	UI_optionscreen_binding_Equip/Unequip Shotgun = "Equip/Unequip Shotgun",
+}

@@ -1,0 +1,33 @@
+ContextMenu_EN = {
+	ContextMenu_ORGM_Unload = "Unload",
+	ContextMenu_ORGM_Inspect = "Inspect Weapon",
+    ContextMenu_ORGM_Release = "Release Hammer",
+    ContextMenu_ORGM_Cock = "Cock Hammer",
+    
+    ContextMenu_ORGM_Spin = "Spin Cylinder",
+    ContextMenu_ORGM_Suicide = "Shoot Yourself",
+
+    -- partial strings, the first half
+    ContextMenu_ORGM_Switch = "Switch to %1",
+    ContextMenu_ORGM_Open = "Open %1",
+    ContextMenu_ORGM_Close = "Close %1",
+    
+    -- the second half
+    ContextMenu_ORGM_PartSlide = "Slide",
+    ContextMenu_ORGM_PartBolt = "Bolt",
+    ContextMenu_ORGM_PartBarrel = "Barrel",
+    ContextMenu_ORGM_Cylinder = "Cylinder",
+    
+    ContextMenu_ORGM_FullAuto = "Full-Auto",
+    ContextMenu_ORGM_Auto = "Semi-Auto",
+    ContextMenu_ORGM_Bolt = "Bolt Action",
+    ContextMenu_ORGM_Lever = "Lever Action",
+    ContextMenu_ORGM_Pump = "Pump Action",
+    ContextMenu_ORGM_Break = "Break Barrel",
+    ContextMenu_ORGM_Rotary = "Rotary Cylinder",
+    
+    ContextMenu_ORGM_UseOnly = "Use Only...",
+    ContextMenu_ORGM_Any = "Any",
+    ContextMenu_ORGM_Mixed = "Mixed Load",
+    ContextMenu_ORGM_AdminLoad = "Admin - Full Ammo",
+}
