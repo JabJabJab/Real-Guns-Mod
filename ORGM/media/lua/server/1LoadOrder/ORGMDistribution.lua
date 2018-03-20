@@ -145,6 +145,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
                 data.roundChambered = 1
                 data.lastRound = ammoType
                 fill = fill - 1
+                if itemOrgmData.triggerType ~= ORGM.DOUBLEACTIONONLY then data.hammerCocked = 1 end
             end
             
             for i=1, fill do
