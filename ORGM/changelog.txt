@@ -11,7 +11,21 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.06
+
+* Fixed bug in Benelli M3 and Spas12 conversion from semi-auto to pump and back (introduced v3.00)
+
+* All text strings now make use of proper translation files instead of being hardcoded.
+
+* Firearms with single action or double action triggers found with a round in chamber now have 
+    the hammer cocked. (prevents normal reload difficulty from auto racking and dropping the round
+    in the chamber)
+
+* Added icons for spent shell cases, with reduced size
+
+---------------------------------------------------------------------------------------
 version 3.05
+
 * M1903 Springfield is now properly a bolt action instead of semi-auto
 
 * Fixed bug when firearms got updated, reattached components did not properly modify stats.
@@ -20,7 +34,7 @@ version 3.05
   on attaching and removing from weapons.
   
 * Adjusted Weapon Mods mounting points:
-    Tactical lights and laser sights, and foregrips  now fit on the 'Clip' slot instead of 'Canon', allowing 
+    Tactical lights laser sights, and foregrips  now fit on the 'Clip' slot instead of 'Canon', allowing 
     these to be mounted on shotguns with chokes, or properly used with Nolan's Silencers mod.
     
     Recoilpads now properly fit on the 'Recoilpad' slot instead of 'Sling'
@@ -35,12 +49,14 @@ version 3.05
 
 ---------------------------------------------------------------------------------------
 version 3.04
+
 * Fixed bug with new hotkeys that equipped shotguns when the rifle key was pressed.
 
 * Added compatibility patch for nolan's new Super Survivors mod.
 
 ---------------------------------------------------------------------------------------
 version 3.03
+
 * Fixed bug where firearm update function was triggered every ORGM new version, instead of new versions
     where that firearm had been modified.
 
@@ -65,6 +81,7 @@ version 3.03
 
 ---------------------------------------------------------------------------------------
 version 3.02
+
 * Fixed bug adding repair kit items to NecroForge (introduced 3.00)
 
 * Spawn rates now use a float value instead of integer, values of less then 1% are now possible
@@ -82,6 +99,7 @@ version 3.02
 
 ---------------------------------------------------------------------------------------
 version 3.01
+
 * Fixed bug unloading break barrel shotguns (introduced ???)
 
 * Fixed bug with inspection window on break barrel shotguns
