@@ -541,6 +541,7 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
         for k,v in pairs(omd) do nmd[k] = v end
         nmd.BUILD_ID = ORGM.BUILD_ID
         newItem:attachWeaponPart(new)
+        newItem:setCondition(mod:getCondition())
     end
     --newItem:setCanon(item:getCanon())
     --newItem:setScope(item:getScope())
