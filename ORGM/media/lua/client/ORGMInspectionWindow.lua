@@ -57,7 +57,7 @@ function ORGMFirearmWindow:new(x, y, width, height)
     local o = ISCollapsableWindow:new(x, y, width, height);
     setmetatable(o, self)
     self.__index = self;
-    o.title = "Firearm Inspection"
+    o.title = getText("IGUI_Firearm_InspectTitle")
     o.pin = false
     o:noBackground()
     self.resizable = false
@@ -74,115 +74,115 @@ function ORGMFirearmWindow:setFirearm(item)
     
     
     local text = scriptItem:getDisplayName() .. "\n"
-    text = text .. "Class: " .. def.classification .. "\n"
-    text = text .. "Introduction Year: " .. (def.year or "Unknown") .. "\n"
-    text = text .. "Country of Origin: " .. def.country .. "\n"
-    text = text .. "Manufacturer: " .. def.manufacturer .. "\n\n"
-    text = text .. def.description
+    text = text .. getText("IGUI_Firearm_InfoPanel", getText(def.classification), (def.year or getText("IGUI_Firearm_YearUnknown")), getText(def.country), getText(def.manufacturer))
+
+    text = text .. getText(def.description)
     self.infoPanel.textPanel.text = text
     self.infoPanel.textPanel:paginate()
     
     text = scriptItem:getDisplayName() .. "\n"
     
-    if data.selectFire == 0 then
-        text = text .. "It is currently set to semi-auto mode.\n"
-    elseif data.selectFire == 1 then
-        text = text .. "It is currently set to full-auto mode.\n"
+    if data.selectFire ~= 0 then
+        local mode = "IGUI_Firearm_DetailSemi"
+        if data.selectFire == 1 then mode = "IGUI_Firearm_DetailFull" end
+        text = text .. getText("IGUI_Firearm_DetailMode", getText(mode))
     end
+    
     local feed = "slide"
     if data.actionType == ORGM.ROTARY then feed = "cylinder" end
     if data.actionType == ORGM.BOLT then feed = "bolt" end
     if data.actionType == ORGM.BREAK then feed = "breech" end
     if data.isOpen == 1 then
-        text = text .. "The " .. feed .. " is currently open.\n"
+        text = text .. getText("IGUI_Firearm_DetailOpen", getText("IGUI_Firearm_"..feed))
     else
-        text = text .. "The " .. feed .. " is currently closed.\n"
+        text = text .. getText("IGUI_Firearm_DetailClosed", getText("IGUI_Firearm_"..feed))
     end
     
     if data.containsClip == 1 then
-        text = text .. "A magazine is inserted.\n"    
+        text = text .. getText("IGUI_Firearm_DetailInserted")
     elseif data.containsClip == 0 then
-        text = text .. "The magazine is missing.\n"
+        text = text .. getText("IGUI_Firearm_DetailEjected")
     end
     if data.actionType ~= ORGM.DOUBLEACTIONONLY then
         if data.hammerCocked then
-            text = text .. "The hammer is cocked.\n"
+            text = text .. getText("IGUI_Firearm_DetailCocked")
         else
-            text = text .. "The hammer is at rest.\n"
+            text = text .. getText("IGUI_Firearm_DetailRest")
         end
     end
     
+    local loaded = "IGUI_Firearm_DetailEmpty"
     if data.actionType == ORGM.ROTARY then
         if data.currentCapacity > 0 then
-            text = text .. "There are rounds in the cylinder.\n"
-        else
-            text = text .. "No rounds are loaded.\n"
+            loaded = "IGUI_Firearm_DetailLoadedCylinder"
         end
     elseif data.actionType == ORGM.BREAK then
         if data.currentCapacity > 1 then
-            text = text .. "There are "..data.currentCapacity.." rounds loaded.\n"
+            loaded = "IGUI_Firearm_DetailLoaded2"
         elseif data.currentCapacity == 1 then
-            text = text .. "There is 1 round loaded.\n"
-        else
-            text = text .. "No rounds are loaded.\n"
-        end
-    
+            loaded = "IGUI_Firearm_DetailLoaded1"
+        end    
     else
         if data.roundChambered > 0 then
-            text = text .. "There is a round in the chamber.\n"
+            loaded = "IGUI_Firearm_DetailRoundChambered"
         elseif data.emptyShellChambered > 0 then
-            text = text .. "There is a empty shell in the chamber.\n"
+            loaded = "IGUI_Firearm_DetailShellChambered"
         else
-            text = text .. "The chamber is currently empty.\n"
+            loaded = "IGUI_Firearm_DetailEmptyChamber"
         end
     end
+    text = text .. getText(loaded)
+    
     
     if data.isJammed then
-        text = text .. "The gun is currently jammed.\n"
+        text = text .. getText("IGUI_Firearm_DetailJammed")
     end
     
     local condition = item:getCondition() / item:getConditionMax()
     if condition == 1 then
-        text = text .. "It looks brand new.\n"
+        condition = 10
     elseif condition >= 0.9 then
-        text = text .. "It looks to be in good condition.\n"
+        condition = 9
     elseif condition >= 0.7 then
-        text = text .. "It looks to be in serviceable condition.\n"
+        condition = 7
     elseif condition >= 0.5 then
-        text = text .. "It's seen some wear.\n"
+        condition = 5
     elseif condition >= 0.4 then
-        text = text .. "It's seen better days.\n"
+        condition = 4
     elseif condition >= 0.3 then
-        text = text .. "It looks unreliable.\n"
+        condition = 3
     elseif condition >= 0.2 then
-        text = text .. "It looks like its ready to fall apart.\n"
-    elseif condition > 0 then
-        text = text .. "It might break at any moment.\n"
+        condition = 2
+    elseif condition < 0 then
+        condition = 1
     elseif condition == 0 then
-        text = text .. "It's broken.\n"
+        condition = 0
     end
+    text = text .. getText("IGUI_Firearm_DetailCondition"..condition)
+    
+    
     if item:getCanon() then
-        text = text.. "A " .. item:getCanon():getDisplayName() .. " is attached to the barrel.\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach1", item:getCanon():getDisplayName())
     end
     if item:getClip() then
-        text = text.. "It has a " .. item:getClip():getDisplayName() .. " under the barrel.\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach2", item:getClip():getDisplayName())
     end
     if item:getScope() then
-        text = text.. "It has a " .. item:getScope():getDisplayName() .. " attached.\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach3", item:getScope():getDisplayName())
     end
     if item:getStock() then
-        text = text.. "It has a " .. item:getStock():getDisplayName() .. ".\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach4", item:getStock():getDisplayName())
     end
     if item:getSling() then
-        text = text.. "It has a " .. item:getSling():getDisplayName() .. " attached.\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach3", item:getSling():getDisplayName())
     end
     if item:getRecoilpad() then
-        text = text.. "It has a " .. item:getRecoilpad():getDisplayName() .. ".\n"
+        text = text.. getText("IGUI_Firearm_DetailAttach4", item:getRecoilpad():getDisplayName())
     end
     if data.serialnumber == nil then
-        text = text.. "The serial number appears to have been filed off.\n"
+        text = text.. getText("IGUI_Firearm_DetailNoSerial")
     else
-        text = text.. "The serial number is " .. data.serialnumber .. ".\n"
+        text = text.. getText("IGUI_Firearm_DetailSerial", data.serialnumber)
     end
     
     self.detailsPanel.textPanel.text = text
@@ -202,11 +202,11 @@ function ORGMFirearmWindow:createChildren()
 
     self.infoPanel = InfoPanel:new(0, 8, self.width, self.height-8)
     self.infoPanel:initialise()
-    self.panel:addView("Information", self.infoPanel)
+    self.panel:addView(getText("IGUI_Firearm_InfoTitle"), self.infoPanel)
     
     self.detailsPanel = DetailsPanel:new(0, 8, self.width, self.height-8)
     self.detailsPanel:initialise()
-    self.panel:addView("Details", self.detailsPanel)
+    self.panel:addView(getText("IGUI_Firearm_DetailTitle"), self.detailsPanel)
     
 end
 

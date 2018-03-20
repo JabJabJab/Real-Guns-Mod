@@ -113,7 +113,7 @@ MenuCallbacks.onShootSelfConfirm = function(this, button, player, item)
 end
 
 MenuCallbacks.onShootSelf = function(item, player, data, reloadable)
-    local modal = ISModalDialog:new(0,0, 250, 150, "End your own life?", true, nil, MenuCallbacks.onShootSelfConfirm, player:getPlayerNum(), player, item);
+    local modal = ISModalDialog:new(0,0, 250, 150, getText("IGUI_Firearm_SuicideConfirm"), true, nil, MenuCallbacks.onShootSelfConfirm, player:getPlayerNum(), player, item);
     modal:initialise()
     modal:addToUIManager()
     if JoypadState.players[player:getPlayerNum()+1] then
@@ -195,32 +195,32 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     local reloadable = ReloadUtil:getReloadableWeapon(item, player)
     reloadable.playerObj = player -- not sure where this is actually set in the code, but apparently sometimes its not...
 
-    context:addOption("Inspect Weapon", item, MenuCallbacks.onInspectFunction, playerObj, data, reloadable)
+    context:addOption(getText("ContextMenu_ORGM_Inspect"), item, MenuCallbacks.onInspectFunction, playerObj, data, reloadable)
     ---------------------
     -- hammer actions
     if (data.hammerCocked == 1 and data.triggerType ~= ORGM.DOUBLEACTIONONLY) then
-        context:addOption("Release Hammer", item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
+        context:addOption(getText("ContextMenu_ORGM_Release"), item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
     elseif (data.hammerCocked == 0 and data.triggerType ~= ORGM.DOUBLEACTIONONLY) then
-        context:addOption("Cock Hammer", item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
+        context:addOption(getText("ContextMenu_ORGM_Cock"), item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
     end
     
     ---------------------
     -- add open/close bolt, cylinder etc
-    local text = "Slide"
+    local text = "ContextMenu_ORGM_PartSlide"
     local callback = MenuCallbacks.onBoltToggle
     if data.actionType == ORGM.ROTARY then
-        text = "Cylinder"
+        text = "ContextMenu_ORGM_Cylinder"
         callback = MenuCallbacks.onCylinderToggle
     elseif data.actionType == ORGM.BREAK then
-        text = "Barrel"
+        text = "ContextMenu_ORGM_PartBarrel"
         callback = MenuCallbacks.onBarrelToggle
     elseif data.actionType == ORGM.BOLT then 
-        text = "Bolt" 
+        text = "ContextMenu_ORGM_PartBolt" 
     end
     if data.isOpen == 1 then
-        context:addOption("Close " .. text, item, callback, playerObj, data, reloadable)
+        context:addOption(getText("ContextMenu_ORGM_Close", getText(text)), item, callback, playerObj, data, reloadable)
     elseif data.isOpen == 0 then
-        context:addOption("Open " .. text, item, callback, playerObj, data, reloadable)
+        context:addOption(getText("ContextMenu_ORGM_Open", getText(text)), item, callback, playerObj, data, reloadable)
     end
     
     ---------------------
@@ -228,30 +228,29 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     if data.altActionType then
         for _, atype in ipairs(data.altActionType) do
             if atype ~= data.actionType then
-                atype = ORGM.ActionTypeStrings[atype]
-                context:addOption("Switch to " .. atype .. " Action", item, MenuCallbacks.onActionTypeToggle, playerObj, data, reloadable, atype)
+                context:addOption(getText("ContextMenu_ORGM_Switch", getText("ContextMenu_ORGM_"..ORGM.ActionTypeStrings[atype])), item, MenuCallbacks.onActionTypeToggle, playerObj, data, reloadable, atype)
             end
         end
     end
     ---------------------
     -- switch fire mode option (semi to full auto), use item:setSwingTime()
     if data.selectFire == 0 then -- switch to full auto
-        context:addOption("Switch to Full-Auto", item, MenuCallbacks.onFireModeToggle, playerObj, data, reloadable, 1)
+        context:addOption(getText("ContextMenu_ORGM_Switch", getText("ContextMenu_ORGM_FullAuto")), item, MenuCallbacks.onFireModeToggle, playerObj, data, reloadable, 1)
     elseif data.selectFire == 1 then -- switch to semi auto
-        context:addOption("Switch to Semi-Auto", item, MenuCallbacks.onFireModeToggle, playerObj, data, reloadable, 0)
+        context:addOption(getText("ContextMenu_ORGM_Switch", getText("ContextMenu_ORGM_Auto")), item, MenuCallbacks.onFireModeToggle, playerObj, data, reloadable, 0)
     end
     ---------------------
     if data.actionType == ORGM.ROTARY then
-        context:addOption("Spin Cylinder", item, MenuCallbacks.onSpinCylinder, playerObj, data, reloadable)
+        context:addOption(getText("ContextMenu_ORGM_Spin"), item, MenuCallbacks.onSpinCylinder, playerObj, data, reloadable)
     end
     ---------------------
     if data.roundChambered ~= nil and data.roundChambered > 0 then
-        context:addOption("Unload", item, MenuCallbacks.onUnload, playerObj)
+        context:addOption(getText("ContextMenu_ORGM_Unload"), item, MenuCallbacks.onUnload, playerObj)
     elseif data.currentCapacity > 0 then
-        context:addOption("Unload", item, MenuCallbacks.onUnload, playerObj)
+        context:addOption(getText("ContextMenu_ORGM_Unload"), item, MenuCallbacks.onUnload, playerObj)
     end
 
-    context:addOption("Shoot Yourself", item, MenuCallbacks.onShootSelf, playerObj, data, reloadable)
+    context:addOption(getText("ContextMenu_ORGM_Suicide"), item, MenuCallbacks.onShootSelf, playerObj, data, reloadable)
     -- TODO: if open and has bullets insert round into chamber option
     
     -- add debug/development submenu.
@@ -276,7 +275,7 @@ ORGM.Client.magazineContextMenu = function(player, context, item)
     local playerObj = getSpecificPlayer(player)
     local data = item:getModData()
     if data.currentCapacity ~= nil and data.currentCapacity > 0 then
-        context:addOption("Unload", item, MenuCallbacks.onUnload, playerObj)
+        context:addOption(getText("ContextMenu_ORGM_Unload"), item, MenuCallbacks.onUnload, playerObj)
     end
 end
 
@@ -313,12 +312,12 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     local altTable = ORGM.AlternateAmmoTable[ammoType]
     if #altTable > 1 then -- this ammo has alternatives
         -- create the submenu
-        local preferredAmmoMenu = context:addOption("Use Only...", item, nil)
+        local preferredAmmoMenu = context:addOption(getText("ContextMenu_ORGM_UseOnly"), item, nil)
         local subMenuAmmo = context:getNew(context)
         context:addSubMenu(preferredAmmoMenu, subMenuAmmo)
-        subMenuAmmo:addOption("Any", item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, "any")
+        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Any"), item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, "any")
         -- add menu for the default ammo type
-        subMenuAmmo:addOption("Mixed Load", item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, "mixed")
+        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Mixed"), item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, "mixed")
         -- find all ammo types:
         for _, value in ipairs(altTable) do
             local def = ORGM.AmmoTable[value]
@@ -327,7 +326,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     end
 
     if isAdmin() then
-        context:addOption("Admin - Full Ammo", item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
+        context:addOption(getText("ContextMenu_ORGM_AdminLoad"), item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
     end
 end
 

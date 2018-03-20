@@ -12,39 +12,29 @@ function ISToolTipInv:render()
     -- TODO: this should actually check the ORGM tables to see
     if self.item:getModule() ~= "ORGM" then
         render(self)
+        return
     end
 
     local modData = self.item:getModData() -- gets the item's mod data
     
-    local text = nil
+    local text = "Tooltip_loaded"
     -- set the text to show what the item is currently loaded with
-    if modData.loadedAmmo == nil then
-        -- pass
-    elseif modData.loadedAmmo == 'mixed' then
-        text = "Loaded Ammo:  Mixed Load"
-    else
-        local ammoData = ORGM.AmmoTable[modData.loadedAmmo]
-        local ammoName = getScriptManager():FindItem(ammoData.moduleName ..'.'.. modData.loadedAmmo):getDisplayName()
-        text = "Loaded Ammo:  " .. ammoName
+    if modData.loadedAmmo ~= nil then
+        text = text .. "_"..modData.loadedAmmo
     end
     
     -- set the text to show the current fire mode
     if modData.selectFire ~= nil then
-        local fireMode = "Fire Mode:   "
         if modData.selectFire == 1 then 
-            fireMode = fireMode .. "Full-Auto" 
+            text = text .. "_FA"
         else
-            fireMode = fireMode .. "Semi-Auto" 
-        end
-        if text then
-            text = text .. "\n" .. fireMode
-        else
-            text = fireMode
+            text = text .. "_SA"
         end
     end
+    -- this old tooltip screws the translations..
     local old = self.item:getTooltip()
-    if text ~= nil then
-        self.item:setTooltip(text .. "\n"..(old or ""))
+    if text ~= "Tooltip_loaded" then
+        self.item:setTooltip(text)
     end
     -- call the original function
     render(self)
