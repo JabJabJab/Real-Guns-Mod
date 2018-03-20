@@ -1444,7 +1444,7 @@ register("WinM94", {
     --************************************************************************--
 
 register("BenelliM3", {
-    lastChanged = 20,
+    lastChanged = 21,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1459,7 +1459,7 @@ register("BenelliM3", {
     description = "IGUI_Firearm_Desc_BenelliM3",
 })
 register("BenelliM3SO", {
-    lastChanged = 20,
+    lastChanged = 21,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1629,7 +1629,7 @@ register("SilverHawkSO", {
     description = ORGM.FirearmTable["Silverhawk"].description
 })
 register("Spas12", {
-    lastChanged = 20,
+    lastChanged = 21,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
