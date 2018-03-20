@@ -13,15 +13,17 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 ---------------------------------------------------------------------------------------
 version 3.06
 
-* Fixed bug in Benelli M3 and Spas12 conversion from semi-auto to pump and back (introduced v3.00)
+* Fixed bug in Benelli M3 and Spas12 conversion from semi-auto to pump and back (introduced v3.00).
 
 * All text strings now make use of proper translation files instead of being hardcoded.
 
 * Firearms with single action or double action triggers found with a round in chamber now have 
     the hammer cocked. (prevents normal reload difficulty from auto racking and dropping the round
-    in the chamber)
+    in the chamber).
 
-* Added icons for spent shell cases, with reduced size
+* Added icons for spent shell cases, with reduced size.
+
+* Fixed weapon update function not properly setting condition of attached mods.
 
 ---------------------------------------------------------------------------------------
 version 3.05
