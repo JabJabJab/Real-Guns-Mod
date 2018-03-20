@@ -46,7 +46,7 @@ module ORGM
         Type = Normal,
         DisplayName = .22 LR cases,
         DisplayCategory = Item,
-        Icon = Am22HPRounds,
+        Icon = Case22LR,
     }
 
     item Case_22LR_Box
@@ -142,7 +142,7 @@ module ORGM
         Type = Normal,
         DisplayName = .32 ACP cases,
         DisplayCategory = Item,
-        Icon = Am32ACPHPRounds,
+        Icon = Case32ACP,
     }
 
     item Case_32ACP_Box
@@ -238,7 +238,7 @@ module ORGM
         Type = Normal,
         DisplayName = .357 Magnum cases,
         DisplayCategory = Item,
-        Icon = Am357HPRounds,
+        Icon = Case357,
     }
 
     item Case_357Magnum_Box
@@ -334,7 +334,7 @@ module ORGM
         Type = Normal,
         DisplayName = .38 Special cases,
         DisplayCategory = Item,
-        Icon = Am38SpecialHPRounds,
+        Icon = Case38Special,
     }
 
     item Case_38Special_Box
@@ -430,7 +430,7 @@ module ORGM
         Type = Normal,
         DisplayName = .38 Super cases,
         DisplayCategory = Item,
-        Icon = Am38SuperHPRounds,
+        Icon = Case38Super,
     }
  
     item Case_38Super_Box
@@ -526,7 +526,7 @@ module ORGM
         Type = Normal,
         DisplayName = .380 ACP cases,
         DisplayCategory = Item,
-        Icon = Am380ACPHPRounds,
+        Icon = Case380ACP,
     }
  
     item Case_380ACP_Box
@@ -622,7 +622,7 @@ module ORGM
         Type = Normal,
         DisplayName = .40 S&W cases,
         DisplayCategory = Item,
-        Icon = Am40SWRounds,
+        Icon = Case40SW,
     }
  
     item Case_40SW_Box
@@ -718,7 +718,7 @@ module ORGM
         Type = Normal,
         DisplayName = .44 Magnum cases,
         DisplayCategory = Item,
-        Icon = Am44HPRounds,
+        Icon = Case44,
     }
  
     item Case_44Magnum_Box
@@ -814,7 +814,7 @@ module ORGM
         Type = Normal,
         DisplayName = .45 ACP cases,
         DisplayCategory = Item,
-        Icon = Am45ACPHPRounds,
+        Icon = Case45ACP,
     }
  
     item Case_45ACP_Box
@@ -910,7 +910,7 @@ module ORGM
         Type = Normal,
         DisplayName = .45 Colt cases,
         DisplayCategory = Item,
-        Icon = Am45ColtHPRounds,
+        Icon = Case45Colt,
     }
  
     item Case_45Colt_Box
@@ -1006,7 +1006,7 @@ module ORGM
         Type = Normal,
         DisplayName = .454 Casull cases,
         DisplayCategory = Item,
-        Icon = Am454HPRounds,
+        Icon = Case454,
     }
  
     item Case_454Casull_Box
@@ -1102,7 +1102,7 @@ module ORGM
         Type = Normal,
         DisplayName = .50 AE cases,
         DisplayCategory = Item,
-        Icon = Am50AEHPRounds,
+        Icon = Case50AE,
     }
  
     item Case_50AE_Box
@@ -1198,7 +1198,7 @@ module ORGM
         Type = Normal,
         DisplayName = .223 Remington cases,
         DisplayCategory = Item,
-        Icon = Am223HPRounds,
+        Icon = Case223,
     }
  
     item Case_223Remington_Box
@@ -1294,7 +1294,7 @@ module ORGM
         Type = Normal,
         DisplayName = .30-06 Springfield cases,
         DisplayCategory = Item,
-        Icon = Am3006HPRounds,
+        Icon = Case3006,
     }
  
     item Case_3006Springfield_Box
@@ -1390,7 +1390,7 @@ module ORGM
         Type = Normal,
         DisplayName = .30-30 Winchester cases,
         DisplayCategory = Item,
-        Icon = Am3030Rounds,
+        Icon = Case3030,
     }
  
     item Case_3030Winchester_Box
@@ -1486,7 +1486,7 @@ module ORGM
         Type = Normal,
         DisplayName = .308 Winchester cases,
         DisplayCategory = Item,
-        Icon = Am308HPRounds,
+        Icon = Case308,
     }
  
     item Case_308Winchester_Box
@@ -1582,7 +1582,7 @@ module ORGM
         Type = Normal,
         DisplayName = FN 5.7x28mm cases,
         DisplayCategory = Item,
-        Icon = Am57x28HPRounds,
+        Icon = Case57x28,
     }
  
     item Case_57x28mm_Box
@@ -1678,7 +1678,7 @@ module ORGM
         Type = Normal,
         DisplayName = 9x19mm Parabellum cases,
         DisplayCategory = Item,
-        Icon = Am9x19HPRounds,
+        Icon = Case9x19,
     }
  
     item Case_9x19mm_Box
@@ -1774,7 +1774,7 @@ module ORGM
         Type = Normal,
         DisplayName = 10x25mm cases,
         DisplayCategory = Item,
-        Icon = Am10x25HPRounds,
+        Icon = Case10x25,
     }
  
     item Case_10x25mm_Box
@@ -1869,7 +1869,7 @@ module ORGM
         Type = Normal,
         DisplayName = 5.56x45mm cases,
         DisplayCategory = Item,
-        Icon = Am556x45HPRounds,
+        Icon = Case556x45,
     }
  
     item Case_556x45mm_Box
@@ -1965,7 +1965,7 @@ module ORGM
         Type = Normal,
         DisplayName = 7.62x39mm cases,
         DisplayCategory = Item,
-        Icon = Am762x39HPRounds,
+        Icon = Case762x39,
     }
 
     item Case_762x39mm_Box
@@ -2061,7 +2061,7 @@ module ORGM
         Type = Normal,
         DisplayName = 7.62x51mm cases,
         DisplayCategory = Item,
-        Icon = Am762x51HPRounds,
+        Icon = Case762x51,
     }
 
     item Case_762x51mm_Box
@@ -2157,7 +2157,7 @@ module ORGM
         Type = Normal,
         DisplayName = 7.62x54R cases,
         DisplayCategory = Item,
-        Icon = Am762x54HPRounds,
+        Icon = Case762x54,
     }
 
     item Case_762x54mm_Box
@@ -2253,7 +2253,7 @@ module ORGM
         Type = Normal,
         DisplayName = 12 Gauge cases,
         DisplayCategory = Item,
-        Icon = Am12gRounds,
+        Icon = Case12g,
     }
 
     item Case_12g_Box
