@@ -1,5 +1,6 @@
 
 --[[ ORGM.itemBindingHandler(key)
+
     Triggerd by Events.OnKeyPressed, this overrides PZ's ItemBindingHandler.onKeyPressed function.
     It handles the new pistol/rifle/shotgun hotkeys, and bypasses equipping a light source if a equipped 
     gun has a tactical light.
@@ -8,7 +9,6 @@
 ORGM.itemBindingHandler = function(key)
 	local weapon = nil;
 	local playerObj = getSpecificPlayer(0)
-    local remove = false;
     if playerObj and not playerObj:IsAiming() then
 	-- looking for the better handweapon
 		if key == getCore():getKey("Equip/Unequip Handweapon") then
@@ -30,6 +30,7 @@ ORGM.itemBindingHandler = function(key)
         elseif key == getCore():getKey("Equip/Turn On/Off Light Source") then
             if ORGM.toggleTacticalLight(playerObj) then return end -- handled by orgm
             
+            -- default pz light finding code
             local primary = playerObj:getPrimaryHandItem()
             local secondary = playerObj:getSecondaryHandItem()
 			if primary ~= nil and primary:getLightStrength() > 0 then

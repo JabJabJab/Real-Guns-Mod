@@ -133,8 +133,8 @@ end
 function ISReloadManager:checkLoaded(character, chargeDelta)
     local weapon = character:getPrimaryHandItem();
     if ReloadUtil:setUpGun(weapon, character) then
-        self.reloadable = ReloadUtil:getReloadableWeapon(weapon, character);
-        if(self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
+        self.reloadable = ReloadUtil:getReloadableWeapon(weapon, character)
+        if (self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
             ISTimedActionQueue.clear(character)
             if(chargeDelta == nil) then
                 character:DoAttack(0);
