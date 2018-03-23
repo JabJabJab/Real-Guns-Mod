@@ -11,13 +11,13 @@ ORGM = {
     AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf",
     -- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
     -- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
-    -- gun index number < changed index number then the gun needs to be reset to default values (fixed for the 
+    -- gun build id < lastChanged build id then the gun needs to be reset to default values (fixed for the 
     -- new version.)
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
         "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
-        "3.06-stable", -- 21
+        "3.06-stable", "3.07-stable",-- 21
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
@@ -179,8 +179,9 @@ ORGM = {
     -- Table containing all registered ammo and definitions. formally ORGMMasterAmmoTable (v2.00-v2.03)
     AmmoTable = { },
     
-    -- Table containing all dummy round names and real ammo replacements. formally ORGMAlternateAmmoTable (v2.00-v2.03)
-    AlternateAmmoTable = { },
+    -- Table containing all AmmoGroup names and real ammo replacements. formally ORGMAlternateAmmoTable (v2.00-v2.03)
+    AmmoGroupTable = { },
+    --AlternateAmmoTable = { },
     
     -- Table containing all registered firearms and definitions. formally ORGMMasterWeaponTable (v2.00-v2.03)
     FirearmTable = { },
@@ -213,8 +214,6 @@ ORGM = {
     -- The SoundBankKeys table contains a a list of firearm keys we need to add to the SoundBankQueueTable.
     SoundBankKeys = {"clickSound", "insertSound", "ejectSound", "rackSound", "openSound", "closeSound", "cockSound"},
 
-    
-    
     --[[  ORGM.log
         
         Basic logging function.

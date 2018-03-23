@@ -4,8 +4,11 @@
     If you have a 3d party mod that uses any of these tables it needs to be updated.
 ]]
 
+-- 3.07 change
+ORGM.AlternateAmmoTable = ORGM.AmmoGroupTable
 
 
+-- 2.03 stuff
 ORGMAlternateAmmoTable = ORGM.AlternateAmmoTable
 ORGMMasterAmmoTable = ORGM.AmmoTable
 ORGMMasterMagTable = ORGM.MagazineTable

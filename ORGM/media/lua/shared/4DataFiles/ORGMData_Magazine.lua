@@ -10,7 +10,7 @@
     name = the string name of the magazine (without module prefix)
     definition = a table containing the magazine stats. Valid table keys/value pairs are:
         moduleName = nil | string, module name this item is from. If nil, ORGM is used
-        ammoType = string, the name of a ammo 'dummy round' (not real ammo name)
+        ammoType = string, the name of a ammo AmmoGroup (not real ammo name)
         reloadTime = nil | integer, if nil then ORGM.Settings.DefaultMagazineReoadTime is used
         maxCapacity = int, the max amount of bullets this magazine can hold
         ejectSound = nil | string, the string name of a sound file. If nil 'ORGMMagLoad' is used

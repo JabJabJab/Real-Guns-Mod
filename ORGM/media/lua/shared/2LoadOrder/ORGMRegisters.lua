@@ -40,7 +40,7 @@ end
     
     Registers a ammo type with ORGM.  This must be called before any registerMagazine or registerFirearm that plans
     to use that ammo.
-    NOTE: this should only be called with real ammo (ie: Ammo_9x19mm_FMJ) and not dummy rounds (ie: Ammo_9x19mm)
+    NOTE: this should only be called with real ammo (ie: Ammo_9x19mm_FMJ) and not AmmoGroup (ie: Ammo_9x19mm)
     
     name = string name of the ammo (without module prefix)
     definition = a table containing the ammo stats. Valid table keys/value pairs are:
@@ -51,13 +51,13 @@ end
         MaxHitCount = nil | integer. This overrides the firearm item MaxHitCount. Only valid for firearms with multiple 
             projectiles (ie: shotguns)
         Case = string | the empty case to eject
-        UseWith = nil | table, the 'dummy round' names this ammo can be used for. if nil, the name parameter is used
+        UseWith = nil | table, the AmmoGroup names this ammo can be used for. if nil, the name parameter is used
 
     returns true on success, false if the ammo fails to register
 
 ]]
 ORGM.registerAmmo = function(name, definition)
-    --ORGM.log(ORGM.DEBUG, "Attempting to register ammo ".. name)
+    ORGM.log(ORGM.DEBUG, "Attempting to register ammo ".. name)
     if validateRegister(name, definition, ORGM.AmmoTable) == false then
         return false
     end   
@@ -120,12 +120,49 @@ ORGM.registerAmmo = function(name, definition)
     end
         
     for _, ammo in ipairs(definition.UseWith) do
-        if ORGM.AlternateAmmoTable[ammo] == nil then
-            ORGM.AlternateAmmoTable[ammo] = { name }
+        if ORGM.AmmoGroupTable[ammo] == nil then
+            ORGM.AmmoGroupTable[ammo] = { name }
         else
-            table.insert(ORGM.AlternateAmmoTable[ammo], name)
+            table.insert(ORGM.AmmoGroupTable[ammo], name)
         end
     end
+    
+    --[[
+    -- autogeneration
+    -- for some stupid reason, i can autogenerate the items, but not the matching recipes. Without the recipes working, this
+    -- whole thing is damn near worthless....
+    -- suppose this code could be used to auto build the script .txt files or something
+    
+    local rtype = definition.RoundType or "Round"
+    local text = "module ORGM {\r\n"
+    -- build ammo script item
+    text = text .. "item "..name.."\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = "..name..",\r\nDisplayName = "..definition.DisplayName.." "..rtype.. "s,\r\nWeight = "..definition.Weight.."\r\n}\r\n"
+    -- build box script item
+    text = text .. "item "..name.."_Box\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = "..name.."_Box,\r\nDisplayName = "..definition.DisplayName.." - "..definition.BoxCount.. " " .. rtype.." Box,\r\nWeight = "..definition.Weight * definition.BoxCount.."\r\n}\r\n"
+    -- build can scipt item
+    text = text .. "item "..name.."_Can\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = AmmoBox,\r\nDisplayName = "..definition.DisplayName.." - "..definition.CanCount.. " " .. rtype.." Can,\r\nWeight = "..definition.Weight * definition.CanCount.."\r\n}\r\n"
+    -- box to rounds
+    text = text.."\r\n}"
+    getScriptManager():ParseScript(text)
+    
+    -- recipes dont seem to properly register using this method :\
+    text = "module ORGM {\r\n"
+    text = text .. "recipe Unbox "..definition.DisplayName.." "..rtype.."s\r\n{\r\n" .. name.."_Box,\r\n\r\nResult:"..name.."="..definition.BoxCount..",\r\nTime:5.0,\r\n}\r\n"
+    -- rounds to box
+    text = text .. "recipe Put in a box\r\n{\r\n" .. name.."="..definition.BoxCount .. ",\r\n\r\nResult:"..name.."_Box,\r\nTime:5.0,\r\n}\r\n"
+    -- rounds to can
+    text = text .. "recipe Put in a canister\r\n{\r\n" .. name.."="..definition.CanCount .. ",\r\n\r\nResult:"..name.."_Can,\r\nTime:10.0,\r\n}\r\n"
+    -- boxes to can
+    text = text .. "recipe Put in a canister\r\n{\r\n" .. name.."_Box="..definition.CanCount/definition.BoxCount .. ",\r\n\r\nResult:"..name.."_Can,\r\nTime:10.0,\r\n}\r\n"
+    -- can to boxes
+    text = text .. "recipe into boxes\r\n{\r\n" .. name.."_Can,\r\n\r\nResult:"..name.. "_Box="..definition.CanCount/definition.BoxCount..",\r\nTime:10.0,\r\n}\r\n"
+    -- can to rounds
+    text = text .. "recipe Empty out canister\r\n{\r\n" .. name.."_Can,\r\n\r\nResult:"..name.. "="..definition.CanCount..",\r\nTime:10.0,\r\n}\r\n"
+    -- end the module
+    text = text.."\r\n}"
+    print(text)
+    getScriptManager():ParseScript(text)
+    ]]
     ORGM.AmmoTable[name] = definition
     ORGM.log(ORGM.DEBUG, "Registered ammo " .. fullName)
     return true
@@ -139,7 +176,7 @@ end
     name = the string name of the magazine (without module prefix)
     definition = a table containing the magazine stats. Valid table keys/value pairs are:
         moduleName = nil | string, module name this item is from. If nil, ORGM is used
-        ammoType = string, the name of a ammo 'dummy round' (not real ammo name)
+        ammoType = string, the name of a ammo AmmoGroup (not real ammo name)
         reloadTime = nil | integer, if nil then ORGM.Settings.DefaultMagazineReoadTime is used
         maxCapacity = int, the max amount of bullets this magazine can hold
         ejectSound = nil | string, the string name of a sound file. If nil 'ORGMMagLoad' is used
@@ -269,7 +306,7 @@ ORGM.registerFirearm = function(name, definition)
     if definition.ammoType == nil then
         ORGM.log(ORGM.ERROR, "Missing AmmoType for " .. fullName .. " (scripts/*.txt)")
         return
-    elseif not ORGM.AlternateAmmoTable[definition.ammoType] and not ORGM.MagazineTable[definition.ammoType] then
+    elseif not ORGM.getAmmoGroup(definition.ammoType) and not ORGM.MagazineTable[definition.ammoType] then
         ORGM.log(ORGM.ERROR, "Invalid AmmoType for " .. fullName .. " (Ammo or Magazine not registered: "..definition.ammoType ..")")
         return
     end
