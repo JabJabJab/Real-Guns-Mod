@@ -44,15 +44,15 @@ end
 
 
 function ISRemoveWeaponUpgrade:perform()
+    --ORGM.log(ORGM.DEBUG, "Removing "..self.part:getType())
+    ORGM.log(ORGM.DEBUG, "Removing "..self.part:getType() .. ", weight="..tostring(self.part:getWeight())..'/'..tostring(self.part:getActualWeight())..'/'..tostring(self.part:getWeightModifier()))
+    
+    ORGM.log(ORGM.DEBUG, "Weapon weight before "..tostring(self.weapon:getWeight()) .."/" .. tostring(self.weapon:getActualWeight()))
     self.weapon:detachWeaponPart(self.part)
-    -- delete the original part, give a fresh copy
-    local new = InventoryItemFactory.CreateItem(self.part:getFullType())
-    local ndata = new:getModData()
-    for k,v in pairs(self.part:getModData()) do ndata[k] = v end -- copy any mod data
-    ndata.BUILD_ID = ORGM.BUILD_ID
-    new:setCondition(self.part:getCondition())
+    ORGM.log(ORGM.DEBUG, "Weapon weight after "..tostring(self.weapon:getWeight()) .."/" .. tostring(self.weapon:getActualWeight()))
 
-    --self.character:getInventory():AddItem(self.part)
+    -- delete the original part, give a fresh copy
+    local new = ORGM.copyFirearmComponent(self.part)
     self.character:getInventory():AddItem(new)
     -- needed to remove from queue / start next.
     ISBaseTimedAction.perform(self)
@@ -65,12 +65,7 @@ function ISUpgradeWeapon:perform()
         -- handle orgm component update...
         ORGM.log(ORGM.INFO, "Obsolete component detected (" .. self.part:getType() .."). Running update function.")
         self.character:Say("Weapon Modification changed due to ORGM updates, resetting to default. Try attaching again.")
-        local new = InventoryItemFactory.CreateItem(self.part:getFullType())
-        local ndata = new:getModData()
-        for k,v in pairs(self.part:getModData()) do ndata[k] = v end -- copy any mod data
-        ndata.BUILD_ID = ORGM.BUILD_ID
-        new:setCondition(self.part:getCondition())
-
+        local new = ORGM.copyFirearmComponent(self.part)
         self.character:getInventory():AddItem(new)    
         self.character:getInventory():Remove(self.part)
         ISBaseTimedAction.perform(self)
@@ -81,7 +76,12 @@ function ISUpgradeWeapon:perform()
     self.weapon:setJobDelta(0.0)
     self.part:setJobDelta(0.0)
 
+    ORGM.log(ORGM.DEBUG, "Installing "..self.part:getType() .. ", weight="..tostring(self.part:getWeight())..'/'..tostring(self.part:getActualWeight())..'/'..tostring(self.part:getWeightModifier()))
+    
+    ORGM.log(ORGM.DEBUG, "Weapon weight before "..tostring(self.weapon:getWeight()) .."/" .. tostring(self.weapon:getActualWeight()))
+    
     self.weapon:attachWeaponPart(self.part)
+    ORGM.log(ORGM.DEBUG, "Weapon weight after "..tostring(self.weapon:getWeight()) .."/" .. tostring(self.weapon:getActualWeight()))
     self.character:getInventory():Remove(self.part)
     self.character:setSecondaryHandItem(nil)
     -- needed to remove from queue / start next.
