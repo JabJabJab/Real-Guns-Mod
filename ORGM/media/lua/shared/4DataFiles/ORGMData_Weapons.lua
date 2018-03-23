@@ -45,7 +45,7 @@
 local register = ORGM.registerFirearm
 
 register("ColtAnac", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -61,7 +61,7 @@ register("ColtAnac", {
     serialnumber = "MM#####",
 })
 register("ColtPyth", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -78,7 +78,7 @@ register("ColtPyth", {
     serialnumber = "######"
 })
 register("ColtSAA", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
@@ -92,7 +92,7 @@ register("ColtSAA", {
     description = "IGUI_Firearm_Desc_ColtSAA",
 })
 register("RugAlas", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -107,7 +107,7 @@ register("RugAlas", {
     description = "IGUI_Firearm_Desc_RugAlas",
 })
 register("RugBH", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.SINGLEACTION,
@@ -121,7 +121,7 @@ register("RugBH", {
     description = "IGUI_Firearm_Desc_RugBH",
 })
 register("RugGP100", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -136,7 +136,7 @@ register("RugGP100", {
     description = "IGUI_Firearm_Desc_RugGP100",
 })
 register("RugRH", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -151,7 +151,7 @@ register("RugRH", {
     description = "IGUI_Firearm_Desc_RugRH",
 })
 register("RugSec6", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -166,7 +166,7 @@ register("RugSec6", {
     description = "IGUI_Firearm_Desc_RugSec6",
 })
 register("SWM10", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -181,7 +181,7 @@ register("SWM10", {
     description = "IGUI_Firearm_Desc_SWM10",
 })
 register("SWM19", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -196,7 +196,7 @@ register("SWM19", {
     description = "IGUI_Firearm_Desc_SWM19",
 })
 register("SWM252", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -211,7 +211,7 @@ register("SWM252", {
     description = "IGUI_Firearm_Desc_SWM252",
 })
 register("SWM29", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -226,7 +226,7 @@ register("SWM29", {
     description = "IGUI_Firearm_Desc_SWM29",
 })
 register("SWM36", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -241,7 +241,7 @@ register("SWM36", {
     description = "IGUI_Firearm_Desc_SWM36",
 })
 register("SWM610", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -256,7 +256,7 @@ register("SWM610", {
     description = "IGUI_Firearm_Desc_SWM610",
 })
 register("Taurus454", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTION,
@@ -274,7 +274,7 @@ register("Taurus454", {
     -- semi pistols
     --************************************************************************--
 register("AutomagV", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -288,7 +288,7 @@ register("AutomagV", {
     description = "IGUI_Firearm_Desc_AutomagV"
 })
 register("BBPistol", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -302,7 +302,7 @@ register("BBPistol", {
     description = "IGUI_Firearm_Desc_BBPistol",
 })
 register("Ber92", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
@@ -318,7 +318,7 @@ register("Ber92", {
     description = "IGUI_Firearm_Desc_Ber92",
 })
 register("BrenTen", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -332,7 +332,7 @@ register("BrenTen", {
     description = "IGUI_Firearm_Desc_BrenTen",
 })
 register("BrownHP", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -346,7 +346,7 @@ register("BrownHP", {
     description = "IGUI_Firearm_Desc_BrownHP",
 })
 register("Colt38S", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -360,7 +360,7 @@ register("Colt38S", {
     description = "IGUI_Firearm_Desc_Colt38S",
 })
 register("ColtDelta", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -374,7 +374,7 @@ register("ColtDelta", {
     description = "IGUI_Firearm_Desc_ColtDelta",
 })
 register("CZ75", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -390,7 +390,7 @@ register("CZ75", {
     description = "IGUI_Firearm_Desc_CZ75",
 })
 register("DEagle", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -404,7 +404,7 @@ register("DEagle", {
     description = "IGUI_Firearm_Desc_DEagle",
 })
 register("DEagleXIX", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -418,7 +418,7 @@ register("DEagleXIX", {
     description = "IGUI_Firearm_Desc_DEagleXIX",
 })
 register("FN57", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- depending on model, this can be SA (FN57 Tactical)
@@ -434,7 +434,7 @@ register("FN57", {
     description = "IGUI_Firearm_Desc_FN57",
 })
 register("Glock17", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- this is technically not quite true, but as close as its going to get
@@ -448,7 +448,7 @@ register("Glock17", {
     description = "IGUI_Firearm_Desc_Glock17",
 })
 register("Glock20", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -462,7 +462,7 @@ register("Glock20", {
     description = "IGUI_Firearm_Desc_Glock20",
 })
 register("Glock21", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -476,7 +476,7 @@ register("Glock21", {
     description = "IGUI_Firearm_Desc_Glock21",
 })
 register("Glock22", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -490,7 +490,7 @@ register("Glock22", {
     description = "IGUI_Firearm_Desc_Glock22",
 })
 register("HKMK23", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -504,7 +504,7 @@ register("HKMK23", {
     description = "IGUI_Firearm_Desc_HKMK23",
 })
 register("KahrCT40", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -518,7 +518,7 @@ register("KahrCT40", {
     description = "IGUI_Firearm_Desc_KahrCT40",
 })
 register("KahrP380", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -532,7 +532,7 @@ register("KahrP380", {
     description = "IGUI_Firearm_Desc_KahrP380",
 })
 register("KTP32", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -546,7 +546,7 @@ register("KTP32", {
     description = "IGUI_Firearm_Desc_KTP32",
 })
 register("M1911", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -561,7 +561,7 @@ register("M1911", {
     description = "IGUI_Firearm_Desc_M1911",
 })
 register("RugerMKII", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -575,7 +575,7 @@ register("RugerMKII", {
     description = "IGUI_Firearm_Desc_RugerMKII",
 })
 register("RugerSR9", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- like the glock, this isnt really a DAO
@@ -589,7 +589,7 @@ register("RugerSR9", {
     description = "IGUI_Firearm_Desc_RugerSR9",
 })
 register("SIGP226", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -604,7 +604,7 @@ register("SIGP226", {
     description = "IGUI_Firearm_Desc_SIGP226",
 })
 register("Spr19119", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.SINGLEACTION,
@@ -618,7 +618,7 @@ register("Spr19119", {
     description = "IGUI_Firearm_Desc_Spr19119",
 })
 register("Taurus38", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -632,7 +632,7 @@ register("Taurus38", {
     description = "IGUI_Firearm_Desc_Taurus38",
 })
 register("TaurusP132", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -646,7 +646,7 @@ register("TaurusP132", {
     description = "IGUI_Firearm_Desc_TaurusP132",
 })
 register("WaltherP22", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -660,7 +660,7 @@ register("WaltherP22", {
     description = "IGUI_Firearm_Desc_WaltherP22",
 })
 register("WaltherPPK", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -674,7 +674,7 @@ register("WaltherPPK", {
     description = "IGUI_Firearm_Desc_WaltherPPK",
 })
 register("XD40", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- striker trigger mechanism, DAO is close enough
@@ -692,7 +692,7 @@ register("XD40", {
     --************************************************************************--
 
 register("AM180", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
@@ -708,7 +708,7 @@ register("AM180", {
     description = "IGUI_Firearm_Desc_AM180",
 })
 register("Ber93R", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTION,
@@ -723,7 +723,7 @@ register("Ber93R", {
     description = "IGUI_Firearm_Desc_Ber93R",
 })
 register("FNP90", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -739,7 +739,7 @@ register("FNP90", {
     description = "IGUI_Firearm_Desc_FNP90",
 })
 register("Glock18", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -754,7 +754,7 @@ register("Glock18", {
     description = "IGUI_Firearm_Desc_Glock18",
 })
 register("HKMP5", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -770,7 +770,7 @@ register("HKMP5", {
     description = "IGUI_Firearm_Desc_HKMP5",
 })
 register("HKUMP", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -786,7 +786,7 @@ register("HKUMP", {
     description = "IGUI_Firearm_Desc_HKUMP",
 })
 register("Kriss", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -800,7 +800,7 @@ register("Kriss", {
     description = "IGUI_Firearm_Desc_Kriss",
 })
 register("KrissA", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -815,7 +815,7 @@ register("KrissA", {
     description = "IGUI_Firearm_Desc_KrissA",
 })
 register("KTPLR", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -829,7 +829,7 @@ register("KTPLR", {
     description = "IGUI_Firearm_Desc_KTPLR",
 })
 register("M1A1", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -843,7 +843,7 @@ register("M1A1", {
     description = "IGUI_Firearm_Desc_M1A1",
 })
 register("Mac10", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -857,7 +857,7 @@ register("Mac10", {
     description = "IGUI_Firearm_Desc_Mac10",
 })
 register("Mac11", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -871,7 +871,7 @@ register("Mac11", {
     description = "IGUI_Firearm_Desc_Mac11",
 })
 register("Skorpion", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -886,7 +886,7 @@ register("Skorpion", {
     description = "IGUI_Firearm_Desc_Skorpion",
 })
 register("Uzi", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -903,7 +903,7 @@ register("Uzi", {
     -- rifles
     --************************************************************************--
 register("AIAW308", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -919,7 +919,7 @@ register("AIAW308", {
     description = "IGUI_Firearm_Desc_AIAW308",
 })
 register("AKM", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -934,7 +934,7 @@ register("AKM", {
         
 })
 register("AKMA", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -949,7 +949,7 @@ register("AKMA", {
     description = "IGUI_Firearm_Desc_AKMA",
 })
 register("AR10", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -964,7 +964,7 @@ register("AR10", {
     description = "IGUI_Firearm_Desc_AR10",
 })
 register("AR15", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -978,7 +978,7 @@ register("AR15", {
     description = "IGUI_Firearm_Desc_AR15",
 })
 register("BBGun", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -996,7 +996,7 @@ register("BBGun", {
     description = "IGUI_Firearm_Desc_BBGun",
 })
 register("BLR", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
@@ -1010,7 +1010,7 @@ register("BLR", {
     description = "IGUI_Firearm_Desc_BLR",
 })
 register("FNFAL", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1024,7 +1024,7 @@ register("FNFAL", {
     description = "IGUI_Firearm_Desc_FNFAL",
 })
 register("FNFALA", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1039,7 +1039,7 @@ register("FNFALA", {
     description = "IGUI_Firearm_Desc_FNFALA",
 })
 register("Garand", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1053,7 +1053,7 @@ register("Garand", {
     description = "IGUI_Firearm_Desc_Garand",
 })
 register("HenryBB", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.SINGLEACTION,
@@ -1067,7 +1067,7 @@ register("HenryBB", {
     description = "IGUI_Firearm_Desc_HenryBB",
 })
 register("HK91", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1081,7 +1081,7 @@ register("HK91", {
     description = "IGUI_Firearm_Desc_HK91",
 })
 register("HKG3", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1096,7 +1096,7 @@ register("HKG3", {
     description = "IGUI_Firearm_Desc_HKG3",
 })
 register("HKSL8", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1110,7 +1110,7 @@ register("HKSL8", {
     description = "IGUI_Firearm_Desc_HKSL8",
 })
 register("L96", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1124,7 +1124,7 @@ register("L96", {
     description = "IGUI_Firearm_Desc_L96",
 })
 register("LENo4", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1139,7 +1139,7 @@ register("LENo4", {
     description = "IGUI_Firearm_Desc_LENo4",
 })
 register("M16", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1155,7 +1155,7 @@ register("M16", {
     description = "IGUI_Firearm_Desc_M16",
 })
 register("M1903", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1170,7 +1170,7 @@ register("M1903", {
     description = "IGUI_Firearm_Desc_M1903",
 })
 register("M21", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1185,7 +1185,7 @@ register("M21", {
     description = "IGUI_Firearm_Desc_M21",
 })
 register("M249", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1203,7 +1203,7 @@ register("M249", {
     description = "IGUI_Firearm_Desc_M249",
 })
 register("M4C", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1219,7 +1219,7 @@ register("M4C", {
     description = "IGUI_Firearm_Desc_M4C",
 })
 register("Marlin60", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1236,7 +1236,7 @@ register("Marlin60", {
     description = "IGUI_Firearm_Desc_Marlin60",
 })
 register("Mini14", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1251,7 +1251,7 @@ register("Mini14", {
     description = "IGUI_Firearm_Desc_Mini14",
 })
 register("Mosin", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1266,7 +1266,7 @@ register("Mosin", {
     description = "IGUI_Firearm_Desc_Mosin",
 })
 register("R25", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1280,7 +1280,7 @@ register("R25", {
     description = "IGUI_Firearm_Desc_R25",
 })
 register("Rem700", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1295,7 +1295,7 @@ register("Rem700", {
     description = "IGUI_Firearm_Desc_Rem700",
 })
 register("Rem788", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1309,7 +1309,7 @@ register("Rem788", {
     description = "IGUI_Firearm_Desc_Rem788",
 })
 register("Rug1022", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1323,7 +1323,7 @@ register("Rug1022", {
     description = "IGUI_Firearm_Desc_Rug1022",
 })
 register("SA80", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1338,7 +1338,7 @@ register("SA80", {
     description = "IGUI_Firearm_Desc_SA80",
 })
 register("SIG550", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1353,7 +1353,7 @@ register("SIG550", {
     description = "IGUI_Firearm_Desc_SIG550",
 })
 register("SIG551", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1368,7 +1368,7 @@ register("SIG551", {
     description = "IGUI_Firearm_Desc_SIG551",
 })
 register("SKS", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1383,7 +1383,7 @@ register("SKS", {
     description = "IGUI_Firearm_Desc_SKS",
 })
 register("SR25", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1397,7 +1397,7 @@ register("SR25", {
     description = "IGUI_Firearm_Desc_SR25",
 })
 register("SVD", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1411,7 +1411,7 @@ register("SVD", {
     description = "IGUI_Firearm_Desc_SVD",
 })
 register("WinM70", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     triggerType = ORGM.SINGLEACTION,
@@ -1426,7 +1426,7 @@ register("WinM70", {
     description = "IGUI_Firearm_Desc_WinM70",
 })
 register("WinM94", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1444,7 +1444,7 @@ register("WinM94", {
     --************************************************************************--
 
 register("BenelliM3", {
-    lastChanged = 21,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1459,7 +1459,7 @@ register("BenelliM3", {
     description = "IGUI_Firearm_Desc_BenelliM3",
 })
 register("BenelliM3SO", {
-    lastChanged = 21,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1473,7 +1473,7 @@ register("BenelliM3SO", {
     description = ORGM.FirearmTable["BenelliM3"].description,
 })
 register("BenelliXM1014", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1488,7 +1488,7 @@ register("BenelliXM1014", {
     description = "IGUI_Firearm_Desc_BenelliXM1014"
 })
 register("Hawk982", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1502,7 +1502,7 @@ register("Hawk982", {
     description = "IGUI_Firearm_Desc_Hawk982",
 })
 register("Ithaca37", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1516,7 +1516,7 @@ register("Ithaca37", {
     description = "IGUI_Firearm_Desc_Ithaca37",
 })
 register("Ithaca37SO", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1530,7 +1530,7 @@ register("Ithaca37SO", {
     description = ORGM.FirearmTable["Ithaca37"].description,
 })
 register("M1216", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1544,7 +1544,7 @@ register("M1216", {
     description = "IGUI_Firearm_Desc_M1216",
 })
 register("Moss590", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1558,7 +1558,7 @@ register("Moss590", {
     description = "IGUI_Firearm_Desc_Moss590",
 })
 register("Moss590SO", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1572,7 +1572,7 @@ register("Moss590SO", {
     description = ORGM.FirearmTable["Moss590"].description,
 })
 register("Rem870", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1587,7 +1587,7 @@ register("Rem870", {
     description = "IGUI_Firearm_Desc_Rem870"
 })
 register("Rem870SO", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1601,7 +1601,7 @@ register("Rem870SO", {
     description = ORGM.FirearmTable["Rem870"].description,
 })
 register("Silverhawk", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
@@ -1615,7 +1615,7 @@ register("Silverhawk", {
     description = "IGUI_Firearm_Desc_Silverhawk",
 })
 register("SilverHawkSO", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.BREAK,
     triggerType = ORGM.SINGLEACTION,
@@ -1629,7 +1629,7 @@ register("SilverHawkSO", {
     description = ORGM.FirearmTable["Silverhawk"].description
 })
 register("Spas12", {
-    lastChanged = 21,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1646,7 +1646,7 @@ register("Spas12", {
     description = "IGUI_Firearm_Desc_Spas12",
 })
 register("Stevens320", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1660,7 +1660,7 @@ register("Stevens320", {
     description = "IGUI_Firearm_Desc_Stevens320"
 })
 register("Striker", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.ROTARY,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1676,7 +1676,7 @@ register("Striker", {
     description = "IGUI_Firearm_Desc_Striker",
 })
 register("VEPR12", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1691,7 +1691,7 @@ register("VEPR12", {
     description = "IGUI_Firearm_Desc_VEPR12",
 })
 register("Win1887", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
@@ -1705,7 +1705,7 @@ register("Win1887", {
     description = "IGUI_Firearm_Desc_Win1887"
 })
 register("Win1887SO", {
-    lastChanged = 20,
+    lastChanged = 22,
     category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
