@@ -14,4 +14,6 @@ if index then
     table.insert(keyBinding, index+1, {value = "Equip/Unequip Pistol", key = 5})
     table.insert(keyBinding, index+2, {value = "Equip/Unequip Rifle", key = 6})
     table.insert(keyBinding, index+3, {value = "Equip/Unequip Shotgun", key = 7})
+    table.insert(keyBinding, index+4, {value = "Reload Any Magazine", key = Keyboard.KEY_Y })
+    
 end

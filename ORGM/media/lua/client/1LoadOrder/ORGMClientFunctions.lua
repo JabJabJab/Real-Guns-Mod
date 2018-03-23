@@ -88,3 +88,29 @@ ORGM.Client.unequipItemNow = function(player, item)
     end
     getPlayerData(player:getPlayerNum()).playerInventory:refreshBackpacks()
 end
+
+--[[ ORGM.Client.onKeyPress(key)
+
+    Runs client side actions on a key being pressed. Currently this only reloads any mag.
+    
+]]
+ORGM.Client.onKeyPress = function(key)
+    local player = getSpecificPlayer(0)
+    if key ~= getCore():getKey("Reload Any Magazine") then return end -- 
+    local inventory = player:getInventory()
+    local reloadItem = nil
+    for name, data in pairs(ORGM.MagazineTable) do
+        local items = inventory:FindAll(data.moduleName .. '.' .. name)
+        for i=0, items:size() -1 do
+            local this = items:get(i)
+            if ReloadUtil:isReloadable(this, player) then
+                reloadItem = this
+                break
+            end
+        end
+        if reloadItem then break end
+    end
+    if reloadItem then
+        ReloadManager[player:getPlayerNum()+1]:startReloadFromUi(reloadItem)
+    end
+end
