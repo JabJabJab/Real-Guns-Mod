@@ -68,7 +68,7 @@ end
 
 function ORGMFirearmWindow:setFirearm(item)
     local itemType = item:getType()
-    local def = ORGM.FirearmTable[itemType]
+    local def = ORGM.getFirearmData(itemType)
     local scriptItem = item:getScriptItem() -- getScriptManager():FindItem(def.moduleName ..'.' .. itemType)
     local data = item:getModData()
     

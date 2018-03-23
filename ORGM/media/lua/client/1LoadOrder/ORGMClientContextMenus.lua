@@ -142,7 +142,7 @@ end
 MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     data.BUILD_ID = 1
     
-    if not ORGM.FirearmTable[item:getType()].lastChanged then
+    if not ORGM.getFirearmData(item:getType()).lastChanged then
         player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
         return
     end
@@ -155,7 +155,7 @@ MenuCallbacks.onMagOverflowTestFunction = function(item, player, data)
     if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
         ammoType = ReloadUtil:getClipData(ammoType).ammoType
     end
-    ammoType = ORGM.AlternateAmmoTable[ammoType][1]
+    ammoType = ORGM.getAmmoGroup(ammoType)[1]
     data.currentCapacity = data.maxCapacity + 10
     for i=1, data.currentCapacity do
         data.magazineData[i] = ammoType
@@ -165,7 +165,7 @@ end
 
 -- reset weapon to defaults
 MenuCallbacks.onResetWeapon = function(item, player, data, reloadable)
-    ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
+    ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
     player:Say("weapon reset")
 end
 
@@ -292,7 +292,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     -- item must be in inventory
     if playerObj:getInventory():contains(item) == false then return end    
 
-    if ORGM.FirearmTable[item:getType()] then
+    if ORGM.getFirearmData(item:getType()) then
         ORGM.Client.firearmContextMenu(player, context, item)
     elseif ORGM.MagazineTable[item:getType()] then
         ORGM.Client.magazineContextMenu(player, context, item)
@@ -309,7 +309,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
         ammoType = ReloadUtil:getClipData(ammoType).ammoType
     end
     local reloadable = ReloadUtil:getReloadableWeapon(item, player)
-    local altTable = ORGM.AlternateAmmoTable[ammoType]
+    local altTable = ORGM.getAmmoGroup(ammoType)
     if #altTable > 1 then -- this ammo has alternatives
         -- create the submenu
         local preferredAmmoMenu = context:addOption(getText("ContextMenu_ORGM_UseOnly"), item, nil)

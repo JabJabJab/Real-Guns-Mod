@@ -147,7 +147,7 @@ end
 
 -----------------------------------------------------------------------------
 -- reloadWeapon function
--- this needs to use the alternate ammos instead of dummy rounds.. it also needs
+-- this needs to use the real ammo instead of AmmoGroup rounds. it also needs
 -- to properly reload so if the real player gets the gun later its actually useable
 -- instead of having nerfed modData stats.
 local reloadWeaponOriginal = nil
@@ -155,7 +155,7 @@ local reloadWeaponOverride = function(primary, player)
     if primary == nil or player == nil then
         return true
     end
-    if not ORGM.FirearmTable[primary:getType()] then
+    if not ORGM.getFirearmData(primary:getType()) then
         -- not a orgm gun, call the original function
         return reloadWeaponOriginal(primary, player)
     end
@@ -183,7 +183,14 @@ local reloadWeaponOverride = function(primary, player)
         container = player:getClothingItem_Back():getItemContainer()
         ammoItem = ORGM.findAmmoInContainer(ammoType, 'any', container)
     end
-    if ammoItem == nil then return false end
+    if ammoItem == nil then
+        if not SurvivorInfiniteAmmo then return false end
+        ammoType = ORGM.getAmmoGroup(ammoType)[1]
+    else
+        ammoType = ammoItem:getType()
+    end
+    
+    --if ammoItem == nil then return false end
     ammoType = ammoItem:getType()
     local ammoCount = container:getNumItems(ammoType)
     if SurvivorInfiniteAmmo then ammoCount = 999 end
@@ -207,7 +214,7 @@ end
 -----------------------------------------------------------------------------
 -- giveWeapon function
 -- this needs to call ORGM.setupGun to properly setup the modData
--- it also needs to pick a alternate ammo instead of the dummy rounds
+-- it also needs to pick a alternate ammo instead of the AmmoGroup rounds
 local giveWeaponOverride = function(player, weaponType, seenZombie)
     local weapon = InventoryItemFactory.CreateItem(weaponType)
     if weapon == nil then return end
@@ -215,19 +222,19 @@ local giveWeaponOverride = function(player, weaponType, seenZombie)
     --local weapon = player:getInventory():AddItem(weaponType)
     
     local ammoType = nil
-    if ORGM.FirearmTable[weapon:getType()] then
+    if ORGM.getFirearmData(weapon:getType()) then
         if WeaponUpgrades[weapon:getType()] then
             ItemPicker.doWeaponUpgrade(weapon)
         end
 
         ORGM.setupGun(ReloadUtil:getWeaponData(weapon:getType()), weapon)
         ammoType = getAmmoBullets(weapon, false)
-        if ORGM.AlternateAmmoTable[ammoType] then
-            local AmmoTbl = ORGM.AlternateAmmoTable[ammoType]
+        local AmmoTbl = ORGM.getAmmoGroup(ammoType)
+        if AmmoTbl then
             ammoType = AmmoTbl[ZombRand(#AmmoTbl) + 1] -- randomly pick ammo
             ammoType = ORGM.AmmoTable[ammoType].moduleName ..'.'.. ammoType
         elseif ORGM.AmmoTable[ammoType] == nil then
-            ORGM.log(ORGM.WARN, "Survivors mod tried to give non-registered and non-dummy round ammo for a gun.")
+            ORGM.log(ORGM.WARN, "Survivors mod tried to give non-registered and non-AmmoGroup round ammo for a gun.")
         end
     else
         ammoType = getAmmoBullets(weapon, true)
@@ -274,7 +281,7 @@ local SSWeaponReadyOverride = function(self)
         return true
     end
 
-    if not ORGM.FirearmTable[primary:getType()] then
+    if not ORGM.getFirearmData(primary:getType()) then
         -- not a orgm gun, call the original function
         return SSWeaponReadyOriginal(self)
     end

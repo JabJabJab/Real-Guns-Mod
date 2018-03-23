@@ -16,7 +16,7 @@
 local silencerCheck = function(player, item)
     if item == nil then return end
     local itemType = item:getType()
-    if ORGM.FirearmTable[itemType] == nil then return end
+    if ORGM.getFirearmData(itemType) == nil then return end
     -- get the scriptItem
     local scriptItem = item:getScriptItem()
     
@@ -75,8 +75,10 @@ local necroforgePatch = function()
         end
         -- add all guns
         for name, def in pairs(ORGM.FirearmTable) do
-            addORGMItem(index, def.moduleName ..'.'..name) 
-            index = index+1
+            if not def.isEgg then 
+                addORGMItem(index, def.moduleName ..'.'..name) 
+                index = index+1
+            end
         end
         -- add all magazines
         for name, def in pairs(ORGM.MagazineTable) do

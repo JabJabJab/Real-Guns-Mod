@@ -53,7 +53,7 @@ function ISORGMMagazine:reloadPerform(char, square, difficulty, magazine)
     local round = self:findBestAmmo(char):getType()
     
     self.currentCapacity = self.currentCapacity + 1
-    self.magazineData[self.currentCapacity] = self:convertDummyRound(round)
+    self.magazineData[self.currentCapacity] = self:convertAmmoGroupRound(round)
     -- check if this round matches other rounds player loaded
     if self.loadedAmmo == nil then
         self.loadedAmmo = round
@@ -116,7 +116,7 @@ function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
     if self.currentCapacity > 0 and self.magazineData[self.currentCapacity] == nil then-- problem! round says its empty here?
         self.magazineData[self.currentCapacity] = self.ammoType -- quick and dirty fix
     end
-    local round = self:convertDummyRound(self.magazineData[self.currentCapacity])
+    local round = self:convertAmmoGroupRound(self.magazineData[self.currentCapacity])
     -- remove last entry from data table (Note: using #table to find the length is slow)    
     self.magazineData[self.currentCapacity] = nil 
     self.currentCapacity = self.currentCapacity - 1
@@ -164,14 +164,14 @@ end
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 --      Misc functions
---[[ ISORGMMagazine:convertDummyRound(round)
-    Converts a dummy round to a real round if required. Some mods like Survivors don't handle
-    the new ammo system properly, and guns are always loaded with dummy ammo.
+--[[ ISORGMMagazine:convertAmmoGroupRound(round)
+    Converts a AmmoGroup round to a real round if required. Some mods like Survivors don't handle
+    the new ammo system properly, and guns are always loaded with AmmoGroup ammo.
 ]]
-function ISORGMMagazine:convertDummyRound(round)
-    if round == self.ammoType and ORGM.AlternateAmmoTable[round] ~= nil then -- a dummy round is being used
-        --print("CONVERTING DUMMY ROUND " .. round " > ".. ORGM.AlternateAmmoTable[round][1])
-        round = ORGM.AlternateAmmoTable[round][1]
+function ISORGMMagazine:convertAmmoGroupRound(round)
+    if round == self.ammoType and ORGM.getAmmoGroup(round) ~= nil then -- a AmmoGroup round is being used
+        --print("CONVERTING AmmoGroup ROUND " .. round " > ".. ORGM.AlternateAmmoTable[round][1])
+        round = ORGM.getAmmoGroup(round)[1]
     end
     return round
 end

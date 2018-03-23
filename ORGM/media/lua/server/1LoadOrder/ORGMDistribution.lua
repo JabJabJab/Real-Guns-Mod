@@ -108,9 +108,9 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
     if ORGM.MagazineTable[itemType] then
         isFirearm = false
         itemOrgmData = ORGM.MagazineTable[itemType]
-    elseif ORGM.FirearmTable[itemType] then
+    elseif ORGM.getFirearmData(itemType) then
         isFirearm = true
-        itemOrgmData = ORGM.FirearmTable[itemType]
+        itemOrgmData = ORGM.getFirearmData(itemType)
     else
         ORGM.log(ORGM.ERROR, "Tried to spawn reloadable " .. itemType .. " but item is not a registered firearm or magazine.")
         return nil
@@ -199,7 +199,7 @@ end
 ]]
 Server.spawnMagazine = function(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
-    local weaponData = ORGM.FirearmTable[gunType]
+    local weaponData = ORGM.getFirearmData(gunType)
     local magType = weaponData.ammoType
     if ORGM.MagazineTable[magType] ~= nil then -- gun uses mags
         Server.spawnReloadable(container, magType, ammoType, spawnChance, maxCount, isLoaded)
@@ -347,7 +347,7 @@ Server.selectFirearm = function(civilian, police, military)
     local gunType = gunTbl[Rnd(#gunTbl)] -- randomly pick a gun
     ORGM.log(ORGM.DEBUG, "Selected " .. tostring(gunType))
 
-    local weaponData = ORGM.FirearmTable[gunType]
+    local weaponData = ORGM.getFirearmData(gunType)
     
     --print("spawning="..gunType)
     local ammoType = weaponData.ammoType
@@ -355,7 +355,7 @@ Server.selectFirearm = function(civilian, police, military)
         ammoType = ORGM.MagazineTable[ammoType].ammoType
     end
     
-    local altTable = ORGM.AlternateAmmoTable[ammoType]
+    local altTable = ORGM.getAmmoGroup(ammoType)
     if Rnd(100) > 50 then
         ammoType = altTable[Rnd(#altTable)]
     else 

@@ -18,12 +18,59 @@ end
 
 
 ORGM.isModLoaded = function(mod)
-	local mods = getActivatedMods()
-	for i=0, mods:size()-1, 1 do
-		if mods:get(i) == mod then return true end
-	end
-	return false
+    return getActivatedMods():contains(mod)
+	--local mods = getActivatedMods()
+	--for i=0, mods:size()-1, 1 do
+	--	if mods:get(i) == mod then return true end
+	--end
+	--return false
 end
+
+
+--[[ ORGM.getFirearmData(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.FirearmTable table, supports module checking.
+    Less to break in the future.
+    
+    itemType is a string firearm name
+    moduleName is a string module name to compare
+    
+    returns nil or the data table setup from ORGM.registerFirearm()
+
+]]
+
+ORGM.getFirearmData = function(itemType, moduleName)
+    local data = ORGM.FirearmTable[itemType]
+    if not data then return nil end
+    if moduleName and data.moduleName ~= moduleName then return nil end
+    return data
+end
+
+ORGM.getMagazineData = function(itemType, moduleName)
+    local data = ORGM.MagazineTable[itemType]
+    if not data then return nil end
+    if moduleName and data.moduleName ~= moduleName then return nil end
+    return data
+end
+
+ORGM.getComponentData = function(itemType, moduleName)
+    local data = ORGM.CompnentTable[itemType]
+    if not data then return nil end
+    if moduleName and data.moduleName ~= moduleName then return nil end
+    return data
+end
+
+ORGM.getAmmoData = function(itemType, moduleName)
+    local data = ORGM.AmmoTable[itemType]
+    if not data then return nil end
+    if moduleName and data.moduleName ~= moduleName then return nil end
+    return data
+end
+
+ORGM.getAmmoGroup = function(itemType)
+    return ORGM.AmmoGroupTable[itemType]
+end
+
 
 
 --[[ ORGM.validateSettings()
@@ -40,8 +87,8 @@ ORGM.validateSettings = function()
     -- TODO: think fenris..theres a more graceful way of writing this slop...alot of repetitive stuff here..
     local Settings = ORGM.Settings
     if Settings.LogLevel ~= ORGM.ERROR and Settings.LogLevel ~= ORGM.WARN and Settings.LogLevel ~= ORGM.INFO and Settings.LogLevel ~= ORGM.DEBUG then
-        ORGM.log(ORGM.ERROR, "Settings.LogLevel is invalid (value " .. tostring(Settings.LogLevel) .. " should be 0-3), setting to 2 (ORGM.INFO)")
         Settings.LogLevel = ORGM.INFO
+        ORGM.log(ORGM.ERROR, "Settings.LogLevel is invalid (value " .. tostring(Settings.LogLevel) .. " should be 0-3), setting to 2 (ORGM.INFO)")
     end
     if type(Settings.JammingEnabled) ~= "boolean" then
         ORGM.log(ORGM.ERROR, "Settings.JammingEnabled is invalid (value " .. tostring(Settings.JammingEnabled) .. " should be boolen true|false), setting to true")
@@ -150,6 +197,15 @@ ORGM.validateSettings = function()
     ORGM.log(ORGM.INFO, "Settings validation complete.")
 end
 
+--[[  ORGM.limitFirearmYear()
+
+    Removes firearm spawning from guns manufactured later then the year specified in the ORGM.Settings table.
+    This is called OnGameBoot
+    
+    returns nil
+
+]]
+
 ORGM.limitFirearmYear = function()
     local limit = ORGM.Settings.LimitYear
     if limit == nil then return end
@@ -209,7 +265,6 @@ ORGM.setupGun = function(gunData, item)
     modData.clipName = gunData.clipName
     modData.clipIcon = gunData.clipIcon
 
-    modData.weaponType = gunData.weaponType -- Rifle, SMG, Shotgun, Pistol, Revolver, LMG (currently not used)
     modData.actionType = gunData.actionType -- Auto, Pump, Lever, Rotary, Break
     modData.triggerType = gunData.triggerType -- SingleAction, DoubleAction
     modData.speedLoader = gunData.speedLoader -- speedloader/stripperclip name
@@ -238,7 +293,6 @@ ORGM.setupGun = function(gunData, item)
     
     modData.BUILD_ID = ORGM.BUILD_ID
 end
-
 
 --[[ ORGM.setupMagazine(magazineType, item)
     
@@ -286,7 +340,7 @@ end
     
     Note magazineType and preferredType should NOT have the "ORGM." prefix.
 
-    magazineType is the name of the magazine (a key in ORGM.AlternateAmmoTable)
+    magazineType is the name of the magazine (a key in ORGM.MagazineTable)
     preferredType is the ammo the magazine should be loaded with. Can be nil (or 'any'), 
         'mixed', or a specific string matching a ORGM.AmmoTable key.
     containerItem is a ItemContainer object.
@@ -325,56 +379,64 @@ ORGM.findBestMagazineInContainer = function(magazineType, preferredType, contain
 end
 
 
---[[ ORGM.findAmmoInContainer(dummyName, preferredType, containerItem)
+--[[ ORGM.findAmmoInContainer(ammoGroup, preferredType, containerItem)
 
     Finds the best matching ammo (bullets only) in a container based on the given
-    dummy round name and preferred type (can be specific round name, nil/any, or mixed)
+    ammoGroup name and preferred type (can be specific round name, nil/any, or mixed)
 
     This is called when reloading some guns and all magazines, but placed here so mods
     like survivors can find the proper ammo without needing access to the actual reloadable
     object.
     
-    Note dummyName and preferredType should NOT have the "ORGM." prefix.
+    Note ammoGroup and preferredType should NOT have the "ORGM." prefix.
 
-    dummyName is the name of the dummy round (a key in ORGM.AlternateAmmoTable)
-    preferredType is nil (or 'any'), 'mixed' (a random pick from ORGM.AlternateAmmoTable values)
-        or a specific string matching one of the ORGM.AlternateAmmoTable values.
+    ammoGroup is the name of the ammo group (a key in ORGM.AmmoGroupTable)
+    preferredType is nil (or 'any'), 'mixed' (a random pick from ORGM.AmmoGroupTable values)
+        or a specific string matching one of the ORGM.AmmoGroupTable values.
     containerItem is a ItemContainer object.
-
+    mode = nil | 0 (rounds) | 1 (box) | 2 (can)
+    
     returns nil or a InventoryItem
 
 ]]
-ORGM.findAmmoInContainer = function(dummyName, preferredType, containerItem)
-    if dummyName == nil then return nil end
+ORGM.findAmmoInContainer = function(ammoGroup, preferredType, containerItem, mode)
+    if ammoGroup == nil then return nil end
     if containerItem == nil then return nil end
     if preferredType == nil then preferredType = 'any' end
+
+    local suffex = ""
+    if mode == 1 then 
+        suffex = "_Box"
+    elseif mode == 2 then
+        suffex = "_Can"
+    end
     
     if preferredType ~= "any" and preferredType ~= 'mixed' then
         -- a preferred ammo is set, we only look for these bullets
-        return containerItem:FindAndReturn(preferredType)
+        return containerItem:FindAndReturn(preferredType .. suffex)
     end
     
-    -- this shouldn't actually be here, self.ammoType is just a dummy round
-    local round = containerItem:FindAndReturn(dummyName)
+    -- this shouldn't actually be here, self.ammoType is just a AmmoGroup round
+    local round = containerItem:FindAndReturn(ammoGroup .. suffex)
     if round then return round end
     
     -- check if there are alternate ammo types we can use
-    local roundTable = ORGM.AlternateAmmoTable[dummyName]
-    -- there should always be a entry, unless we were given a bad dummyName
+    local roundTable = ORGM.getAmmoGroup(ammoGroup)
+    -- there should always be a entry, unless we were given a bad ammoGroup
     if roundTable == nil then return nil end
     
     if preferredType == 'mixed' then
         local options = {}
         for _, value in ipairs(roundTable) do
             -- check what rounds the player has
-            if containerItem:FindAndReturn(value) then table.insert(options, value) end
+            if containerItem:FindAndReturn(value .. suffex) then table.insert(options, value .. suffex) end
         end
         -- randomly pick one
         return containerItem:FindAndReturn(options[ZombRand(#options) + 1])
         
     else -- not a random picking, go through the list in order
         for _, value in ipairs(roundTable) do
-            round = containerItem:FindAndReturn(value)
+            round = containerItem:FindAndReturn(value .. suffex)
             if round then return round end
         end
     end
@@ -382,30 +444,55 @@ ORGM.findAmmoInContainer = function(dummyName, preferredType, containerItem)
     return nil
 end
 
+--[[  ORGM.getItemAmmoGroup(item)
 
---[[ ORGM.convertAllDummyRounds(dummyName, containerItem)
+    return the AmmoGroup for the item.
+    item is a string of the AmmoType, or a InventoryItem weapon or magazine
+
+    returns a table entry from the AmmoGroupTable
+]]
+
+ORGM.getItemAmmoGroup = function(item)
+    local itype = nil
+    if type(item) == "string" then
+        itype = item
+    else
+        itype = item:getType()
+    end
+    local gun = ORGM.getFirearmData(itype)
+    local mag = ORGM.MagazineTable[itype]
+    if gun then
+        mag = gun.clipData
+    end
+    if mag then return mag.ammoType end
+    return gun.ammoType
+    --return item:getAmmoType()
+end
+
+
+--[[ ORGM.convertAllAmmoGroupRounds(ammoGroupName, containerItem)
     
-    Converts all dummy rounds of the given name to the first entry in the ORGM.AlternateAmmoTable (FMJ or Buck)
-    Note dummyName and preferredType should NOT have the "ORGM." prefix.
+    Converts all AmmoGroup rounds of the given name to the first entry in the ORGM.AlternateAmmoTable (FMJ or Buck)
+    Note ammoGroupName and preferredType should NOT have the "ORGM." prefix.
     
-    dummyName is the name of the dummy round (a key in ORGM.AlternateAmmoTable)
+    AmmoGroupName is the name of the AmmoGroup round (a key in ORGM.AlternateAmmoTable)
     containerItem is a ItemContainer object.
 
     returns nil on error (invalid names), or the number of rounds converted
 
 ]]
-ORGM.convertAllDummyRounds = function(dummyName, containerItem)
-    if dummyName == nil then return nil end
+ORGM.convertAllAmmoGroupRounds = function(ammoGroupName, containerItem)
+    if ammoGroupName == nil then return nil end
     if containerItem == nil then return nil end
-    local roundTable = ORGM.AlternateAmmoTable[dummyName]
-    -- there should always be a entry, unless we were given a bad dummyName
+    local roundTable = ORGM.getAmmoGroup(ammoGroupName)
+    -- there should always be a entry, unless we were given a bad AmmoGroupName
     if roundTable == nil then 
-        ORGM.log(ORGM.ERROR, "Tried to convert invalid dummy round ".. dummyName)
+        ORGM.log(ORGM.ERROR, "Tried to convert invalid dummy round ".. ammoGroupName)
         return nil 
     end
-    local count = containerItem:getNumberOfItem(dummyName)
+    local count = containerItem:getNumberOfItem(ammoGroupName)
     if count == nil or count == 0 then return 0 end
-    containerItem:RemoveAll(dummyName)
+    containerItem:RemoveAll(ammoGroupName)
 
     containerItem:AddItems(roundTable[1].moduleName .. roundTable[1], count)
     return count
@@ -475,7 +562,7 @@ ORGM.resetFirearmToDefaults = function(item, container)
        item:setClipSize(ORGM.MagazineTable[ammoType].maxCapacity) 
     end
 
-    ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
+    ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
 end
 ]]
 
@@ -490,7 +577,7 @@ end
 ORGM.checkFirearmBuildID = function(item)
     if item == nil then return nil end
     local data = item:getModData()
-    local def = ORGM.FirearmTable[item:getType()]
+    local def = ORGM.getFirearmData(item:getType())
     if not def then return nil end
     
     if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
@@ -503,6 +590,27 @@ ORGM.checkFirearmBuildID = function(item)
     return false
 end
 
+--[[  ORGM.copyFirearmComponent(item)
+
+    copies a WeaponPart item and returns a new copy with updated script item stats and current build_id, 
+    preseving existing mod data .
+    called by ISRemoveWeaponUpgrade:perform() and ISUpgradeWeapon:perform()
+
+    item is a WeaponPart
+
+    returns a new WeaponPart
+]]
+ORGM.copyFirearmComponent = function(item)
+    local newItem = InventoryItemFactory.CreateItem(item:getFullType())
+    local newData = newItem:getModData()
+    local modData = item:getModData()
+    for k,v in pairs(modData) do newData[k] = v end
+    newData.BUILD_ID = ORGM.BUILD_ID
+    if item:getCondition() < newItem:getConditionMax() then
+        newItem:setCondition(item:getCondition())
+    end
+    return newItem
+end
 
 --[[  ORGM.replaceFirearmWithNewCopy(item, container)
 
@@ -521,7 +629,7 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     if item == nil then return end
 
     local newItem = InventoryItemFactory.CreateItem(item:getModule()..'.' .. item:getType())
-    ORGM.setupGun(ORGM.FirearmTable[newItem:getType()], newItem)
+    ORGM.setupGun(ORGM.getFirearmData(newItem:getType()), newItem)
     local data = item:getModData()
     local newData = newItem:getModData()
 
@@ -535,18 +643,9 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     if item:getClip() then table.insert(upgrades, item:getClip()) end
     if item:getRecoilpad() then table.insert(upgrades, item:getRecoilpad()) end
     for _, mod in ipairs(upgrades) do
-        local new = InventoryItemFactory.CreateItem(mod:getFullType())
-        local nmd = new:getModData()
-        local omd = mod:getModData()
-        for k,v in pairs(omd) do nmd[k] = v end
-        nmd.BUILD_ID = ORGM.BUILD_ID
+        local new = ORGM.copyFirearmComponent(mod)
         newItem:attachWeaponPart(new)
-        newItem:setCondition(mod:getCondition())
     end
-    --newItem:setCanon(item:getCanon())
-    --newItem:setScope(item:getScope())
-    --newItem:setSling(item:getSling())
-
 
     newData.serialnumber = data.serialnumber -- copy the guns serial number
     
@@ -576,7 +675,7 @@ end
 ORGM.toggleTacticalLight = function(player)
     local item = player:getPrimaryHandItem()
     if not item then return end
-    if not ORGM.FirearmTable[item:getType()] then return end
+    if not ORGM.getFirearmData(item:getType()) then return end
     if item:getCondition() == 0 then return end
     local cannon = item:getClip()
     if not cannon then return end
@@ -586,6 +685,7 @@ ORGM.toggleTacticalLight = function(player)
     if item:isActivated() then
         -- pass
     elseif cannon:getType() == "PistolTL" then
+        -- todo, move this to registerComponent
         strength = 0.6
         distance = 15
     elseif cannon:getType() == "RifleTL" then

@@ -499,7 +499,7 @@ function ISORGMWeapon:loadRoundIntoMagazine(round, weapon, position)
     if self.currentCapacity == self.maxCapacity then return end
     self.currentCapacity = self.currentCapacity + 1
     if position == nil then position = self.currentCapacity end
-    self.magazineData[position] = self:convertDummyRound(round)
+    self.magazineData[position] = self:convertAmmoGroupRound(round)
 
     if self.loadedAmmo == nil then
         self.loadedAmmo = round
@@ -508,18 +508,18 @@ function ISORGMWeapon:loadRoundIntoMagazine(round, weapon, position)
     end
 end
 
---[[ ISORGMWeapon:convertDummyRound(round)
-    Converts a dummy round to a real round if required. Some mods like Survivors don't handle
-    the new ammo system properly, and guns are always loaded with dummy ammo.
+--[[ ISORGMWeapon:convertAmmoGroupRound(round)
+    Converts a AmmoGroup round to a real round if required. Some mods like Survivors don't handle
+    the new ammo system properly, and guns are always loaded with AmmoGroup ammo.
 ]]
-function ISORGMWeapon:convertDummyRound(round)
+function ISORGMWeapon:convertAmmoGroupRound(round)
     ammoType = self.ammoType
     if self.containsClip ~= nil then -- get the mag's ammo type
         ammoType = ReloadUtil:getClipData(self.ammoType).ammoType
     end
-    if round == ammoType and ORGM.AlternateAmmoTable[round] ~= nil then -- a dummy round is being used
-        ORGM.log(ORGM.DEBUG, "Converting dummy round ".. round .. " > ".. ORGM.AlternateAmmoTable[round][1])
-        round = ORGM.AlternateAmmoTable[round][1]
+    if round == ammoType and ORGM.getAmmoGroup(round) ~= nil then -- a AmmoGroup round is being used
+        ORGM.log(ORGM.DEBUG, "Converting AmmoGroup round ".. round .. " > ".. ORGM.getAmmoGroup(round)[1])
+        round = ORGM.getAmmoGroup(round)[1]
     end
     return round
 end
@@ -776,7 +776,7 @@ function ISORGMWeapon:emptyMagazineAtOnce(char, sound)
                 round = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
             end
         elseif ammoType then -- eject bullet
-            round = self:convertDummyRound(ammoType)
+            round = self:convertAmmoGroupRound(ammoType)
             round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[round].moduleName..'.' .. round)
         end
         if (round and square) then 
@@ -919,7 +919,7 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
     -- eject whatever is in the chamber
     if self.roundChambered == 1 then
         if round == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
-            self.lastRound = self:convertDummyRound(self.ammoType)
+            self.lastRound = self:convertAmmoGroupRound(self.ammoType)
         end
         round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[self.lastRound].moduleName ..'.'.. self.lastRound)
     elseif self.emptyShellChambered == 1 then
@@ -1019,7 +1019,7 @@ end
 ]]
 function ISORGMWeapon:setCurrentRound(round, weapon)
     if round == nil or round:sub(1, 5) == 'Case_' then return end
-    round = self:convertDummyRound(round)
+    round = self:convertAmmoGroupRound(round)
     local roundData = ORGM.AmmoTable[round]
     if roundData == nil then
         self.lastRound = nil
