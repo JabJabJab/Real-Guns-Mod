@@ -698,6 +698,7 @@ register("AM180", {
     triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
     isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
+    alwaysFullAuto = true,
     ejectSound = 'ORGMSMG2Out',
     insertSound = 'ORGMSMG2In', 
 
@@ -835,6 +836,7 @@ register("M1A1", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
+    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_SMG",
     year = 1921,
@@ -849,6 +851,7 @@ register("Mac10", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
+    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_SMG",
     year = 1970,
@@ -863,6 +866,7 @@ register("Mac11", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
+    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_MachinePistol",
     year = 1972,
@@ -877,7 +881,8 @@ register("Skorpion", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Pistol-Small",
-
+    alwaysFullAuto = true,
+    
     classification = "IGUI_Firearm_MachinePistol",
     year = 1961,
     country = "IGUI_Firearm_Country_CZ",
@@ -892,6 +897,7 @@ register("Uzi", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
+    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_SMG",
     year = 1950,
