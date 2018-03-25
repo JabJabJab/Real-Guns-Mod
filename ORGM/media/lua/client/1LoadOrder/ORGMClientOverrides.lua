@@ -59,7 +59,7 @@ function ISRemoveWeaponUpgrade:perform()
 end
 
 function ISUpgradeWeapon:perform()
-    local def = ORGM.ComponentTable[self.part:getType()]
+    local def = ORGM.getComponentData(self.part)
     local data = self.part:getModData()
     if def and def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
         -- handle orgm component update...
