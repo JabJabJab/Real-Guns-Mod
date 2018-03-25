@@ -33,39 +33,64 @@ end
     Less to break in the future.
     
     itemType is a string firearm name
-    moduleName is a string module name to compare
+    moduleName is a string module name to compare (optional)
     
     returns nil or the data table setup from ORGM.registerFirearm()
 
 ]]
 
-ORGM.getFirearmData = function(itemType, moduleName)
-    local data = ORGM.FirearmTable[itemType]
+local getTableData = function(itemType, moduleName, instance, thisTable)
+    --if not itemType then 
+    --    ORGM.log(ORGM.ERROR, "Tried to call getTableData with nil value.")
+    --    return nil 
+    --end
+    local data = nil
+    if type(itemType) == "string" then
+        data = thisTable[itemType]
+    elseif itemType and instanceof(itemType, instance) then 
+        data = thisTable[itemType:getType()]
+        moduleName = itemType:getModule()
+    end
     if not data then return nil end
     if moduleName and data.moduleName ~= moduleName then return nil end
     return data
+end
+
+ORGM.getFirearmData = function(itemType, moduleName)
+    return getTableData(itemType, moduleName, "HandWeapon", ORGM.FirearmTable)
+end
+
+ORGM.isFirearm = function(itemType, moduleName)
+    if ORGM.getFirearmData(itemType, moduleName) then return true end
+    return false
 end
 
 ORGM.getMagazineData = function(itemType, moduleName)
-    local data = ORGM.MagazineTable[itemType]
-    if not data then return nil end
-    if moduleName and data.moduleName ~= moduleName then return nil end
-    return data
+    return getTableData(itemType, moduleName, "InventoryItem", ORGM.MagazineTable)
 end
 
+ORGM.isMagazine = function(itemType, moduleName)
+    if ORGM.getMagazineData(itemType, moduleName) then return true end
+    return false
+end
+
+
 ORGM.getComponentData = function(itemType, moduleName)
-    local data = ORGM.CompnentTable[itemType]
-    if not data then return nil end
-    if moduleName and data.moduleName ~= moduleName then return nil end
-    return data
+    return getTableData(itemType, moduleName, "InventoryItem", ORGM.ComponentTable)
+end
+ORGM.isComponent = function(itemType, moduleName)
+    if ORGM.getComponentData(itemType, moduleName) then return true end
+    return false
 end
 
 ORGM.getAmmoData = function(itemType, moduleName)
-    local data = ORGM.AmmoTable[itemType]
-    if not data then return nil end
-    if moduleName and data.moduleName ~= moduleName then return nil end
-    return data
+    return getTableData(itemType, moduleName, "InventoryItem", ORGM.AmmoTable)
 end
+ORGM.isAmmo = function(itemType, moduleName)
+    if ORGM.getAmmoData(itemType, moduleName) then return true end
+    return false
+end
+
 
 ORGM.getAmmoGroup = function(itemType)
     return ORGM.AmmoGroupTable[itemType]
@@ -350,7 +375,7 @@ end
 ]]
 ORGM.findBestMagazineInContainer = function(magazineType, preferredType, containerItem)
     if magazineType == nil then return nil end
-    if ORGM.MagazineTable[magazineType] == nil then return nil end -- not a valid orgm mag
+    if not ORGM.isMagazine(magazineType) then return nil end -- not a valid orgm mag
     if containerItem == nil then return nil end -- forgot the container item!
     if preferredType == nil then preferredType = 'any' end
     local bestMagazine = nil
@@ -379,7 +404,7 @@ ORGM.findBestMagazineInContainer = function(magazineType, preferredType, contain
 end
 
 
---[[ ORGM.findAmmoInContainer(ammoGroup, preferredType, containerItem)
+--[[ ORGM.findAmmoInContainer(ammoGroup, preferredType, containerItem, mode)
 
     Finds the best matching ammo (bullets only) in a container based on the given
     ammoGroup name and preferred type (can be specific round name, nil/any, or mixed)
@@ -444,6 +469,25 @@ ORGM.findAmmoInContainer = function(ammoGroup, preferredType, containerItem, mod
     return nil
 end
 
+--[[ ORGM.findAllAmmoInContainer(ammoGroup, preferredType, containerItem)
+    
+]]
+ORGM.findAllAmmoInContainer = function(ammoGroup, containerItem)
+    if ammoGroup == nil then return nil end
+    if containerItem == nil then return nil end
+    
+    -- check if there are alternate ammo types we can use
+    local roundTable = ORGM.getAmmoGroup(ammoGroup)
+    -- there should always be a entry, unless we were given a bad ammoGroup
+    if roundTable == nil then return nil end
+    local results = { 
+        rounds = container:FindAll(table.concat(roundtable, "/")),
+        boxes = container:FindAll(table.concat(roundtable, "_Box/").."_Box"), 
+        cans = container:FindAll(table.concat(roundtable, "_Can/").."_Can"),
+    }
+    return results
+end
+
 --[[  ORGM.getItemAmmoGroup(item)
 
     return the AmmoGroup for the item.
@@ -453,14 +497,8 @@ end
 ]]
 
 ORGM.getItemAmmoGroup = function(item)
-    local itype = nil
-    if type(item) == "string" then
-        itype = item
-    else
-        itype = item:getType()
-    end
-    local gun = ORGM.getFirearmData(itype)
-    local mag = ORGM.MagazineTable[itype]
+    local gun = ORGM.getFirearmData(item)
+    local mag = ORGM.getMagazineData(item)
     if gun then
         mag = gun.clipData
     end
@@ -472,7 +510,7 @@ end
 
 --[[ ORGM.convertAllAmmoGroupRounds(ammoGroupName, containerItem)
     
-    Converts all AmmoGroup rounds of the given name to the first entry in the ORGM.AlternateAmmoTable (FMJ or Buck)
+    Converts all AmmoGroup rounds of the given name to the first entry in the ORGM.AmmoGroupTable (FMJ or Buck)
     Note ammoGroupName and preferredType should NOT have the "ORGM." prefix.
     
     AmmoGroupName is the name of the AmmoGroup round (a key in ORGM.AlternateAmmoTable)
@@ -523,7 +561,6 @@ ORGM.setWeaponProjectilePiercing = function(weapon, roundData)
     return result
 end 
 
-
 --[[ ORGM.setWeaponStats(weapon, roundData)
 
     Sets various stats on the HandWeapon item to match a round.
@@ -535,16 +572,116 @@ end
     returns nil
 
 ]]
-ORGM.setWeaponStats = function(weapon, roundData)
-    if roundData.MaxDamage then weapon:setMaxDamage(roundData.MaxDamage) end
-    if roundData.MinDamage then weapon:setMinDamage(roundData.MinDamage) end
-    if roundData.CriticalChance then weapon:setCriticalChance(roundData.CriticalChance) end
-    if roundData.DoorDamage then weapon:setDoorDamage(roundData.DoorDamage) end
-    if roundData.HitChance then weapon:setHitChance(roundData.HitChance) end
-    -- shotguns: we can't change the ProjectileCount for buckshot/slug swapping, theres no function for it.
-    -- but we can change the MaxHitCount, so while the slug ends up firing multiple projectiles, only 1 will hit
-    -- in testing this works.
-    if roundData.MaxHitCount then weapon:setMaxHitCount(roundData.MaxHitCount) end
+ORGM.setWeaponStats = function(weapon, ammoType)
+    ORGM.log(ORGM.DEBUG, "Setting "..weapon:getType() .. " ammo to "..tostring(ammoType))
+    local details = ORGM.getFirearmData(weapon)
+    local instance = details.instance
+    local ammoData = ORGM.getAmmoData(ammoType) or {}
+    local modData = weapon:getModData()
+    local upgrades = {}
+    if weapon:getCanon() then table.insert(upgrades, weapon:getCanon()) end
+    if weapon:getScope() then table.insert(upgrades, weapon:getScope()) end
+    if weapon:getSling() then table.insert(upgrades, weapon:getSling()) end
+    if weapon:getStock() then table.insert(upgrades, weapon:getStock()) end
+    if weapon:getClip() then table.insert(upgrades, weapon:getClip()) end
+    if weapon:getRecoilpad() then table.insert(upgrades, weapon:getRecoilpad()) end
+
+    -- set inital values from defaults
+    local stats = { 
+        Weight = instance:getWeight(), 
+        ActualWeight = instance:getActualWeight(),
+        MinDamage = ammoData.MinDamage or instance:getMinDamage(),
+        MaxDamage = ammoData.MaxDamage or instance:getMaxDamage(),
+        DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
+        CriticalChance = ammoData.CriticalChance or instance:getCriticalChance(),
+        MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
+        HitChance = instance:getHitChance(), -- redundant, we set it anyways
+        
+        --MinAngle = instance:getMinAngle(),
+        AimingTime = instance:getAimingTime(), -- redundant, we set it anyways
+        RecoilDelay = instance:getRecoilDelay(), -- redundant, we set it anyways
+        ReloadTime = instance:getReloadTime(),
+        MaxRange = instance:getMaxRange(),
+        SwingTime = instance:getSwingTime(),
+        AimingPerkHitChanceModifier = 7,
+    }
+    for _, mod in ipairs(upgrades) do 
+      stats.ActualWeight = stats.ActualWeight + mod:getWeightModifier()
+      stats.Weight = stats.Weight + mod:getWeightModifier()
+    end
+    -- set absolute values
+    -- HitChance and AimTime based on weapon type
+    if details.category == ORGM.PISTOL or details.category == ORGM.REVOLVER then
+        stats.HitChance = 40
+        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
+    elseif details.category == ORGM.RIFLE then
+        stats.HitChance = 40
+        stats.AimingTime = 25 + (stats.ActualWeight *0.5)
+    elseif details.category == ORGM.SMG then
+        stats.HitChance = 30
+        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
+    elseif details.category == ORGM.SHOTGUN then
+        stats.HitChance = 60
+        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
+    else
+        stats.HitChance = 40 -- unknown??
+        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
+    end
+
+    
+    
+    -- adjust recoil relative to ammo, weight, barrel
+    stats.RecoilDelay = (ammoData.Recoil or 10) / (stats.ActualWeight * 0.5)
+    
+    -- adjust swingtime based on weight
+    stats.SwingTime = 0.3 + (stats.ActualWeight * 0.30) -- needs to also be adjusted by trigger
+    
+    
+    -- adjust all by components
+    for _, mod in ipairs(upgrades) do    
+      stats.MaxRange = stats.MaxRange + mod:getMaxRange()
+      --item:setMinRangeRanged(getMinRangeRanged() + mod:getMinRangeRanged())
+      --setClipSize(getClipSize() + part.getClipSize());
+      stats.ReloadTime = stats.ReloadTime + mod:getReloadTime()
+      stats.RecoilDelay = stats.RecoilDelay + mod:getRecoilDelay()
+      stats.AimingTime = stats.AimingTime + mod:getAimingTime()
+      stats.HitChance = stats.HitChance + mod:getHitChance()
+      --stats.MinAngle = stats.MinAngle + mod:getAngle()
+      stats.MinDamage = stats.MinDamage + mod:getDamage()
+      stats.MaxDamage = stats.MaxDamage + mod:getDamage()
+    end
+    
+    -- set recoil and swingtime modifications for automatics
+    if modData.actionType == ORGM.AUTO then
+        stats.RecoilDelay = stats.RecoilDelay - 4 -- recoil absorbed
+        stats.SwingTime = stats.SwingTime - 0.3
+    end
+    -- set swing time to a min value, or some semi autos fire too fast
+    if stats.SwingTime < 0.6 then stats.SwingTime = 0.6 end
+    
+    -- set other relative ammoData adjustments
+    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0)
+    
+    -- adjustments here for modData
+    if modData.selectFire == ORGM.SEMIAUTOMODE then -- semi auto mode
+        --stats.RecoilDelay = 12 -- dont adjust previous recoil
+        --stats.SwingTime = 0.7 -- swingtime needs to be properly set
+    elseif modData.selectFire == ORGM.FULLAUTOMODE or details.alwaysFullAuto == true then -- full auto mode
+        stats.RecoilDelay = stats.RecoilDelay - 20
+        stats.HitChance = stats.HitChance - 20
+        stats.AimingTime = stats.AimingTime + 25
+        stats.SwingTime = 0.3
+    end
+    
+    if stats.SwingTime < 0.3 then stats.SwingTime = 0.3 end
+    stats.MinimumSwingTime = stats.SwingTime - 0.1
+    if stats.RecoilDelay < 0 then stats.RecoilDelay = 0 end
+    stats.RecoilDelay = math.floor(stats.RecoilDelay) -- make sure to pass int
+    stats.AimingTime = math.floor(stats.AimingTime) -- make sure to pass int
+    for k,v in pairs(stats) do
+        ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
+        weapon["set"..k](weapon, v)
+    end
 end
 
 
@@ -557,9 +694,9 @@ ORGM.resetFirearmToDefaults = function(item, container)
     local scriptItem = item:getScriptItem()
     -- change the item properties to the new scriptItem values.
     item:setAmmoType(def.ammoType)
-    if ORGM.MagazineTable[def.ammoType] then
+    if ORGM.isMagazine(def.ammoType) then
         -- we can only fetch the clip size for magazines, internal mags theres no scriptItem:getClipSize()
-       item:setClipSize(ORGM.MagazineTable[ammoType].maxCapacity) 
+       item:setClipSize(ORGM.getMagazineData(ammoType).maxCapacity) 
     end
 
     ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
@@ -577,7 +714,7 @@ end
 ORGM.checkFirearmBuildID = function(item)
     if item == nil then return nil end
     local data = item:getModData()
-    local def = ORGM.getFirearmData(item:getType())
+    local def = ORGM.getFirearmData(item)
     if not def then return nil end
     
     if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
@@ -629,11 +766,14 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     if item == nil then return end
 
     local newItem = InventoryItemFactory.CreateItem(item:getModule()..'.' .. item:getType())
-    ORGM.setupGun(ORGM.getFirearmData(newItem:getType()), newItem)
+    ORGM.setupGun(ORGM.getFirearmData(newItem), newItem)
     local data = item:getModData()
     local newData = newItem:getModData()
 
-    newItem:setCondition(item:getCondition())
+    if item:getCondition() < newItem:getConditionMax() then
+        newItem:setCondition(item:getCondition())
+    end
+    --newItem:setCondition(item:getCondition())
 
     local upgrades = {}
     if item:getCanon() then table.insert(upgrades, item:getCanon()) end
@@ -652,13 +792,13 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     -- empty the magazine, return all rounds to the container.
     if data.magazineData then -- no mag data, this gun has not properly been setup, or is legacy orgm
         for _, value in pairs(data.magazineData) do
-            local def = ORGM.AmmoTable[value]
+            local def = ORGM.getAmmoData(value)
             if def then container:AddItem(def.moduleName ..'.'.. value) end
         end
     end
     if data.roundChambered ~= nil and data.roundChambered > 0 then
         for i=1, data.roundChambered do
-            local def = ORGM.AmmoTable[data.lastRound]
+            local def = ORGM.getAmmoData(data.lastRound)
             if def then container:AddItem(def.moduleName ..'.'.. data.lastRound) end
         end
     end
@@ -675,7 +815,7 @@ end
 ORGM.toggleTacticalLight = function(player)
     local item = player:getPrimaryHandItem()
     if not item then return end
-    if not ORGM.getFirearmData(item:getType()) then return end
+    if not ORGM.isFirearm(item) then return end
     if item:getCondition() == 0 then return end
     local cannon = item:getClip()
     if not cannon then return end
