@@ -70,10 +70,13 @@ Server.doWeaponUpgrade = function(item)
     local upgradeList = WeaponUpgrades[item:getType()]
     local randUpgrade = ZombRand(#upgradeList)
     for i=1,randUpgrade do
+        -- TODO: this needs to check civ/police/military
         local upgrade = WeaponUpgrades[item:getType()][ZombRand(#upgradeList) + 1]
         local part = InventoryItemFactory.CreateItem(upgrade)
-        part:getModData().BUILD_ID = ORGM.BUILD_ID
-        item:attachWeaponPart(part)
+        if ZombRandFloat(0,100) <= 100*Settings.ComponentSpawnModifier then
+            part:getModData().BUILD_ID = ORGM.BUILD_ID
+            item:attachWeaponPart(part)
+        end
     end
 end
 
@@ -95,22 +98,23 @@ end
 Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
     -- ZomboidGlobals.WeaponLootModifier
     -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
-    ORGM.log(ORGM.DEBUG, "Server.spawnReloadable called for " .. itemType .. " with " .. spawnChance .. "% chance.")
-    
+    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable called for " .. itemType .. " with " .. spawnChance .. "% chance.")
+    local roll = ZombRandFloat(0,100)
     --if Rnd(100) > math.ceil(spawnChance) then return false end
+    ORGM.log(ORGM.DEBUG, "Server.spawnReloadable for " .. itemType .. ": " ..roll.. " roll vs ".. spawnChance .. "% chance.")
     
-    if ZombRandFloat(0,100) > spawnChance then return false end
+    if roll > spawnChance then return false end
     local count = Rnd(maxCount)
     
     local itemOrgmData = nil
-    local isFirearm = false
-
-    if ORGM.MagazineTable[itemType] then
-        isFirearm = false
-        itemOrgmData = ORGM.MagazineTable[itemType]
-    elseif ORGM.getFirearmData(itemType) then
-        isFirearm = true
+    local isFirearm = ORGM.isFirearm(itemType)
+    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFireaarm:"..tostring(isFirearm))
+    --isFirearm = ORGM.getFirearmData(itemType)
+    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFireaarm (from data):"..tostring(isFirearm and true))
+    if isFirearm then
         itemOrgmData = ORGM.getFirearmData(itemType)
+    elseif ORGM.isMagazine(itemType) then
+        itemOrgmData = ORGM.getMagazineData(itemType)
     else
         ORGM.log(ORGM.ERROR, "Tried to spawn reloadable " .. itemType .. " but item is not a registered firearm or magazine.")
         return nil
@@ -201,12 +205,12 @@ Server.spawnMagazine = function(container, gunType, ammoType, spawnChance, maxCo
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
     local weaponData = ORGM.getFirearmData(gunType)
     local magType = weaponData.ammoType
-    if ORGM.MagazineTable[magType] ~= nil then -- gun uses mags
+    if ORGM.isMagazine(magType) then -- gun uses mags
         Server.spawnReloadable(container, magType, ammoType, spawnChance, maxCount, isLoaded)
     end
     
     local magType = weaponData.speedLoader
-    if ORGM.MagazineTable[magType] ~= nil then -- gun uses speedloaders
+    if ORGM.isMagazine(magType) then -- gun uses speedloaders
         Server.spawnReloadable(container, magType, ammoType, spawnChance, maxCount, isLoaded)
     end
     
@@ -226,10 +230,10 @@ end
 
 ]]
 Server.spawnItem = function(container, itemType, spawnChance, maxCount)
-    ORGM.log(ORGM.DEBUG, "Server.spawnItem called for " .. itemType .. " with " .. spawnChance .. "% chance.")
-    --if Rnd(100) > math.ceil(spawnChance) then return end
+    local roll = ZombRandFloat(0,100)
+    ORGM.log(ORGM.DEBUG, "Server.spawnItem for " .. itemType .. ": " ..roll.. " roll vs ".. spawnChance .. "% chance.")
     local result = {}
-    if ZombRandFloat(0,100) > spawnChance then return result end
+    if roll > spawnChance then return result end
     local count = Rnd(maxCount)
     for i=1, count do
         local item = ItemPicker.tryAddItemToContainer(container, itemType)
@@ -242,17 +246,17 @@ end
 
 Server.spawnAmmo = function(container, ammoType, spawnChance, maxCount)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
-    Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType, spawnChance, maxCount)
+    Server.spawnItem(container, ORGM.getAmmoData(ammoType).moduleName .. '.' .. ammoType, spawnChance, maxCount)
 end
 
 Server.spawnAmmoBox = function(container, ammoType, spawnChance, maxCount)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
-    Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType .. '_Box', spawnChance, maxCount)
+    Server.spawnItem(container, ORGM.getAmmoData(ammoType).moduleName .. '.' .. ammoType .. '_Box', spawnChance, maxCount)
 end
 
 Server.spawnAmmoCan = function(container, ammoType, spawnChance, maxCount)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.AmmoSpawnModifier
-    Server.spawnItem(container, ORGM.AmmoTable[ammoType].moduleName .. '.' .. ammoType .. '_Can', spawnChance, maxCount)
+    Server.spawnItem(container, ORGM.getAmmoData(ammoType).moduleName .. '.' .. ammoType .. '_Can', spawnChance, maxCount)
 end
 
 
@@ -294,7 +298,7 @@ end
 Server.spawnFirearmPart = function(container, spawnChance, maxCount)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.ComponentSpawnModifier
     local choice = AllComponentsTable[Rnd(#AllComponentsTable)]
-    local result = Server.spawnItem(container, ORGM.ComponentTable[choice].moduleName .. '.' .. choice, spawnChance, maxCount)
+    local result = Server.spawnItem(container, ORGM.getComponentData(choice).moduleName .. '.' .. choice, spawnChance, maxCount)
     for _, item in ipairs(result) do
         item:getModData().BUILD_ID = ORGM.BUILD_ID
     end
@@ -351,8 +355,8 @@ Server.selectFirearm = function(civilian, police, military)
     
     --print("spawning="..gunType)
     local ammoType = weaponData.ammoType
-    if ORGM.MagazineTable[ammoType] then -- ammoType is a mag, get its default ammo
-        ammoType = ORGM.MagazineTable[ammoType].ammoType
+    if ORGM.isMagazine(ammoType) then -- ammoType is a mag, get its default ammo
+        ammoType = ORGM.getMagazineData(ammoType).ammoType
     end
     
     local altTable = ORGM.getAmmoGroup(ammoType)
@@ -417,6 +421,7 @@ end
 
 Server.onFillContainer = function(roomName, containerType, container)
     -- pull functions into local namespace
+    ORGM.log(ORGM.DEBUG, "Checking spawns for "..tostring(roomName) ..", ".. tostring(containerType))
     local addToCorpse = Server.addToCorpse
     local addToCivRoom = Server.addToCivRoom
     local spawnFirearm = Server.spawnFirearm
