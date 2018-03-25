@@ -120,7 +120,7 @@ function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
     -- remove last entry from data table (Note: using #table to find the length is slow)    
     self.magazineData[self.currentCapacity] = nil 
     self.currentCapacity = self.currentCapacity - 1
-    char:getInventory():AddItem(ORGM.AmmoTable[round].moduleName ..'.'.. round)
+    char:getInventory():AddItem(ORGM.getAmmoData(round).moduleName ..'.'.. round)
     ISInventoryPage.dirtyUI()
     self.unloadInProgress = false
     char:getXp():AddXP(Perks.Reloading, 1)

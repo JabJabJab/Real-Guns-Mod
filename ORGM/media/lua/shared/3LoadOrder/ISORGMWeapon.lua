@@ -229,7 +229,7 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == ORGM.ROTARY then
         -- fire shot
-        local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
+        local round = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
         if round and round.Case then
             self.magazineData[self.cylinderPosition] = round.Case
         else
@@ -239,7 +239,7 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
         
     elseif self.actionType == ORGM.BREAK then
         -- fire shot
-        local round = ORGM.AmmoTable[self.magazineData[self.cylinderPosition]]
+        local round = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
         if round and round.Case then
             self.magazineData[self.cylinderPosition] = round.Case
         else
@@ -645,7 +645,7 @@ function ISORGMWeapon:insertMagazine(char, sound)
     if clip == nil then return end
 
     modData = clip:getModData()
-    local def = ORGM.MagazineTable[clip:getType()]
+    local def = ORGM.getMagazineData(clip)
     if modData.currentCapacity > def.maxCapacity then
         -- this mag is holding more then it should. possibly was loaded in a previous 
         -- ORGM version and the maxCapacity has changed.
@@ -654,7 +654,7 @@ function ISORGMWeapon:insertMagazine(char, sound)
         for i=def.maxCapacity+1, modData.currentCapacity do
             local round = modData.magazineData[i]
             modData.magazineData[i] = nil
-            container:AddItem(ORGM.AmmoTable[round].moduleName ..'.'.. round)
+            container:AddItem(ORGM.getAmmoData(round).moduleName ..'.'.. round)
         end
         modData.currentCapacity = def.maxCapacity
     end
@@ -777,7 +777,7 @@ function ISORGMWeapon:emptyMagazineAtOnce(char, sound)
             end
         elseif ammoType then -- eject bullet
             round = self:convertAmmoGroupRound(ammoType)
-            round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[round].moduleName..'.' .. round)
+            round = InventoryItemFactory.CreateItem(ORGM.getAmmoData(round).moduleName..'.' .. round)
         end
         if (round and square) then 
             square:AddWorldInventoryItem(round, 0, 0, 0)        
@@ -921,9 +921,9 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
         if round == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
             self.lastRound = self:convertAmmoGroupRound(self.ammoType)
         end
-        round = InventoryItemFactory.CreateItem(ORGM.AmmoTable[self.lastRound].moduleName ..'.'.. self.lastRound)
+        round = InventoryItemFactory.CreateItem(ORGM.getAmmoData(self.lastRound).moduleName ..'.'.. self.lastRound)
     elseif self.emptyShellChambered == 1 then
-        round = ORGM.AmmoTable[round]
+        round = ORGM.getAmmoData(round)
         if round == nil or round.Case == nil or ORGM.Settings.CasesEnabled == false then
             round = nil
         else
@@ -1011,25 +1011,25 @@ function ISORGMWeapon:feedNextRound(char, weapon)
 end
 
 
---[[ ISORGMWeapon:setCurrentRound(round, weapon)
+--[[ ISORGMWeapon:setCurrentRound(ammoType, weapon)
 
     WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weapon) 
     is NOT called in this function.
     
 ]]
-function ISORGMWeapon:setCurrentRound(round, weapon)
-    if round == nil or round:sub(1, 5) == 'Case_' then return end
-    round = self:convertAmmoGroupRound(round)
-    local roundData = ORGM.AmmoTable[round]
+function ISORGMWeapon:setCurrentRound(ammoType, weapon)
+    if ammoType == nil or ammoType:sub(1, 5) == 'Case_' then return end
+    ammoType = self:convertAmmoGroupRound(ammoType)
+    local roundData = ORGM.getAmmoData(ammoType)
     if roundData == nil then
         self.lastRound = nil
         return
     end
-    if round ~= self.lastRound then 
-        ORGM.setWeaponStats(weapon, roundData)
+    if ammoType ~= self.lastRound then 
+        ORGM.setWeaponStats(weapon, ammoType)
     end
     ORGM.setWeaponProjectilePiercing(weapon, roundData)
-    self.lastRound = round -- this is also used if the slide is cycled again before firing, so we know what to eject
+    self.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
 
 end
 

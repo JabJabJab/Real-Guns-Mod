@@ -15,8 +15,8 @@
 -- function for silencer handling
 local silencerCheck = function(player, item)
     if item == nil then return end
-    local itemType = item:getType()
-    if ORGM.getFirearmData(itemType) == nil then return end
+    --local itemType = item:getType()
+    if not ORGM.isFirearm(item) then return end
     -- get the scriptItem
     local scriptItem = item:getScriptItem()
     

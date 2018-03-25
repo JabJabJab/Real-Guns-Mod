@@ -306,7 +306,7 @@ ORGM.registerFirearm = function(name, definition)
     if definition.ammoType == nil then
         ORGM.log(ORGM.ERROR, "Missing AmmoType for " .. fullName .. " (scripts/*.txt)")
         return
-    elseif not ORGM.getAmmoGroup(definition.ammoType) and not ORGM.MagazineTable[definition.ammoType] then
+    elseif not ORGM.getAmmoGroup(definition.ammoType) and not ORGM.isMagazine(definition.ammoType) then
         ORGM.log(ORGM.ERROR, "Invalid AmmoType for " .. fullName .. " (Ammo or Magazine not registered: "..definition.ammoType ..")")
         return
     end
@@ -350,9 +350,9 @@ ORGM.registerFirearm = function(name, definition)
     
 
     -- check if gun uses a mag, and link clipData
-    if ORGM.MagazineTable[definition.ammoType] then
+    if ORGM.isMagazine(definition.ammoType) then
         definition.containsClip = 1
-        definition.clipData = ORGM.MagazineTable[definition.ammoType]
+        definition.clipData = ORGM.getMagazineData(definition.ammoType)
     end
 
     -- build up the weapons table for spawning, moved to server files
@@ -360,6 +360,45 @@ ORGM.registerFirearm = function(name, definition)
 
     ORGM.FirearmTable[name] = definition
     ReloadUtil:addWeaponType(definition)
+    
+    -- make adjustments to scriptItem .. these should cut down on the amount of crap needed to be added to entries in
+    -- the scripts.txt file, and unify some stats
+    
+    --setAngleFalloff(boolean)
+    --setCategories(ArrayList<String> Categories)
+    --setConditionLowerChance(int)
+    --setConditionMax(int)
+    --setDoorDamage(int DoorDamage)
+    --setKnockBackOnNoDeath(boolean) default true
+    --setKnockdownMod(float)
+    --setMaxDamage(float)
+    --setHitCount(int)
+    --setMaxRange(float)
+    -- setMinAngle()
+    --setMinDamage
+    -- setMinimumSwingTime
+    -- setMultipleHitConditionAffected(boolean) default true
+    -- setNPCSoundBoost
+    --setOtherCharacterVolumeBoost
+    --setOtherHandRequire
+    --setOtherHandUse
+    --setPushBackMod(float
+    --setRangeFalloff(boolean
+    -- setRanged(boolean
+    -- setShareDamage(boolean) default true
+    -- setShareEndurance(boolean default false
+    --setSoundRadius(int 
+    --setSoundVolume(int 
+    --setSplatBloodOnNoDeath(boolean default false
+    --setSplatNumber(int default 2
+    --setSwingAmountBeforeImpact(float default 0
+    --setSwingAnim
+    --setSwingTime
+    --setToHitModifier(float default 1.5
+    --setUseEndurance(boolean default true
+    
+    
+    definition.instance = InventoryItemFactory.CreateItem(definition.moduleName..'.' .. name)
     ORGM.log(ORGM.DEBUG, "Registered firearm " .. fullName)
     return true
 end
