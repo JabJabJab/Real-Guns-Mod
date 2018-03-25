@@ -3,6 +3,7 @@ IG_UI_EN = {
     IGUI_Firearm_InspectTitle = "Firearm Inspection",
     IGUI_Firearm_InfoTitle = "Information",
     IGUI_Firearm_DetailTitle = "Details",
+    IGUI_Firearm_StatTitle = "Stats"
     IGUI_Firearm_DebugTitle = "Debug",
     IGUI_Firearm_YearUnknown = "Unknown",
     
@@ -16,8 +17,36 @@ IG_UI_EN = {
     IGUI_Firearm_bolt = "bolt",
     IGUI_Firearm_breech = "breech",
 
-    IGUI_Firearm_DetailSemi = "semi-auto",
-    IGUI_Firearm_DetailFull = "full-auto",
+    IGUI_Firearm_ActionType1 = "Automatic",
+    IGUI_Firearm_ActionType2 = "Bolt",
+    IGUI_Firearm_ActionType3 = "Lever",
+    IGUI_Firearm_ActionType4 = "Pump",
+    IGUI_Firearm_ActionType5 = "Break Barrel",
+    IGUI_Firearm_ActionType6 = "Rotary Chamber",
+
+    IGUI_Firearm_TriggerType1 = "Single Action",
+    IGUI_Firearm_TriggerType2 = "Double Action",
+    IGUI_Firearm_TriggerType3 = "Double Action Only",
+    
+    IGUI_Firearm_None = "None",
+    IGUI_Firearm_Empty = "Empty",
+    IGUI_Firearm_AmmoMixed = "Mixed Load",
+    IGUI_Firearm_EffectVeryHigh = "Very High",
+    IGUI_Firearm_EffectHigh = "High",
+    IGUI_Firearm_EffectAverage = "Average",
+    IGUI_Firearm_EffectLow = "Low",
+    IGUI_Firearm_EffectVeryLow = "Very Low",
+
+    IGUI_Firearm_EffectGodlike = "Godlike",
+    IGUI_Firearm_EffectBullseye = "Bulls-eye",
+    IGUI_Firearm_EffectVeryGood = "Very Good",
+    IGUI_Firearm_EffectGood = "Good",
+    IGUI_Firearm_EffectBad = "Bad",
+    IGUI_Firearm_EffectVeryBad = "Horrible",
+    
+    
+    IGUI_Firearm_DetailSemi = "Semi-Auto",
+    IGUI_Firearm_DetailFull = "Full-Auto",
     IGUI_Firearm_DetailMode = "It is currently set to %1 mode. <LINE> ",
     IGUI_Firearm_DetailOpen = "The %1 is currently open. <LINE> ",
     IGUI_Firearm_DetailClosed = "The %1 is currently closed. <LINE> ",
@@ -55,6 +84,13 @@ IG_UI_EN = {
     IGUI_Firearm_DetailSerial = "The serial number is %1 <LINE> ",
     IGUI_Firearm_DetailNoSerial = "The serial number appears to have been filed off. <LINE> ",
 
+    -------------------------------------------------------------------------------------------------
+    IGUI_Firearm_StatDetail = " <RED> Details <LINE> <TEXT> Weight: %1 <LINE> ",
+    IGUI_Firearm_StatDetail2 = "Action Type: %1 <LINE> Trigger Type: %2 <LINE> "
+    IGUI_Firearm_StatAmmo = " <RED> Ammo <LINE> <TEXT> Capacity: %1 <LINE> <TEXT> Last Round: %2 <LINE> Loaded Ammo: %3 <LINE> Preferred Ammo: %4 <LINE>",
+    IGUI_Firearm_StatMisc = " <RED> My Stats <LINE> <TEXT> Accuracy: %1 <LINE> Rate of Fire: %2 <LINE> Recoil Effect on RoF: %3 <LINE> ",
+
+    -------------------------------------------------------------------------------------------------
     IGUI_Firearm_DebugState1 = " <RED> State: <LINE> <TEXT> Action Type: %1 <LINE> Trigger Type: %2 <LINE> ",
     IGUI_Firearm_DebugMode = "Fire Mode: %1 <LINE> ",
     IGUI_Firearm_DebugState2 = " Hammer Cocked: %1 <LINE> Action Open: %2 <LINE> ",

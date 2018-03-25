@@ -181,6 +181,133 @@ function DetailsPanel:updateFirearm(item)
 
 end
 
+-------------------------------------------------------------------------------------------
+local StatPanel = ISPanelJoypad:derive("StatPanel")
+
+function StatPanel:new(x, y, width, height)
+    local o = ISPanelJoypad:new(x, y, width, height)
+    setmetatable(o, self)
+    o:noBackground()
+    o.__index = self
+    o.resizable = false
+    return o
+end
+
+function StatPanel:createChildren()
+    self.textPanel = ISRichTextPanel:new(8, 16, self.width-16, self.height-24)
+    self.textPanel:initialise()
+    self.textPanel.autosetheight = false
+    self.textPanel:ignoreHeightChange()
+    self:addChild(self.textPanel)
+end
+
+
+
+function StatPanel:updateFirearm(item)
+    local def = ORGM.getFirearmData(item)
+    if not def then
+        self.textPanel.text = ""
+        self.textPanel:paginate()
+        return
+    end
+    local data = item:getModData()
+    local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
+    local player = getPlayer()
+        
+
+    text = text .. getText("IGUI_Firearm_StatDetail", string.format("%.3f", item:getActualWeight()))
+    
+    if data.selectFire then
+        local mode = "IGUI_Firearm_DetailSemi"
+        if data.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
+        text = text .. getText("IGUI_Firearm_DebugMode", getText(mode))
+    end
+    text = text .. getText("IGUI_Firearm_StatDetail2", getText("IGUI_Firearm_ActionType" .. data.actionType), getText("IGUI_Firearm_TriggerType".. data.triggerType))
+    text = text .." <LINE> "
+    local capacity = ""
+    if data.roundChambered ~= nil then
+        if data.roundChambered == 0 and data.emptyShellChambered ~= 0 then
+            capacity = "+x"
+        else
+            capacity = "+" .. data.roundChambered
+        end
+    end
+    capacity = tostring(data.currentCapacity) .. capacity .. "/"..tostring(data.maxCapacity)
+    
+    local lastRound = data.lastRound
+    if lastRound then
+        local ammoData = ORGM.getAmmoData(lastRound)
+        if ammoData then lastRound = (ammoData.DisplayName or lastRound) .." " .. (ammoData.RoundType or "Round") end
+        --text = text .. " Last Round: " .. tostring(lastRound) .. " <LINE> "
+    else
+        lastRound = getText("IGUI_Firearm_None") --"None"
+    end
+
+    local loadedAmmo = data.loadedAmmo
+    if not loadedAmmo then loadedAmmo =  getText("IGUI_Firearm_Empty") end
+    if loadedAmmo == 'mixed' then
+        loadedAmmo = getText("IGUI_Firearm_AmmoMixed")
+    else
+        local ammoData = ORGM.getAmmoData(loadedAmmo)
+        if ammoData then  loadedAmmo = (ammoData.DisplayName or loadedAmmo) .." " ..(ammoData.RoundType or "Round") .."s" end
+    end
+    
+    preferredAmmoType = data.preferredAmmoType
+    if not preferredAmmoType or preferredAmmoType == 'any' then
+       preferredAmmoType = getText("IGUI_Firearm_None")
+    elseif tempText == 'mixed' then
+        preferredAmmoType = getText("IGUI_Firearm_AmmoMixed")
+    else
+        local ammoData = ORGM.getAmmoData(preferredAmmoType)
+        if ammoData then preferredAmmoType = (ammoData.DisplayName or preferredAmmoType) .." " ..(ammoData.RoundType or "Round").."s" end
+    end
+    text = text ..getText("IGUI_Firearm_StatAmmo", capacity, lastRound, loadedAmmo, preferredAmmoType)
+    text = text .." <LINE> "
+    
+
+    -- hit chance
+    local beenMoving = player:getBeenMovingFor()
+    local aimingPerk = player:getPerkLevel(Perks.Aiming)
+    local hitChanceMod = item:getHitChance()
+    hitChanceMod = hitChanceMod + item:getAimingPerkHitChanceModifier() * aimingPerk
+    local hitChancePenalty = 0
+    if player:IsAiming() and beenMoving > item:getAimingTime() + aimingPerk * 2 then
+        hitChancePenalty = (beenMoving - (item:getAimingTime() + aimingPerk * 2)) * -1
+    end
+    hitChanceMod = hitChanceMod + hitChancePenalty
+    if player:HasTrait("Marksman") then hitChanceMod = hitChanceMod + 20 end
+    if hitChanceMod > 120 then hitChanceMod = "IGUI_Firearm_EffectGodlike"
+    elseif hitChanceMod > 100 then hitChanceMod = "IGUI_Firearm_EffectBullseye"
+    elseif hitChanceMod > 80 then hitChanceMod = "IGUI_Firearm_EffectVeryGood"
+    elseif hitChanceMod > 60 then hitChanceMod = "IGUI_Firearm_EffectGood"
+    elseif hitChanceMod > 40 then hitChanceMod = "IGUI_Firearm_EffectAverage"
+    elseif hitChanceMod > 20 then hitChanceMod = "IGUI_Firearm_EffectBad"
+    else
+        hitChanceMod = "IGUI_Firearm_EffectVeryBad"
+    end
+    local rof = item:getSwingTime()
+    if rof > 2.5 then rof = "IGUI_Firearm_EffectVeryLow"
+    elseif rof > 1.6 then rof = "IGUI_Firearm_EffectLow"
+    elseif rof > 0.9 then rof = "IGUI_Firearm_EffectAverage"
+    elseif rof > 0.4 then rof = "IGUI_Firearm_EffectHigh"
+    else
+        rof = "IGUI_Firearm_EffectVeryHigh"
+    end
+    local recoil = item:getRecoilDelay()
+    if recoil > 30 then recoil = "IGUI_Firearm_EffectVeryHigh"
+    elseif recoil > 23 then recoil = "IGUI_Firearm_EffectHigh"
+    elseif recoil > 13 then recoil = "IGUI_Firearm_EffectAverage"
+    elseif recoil > 8 then recoil = "IGUI_Firearm_EffectLow"
+    elseif recoil > 3 then recoil = "IGUI_Firearm_EffectVeryLow"
+    else
+        recoil = "IGUI_Firearm_None"
+    end
+    text = text..getText("IGUI_Firearm_StatMisc", getText(hitChanceMod), getText(rof), getText(recoil))
+
+    self.textPanel.text = text
+    self.textPanel:paginate()
+end
+
 local DebugPanel = ISPanelJoypad:derive("DebugPanel")
 
 function DebugPanel:new(x, y, width, height)
@@ -202,7 +329,7 @@ end
 
 function DebugPanel:updateFirearm(item)
     local def = ORGM.getFirearmData(item)
-    if not def then --or not ORGM.Settings.Debug then 
+    if not def or not ORGM.Settings.Debug then 
         self.textPanel.text = ""
         self.textPanel:paginate()
         return
@@ -325,6 +452,11 @@ function ORGMFirearmWindow:createChildren()
     self.detailsPanel = DetailsPanel:new(0, 8, self.width, self.height-16)
     self.detailsPanel:initialise()
     self.panel:addView(getText("IGUI_Firearm_DetailTitle"), self.detailsPanel)
+    
+    self.statPanel = StatPanel:new(0, 8, self.width, self.height-16)
+    self.statPanel:initialise()
+    self.panel:addView(getText("IGUI_Firearm_StatTitle"), self.statPanel)
+    
     
     --if ORGM.Settings.Debug then
         self.debugPanel = DebugPanel:new(0, 8, self.width, self.height-16)
