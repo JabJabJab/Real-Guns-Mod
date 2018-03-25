@@ -25,7 +25,7 @@ Events.OnEquipPrimary.Add(ORGM.Client.checkFirearmBuildID)
 -- they'd want to since this is a pretty important backwards compatibility
 -- check..
 Events.OnGameStart.Add(function() 
-    local player = getPlayer()
+    local player = getSpecificPlayer(0)
     local item = player:getPrimaryHandItem()
     -- function in client/1LoadOrder/ORGMClientFunctions.lua
     ORGM.Client.checkFirearmBuildID(player, item)
@@ -33,3 +33,11 @@ end)
 
 -- function in client/1LoadOrder/ORGMClientFunctions.lua
 Events.OnKeyPressed.Add(ORGM.Client.onKeyPress)
+
+Events.OnPlayerUpdate.Add(function(player)
+    if not player:isLocalPlayer() then return end
+    local primary = player:getPrimaryHandItem()
+    if primary and ORGMFirearmWindow:isVisible() then --and ORGM.isFirearm(primary) then
+        ORGMFirearmWindow:setFirearm(primary)
+    end
+end)
