@@ -51,13 +51,17 @@ MenuCallbacks.onBarrelToggle = function(item, player, data, reloadable)
 end
 
 MenuCallbacks.onActionTypeToggle = function(item, player, data, reloadable, newtype)
-    reloadable.actionType = newtype
-    reloadable:syncReloadableToItem(item)
+    player:playSound("ORGMRndLoad", false)
+    data.actionType = newtype
+    ORGM.setWeaponStats(item, data.lastRound)
+    --reloadable.actionType = newtype
+    --reloadable:syncReloadableToItem(item)
 end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
     local itemType = item:getFullType()
     --local scriptItem = getScriptManager():FindItem(itemType)
+    --[[
     local scriptItem = item:getScriptItem()
     if not scriptItem then
         return
@@ -71,6 +75,12 @@ MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmod
     end
     reloadable.selectFire = newmode
     reloadable:syncReloadableToItem(item)
+    ]]
+    
+    player:playSound("ORGMRndLoad", false)
+    data.selectFire = newmode
+    ORGM.setWeaponStats(item, data.lastRound)
+    
 end
 
 MenuCallbacks.onSpinCylinder = function(item, player, data, reloadable)
@@ -142,7 +152,7 @@ end
 MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     data.BUILD_ID = 1
     
-    if not ORGM.getFirearmData(item:getType()).lastChanged then
+    if not ORGM.getFirearmData(item).lastChanged then
         player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
         return
     end
@@ -165,7 +175,7 @@ end
 
 -- reset weapon to defaults
 MenuCallbacks.onResetWeapon = function(item, player, data, reloadable)
-    ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
+    ORGM.setupGun(ORGM.getFirearmData(item), item)
     player:Say("weapon reset")
 end
 
@@ -263,6 +273,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         subMenuDebug:addOption("* Backwards Compatibility Test", item, MenuCallbacks.onBackwardsTestFunction, playerObj, data, reloadable)
         subMenuDebug:addOption("* Magazine Overflow Test", item, MenuCallbacks.onMagOverflowTestFunction, playerObj, data)
         subMenuDebug:addOption("* Reset To Defaults", item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
+        --subMenuDebug:addOption("* Full ammo")
     end
 end
 
@@ -292,9 +303,9 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     -- item must be in inventory
     if playerObj:getInventory():contains(item) == false then return end    
 
-    if ORGM.getFirearmData(item:getType()) then
+    if ORGM.isFirearm(item) then
         ORGM.Client.firearmContextMenu(player, context, item)
-    elseif ORGM.MagazineTable[item:getType()] then
+    elseif ORGM.isMagazine(item) then
         ORGM.Client.magazineContextMenu(player, context, item)
     else
         return
@@ -320,7 +331,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
         subMenuAmmo:addOption(getText("ContextMenu_ORGM_Mixed"), item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, "mixed")
         -- find all ammo types:
         for _, value in ipairs(altTable) do
-            local def = ORGM.AmmoTable[value]
+            local def = ORGM.getAmmoData(value)
             subMenuAmmo:addOption(getScriptManager():FindItem(def.moduleName ..'.' .. value):getDisplayName(), item, MenuCallbacks.onSetPreferredAmmo, player, data, reloadable, value)
         end
     end
