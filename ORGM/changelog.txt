@@ -11,6 +11,78 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.07
+
+* Added new hotkey for 'Reload Any Magazine' that finds a magazine in your inventory and
+    reloads it using spare bullets (boxes/cans must be unpacked first).  The new key can be
+    configured in your PZ options screen keybinding tab and defaults to 'Y'.
+
+* Added new hotkey for 'Select Fire Switch' that toggles between semi and full auto for
+    select fire weapons. The new key can be configured in your PZ options screen keybinding 
+    tab and defaults to 'Z'.
+
+* Numerous weapon stats are now set dynamically instead of from the scripts/*.txt files.
+    SwingTime is now set by weight, modified by semi or full ammo action.
+    RecoilDelay is now set by round, modified by weight and components
+    AimTime is now mostly set by weapon type, slightly modified by weight, and full-auto mode
+    HitChance is now set by weapon type, modified by components and full-auto mode
+    MinDamage, MaxDamage, are set by round
+    Its a far from perfect system, but a step in the right direction.
+    
+* Added sound to the select fire mode and action type switching. Weapons in full auto have reduced HitChance 
+    but less AimTime.
+
+* Firearm Inspection Window now updates information/details while visible and a ORGM firearm
+    is equipped.
+
+* Added Debug panel to Inspection Window when ORGM is set to debug/dev mode
+
+* Component/Weapon mod appearance on firearms that spawn are now effected by 
+    ORGM.Settings.ComponentSpawnModifier
+
+* Fixed bug in weapon update function that set condition to maximum.
+
+* Fixed bug in survivors mod compatibility patch where survivors wouldn't reload if infinite
+    ammo setting was enabled and they didn't actually have any bullets.
+
+* fixed bug in settings validation where if ORGM.Settings.LogLevel was nil
+
+    
+---------------------------------------------------------------------------------------
+Major code changes
+
+* Several table access methods are depreciated in favor of new functions. This was done to 
+    ensure better long term support and stability, and to simply code as they accept a string
+    name itemType or a InventoryItem class object. Instead of requiring call like
+    ORGM.FirearmTable[item:getType()]  you can now use ORGM.getFirearmData(item)
+    
+    ORGM.FirearmTable[itemType]       >>>     ORGM.getFirearmData(itemType [, moduleName])
+    ORGM.MagazineTable[itemType]      >>>     ORGM.getMagazineData(itemType [, moduleName])
+    ORGM.ComponentTable[itemType]     >>>     ORGM.getComponentData(itemType [, moduleName])
+    ORGM.AmmoTable[itemType]          >>>     ORGM.getAmmoData(itemType [, moduleName])
+    ORGM.AlternateAmmoTable[itemType] >>>     ORGM.getAmmoGroup(itemType [, moduelName])
+
+* added new boolean functions with matching arguments to the new get*Data() functions.
+    ORGM.isFirearm(), ORGM.isComponent(), ORGM.isMagazine() and ORGM.isAmmo()
+
+* ORGM.AlternateAmmoTable has been renamed to clarify its purpose better. References to 'dummy rounds' 
+    in the code have been renamed AmmoGroup.
+    ORGM.AlternateAmmoTable           >>>     ORGM.AmmoGroupTable
+    
+* ORGM.findAmmoInContainer(ammogroup, preferred, container) now supports a additional argument:
+    mode (0 or nil = rounds, 1 = boxes, 2 = cans)
+
+* added function ORGM.findAllAmmoInContainter(ammoGroup|ammoType, container)
+    finds all ammo for the specified ammo group (or type), returns a table:
+    { rounds=java.util.ArrayList, boxes=java.util.ArrayList, cans=java.util.ArrayList } each 
+    subtable containing all the matching InventoryItem objects in that container.
+    
+* addded function ORGM.getItemAmmoGroup(item) that returns a ammo group used by a firearm or magazine.
+    If the firearm uses magazines, the ammo group is taken from its magazine instead.
+    item can be a string name or a InventoryItem object.
+    
+    
+---------------------------------------------------------------------------------------
 version 3.06
 
 * Fixed bug in Benelli M3 and Spas12 conversion from semi-auto to pump and back (introduced v3.00).
