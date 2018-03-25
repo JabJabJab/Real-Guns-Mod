@@ -58,8 +58,11 @@ end
 ]]
 ORGM.Client.checkFirearmBuildID = function(player, item)
     if item == nil or player == nil then return end
+    if not ORGM.isFirearm(item) then return end
 
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
+    
+    ORGM.setWeaponStats(item, item:getModData().lastRound)
     if ORGM.checkFirearmBuildID(item) then
         player:Say("Resetting this weapon to defaults due to ORGM changes. Ammo returned to inventory.")
         ORGM.Client.unequipItemNow(player, item)
@@ -96,21 +99,39 @@ end
 ]]
 ORGM.Client.onKeyPress = function(key)
     local player = getSpecificPlayer(0)
-    if key ~= getCore():getKey("Reload Any Magazine") then return end -- 
+    if not player then return end
     local inventory = player:getInventory()
-    local reloadItem = nil
-    for name, data in pairs(ORGM.MagazineTable) do
-        local items = inventory:FindAll(data.moduleName .. '.' .. name)
-        for i=0, items:size() -1 do
-            local this = items:get(i)
-            if ReloadUtil:isReloadable(this, player) then
-                reloadItem = this
-                break
+    if not inventory then return end
+    if key == getCore():getKey("Reload Any Magazine") then
+        local reloadItem = nil
+        for name, data in pairs(ORGM.MagazineTable) do
+            local items = inventory:FindAll(data.moduleName .. '.' .. name)
+            for i=0, items:size() -1 do
+                local this = items:get(i)
+                if ReloadUtil:isReloadable(this, player) then
+                    reloadItem = this
+                    break
+                end
             end
+            if reloadItem then break end
         end
-        if reloadItem then break end
-    end
-    if reloadItem then
-        ReloadManager[player:getPlayerNum()+1]:startReloadFromUi(reloadItem)
+        if reloadItem then
+            ReloadManager[player:getPlayerNum()+1]:startReloadFromUi(reloadItem)
+        end
+    elseif key == getCore():getKey("Select Fire Toggle") then
+        local primary = player:getPrimaryHandItem()
+        if not primary or not ORGM.isFirearm(primary) then return end
+        local data = primary:getModData()
+        if not data.selectFire then return end
+        player:playSound("ORGMRndLoad", false)
+        if data.selectFire == ORGM.SEMIAUTOMODE then 
+            data.selectFire = ORGM.FULLAUTOMODE
+        else
+            data.selectFire = ORGM.SEMIAUTOMODE
+        end
+        ORGM.setWeaponStats(primary, data.lastRound)
+    elseif key == getCore():getKey("Firearm Inspection Window") then
+        --ORGMFirearmWindow:setFirearm(item)
+        ORGMFirearmWindow:setVisible(not ORGMFirearmWindow:isVisible())
     end
 end

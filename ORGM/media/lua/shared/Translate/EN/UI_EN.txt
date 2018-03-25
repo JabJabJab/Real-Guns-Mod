@@ -3,4 +3,6 @@ UI_EN = {
 	UI_optionscreen_binding_Equip/Unequip Rifle = "Equip/Unequip Rifle",
 	UI_optionscreen_binding_Equip/Unequip Shotgun = "Equip/Unequip Shotgun",
     UI_optionscreen_binding_Reload Any Magazine = "Reload Any Magazine",
+    UI_optionscreen_binding_Select Fire Toggle = "Select Fire Toggle",
+    UI_optionscreen_binding_Firearm Inspection Window = "Firearm Inspection Window",
 }
