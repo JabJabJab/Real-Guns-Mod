@@ -1201,6 +1201,7 @@ register("M249", {
     ejectSound = 'ORGMLMGOut',
     insertSound = 'ORGMLMGIn',
     rackSound = 'ORGMLMGRack',
+    alwaysFullAuto = true,
     
     classification = "IGUI_Firearm_LMG",
     year = 1979,
