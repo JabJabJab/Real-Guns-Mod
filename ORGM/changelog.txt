@@ -22,20 +22,39 @@ version 3.07
     tab and defaults to 'Z'.
 
 * Numerous weapon stats are now set dynamically instead of from the scripts/*.txt files.
+    Its a far from perfect system, but its a step toward a better one, behavior of some weapons
+    might be out of whack until more tweaking is done.
+    
     SwingTime is now set by weight, modified by semi or full ammo action.
     RecoilDelay is now set by round, modified by weight and components
     AimTime is now mostly set by weapon type, slightly modified by weight, and full-auto mode
     HitChance is now set by weapon type, modified by components and full-auto mode
-    MinDamage, MaxDamage, are set by round
-    Its a far from perfect system, but a step in the right direction.
+    Damage is set by round alone (currently)
     
-* Added sound to the select fire mode and action type switching. Weapons in full auto have reduced HitChance 
-    but less AimTime.
 
-* Firearm Inspection Window now updates information/details while visible and a ORGM firearm
-    is equipped.
+* Full-Auto fire behavior is drastically changed:
+    Reduced HitChance by - (10 + Semi-Auto RecoilDelay): lighter weapons with larger calibers 
+        feel more recoil and are harder to aim full auto, items like foregrip and recoilpad 
+        reduce recoil in semi auto, increase accuracy in full auto.
+    Reduced AimTime penalty while moving to HitChance (AimTime increased by 20)
+    SwingTime set to 0.3 (to be adjusted later by gun rpm)
+    Reduced RecoilDelay by 20 (minimum 0)
+    
+* Fixed issue where AimTime worked in reverse (higher being better). Apparently AimTime is a 
+    penalty reducer for HitChance while moving (higher aimtime, less penalty). Weapon 
+    components/mods have been adjusted  accordingly, Adjustments for guns is done automatically 
+    with the new dynamic stats system. (credit to  Arsenal26 for pointing this issue out)
 
-* Added Debug panel to Inspection Window when ORGM is set to debug/dev mode
+* Added sound to the select fire mode and action type switching.
+
+* Firearm Inspection Window now updates information/details while visible and a ORGM firearm is 
+    equipped.
+
+* Added Stats panel to Inspection window, showing current Ammo, and fire mode (for select fires).
+    Also shows accuracy, Rate of fire and recoil effect on ROF in fuzzy terms: High, Low, Average,
+    Good, Bad, etc
+    
+* Added Debug panel to Inspection Window when ORGM is set to debug/dev mode.
 
 * Component/Weapon mod appearance on firearms that spawn are now effected by 
     ORGM.Settings.ComponentSpawnModifier
@@ -48,8 +67,8 @@ version 3.07
 * fixed bug in settings validation where if ORGM.Settings.LogLevel was nil
 
     
----------------------------------------------------------------------------------------
-Major code changes
+--------------------------------------------
+Major code changes for modders:
 
 * Several table access methods are depreciated in favor of new functions. This was done to 
     ensure better long term support and stability, and to simply code as they accept a string
