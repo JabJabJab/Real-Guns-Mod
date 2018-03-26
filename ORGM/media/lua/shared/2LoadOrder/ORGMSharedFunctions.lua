@@ -479,7 +479,13 @@ ORGM.findAllAmmoInContainer = function(ammoGroup, containerItem)
     -- check if there are alternate ammo types we can use
     local roundTable = ORGM.getAmmoGroup(ammoGroup)
     -- there should always be a entry, unless we were given a bad ammoGroup
-    if roundTable == nil then return nil end
+    if roundTable == nil then
+        if ORGM.isAmmo(ammoGroup) then
+            roundTable = {ammoGroup}
+        else
+            return nil
+        end
+    end
     local results = { 
         rounds = container:FindAll(table.concat(roundtable, "/")),
         boxes = container:FindAll(table.concat(roundtable, "_Box/").."_Box"), 
@@ -667,16 +673,19 @@ ORGM.setWeaponStats = function(weapon, ammoType)
         --stats.RecoilDelay = 12 -- dont adjust previous recoil
         --stats.SwingTime = 0.7 -- swingtime needs to be properly set
     elseif modData.selectFire == ORGM.FULLAUTOMODE or details.alwaysFullAuto == true then -- full auto mode
+        stats.HitChance = stats.HitChance - 10
+        if stats.RecoilDelay > -5 then
+            stats.HitChance = stats.HitChance - stats.RecoilDelay -- was -20
+        end
         stats.RecoilDelay = stats.RecoilDelay - 20
-        stats.HitChance = stats.HitChance - 20
-        stats.AimingTime = stats.AimingTime + 25
+        stats.AimingTime = stats.AimingTime + 20
         stats.SwingTime = 0.3
     end
     
     if stats.SwingTime < 0.3 then stats.SwingTime = 0.3 end
     stats.MinimumSwingTime = stats.SwingTime - 0.1
-    if stats.RecoilDelay < 0 then stats.RecoilDelay = 0 end
-    stats.RecoilDelay = math.floor(stats.RecoilDelay) -- make sure to pass int
+    if stats.RecoilDelay < 0.5 then stats.RecoilDelay = 0.5 end
+    --stats.RecoilDelay = math.floor(stats.RecoilDelay) -- make sure to pass int
     stats.AimingTime = math.floor(stats.AimingTime) -- make sure to pass int
     for k,v in pairs(stats) do
         ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
