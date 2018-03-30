@@ -1,5 +1,8 @@
 This document explains what you need to know for creating mods that are compatible with ORGM.
 
+Examples of patch mods can be found at https://github.com/FWolfe/RealGunsMod/tree/master/examples
+or in the 'Patch Mod Examples.zip' file.
+
 The following vanilla functions are overwritten. If your mod replaces these files, or overwrites
 these specific functions, then its probably not going to be fully compatible with ORGM:
 
@@ -10,8 +13,6 @@ Reloading/ISReloadManager:startReloadFromUi()
 *Reloading/ISReloadManager has several new functions injected into it.
 
 
-For best compatibility, mods that edit ORGM or make use of its features when loading should load AFTER ORGM.
-(or delay any actions that require ORGM to be loaded with a Events.*.Add callback).
 ---------------------------------------------------------------------------------------
 
 
@@ -32,6 +33,7 @@ repair kits and firearm components (upgrades and parts) with the ORGM core. Erro
 data conforms to expected values.
 
     shared/2LoadOrder/ORGMSharedFunctions.lua
+Most functions shared by both client and servers are located in this file.
 
     shared/3LoadOrder/ISORGMMagazine.lua
 
@@ -42,14 +44,24 @@ data conforms to expected values.
     shared/3LoadOrder/ISORGMWeapon.lua
     
     shared/4DataFiles/ORGMData_Ammo.lua
+This file contains all ammo data, and makes calls ORGM.registerAmmo.  If your looking for examples of adding ammo, 
+this is the file to check.
     
     shared/4DataFiles/ORGMData_Components.lua
+This file contains all firearm component/upgrades data, and makes calls ORGM.registerComponent.  If your looking for 
+examples of adding components, this is the file to check.
     
     shared/4DataFiles/ORGMData_Magazine.lua
+This file contains all magazine data, and makes calls ORGM.registerMagazine.  If your looking for examples of adding 
+magazines, this is the file to check.
     
     shared/4DataFiles/ORGMData_RepairKits.lua
+This file contains all repair kits data, and makes calls ORGM.registerRepairKit.  If your looking for examples of adding 
+repair kits, this is the file to check.
     
     shared/4DataFiles/ORGMData_Weapons.lua
+This file contains all firearm data, and makes calls ORGM.registerFirearm.  If your looking for examples of adding 
+weapons, this is the file to check.
     
     shared/ORGMBackwardsCompatibility.lua
     
@@ -62,8 +74,10 @@ data conforms to expected values.
 Client files:
 
     client/1LoadOrder/ORGMClientContextMenus.lua
+This file contains all right-click context menu functions. These functions are inserted into the ORGM.Client table.
     
     client/1LoadOrder/ORGMClientFunctions.lua
+This file contains all client-side functions. These functions are inserted into the ORGM.Client table.
     
     client/1LoadOrder/ORGMClientOverrides.lua
     
@@ -72,6 +86,9 @@ Client files:
     client/ORGMClientCompatibilityPatches.lua
     
     client/ORGMClientEventHooks.lua
+This file calls all client-side Events.*.Add() functions. These are kept separate from the actual callback functions for ease 
+of seeing exactly which events are hooked. The files that contain the actual callback are listed in comments inside this file.
+
 
 ---------------------------------
 Server files:
@@ -86,5 +103,9 @@ This file handles removal of base firearms and ammo from the distribution tables
     server/ORGMServerCompatibilityPatches.lua
 
     server/ORGMServerEventHooks.lua
-This file calls all server-side Events.*.Add() functions. These are kept seperate from the actual callback functions for ease 
+This file calls all server-side Events.*.Add() functions. These are kept separate from the actual callback functions for ease 
 of seeing exactly which events are hooked. The files that contain the actual callback are listed in comments inside this file.
+
+
+---------------------------------------------------------------------------------------
+
