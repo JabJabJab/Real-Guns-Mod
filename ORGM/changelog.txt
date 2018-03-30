@@ -15,11 +15,15 @@ version 3.07
 
 * Added new hotkey for 'Reload Any Magazine' that finds a magazine in your inventory and
     reloads it using spare bullets (boxes/cans must be unpacked first).  The new key can be
-    configured in your PZ options screen keybinding tab and defaults to 'Y'.
+    configured in your PZ options screen keybinding tab and defaults to 'G'.
 
 * Added new hotkey for 'Select Fire Switch' that toggles between semi and full auto for
     select fire weapons. The new key can be configured in your PZ options screen keybinding 
     tab and defaults to 'Z'.
+
+* Added new hotkey for 'Firearm Inspection Window' that brings up the Inspection Window. 
+    The new key can be configured in your PZ options screen keybinding  tab and defaults to 
+    'U'.
 
 * Numerous weapon stats are now set dynamically instead of from the scripts/*.txt files.
     Its a far from perfect system, but its a step toward a better one, behavior of some weapons
@@ -29,7 +33,7 @@ version 3.07
     RecoilDelay is now set by round, modified by weight and components
     AimTime is now mostly set by weapon type, slightly modified by weight, and full-auto mode
     HitChance is now set by weapon type, modified by components and full-auto mode
-    Damage is set by round alone (currently)
+    Damage is set by round, modified by components (shotgun chokes)
     
 
 * Full-Auto fire behavior is drastically changed:
@@ -45,6 +49,12 @@ version 3.07
     components/mods have been adjusted  accordingly, Adjustments for guns is done automatically 
     with the new dynamic stats system. (credit to  Arsenal26 for pointing this issue out)
 
+* Component/Weapon mod modifiers are no longer set in scripts/ORGMMods.txt, these are now all
+    set in ORGMData_Components.lua (except Weight and WeightModifier)
+
+* Damage reduced to help emphasize only a headshot (critical hits) can kill a zombie. The damage
+    now has a multiplier that can be configured in ORGM.Settings.DamageMultiplier
+    
 * Added sound to the select fire mode and action type switching.
 
 * Firearm Inspection Window now updates information/details while visible and a ORGM firearm is 
