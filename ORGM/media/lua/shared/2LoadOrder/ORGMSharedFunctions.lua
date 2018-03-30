@@ -543,6 +543,45 @@ ORGM.convertAllAmmoGroupRounds = function(ammoGroupName, containerItem)
 end
 
 
+ORGM.getAmmoTypeForBox = function(item)
+    if instanceof(item, "InventoryItem") then
+        item = item:getType()
+    end
+    item = string.sub(item, 1, -5)
+    if ORGM.isAmmo(item) then return item end    
+    return nil
+end
+
+
+ORGM.unboxAmmoItem = function(item)
+    local container = item:getContainer()
+    local ammoType = ORGM.getAmmoTypeForBox(item)
+    if not ammoType or not container then return end
+    local boxType = string.sub(item:getType(), -3)
+    local ammoData = ORGM.getAmmoData(ammoType)
+    if ammoData and boxType == "Box" then
+        container:AddItems(ammoType, ammoData.BoxCount or 0)
+    elseif ammoData and boxType == "Can" then
+        container:AddItems(ammoType, ammoData.CanCount or 0)
+    else
+        return
+    end
+    container:Remove(item)
+end
+
+
+ORGM.getItemComponents = function(item)
+    return {
+        Canon = item:getCanon(),
+        Scope = item:getScope(),
+        Sling = item:getSling(),
+        Stock = item:getStock(),
+        Clip = item:getClip(),
+        Recoilpad = item:getRecoilpad()
+    }
+end
+
+
 --[[ ORGM.setWeaponProjectilePiercing(weapon, roundData)
     
     Sets the PiercingBullets flag on a gun, dependent on the round.
@@ -566,132 +605,6 @@ ORGM.setWeaponProjectilePiercing = function(weapon, roundData)
     weapon:setPiercingBullets(result)
     return result
 end 
-
---[[ ORGM.setWeaponStats(weapon, roundData)
-
-    Sets various stats on the HandWeapon item to match a round.
-    This is called when loading a new round into the chamber.
-
-    weapon is a HandWeapon Item
-    roundData is a entry in the ORGM.AmmoTable
-
-    returns nil
-
-]]
-ORGM.setWeaponStats = function(weapon, ammoType)
-    ORGM.log(ORGM.DEBUG, "Setting "..weapon:getType() .. " ammo to "..tostring(ammoType))
-    local details = ORGM.getFirearmData(weapon)
-    local instance = details.instance
-    local ammoData = ORGM.getAmmoData(ammoType) or {}
-    local modData = weapon:getModData()
-    local upgrades = {}
-    if weapon:getCanon() then table.insert(upgrades, weapon:getCanon()) end
-    if weapon:getScope() then table.insert(upgrades, weapon:getScope()) end
-    if weapon:getSling() then table.insert(upgrades, weapon:getSling()) end
-    if weapon:getStock() then table.insert(upgrades, weapon:getStock()) end
-    if weapon:getClip() then table.insert(upgrades, weapon:getClip()) end
-    if weapon:getRecoilpad() then table.insert(upgrades, weapon:getRecoilpad()) end
-
-    -- set inital values from defaults
-    local stats = { 
-        Weight = instance:getWeight(), 
-        ActualWeight = instance:getActualWeight(),
-        MinDamage = ammoData.MinDamage or instance:getMinDamage(),
-        MaxDamage = ammoData.MaxDamage or instance:getMaxDamage(),
-        DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
-        CriticalChance = ammoData.CriticalChance or instance:getCriticalChance(),
-        MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
-        HitChance = instance:getHitChance(), -- redundant, we set it anyways
-        
-        --MinAngle = instance:getMinAngle(),
-        AimingTime = instance:getAimingTime(), -- redundant, we set it anyways
-        RecoilDelay = instance:getRecoilDelay(), -- redundant, we set it anyways
-        ReloadTime = instance:getReloadTime(),
-        MaxRange = instance:getMaxRange(),
-        SwingTime = instance:getSwingTime(),
-        AimingPerkHitChanceModifier = 7,
-    }
-    for _, mod in ipairs(upgrades) do 
-      stats.ActualWeight = stats.ActualWeight + mod:getWeightModifier()
-      stats.Weight = stats.Weight + mod:getWeightModifier()
-    end
-    -- set absolute values
-    -- HitChance and AimTime based on weapon type
-    if details.category == ORGM.PISTOL or details.category == ORGM.REVOLVER then
-        stats.HitChance = 40
-        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
-    elseif details.category == ORGM.RIFLE then
-        stats.HitChance = 40
-        stats.AimingTime = 25 + (stats.ActualWeight *0.5)
-    elseif details.category == ORGM.SMG then
-        stats.HitChance = 30
-        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
-    elseif details.category == ORGM.SHOTGUN then
-        stats.HitChance = 60
-        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
-    else
-        stats.HitChance = 40 -- unknown??
-        stats.AimingTime = 40 + (stats.ActualWeight *0.5)
-    end
-
-    
-    
-    -- adjust recoil relative to ammo, weight, barrel
-    stats.RecoilDelay = (ammoData.Recoil or 10) / (stats.ActualWeight * 0.5)
-    
-    -- adjust swingtime based on weight
-    stats.SwingTime = 0.3 + (stats.ActualWeight * 0.30) -- needs to also be adjusted by trigger
-    
-    
-    -- adjust all by components
-    for _, mod in ipairs(upgrades) do    
-      stats.MaxRange = stats.MaxRange + mod:getMaxRange()
-      --item:setMinRangeRanged(getMinRangeRanged() + mod:getMinRangeRanged())
-      --setClipSize(getClipSize() + part.getClipSize());
-      stats.ReloadTime = stats.ReloadTime + mod:getReloadTime()
-      stats.RecoilDelay = stats.RecoilDelay + mod:getRecoilDelay()
-      stats.AimingTime = stats.AimingTime + mod:getAimingTime()
-      stats.HitChance = stats.HitChance + mod:getHitChance()
-      --stats.MinAngle = stats.MinAngle + mod:getAngle()
-      stats.MinDamage = stats.MinDamage + mod:getDamage()
-      stats.MaxDamage = stats.MaxDamage + mod:getDamage()
-    end
-    
-    -- set recoil and swingtime modifications for automatics
-    if modData.actionType == ORGM.AUTO then
-        stats.RecoilDelay = stats.RecoilDelay - 4 -- recoil absorbed
-        stats.SwingTime = stats.SwingTime - 0.3
-    end
-    -- set swing time to a min value, or some semi autos fire too fast
-    if stats.SwingTime < 0.6 then stats.SwingTime = 0.6 end
-    
-    -- set other relative ammoData adjustments
-    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0)
-    
-    -- adjustments here for modData
-    if modData.selectFire == ORGM.SEMIAUTOMODE then -- semi auto mode
-        --stats.RecoilDelay = 12 -- dont adjust previous recoil
-        --stats.SwingTime = 0.7 -- swingtime needs to be properly set
-    elseif modData.selectFire == ORGM.FULLAUTOMODE or details.alwaysFullAuto == true then -- full auto mode
-        stats.HitChance = stats.HitChance - 10
-        if stats.RecoilDelay > -5 then
-            stats.HitChance = stats.HitChance - stats.RecoilDelay -- was -20
-        end
-        stats.RecoilDelay = stats.RecoilDelay - 20
-        stats.AimingTime = stats.AimingTime + 20
-        stats.SwingTime = 0.3
-    end
-    
-    if stats.SwingTime < 0.3 then stats.SwingTime = 0.3 end
-    stats.MinimumSwingTime = stats.SwingTime - 0.1
-    if stats.RecoilDelay < 0.5 then stats.RecoilDelay = 0.5 end
-    --stats.RecoilDelay = math.floor(stats.RecoilDelay) -- make sure to pass int
-    stats.AimingTime = math.floor(stats.AimingTime) -- make sure to pass int
-    for k,v in pairs(stats) do
-        ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
-        weapon["set"..k](weapon, v)
-    end
-end
 
 
 -- currently not used
