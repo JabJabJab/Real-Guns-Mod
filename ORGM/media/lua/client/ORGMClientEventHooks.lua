@@ -26,9 +26,14 @@ Events.OnEquipPrimary.Add(ORGM.Client.checkFirearmBuildID)
 -- check..
 Events.OnGameStart.Add(function() 
     local player = getSpecificPlayer(0)
-    local item = player:getPrimaryHandItem()
+    local item = player:getPrimaryHandItem() -- better we equip 
+    if not item or not ORGM.isFirearm(item) then return end
     -- function in client/1LoadOrder/ORGMClientFunctions.lua
-    ORGM.Client.checkFirearmBuildID(player, item)
+    --ORGM.Client.checkFirearmBuildID(player, item)
+    -- better to just unequip and requip, it will refresh all stats
+    ORGM.Client.unequipItemNow(player, item)
+    player:setPrimaryHandItem(item)
+
 end)
 
 -- function in client/1LoadOrder/ORGMClientFunctions.lua
