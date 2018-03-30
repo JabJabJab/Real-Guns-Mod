@@ -58,6 +58,7 @@ end
 ]]
 ORGM.Client.checkFirearmBuildID = function(player, item)
     if item == nil or player == nil then return end
+    if not player:isLocalPlayer() then return end
     if not ORGM.isFirearm(item) then return end
 
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
