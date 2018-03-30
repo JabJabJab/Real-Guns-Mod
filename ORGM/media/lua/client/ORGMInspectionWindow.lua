@@ -285,6 +285,17 @@ function StatPanel:updateFirearm(item)
     else
         hitChanceMod = "IGUI_Firearm_EffectVeryBad"
     end
+    
+    local critical = item:getCriticalChance() + item:getAimingPerkCritModifier() * (player:getPerkLevel(Perks.Aiming) / 2)
+    if critical >= 100 then critical = "IGUI_Firearm_EffectSureThing"
+    elseif critical > 80 then critical = "IGUI_Firearm_EffectVeryGood"
+    elseif critical > 60 then critical = "IGUI_Firearm_EffectGood"
+    elseif critical > 40 then critical = "IGUI_Firearm_EffectAverage"
+    elseif critical > 20 then critical = "IGUI_Firearm_EffectBad"
+    else
+        critical = "IGUI_Firearm_EffectVeryBad"
+    end
+    
     local rof = item:getSwingTime()
     if rof > 2.5 then rof = "IGUI_Firearm_EffectVeryLow"
     elseif rof > 1.6 then rof = "IGUI_Firearm_EffectLow"
@@ -300,10 +311,25 @@ function StatPanel:updateFirearm(item)
     elseif recoil > 8 then recoil = "IGUI_Firearm_EffectLow"
     elseif recoil > 3 then recoil = "IGUI_Firearm_EffectVeryLow"
     else
-        recoil = "IGUI_Firearm_None"
+        recoil = "IGUI_Firearm_Negligible"
     end
-    text = text..getText("IGUI_Firearm_StatMisc", getText(hitChanceMod), getText(rof), getText(recoil))
 
+    text = text..getText("IGUI_Firearm_StatMisc", getText(hitChanceMod), getText(critical), getText(rof), getText(recoil))
+
+    local damage = item:getMaxDamage() -- item:getMinDamage()
+    -- this is going to entirely be effected by the ammo damage nerf...
+    local damageMultiplier = ORGM.Settings.DamageMultiplier
+    if damage > 2.5 * damageMultiplier then damage = "IGUI_Firearm_EffectVeryHigh"
+    elseif damage > 2 * damageMultiplier then damage = "IGUI_Firearm_EffectHigh"
+    elseif damage > 1.5 * damageMultiplier then damage = "IGUI_Firearm_EffectAverage"
+    elseif damage > 1 * damageMultiplier then damage = "IGUI_Firearm_EffectLow"
+    else
+        damage = "IGUI_Firearm_EffectVeryLow"
+    end
+
+    text = text..getText("IGUI_Firearm_StatMisc2", getText(damage))
+    
+    
     self.textPanel.text = text
     self.textPanel:paginate()
 end
@@ -400,8 +426,8 @@ function DebugPanel:updateFirearm(item)
     text = text .. getText("IGUI_Firearm_DebugCapacity", tostring(data.currentCapacity), tostring(data.maxCapacity), tostring(data.roundChambered), tostring(data.emptyShellChambered))
     text = text .. getText("IGUI_Firearm_DebugAmmo", tostring(data.lastRound), tostring(data.preferredAmmoType), tostring(data.loadedAmmo), tostring(data.isJammed))
     text = text .. getText("IGUI_Firearm_DebugAccuracy", tostring(item:getHitChance()), tostring(hitChanceMod), tostring(item:getAimingPerkHitChanceModifier() * aimingPerk), tostring(hitChancePenalty))
-    text = text .. getText("IGUI_Firearm_DebugAccuracy2", tostring(item:getCriticalChance()))
-    text = text .. getText("IGUI_Firearm_DebugRange", tostring(item:getMinRange()), tostring(item:getMaxRange()))
+    text = text .. getText("IGUI_Firearm_DebugAccuracy2", tostring(item:getCriticalChance()), tostring(item:getCriticalChance() + item:getAimingPerkCritModifier() * (player:getPerkLevel(Perks.Aiming) / 2)))
+    text = text .. getText("IGUI_Firearm_DebugRange", tostring(item:getMinRangeRanged()), tostring(item:getMaxRange()))
     text = text .. getText("IGUI_Firearm_DebugDamage", tostring(item:getMinDamage()), tostring(item:getMaxDamage()), tostring(item:getTreeDamage()), tostring(item:getDoorDamage()))
     text = text .. getText("IGUI_Firearm_DebugSpeed", tostring(item:getSwingTime()), tostring(item:getRecoilDelay()))
     text = text .. getText("IGUI_Firearm_DebugSpeed2", tostring(item:getAimingTime()), tostring(beenMoving))
@@ -458,11 +484,11 @@ function ORGMFirearmWindow:createChildren()
     self.panel:addView(getText("IGUI_Firearm_StatTitle"), self.statPanel)
     
     
-    --if ORGM.Settings.Debug then
+    if ORGM.Settings.Debug then
         self.debugPanel = DebugPanel:new(0, 8, self.width, self.height-16)
         self.debugPanel:initialise()
         self.panel:addView(getText("IGUI_Firearm_DebugTitle"), self.debugPanel)
-    --end
+    end
 end
 
 
