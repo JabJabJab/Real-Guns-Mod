@@ -166,6 +166,9 @@ ORGM = {
         -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
         -- features (context menus and such). Do not enable this on a open server. All warranties are void of you enable this.
         Debug = false, 
+        
+        DamageMultiplier = 0.5,
+        
     },
 
     -- table containing all ORGM server-side functions
