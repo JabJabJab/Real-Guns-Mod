@@ -69,6 +69,9 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
         ORGM.Client.unequipItemNow(player, item)
         local newItem = ORGM.replaceFirearmWithNewCopy(item, player:getInventory())
         player:setPrimaryHandItem(newItem)
+        if newItem:isTwoHandWeapon() then
+            player:setSecondaryHandItem(newItem)
+        end
         ISInventoryPage.dirtyUI()
     end
 end
@@ -85,10 +88,10 @@ ORGM.Client.unequipItemNow = function(player, item)
     local primary = player:getPrimaryHandItem()
     local secondary = player:getSecondaryHandItem()
     if item == primary then
-        if (item:isTwoHandWeapon() or item:isRequiresEquippedBothHands()) and item == secondary then
-            player:setSecondaryHandItem(nil)
-        end
         player:setPrimaryHandItem(nil)
+    end
+    if item == secondary then
+        player:setSecondaryHandItem(nil)
     end
     getPlayerData(player:getPlayerNum()).playerInventory:refreshBackpacks()
 end
