@@ -1,0 +1,114 @@
+ORGM Rechambered was created by ORMntMan and Fenris_Wolf.
+
+************************************************************************
+*** STEAM WORKSHOP PERMISSIONS
+
+If you wish to modify and reupload this mod to the workshop, you must seek 
+the permission of BOTH ORMntMan and Fenris_Wolf.  
+ORMntMan can be reached through the steam workshop page, Fenris_Wolf through
+theindiestone.com forums.
+
+There are very few reasons why you would need to do so. 98% of ORGM can be 
+overwritten with the use of extra patch mods without having to reupload the 
+whole thing.
+
+Uploading full custom versions creates issues: a fractured userbase and 
+inability to receive bug fixes and feature upgrades among other things.
+
+In the event permission is given, this file MUST be included, as well as the 
+changelog.txt, your workshop page MUST link to the original ORGM page, as well 
+as theindiestone.com forum thread, and credits to the authors must be given.
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=514618604
+https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
+
+Failure to comply with these simple terms will result in your mod getting flagged.
+
+
+************************************************************************
+*** NON-STEAM PERMISSIONS
+
+If you wish to make a custom version available to your friends or server users,
+with downloads hosted in a location other then the steam workshop, you are free
+to do so WITHOUT permission from the original authors, however this file must be
+included, as well as the changelog.txt and credits must be given.
+
+
+************************************************************************
+*** Fenris_Wolf's ORGM Rechambered credits:
+
+ORMntMan - Author of the original ORGM mod, who without his hard work this mod 
+    wouldn't exist today, and for keeping the steam workshop page updated with
+    the new versions.
+
+Khaos - For helping to maintain the steam workshop page, providing support for 
+    the steam users, bug testing, and generally inspiring me to keep going.
+    
+FinestHops/Legion - For having strict requirements for the newdawn server, without
+    his input ORGM would not be nearly as customizable.
+    
+Arsenal26 - For pointing out issues with how some of the attachments work, and 
+    indirectly convincing me to dig into the heart of PZ's firearm code to see how
+    they really work.
+
+Nolanritchie - For creating the ORGM silencers mod. Not that I approve of the use
+    of silencers (I find they throw the game balance), but his mod inspires more
+    people to use ORGM, which is something I definitely approve of ;)
+
+The Indiestone team - for obvious reasons.
+    
+All the people listed below.
+
+
+************************************************************************
+*** ORMntMan's original ORGM credits, all of which still apply today:
+
+Obvious Ollie - for helping with some scripting, creating the original poster, 
+    testing, being a constant companion in this process, reminding me that I have 
+    this project to finish, working on some models, AAAAAAAAAND doing some awesome 
+    free advertising for the mod.
+
+PZ-NOOB - Testing, ideas and promotion of the mod! (Most awesome of all!)
+
+Fluffe9911 - for being the Doge master and for being one of the wonderful promoters
+    of the mod!
+
+WolfeClaw - Providing his awesome gun models!
+
+Jopo80 - Great ideas for weapons and new functions
+
+Jab - For creating the ModelLoader which has made the mod compatible with other 
+    custom model mods (and made my life immensely easier, no more having to edit
+    the java every time I put in a new model)
+
+Fuji - Helping with an incredible amount of coding, providing gun models , making 
+    an awesome new poster and an incredible mod page title picture!, and being the 
+    awesome person who figured out how to unlock custom models for guns! Also, for 
+    being generally awesome!
+
+FLAKT - For providing more sound files for the mod.
+
+nolanritchie - creating a full item list, see the link above
+
+Khaos - Creating the wiki for ORGM, bug testing and possibly some models!
+
+Eddy-baby - For bugtesting and helping with the streamlining of the mod
+
+ExitiumRock - for breaking me through some coding walls and doing extensive 
+    (and helpful) testing.
+
+Archadeas - EXTENSIVE testing, an insurmountable number of ideas and providing fixes 
+    for my stupid mistakes!
+
+Reblar - Tracking down some coding errors and advocating for inclusion of my mod in 
+    his server.
+
+the_fallguy - Constructive criticism that is leading to some fixes, and a hoard of 
+    good gun suggestions
+
+turbotutone - Helping me through my contex menu issues.
+
+Pravus - For making the RKF mod for which I drew inspiration, and learned how to do 
+    distributions from scouring his code. 
+
+
