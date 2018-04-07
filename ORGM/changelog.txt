@@ -71,6 +71,10 @@ version 3.07
 
 * Fixed bug in weapon update function that set condition to maximum.
 
+* Fixed bug in weapon update function that reset the number of times the item had been repaired to 0
+
+* Fixed bug in weapon update function that failed to properly remove and reset the secondary hand item.
+
 * Fixed bug in survivors mod compatibility patch where survivors wouldn't reload if infinite
     ammo setting was enabled and they didn't actually have any bullets.
 
@@ -110,7 +114,9 @@ Major code changes for modders:
     If the firearm uses magazines, the ammo group is taken from its magazine instead.
     item can be a string name or a InventoryItem object.
     
-    
+* component upgrading is now done silently.
+
+
 ---------------------------------------------------------------------------------------
 version 3.06
 

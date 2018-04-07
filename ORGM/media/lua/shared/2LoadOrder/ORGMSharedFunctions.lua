@@ -8,7 +8,6 @@
     returns true if the value exists, false if it doesn't
 
 ]]
-
 ORGM.tableContains = function(thisTable, value)
     for _, v in pairs(thisTable) do
         if v == value then return true end
@@ -16,29 +15,25 @@ ORGM.tableContains = function(thisTable, value)
     return false
 end
 
+--[[ ORGM.isModLoaded(mod)
 
-ORGM.isModLoaded = function(mod)
-    return getActivatedMods():contains(mod)
-	--local mods = getActivatedMods()
-	--for i=0, mods:size()-1, 1 do
-	--	if mods:get(i) == mod then return true end
-	--end
-	--return false
-end
-
-
---[[ ORGM.getFirearmData(itemType, moduleName)
+    Checks if a mod has been loaded or not.
     
-    Safer way of accessing the ORGM.FirearmTable table, supports module checking.
-    Less to break in the future.
+    mod = string mod id
     
-    itemType is a string firearm name
-    moduleName is a string module name to compare (optional)
-    
-    returns nil or the data table setup from ORGM.registerFirearm()
+    returns true|false
 
 ]]
+ORGM.isModLoaded = function(mod)
+    return getActivatedMods():contains(mod)
+end
 
+--[[ getTableData(itemType, moduleName, instance, thisTable)
+
+    Internal function. Fetches data from the specified table.
+    Used by the ORGM.get*Data() functions below.
+
+]]
 local getTableData = function(itemType, moduleName, instance, thisTable)
     --if not itemType then 
     --    ORGM.log(ORGM.ERROR, "Tried to call getTableData with nil value.")
@@ -56,46 +51,162 @@ local getTableData = function(itemType, moduleName, instance, thisTable)
     return data
 end
 
+--[[ ORGM.getFirearmData(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.FirearmTable table, supports module checking.
+    Less to break in the future.
+    
+    itemType is a string firearm name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns nil or the data table setup from ORGM.registerFirearm()
+
+]]
 ORGM.getFirearmData = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "HandWeapon", ORGM.FirearmTable)
 end
 
+--[[ ORGM.isFirearm(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.FirearmTable table, supports module checking.
+    Less to break in the future.
+    
+    itemType is a string firearm name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns true|false if the item is a ORGM registered firearm
+
+]]
 ORGM.isFirearm = function(itemType, moduleName)
     if ORGM.getFirearmData(itemType, moduleName) then return true end
     return false
 end
 
+--[[ ORGM.getMagazineData(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.MagazineTable table, supports module checking.
+    Less to break in the future.
+    
+    itemType is a string magazine name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns nil or the data table setup from ORGM.registerMagazine()
+
+]]
 ORGM.getMagazineData = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "InventoryItem", ORGM.MagazineTable)
 end
 
+--[[ ORGM.isMagazine(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.MagazineTable table, supports module 
+    checking. Less to break in the future.
+    
+    itemType is a string magazine name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns true|false if the item is a ORGM registered magazine
+
+]]
 ORGM.isMagazine = function(itemType, moduleName)
     if ORGM.getMagazineData(itemType, moduleName) then return true end
     return false
 end
 
+--[[ ORGM.getComponentData(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.ComponentTable table, supports module 
+    checking. Less to break in the future.
+    
+    itemType is a string component name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns nil or the data table setup from ORGM.registerComponent()
 
+]]
 ORGM.getComponentData = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "InventoryItem", ORGM.ComponentTable)
 end
+
+--[[ ORGM.isComponent(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.ComponentTable table, supports module 
+    checking. Less to break in the future.
+    
+    itemType is a string component name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns true|false if the item is a ORGM registered component
+
+]]
 ORGM.isComponent = function(itemType, moduleName)
     if ORGM.getComponentData(itemType, moduleName) then return true end
     return false
 end
 
+--[[ ORGM.getAmmoData(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.AmmoTable table, supports module 
+    checking. Less to break in the future.
+    
+    itemType is a string component name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns nil or the data table setup from ORGM.registerAmmo()
+
+]]
 ORGM.getAmmoData = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "InventoryItem", ORGM.AmmoTable)
 end
+
+--[[ ORGM.isAmmo(itemType, moduleName)
+    
+    Safer way of accessing the ORGM.AmmoTable table, supports module 
+    checking. Less to break in the future.
+    
+    itemType is a string ammo name, or a InventoryItem object
+    moduleName is a string module name to compare (optional)
+    
+    returns true|false if the item is a ORGM registered ammo
+
+]]
 ORGM.isAmmo = function(itemType, moduleName)
     if ORGM.getAmmoData(itemType, moduleName) then return true end
     return false
 end
 
+--[[ ORGM.getAmmoGroup(itemType)
+    
+    Returns the ammo group table for the specified itemType. The table contains
+    all the ammo types that can be used for this group.
+    
+    itemType is a string name of a ammo group
+    
+    return nil or the table of real ammo names.
 
+]]
 ORGM.getAmmoGroup = function(itemType)
     return ORGM.AmmoGroupTable[itemType]
 end
 
+--[[  ORGM.getItemAmmoGroup(item)
+
+    return the AmmoGroup for the item.
+    item is a string of the item, or a InventoryItem weapon or magazine
+
+    returns a string ammo group name
+]]
+ORGM.getItemAmmoGroup = function(item)
+    local gun = ORGM.getFirearmData(item)
+    local mag = ORGM.getMagazineData(item)
+    if gun then
+        mag = gun.clipData
+    end
+    if mag then return mag.ammoType end
+    if not gun then return nil end
+    return gun.ammoType
+    --return item:getAmmoType()
+end
 
 
 --[[ ORGM.validateSettings()
@@ -106,7 +217,6 @@ end
     returns nil
     
 ]]
-
 ORGM.validateSettings = function()
     -- this function is messy IMO, but a necessary evil to ensure peoples custom settings don't cause code exceptions.
     -- TODO: think fenris..theres a more graceful way of writing this slop...alot of repetitive stuff here..
@@ -230,7 +340,6 @@ end
     returns nil
 
 ]]
-
 ORGM.limitFirearmYear = function()
     local limit = ORGM.Settings.LimitYear
     if limit == nil then return end
@@ -494,26 +603,6 @@ ORGM.findAllAmmoInContainer = function(ammoGroup, containerItem)
     return results
 end
 
---[[  ORGM.getItemAmmoGroup(item)
-
-    return the AmmoGroup for the item.
-    item is a string of the AmmoType, or a InventoryItem weapon or magazine
-
-    returns a table entry from the AmmoGroupTable
-]]
-
-ORGM.getItemAmmoGroup = function(item)
-    local gun = ORGM.getFirearmData(item)
-    local mag = ORGM.getMagazineData(item)
-    if gun then
-        mag = gun.clipData
-    end
-    if mag then return mag.ammoType end
-    return gun.ammoType
-    --return item:getAmmoType()
-end
-
-
 --[[ ORGM.convertAllAmmoGroupRounds(ammoGroupName, containerItem)
     
     Converts all AmmoGroup rounds of the given name to the first entry in the ORGM.AmmoGroupTable (FMJ or Buck)
@@ -695,7 +784,7 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     if item:getCondition() < newItem:getConditionMax() then
         newItem:setCondition(item:getCondition())
     end
-    --newItem:setCondition(item:getCondition())
+    newItem:setHaveBeenRepaired(item:getHaveBeenRepaired())
 
     local upgrades = {}
     if item:getCanon() then table.insert(upgrades, item:getCanon()) end
