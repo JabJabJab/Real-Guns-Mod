@@ -64,12 +64,13 @@ function ISUpgradeWeapon:perform()
     if def and def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
         -- handle orgm component update...
         ORGM.log(ORGM.INFO, "Obsolete component detected (" .. self.part:getType() .."). Running update function.")
-        self.character:Say("Weapon Modification changed due to ORGM updates, resetting to default. Try attaching again.")
+        --self.character:Say("Weapon Modification changed due to ORGM updates, resetting to default. Try attaching again.")
         local new = ORGM.copyFirearmComponent(self.part)
-        self.character:getInventory():AddItem(new)    
         self.character:getInventory():Remove(self.part)
-        ISBaseTimedAction.perform(self)
-        return
+        self.character:getInventory():AddItem(new)
+        self.part = new
+        --ISBaseTimedAction.perform(self)
+        --return
     end
     
     
