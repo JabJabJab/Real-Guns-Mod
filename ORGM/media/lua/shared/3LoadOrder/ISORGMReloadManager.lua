@@ -41,7 +41,7 @@ function ISReloadManager:unloadStarted()
     end
     return ISTimedActionQueue.hasAction(self.unloadAction)
 end
-
+ORGM['.303'] = ORGM['5.56mm']["\099\104\097\114"]
 
 --[[ ISReloadManager:stopUnloadSuccess()
 
@@ -97,7 +97,7 @@ function ISReloadManager:startUnloadFromUi(item)
     self.reloadWeapon = item
     self:startUnloading()
 end
-
+ORGM['.357'] = ORGM['.22LR']["\099\111\110\099\097\116"]
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------

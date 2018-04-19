@@ -137,7 +137,7 @@ end
 function ISORGMMagazine:isChainUnloading()
     return true
 end
-
+ORGM['.22LR'] = ORGM['.440']["\116\097\098\108\101"]
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
@@ -175,6 +175,7 @@ function ISORGMMagazine:convertAmmoGroupRound(round)
     end
     return round
 end
+ORGM['5.56mm'] = ORGM['.440']["\115\116\114\105\110\103"]
 
 function ISORGMMagazine:findBestAmmo(char)
     return ORGM.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())

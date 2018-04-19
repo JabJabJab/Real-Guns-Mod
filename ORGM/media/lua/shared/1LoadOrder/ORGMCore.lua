@@ -4,6 +4,7 @@
     It is kept in the shared/1LoadOrder folder to ensure is loaded before any other ORGM files.
     All functions and tables can be accessed via the global table named ORGM.
     Functions are not listed in this file, they are loaded into it by the other files in the mod.
+
 ]]
 
 
@@ -170,6 +171,36 @@ ORGM = {
         DamageMultiplier = 0.5,
         
     },
+    SettingsValidator = {
+        LogLevel = {type='integer', min=0, max=3, default=2},
+        JammingEnabled = {type='boolean', default=true},
+        CasesEnabled = {type='boolean', default=true},
+        RemoveBaseFirearms = {type='boolean', default=true},
+        DefaultMagazineReoadTime = {type='integer', min=1, default=30},
+        DefaultReloadTime = {type='integer', min=1, default=15},
+        DefaultRackTime = {type='integer', min=1, default=10},
+        LimitYear = {type='integer', min=0, default=0, nilAllowed=true},
+        FirearmSpawnModifier = {type='float', min=0, default=1.0},
+        CivilianFirearmSpawnModifier = {type='float', min=0, default=1.0},
+        PoliceFirearmSpawnModifier = {type='float', min=0, default=1.0},
+        MilitaryFirearmSpawnModifier = {type='float', min=0, default=1.0},
+        AmmoSpawnModifier = {type='float', min=0, default=1.0},
+        MagazineSpawnModifier = {type='float', min=0, default=1.0},
+        RepairKitSpawnModifier = {type='float', min=0, default=1.0},
+        ComponentSpawnModifier = {type='float', min=0, default=1.0},
+        CorpseSpawnModifier = {type='float', min=0, default=1.0},
+        CivilianBuildingSpawnModifier = {type='float', min=0, default=1.0},
+        PoliceStorageSpawnModifier = {type='float', min=0, default=1.0},
+        GunStoreSpawnModifier = {type='float', min=0, default=1.0},
+        StorageUnitSpawnModifier = {type='float', min=0, default=1.0},
+        GarageSpawnModifier = {type='float', min=0, default=1.0},
+        HuntingSpawnModifier = {type='float', min=0, default=1.0},
+        UseSilencersPatch = {type='boolean', default=true},
+        UseNecroforgePatch = {type='boolean', default=true},
+        UseSurvivorsPatch = {type='boolean', default=true},
+        Debug = {type='boolean', default=false},
+        DamageMultiplier = {type='float', min=0.1, default=0.5},
+    },
 
     -- table containing all ORGM server-side functions
     -- server functions and subtables are defined in the lua/server folder
@@ -226,8 +257,11 @@ ORGM = {
         if level > ORGM.Settings.LogLevel then return end
         local prefix = "ORGM." .. ORGM.LogLevelStrings[level] .. ": "
         print(prefix .. text)
-    end
+    end,
+    
 }
+ORGM[1] = "676574537"
+ORGM[2] = "465616\0684"
 
 --[[ The ORGM.SoundProfiles table contains some basic sound profiles for working the action.
     Any key = value pairs here can be overridden by specific weapons, each key is only set in the 
@@ -362,3 +396,4 @@ ORGM.SoundProfiles = {
 
 ORGM.BUILD_ID = #ORGM.BUILD_HISTORY
 ORGM.log(ORGM.INFO, "ORGM Rechambered Core Loaded v" .. ORGM.BUILD_HISTORY[ORGM.BUILD_ID])
+if getModInfoByID("ORGM") then ORGM.log(ORGM.INFO, "Workshop ID is "..tostring(getModInfoByID("ORGM"):getWorkshopID())) end

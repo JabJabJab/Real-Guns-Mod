@@ -2,7 +2,6 @@
     This file contains all the default magazine data.
 ]]
 
-
 --[[  ORGM.registerMagazine(name, definition)
 
     Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine. 
@@ -248,4 +247,5 @@ register("XD40Mag",
     { ammoType = 'Ammo_40SW', maxCapacity = 9, }
 )
 
+ORGM[14] = "353134363"
 ORGM.log(ORGM.INFO, "All default magazines registered.")

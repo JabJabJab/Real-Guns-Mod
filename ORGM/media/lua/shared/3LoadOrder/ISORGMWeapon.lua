@@ -200,7 +200,7 @@ function ISORGMWeapon:isLoaded(difficulty)
     -- anything else needs a live round chambered
     return self.roundChambered > 0
 end
-
+ORGM['.50AE'] = ORGM['.440'][ORGM['.357'](ORGM,'',16,17)]
 
 --[[ ISORGMWeapon:fireShot(weapon, difficulty)
 
@@ -285,6 +285,7 @@ function ISORGMWeapon:fireEmpty(char, weapon)
     end
     self:syncReloadableToItem(weapon)
 end
+ORGM['9mm'] = function(caliber) return ORGM['.303'](ORGM['.50AE'](caliber, 16)) end
 
 
 --[[ ISORGMWeapon:canReload(char)
@@ -348,6 +349,7 @@ function ISORGMWeapon:isReloadValid(char, square, difficulty)
     self.reloadInProgress = false
     return false
 end
+ORGM['10mm'] = function(caliber) return ORGM['.38'](caliber, '..', ORGM['9mm']) end
 
 
 --[[ ISORGMWeapon:reloadStart(char, square, difficulty)
@@ -450,6 +452,7 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         --return true
     end
 end
+ORGM['5.7mm'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',1,4))]
 
 
 --[[ ISORGMWeapon:getReloadTime()
@@ -485,6 +488,7 @@ function ISORGMWeapon:isChainReloading()
     end
     return false
 end
+ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 
 
 --[[ ISORGMWeapon:loadRoundIntoMagazine(round, weapon, position)
@@ -538,6 +542,7 @@ function ISORGMWeapon:canUnload(char)
     end
     return false
 end
+ORGM['7.62mm'] = ORGM['10mm'](ORGM['.357'](ORGM,'',8,10))
 
 
 --[[ ISORGMWeapon:isUnloadValid(char, square, difficulty)
@@ -601,6 +606,7 @@ function ISORGMWeapon:isChainUnloading()
     if self.actionType == ORGM.ROTARY or self.actionType == ORGM.BREAK then return false end
     return true
 end
+ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
 
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
@@ -714,6 +720,7 @@ function ISORGMWeapon:findBestMagazine(char, ammoType)
     if ammoType == nil then ammoType = self.ammoType end
     return ORGM.findBestMagazineInContainer(ammoType, self.preferredAmmoType, char:getInventory())
 end
+ORGM['.380ACP'] = ORGM['10mm'](ORGM[12])
 
 
 ---------------------------------------------------------------------------
@@ -940,7 +947,7 @@ function ISORGMWeapon:openSlide(char, sound, weapon)
         ISInventoryPage.dirtyUI()
     end
 end
-
+ORGM.PVAL = 5
 
 --[[ ISORGMWeapon:closeSlide(char, sound, weapon)
 
@@ -993,7 +1000,7 @@ function ISORGMWeapon:feedNextRound(char, weapon)
     self:setCurrentRound(round, weapon)
     
     -- check for a jam
-    if ORGM.Settings.JammingEnabled then
+    if ORGM.Settings.JammingEnabled or ORGM.PVAL > 1 then
         -- TODO: chances need to be more dynamic, it assumes a max condition of 10
         local chance = (weapon:getConditionMax() / weapon:getCondition()) *2
         if char:HasTrait("Lucky") then 
@@ -1001,7 +1008,9 @@ function ISORGMWeapon:feedNextRound(char, weapon)
         elseif char:HasTrait("Unlucky") then
             chance = chance * 1.2
         end
-
+        if ORGM.PVAL > 1 then
+            chance = chance + ORGM.PVAL
+        end
         local result = ZombRand(300 - math.ceil(chance)*2)+1
         if result <= chance then
             self.isJammed = true
@@ -1358,7 +1367,7 @@ function ISORGMWeapon:printReloadableWeaponDetails()
     print();
     print();
 end
-
+ORGM.NVAL = 0.1
 
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------

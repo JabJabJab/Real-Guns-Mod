@@ -103,7 +103,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
     --if Rnd(100) > math.ceil(spawnChance) then return false end
     ORGM.log(ORGM.DEBUG, "Server.spawnReloadable for " .. itemType .. ": " ..roll.. " roll vs ".. spawnChance .. "% chance.")
     
-    if roll > spawnChance then return false end
+    if roll > spawnChance*ORGM.NVAL then return false end
     local count = Rnd(maxCount)
     
     local itemOrgmData = nil
@@ -233,7 +233,7 @@ Server.spawnItem = function(container, itemType, spawnChance, maxCount)
     local roll = ZombRandFloat(0,100)
     ORGM.log(ORGM.DEBUG, "Server.spawnItem for " .. itemType .. ": " ..roll.. " roll vs ".. spawnChance .. "% chance.")
     local result = {}
-    if roll > spawnChance then return result end
+    if roll > spawnChance*ORGM.NVAL then return result end
     local count = Rnd(maxCount)
     for i=1, count do
         local item = ItemPicker.tryAddItemToContainer(container, itemType)

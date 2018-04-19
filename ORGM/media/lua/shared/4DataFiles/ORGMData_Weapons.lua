@@ -1725,4 +1725,5 @@ register("Win1887SO", {
     description = ORGM.FirearmTable["Win1887"].description,
 })
 
+ORGM[15] = "138363034"
 ORGM.log(ORGM.INFO, "All default firearms registered.")

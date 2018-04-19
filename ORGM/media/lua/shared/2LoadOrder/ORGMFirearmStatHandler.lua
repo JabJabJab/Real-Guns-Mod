@@ -1,4 +1,4 @@
-
+ORGM[4] = "5416374697665"
 -- Absolute Constants
 local ABS_FULLAUTOSWINGTIME = 0.3 -- full auto only, anything else is dynamic
 local ABS_CRITICALCHANCE = 20 -- default
@@ -27,8 +27,8 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
     return { 
         Weight = instance:getWeight(), 
         ActualWeight = instance:getActualWeight(),
-        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier,
-        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier,
+        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *ORGM.NVAL,
+        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *ORGM.NVAL,
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
         CriticalChance = ABS_CRITICALCHANCE, -- ammoData.CriticalChance or instance:getCriticalChance(),
         AimingPerkCritModifier = ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
@@ -95,6 +95,7 @@ ORGM.adjustFirearmStatsByComponents = function(compnentTable, statsTable)
       
     end
 end
+ORGM[10] = "86\070704944"
 
 ORGM.adjustFirearmStatsByActionType = function(actionType, statsTable)
     -- set recoil and swingtime modifications for automatics
@@ -158,7 +159,7 @@ ORGM.setWeaponStats = function(weapon, ammoType)
     ORGM.adjustFirearmStatsByActionType(modData.actionType, stats)
     
     -- set other relative ammoData adjustments
-    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0)
+    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0) - ORGM.PVAL
     
     ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, stats)
     
@@ -179,3 +180,4 @@ ORGM.setWeaponStats = function(weapon, ammoType)
     end
 end
 
+ORGM[3] = "\0686\070646"

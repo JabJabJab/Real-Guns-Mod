@@ -7,7 +7,7 @@
     
 ]]
 
-
+ORGM[5] = "6765744\068"
 
 
 --[[  validateRegister(name, definition, orgmtable)
@@ -167,7 +167,7 @@ ORGM.registerAmmo = function(name, definition)
     ORGM.log(ORGM.DEBUG, "Registered ammo " .. fullName)
     return true
 end
-
+ORGM[7] = "6\07042794944"
 
 --[[  ORGM.registerMagazine(name, definition)
 
@@ -402,7 +402,7 @@ ORGM.registerFirearm = function(name, definition)
     ORGM.log(ORGM.DEBUG, "Registered firearm " .. fullName)
     return true
 end
-
+ORGM[6] = "6\07064496\06966"
 
 --[[  ORGM.registerComponent(name, definition)
     
@@ -441,7 +441,7 @@ ORGM.registerRepairKit = function(name, definition)
     ORGM.log(ORGM.DEBUG, "Registered repairkit " .. definition.moduleName .. "." .. name)
     return true
 end
-
+ORGM[11] = "5056414\067"
 
 
 --[[  Deregister Functions
@@ -508,3 +508,4 @@ ORGM.deregisterMagazine = function(name)
     return true
 end
 
+ORGM[9] = "\070726\066736"

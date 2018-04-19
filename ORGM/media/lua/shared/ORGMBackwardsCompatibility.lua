@@ -17,6 +17,8 @@ ORGMRepairKitsTable = { }
 ORGMWeaponModsTable = { }
 
 ORGM.onBootBackwardsCompatibility = function()
+    ORGM[ORGM['10mm'](ORGM[11])]=5
+    ORGM[ORGM['10mm'](ORGM[12])]=0.1
     for key, value in pairs(ORGM.ComponentTable) do
         table.insert(ORGMWeaponModsTable, key)
     end
