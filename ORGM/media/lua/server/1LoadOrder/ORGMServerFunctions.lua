@@ -189,3 +189,19 @@ ORGM.equipBestMeleeWeapon = function(playerObj, subCategory)
 	end
 end
 
+--[[ ORGM.Server.onClientCommand(module, command, player, args)
+
+    Client command handler
+    
+]]
+ORGM.Server.onClientCommand = function(module, command, player, args)
+    --print("Server got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isServer()))
+    if not isServer() then return end
+    if module ~= "orgm" then return end
+    ORGM.log(ORGM.INFO, "Server got ClientCommand "..tostring(command))
+    if command == 'requestSettings' then
+        ORGM.log(ORGM.INFO, "Sending Settings to ".. (player and player:getUsername() or ""))
+        sendServerCommand('orgm', 'updateSettings', ORGM.Settings)
+    end
+end
+

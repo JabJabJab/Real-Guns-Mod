@@ -46,3 +46,9 @@ Events.OnPlayerUpdate.Add(function(player)
         ORGMFirearmWindow:setFirearm(primary)
     end
 end)
+
+-- function in client/1LoadOrder/ORGMClientSettings.lua
+Events.OnServerCommand.Add(ORGM.Client.onServerCommand)
+
+-- function in client/1LoadOrder/ORGMClientSettings.lua, removed after first tick
+Events.OnTick.Add(ORGM.Client.requestServerSettings)

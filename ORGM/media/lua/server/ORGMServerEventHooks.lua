@@ -15,3 +15,6 @@ Events.OnDistributionMerge.Add(ORGM.Server.loadCompatibilityPatches)
 Events.OnKeyPressed.Remove(ItemBindingHandler.onKeyPressed)
 -- function in server/1LoadOrder/ORGMServerFunctions.lua
 Events.OnKeyPressed.Add(ORGM.itemBindingHandler)
+
+-- function in server/1LoadOrder/ORGMServerFunctions.lua
+Events.OnClientCommand.Add(ORGM.Server.onClientCommand)

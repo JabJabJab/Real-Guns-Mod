@@ -139,3 +139,61 @@ ORGM.Client.onKeyPress = function(key)
         ORGMFirearmWindow:setVisible(not ORGMFirearmWindow:isVisible())
     end
 end
+
+
+--[[ ORGM.Client.restorePreviousSettings()
+    
+    Called on Events.OnMainMenuEnter, this restores a clients original ORGM settings
+    
+]]
+ORGM.Client.restorePreviousSettings = function()
+    if ORGM.Client.PreviousSettings then
+        for key, value in pairs(ORGM.Client.PreviousSettings) do ORGM.Settings[key] = value end
+        ORGM.Client.PreviousSettings = nil
+    end
+    Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
+end
+
+--[[ ORGM.Client.requestServerSettings(ticks)
+
+    Called on Events.OnTick, this requests the ORGM.Settings table from the server.
+    This is only triggered on the first tick, it seems sendClientCommand will not
+    properly trigger OnGameStart (GameClient.bIngame is false?).
+    Removes itself from the event queue after.
+    
+    Credits to Dr_Cox1911 for the OnTick trick in his CoxisReloadSync mod.
+
+]]
+
+ORGM.Client.requestServerSettings = function(ticks)
+    if ticks and ticks > 0 then return end
+    if isClient() then
+        ORGM.log(ORGM.INFO, "Requesting Settings from server")
+        sendClientCommand(getPlayer(), 'orgm', 'requestSettings', ORGM.Settings)
+    end
+    Events.OnTick.Remove(ORGM.Client.requestServerSettings)
+end
+
+
+ORGM.Client.onServerCommand = function(module, command, args)
+    --print("client got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isClient()))
+    if not isClient() then return end
+    if module ~= 'orgm' then return end
+    ORGM.log(ORGM.INFO, "Client got ServerCommand "..tostring(command))
+    if command == "updateSettings" then
+        if not ORGM.Client.PreviousSettings then
+            ORGM.Client.PreviousSettings = {}
+            for key, value in pairs(ORGM.Settings) do ORGM.Client.PreviousSettings[key] = value end
+        end
+    
+    
+        for key, value in pairs(args) do
+            ORGM.log(ORGM.DEBUG, "Server Setting "..tostring(key).."="..tostring(value))
+            ORGM.Settings[key] = value
+        end
+        
+        Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
+        Events.OnMainMenuEnter.Add(ORGM.Client.restorePreviousSettings)
+    end
+end
+
