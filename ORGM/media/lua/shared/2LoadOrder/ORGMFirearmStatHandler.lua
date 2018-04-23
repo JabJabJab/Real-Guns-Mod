@@ -27,8 +27,8 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
     return { 
         Weight = instance:getWeight(), 
         ActualWeight = instance:getActualWeight(),
-        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *ORGM.NVAL,
-        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *ORGM.NVAL,
+        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
+        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
         CriticalChance = ABS_CRITICALCHANCE, -- ammoData.CriticalChance or instance:getCriticalChance(),
         AimingPerkCritModifier = ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
@@ -159,7 +159,8 @@ ORGM.setWeaponStats = function(weapon, ammoType)
     ORGM.adjustFirearmStatsByActionType(modData.actionType, stats)
     
     -- set other relative ammoData adjustments
-    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0) - ORGM.PVAL
+    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
+    stats.CriticalChance = stats.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
     
     ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, stats)
     
