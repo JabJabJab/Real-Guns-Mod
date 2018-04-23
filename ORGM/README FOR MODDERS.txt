@@ -17,7 +17,7 @@ Please read the 'Credits and Permissions.txt' file, before you decide to modify 
 
 
 Examples of patch mods can be found at https://github.com/FWolfe/RealGunsMod/tree/master/examples
-or in the 'Patch Mod Examples.zip' file.
+
 
 
 ---------------------------------------------------------------------------------------
