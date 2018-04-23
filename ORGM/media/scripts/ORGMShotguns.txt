@@ -6,7 +6,7 @@ module ORGM
     {
         DisplayName                 = Benelli M3 Super 90 (Semi-Auto/Pump),
         Icon                        = BenelliM3,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = super90,
         Weight                      = 3.3,
         WeaponWeight                = 3.3,
 
@@ -140,7 +140,7 @@ module ORGM
     {
         DisplayName                 = Benelli XM1014,
         Icon                        = BenelliXM1014,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = super90,
         Weight                      = 3.8,
         WeaponWeight                = 3.8,
 
@@ -405,7 +405,7 @@ module ORGM
     {
         DisplayName                 = SRM Arms Model 1216,
         Icon                        = M1216,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = m1216,
         Weight                      = 3.3,
         WeaponWeight                = 3.3,
 
@@ -603,7 +603,7 @@ module ORGM
     {
         DisplayName                 = Remington 870,
         Icon                        = Rem870,
-        WeaponSprite                = shotgun,
+        WeaponSprite                = r870,
         Weight                      = 3.3,
         WeaponWeight                = 3.3,
 
@@ -669,7 +669,7 @@ module ORGM
     {
         DisplayName                 = Remington 870 Sawn-off,
         Icon                        = Rem870SO,
-        WeaponSprite                = shotgunsawn,
+        WeaponSprite                = r870,
         Weight                      = 2.8,
         WeaponWeight                = 2.8,
 
@@ -735,7 +735,7 @@ module ORGM
     {
         DisplayName                 = Beretta Model 471 Silverhawk,
         Icon                        = Silverhawk,
-        WeaponSprite                = shotgun,
+        WeaponSprite                = silver,
         Weight                      = 3,
         WeaponWeight                = 3,
 
@@ -801,7 +801,7 @@ module ORGM
     {
         DisplayName                 = Beretta Model 471 Silverhawk Sawn-off,
         Icon                        = SilverhawkSO,
-        WeaponSprite                = shotgunsawn,
+        WeaponSprite                = silver,
         Weight                      = 2.5,
         WeaponWeight                = 2.8,
 
@@ -933,7 +933,7 @@ module ORGM
     {
         DisplayName                 = Stevens 320 Pump,
         Icon                        = Stevens320,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = stevens,
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
@@ -999,7 +999,7 @@ module ORGM
     {
         DisplayName                 = Armsel Striker,
         Icon                        = Striker,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = striker,
         Weight                      = 4.2,
         WeaponWeight                = 4.2,
 

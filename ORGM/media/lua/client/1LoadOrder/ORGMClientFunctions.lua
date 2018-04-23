@@ -3,46 +3,90 @@
 
 ]]
 
+
+ORGM.Client.addModel = function(name, model, texture)
+    if not model then model = name end
+    if not texture then texture = name end
+
+    local dir = getDir("ORGM")
+    local modelPrefix = dir .. "/media/models/weapons_"
+    local texturePrefix = dir .. "/media/textures/Objects_"
+    loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", texturePrefix .. texture .. ".png")
+    
+end
+
 --[[    ORGM.Client.loadModels()
 
     Loads all 3d models. Trigged by OnGameBoot event in client/ORGMClientEventHooks.lua
 ]]
 
 ORGM.Client.loadModels = function()
-    local dir = getDir("ORGM")
-    local modelPrefix = dir .. "/media/models/weapons_"
-    local texturePrefix = dir .. "/media/textures/Objects_"
+
+    ORGM.Client.addModel('shotgun', 'shotgun', 'Shotgun')
+    ORGM.Client.addModel('shotgunsawn', 'shotgunsawn', 'ShotgunSawn')
+    ORGM.Client.addModel('shotgunblack', 'shotgunblack', 'Shotgun_Black')
+    ORGM.Client.addModel('shotgunsawnblack', 'shotgunsawnblack', 'ShotgunSawn_Black')
+
+    ORGM.Client.addModel('anaconda') -- new
+    ORGM.Client.addModel('python') -- new
+    ORGM.Client.addModel('model19bwg')
+    ORGM.Client.addModel('model19cwg')
+    ORGM.Client.addModel('model19cbg')
+    ORGM.Client.addModel('revolverlarge')
+
+    ORGM.Client.addModel('beretta92') -- new
+    ORGM.Client.addModel('coltcommander') -- new
+    ORGM.Client.addModel('deltaelite') -- new
+    ORGM.Client.addModel('deagle44') -- new
+    ORGM.Client.addModel('deaglexix') -- new
+    ORGM.Client.addModel('fn57') -- new
+    ORGM.Client.addModel('glock') -- new, replaces all glocks
+    ORGM.Client.addModel('m1911') -- new
+    ORGM.Client.addModel('sfield19119') -- new
+    ORGM.Client.addModel('ppk') -- new
+    ORGM.Client.addModel('sfieldxd') -- new
+    ORGM.Client.addModel('rugermkii')
     
-    --                    (model name        , modelLocation, textureLocation )
-    loadStaticZomboidModel("weapons_ar15", modelPrefix .. "ar15.txt", texturePrefix .. "ar15.png")
-    loadStaticZomboidModel("weapons_fnfal", modelPrefix .. "fnfal.txt", texturePrefix .. "fnfal.png")
-    loadStaticZomboidModel("weapons_g3", modelPrefix .. "g3.txt", texturePrefix .. "g3.png")
-    loadStaticZomboidModel("weapons_kalash", modelPrefix .. "kalash.txt", texturePrefix .. "kalash.png")
-    loadStaticZomboidModel("weapons_kriss", modelPrefix .. "kriss.txt", texturePrefix .. "kriss.png")
-    loadStaticZomboidModel("weapons_krissciv", modelPrefix .. "krissciv.txt", texturePrefix .. "krissciv.png")
-    loadStaticZomboidModel("weapons_m16", modelPrefix .. "m16.txt", texturePrefix .. "m16.png")
-    loadStaticZomboidModel("weapons_mp5", modelPrefix .. "mp5.txt", texturePrefix .. "mp5.png")
-    loadStaticZomboidModel("weapons_revolverlarge", modelPrefix .. "revolverlarge.txt", texturePrefix .. "revolverlarge.png")
-    loadStaticZomboidModel("weapons_ump", modelPrefix .. "ump.txt", texturePrefix .. "ump.png")
-    loadStaticZomboidModel("weapons_uzi", modelPrefix .. "uzi.txt", texturePrefix .. "uzi.png")
-    loadStaticZomboidModel("weapons_shotgunsawn", modelPrefix .. "shotgunsawn.txt", texturePrefix .. "ShotgunSawn.png") 
-    loadStaticZomboidModel("weapons_shotgunsawnblack", modelPrefix .. "shotgunsawnblack.txt", texturePrefix .. "ShotgunSawn_Black.png") 
-    loadStaticZomboidModel("weapons_shotgun", modelPrefix .. "shotgun.txt", texturePrefix .. "Shotgun.png") 
-    loadStaticZomboidModel("weapons_shotgunblack", modelPrefix .. "shotgunblack.txt", texturePrefix .. "Shotgun_Black.png") 
-    loadStaticZomboidModel("weapons_spas12", modelPrefix .. "spas12.txt", texturePrefix .. "spas12.png") 
-    loadStaticZomboidModel("weapons_glock22", modelPrefix .. "glock22.txt", texturePrefix .. "glock22.png") 
-    loadStaticZomboidModel("weapons_glock23", modelPrefix .. "glock23.txt", texturePrefix .. "glock23.png") 
-    loadStaticZomboidModel("weapons_model19bwg", modelPrefix .. "model19bwg.txt", texturePrefix .. "model19_Black_WoodGrip.png") 
-    loadStaticZomboidModel("weapons_model19cwg", modelPrefix .. "model19cwg.txt", texturePrefix .. "model19_Chrome_WoodGrip.png") 
-    loadStaticZomboidModel("weapons_model19cbg", modelPrefix .. "model19cbg.txt", texturePrefix .. "model19_Chrome_BlackGrip.png") 
-    loadStaticZomboidModel("weapons_rugermkii", modelPrefix .. "rugermkii.txt", texturePrefix .. "rugermkii.png") 
-    loadStaticZomboidModel("weapons_henry", modelPrefix .. "henry.txt", texturePrefix .. "henry.png") 
-    loadStaticZomboidModel("weapons_m14", modelPrefix .. "m14.txt", texturePrefix .. "m14.png") 
-    loadStaticZomboidModel("weapons_p90", modelPrefix .. "p90.txt", texturePrefix .. "p90.png") 
-    loadStaticZomboidModel("weapons_sa80", modelPrefix .. "sa80.txt", texturePrefix .. "sa80.png") 
-    loadStaticZomboidModel("weapons_sks", modelPrefix .. "sks.txt", texturePrefix .. "sks.png") 
-    loadStaticZomboidModel("weapons_svd", modelPrefix .. "svd.txt", texturePrefix .. "svd.png") 
-    loadStaticZomboidModel("weapons_mini14", modelPrefix .. "mini14.txt", texturePrefix .. "mini14.png") 
+    
+    ORGM.Client.addModel('henry')
+    ORGM.Client.addModel('fnfal')    
+    ORGM.Client.addModel('hk91') -- new, replaces g3
+    ORGM.Client.addModel('sl8') -- new
+    ORGM.Client.addModel('m249') -- new
+    ORGM.Client.addModel('m14') -- updated
+    ORGM.Client.addModel('mini14')
+    ORGM.Client.addModel('mosin') -- new
+    ORGM.Client.addModel('sks') -- updated
+    ORGM.Client.addModel('r700') -- new
+    ORGM.Client.addModel('sa80') -- updated
+    ORGM.Client.addModel('sig551') -- new
+    
+    
+    ORGM.Client.addModel('l96') -- new
+    ORGM.Client.addModel('m16') -- updated, replaces M16, M4, AR10, AR15, SR25
+    ORGM.Client.addModel('kalash') -- updated
+    ORGM.Client.addModel('garand') -- new
+    ORGM.Client.addModel('svd') -- updated
+    
+    
+    ORGM.Client.addModel('m1216') -- new
+    ORGM.Client.addModel('super90') -- new
+    ORGM.Client.addModel('r870') -- new
+    ORGM.Client.addModel('silver') -- new
+    ORGM.Client.addModel('striker') -- new
+    ORGM.Client.addModel('stevens') -- new
+    ORGM.Client.addModel('spas12')
+
+    
+    ORGM.Client.addModel('kriss')
+    ORGM.Client.addModel('krissciv')
+    ORGM.Client.addModel('mp5') -- updated
+    ORGM.Client.addModel('mac10') -- new
+    ORGM.Client.addModel('mac11') -- new
+    ORGM.Client.addModel('p90')
+    ORGM.Client.addModel('skorpion') -- new
+    ORGM.Client.addModel('ump') -- updated
+    ORGM.Client.addModel('uzi') -- updated
     
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end 
@@ -174,18 +218,13 @@ ORGM.Client.requestServerSettings = function(ticks)
     Events.OnTick.Remove(ORGM.Client.requestServerSettings)
 end
 
-
-ORGM.Client.onServerCommand = function(module, command, args)
-    --print("client got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isClient()))
-    if not isClient() then return end
-    if module ~= 'orgm' then return end
-    ORGM.log(ORGM.INFO, "Client got ServerCommand "..tostring(command))
-    if command == "updateSettings" then
+-----------------------------------------------
+ORGM.Client.CommandHandler = {
+    updateSettings = function(args)
         if not ORGM.Client.PreviousSettings then
             ORGM.Client.PreviousSettings = {}
             for key, value in pairs(ORGM.Settings) do ORGM.Client.PreviousSettings[key] = value end
         end
-    
     
         for key, value in pairs(args) do
             ORGM.log(ORGM.DEBUG, "Server Setting "..tostring(key).."="..tostring(value))
@@ -194,6 +233,16 @@ ORGM.Client.onServerCommand = function(module, command, args)
         
         Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
         Events.OnMainMenuEnter.Add(ORGM.Client.restorePreviousSettings)
-    end
+    end,
+    
+    ----------------------------------------
+}
+
+ORGM.Client.onServerCommand = function(module, command, args)
+    --print("client got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isClient()))
+    if not isClient() then return end
+    if module ~= 'orgm' then return end
+    ORGM.log(ORGM.INFO, "Client got ServerCommand "..tostring(command))
+    if ORGM.Client.CommandHandler[command] then ORGM.Client.CommandHandler[command](args) end
 end
 
