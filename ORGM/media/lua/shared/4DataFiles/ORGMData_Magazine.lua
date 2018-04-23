@@ -37,7 +37,7 @@ register("AutomagVMag",
     { ammoType = 'Ammo_50AE', maxCapacity = 5, }
 )
 register("BBPistolMag", 
-    { ammoType = 'Ammo_117BB', maxCapacity = 35, reloadTime = 5, }
+    { ammoType = 'Ammo_117BB', maxCapacity = 35, }
 )
 register("Ber92Mag", 
     { ammoType = 'Ammo_9x19mm', maxCapacity = 15, }
@@ -133,10 +133,10 @@ register("LENo4StripperClip",
     { ammoType = 'Ammo_762x51mm', maxCapacity = 5, }
 )
 register("M1216Mag",
-    { ammoType = 'Ammo_12g', maxCapacity = 16, reloadTime = 15, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }
+    { ammoType = 'Ammo_12g', maxCapacity = 16, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }
 )
 register("M1903StripperClip",
-    { ammoType = 'Ammo_3006Springfield', maxCapacity = 5, reloadTime = 15, }
+    { ammoType = 'Ammo_3006Springfield', maxCapacity = 5, }
 )
 register("M1911Mag",
     { ammoType = 'Ammo_45ACP', maxCapacity = 7, }
@@ -160,7 +160,7 @@ register("Mini14Mag",
     { ammoType = 'Ammo_223Remington', maxCapacity = 20, }
 )
 register("MosinStripperClip",
-    { ammoType = 'Ammo_762x54mm', maxCapacity = 5, reloadTime = 15, }
+    { ammoType = 'Ammo_762x54mm', maxCapacity = 5, }
 )
 register("R25Mag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 10, }
@@ -187,31 +187,31 @@ register("SkorpionMag",
     { ammoType = 'Ammo_32ACP', maxCapacity = 20, }
 )
 register("SKSStripperClip",
-    { ammoType = 'Ammo_762x39mm', maxCapacity = 10, reloadTime = 15, }
+    { ammoType = 'Ammo_762x39mm', maxCapacity = 10, }
 )
 register("SpeedLoader10mm6",
-    { ammoType = 'Ammo_10x25mm', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_10x25mm', maxCapacity = 6, }
 )
 register("SpeedLoader3576",
-    { ammoType = 'Ammo_357Magnum', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_357Magnum', maxCapacity = 6, }
 )
 register("SpeedLoader385",
-    { ammoType = 'Ammo_38Special', maxCapacity = 5, reloadTime = 15, }
+    { ammoType = 'Ammo_38Special', maxCapacity = 5, }
 )
 register("SpeedLoader386",
-    { ammoType = 'Ammo_38Special', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_38Special', maxCapacity = 6, }
 )
 register("SpeedLoader446",
-    { ammoType = 'Ammo_44Magnum', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_44Magnum', maxCapacity = 6, }
 )
 register("SpeedLoader4546",
-    { ammoType = 'Ammo_454Casull', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_454Casull', maxCapacity = 6, }
 )
 register("SpeedLoader456",
-    { ammoType = 'Ammo_45ACP', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_45ACP', maxCapacity = 6, }
 )
 register("SpeedLoader45C6",
-    { ammoType = 'Ammo_45Colt', maxCapacity = 6, reloadTime = 15, }
+    { ammoType = 'Ammo_45Colt', maxCapacity = 6, }
 )
 register("Spr19119Mag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 9, }
@@ -235,7 +235,7 @@ register("UziMag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 32, }
 )
 register("VEPR12Mag",
-    { ammoType = 'Ammo_12g', maxCapacity = 8, reloadTime = 15, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }
+    { ammoType = 'Ammo_12g', maxCapacity = 8, ejectSound = 'ORGMShotgunRoundIn', insertSound = 'ORGMShotgunRoundIn', }
 )
 register("WaltherP22Mag",
     { ammoType = 'Ammo_22LR', maxCapacity = 10, }
