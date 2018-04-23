@@ -11,6 +11,20 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.08
+
+* Added ORGM tab to the zomboid options screen, all settings can now be configured from
+    there, and are saved to the Zomboid/Lua/ORGM.ini file. When connecting to a MP server,
+    the server's ORGM.Settings table is transmitted to the client, overriding any client
+    chosen options. The ORGM tab in the options screen becomes locked (no changes may be
+    made while connected). Disconnecting from the server will restore the clients original
+    options.
+    
+* Updated many of the 3d models. Big thanks to KOT for giving permission to merge the models
+    from the Gunz mod back into ORGM, and to EnigmaGrey for passing on my request.
+    
+    
+---------------------------------------------------------------------------------------
 version 3.07
 
 * Added new hotkey for 'Reload Any Magazine' that finds a magazine in your inventory and
@@ -80,6 +94,7 @@ version 3.07
 
 * fixed bug in settings validation where if ORGM.Settings.LogLevel was nil
 
+* component upgrading is now done silently.
     
 --------------------------------------------
 Major code changes for modders:
@@ -114,7 +129,6 @@ Major code changes for modders:
     If the firearm uses magazines, the ammo group is taken from its magazine instead.
     item can be a string name or a InventoryItem object.
     
-* component upgrading is now done silently.
 
 
 ---------------------------------------------------------------------------------------
