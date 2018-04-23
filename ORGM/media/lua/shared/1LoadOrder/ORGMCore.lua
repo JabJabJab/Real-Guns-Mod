@@ -204,11 +204,11 @@ ORGM = {
 
     -- table containing all ORGM server-side functions
     -- server functions and subtables are defined in the lua/server folder
-    Server = { },
+    Server = { CommandHandler = {} },
     
     -- table containing all ORGM client-side functions. 
     -- client functions and subtables are defined in the lua/client folder
-    Client = { },
+    Client = { CommandHandler = {} },
 
     -- Table containing all registered ammo and definitions. formally ORGMMasterAmmoTable (v2.00-v2.03)
     AmmoTable = { },

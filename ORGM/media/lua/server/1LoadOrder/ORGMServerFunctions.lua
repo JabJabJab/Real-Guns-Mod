@@ -199,9 +199,10 @@ ORGM.Server.onClientCommand = function(module, command, player, args)
     if not isServer() then return end
     if module ~= "orgm" then return end
     ORGM.log(ORGM.INFO, "Server got ClientCommand "..tostring(command))
-    if command == 'requestSettings' then
-        ORGM.log(ORGM.INFO, "Sending Settings to ".. (player and player:getUsername() or ""))
-        sendServerCommand('orgm', 'updateSettings', ORGM.Settings)
-    end
+    if ORGM.Server.CommandHandler[command] then ORGM.Server.CommandHandler[command](player, args) end
 end
 
+ORGM.Server.CommandHandler.requestSettings = function(player, args)
+    ORGM.log(ORGM.INFO, "Sending Settings to ".. (player and player:getUsername() or ""))
+    sendServerCommand('orgm', 'updateSettings', ORGM.Settings)
+end

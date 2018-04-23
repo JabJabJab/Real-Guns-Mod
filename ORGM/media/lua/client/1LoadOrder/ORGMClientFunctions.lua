@@ -218,25 +218,7 @@ ORGM.Client.requestServerSettings = function(ticks)
     Events.OnTick.Remove(ORGM.Client.requestServerSettings)
 end
 
------------------------------------------------
-ORGM.Client.CommandHandler = {
-    updateSettings = function(args)
-        if not ORGM.Client.PreviousSettings then
-            ORGM.Client.PreviousSettings = {}
-            for key, value in pairs(ORGM.Settings) do ORGM.Client.PreviousSettings[key] = value end
-        end
-    
-        for key, value in pairs(args) do
-            ORGM.log(ORGM.DEBUG, "Server Setting "..tostring(key).."="..tostring(value))
-            ORGM.Settings[key] = value
-        end
-        
-        Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
-        Events.OnMainMenuEnter.Add(ORGM.Client.restorePreviousSettings)
-    end,
-    
-    ----------------------------------------
-}
+
 
 ORGM.Client.onServerCommand = function(module, command, args)
     --print("client got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isClient()))
@@ -246,3 +228,21 @@ ORGM.Client.onServerCommand = function(module, command, args)
     if ORGM.Client.CommandHandler[command] then ORGM.Client.CommandHandler[command](args) end
 end
 
+
+-----------------------------------------------
+ORGM.Client.CommandHandler.updateSettings = function(args)
+    if not ORGM.Client.PreviousSettings then
+        ORGM.Client.PreviousSettings = {}
+        for key, value in pairs(ORGM.Settings) do ORGM.Client.PreviousSettings[key] = value end
+    end
+
+    for key, value in pairs(args) do
+        ORGM.log(ORGM.DEBUG, "Server Setting "..tostring(key).."="..tostring(value))
+        ORGM.Settings[key] = value
+    end
+    
+    Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
+    Events.OnMainMenuEnter.Add(ORGM.Client.restorePreviousSettings)
+end
+
+----------------------------------------
