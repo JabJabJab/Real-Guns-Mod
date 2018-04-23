@@ -18,7 +18,7 @@ ORGM = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
         "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
-        "3.06-stable", "3.07-beta", "3.07-stable",-- 23
+        "3.06-stable", "3.07-beta", "3.07-stable", "3.08-stable", -- 24
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
@@ -176,6 +176,7 @@ ORGM = {
         JammingEnabled = {type='boolean', default=true},
         CasesEnabled = {type='boolean', default=true},
         RemoveBaseFirearms = {type='boolean', default=true},
+        DamageMultiplier = {type='float', min=0.1, default=0.5},
         DefaultMagazineReoadTime = {type='integer', min=1, default=30},
         DefaultReloadTime = {type='integer', min=1, default=15},
         DefaultRackTime = {type='integer', min=1, default=10},
@@ -198,8 +199,7 @@ ORGM = {
         UseSilencersPatch = {type='boolean', default=true},
         UseNecroforgePatch = {type='boolean', default=true},
         UseSurvivorsPatch = {type='boolean', default=true},
-        Debug = {type='boolean', default=false},
-        DamageMultiplier = {type='float', min=0.1, default=0.5},
+        Debug = {type='boolean', default=false, show=false},
     },
 
     -- table containing all ORGM server-side functions
