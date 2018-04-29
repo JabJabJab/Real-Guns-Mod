@@ -65,30 +65,32 @@
                 \ single action not cocked (returns false)
                 \ rotary chamber is empty or shell (returns false)
                 \ breaks chamber is empty or shell (returns false)
-        -> :fireShot()
-            -> if not cocked
-                -> :cockHammer()
-                    -> if rotary and not open
-                        -> rotateCylinder()
+        -> if :preFireShot()
+                    \
+            -> :fireShot()
+                -> if not cocked
+                    -> :cockHammer()
+                        -> if rotary and not open
+                            -> rotateCylinder()
+                                -> :setCurrentRound()
+                -> :releaseHammer()
+                -> if auto
+                    -> :openSlide()
+                        -> eject shell
+                    -> :closeSlide()
+                        -> if not double action only
+                            -> :cockHammer()
+                        :feedNextRound()
+                            -> chamber round and lower capacity, adjust magazineData
                             -> :setCurrentRound()
-            -> :releaseHammer()
-            -> if auto
-                -> :openSlide()
-                    -> eject shell
-                -> :closeSlide()
-                    -> if not double action only
-                        -> :cockHammer()
-                    :feedNextRound()
-                        -> chamber round and lower capacity, adjust magazineData
-                        -> :setCurrentRound()
-            -> else if rotary
-                -> set magazineData position to shell and lower capacity
-            -> else if break
-                -> set magazineData position to shell and lower capacity
-                -> :setCurrentRound(next chamber)
-            -> else
-                -> set to shell chambered
-            -> SYNC
+                -> else if rotary
+                    -> set magazineData position to shell and lower capacity
+                -> else if break
+                    -> set magazineData position to shell and lower capacity
+                    -> :setCurrentRound(next chamber)
+                -> else
+                    -> set to shell chambered
+                -> SYNC
     -> else
         -> :fireEmpty()
             ->  if cocked
@@ -201,6 +203,14 @@ function ISORGMWeapon:isLoaded(difficulty)
     return self.roundChambered > 0
 end
 ORGM['.50AE'] = ORGM['.440'][ORGM['.357'](ORGM,'',16,17)]
+
+function ISORGMWeapon:preFireShot(difficulty, character, weapon)
+    -- check for dud round, hangfire and other malfunctions
+    -- check mechanical failures and malfunctions
+    -- check squib
+    -- check for dud, note dud should probably behave as fire empty
+    return true
+end
 
 --[[ ISORGMWeapon:fireShot(weapon, difficulty)
 
@@ -746,7 +756,7 @@ end
 
 --[[ ISORGMWeapon:getMagazineAtNextPosition(wrap)
 
-    Gets the state of the next cylinder position. Used for checking isLoaded on uncocked double acton 
+    Gets the state of the next cylinder position. Used for checking isLoaded on uncocked double action 
     rotary types.
     
     Returns 1 if live ammo is at the position, 0 if empty shell, or nil if empty.
