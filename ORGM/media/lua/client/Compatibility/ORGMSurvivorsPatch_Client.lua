@@ -201,7 +201,6 @@ local reloadWeaponOverride = function(primary, player)
     end
     
     --if ammoItem == nil then return false end
-    ammoType = ammoItem:getType()
     local ammoCount = container:getNumItems(ammoType)
     if SurvivorInfiniteAmmo then ammoCount = 999 end
     if ammoCount < 20 then player:Say("Almost out of ammo here!") end
@@ -334,7 +333,7 @@ Events.OnGameBoot.Add(function()
         LoadSurvivorOriginal = LoadSurvivor
         LoadSurvivor = LoadSurvivorOverride
     end
-
+--[[
     if ORGM.isModLoaded("SuperSurvivors") == true and ORGM.Settings.UseSurvivorsPatch then
         ORGM.log(ORGM.INFO, "Injecting SuperSurvivors Mod Overwrites")
         isSuperSurvivor = true
@@ -346,4 +345,5 @@ Events.OnGameBoot.Add(function()
         SuperSurvivor.WeaponReady = SSWeaponReadyOverride
         SuperSurvivor.giveWeapon = SSgiveWeaponOverride
     end
+]]
 end)
