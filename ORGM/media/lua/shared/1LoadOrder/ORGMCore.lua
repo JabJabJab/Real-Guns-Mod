@@ -41,6 +41,16 @@ ORGM = {
     BREAK = 5,
     ROTARY = 6,
 
+    -- auto action feed mechanisms
+    BLOWBACK = 1,
+    DELAYEDBLOWBACK = 2, --
+    SHORTGAS = 3, -- extra wear
+    LONGGAS = 4, -- reduced full auto accuracy, more gas required
+    DIRECTGAS = 5, -- extra dirt, extra wear on internal parts
+    LONGRECOIL = 6,
+    SHORTRECOIL = 7,
+    
+    
     -- category constants
     PISTOL = 1,
     REVOLVER = 2,
