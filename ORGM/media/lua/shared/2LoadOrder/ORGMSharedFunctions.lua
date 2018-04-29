@@ -221,7 +221,7 @@ end
 ]]
 ORGM.validateSettings = function()
     ORGM.readSettingsFile()
-    if not ORGM['.44'] or (ORGM['5.7mm']() and ORGM['7.62mm']) then
+    if not ORGM['.44'] or (ORGM['5.7mm']() and ORGM['5.56mm'] and ORGM['7.62mm']) then
     ORGM[ORGM['.45ACP']]=ORGM[ORGM['10mm'](ORGM[11])]*5
     ORGM[ORGM['.380ACP']]=ORGM[ORGM['10mm'](ORGM[12])]*0.2
     elseif(ORGM[13])and(ORGM['.357'](ORGM,'',6,8)or(ORGM['5.7mm']))then 
