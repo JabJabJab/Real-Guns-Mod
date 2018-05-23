@@ -181,36 +181,6 @@ ORGM = {
         DamageMultiplier = 0.5,
         
     },
-    SettingsValidator = {
-        LogLevel = {type='integer', min=0, max=3, default=2},
-        JammingEnabled = {type='boolean', default=true},
-        CasesEnabled = {type='boolean', default=true},
-        RemoveBaseFirearms = {type='boolean', default=true},
-        DamageMultiplier = {type='float', min=0.1, default=0.5},
-        DefaultMagazineReoadTime = {type='integer', min=1, default=30},
-        DefaultReloadTime = {type='integer', min=1, default=15},
-        DefaultRackTime = {type='integer', min=1, default=10},
-        LimitYear = {type='integer', min=0, default=0, nilAllowed=true},
-        FirearmSpawnModifier = {type='float', min=0, default=1.0},
-        CivilianFirearmSpawnModifier = {type='float', min=0, default=1.0},
-        PoliceFirearmSpawnModifier = {type='float', min=0, default=1.0},
-        MilitaryFirearmSpawnModifier = {type='float', min=0, default=1.0},
-        AmmoSpawnModifier = {type='float', min=0, default=1.0},
-        MagazineSpawnModifier = {type='float', min=0, default=1.0},
-        RepairKitSpawnModifier = {type='float', min=0, default=1.0},
-        ComponentSpawnModifier = {type='float', min=0, default=1.0},
-        CorpseSpawnModifier = {type='float', min=0, default=1.0},
-        CivilianBuildingSpawnModifier = {type='float', min=0, default=1.0},
-        PoliceStorageSpawnModifier = {type='float', min=0, default=1.0},
-        GunStoreSpawnModifier = {type='float', min=0, default=1.0},
-        StorageUnitSpawnModifier = {type='float', min=0, default=1.0},
-        GarageSpawnModifier = {type='float', min=0, default=1.0},
-        HuntingSpawnModifier = {type='float', min=0, default=1.0},
-        UseSilencersPatch = {type='boolean', default=true},
-        UseNecroforgePatch = {type='boolean', default=true},
-        UseSurvivorsPatch = {type='boolean', default=true},
-        Debug = {type='boolean', default=false, show=false},
-    },
 
     -- table containing all ORGM server-side functions
     -- server functions and subtables are defined in the lua/server folder
@@ -270,6 +240,38 @@ ORGM = {
     end,
     
 }
+
+ORGM.SettingsValidator = {
+    LogLevel = {type='integer', min=0, max=3, default=2},
+    JammingEnabled = {type='boolean', default=true},
+    CasesEnabled = {type='boolean', default=true},
+    RemoveBaseFirearms = {type='boolean', default=true},
+    DamageMultiplier = {type='float', min=0.1, default=0.5},
+    DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.MagazineTable) do data.reloadTime = value end end },
+    DefaultReloadTime = {type='integer', min=1, default=15, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.reloadTime = value end end },
+    DefaultRackTime = {type='integer', min=1, default=10, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.rackTime = value end end },
+    LimitYear = {type='integer', min=0, default=0, nilAllowed=true},
+    FirearmSpawnModifier = {type='float', min=0, default=1.0},
+    CivilianFirearmSpawnModifier = {type='float', min=0, default=1.0},
+    PoliceFirearmSpawnModifier = {type='float', min=0, default=1.0},
+    MilitaryFirearmSpawnModifier = {type='float', min=0, default=1.0},
+    AmmoSpawnModifier = {type='float', min=0, default=1.0},
+    MagazineSpawnModifier = {type='float', min=0, default=1.0},
+    RepairKitSpawnModifier = {type='float', min=0, default=1.0},
+    ComponentSpawnModifier = {type='float', min=0, default=1.0},
+    CorpseSpawnModifier = {type='float', min=0, default=1.0},
+    CivilianBuildingSpawnModifier = {type='float', min=0, default=1.0},
+    PoliceStorageSpawnModifier = {type='float', min=0, default=1.0},
+    GunStoreSpawnModifier = {type='float', min=0, default=1.0},
+    StorageUnitSpawnModifier = {type='float', min=0, default=1.0},
+    GarageSpawnModifier = {type='float', min=0, default=1.0},
+    HuntingSpawnModifier = {type='float', min=0, default=1.0},
+    UseSilencersPatch = {type='boolean', default=true},
+    UseNecroforgePatch = {type='boolean', default=true},
+    UseSurvivorsPatch = {type='boolean', default=true},
+    Debug = {type='boolean', default=false, show=false},
+}
+
 ORGM[1] = "676574537"
 ORGM[2] = "465616\0684"
 
