@@ -1,0 +1,228 @@
+// CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
+// 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+*****************************************
+Tooltip_CN = {
+	-- Item tooltip
+    Tooltip_2xScope = "让视野范围扩大两倍以获得更精确的射击",
+    Tooltip_4xScope = "在进行战斗任务或突袭行动时让视野范围扩大四倍",
+    Tooltip_8xScope = "在进行远程狩猎或狙击任务时让视野范围扩大八倍",
+    Tooltip_FibSig = "在黑暗的视野中容易看到发光的位置从而提高射击的准确性",
+    Tooltip_Foregrip = "在持续射击中增加枪口稳定性并减少后坐力的垂直握把",
+    Tooltip_FullCh = "可安装在猎枪枪管上以降低射击目标时弹药的延展",
+    Tooltip_HalfCh = "可安装在霰弹枪口上以减少射击目标时弹药的扩散",
+    Tooltip_PistolLas = "手枪上可安装的激光瞄准镜增加目标获取与精准度",
+    Tooltip_PistolTL = "可安装在手枪上的战术手电筒",
+    Tooltip_RDS = "可以提供微缩放大与容易确定目标的红点式瞄准系统",
+    Tooltip_Recoil = "软化的步枪后靠垫，以减少后坐力的影响",
+    Tooltip_Reflex = "可安装的反射瞄准镜增加目标获取让持续射击命中变得更加容易",
+    Tooltip_RifleLas = "步枪上可安装的激光瞄准镜增加目标获取与精准度",
+    Tooltip_RifleTL = "步枪上可安装的战术手电筒",
+    Tooltip_Rifsling = "枪带减轻枪械携行重量的烦恼",
+    Tooltip_SkeletalStock = "折叠式枪托让枪械的体积有效控制",
+    Tooltip_CollapsingStock = "伸缩式枪托让枪械更加便于携带",
+    
+    -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
+    Tooltip_loaded_SA = "射击模式:  半自动",
+    Tooltip_loaded_FA = "射击模式:  全自动",
+    Tooltip_loaded_mixed = "装填弹药:  混合装填",
+    Tooltip_loaded_mixed_SA = "装填弹药:  混合装填 (半自动)",
+    Tooltip_loaded_mixed_FA = "装填弹药:  混合装填 (全自动)",
+
+    Tooltip_loaded_Ammo_117BB = "装填弹药:  .117 BB弹",
+    Tooltip_loaded_Ammo_117BB_SA = "装填弹药:  .117 BB弹 (半自动)",
+    Tooltip_loaded_Ammo_117BB_FA = "装填弹药:  .117 BB弹 (全自动)",
+    
+    ----------------------------------
+    Tooltip_loaded_Ammo_22LR_FMJ = "装填弹药:  .22LR 全金属被甲弹",
+    Tooltip_loaded_Ammo_22LR_FMJ_SA = "装填弹药:  .22LR 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_22LR_FMJ_FA = "装填弹药:  .22LR 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_22LR_HP = "装填弹药:  .22LR 高爆弹",
+    Tooltip_loaded_Ammo_22LR_HP_SA = "装填弹药:  .22LR 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_22LR_HP_FA = "装填弹药:  .22LR 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_32ACP_FMJ = "装填弹药:  .32 ACP 全金属被甲弹",
+    Tooltip_loaded_Ammo_32ACP_FMJ_SA = "装填弹药:  .32 ACP 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_32ACP_FMJ_FA = "装填弹药:  .32 ACP 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_32ACP_HP = "装填弹药:  .32 ACP 高爆弹",
+    Tooltip_loaded_Ammo_32ACP_HP_SA = "装填弹药:  .32 ACP 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_32ACP_HP_FA = "装填弹药:  .32 ACP 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_357Magnum_FMJ = "装填弹药:  .357 马格南 全金属被甲弹",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_SA = "装填弹药:  .357 马格南 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_FA = "装填弹药:  .357 马格南 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_357Magnum_HP = "装填弹药:  .357 马格南 高爆弹",
+    Tooltip_loaded_Ammo_357Magnum_HP_SA = "装填弹药:  .357 马格南 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_357Magnum_HP_FA = "装填弹药:  .357 马格南 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Special_FMJ = "装填弹药:  .38 专用 全金属被甲弹",
+    Tooltip_loaded_Ammo_38Special_FMJ_SA = "装填弹药:  .38 专用 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_38Special_FMJ_FA = "装填弹药:  .38 专用 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_38Special_HP = "装填弹药:  .38 专用 高爆弹",
+    Tooltip_loaded_Ammo_38Special_HP_SA = "装填弹药:  .38 专用 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_38Special_HP_FA = "装填弹药:  .38 专用 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Super_FMJ = "装填弹药:  .38 特级 全金属被甲弹",
+    Tooltip_loaded_Ammo_38Super_FMJ_SA = "装填弹药:  .38 特级 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_38Super_FMJ_FA = "装填弹药:  .38 特级 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_38Super_HP = "装填弹药:  .38 特级 高爆弹",
+    Tooltip_loaded_Ammo_38Super_HP_SA = "装填弹药:  .38 特级 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_38Super_HP_FA = "装填弹药:  .38 特级 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_380ACP_FMJ = "装填弹药:  .380 ACP 全金属被甲弹",
+    Tooltip_loaded_Ammo_380ACP_FMJ_SA = "装填弹药:  .380 ACP 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_380ACP_FMJ_FA = "装填弹药:  .380 ACP 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_380ACP_HP = "装填弹药:  .380 ACP 高爆弹",
+    Tooltip_loaded_Ammo_380ACP_HP_SA = "装填弹药:  .380 ACP 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_380ACP_HP_FA = "装填弹药:  .380 ACP 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_40SW_FMJ = "装填弹药:  .40 S&W 全金属被甲弹",
+    Tooltip_loaded_Ammo_40SW_FMJ_SA = "装填弹药:  .40 S&W 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_40SW_FMJ_FA = "装填弹药:  .40 S&W 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_40SW_HP = "装填弹药:  .40 S&W 高爆弹",
+    Tooltip_loaded_Ammo_40SW_HP_SA = "装填弹药:  .40 S&W 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_40SW_HP_FA = "装填弹药:  .40 S&W 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_44Magnum_FMJ = "装填弹药:  .44 马格南 全金属被甲弹",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_SA = "装填弹药:  .44 马格南 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_FA = "装填弹药:  .44 马格南 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_44Magnum_HP = "装填弹药:  .44 马格南 高爆弹",
+    Tooltip_loaded_Ammo_44Magnum_HP_SA = "装填弹药:  .44 马格南 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_44Magnum_HP_FA = "装填弹药:  .44 马格南 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45ACP_FMJ = "装填弹药:  .45 ACP 全金属被甲弹",
+    Tooltip_loaded_Ammo_45ACP_FMJ_SA = "装填弹药:  .45 ACP 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_45ACP_FMJ_FA = "装填弹药:  .45 ACP 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_45ACP_HP = "装填弹药:  .45 ACP 高爆弹",
+    Tooltip_loaded_Ammo_45ACP_HP_SA = "装填弹药:  .45 ACP 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_45ACP_HP_FA = "装填弹药:  .45 ACP 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45Colt_FMJ = "装填弹药:  .45 柯尔特 全金属被甲弹",
+    Tooltip_loaded_Ammo_45Colt_FMJ_SA = "装填弹药:  .45 柯尔特 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_45Colt_FMJ_FA = "装填弹药:  .45 柯尔特 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_45Colt_HP = "装填弹药:  .45 柯尔特 高爆弹",
+    Tooltip_loaded_Ammo_45Colt_HP_SA = "装填弹药:  .45 柯尔特 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_45Colt_HP_FA = "装填弹药:  .45 柯尔特 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_454Casull_FMJ = "装填弹药:  .454 卡苏尔 全金属被甲弹",
+    Tooltip_loaded_Ammo_454Casull_FMJ_SA = "装填弹药:  .454 卡苏尔 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_454Casull_FMJ_FA = "装填弹药:  .454 卡苏尔 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_454Casull_HP = "装填弹药:  .454 卡苏尔 高爆弹",
+    Tooltip_loaded_Ammo_454Casull_HP_SA = "装填弹药:  .454 卡苏尔 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_454Casull_HP_FA = "装填弹药:  .454 卡苏尔 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_50AE_FMJ = "装填弹药:  .50 AE 全金属被甲弹",
+    Tooltip_loaded_Ammo_50AE_FMJ_SA = "装填弹药:  .50 AE 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_50AE_FMJ_FA = "装填弹药:  .50 AE 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_50AE_HP = "装填弹药:  .50 AE 高爆弹",
+    Tooltip_loaded_Ammo_50AE_HP_SA = "装填弹药:  .50 AE 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_50AE_HP_FA = "装填弹药:  .50 AE 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_223Remington_FMJ = "装填弹药:  .223 雷明顿 全金属被甲弹",
+    Tooltip_loaded_Ammo_223Remington_FMJ_SA = "装填弹药:  .223 雷明顿 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_223Remington_FMJ_FA = "装填弹药:  .223 雷明顿 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_223Remington_HP = "装填弹药:  .223 雷明顿 高爆弹",
+    Tooltip_loaded_Ammo_223Remington_HP_SA = "装填弹药:  .223 雷明顿 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_223Remington_HP_FA = "装填弹药:  .223 雷明顿 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3006Springfield_FMJ = "装填弹药:  .30-06 春田 全金属被甲弹",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_SA = "装填弹药:  .30-06 春田 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_FA = "装填弹药:  .30-06 春田 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_3006Springfield_HP = "装填弹药:  .30-06 春田 高爆弹",
+    Tooltip_loaded_Ammo_3006Springfield_HP_SA = "装填弹药:  .30-06 春田 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_3006Springfield_HP_FA = "装填弹药:  .30-06 春田 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3030Winchester_FMJ = "装填弹药:  .30-30 温彻斯特 全金属被甲弹",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_SA = "装填弹药:  .30-30 温彻斯特 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_FA = "装填弹药:  .30-30 温彻斯特 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_3030Winchester_HP = "装填弹药:  .30-30 温彻斯特 高爆弹",
+    Tooltip_loaded_Ammo_3030Winchester_HP_SA = "装填弹药:  .30-30 温彻斯特 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_3030Winchester_HP_FA = "装填弹药:  .30-30 温彻斯特 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_308Winchester_FMJ = "装填弹药:  .308 温彻斯特 全金属被甲弹",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_SA = "装填弹药:  .308 温彻斯特 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_FA = "装填弹药:  .308 温彻斯特 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_308Winchester_HP = "装填弹药:  .308 温彻斯特 高爆弹",
+    Tooltip_loaded_Ammo_308Winchester_HP_SA = "装填弹药:  .308 温彻斯特 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_308Winchester_HP_FA = "装填弹药:  .308 温彻斯特 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_57x28mm_FMJ = "装填弹药:  FN 5.7x28毫米 全金属被甲弹",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_SA = "装填弹药:  FN 5.7x28毫米 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_FA = "装填弹药:  FN 5.7x28毫米 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_57x28mm_HP = "装填弹药:  FN 5.7x28毫米 高爆弹",
+    Tooltip_loaded_Ammo_57x28mm_HP_SA = "装填弹药:  FN 5.7x28毫米 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_57x28mm_HP_FA = "装填弹药:  FN 5.7x28毫米 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_9x19mm_FMJ = "装填弹药:  9x19毫米 巴拉贝鲁姆 全金属被甲子弹",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_SA = "装填弹药:  9x19毫米 巴拉贝鲁姆 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_FA = "装填弹药:  9x19毫米 巴拉贝鲁姆 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_9x19mm_HP = "装填弹药:  9x19毫米 巴拉贝鲁姆 高爆子弹",
+    Tooltip_loaded_Ammo_9x19mm_HP_SA = "装填弹药:  9x19毫米 巴拉贝鲁姆 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_9x19mm_HP_FA = "装填弹药:  9x19毫米 巴拉贝鲁姆 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_10x25mm_FMJ = "装填弹药:  10x25毫米 全金属被甲弹",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_SA = "装填弹药:  10x25毫米 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_FA = "装填弹药:  10x25毫米 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_10x25mm_HP = "装填弹药:  10x25毫米 高爆弹",
+    Tooltip_loaded_Ammo_10x25mm_HP_SA = "装填弹药:  10x25毫米 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_10x25mm_HP_FA = "装填弹药:  10x25毫米 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_556x45mm_FMJ = "装填弹药:  5.56x45毫米 全金属被甲弹",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_SA = "装填弹药:  5.56x45毫米 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_FA = "装填弹药:  5.56x45毫米 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_556x45mm_HP = "装填弹药:  5.56x45毫米 高爆弹",
+    Tooltip_loaded_Ammo_556x45mm_HP_SA = "装填弹药:  5.56x45毫米 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_556x45mm_HP_FA = "装填弹药:  5.56x45毫米 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x39mm_FMJ = "装填弹药:  7.62x39毫米 全金属被甲弹",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_SA = "装填弹药:  7.62x39毫米 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_FA = "装填弹药:  7.62x39毫米 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_762x39mm_HP = "装填弹药:  7.62x39毫米 高爆弹",
+    Tooltip_loaded_Ammo_762x39mm_HP_SA = "装填弹药:  7.62x39毫米 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_762x39mm_HP_FA = "装填弹药:  7.62x39毫米 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x51mm_FMJ = "装填弹药:  7.62x51毫米 全金属被甲弹",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_SA = "装填弹药:  7.62x51毫米 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_FA = "装填弹药:  7.62x51毫米 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_762x51mm_HP = "装填弹药:  7.62x51毫米 高爆弹",
+    Tooltip_loaded_Ammo_762x51mm_HP_SA = "装填弹药:  7.62x51毫米 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_762x51mm_HP_FA = "装填弹药:  7.62x51毫米 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x54mm_FMJ = "装填弹药:  7.62x54R 全金属被甲弹",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_SA = "装填弹药:  7.62x54R 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_FA = "装填弹药:  7.62x54R 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_762x54mm_HP = "装填弹药:  7.62x54R 高爆弹",
+    Tooltip_loaded_Ammo_762x54mm_HP_SA = "装填弹药:  7.62x54R 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_762x54mm_HP_FA = "装填弹药:  7.62x54R 高爆弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_00Buck = "装填弹药:  12号口径霰弹枪霰弹",
+    Tooltip_loaded_Ammo_12g_00Buck_SA = "装填弹药:  12号口径霰弹枪霰弹 (半自动)",
+    Tooltip_loaded_Ammo_12g_00Buck_FA = "装填弹药:  12号口径霰弹枪霰弹 (全自动)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_Slug = "装填弹药:  12号口径霰弹枪铅弹",
+    Tooltip_loaded_Ammo_12g_Slug_SA = "装填弹药:  12号口径霰弹枪铅弹 (半自动)",
+    Tooltip_loaded_Ammo_12g_Slug_FA = "装填弹药:  12号口径霰弹枪铅弹 (全自动)",
+}

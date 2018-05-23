@@ -1,0 +1,36 @@
+// CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
+// 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+*****************************************
+ContextMenu_CN = {
+	ContextMenu_ORGM_Unload = "卸载弹药",
+	ContextMenu_ORGM_Inspect = "检查武器",
+    ContextMenu_ORGM_Release = "释放击锤",
+    ContextMenu_ORGM_Cock = "竖起击锤",
+    
+    ContextMenu_ORGM_Spin = "旋转弹筒",
+    ContextMenu_ORGM_Suicide = "开枪自杀",
+
+    -- partial strings, the first half
+    ContextMenu_ORGM_Switch = "切换到 %1",
+    ContextMenu_ORGM_Open = "打开到 %1",
+    ContextMenu_ORGM_Close = "关闭 %1",
+    
+    -- the second half
+    ContextMenu_ORGM_PartSlide = "滑架",
+    ContextMenu_ORGM_PartBolt = "枪栓",
+    ContextMenu_ORGM_PartBarrel = "枪管",
+    ContextMenu_ORGM_Cylinder = "弹筒",
+    
+    ContextMenu_ORGM_FullAuto = "全自动",
+    ContextMenu_ORGM_Auto = "半自动",
+    ContextMenu_ORGM_Bolt = "拉栓式",
+    ContextMenu_ORGM_Lever = "杠杆式",
+    ContextMenu_ORGM_Pump = "泵动式",
+    ContextMenu_ORGM_Break = "开膛式",
+    ContextMenu_ORGM_Rotary = "旋转弹筒",
+    
+    ContextMenu_ORGM_UseOnly = "仅用于...",
+    ContextMenu_ORGM_Any = "任意弹药",
+    ContextMenu_ORGM_Mixed = "混装弹药",
+    ContextMenu_ORGM_AdminLoad = "管理 - 满装载弹",
+}
