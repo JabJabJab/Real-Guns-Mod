@@ -23,6 +23,13 @@ IG_UI_EN = {
     IGUI_Firearm_ActionType4 = "Pump",
     IGUI_Firearm_ActionType5 = "Break Barrel",
     IGUI_Firearm_ActionType6 = "Rotary Chamber",
+    IGUI_Firearm_BarrelLength = "Barrel Length",
+    IGUI_Firearm_AutoBlowback = "Blowback",
+    IGUI_Firearm_AutoDelayedBlowback = "Delayed Blowback",
+    IGUI_Firearm_AutoShortRecoil = "Short Recoil",
+    IGUI_Firearm_AutoShortPiston = "Short Stroke Gas Piston",
+    IGUI_Firearm_AutoLongPiston = "Long Stroke Gas Piston",
+    IGUI_Firearm_AutoDirectGas = "Direct Impingement",
 
     IGUI_Firearm_TriggerType1 = "Single Action",
     IGUI_Firearm_TriggerType2 = "Double Action",
