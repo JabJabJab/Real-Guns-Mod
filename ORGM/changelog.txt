@@ -11,6 +11,19 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
+version 3.08.2
+* Moved all recipes to a 'ORGM' tab in the build window.
+
+* Fixed issue with Reload Time, Rack Time and Magazine Reload Time options requiring PZ
+    to be restarted to have a effect.
+
+---------------------------------------------------------------------------------------
+version 3.08.1
+* Temporarily disabled the built in patch for Nolan's Super Survivors mod, as most of it
+    is now handled by the mod itself. This change does not effect the patch for the original
+    Survivors mod.
+
+---------------------------------------------------------------------------------------
 version 3.08
 
 * Added ORGM tab to the zomboid options screen, all settings can now be configured from
