@@ -54,29 +54,10 @@ MenuCallbacks.onActionTypeToggle = function(item, player, data, reloadable, newt
     player:playSound("ORGMRndLoad", false)
     data.actionType = newtype
     ORGM.setWeaponStats(item, data.lastRound)
-    --reloadable.actionType = newtype
-    --reloadable:syncReloadableToItem(item)
 end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
-    local itemType = item:getFullType()
-    --local scriptItem = getScriptManager():FindItem(itemType)
-    --[[
-    local scriptItem = item:getScriptItem()
-    if not scriptItem then
-        return
-    end
-    if newmode == ORGM.SEMIAUTOMODE then
-        item:setSwingTime(0.7)
-        item:setRecoilDelay(12)
-    elseif newmode == ORGM.FULLAUTOMODE then
-        item:setSwingTime(scriptItem:getSwingTime())
-        item:setRecoilDelay(1)
-    end
-    reloadable.selectFire = newmode
-    reloadable:syncReloadableToItem(item)
-    ]]
-    
+    local itemType = item:getFullType()    
     player:playSound("ORGMRndLoad", false)
     data.selectFire = newmode
     ORGM.setWeaponStats(item, data.lastRound)
