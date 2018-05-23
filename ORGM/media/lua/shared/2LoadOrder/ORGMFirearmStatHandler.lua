@@ -22,6 +22,65 @@ local MOD_WEIGHTAIMINGTIME = 0.5 -- aiming time + (weight * mod)
 local MOD_WEIGHTRECOILDELAY = 0.5 -- recoil / (weight * mod)
 local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
 
+local DELTA_BARREL_DAMAGE = 0.6 -- barrel length damage delta
+local DELTA_BARREL_SOUND = 6 --???
+
+--[[
+TODO: barrel optimization length calculations, and other stuff to consider
+Note 'optimal barrel length' is a completely subjective term. In this I'm referring to the length required to
+achieve full powder burn, where the bullet reaches maximum velocity. Also note 'full powder burn' is completely
+relative, different powders burn at different rates. While one might reach max velocity from a 26" barrel, another
+might require a 28". Bullet weight also plays a important factor here, but for the sake of simplicity should not
+be factored in (yet).
+
+1) action type has a effect, especially in automatics. Pressure is lost in blowback designs, gas feed systems etc.
+    This means a shorter barrel will have the same effect as a longer one in bolt actions and such.
+    These action types should have a lower 'optimal barrel' length.
+2) Barrel length has a effect on damage, below optimal length the bullet does not reach its intended velocity,
+    above optimal it starts to slow down due to friction.
+3) Length of barrels has a effect on noise. A longer barrel is quieter then a shorter one, as less gas escapes.
+4) Barrel lengths effect on accuracy is a mixed bag when it comes to long range. While longer barrels are generally
+    more accurate when the barrel is resting, it also means the bullet has longer 'barrel time' which means more 
+    chance to waiver off target. Above/below optimal length and velocity causes additional bullet drop. Luckly long
+    range shooting isn't really a thing in PZ, so this isn't much of a problem.
+5) Below optimal length, the extra gas escaping causes additional recoil.
+6) Action type effect on recoil: some action types absorb recoil more then others, but this is also a mixed bag. Take
+    the AK for example. It uses a long gas piston feed system, the gas chamber absorbs some recoil effect from the
+    gas that escapes the muzzle, but causes additional recoil due to the design of the long piston above the barrel
+    and the center of weight changes while cycling.
+7) The effect on velocity from a barrel above/below is a definite curve. The closer we are to optimal length the less
+    the effect is.
+    
+
+fps-fps*((((o-b)/o)**3)**2) this seems pretty damn close to matching, not sure were going to get much closer.
+looks like 'o' needs to be 80 for rifles, 30 for pistols to find a close match
+]]
+
+local calcBarrelModifier = function(optimal, barrel, delta)
+    --return ((optimal-barrel)/optimal*(optimal-barrel)/optimal)*delta
+    return ((((optimal-barrel)/optimal)^3)^2)
+end
+local adjustDmgByBarrel = function(item, ammoType, damage)
+    local barrel = ORGM.getBarrelLength(item)
+    local optimal = ORGM.getOptimalBarrelLength(ammoType)
+    damage = damage - damage * calcBarrelModifier(optimal, barrel, 0.6)
+end
+
+ORGM.getBarrelLength = function(item)
+    if instanceof(item, "HandWeapon") and item:getModData().barrelLength then
+        return item:getModData().barrelLength
+    end
+    local data = ORGM.getFirearmData(item)
+    if data and data.barrelLength then
+        return data.barrelLength
+    end
+    return nil
+end
+ORGM.getOptimalBarrelLength = function(ammoType)
+    local data = ORGM.getAmmoData(ammoType)
+    return data.OptimalBarrel
+end
+
 
 ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
     return { 
@@ -78,7 +137,7 @@ ORGM.adjustFirearmStatsByComponents = function(compnentTable, statsTable)
       --statsTable.MinDamage = statsTable.MinDamage + mod:getDamage()
       --statsTable.MaxDamage = statsTable.MaxDamage + mod:getDamage()
       
-      local cdetails = ORGM.getComponentData(mod)
+      local cdetails = ORGM.getComponentData(mod) or { }
       statsTable.CriticalChance = statsTable.CriticalChance + (cdetails.CriticalChance or 0)
       statsTable.HitChance = statsTable.HitChance + (cdetails.HitChance or 0)
       
