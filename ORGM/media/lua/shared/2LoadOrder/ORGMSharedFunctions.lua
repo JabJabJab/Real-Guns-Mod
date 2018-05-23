@@ -270,7 +270,7 @@ ORGM.validateSettingKey = function(key)
     if type(value) ~= validType then -- wrong type
         ORGM.Settings[key] = options.default
         ORGM.log(ORGM.ERROR, "Settings." .. key .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
-        return
+        if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
     end
     if options.type == 'integer' and value ~= math.floor(value) then
         ORGM.Settings[key] = math.floor(value)
@@ -280,9 +280,9 @@ ORGM.validateSettingKey = function(key)
         if (options.min and value < options.min) or (options.max and value > options.max) then
             ORGM.Settings[key] = options.default
             ORGM.log(ORGM.ERROR, "Settings." .. key .. " is invalid range (value "..tostring(value).." should be between min:"..(options.min or '')..", max:" ..(options.max or '').."). Setting to default "..tostring(options.default))
-            return
         end
     end
+    if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
 end
 
 ORGM.readSettingsFile = function()
