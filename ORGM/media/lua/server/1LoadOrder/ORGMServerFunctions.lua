@@ -25,9 +25,19 @@ ORGM.itemBindingHandler = function(key)
             ORGM.equipBestFirearm(playerObj, "Rifle")
         elseif key == getCore():getKey("Equip/Unequip Shotgun") then
             ORGM.equipBestFirearm(playerObj, "Shotgun")
-
             
         elseif key == getCore():getKey("Equip/Turn On/Off Light Source") then
+            -- vehicle handling
+            if key == getCore():getKey("ToggleVehicleHeadlights") then
+                local vehicle = playerObj:getVehicle()
+                if vehicle and vehicle:isDriver(playerObj) then
+                    if vehicle:hasHeadlights() then
+                        ISVehicleMenu.onToggleHeadlights(playerObj)
+                    end
+                    return
+                end
+            end
+
             if ORGM.toggleTacticalLight(playerObj) then return end -- handled by orgm
             
             -- default pz light finding code
