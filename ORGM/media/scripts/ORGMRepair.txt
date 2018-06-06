@@ -9,7 +9,7 @@ module ORGM
         Type            =   Drainable,
         UseWhileEquipped    =   FALSE,
         UseDelta        =   0.5,
-        DisplayName     =   WD-40,
+        DisplayName     =   ORGM_WD40,
         Icon            =   RepWD40,
     }
 
@@ -19,7 +19,7 @@ module ORGM
         Type            =   Drainable,
         UseWhileEquipped    =   FALSE,
         UseDelta        =   0.1,
-        DisplayName     =   Gun Brush Kit,
+        DisplayName     =   ORGM_Brushkit,
         Icon            =   RepBrushkit,
     }
 
@@ -29,7 +29,7 @@ module ORGM
         Type            =   Drainable,
         UseWhileEquipped    =   FALSE,
         UseDelta        =   0.04,
-        DisplayName     =   Gun Maintenance Kit,
+        DisplayName     =   ORGM_Maintkit,
         Icon            =   RepMaintkit,
     }
     

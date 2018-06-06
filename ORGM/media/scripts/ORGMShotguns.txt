@@ -4,7 +4,7 @@ module ORGM
 {   
     item BenelliM3
     {
-        DisplayName                 = Benelli M3 Super 90 (Semi-Auto/Pump),
+        DisplayName                 = ORGM_BenelliM3,
         Icon                        = BenelliM3,
         WeaponSprite                = super90,
         Weight                      = 3.3,
@@ -70,7 +70,7 @@ module ORGM
     
     item BenelliM3SO
     {
-        DisplayName                 = Benelli M3 Super 90 Sawn-off (Semi-Auto/Pump),
+        DisplayName                 = ORGM_BenelliM3SO,
         Icon                        = BenelliM3SO,
         WeaponSprite                = shotgunsawnblack,
         Weight                      = 3.0,
@@ -138,7 +138,7 @@ module ORGM
 
     item BenelliXM1014
     {
-        DisplayName                 = Benelli XM1014,
+        DisplayName                 = ORGM_BenelliXM1014,
         Icon                        = BenelliXM1014,
         WeaponSprite                = super90,
         Weight                      = 3.8,
@@ -204,7 +204,7 @@ module ORGM
     
     item Hawk982
     {
-        DisplayName                 = Hawk Model 982 Defense,
+        DisplayName                 = ORGM_Hawk982,
         Icon                        = Hawk982,
         WeaponSprite                = shotgunblack,
         Weight                      = 3.17,
@@ -271,7 +271,7 @@ module ORGM
 
     item Ithaca37
     {
-        DisplayName                 = Ithaca Model 37,
+        DisplayName                 = ORGM_Ithaca37,
         Icon                        = Ithaca37,
         WeaponSprite                = shotgun,
         Weight                      = 3.6,
@@ -337,7 +337,7 @@ module ORGM
 
     item Ithaca37SO
     {
-        DisplayName                 = Ithaca Model 37 Sawn-off,
+        DisplayName                 = ORGM_Ithaca37SO,
         WeaponSprite                = shotgunsawn,
         Icon                        = Ithaca37SO,
         Weight                      = 3.1,
@@ -403,7 +403,7 @@ module ORGM
 
     item M1216
     {
-        DisplayName                 = SRM Arms Model 1216,
+        DisplayName                 = ORGM_M1216,
         Icon                        = M1216,
         WeaponSprite                = m1216,
         Weight                      = 3.3,
@@ -469,7 +469,7 @@ module ORGM
 
     item Moss590
     {
-        DisplayName                 = Mossberg 590,
+        DisplayName                 = ORGM_Moss590,
         Icon                        = Moss590,
         WeaponSprite                = shotgunblack,
         Weight                      = 3.6,
@@ -535,7 +535,7 @@ module ORGM
 
     item Moss590SO
     {
-        DisplayName                 = Mossberg 590 Sawn-off,
+        DisplayName                 = ORGM_Moss590SO,
         Icon                        = Moss590SO,
         WeaponSprite                = shotgunsawnblack,
         Weight                      = 3.1,
@@ -601,7 +601,7 @@ module ORGM
 
     item Rem870
     {
-        DisplayName                 = Remington 870,
+        DisplayName                 = ORGM_Rem870,
         Icon                        = Rem870,
         WeaponSprite                = r870,
         Weight                      = 3.3,
@@ -667,7 +667,7 @@ module ORGM
 
     item Rem870SO
     {
-        DisplayName                 = Remington 870 Sawn-off,
+        DisplayName                 = ORGM_Rem870SO,
         Icon                        = Rem870SO,
         WeaponSprite                = r870,
         Weight                      = 2.8,
@@ -733,7 +733,7 @@ module ORGM
 
     item Silverhawk
     {
-        DisplayName                 = Beretta Model 471 Silverhawk,
+        DisplayName                 = ORGM_Silverhawk,
         Icon                        = Silverhawk,
         WeaponSprite                = silver,
         Weight                      = 3,
@@ -799,7 +799,7 @@ module ORGM
 
     item SilverHawkSO
     {
-        DisplayName                 = Beretta Model 471 Silverhawk Sawn-off,
+        DisplayName                 = ORGM_SilverHawkSO,
         Icon                        = SilverhawkSO,
         WeaponSprite                = silver,
         Weight                      = 2.5,
@@ -865,7 +865,7 @@ module ORGM
     
     item Spas12
     {
-        DisplayName                 = Spas-12 (Semi-Auto/Pump),
+        DisplayName                 = ORGM_Spas12,
         Icon                        = Spas12,
         WeaponSprite                = spas12,
         Weight                      = 4.4,
@@ -931,7 +931,7 @@ module ORGM
     
     item Stevens320
     {
-        DisplayName                 = Stevens 320 Pump,
+        DisplayName                 = ORGM_Stevens320,
         Icon                        = Stevens320,
         WeaponSprite                = stevens,
         Weight                      = 3.1,
@@ -997,7 +997,7 @@ module ORGM
 
     item Striker
     {
-        DisplayName                 = Armsel Striker,
+        DisplayName                 = ORGM_Striker,
         Icon                        = Striker,
         WeaponSprite                = striker,
         Weight                      = 4.2,
@@ -1063,7 +1063,7 @@ module ORGM
     
     item VEPR12
     {
-        DisplayName                 = VEPR-12 MOLOT,
+        DisplayName                 = ORGM_VEPR12,
         Icon                        = VEPR12,
         WeaponSprite                = kalash,
         Weight                      = 4.2,
@@ -1129,7 +1129,7 @@ module ORGM
 
     item Win1887
     {
-        DisplayName                 = Winchester Model 1887,
+        DisplayName                 = ORGM_Win1887,
         Icon                        = Win1887,
         WeaponSprite                = shotgun,
         Weight                      = 3.6,
@@ -1195,7 +1195,7 @@ module ORGM
 
     item Win1887SO
     {
-        DisplayName                 = Winchester Model 1887 Sawn-off,
+        DisplayName                 = ORGM_Win1887SO,
         Icon                        = Win1887SO,
         WeaponSprite                = shotgunsawn,
         Weight                      = 3.1,

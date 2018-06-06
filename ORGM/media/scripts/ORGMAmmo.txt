@@ -14,7 +14,7 @@ module ORGM
         Count = 1,
         Weight = 0.001,
         Type = Normal,
-        DisplayName = .117 BBs,
+        DisplayName = ORGM_Ammo_117BB,
         DisplayCategory = Ammo,
         Icon = AmBBs,
     }
@@ -23,7 +23,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .117 BBs - 250 Count Can,
+        DisplayName = ORGM_Ammo_117BB_Box,
         DisplayCategory = Ammo,
         Icon = AmBBCan,
     }
@@ -32,7 +32,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .117 BBs - 250 Count Can,
+        DisplayName = ORGM_Ammo_117BB_Box,
         DisplayCategory = Ammo,
         Icon = AmBBCan,
     }
@@ -44,7 +44,7 @@ module ORGM
         Count = 1,
         Weight = 0.002,
         Type = Normal,
-        DisplayName = .22 LR cases,
+        DisplayName = ORGM_Case_22LR,
         DisplayCategory = Item,
         Icon = Case22LR,
     }
@@ -53,7 +53,7 @@ module ORGM
     {
         Weight = 0.15,
         Type = Normal,
-        DisplayName = .22LR - 100 Cases Box,
+        DisplayName = ORGM_Case_22LR_Box,
         DisplayCategory = Item,
         Icon = Am22Box,
     }
@@ -62,7 +62,7 @@ module ORGM
     {
         Weight = 1.5,
         Type = Normal,
-        DisplayName = .22LR - 1000 Cases Canister,
+        DisplayName = ORGM_Case_22LR_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -72,7 +72,7 @@ module ORGM
         Count = 1,
         Weight = 0.003,
         Type = Normal,
-        DisplayName = .22 LR rounds,
+        DisplayName = ORGM_Ammo_22LR,
         DisplayCategory = Ammo,
         Icon = Am22Rounds,
     }
@@ -82,7 +82,7 @@ module ORGM
         Count = 1,
         Weight = 0.003,
         Type = Normal,
-        DisplayName = .22LR FMJ rounds,
+        DisplayName = ORGM_Ammo_22LR_FMJ,
         DisplayCategory = Ammo,
         Icon = Am22Rounds,
     }
@@ -91,7 +91,7 @@ module ORGM
     {
         Weight = 0.3,
         Type = Normal,
-        DisplayName = .22LR FMJ - 100 Round Box,
+        DisplayName = ORGM_Ammo_22LR_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am22Box,
     }
@@ -100,7 +100,7 @@ module ORGM
     {
         Weight = 3.0,
         Type = Normal,
-        DisplayName = .22LR FMJ - 1000 Round Canister,
+        DisplayName = ORGM_Ammo_22LR_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -110,7 +110,7 @@ module ORGM
         Count = 1,
         Weight = 0.003,
         Type = Normal,
-        DisplayName = .22LR HP rounds,
+        DisplayName = ORGM_Ammo_22LR_HP,
         DisplayCategory = Ammo,
         Icon = Am22HPRounds,
     }
@@ -119,7 +119,7 @@ module ORGM
     {
         Weight = 0.3,
         Type = Normal,
-        DisplayName = .22LR HP - 100 Round Box,
+        DisplayName = ORGM_Ammo_22LR_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am22HPBox,
     }
@@ -128,7 +128,7 @@ module ORGM
     {
         Weight = 3.0,
         Type = Normal,
-        DisplayName = .22LR HP - 1000 Round Canister,
+        DisplayName = ORGM_Ammo_22LR_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -140,7 +140,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .32 ACP cases,
+        DisplayName = ORGM_Case_32ACP,
         DisplayCategory = Item,
         Icon = Case32ACP,
     }
@@ -149,7 +149,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .32 ACP - 50 Cases Box,
+        DisplayName = ORGM_Case_32ACP_Box,
         DisplayCategory = Item,
         Icon = Am32ACPBox,
     }
@@ -158,7 +158,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .32 ACP - 500 Cases Canister,
+        DisplayName = ORGM_Case_32ACP_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -168,7 +168,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .32 ACP rounds,
+        DisplayName = ORGM_Ammo_32ACP,
         DisplayCategory = Ammo,
         Icon = Am32ACPRounds,
     }
@@ -178,7 +178,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .32 ACP FMJ Rounds,
+        DisplayName = ORGM_Ammo_32ACP_FMJ,
         DisplayCategory = Ammo,
         Icon = Am32ACPRounds,
     }
@@ -187,7 +187,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .32 ACP FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_32ACP_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am32ACPBox,
     }
@@ -196,7 +196,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .32 ACP FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_32ACP_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -206,7 +206,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .32 ACP HP Rounds,
+        DisplayName = ORGM_Ammo_32ACP_HP,
         DisplayCategory = Ammo,
         Icon = Am32ACPHPRounds,
     }
@@ -215,7 +215,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .32 ACP HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_32ACP_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am32ACPHPBox,
     }
@@ -224,7 +224,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .32 ACP HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_32ACP_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -236,7 +236,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .357 Magnum cases,
+        DisplayName = ORGM_Case_357Magnum,
         DisplayCategory = Item,
         Icon = Case357,
     }
@@ -245,7 +245,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .357 Magnum - 50 Cases Box,
+        DisplayName = ORGM_Case_357Magnum_Box,
         DisplayCategory = Item,
         Icon = Am357Box,
     }
@@ -254,7 +254,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .357 Magnum - 500 Cases Canister,
+        DisplayName = ORGM_Case_357Magnum_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -264,7 +264,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .357 Magnum rounds,
+        DisplayName = ORGM_Ammo_357Magnum,
         DisplayCategory = Ammo,
         Icon = Am357Rounds,
     }
@@ -274,7 +274,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .357 Magnum FMJ Rounds,
+        DisplayName = ORGM_Ammo_357Magnum_FMJ,
         DisplayCategory = Ammo,
         Icon = Am357Rounds,
     }
@@ -283,7 +283,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .357 Magnum FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_357Magnum_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am357Box,
     }
@@ -292,7 +292,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .357 Magnum FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_357Magnum_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -302,7 +302,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .357 Magnum HP Rounds,
+        DisplayName = ORGM_Ammo_357Magnum_HP,
         DisplayCategory = Ammo,
         Icon = Am357HPRounds,
     }
@@ -311,7 +311,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .357 Magnum HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_357Magnum_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am357HPBox,
     }
@@ -320,7 +320,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .357 Magnum HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_357Magnum_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -332,7 +332,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .38 Special cases,
+        DisplayName = ORGM_Case_38Special,
         DisplayCategory = Item,
         Icon = Case38Special,
     }
@@ -341,7 +341,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .38 Special - 50 Cases Box,
+        DisplayName = ORGM_Case_38Special_Box,
         DisplayCategory = Item,
         Icon = Am38SpecialBox,
     }
@@ -350,7 +350,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .38 Special - 500 Cases Canister,
+        DisplayName = ORGM_Case_38Special_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -360,7 +360,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Special rounds,
+        DisplayName = ORGM_Ammo_38Special,
         DisplayCategory = Ammo,
         Icon = Am38SpecialRounds,
     }
@@ -370,7 +370,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Special FMJ Rounds,
+        DisplayName = ORGM_Ammo_38Special_FMJ,
         DisplayCategory = Ammo,
         Icon = Am38SpecialRounds,
     }
@@ -379,7 +379,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .38 Special FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_38Special_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am38SpecialBox,
     }
@@ -388,7 +388,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .38 Special FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_38Special_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -398,7 +398,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Special HP Rounds,
+        DisplayName = ORGM_Ammo_38Special_HP,
         DisplayCategory = Ammo,
         Icon = Am38SpecialHPRounds,
     }
@@ -407,7 +407,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .38 Special HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_38Special_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am38SpecialHPBox,
     }
@@ -416,7 +416,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .38 Special HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_38Special_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -428,7 +428,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .38 Super cases,
+        DisplayName = ORGM_Case_38Super,
         DisplayCategory = Item,
         Icon = Case38Super,
     }
@@ -437,7 +437,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .38 Super - 50 Cases Box,
+        DisplayName = ORGM_Case_38Super_Box,
         DisplayCategory = Item,
         Icon = Am38SuperBox,
     }
@@ -446,7 +446,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .38 Super - 500 Cases Canister,
+        DisplayName = ORGM_Case_38Super_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -456,7 +456,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Super rounds,
+        DisplayName = ORGM_Ammo_38Super,
         DisplayCategory = Ammo,
         Icon = Am38SuperRounds,
     }
@@ -466,7 +466,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Super FMJ Rounds,
+        DisplayName = ORGM_Ammo_38Super_FMJ,
         DisplayCategory = Ammo,
         Icon = Am38SuperRounds,
     }
@@ -475,7 +475,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .38 Super FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_38Super_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am38SuperBox,
     }
@@ -484,7 +484,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .38 Super FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_38Super_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -494,7 +494,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .38 Super HP Rounds,
+        DisplayName = ORGM_Ammo_38Super_HP,
         DisplayCategory = Ammo,
         Icon = Am38SuperHPRounds,
     }
@@ -503,7 +503,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .38 Super HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_38Super_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am38SuperHPBox,
     }
@@ -512,7 +512,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .38 Super HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_38Super_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -524,7 +524,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .380 ACP cases,
+        DisplayName = ORGM_Case_380ACP,
         DisplayCategory = Item,
         Icon = Case380ACP,
     }
@@ -533,7 +533,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .380 ACP - 50 Cases Box,
+        DisplayName = ORGM_Case_380ACP_Box,
         DisplayCategory = Item,
         Icon = Am380ACPBox,
     }
@@ -542,7 +542,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .380 ACP - 500 Cases Canister,
+        DisplayName = ORGM_Case_380ACP_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -552,7 +552,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .380 ACP rounds,
+        DisplayName = ORGM_Ammo_380ACP,
         DisplayCategory = Ammo,
         Icon = Am380ACPRounds,
     }
@@ -562,7 +562,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .380 ACP FMJ Rounds,
+        DisplayName = ORGM_Ammo_380ACP_FMJ,
         DisplayCategory = Ammo,
         Icon = Am380ACPRounds,
     }
@@ -571,7 +571,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .380 ACP FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_380ACP_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am380ACPBox,
     }
@@ -580,7 +580,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .380 ACP FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_380ACP_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -590,7 +590,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .380 ACP HP Rounds,
+        DisplayName = ORGM_Ammo_380ACP_HP,
         DisplayCategory = Ammo,
         Icon = Am380ACPHPRounds,
     }
@@ -599,7 +599,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .380 ACP HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_380ACP_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am380ACPHPBox,
     }
@@ -608,7 +608,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .380 ACP HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_380ACP_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -620,7 +620,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .40 S&W cases,
+        DisplayName = ORGM_Case_40SW,
         DisplayCategory = Item,
         Icon = Case40SW,
     }
@@ -629,7 +629,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .40 S&W - 50 Cases Box,
+        DisplayName = ORGM_Case_40SW_Box,
         DisplayCategory = Item,
         Icon = Am40SWBox,
     }
@@ -638,7 +638,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .40 S&W - 500 Cases Canister,
+        DisplayName = ORGM_Case_40SW_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -648,7 +648,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .40 S&W rounds,
+        DisplayName = ORGM_Ammo_40SW,
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
@@ -658,7 +658,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .40 S&W FMJ Rounds,
+        DisplayName = ORGM_Ammo_40SW_FMJ,
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
@@ -667,7 +667,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .40 S&W FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_40SW_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am40SWBox,
     }
@@ -676,7 +676,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .40 S&W FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_40SW_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -686,7 +686,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .40 S&W HP Rounds,
+        DisplayName = ORGM_Ammo_40SW_HP,
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
@@ -695,7 +695,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .40 S&W HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_40SW_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am40SWBox,
     }
@@ -704,7 +704,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .40 S&W HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_40SW_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -716,7 +716,7 @@ module ORGM
         Count = 1,
         Weight = 0.006,
         Type = Normal,
-        DisplayName = .44 Magnum cases,
+        DisplayName = ORGM_Case_44Magnum,
         DisplayCategory = Item,
         Icon = Case44,
     }
@@ -725,7 +725,7 @@ module ORGM
     {
         Weight = 0.3,
         Type = Normal,
-        DisplayName = .44 Magnum - 50 Cases Box,
+        DisplayName = ORGM_Case_44Magnum_Box,
         DisplayCategory = Item,
         Icon = Am44Box,
     }
@@ -734,7 +734,7 @@ module ORGM
     {
         Weight = 3.0,
         Type = Normal,
-        DisplayName = .44 Magnum - 500 Cases Canister,
+        DisplayName = ORGM_Case_44Magnum_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -744,7 +744,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .44 Magnum rounds,
+        DisplayName = ORGM_Ammo_44Magnum,
         DisplayCategory = Ammo,
         Icon = Am44Rounds,
     }
@@ -754,7 +754,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .44 Magnum FMJ Rounds,
+        DisplayName = ORGM_Ammo_44Magnum_FMJ,
         DisplayCategory = Ammo,
         Icon = Am44Rounds,
     }
@@ -763,7 +763,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .44 Magnum FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_44Magnum_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am44Box,
     }
@@ -772,7 +772,7 @@ module ORGM
     {
         Weight = 6.0,
         Type = Normal,
-        DisplayName = .44 Magnum FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_44Magnum_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -782,7 +782,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .44 Magnum HP Rounds,
+        DisplayName = ORGM_Ammo_44Magnum_HP,
         DisplayCategory = Ammo,
         Icon = Am44HPRounds,
     }
@@ -791,7 +791,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .44 Magnum HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_44Magnum_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am44HPBox,
     }
@@ -800,7 +800,7 @@ module ORGM
     {
         Weight = 6.0,
         Type = Normal,
-        DisplayName = .44 Magnum HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_44Magnum_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -812,7 +812,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .45 ACP cases,
+        DisplayName = ORGM_Case_45ACP,
         DisplayCategory = Item,
         Icon = Case45ACP,
     }
@@ -821,7 +821,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .45 ACP - 50 Cases Box,
+        DisplayName = ORGM_Case_45ACP_Box,
         DisplayCategory = Item,
         Icon = Am45ACPBox,
     }
@@ -830,7 +830,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .45 ACP - 500 Cases Canister,
+        DisplayName = ORGM_Case_45ACP_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -840,7 +840,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 ACP rounds,
+        DisplayName = ORGM_Ammo_45ACP,
         DisplayCategory = Ammo,
         Icon = Am45ACPRounds,
     }
@@ -850,7 +850,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 ACP FMJ Rounds,
+        DisplayName = ORGM_Ammo_45ACP_FMJ,
         DisplayCategory = Ammo,
         Icon = Am45ACPRounds,
     }
@@ -859,7 +859,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .45 ACP FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_45ACP_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am45ACPBox,
     }
@@ -868,7 +868,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .45 ACP FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_45ACP_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -878,7 +878,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 ACP HP Rounds,
+        DisplayName = ORGM_Ammo_45ACP_HP,
         DisplayCategory = Ammo,
         Icon = Am45ACPHPRounds,
     }
@@ -887,7 +887,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .45 ACP HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_45ACP_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am45ACPHPBox,
     }
@@ -896,7 +896,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .45 ACP HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_45ACP_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -908,7 +908,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = .45 Colt cases,
+        DisplayName = ORGM_Case_45Colt,
         DisplayCategory = Item,
         Icon = Case45Colt,
     }
@@ -917,7 +917,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = .45 Colt - 50 Cases Box,
+        DisplayName = ORGM_Case_45Colt_Box,
         DisplayCategory = Item,
         Icon = Am45ColtBox,
     }
@@ -926,7 +926,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = .45 Colt - 500 Cases Canister,
+        DisplayName = ORGM_Case_45Colt_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -936,7 +936,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 Colt rounds,
+        DisplayName = ORGM_Ammo_45Colt,
         DisplayCategory = Ammo,
         Icon = Am45ColtRounds,
     }
@@ -946,7 +946,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 Colt FMJ Rounds,
+        DisplayName = ORGM_Ammo_45Colt_FMJ,
         DisplayCategory = Ammo,
         Icon = Am45ColtRounds,
     }
@@ -955,7 +955,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .45 Colt FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_45Colt_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am45ColtBox,
     }
@@ -964,7 +964,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .45 Colt FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_45Colt_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -974,7 +974,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .45 Colt HP Rounds,
+        DisplayName = ORGM_Ammo_45Colt_HP,
         DisplayCategory = Ammo,
         Icon = Am45ColtHPRounds,
     }
@@ -983,7 +983,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = .45 Colt HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_45Colt_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am45ColtHPBox,
     }
@@ -992,7 +992,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .45 Colt HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_45Colt_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1004,7 +1004,7 @@ module ORGM
         Count = 1,
         Weight = 0.006,
         Type = Normal,
-        DisplayName = .454 Casull cases,
+        DisplayName = ORGM_Case_454Casull,
         DisplayCategory = Item,
         Icon = Case454,
     }
@@ -1013,7 +1013,7 @@ module ORGM
     {
         Weight = 0.3,
         Type = Normal,
-        DisplayName = .454 Casull - 50 Cases Box,
+        DisplayName = ORGM_Case_454Casull_Box,
         DisplayCategory = Item,
         Icon = Am454Box,
     }
@@ -1022,7 +1022,7 @@ module ORGM
     {
         Weight = 3.0,
         Type = Normal,
-        DisplayName = .454 Casull - 500 Cases Canister,
+        DisplayName = ORGM_Case_454Casull_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1032,7 +1032,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .454 Casull rounds,
+        DisplayName = ORGM_Ammo_454Casull,
         DisplayCategory = Ammo,
         Icon = Am454Rounds,
     }
@@ -1042,7 +1042,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .454 Casull FMJ Rounds,
+        DisplayName = ORGM_Ammo_454Casull_FMJ,
         DisplayCategory = Ammo,
         Icon = Am454Rounds,
     }
@@ -1051,7 +1051,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .454 Casull FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_454Casull_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am454Box,
     }
@@ -1060,7 +1060,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .454 Casull FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_454Casull_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1070,7 +1070,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .454 Casull HP Rounds,
+        DisplayName = ORGM_Ammo_454Casull_HP,
         DisplayCategory = Ammo,
         Icon = Am454HPRounds,
     }
@@ -1079,7 +1079,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .454 Casull HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_454Casull_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am454HPBox,
     }
@@ -1088,7 +1088,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = .454 Casull HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_454Casull_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1100,7 +1100,7 @@ module ORGM
         Count = 1,
         Weight = 0.006,
         Type = Normal,
-        DisplayName = .50 AE cases,
+        DisplayName = ORGM_Case_50AE,
         DisplayCategory = Item,
         Icon = Case50AE,
     }
@@ -1109,7 +1109,7 @@ module ORGM
     {
         Weight = 0.3,
         Type = Normal,
-        DisplayName = .50 AE - 50 Cases Box,
+        DisplayName = ORGM_Case_50AE_Box,
         DisplayCategory = Item,
         Icon = Am50AEBox,
     }
@@ -1118,7 +1118,7 @@ module ORGM
     {
         Weight = 3.0,
         Type = Normal,
-        DisplayName = .50 AE - 500 Cases Canister,
+        DisplayName = ORGM_Case_50AE_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1128,7 +1128,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .50 AE rounds,
+        DisplayName = ORGM_Ammo_50AE,
         DisplayCategory = Ammo,
         Icon = Am50AERounds,
     }
@@ -1138,7 +1138,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .50 AE FMJ Rounds,
+        DisplayName = ORGM_Ammo_50AE_FMJ,
         DisplayCategory = Ammo,
         Icon = Am50AERounds,
     }
@@ -1147,7 +1147,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .50 AE FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_50AE_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am50AEBox,
     }
@@ -1156,7 +1156,7 @@ module ORGM
     {
         Weight = 6.0,
         Type = Normal,
-        DisplayName = .50 AE FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_50AE_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1166,7 +1166,7 @@ module ORGM
         Count = 1,
         Weight = 0.012,
         Type = Normal,
-        DisplayName = .50 AE HP Rounds,
+        DisplayName = ORGM_Ammo_50AE_HP,
         DisplayCategory = Ammo,
         Icon = Am50AEHPRounds,
     }
@@ -1175,7 +1175,7 @@ module ORGM
     {
         Weight = 0.6,
         Type = Normal,
-        DisplayName = .50 AE HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_50AE_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am50AEHPBox,
     }
@@ -1184,7 +1184,7 @@ module ORGM
     {
         Weight = 6.0,
         Type = Normal,
-        DisplayName = .50 AE HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_50AE_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1196,7 +1196,7 @@ module ORGM
         Count = 1,
         Weight = 0.008,
         Type = Normal,
-        DisplayName = .223 Remington cases,
+        DisplayName = ORGM_Case_223Remington,
         DisplayCategory = Item,
         Icon = Case223,
     }
@@ -1205,7 +1205,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = .223 Remington - 25 Cases Box,
+        DisplayName = ORGM_Case_223Remington_Box,
         DisplayCategory = Item,
         Icon = Am223Box,
     }
@@ -1214,7 +1214,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = .223 Remington - 250 Cases Canister,
+        DisplayName = ORGM_Case_223Remington_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1224,7 +1224,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = .223 Remington rounds,
+        DisplayName = ORGM_Ammo_223Remington,
         DisplayCategory = Ammo,
         Icon = Am223Rounds,
     }
@@ -1234,7 +1234,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = .223 Remington FMJ Rounds,
+        DisplayName = ORGM_Ammo_223Remington_FMJ,
         DisplayCategory = Ammo,
         Icon = Am223Rounds,
     }
@@ -1243,7 +1243,7 @@ module ORGM
     {
         Weight = 0.375,
         Type = Normal,
-        DisplayName = .223 Remington FMJ - 25 Round Box,
+        DisplayName = ORGM_Ammo_223Remington_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am223Box,
     }
@@ -1252,7 +1252,7 @@ module ORGM
     {
         Weight = 3.75,
         Type = Normal,
-        DisplayName = .223 Remington FMJ - 250 Round Canister,
+        DisplayName = ORGM_Ammo_223Remington_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1262,7 +1262,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = .223 Remington HP Rounds,
+        DisplayName = ORGM_Ammo_223Remington_HP,
         DisplayCategory = Ammo,
         Icon = Am223HPRounds,
     }
@@ -1271,7 +1271,7 @@ module ORGM
     {
         Weight = 0.375,
         Type = Normal,
-        DisplayName = .223 Remington HP - 25 Round Box,
+        DisplayName = ORGM_Ammo_223Remington_HP,
         DisplayCategory = Ammo,
         Icon = Am223HPBox,
     }
@@ -1280,7 +1280,7 @@ module ORGM
     {
         Weight = 3.75,
         Type = Normal,
-        DisplayName = .223 Remington HP - 250 Round Canister,
+        DisplayName = ORGM_Ammo_223Remington_HP,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1292,7 +1292,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .30-06 Springfield cases,
+        DisplayName = ORGM_Case_3006Springfield,
         DisplayCategory = Item,
         Icon = Case3006,
     }
@@ -1301,7 +1301,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = .30-06 Springfield - 20 Cases Box,
+        DisplayName = ORGM_Case_3006Springfield_Box,
         DisplayCategory = Item,
         Icon = Am3006Box,
     }
@@ -1310,7 +1310,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = .30-06 Springfield - 200 Cases Canister,
+        DisplayName = ORGM_Case_3006Springfield_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1320,7 +1320,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-06 Springfield rounds,
+        DisplayName = ORGM_Ammo_3006Springfield,
         DisplayCategory = Ammo,
         Icon = Am3006Rounds,
     }
@@ -1330,7 +1330,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-06 Springfield FMJ Rounds,
+        DisplayName = ORGM_Ammo_3006Springfield_FMJ,
         DisplayCategory = Ammo,
         Icon = Am3006Rounds,
     }
@@ -1339,7 +1339,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .30-06 Springfield FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_3006Springfield_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am3006Box,
     }
@@ -1348,7 +1348,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .30-06 Springfield FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_3006Springfield_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1358,7 +1358,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-06 Springfield HP Rounds,
+        DisplayName = ORGM_Ammo_3006Springfield_HP,
         DisplayCategory = Ammo,
         Icon = Am3006HPRounds,
     }
@@ -1367,7 +1367,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .30-06 Springfield HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_3006Springfield_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am3006HPBox,
     }
@@ -1376,7 +1376,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .30-06 Springfield HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_3006Springfield_HP_Box,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1388,7 +1388,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .30-30 Winchester cases,
+        DisplayName = ORGM_Case_3030Winchester,
         DisplayCategory = Item,
         Icon = Case3030,
     }
@@ -1397,7 +1397,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = .30-30 Winchester - 20 Cases Box,
+        DisplayName = ORGM_Case_3030Winchester_Box,
         DisplayCategory = Item,
         Icon = Am3030Box,
     }
@@ -1406,7 +1406,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = .30-30 Winchester - 200 Cases Canister,
+        DisplayName = ORGM_Case_3030Winchester_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1416,7 +1416,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-30 Winchester rounds,
+        DisplayName = ORGM_Ammo_3030Winchester,
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
@@ -1426,7 +1426,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-30 Winchester FMJ Rounds,
+        DisplayName = ORGM_Ammo_3030Winchester_FMJ,
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
@@ -1435,7 +1435,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .30-30 Winchester FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_3030Winchester_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am3030Box,
     }
@@ -1444,7 +1444,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .30-30 Winchester FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_3030Winchester_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1454,7 +1454,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .30-30 Winchester HP Rounds,
+        DisplayName = ORGM_Ammo_3030Winchester_HP,
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
@@ -1463,7 +1463,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .30-30 Winchester HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_3030Winchester_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am3030Box,
     }
@@ -1472,7 +1472,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .30-30 Winchester HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_3030Winchester_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1484,7 +1484,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = .308 Winchester cases,
+        DisplayName = ORGM_Case_308Winchester,
         DisplayCategory = Item,
         Icon = Case308,
     }
@@ -1493,7 +1493,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = .308 Winchester - 20 Cases Box,
+        DisplayName = ORGM_Case_308Winchester_Box,
         DisplayCategory = Item,
         Icon = Am308Box,
     }
@@ -1502,7 +1502,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = .308 Winchester - 200 Cases Canister,
+        DisplayName = ORGM_Case_308Winchester_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1512,7 +1512,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .308 Winchester rounds,
+        DisplayName = ORGM_Ammo_308Winchester,
         DisplayCategory = Ammo,
         Icon = Am308Rounds,
     }
@@ -1522,7 +1522,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .308 Winchester FMJ Rounds,
+        DisplayName = ORGM_Ammo_308Winchester_FMJ,
         DisplayCategory = Ammo,
         Icon = Am308Rounds,
     }
@@ -1531,7 +1531,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .308 Winchester FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_308Winchester_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am308Box,
     }
@@ -1540,7 +1540,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .308 Winchester FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_308Winchester_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1550,7 +1550,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = .308 Winchester HP Rounds,
+        DisplayName = ORGM_Ammo_308Winchester_HP,
         DisplayCategory = Ammo,
         Icon = Am308HPRounds,
     }
@@ -1559,7 +1559,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = .308 Winchester HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_308Winchester_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am308HPBox,
     }
@@ -1568,7 +1568,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = .308 Winchester HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_308Winchester_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1580,7 +1580,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = FN 5.7x28mm cases,
+        DisplayName = ORGM_Case_57x28mm,
         DisplayCategory = Item,
         Icon = Case57x28,
     }
@@ -1589,7 +1589,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = FN 5.7x28mm - 50 Cases Box,
+        DisplayName = ORGM_Case_57x28mm_Box,
         DisplayCategory = Item,
         Icon = Am57x28Box,
     }
@@ -1598,7 +1598,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = FN 5.7x28mm - 500 Cases Canister,
+        DisplayName = ORGM_Case_57x28mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1608,7 +1608,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = FN 5.7x28mm rounds,
+        DisplayName = ORGM_Ammo_57x28mm,
         DisplayCategory = Ammo,
         Icon = Am57x28Rounds,
     }
@@ -1618,7 +1618,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = FN 5.7x28mm FMJ Rounds,
+        DisplayName = ORGM_Ammo_57x28mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am57x28Rounds,
     }
@@ -1627,7 +1627,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = FN 5.7x28mm FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_57x28mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am57x28Box,
     }
@@ -1636,7 +1636,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = FN 5.7x28mm FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_57x28mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1646,7 +1646,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = FN 5.7x28mm HP Rounds,
+        DisplayName = ORGM_Ammo_57x28mm_HP,
         DisplayCategory = Ammo,
         Icon = Am57x28HPRounds,
     }
@@ -1655,7 +1655,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = FN 5.7x28mm HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_57x28mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am57x28HPBox,
     }
@@ -1664,7 +1664,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = FN 5.7x28mm HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_57x28mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1676,7 +1676,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = 9x19mm Parabellum cases,
+        DisplayName = ORGM_Case_9x19mm,
         DisplayCategory = Item,
         Icon = Case9x19,
     }
@@ -1685,7 +1685,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 9x19mm - 50 Cases Box,
+        DisplayName = ORGM_Case_9x19mm_Box,
         DisplayCategory = Item,
         Icon = Am9x19Box,
     }
@@ -1694,7 +1694,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = 9x19mm - 500 Cases Canister,
+        DisplayName = ORGM_Case_9x19mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1704,7 +1704,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 9x19mm Parabellum rounds,
+        DisplayName = ORGM_Ammo_9x19mm,
         DisplayCategory = Ammo,
         Icon = Am9x19Rounds,
     }
@@ -1714,7 +1714,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 9x19mm Parabellum FMJ Rounds,
+        DisplayName = ORGM_Ammo_9x19mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am9x19Rounds,
     }
@@ -1723,7 +1723,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 9x19mm FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_9x19mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am9x19Box,
     }
@@ -1732,7 +1732,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 9x19mm FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_9x19mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1742,7 +1742,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 9x19mm Parabellum HP Rounds,
+        DisplayName = ORGM_Ammo_9x19mm_HP,
         DisplayCategory = Ammo,
         Icon = Am9x19HPRounds,
     }
@@ -1751,7 +1751,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 9x19mm HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_9x19mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am9x19HPBox,
     }
@@ -1760,7 +1760,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 9x19mm HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_9x19mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1772,7 +1772,7 @@ module ORGM
         Count = 1,
         Weight = 0.005,
         Type = Normal,
-        DisplayName = 10x25mm cases,
+        DisplayName = ORGM_Case_10x25mm,
         DisplayCategory = Item,
         Icon = Case10x25,
     }
@@ -1781,7 +1781,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = 10x25mm - 50 Cases Box,
+        DisplayName = ORGM_Case_10x25mm_Box,
         DisplayCategory = Item,
         Icon = Am10x25Box,
     }
@@ -1790,7 +1790,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = 10x25mm - 500 Cases Canister,
+        DisplayName = ORGM_Case_10x25mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1800,7 +1800,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 10x25mm rounds,
+        DisplayName = ORGM_Ammo_10x25mm,
         DisplayCategory = Ammo,
         Icon = Am10x25Rounds,
     }
@@ -1810,7 +1810,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 10x25mm FMJ Rounds,
+        DisplayName = ORGM_Ammo_10x25mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am10x25Rounds,
     }
@@ -1819,7 +1819,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 10x25mm FMJ - 50 Round Box,
+        DisplayName = ORGM_Ammo_10x25mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am10x25Box,
     }
@@ -1828,7 +1828,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 10x25mm FMJ - 500 Round Canister,
+        DisplayName = ORGM_Ammo_10x25mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1838,7 +1838,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 10x25mm HP Rounds,
+        DisplayName = ORGM_Ammo_10x25mm_HP,
         DisplayCategory = Ammo,
         Icon = Am10x25HPRounds,
     }
@@ -1847,7 +1847,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 10x25mm HP - 50 Round Box,
+        DisplayName = ORGM_Ammo_10x25mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am10x25HPBox,
     }
@@ -1856,7 +1856,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 10x25mm HP - 500 Round Canister,
+        DisplayName = ORGM_Ammo_10x25mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1867,7 +1867,7 @@ module ORGM
         Count = 1,
         Weight = 0.008,
         Type = Normal,
-        DisplayName = 5.56x45mm cases,
+        DisplayName = ORGM_Case_556x45mm,
         DisplayCategory = Item,
         Icon = Case556x45,
     }
@@ -1876,7 +1876,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = 5.56x45mm - 25 Cases Box,
+        DisplayName = ORGM_Case_556x45mm_Box,
         DisplayCategory = Item,
         Icon = Am556x45Box,
     }
@@ -1885,7 +1885,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = 5.56x45mm - 250 Cases Canister,
+        DisplayName = ORGM_Case_556x45mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1895,7 +1895,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = 5.56x45mm rounds,
+        DisplayName = ORGM_Ammo_556x45mm,
         DisplayCategory = Ammo,
         Icon = Am556x45Rounds,
     }
@@ -1905,7 +1905,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = 5.56x45mm FMJ Rounds,
+        DisplayName = ORGM_Ammo_556x45mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am556x45Rounds,
     }
@@ -1914,7 +1914,7 @@ module ORGM
     {
         Weight = 0.375,
         Type = Normal,
-        DisplayName = 5.56x45mm FMJ - 25 Round Box,
+        DisplayName = ORGM_Ammo_556x45mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am556x45Box,
     }
@@ -1923,7 +1923,7 @@ module ORGM
     {
         Weight = 3.75,
         Type = Normal,
-        DisplayName = 5.56x45mm FMJ - 250 Round Canister,
+        DisplayName = ORGM_Ammo_556x45mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1933,7 +1933,7 @@ module ORGM
         Count = 1,
         Weight = 0.015,
         Type = Normal,
-        DisplayName = 5.56x45mm HP Rounds,
+        DisplayName = ORGM_Ammo_556x45mm_HP,
         DisplayCategory = Ammo,
         Icon = Am556x45HPRounds,
     }
@@ -1942,7 +1942,7 @@ module ORGM
     {
         Weight = 0.375,
         Type = Normal,
-        DisplayName = 5.56x45mm HP - 25 Round Box,
+        DisplayName = ORGM_Ammo_556x45mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am556x45HPBox,
     }
@@ -1951,7 +1951,7 @@ module ORGM
     {
         Weight = 3.75,
         Type = Normal,
-        DisplayName = 5.56x45mm HP - 250 Round Canister,
+        DisplayName = ORGM_Ammo_556x45mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -1963,7 +1963,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 7.62x39mm cases,
+        DisplayName = ORGM_Case_762x39mm,
         DisplayCategory = Item,
         Icon = Case762x39,
     }
@@ -1972,7 +1972,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = 7.62x39mm - 20 Cases Box,
+        DisplayName = ORGM_Case_762x39mm_Box,
         DisplayCategory = Item,
         Icon = Am762x39Box,
     }
@@ -1981,7 +1981,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = 7.62x39mm - 200 Cases Canister,
+        DisplayName = ORGM_Case_762x39mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -1991,7 +1991,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x39mm rounds,
+        DisplayName = ORGM_Ammo_762x39mm,
         DisplayCategory = Ammo,
         Icon = Am762x39Rounds,
     }
@@ -2001,7 +2001,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x39mm FMJ Rounds,
+        DisplayName = ORGM_Ammo_762x39mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am762x39Rounds,
     }
@@ -2010,7 +2010,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = 7.62x39mm FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x39mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am762x39Box,
     }
@@ -2019,7 +2019,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = 7.62x39mm FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x39mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2029,7 +2029,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x39mm HP Rounds,
+        DisplayName = ORGM_Ammo_762x39mm_HP,
         DisplayCategory = Ammo,
         Icon = Am762x39HPRounds,
     }
@@ -2038,7 +2038,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = 7.62x39mm HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x39mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am762x39HPBox,
     }
@@ -2047,7 +2047,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = 7.62x39mm HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x39mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2059,7 +2059,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 7.62x51mm cases,
+        DisplayName = ORGM_Case_762x51mm,
         DisplayCategory = Item,
         Icon = Case762x51,
     }
@@ -2068,7 +2068,7 @@ module ORGM
     {
         Weight = 0.2,
         Type = Normal,
-        DisplayName = 7.62x51mm - 20 Cases Box,
+        DisplayName = ORGM_Case_762x51mm_Box,
         DisplayCategory = Item,
         Icon = Am762x51Box,
     }
@@ -2077,7 +2077,7 @@ module ORGM
     {
         Weight = 2.0,
         Type = Normal,
-        DisplayName = 7.62x51mm - 200 Cases Canister,
+        DisplayName = ORGM_Case_762x51mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -2087,7 +2087,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x51mm rounds,
+        DisplayName = ORGM_Ammo_762x51mm,
         DisplayCategory = Ammo,
         Icon = Am762x51Rounds,
     }
@@ -2097,7 +2097,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x51mm FMJ Rounds,
+        DisplayName = ORGM_Ammo_762x51mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am762x51Rounds,
     }
@@ -2106,7 +2106,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = 7.62x51mm FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x51mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am762x51Box,
     }
@@ -2115,7 +2115,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = 7.62x51mm FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x51mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2125,7 +2125,7 @@ module ORGM
         Count = 1,
         Weight = 0.02,
         Type = Normal,
-        DisplayName = 7.62x51mm HP Rounds,
+        DisplayName = ORGM_Ammo_762x51mm_HP,
         DisplayCategory = Ammo,
         Icon = Am762x51HPRounds,
     }
@@ -2134,7 +2134,7 @@ module ORGM
     {
         Weight = 0.4,
         Type = Normal,
-        DisplayName = 7.62x51mm HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x51mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am762x51HPBox,
     }
@@ -2143,7 +2143,7 @@ module ORGM
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = 7.62x51mm HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x51mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2155,7 +2155,7 @@ module ORGM
         Count = 1,
         Weight = 0.013,
         Type = Normal,
-        DisplayName = 7.62x54R cases,
+        DisplayName = ORGM_Case_762x54mm,
         DisplayCategory = Item,
         Icon = Case762x54,
     }
@@ -2164,7 +2164,7 @@ module ORGM
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = 7.62x54R - 20 Cases Box,
+        DisplayName = ORGM_Case_762x54mm_Box,
         DisplayCategory = Item,
         Icon = Am762x54Box,
     }
@@ -2173,7 +2173,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = 7.62x54R - 200 Cases Canister,
+        DisplayName = ORGM_Case_762x54mm_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -2183,7 +2183,7 @@ module ORGM
         Count = 1,
         Weight = 0.025,
         Type = Normal,
-        DisplayName = 7.62x54R rounds,
+        DisplayName = ORGM_Ammo_762x54mm,
         DisplayCategory = Ammo,
         Icon = Am762x54Rounds,
     }
@@ -2193,7 +2193,7 @@ module ORGM
         Count = 1,
         Weight = 0.025,
         Type = Normal,
-        DisplayName = 7.62x54R FMJ rounds,
+        DisplayName = ORGM_Ammo_762x54mm_FMJ,
         DisplayCategory = Ammo,
         Icon = Am762x54Rounds,
     }
@@ -2202,7 +2202,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 7.62x54R FMJ - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x54mm_FMJ_Box,
         DisplayCategory = Ammo,
         Icon = Am762x54Box,
     }
@@ -2211,7 +2211,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 7.62x54R FMJ - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x54mm_FMJ_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2221,7 +2221,7 @@ module ORGM
         Count = 1,
         Weight = 0.025,
         Type = Normal,
-        DisplayName = 7.62x54R HP rounds,
+        DisplayName = ORGM_Ammo_762x54mm_HP,
         DisplayCategory = Ammo,
         Icon = Am762x54HPRounds,
     }
@@ -2230,7 +2230,7 @@ module ORGM
     {
         Weight = 0.5,
         Type = Normal,
-        DisplayName = 7.62x54R HP - 20 Round Box,
+        DisplayName = ORGM_Ammo_762x54mm_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am762x54HPBox,
     }
@@ -2239,7 +2239,7 @@ module ORGM
     {
         Weight = 5.0,
         Type = Normal,
-        DisplayName = 7.62x54R HP - 200 Round Canister,
+        DisplayName = ORGM_Ammo_762x54mm_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2251,7 +2251,7 @@ module ORGM
         Count = 1,
         Weight = 0.01,
         Type = Normal,
-        DisplayName = 12 Gauge cases,
+        DisplayName = ORGM_Case_12g,
         DisplayCategory = Item,
         Icon = Case12g,
     }
@@ -2260,7 +2260,7 @@ module ORGM
     {
         Weight = 0.1,
         Type = Normal,
-        DisplayName = 12 Gauge - 25 Cases Box,
+        DisplayName = ORGM_Case_12g_Box,
         DisplayCategory = Item,
         Icon = Am12gBox,
     }
@@ -2269,7 +2269,7 @@ module ORGM
     {
         Weight = 2.5,
         Type = Normal,
-        DisplayName = 12 Gauge - 250 Cases Canister,
+        DisplayName = ORGM_Case_12g_Can,
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
@@ -2280,7 +2280,7 @@ module ORGM
         Count = 1,
         Weight = 0.04,
         Type = Normal,
-        DisplayName = 12 Gauge shells,
+        DisplayName = ORGM_Ammo_12g,
         DisplayCategory = Ammo,
         Icon = Am12gRounds,
     }
@@ -2290,7 +2290,7 @@ module ORGM
         Count = 1,
         Weight = 0.04,
         Type = Normal,
-        DisplayName = 00 Buck 12 Gauge shells,
+        DisplayName = ORGM_Ammo_12g_00Buck,
         DisplayCategory = Ammo,
         Icon = Am12gRounds,
     }
@@ -2299,7 +2299,7 @@ module ORGM
     {
         Weight = 1,
         Type = Normal,
-        DisplayName = 00 Buck 12 Gauge - 25 Shell Box,
+        DisplayName = ORGM_Ammo_12g_00Buck_Box,
         DisplayCategory = Ammo,
         Icon = Am12gBox,
     }
@@ -2308,7 +2308,7 @@ module ORGM
     {
         Weight = 10.0,
         Type = Normal,
-        DisplayName = 00 Buck 12 Gauge - 250 Round Canister,
+        DisplayName = ORGM_Ammo_12g_00Buck_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
@@ -2318,7 +2318,7 @@ module ORGM
         Count = 1,
         Weight = 0.04,
         Type = Normal,
-        DisplayName = Slug 12 Gauge shells,
+        DisplayName = ORGM_Ammo_12g_Slug,
         DisplayCategory = Ammo,
         Icon = Am12gSlugRounds,
     }
@@ -2327,7 +2327,7 @@ module ORGM
     {
         Weight = 1,
         Type = Normal,
-        DisplayName = Slug 12 Gauge - 25 Shell Box,
+        DisplayName = ORGM_Ammo_12g_Slug_Box,
         DisplayCategory = Ammo,
         Icon = Am12gSlugBox,
     }
@@ -2336,7 +2336,7 @@ module ORGM
     {
         Weight = 10.0,
         Type = Normal,
-        DisplayName = Slug 12 Gauge - 250 Round Canister,
+        DisplayName = ORGM_Ammo_12g_Slug_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
