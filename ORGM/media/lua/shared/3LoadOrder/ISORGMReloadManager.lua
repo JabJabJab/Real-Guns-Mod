@@ -137,7 +137,8 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
         if (self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
             ISTimedActionQueue.clear(character)
             local willFire = true
-            if character:getRecoilDelay() == 0 and character:getCurrentState() ~= SwipeStatePlayer.instance() and self.reloadable.preFireShot then
+            -- again, we need to check self.reloadable ~= nil..seems it gets cleared when breaking a reload timed action by shooting
+            if self.reloadable and self.reloadable.preFireShot and character:getRecoilDelay() == 0 and character:getCurrentState() ~= SwipeStatePlayer.instance() then
                 willFire = self.reloadable:preFireShot(self:getDifficulty(), character, weapon)
                 --if (((this.AttackDelay <= 0.0F) && ((!this.sprite.CurrentAnim.name.contains("Attack")) || (this.def.Frame >= this.sprite.CurrentAnim.Frames.size() - 1))) || (this.def.Frame == 0.0F))
             end
