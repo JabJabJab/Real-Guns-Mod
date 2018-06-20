@@ -466,7 +466,7 @@ Server.onFillContainer = function(roomName, containerType, container)
         local mod = Settings.PoliceStorageSpawnModifier
         local count = Rnd(3)
         while count ~= 0 do
-            local choice = Server.selectFirearm(0, 70*mod, 30)
+            local choice = Server.selectFirearm(0, 70, 30)
             spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
             spawnMagazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
@@ -595,7 +595,49 @@ Server.onFillContainer = function(roomName, containerType, container)
         spawnRandomCan(container, 10*mod, 1)
         spawnRandomCan(container, 5*mod, 1)
         spawnRepairKit(container, 20*mod, 2)
+    
+    --------------------------------------------------------
+    -- patch for snake's military complex mod
+    elseif roomName == "mcgunstorestorage" or roomName == "ammomakerroom" then
+        local mod = Settings.PoliceStorageSpawnModifier
+        local count = Rnd(3)
+        while count ~= 0 do
+            local choice = Server.selectFirearm(0, 30, 70)
+            spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            spawnMagazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
+            spawnAmmoBox(container, choice.ammo, 80*mod, 4)
+            spawnAmmoCan(container, choice.ammo, 20*mod, 1)
+            spawnFirearmPart(container, 30*mod, 2)
+            spawnRepairKit(container, 40*mod, 2)
+            if Rnd(10) > 4 then count = count -1 end
+        end
+    
+    elseif roomName == "trainingcamp" then
+        if containerType == "metal_shelves" or containerType == "crate" then
+            local mod = Settings.PoliceStorageSpawnModifier
+            local count = Rnd(3)
+            while count ~= 0 do
+                local choice = Server.selectFirearm(0, 30, 70)
+                spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+                spawnMagazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+
+                spawnAmmoBox(container, choice.ammo, 80*mod, 4)
+                spawnAmmoCan(container, choice.ammo, 20*mod, 1)
+                spawnFirearmPart(container, 30*mod, 2)
+                spawnRepairKit(container, 40*mod, 2)
+                if Rnd(10) > 4 then count = count -1 end
+            end
+        else
+            local count = Rnd(3)
+            while count ~= 0 do
+                spawnAmmoBox(container, choice.ammo, 80*mod, 4)
+                spawnAmmoCan(container, choice.ammo, 20*mod, 1)
+                spawnFirearmPart(container, 30*mod, 2)
+                spawnRepairKit(container, 40*mod, 2)
+                if Rnd(10) > 3 then count = count -1 end
+            end
+        end
     end
 end
 
