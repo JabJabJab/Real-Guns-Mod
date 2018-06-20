@@ -1,8 +1,9 @@
 ORGM[4] = "5416374697665"
+local Settings = ORGM.Settings
 -- Absolute Constants
 local ABS_FULLAUTOSWINGTIME = 0.3 -- full auto only, anything else is dynamic
-local ABS_CRITICALCHANCE = 20 -- default
-local ABS_AIMINGPERKCRITMOD = 10 -- default
+--local ABS_CRITICALCHANCE = 20 -- default
+--local ABS_AIMINGPERKCRITMOD = 10 -- default
 local ABS_AIMINGPERKHITMOD = 7 -- default
 
 -- Adjustment Constants
@@ -89,8 +90,8 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
         MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
-        CriticalChance = ABS_CRITICALCHANCE, -- ammoData.CriticalChance or instance:getCriticalChance(),
-        AimingPerkCritModifier = ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
+        CriticalChance = Settings.DefaultCriticalChance --ABS_CRITICALCHANCE,
+        AimingPerkCritModifier = Settings.DefaultAimingCritMod -- ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
         MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
         HitChance = instance:getHitChance(), -- redundant, we set to absolute
         
@@ -101,25 +102,25 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
         ReloadTime = instance:getReloadTime(),
         MaxRange = instance:getMaxRange(),
         SwingTime = instance:getSwingTime(),
-        AimingPerkHitChanceModifier = ABS_AIMINGPERKHITMOD,
+        AimingPerkHitChanceModifier = Settings.DefaultAimingHitMod --ABS_AIMINGPERKHITMOD,
     }
 end
 
 ORGM.adjustFirearmStatsByCategory = function(category, statsTable, effectiveWgt)
     if category == ORGM.PISTOL or category == ORGM.REVOLVER then
-        statsTable.HitChance = 40
+        statsTable.HitChance = Settings.DefaultHitChancePistol
         statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.RIFLE then
-        statsTable.HitChance = 40
+        statsTable.HitChance = Settings.DefaultHitChanceRifle
         statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.SMG then
-        statsTable.HitChance = 30
+        statsTable.HitChance = Settings.DefaultHitChanceSMG
         statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.SHOTGUN then
-        statsTable.HitChance = 60
+        statsTable.HitChance = Settings.DefaultHitChanceShotgun
         statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     else
-        statsTable.HitChance = 40 -- unknown??
+        statsTable.HitChance = Settings.DefaultHitChanceOther
         statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     end
 end

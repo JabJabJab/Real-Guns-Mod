@@ -20,6 +20,25 @@ UI_EN = {
     
     UI_optionscreen_orgm_damagemulti = "Damage Multiplier",
     UI_optionscreen_orgm_damagemulti_tooltip = "Multiplier for all firearm damage (default 0.5)",
+
+    UI_optionscreen_orgm_hitpistol = "HitChance - Pistol",
+    UI_optionscreen_orgm_hitpistol_tooltip = "Chance to hit with a pistol, before Aiming skill and other modifiers are applied (default 40)",
+    UI_optionscreen_orgm_hitsmg = "HitChance - SMG",
+    UI_optionscreen_orgm_hitsmg_tooltip = "Chance to hit with a SMG, before Aiming skill and other modifiers are applied (default 30)",
+    UI_optionscreen_orgm_hitrifle = "HitChance - Rifle",
+    UI_optionscreen_orgm_hitrifle_tooltip = "Chance to hit with a rifle, before Aiming skill and other modifiers are applied (default 40)",
+    UI_optionscreen_orgm_hitshotgun = "HitChance - Shotgun",
+    UI_optionscreen_orgm_hitshotgun_tooltip = "Chance to hit with a Shotgun, before Aiming skill and other modifiers are applied (default 60)",
+    UI_optionscreen_orgm_hitother = "HitChance - Other",
+    UI_optionscreen_orgm_hitother_tooltip = "Chance to hit with other types, before Aiming skill and other modifiers are applied (default 40)",
+    UI_optionscreen_orgm_aiminghitmod = "HitChance Aiming Perk Modifier",
+    UI_optionscreen_orgm_aiminghitmod_tooltip = "Modifier applied to hit chances per aiming perk level (default 7)",
+    UI_optionscreen_orgm_critical = "Critical Hit Chance",
+    UI_optionscreen_orgm_critical_tooltip = "Chance of scoring a headshot/critical hit, before modifiers are applied (default 20)",
+    UI_optionscreen_orgm_aimingcritmod = "Critical Aiming Perk Modifier",
+    UI_optionscreen_orgm_aimingcritmod_tooltip = "Modifier applied to critical chances for every 2 levels of aiming perk (default 10)",
+    
+    
     UI_optionscreen_orgm_magreloadtime = "Magazine Reload Time",
     UI_optionscreen_orgm_magreloadtime_tooltip = "Time it takes to load a round into a magazine",
     UI_optionscreen_orgm_reloadtime = "Firearm Reload Time",

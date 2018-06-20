@@ -179,6 +179,15 @@ ORGM = {
         Debug = false, 
         
         DamageMultiplier = 0.5,
+
+        DefaultHitChancePistol = 40,
+        DefaultHitChanceSMG = 30,
+        DefaultHitChanceRifle = 40, 
+        DefaultHitChanceShotgun = 60,
+        DefaultHitChanceOther = 40,
+        DefaultAimingHitMod = 7,
+        DefaultCriticalChance = 20,
+        DefaultAimingCritMod = 10,
         
     },
 
@@ -247,6 +256,15 @@ ORGM.SettingsValidator = {
     CasesEnabled = {type='boolean', default=true},
     RemoveBaseFirearms = {type='boolean', default=true},
     DamageMultiplier = {type='float', min=0.1, default=0.5},
+    DefaultHitChancePistol = {type='integer', min=0, max=100, default=40},
+    DefaultHitChanceSMG = {type='integer', min=0, max=100, default=30},
+    DefaultHitChanceRifle = {type='integer', min=0, max=100, default=40},
+    DefaultHitChanceShotgun = {type='integer', min=0, max=100, default=60},
+    DefaultHitChanceOther = {type='integer', min=0, max=100, default=40},
+    DefaultAimingHitMod = {type='integer', min=0, max=100, default=7},
+    DefaultCriticalChance = {type='integer', min=0, max=100, default=20},
+    DefaultAimingCritMod = {type='integer', min=0, max=100, default=10},
+    
     DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.MagazineTable) do data.reloadTime = value end end },
     DefaultReloadTime = {type='integer', min=1, default=15, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.reloadTime = value end end },
     DefaultRackTime = {type='integer', min=1, default=10, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.rackTime = value end end },

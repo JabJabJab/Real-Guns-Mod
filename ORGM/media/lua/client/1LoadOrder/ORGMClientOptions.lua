@@ -206,6 +206,16 @@ function MainOptions:create()
     addBoolOption(self, splitpoint, comboWidth, "orgm_removebase", "RemoveBaseFirearms")
     
     addNumericOption(self, splitpoint, comboWidth, "orgm_damagemulti", "DamageMultiplier", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_hitpistol", "DefaultHitChancePistol", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_hitsmg", "DefaultHitChanceSMG", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_hitrifle", "DefaultHitChanceRifle", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_hitshotgun", "DefaultHitChanceShotgun", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_hitother", "DefaultHitChanceOther", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_aiminghitmod", "DefaultAimingHitMod", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_critical", "DefaultCriticalChance", false)
+    addNumericOption(self, splitpoint, comboWidth, "orgm_aimingcritmod", "DefaultAimingCritMod", false)
+    
+
     addNumericOption(self, splitpoint, comboWidth, "orgm_magreloadtime", "DefaultMagazineReoadTime", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_reloadtime", "DefaultReloadTime", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_racktime", "DefaultRackTime", false)
