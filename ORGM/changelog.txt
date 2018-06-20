@@ -17,6 +17,18 @@ version 3.08.2
 * Fixed issue with Reload Time, Rack Time and Magazine Reload Time options requiring PZ
     to be restarted to have a effect.
 
+* Fixed bug causing error when breaking out a reload timed action by firing a shot.
+
+* Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
+    bug for other languages not being able to translate names that had a - in the name,
+    as well as sets up a template of all items for future languages.
+
+* Changed Display Name of '.45 Colt' ammo to its proper name '.45 Long Colt'
+
+* Fixed Light Source hotkey not activating vehicle headlights.
+
+* Added new options to options screen for configuration of hit and critical chances.
+
 ---------------------------------------------------------------------------------------
 version 3.08.1
 * Temporarily disabled the built in patch for Nolan's Super Survivors mod, as most of it
