@@ -90,8 +90,8 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
         MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
-        CriticalChance = Settings.DefaultCriticalChance --ABS_CRITICALCHANCE,
-        AimingPerkCritModifier = Settings.DefaultAimingCritMod -- ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
+        CriticalChance = Settings.DefaultCriticalChance, --ABS_CRITICALCHANCE,
+        AimingPerkCritModifier = Settings.DefaultAimingCritMod, -- ABS_AIMINGPERKCRITMOD, -- this is modifier * (level/2)
         MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
         HitChance = instance:getHitChance(), -- redundant, we set to absolute
         
