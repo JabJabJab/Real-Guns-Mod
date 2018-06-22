@@ -1,0 +1,225 @@
+Tooltip_RU = {
+	-- Item tooltip
+    Tooltip_2xScope = "2x увеличение для более точной стрельбы",
+    Tooltip_4xScope = "4x увеличение для выполнения боевых задач",
+    Tooltip_8xScope = "8x увеличение для охоты или снайперской стрельбы",
+    Tooltip_FibSig = "Свечение на целике и мушке повышает меткость при стрельбе",
+    Tooltip_Foregrip = "Вертикальная передняя рукоятка сохраняет наведение для повторных выстрелов",
+    Tooltip_FullCh = "Вставка в ружьё для уменьшения разлёта заряда",
+    Tooltip_HalfCh = "Вставка в ружьё для частичного уменьшения разлёта заряда",
+    Tooltip_PistolLas = "Лазерный целеуказатель на пистолете ускоряет наведение и улучшает точность",
+    Tooltip_PistolTL = "Тактический фанарь на пистолет",
+    Tooltip_RDS = "Прицел обладает небольшим увеличением, а его красная точка сильно упрощает наведение на цель",
+    Tooltip_Recoil = "Мягкая накладка на приклад уменьшает отдачу",
+    Tooltip_Reflex = "Установленный прицел ускоряет наведение на цель и упрощает ведение непрерывного огня",
+    Tooltip_RifleLas = "Лазерный целеуказатель на винтовке ускоряет наведение и улучшает точность",
+    Tooltip_RifleTL = "Тактический фанарь на винтовку",
+    Tooltip_Rifsling = "Ремень облегчающий ношение оружия",
+    Tooltip_SkeletalStock = "Скелетный приклад из углеродного волокна уменьшает вес оружия",
+    Tooltip_CollapsingStock = "Складной приклад делает оружие короче и облегчает перенос",
+    
+    -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
+    Tooltip_loaded_SA = "Режим ведения огня:   Полуавтомат",
+    Tooltip_loaded_FA = "Режим ведения огня:   Автомат",
+    Tooltip_loaded_mixed = "Заряженные боеприпасы:  Смешанные боеприпасы",
+    Tooltip_loaded_mixed_SA = "Заряженные боеприпасы:  Смешанные боеприпасы (Полуавтомат)",
+    Tooltip_loaded_mixed_FA = "Заряженные боеприпасы:  Смешанные боеприпасы (Автомат)",
+
+    Tooltip_loaded_Ammo_117BB = "Заряженные боеприпасы:  .117 BBs",
+    Tooltip_loaded_Ammo_117BB_SA = "Заряженные боеприпасы:  .117 BBs (Полуавтомат)",
+    Tooltip_loaded_Ammo_117BB_FA = "Заряженные боеприпасы:  .117 BBs (Автомат)",
+    
+    ----------------------------------
+    Tooltip_loaded_Ammo_22LR_FMJ = "Loaded Ammo:  .22LR FMJ",
+    Tooltip_loaded_Ammo_22LR_FMJ_SA = "Заряженные боеприпасы:  .22LR FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_22LR_FMJ_FA = "Заряженные боеприпасы:  .22LR FMJ (Автомат)",
+    Tooltip_loaded_Ammo_22LR_HP = "Заряженные боеприпасы:  .22LR HP",
+    Tooltip_loaded_Ammo_22LR_HP_SA = "Заряженные боеприпасы:  .22LR HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_22LR_HP_FA = "Заряженные боеприпасы:  .22LR HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_32ACP_FMJ = "Заряженные боеприпасы:  .32 ACP FMJ",
+    Tooltip_loaded_Ammo_32ACP_FMJ_SA = "Заряженные боеприпасы:  .32 ACP FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_32ACP_FMJ_FA = "Заряженные боеприпасы:  .32 ACP FMJ (Автомат)",
+    Tooltip_loaded_Ammo_32ACP_HP = "Заряженные боеприпасы:  .32 ACP HP",
+    Tooltip_loaded_Ammo_32ACP_HP_SA = "Заряженные боеприпасы:  .32 ACP HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_32ACP_HP_FA = "Заряженные боеприпасы:  .32 ACP HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_357Magnum_FMJ = "Заряженные боеприпасы:  .357 Magnum FMJ",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_SA = "Заряженные боеприпасы:  .357 Magnum FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_357Magnum_FMJ_FA = "Заряженные боеприпасы:  .357 Magnum FMJ (Автомат)",
+    Tooltip_loaded_Ammo_357Magnum_HP = "Заряженные боеприпасы:  .357 Magnum HP",
+    Tooltip_loaded_Ammo_357Magnum_HP_SA = "Заряженные боеприпасы:  .357 Magnum HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_357Magnum_HP_FA = "Заряженные боеприпасы:  .357 Magnum HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Special_FMJ = "Заряженные боеприпасы:  .38 Special FMJ",
+    Tooltip_loaded_Ammo_38Special_FMJ_SA = "Заряженные боеприпасы:  .38 Special FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_38Special_FMJ_FA = "Заряженные боеприпасы:  .38 Special FMJ (Автомат)",
+    Tooltip_loaded_Ammo_38Special_HP = "Заряженные боеприпасы:  .38 Special HP",
+    Tooltip_loaded_Ammo_38Special_HP_SA = "Заряженные боеприпасы:  .38 Special HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_38Special_HP_FA = "Заряженные боеприпасы:  .38 Special HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_38Super_FMJ = "Заряженные боеприпасы:  .38 Super FMJ",
+    Tooltip_loaded_Ammo_38Super_FMJ_SA = "Заряженные боеприпасы:  .38 Super FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_38Super_FMJ_FA = "Заряженные боеприпасы:  .38 Super FMJ (Автомат)",
+    Tooltip_loaded_Ammo_38Super_HP = "Заряженные боеприпасы:  .38 Super HP",
+    Tooltip_loaded_Ammo_38Super_HP_SA = "Заряженные боеприпасы:  .38 Super HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_38Super_HP_FA = "Заряженные боеприпасы:  .38 Super HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_380ACP_FMJ = "Заряженные боеприпасы:  .380 ACP FMJ",
+    Tooltip_loaded_Ammo_380ACP_FMJ_SA = "Заряженные боеприпасы:  .380 ACP FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_380ACP_FMJ_FA = "Заряженные боеприпасы:  .380 ACP FMJ (Автомат)",
+    Tooltip_loaded_Ammo_380ACP_HP = "Заряженные боеприпасы:  .380 ACP HP",
+    Tooltip_loaded_Ammo_380ACP_HP_SA = "Заряженные боеприпасы:  .380 ACP HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_380ACP_HP_FA = "Заряженные боеприпасы:  .380 ACP HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_40SW_FMJ = "Заряженные боеприпасы:  .40 S&W FMJ",
+    Tooltip_loaded_Ammo_40SW_FMJ_SA = "Заряженные боеприпасы:  .40 S&W FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_40SW_FMJ_FA = "Заряженные боеприпасы:  .40 S&W FMJ (Автомат)",
+    Tooltip_loaded_Ammo_40SW_HP = "Заряженные боеприпасы:  .40 S&W HP",
+    Tooltip_loaded_Ammo_40SW_HP_SA = "Заряженные боеприпасы:  .40 S&W HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_40SW_HP_FA = "Заряженные боеприпасы:  .40 S&W HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_44Magnum_FMJ = "Заряженные боеприпасы:  .44 Magnum FMJ",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_SA = "Заряженные боеприпасы:  .44 Magnum FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_44Magnum_FMJ_FA = "Заряженные боеприпасы:  .44 Magnum FMJ (Автомат)",
+    Tooltip_loaded_Ammo_44Magnum_HP = "Заряженные боеприпасы:  .44 Magnum HP",
+    Tooltip_loaded_Ammo_44Magnum_HP_SA = "Заряженные боеприпасы:  .44 Magnum HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_44Magnum_HP_FA = "Заряженные боеприпасы:  .44 Magnum HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45ACP_FMJ = "Заряженные боеприпасы:  .45 ACP FMJ",
+    Tooltip_loaded_Ammo_45ACP_FMJ_SA = "Заряженные боеприпасы:  .45 ACP FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_45ACP_FMJ_FA = "Заряженные боеприпасы:  .45 ACP FMJ (Автомат)",
+    Tooltip_loaded_Ammo_45ACP_HP = "Заряженные боеприпасы:  .45 ACP HP",
+    Tooltip_loaded_Ammo_45ACP_HP_SA = "Заряженные боеприпасы:  .45 ACP HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_45ACP_HP_FA = "Заряженные боеприпасы:  .45 ACP HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_45Colt_FMJ = "Заряженные боеприпасы:  .45 Colt FMJ",
+    Tooltip_loaded_Ammo_45Colt_FMJ_SA = "Заряженные боеприпасы:  .45 Colt FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_45Colt_FMJ_FA = "Заряженные боеприпасы:  .45 Colt FMJ (Автомат)",
+    Tooltip_loaded_Ammo_45Colt_HP = "Заряженные боеприпасы:  .45 Colt HP",
+    Tooltip_loaded_Ammo_45Colt_HP_SA = "Заряженные боеприпасы:  .45 Colt HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_45Colt_HP_FA = "Заряженные боеприпасы:  .45 Colt HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_454Casull_FMJ = "Заряженные боеприпасы:  .454 Casull FMJ",
+    Tooltip_loaded_Ammo_454Casull_FMJ_SA = "Заряженные боеприпасы:  .454 Casull FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_454Casull_FMJ_FA = "Заряженные боеприпасы:  .454 Casull FMJ (Автомат)",
+    Tooltip_loaded_Ammo_454Casull_HP = "Заряженные боеприпасы:  .454 Casull HP",
+    Tooltip_loaded_Ammo_454Casull_HP_SA = "Заряженные боеприпасы:  .454 Casull HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_454Casull_HP_FA = "Заряженные боеприпасы:  .454 Casull HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_50AE_FMJ = "Заряженные боеприпасы:  .50 AE FMJ",
+    Tooltip_loaded_Ammo_50AE_FMJ_SA = "Заряженные боеприпасы:  .50 AE FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_50AE_FMJ_FA = "Заряженные боеприпасы:  .50 AE FMJ (Автомат)",
+    Tooltip_loaded_Ammo_50AE_HP = "Заряженные боеприпасы:  .50 AE HP",
+    Tooltip_loaded_Ammo_50AE_HP_SA = "Заряженные боеприпасы:  .50 AE HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_50AE_HP_FA = "Заряженные боеприпасы:  .50 AE HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_223Remington_FMJ = "Заряженные боеприпасы:  .223 Remington FMJ",
+    Tooltip_loaded_Ammo_223Remington_FMJ_SA = "Заряженные боеприпасы:  .223 Remington FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_223Remington_FMJ_FA = "Заряженные боеприпасы:  .223 Remington FMJ (Автомат)",
+    Tooltip_loaded_Ammo_223Remington_HP = "Заряженные боеприпасы:  .223 Remington HP",
+    Tooltip_loaded_Ammo_223Remington_HP_SA = "Заряженные боеприпасы:  .223 Remington HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_223Remington_HP_FA = "Заряженные боеприпасы:  .223 Remington HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3006Springfield_FMJ = "Заряженные боеприпасы:  .30-06 Springfield FMJ",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_SA = "Заряженные боеприпасы:  .30-06 Springfield FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_3006Springfield_FMJ_FA = "Заряженные боеприпасы:  .30-06 Springfield FMJ (Автомат)",
+    Tooltip_loaded_Ammo_3006Springfield_HP = "Заряженные боеприпасы:  .30-06 Springfield HP",
+    Tooltip_loaded_Ammo_3006Springfield_HP_SA = "Заряженные боеприпасы:  .30-06 Springfield HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_3006Springfield_HP_FA = "Заряженные боеприпасы:  .30-06 Springfield HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_3030Winchester_FMJ = "Заряженные боеприпасы:  .30-30 Winchester FMJ",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_SA = "Заряженные боеприпасы:  .30-30 Winchester FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_3030Winchester_FMJ_FA = "Заряженные боеприпасы:  .30-30 Winchester FMJ (Автомат)",
+    Tooltip_loaded_Ammo_3030Winchester_HP = "Заряженные боеприпасы:  .30-30 Winchester HP",
+    Tooltip_loaded_Ammo_3030Winchester_HP_SA = "Заряженные боеприпасы:  .30-30 Winchester HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_3030Winchester_HP_FA = "Заряженные боеприпасы:  .30-30 Winchester HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_308Winchester_FMJ = "Заряженные боеприпасы:  .308 Winchester FMJ",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_SA = "Заряженные боеприпасы:  .308 Winchester FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_308Winchester_FMJ_FA = "Заряженные боеприпасы:  .308 Winchester FMJ (Автомат)",
+    Tooltip_loaded_Ammo_308Winchester_HP = "Заряженные боеприпасы:  .308 Winchester HP",
+    Tooltip_loaded_Ammo_308Winchester_HP_SA = "Заряженные боеприпасы:  .308 Winchester HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_308Winchester_HP_FA = "Заряженные боеприпасы:  .308 Winchester HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_57x28mm_FMJ = "Заряженные боеприпасы:  FN 5.7x28мм FMJ",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_SA = "Заряженные боеприпасы:  FN 5.7x28мм FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_57x28mm_FMJ_FA = "Заряженные боеприпасы:  FN 5.7x28мм FMJ (Автомат)",
+    Tooltip_loaded_Ammo_57x28mm_HP = "Заряженные боеприпасы:  FN 5.7x28мм HP",
+    Tooltip_loaded_Ammo_57x28mm_HP_SA = "Заряженные боеприпасы:  FN 5.7x28мм HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_57x28mm_HP_FA = "Заряженные боеприпасы:  FN 5.7x28мм HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_9x19mm_FMJ = "Заряженные боеприпасы:  9x19мм Parabellum FMJ",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_SA = "Заряженные боеприпасы:  9x19мм Parabellum FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_9x19mm_FMJ_FA = "Заряженные боеприпасы:  9x19мм Parabellum FMJ (Автомат)",
+    Tooltip_loaded_Ammo_9x19mm_HP = "Заряженные боеприпасы:  9x19мм Parabellum HP",
+    Tooltip_loaded_Ammo_9x19mm_HP_SA = "Заряженные боеприпасы:  9x19мм Parabellum HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_9x19mm_HP_FA = "Заряженные боеприпасы:  9x19мм Parabellum HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_10x25mm_FMJ = "Заряженные боеприпасы:  10x25мм FMJ",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_SA = "Заряженные боеприпасы:  10x25мм FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_10x25mm_FMJ_FA = "Заряженные боеприпасы:  10x25мм FMJ (Автомат)",
+    Tooltip_loaded_Ammo_10x25mm_HP = "Заряженные боеприпасы:  10x25мм HP",
+    Tooltip_loaded_Ammo_10x25mm_HP_SA = "Заряженные боеприпасы:  10x25мм HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_10x25mm_HP_FA = "Заряженные боеприпасы:  10x25мм HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_556x45mm_FMJ = "Заряженные боеприпасы:  5.56x45мм FMJ",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_SA = "Заряженные боеприпасы:  5.56x45мм FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_556x45mm_FMJ_FA = "Заряженные боеприпасы:  5.56x45мм FMJ (Автомат)",
+    Tooltip_loaded_Ammo_556x45mm_HP = "Заряженные боеприпасы:  5.56x45мм HP",
+    Tooltip_loaded_Ammo_556x45mm_HP_SA = "Заряженные боеприпасы:  5.56x45мм HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_556x45mm_HP_FA = "Заряженные боеприпасы:  5.56x45мм HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x39mm_FMJ = "Заряженные боеприпасы:  7.62x39мм FMJ",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_SA = "Заряженные боеприпасы:  7.62x39мм FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x39mm_FMJ_FA = "Заряженные боеприпасы:  7.62x39мм FMJ (Автомат)",
+    Tooltip_loaded_Ammo_762x39mm_HP = "Заряженные боеприпасы:  7.62x39мм HP",
+    Tooltip_loaded_Ammo_762x39mm_HP_SA = "Заряженные боеприпасы:  7.62x39мм HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x39mm_HP_FA = "Заряженные боеприпасы:  7.62x39мм HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x51mm_FMJ = "Заряженные боеприпасы:  7.62x51мм FMJ",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_SA = "Заряженные боеприпасы:  7.62x51мм FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x51mm_FMJ_FA = "Заряженные боеприпасы:  7.62x51мм FMJ (Автомат)",
+    Tooltip_loaded_Ammo_762x51mm_HP = "Заряженные боеприпасы:  7.62x51мм HP",
+    Tooltip_loaded_Ammo_762x51mm_HP_SA = "Заряженные боеприпасы:  7.62x51мм HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x51mm_HP_FA = "Заряженные боеприпасы:  7.62x51мм HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_762x54mm_FMJ = "Заряженные боеприпасы:  7.62x54R FMJ",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_SA = "Заряженные боеприпасы:  7.62x54R FMJ (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x54mm_FMJ_FA = "Заряженные боеприпасы:  7.62x54R FMJ (Автомат)",
+    Tooltip_loaded_Ammo_762x54mm_HP = "Заряженные боеприпасы:  7.62x54R HP",
+    Tooltip_loaded_Ammo_762x54mm_HP_SA = "Заряженные боеприпасы:  7.62x54R HP (Полуавтомат)",
+    Tooltip_loaded_Ammo_762x54mm_HP_FA = "Заряженные боеприпасы:  7.62x54R HP (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_00Buck = "Заряженные боеприпасы:  00 Дробь 12-го Калибра",
+    Tooltip_loaded_Ammo_12g_00Buck_SA = "Заряженные боеприпасы:  00 Дробь 12-го Калибра (Полуавтомат)",
+    Tooltip_loaded_Ammo_12g_00Buck_FA = "Заряженные боеприпасы:  00 Дробь 12-го Калибра (Автомат)",
+
+    ----------------------------------
+    Tooltip_loaded_Ammo_12g_Slug = "Заряженные боеприпасы:  Пуля 12-го Калибра",
+    Tooltip_loaded_Ammo_12g_Slug_SA = "Заряженные боеприпасы:  Пуля 12-го Калибра (Полуавтомат)",
+    Tooltip_loaded_Ammo_12g_Slug_FA = "Заряженные боеприпасы:  Пуля 12-го Калибра (Автомат)",
+}
