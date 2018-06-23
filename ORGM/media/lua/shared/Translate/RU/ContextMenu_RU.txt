@@ -13,21 +13,21 @@ ContextMenu_RU = {
     ContextMenu_ORGM_Close = "Закрыть %1",
     
     -- the second half
-    ContextMenu_ORGM_PartSlide = "Затвор",
-    ContextMenu_ORGM_PartBolt = "Затвор",
-    ContextMenu_ORGM_PartBarrel = "Ствол",
-    ContextMenu_ORGM_Cylinder = "Барабан",
+    ContextMenu_ORGM_PartSlide = "затвор",
+    ContextMenu_ORGM_PartBolt = "затвор",
+    ContextMenu_ORGM_PartBarrel = "ствол",
+    ContextMenu_ORGM_Cylinder = "барабан",
     
     ContextMenu_ORGM_FullAuto = "Автомат",
     ContextMenu_ORGM_Auto = "Полуавтомат",
     ContextMenu_ORGM_Bolt = "Скользящий затвор",
     ContextMenu_ORGM_Lever = "Спусковая скоба",
     ContextMenu_ORGM_Pump = "Скользящее цевьё",
-    ContextMenu_ORGM_Break = "Откидной створл",
+    ContextMenu_ORGM_Break = "Перелом ствола",
     ContextMenu_ORGM_Rotary = "Вращающийся барабан",
     
     ContextMenu_ORGM_UseOnly = "Использовать только...",
-    ContextMenu_ORGM_Any = "Любые",
-    ContextMenu_ORGM_Mixed = "Заряжать разными боеприпасами",
+    ContextMenu_ORGM_Any = "любой",
+    ContextMenu_ORGM_Mixed = "заряжать разные",
     ContextMenu_ORGM_AdminLoad = "Admin - Автомат",
 }

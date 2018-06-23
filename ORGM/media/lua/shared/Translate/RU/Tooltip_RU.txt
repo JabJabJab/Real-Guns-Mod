@@ -19,8 +19,8 @@ Tooltip_RU = {
     Tooltip_CollapsingStock = "Складной приклад делает оружие короче и облегчает перенос",
     
     -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
-    Tooltip_loaded_SA = "Режим ведения огня:   Полуавтомат",
-    Tooltip_loaded_FA = "Режим ведения огня:   Автомат",
+    Tooltip_loaded_SA = "Режим ведения огня:   Полуавтоматический",
+    Tooltip_loaded_FA = "Режим ведения огня:   Автоматический",
     Tooltip_loaded_mixed = "Заряженные боеприпасы:  Смешанные боеприпасы",
     Tooltip_loaded_mixed_SA = "Заряженные боеприпасы:  Смешанные боеприпасы (Полуавтомат)",
     Tooltip_loaded_mixed_FA = "Заряженные боеприпасы:  Смешанные боеприпасы (Автомат)",
