@@ -2,7 +2,7 @@ ORMtnMan's Real Guns Mod for Project Zomboid
 
 Original mod by ORMtnMan, Rechambered version by Fenris_Wolf
 
-To get the latest stable version, visit theindiestone forums: 
+To get the latest stable version, visit theindiestone forums:
 https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
 
 or use this direct download link:
@@ -34,6 +34,10 @@ version 3.08.2
 
 * Added support for Snake's Military Complex Mod
 
+* Added partial RU translations by Lotos
+
+* Added CN translations by Cleave
+
 ---------------------------------------------------------------------------------------
 version 3.08.1
 * Temporarily disabled the built in patch for Nolan's Super Survivors mod, as most of it
@@ -49,11 +53,11 @@ version 3.08
     chosen options. The ORGM tab in the options screen becomes locked (no changes may be
     made while connected). Disconnecting from the server will restore the clients original
     options.
-    
+
 * Updated many of the 3d models. Big thanks to KOT for giving permission to merge the models
     from the Gunz mod back into ORGM, and to EnigmaGrey for passing on my request.
-    
-    
+
+
 ---------------------------------------------------------------------------------------
 version 3.07
 
@@ -62,35 +66,35 @@ version 3.07
     configured in your PZ options screen keybinding tab and defaults to 'G'.
 
 * Added new hotkey for 'Select Fire Switch' that toggles between semi and full auto for
-    select fire weapons. The new key can be configured in your PZ options screen keybinding 
+    select fire weapons. The new key can be configured in your PZ options screen keybinding
     tab and defaults to 'Z'.
 
-* Added new hotkey for 'Firearm Inspection Window' that brings up the Inspection Window. 
-    The new key can be configured in your PZ options screen keybinding  tab and defaults to 
+* Added new hotkey for 'Firearm Inspection Window' that brings up the Inspection Window.
+    The new key can be configured in your PZ options screen keybinding  tab and defaults to
     'U'.
 
 * Numerous weapon stats are now set dynamically instead of from the scripts/*.txt files.
     Its a far from perfect system, but its a step toward a better one, behavior of some weapons
     might be out of whack until more tweaking is done.
-    
+
     SwingTime is now set by weight, modified by semi or full ammo action.
     RecoilDelay is now set by round, modified by weight and components
     AimTime is now mostly set by weapon type, slightly modified by weight, and full-auto mode
     HitChance is now set by weapon type, modified by components and full-auto mode
     Damage is set by round, modified by components (shotgun chokes)
-    
+
 
 * Full-Auto fire behavior is drastically changed:
-    Reduced HitChance by - (10 + Semi-Auto RecoilDelay): lighter weapons with larger calibers 
-        feel more recoil and are harder to aim full auto, items like foregrip and recoilpad 
+    Reduced HitChance by - (10 + Semi-Auto RecoilDelay): lighter weapons with larger calibers
+        feel more recoil and are harder to aim full auto, items like foregrip and recoilpad
         reduce recoil in semi auto, increase accuracy in full auto.
     Reduced AimTime penalty while moving to HitChance (AimTime increased by 20)
     SwingTime set to 0.3 (to be adjusted later by gun rpm)
     Reduced RecoilDelay by 20 (minimum 0)
-    
-* Fixed issue where AimTime worked in reverse (higher being better). Apparently AimTime is a 
-    penalty reducer for HitChance while moving (higher aimtime, less penalty). Weapon 
-    components/mods have been adjusted  accordingly, Adjustments for guns is done automatically 
+
+* Fixed issue where AimTime worked in reverse (higher being better). Apparently AimTime is a
+    penalty reducer for HitChance while moving (higher aimtime, less penalty). Weapon
+    components/mods have been adjusted  accordingly, Adjustments for guns is done automatically
     with the new dynamic stats system. (credit to  Arsenal26 for pointing this issue out)
 
 * Component/Weapon mod modifiers are no longer set in scripts/ORGMMods.txt, these are now all
@@ -98,19 +102,19 @@ version 3.07
 
 * Damage reduced to help emphasize only a headshot (critical hits) can kill a zombie. The damage
     now has a multiplier that can be configured in ORGM.Settings.DamageMultiplier
-    
+
 * Added sound to the select fire mode and action type switching.
 
-* Firearm Inspection Window now updates information/details while visible and a ORGM firearm is 
+* Firearm Inspection Window now updates information/details while visible and a ORGM firearm is
     equipped.
 
 * Added Stats panel to Inspection window, showing current Ammo, and fire mode (for select fires).
     Also shows accuracy, Rate of fire and recoil effect on ROF in fuzzy terms: High, Low, Average,
     Good, Bad, etc
-    
+
 * Added Debug panel to Inspection Window when ORGM is set to debug/dev mode.
 
-* Component/Weapon mod appearance on firearms that spawn are now effected by 
+* Component/Weapon mod appearance on firearms that spawn are now effected by
     ORGM.Settings.ComponentSpawnModifier
 
 * Fixed bug in weapon update function that set condition to maximum.
@@ -125,15 +129,15 @@ version 3.07
 * fixed bug in settings validation where if ORGM.Settings.LogLevel was nil
 
 * component upgrading is now done silently.
-    
+
 --------------------------------------------
 Major code changes for modders:
 
-* Several table access methods are depreciated in favor of new functions. This was done to 
+* Several table access methods are depreciated in favor of new functions. This was done to
     ensure better long term support and stability, and to simply code as they accept a string
     name itemType or a InventoryItem class object. Instead of requiring call like
     ORGM.FirearmTable[item:getType()]  you can now use ORGM.getFirearmData(item)
-    
+
     ORGM.FirearmTable[itemType]       >>>     ORGM.getFirearmData(itemType [, moduleName])
     ORGM.MagazineTable[itemType]      >>>     ORGM.getMagazineData(itemType [, moduleName])
     ORGM.ComponentTable[itemType]     >>>     ORGM.getComponentData(itemType [, moduleName])
@@ -143,22 +147,22 @@ Major code changes for modders:
 * added new boolean functions with matching arguments to the new get*Data() functions.
     ORGM.isFirearm(), ORGM.isComponent(), ORGM.isMagazine() and ORGM.isAmmo()
 
-* ORGM.AlternateAmmoTable has been renamed to clarify its purpose better. References to 'dummy rounds' 
+* ORGM.AlternateAmmoTable has been renamed to clarify its purpose better. References to 'dummy rounds'
     in the code have been renamed AmmoGroup.
     ORGM.AlternateAmmoTable           >>>     ORGM.AmmoGroupTable
-    
+
 * ORGM.findAmmoInContainer(ammogroup, preferred, container) now supports a additional argument:
     mode (0 or nil = rounds, 1 = boxes, 2 = cans)
 
 * added function ORGM.findAllAmmoInContainter(ammoGroup|ammoType, container)
     finds all ammo for the specified ammo group (or type), returns a table:
-    { rounds=java.util.ArrayList, boxes=java.util.ArrayList, cans=java.util.ArrayList } each 
+    { rounds=java.util.ArrayList, boxes=java.util.ArrayList, cans=java.util.ArrayList } each
     subtable containing all the matching InventoryItem objects in that container.
-    
+
 * addded function ORGM.getItemAmmoGroup(item) that returns a ammo group used by a firearm or magazine.
     If the firearm uses magazines, the ammo group is taken from its magazine instead.
     item can be a string name or a InventoryItem object.
-    
+
 
 
 ---------------------------------------------------------------------------------------
@@ -168,7 +172,7 @@ version 3.06
 
 * All text strings now make use of proper translation files instead of being hardcoded.
 
-* Firearms with single action or double action triggers found with a round in chamber now have 
+* Firearms with single action or double action triggers found with a round in chamber now have
     the hammer cocked. (prevents normal reload difficulty from auto racking and dropping the round
     in the chamber).
 
@@ -185,13 +189,13 @@ version 3.05
 
 * Components/Weapon Mods now track what ORGM they were created in, allowing them to be properly updated
   on attaching and removing from weapons.
-  
+
 * Adjusted Weapon Mods mounting points:
-    Tactical lights laser sights, and foregrips  now fit on the 'Clip' slot instead of 'Canon', allowing 
+    Tactical lights laser sights, and foregrips  now fit on the 'Clip' slot instead of 'Canon', allowing
     these to be mounted on shotguns with chokes, or properly used with Nolan's Silencers mod.
-    
+
     Recoilpads now properly fit on the 'Recoilpad' slot instead of 'Sling'
-    
+
     Skeletal and Collapsing Stocks now properly fit on the 'Stock' slot instead of 'Sling'
 
 * Reduced weight of some weapon mods.
@@ -216,13 +220,13 @@ version 3.03
 * Fixed multiplayer bug where tactical lights couldn't be properly shut off.
 
 * Fixed bug where pressing the "Equip/Turn On/Off Light Source" hotkey would try and equip a light
-    source in the secondary hand (if the player had one) instead of activating a equipped tactical 
+    source in the secondary hand (if the player had one) instead of activating a equipped tactical
     light.
-    
-* Changed "Equip/Unequip Firearm" hotkey behavior. Instead of always equipping the gun with best 
-    damage regardless of if the player actually had ammo for it, the hotkey now checks a number of 
+
+* Changed "Equip/Unequip Firearm" hotkey behavior. Instead of always equipping the gun with best
+    damage regardless of if the player actually had ammo for it, the hotkey now checks a number of
     conditions: is it loaded, does the player have extra ammo, then by best damage.
-    
+
 * Added 3 new hotkeys: "Equip/Unequip Pistol", "Equip/Unequip Rifle", and "Equip/Unequip Shotgun".
     These default to the keys 4, 5, and 6 respectively, and can be edited by going to the PZ options
     screen, selecting the Key Bindings tab, and are under the Hotkeys section.
@@ -266,8 +270,8 @@ version 3.01
 ---------------------------------------------------------------------------------------
 version 3.00
 
-* Complete code rewrite. Replaced all global tables with a single ORGM table. This table contains 
-    all functions and data. It is no longer necessary to directly edit ORGM's lua code to customize 
+* Complete code rewrite. Replaced all global tables with a single ORGM table. This table contains
+    all functions and data. It is no longer necessary to directly edit ORGM's lua code to customize
     it, every aspect of the mod can be edited/replaced by creating a extra patch mod.
 
 * All guns now record the ORGM version number they were last used with. Guns that get changed in
@@ -277,61 +281,61 @@ version 3.00
     This allows for major changes to made to guns without breaking existing saves or breaking existing
     in game guns.
 
-* Added a ORGM.Settings table to allow for easier configuration, these settings are meant to be overwritten 
+* Added a ORGM.Settings table to allow for easier configuration, these settings are meant to be overwritten
     by extra 'patch mods' that can be loaded just like any normal PZ mod. Options include:
-    
+
     JammingEnabled - enable/disable weapon jamming
-    
+
     CasesEnabled - enable/disable ejecting of spent cases
-    
-    LogLevel (0 to 3) - control the amount of text printed to the logfile 
+
+    LogLevel (0 to 3) - control the amount of text printed to the logfile
         (errors only, warnings, info or debug)
-    
+
     RemoveBaseFirearms - enable/disable the removal of vanilla firearms and ammo
-    
-    DefaultMagazineReoadTime - control the time it takes to load bullets into a magazine 
+
+    DefaultMagazineReoadTime - control the time it takes to load bullets into a magazine
         (unless the specific magazine overrides)
-        
+
     DefaultReloadTime - control the time it takes to load a magazine into a firearm
         (unless the specific magazine overrides)
 
-    DefaultRackTime - control the time it takes to rack a firearm. 
+    DefaultRackTime - control the time it takes to rack a firearm.
         (unless the specific magazine overrides)
 
     LimitYear - A spawn year cutoff, to remove spawning of guns manufactured after the specified year
-    
+
     FirearmSpawnModifier - multiplier for fine tuning the spawn rate of any firearm.
-    
+
     CivilianFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is civilian.
-    
+
     PoliceFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is police.
-    
+
     MilitaryFirearmSpawnModifier - multiplier for fine tuning the chances a firearm is  military.
-    
+
     AmmoSpawnModifier - multiplier for fine tuning the spawn rate of ammo, boxes and cans.
-    
+
     MagazineSpawnModifier - multiplier for fine tuning the spawn rate of spare magazines.
-    
+
     RepairKitSpawnModifier - multiplier for fine tuning the spawn rate of repair kits.
-    
+
     ComponentSpawnModifier - multiplier for fine tuning the spawn rate of firearm components/upgrades.
-    
+
     UseSilencersPatch - inject compatibility patch for Nolan's ORGM Silencers mod.
-    
+
     UseNecroforgePatch - inject compatibility patch for Necroforge.
-    
+
     UseSurvivorsPatch - inject compatibility patch for Survivors mod.
-    
-    
+
+
     **Note the spawn modifier settings work in addition to the sandbox loot rarity settings.
-    Its now possible to have melee weapons abundant and reduce firearm spawn settings to next to 
+    Its now possible to have melee weapons abundant and reduce firearm spawn settings to next to
     nothing, or have lots of guns but limited ammo.
 
 
 * Basic Firearm inspection window (accessed via context menu for guns in hand). Showing details
-    such as basic information on the gun, manufacturer, country of origin, initial production year, 
+    such as basic information on the gun, manufacturer, country of origin, initial production year,
     as well as item specific info such as condition, round chambered, attachments etc.
-    
+
 * All guns that spawn naturally have serial numbers generated. Gun spawned with necroforge or other
     admin methods do not. This can be seen via the new firearm inspection window (immersion feature)
 
@@ -345,7 +349,7 @@ version 3.00
 
 * CZ75 Pistol is now a 9x19mm instead of .40S&W, fixed inconsistencies in magazine size.
     The txt file had it listed as 15, while lua data had 10.
-    In reality, The CZ75 comes in both 9mm and .40, with magazine sizes of 15 for the 9mm 
+    In reality, The CZ75 comes in both 9mm and .40, with magazine sizes of 15 for the 9mm
     and 12 for the .40S&W
 
 * Taurus P38S is now a double action instead of single action.
@@ -359,7 +363,7 @@ version 3.00
 
 * H&K SL8 magazine capacity reduced from 20 to 10 (all SL8's imported into the US use 10 round mags)
 
-* Increased durability of all weapons. 
+* Increased durability of all weapons.
     Pistols and SMG's now have a base chance of lowering condition 1-in-150 (was 100).
     Revolvers to 1-in-300 (was 200)
     Rifles and shotguns to 1-in-200 (was 100)
@@ -370,7 +374,7 @@ version 2.03 Stable
 
 * Built in compatibility patch for Nolan's ORGM Silencers mod. Due to Rechambered code changes,
   Silencers will only spawn on guns, not in containers.
-  
+
 * Added code to allow survivors mod NPC's to spawn with gun upgrades. Fixed bug in preset survivors
   that spawned with Base.Huntingriflel (typo'd weapon name.. not my bug, but fixed anyways)
 
@@ -412,10 +416,10 @@ version 2.01 Stable
     the new variant.
 
 * Guns can now be loaded with multiple ammo types at the same time. A 5.56 rifle can now have 5.56 FMJ,
-    5.56 HP, .223 FMJ and .223 HP all in the same magazine. This applies to other guns as well 
+    5.56 HP, .223 FMJ and .223 HP all in the same magazine. This applies to other guns as well
     (ie: mixing buck and slugs in shotguns)
 
-* Bullet penetration is no longer a simple true/false dependent on the gun item. Its now based on a % 
+* Bullet penetration is no longer a simple true/false dependent on the gun item. Its now based on a %
     chance, dependent on the bullet type (HP rounds have low chance of penetration while FMJ is higher),
     rechecked every round fired. Ideally this should check on every hit (ie: passing through multiple
     zombies) but its better then nothing.
@@ -436,25 +440,25 @@ version 2.01 Stable
 * When reloading a revolver, if there are empty shells in the cylinder the entire cylinder contents are
     dumped out and all cylinder spots must be reloaded. You can not just replace the empty shells.
 
-* Unloading bullets from magazines places rounds in inventory. Unloading from a gun drops rounds on the 
+* Unloading bullets from magazines places rounds in inventory. Unloading from a gun drops rounds on the
     ground (from racking the slide, or dumping out the cylinder)
-    
+
 * Guns now litter the ground with empty shells when firing. These can be collected, boxed or put in canisters
     like normal rounds.
-    
+
 * Context menu has been added to set a preferred ammo type on guns and magazines.
     (ie: load only 5.56 FMJ). This can be set to "Any" (loads any available ammo),
-    any bullet type the gun is capable of using, or "Mixed Load" to specifically 
+    any bullet type the gun is capable of using, or "Mixed Load" to specifically
     mix ammo in the magazine.
 
 * Context menu has been added for manually cocking/releasing the hammer, or opening/closing the slide/bolt.
 
 * Context menu has been added for spinning the cylinder on rotary guns (ie: revolvers)
 
-* Context menu has been added for shooting yourself in the head, curing infection so your corpse doesn't 
-    come back as a zombie.  Note if done with a partially loaded revolver (russian roulette) it cures 
+* Context menu has been added for shooting yourself in the head, curing infection so your corpse doesn't
+    come back as a zombie.  Note if done with a partially loaded revolver (russian roulette) it cures
     boredom as well.
-    
+
 * Code is now called when pulling the trigger on a gun that won't fire (unloaded etc). This will properly
     drop the hammer, or in the case of doubleaction revolvers: cock, rotate and release.
 
@@ -463,4 +467,3 @@ version 2.01 Stable
 
 * Clients on 'Easy Reloading' settings are effectively set to 'Normal'. This is a REAL GUNS MOD. Real guns
     have magazines.
-
