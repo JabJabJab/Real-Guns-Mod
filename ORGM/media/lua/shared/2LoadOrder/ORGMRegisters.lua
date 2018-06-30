@@ -1,10 +1,10 @@
 --[[  Register Functions
 
     These functions register various firearms, ammo, magazines, etc with the ORGM core.
-    They all take 2 arguments, the name of the item (string), and the item definition (table). The key/value pairs required 
+    They all take 2 arguments, the name of the item (string), and the item definition (table). The key/value pairs required
     by the definition table are dependent on the specific function being called (see the functions documentation).
     All these functions return true on success, false on failure.
-    
+
 ]]
 
 ORGM[5] = "6765744\068"
@@ -12,15 +12,15 @@ ORGM[5] = "6765744\068"
 
 --[[  validateRegister(name, definition, orgmtable)
 
-    Generic item register validation. Ensures the item hasn't previously been registered, and that the item is in the 
+    Generic item register validation. Ensures the item hasn't previously been registered, and that the item is in the
     scripts/*.txt files.
-    
+
     name = the string name of the item (without module name)
     definition = the definition table passed to the register function
     orgmtable = the table to check for existance (ie ORGM.AmmoTable, ORGM.FirearmTable, etc)
-    
+
     returns true on no errors, false if this item should not be registered.
-    
+
 ]]
 local validateRegister = function(name, definition, orgmtable)
     local mod = definition.moduleName or 'ORGM'
@@ -37,18 +37,18 @@ end
 
 
 --[[  ORGM.registerAmmo(name, definition)
-    
+
     Registers a ammo type with ORGM.  This must be called before any registerMagazine or registerFirearm that plans
     to use that ammo.
     NOTE: this should only be called with real ammo (ie: Ammo_9x19mm_FMJ) and not AmmoGroup (ie: Ammo_9x19mm)
-    
+
     name = string name of the ammo (without module prefix)
     definition = a table containing the ammo stats. Valid table keys/value pairs are:
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
-        MinDamage = float >= 0, the min damage of the bullet. This overrides the firearm item MinDamage 
-        MaxDamage = float >= MinDamage, the max damage of the bullet. This overrides the firearm item MaxDamage 
+        MinDamage = float >= 0, the min damage of the bullet. This overrides the firearm item MinDamage
+        MaxDamage = float >= MinDamage, the max damage of the bullet. This overrides the firearm item MaxDamage
         PiercingBullets = boolean | integer (% chance). This overrides the firearm item PiercingBullets
-        MaxHitCount = nil | integer. This overrides the firearm item MaxHitCount. Only valid for firearms with multiple 
+        MaxHitCount = nil | integer. This overrides the firearm item MaxHitCount. Only valid for firearms with multiple
             projectiles (ie: shotguns)
         Case = string | the empty case to eject
         UseWith = nil | table, the AmmoGroup names this ammo can be used for. if nil, the name parameter is used
@@ -60,27 +60,27 @@ ORGM.registerAmmo = function(name, definition)
     ORGM.log(ORGM.DEBUG, "Attempting to register ammo ".. name)
     if validateRegister(name, definition, ORGM.AmmoTable) == false then
         return false
-    end   
+    end
     definition.moduleName = definition.moduleName or 'ORGM'
     local fullName = definition.moduleName .. "." .. name
-    
+
     if type(definition.MinDamage) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Invalid MinDamage for " .. fullName .. " is type ".. type(definition.MinDamage)..", setting to 0")    
+        ORGM.log(ORGM.WARN, "Invalid MinDamage for " .. fullName .. " is type ".. type(definition.MinDamage)..", setting to 0")
         definition.MinDamage = 0
     elseif definition.MinDamage < 0 then
-        ORGM.log(ORGM.WARN, "Invalid MinDamage for " .. fullName .. " is < 0, setting to 0")    
+        ORGM.log(ORGM.WARN, "Invalid MinDamage for " .. fullName .. " is < 0, setting to 0")
         definition.MinDamage = 0
     end
-    
+
     if type(definition.MaxDamage) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Invalid MaxDamage for " .. fullName .. " is type ".. type(definition.MaxDamage)..", setting to MinDamage value ".. definition.MinDamage)    
+        ORGM.log(ORGM.WARN, "Invalid MaxDamage for " .. fullName .. " is type ".. type(definition.MaxDamage)..", setting to MinDamage value ".. definition.MinDamage)
         definition.MaxDamage = definition.MinDamage
     elseif definition.MaxDamage < definition.MinDamage then
-        ORGM.log(ORGM.WARN, "Invalid MaxDamage for " .. fullName .. " is < MinDamage, setting to MinDamage value ".. definition.MinDamage)    
+        ORGM.log(ORGM.WARN, "Invalid MaxDamage for " .. fullName .. " is < MinDamage, setting to MinDamage value ".. definition.MinDamage)
         definition.MaxDamage = definition.MinDamage
     end
-    
-    if definition.PiercingBullets == nil then 
+
+    if definition.PiercingBullets == nil then
         definition.PiercingBullets = false
     elseif type(definition.PiercingBullets) == 'boolean' then
         -- do nothing
@@ -94,8 +94,8 @@ ORGM.registerAmmo = function(name, definition)
         ORGM.log(ORGM.WARN, "Invalid PiercingBullets for " .. fullName .. " is > 100, setting to true")
         definition.PiercingBullets = true
     end
-    
-    if definition.MaxHitCount == nil then 
+
+    if definition.MaxHitCount == nil then
         definition.MaxHitCount = 1
     elseif type(definition.MaxHitCount) ~= 'number' then
         ORGM.log(ORGM.WARN, "Invalid MaxHitCount for " .. fullName .. " is type ".. type(definition.MaxHitCount)..", expected integer, setting to 1")
@@ -108,7 +108,7 @@ ORGM.registerAmmo = function(name, definition)
         ORGM.log(ORGM.WARN, "Invalid MaxHitCount for " .. fullName .. " is < 1, setting to 1")
         definition.MaxHitCount = 1
     end
-    
+
     if definition.UseWith == nil then
         definition.UseWith = { name }
     elseif type(definition.UseWith) == "string" then
@@ -118,7 +118,7 @@ ORGM.registerAmmo = function(name, definition)
         ORGM.log(ORGM.ERROR, "Invalid UseWith for " .. fullName .. " is type: "..type(definition.UseWith) .." (expected string, table or nil)")
         return false
     end
-        
+
     for _, ammo in ipairs(definition.UseWith) do
         if ORGM.AmmoGroupTable[ammo] == nil then
             ORGM.AmmoGroupTable[ammo] = { name }
@@ -126,13 +126,13 @@ ORGM.registerAmmo = function(name, definition)
             table.insert(ORGM.AmmoGroupTable[ammo], name)
         end
     end
-    
+
     --[[
     -- autogeneration
     -- for some stupid reason, i can autogenerate the items, but not the matching recipes. Without the recipes working, this
     -- whole thing is damn near worthless....
     -- suppose this code could be used to auto build the script .txt files or something
-    
+
     local rtype = definition.RoundType or "Round"
     local text = "module ORGM {\r\n"
     -- build ammo script item
@@ -144,7 +144,7 @@ ORGM.registerAmmo = function(name, definition)
     -- box to rounds
     text = text.."\r\n}"
     getScriptManager():ParseScript(text)
-    
+
     -- recipes dont seem to properly register using this method :\
     text = "module ORGM {\r\n"
     text = text .. "recipe Unbox "..definition.DisplayName.." "..rtype.."s\r\n{\r\n" .. name.."_Box,\r\n\r\nResult:"..name.."="..definition.BoxCount..",\r\nTime:5.0,\r\n}\r\n"
@@ -163,6 +163,7 @@ ORGM.registerAmmo = function(name, definition)
     print(text)
     getScriptManager():ParseScript(text)
     ]]
+    definition.instance = InventoryItemFactory.CreateItem(fullName)
     ORGM.AmmoTable[name] = definition
     ORGM.log(ORGM.DEBUG, "Registered ammo " .. fullName)
     return true
@@ -171,8 +172,8 @@ ORGM[7] = "6\07042794944"
 
 --[[  ORGM.registerMagazine(name, definition)
 
-    Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine. 
-    
+    Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine.
+
     name = the string name of the magazine (without module prefix)
     definition = a table containing the magazine stats. Valid table keys/value pairs are:
         moduleName = nil | string, module name this item is from. If nil, ORGM is used
@@ -191,7 +192,7 @@ ORGM.registerMagazine = function(name, definition)
     if validateRegister(name, definition, ORGM.MagazineTable) == false then
         return false
     end
-    
+
     definition.moduleName = definition.moduleName or 'ORGM'
     definition.type = name
     definition.clipType = name
@@ -208,7 +209,7 @@ ORGM.registerMagazine = function(name, definition)
 
     ORGM.MagazineTable[name] = definition
     ReloadUtil:addMagazineType(definition)
-    
+
     ORGM.log(ORGM.DEBUG, "Registered magazine " .. definition.moduleName .. "." .. name)
     return true
 end
@@ -217,14 +218,14 @@ end
 --[[  ORGM.registerFirearm(name, definition)
 
     Registers a firearm type with ORGM.
-    
+
     name = string name of the firearm (without module prefix)
     definition = a table containing the firearm stats. Valid table keys/value pairs are:
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
         actionType = ORGM.AUTO | ORGM.BOLT | ORGM.LEVER | ORGM.PUMP | ORGM.BREAK | ORGM.ROTARY
         triggerType = ORGM.SINGLEACTION | ORGM.DOUBLEACTION | ORGM.DOUBLEACTIONONLY
         category = ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN
-        lastChanged = nil| integer > 0 <= ORGM.BUILD_ID, the ORGM version this firearm was 
+        lastChanged = nil| integer > 0 <= ORGM.BUILD_ID, the ORGM version this firearm was
             last changed in (see shared\1LoadOrder\ORGMCore.lua)
         rackTime = nil | integer > 0, if nil then ORGM.Settings.DefaultRackTime is used
         reloadTime = nil | integer > 0, if nil then ORGM.Settings.DefaultReloadTime is used
@@ -233,10 +234,10 @@ end
         isCivilian = nil | "Common" | "Rare" | "VeryRare"
         isPolice = nil | "Common" | "Rare" | "VeryRare"
         isMilitary = nil | "Common" | "Rare" | "VeryRare"
-        
+
         -- sound options
         soundProfile = string name of a key in ORGM.SoundProfiles (see shared\1LoadOrder\ORGMCore.lua)
-        
+
         -- these sound keys are automatically set by the soundProfile, but can be over written.
         -- they are all nil or the string name of a sound file in media/sound/*.ogg
         clickSound = nil | filename
@@ -246,8 +247,8 @@ end
         openSound = nil | filename
         closeSound = nil | filename
         cockSound = nil | filename
-        
-        -- firearm details, these string fill out the 'Inspection' window.  
+
+        -- firearm details, these string fill out the 'Inspection' window.
         classification = nil | string, the 'type' of weapon (Revolver, Assault Rifle, etc)
         country = nil | string, the initial country of manufacture
         manufacturer = nil | string, the initial company (or factory) of manufacture
@@ -257,7 +258,7 @@ end
 ]]
 ORGM.registerFirearm = function(name, definition)
     --ORGM.log(ORGM.DEBUG, "Attempting to register firearm ".. name)
-    
+
     if not validateRegister(name, definition, ORGM.FirearmTable) then
         return false
     end
@@ -275,17 +276,17 @@ ORGM.registerFirearm = function(name, definition)
     definition.isOpen = 0
     definition.hammerCocked = 0
 
-    
+
     definition.classification = definition.classification or "Unknown"
     definition.country = definition.country or "Unknown"
     definition.manufacturer = definition.manufacturer or "Unknown"
     definition.description = definition.description or "No description available."
-    
+
     --ORGM.log(ORGM.DEBUG, "Set ammoType to ".. tostring(definition.ammoType))
 
-    
+
     -- some basic error checking
-    if definition.lastChanged then 
+    if definition.lastChanged then
         if type(definition.lastChanged) ~= 'number' then
             ORGM.log(ORGM.WARN, "lastChanged for " .. fullName .. " is not a number. Setting to nil")
             definition.lastChanged = nil
@@ -339,7 +340,7 @@ ORGM.registerFirearm = function(name, definition)
     for _, key in ipairs(ORGM.SoundBankKeys) do
         if definition[key] then ORGM.addToSoundBankQueue(definition[key]) end
     end
-    
+
     -- load SwingSound into SoundBanksSetupTable
     local swingSound = scriptItem:getSwingSound()
     if not swingSound then
@@ -347,7 +348,7 @@ ORGM.registerFirearm = function(name, definition)
         return
     end
     ORGM.addToSoundBankQueue(swingSound, {gain = 2,  maxrange = 1000, maxreverbrange = 1000, priority = 9 })
-    
+
 
     -- check if gun uses a mag, and link clipData
     if ORGM.isMagazine(definition.ammoType) then
@@ -360,10 +361,10 @@ ORGM.registerFirearm = function(name, definition)
 
     ORGM.FirearmTable[name] = definition
     ReloadUtil:addWeaponType(definition)
-    
+
     -- make adjustments to scriptItem .. these should cut down on the amount of crap needed to be added to entries in
     -- the scripts.txt file, and unify some stats
-    
+
     --setAngleFalloff(boolean)
     --setCategories(ArrayList<String> Categories)
     --setConditionLowerChance(int)
@@ -387,8 +388,8 @@ ORGM.registerFirearm = function(name, definition)
     -- setRanged(boolean
     -- setShareDamage(boolean) default true
     -- setShareEndurance(boolean default false
-    --setSoundRadius(int 
-    --setSoundVolume(int 
+    --setSoundRadius(int
+    --setSoundVolume(int
     --setSplatBloodOnNoDeath(boolean default false
     --setSplatNumber(int default 2
     --setSwingAmountBeforeImpact(float default 0
@@ -396,8 +397,8 @@ ORGM.registerFirearm = function(name, definition)
     --setSwingTime
     --setToHitModifier(float default 1.5
     --setUseEndurance(boolean default true
-    
-    
+
+
     definition.instance = InventoryItemFactory.CreateItem(definition.moduleName..'.' .. name)
     ORGM.log(ORGM.DEBUG, "Registered firearm " .. fullName)
     return true
@@ -405,18 +406,18 @@ end
 ORGM[6] = "6\07064496\06966"
 
 --[[  ORGM.registerComponent(name, definition)
-    
+
     Registers a component/upgrade type with ORGM.
-    
+
     name = string name of the component/upgrade (without module prefix)
     definition = a table. Valid table keys/value pairs are:
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
-    
+
 ]]
 ORGM.registerComponent = function(name, definition)
     if not validateRegister(name, definition, ORGM.ComponentTable) then
         return false
-    end   
+    end
     definition.moduleName = definition.moduleName or 'ORGM'
     ORGM.ComponentTable[name] = definition
     ORGM.log(ORGM.DEBUG, "Registered component " .. definition.moduleName .. "." .. name)
@@ -424,9 +425,9 @@ ORGM.registerComponent = function(name, definition)
 end
 
 --[[  ORGM.registerRepairKit(name, definition)
-    
+
     Registers a repair kit type with ORGM.
-    
+
     name = string name of the repair kit (without module prefix)
     definition = a table. Valid table keys/value pairs are:
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
@@ -435,7 +436,7 @@ end
 ORGM.registerRepairKit = function(name, definition)
     if not validateRegister(name, definition, ORGM.RepairKitTable) then
         return false
-    end   
+    end
     definition.moduleName = definition.moduleName or 'ORGM'
     ORGM.RepairKitTable[name] = definition
     ORGM.log(ORGM.DEBUG, "Registered repairkit " .. definition.moduleName .. "." .. name)
@@ -449,7 +450,7 @@ ORGM[11] = "5056414\067"
     These functions remove previously registered items from the ORGM core.
     They all take a single argument, the name of the item (string)
     All these functions return true on success, false on failure.
-    
+
 ]]
 
 
@@ -457,9 +458,9 @@ ORGM[11] = "5056414\067"
 
 ]]
 ORGM.deregisterAmmo = function(name)
-    if ORGM.AmmoTable[name] == nil then 
+    if ORGM.AmmoTable[name] == nil then
         ORGM.log(ORGM.WARN, "Failed to deregister " .. name .. " (Item not previously registered)")
-        return false 
+        return false
     end
     -- TODO: remove from AlternateAmmoTable
     ORGM.AmmoTable[name] = nil
@@ -471,9 +472,9 @@ end
 
 ]]
 ORGM.deregisterFirearm = function(name)
-    if ORGM.FirearmTable[name] == nil then 
+    if ORGM.FirearmTable[name] == nil then
         ORGM.log(ORGM.WARN, "Failed to deregister " .. name .. " (Item not previously registered)")
-        return false 
+        return false
     end
     -- TODO: remove from rarity tables
     ORGM.FirearmTable[name] = nil
@@ -485,9 +486,9 @@ end
 
 ]]
 ORGM.deregisterComponent = function(name)
-    if ORGM.ComponentTable[name] == nil then 
+    if ORGM.ComponentTable[name] == nil then
         ORGM.log(ORGM.WARN, "Failed to deregister " .. name .. " (Item not previously registered)")
-        return false 
+        return false
     end
     -- TODO: remove from PZ WeaponUpgrades table
     ORGM.ComponentTable[name] = nil
@@ -499,9 +500,9 @@ end
 
 ]]
 ORGM.deregisterMagazine = function(name)
-    if ORGM.MagazineTable[name] == nil then 
+    if ORGM.MagazineTable[name] == nil then
         ORGM.log(ORGM.WARN, "Failed to deregister " .. name .. " (Item not previously registered)")
-        return false 
+        return false
     end
     -- TODO: ensure this magazine is not set as the ammoType for any firearm, and warn if it is.
     ORGM.MagazineTable[name] = nil
