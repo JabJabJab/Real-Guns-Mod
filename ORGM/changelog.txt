@@ -38,6 +38,9 @@ version 3.08.2
 
 * Added CN translations by Cleave
 
+* Changed Glock22 magazine capacity to 15 (was 10)
+
+
 ---------------------------------------------------------------------------------------
 version 3.08.1
 * Temporarily disabled the built in patch for Nolan's Super Survivors mod, as most of it

@@ -4,8 +4,8 @@
 
 --[[  ORGM.registerMagazine(name, definition)
 
-    Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine. 
-    
+    Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine.
+
     name = the string name of the magazine (without module prefix)
     definition = a table containing the magazine stats. Valid table keys/value pairs are:
         moduleName = nil | string, module name this item is from. If nil, ORGM is used
@@ -21,67 +21,67 @@
 local register = ORGM.registerMagazine
 
 
-register("AIAW308Mag", 
+register("AIAW308Mag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 5, }
 )
-register("AKMMag", 
+register("AKMMag",
     { ammoType = 'Ammo_762x39mm', maxCapacity = 30, }
 )
 register("AM180Mag",
     { ammoType = 'Ammo_22LR', maxCapacity = 177, }
 )
-register("AR10Mag", 
+register("AR10Mag",
     { ammoType = 'Ammo_762x51mm', maxCapacity = 20, }
 )
-register("AutomagVMag", 
+register("AutomagVMag",
     { ammoType = 'Ammo_50AE', maxCapacity = 5, }
 )
-register("BBPistolMag", 
+register("BBPistolMag",
     { ammoType = 'Ammo_117BB', maxCapacity = 35, }
 )
-register("Ber92Mag", 
+register("Ber92Mag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 15, }
 )
-register("Ber93RMag", 
+register("Ber93RMag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 32, }
 )
-register("BLRMag", 
+register("BLRMag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 4, }
 )
-register("BrenTenMag", 
+register("BrenTenMag",
     { ammoType = 'Ammo_10x25mm', maxCapacity = 12, }
 )
-register("BrownHPMag", 
+register("BrownHPMag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 13, }
 )
-register("Colt38SMag", 
+register("Colt38SMag",
     { ammoType = 'Ammo_38Super', maxCapacity = 9, }
 )
-register("ColtDeltaMag", 
+register("ColtDeltaMag",
     { ammoType = 'Ammo_10x25mm', maxCapacity = 8, }
 )
-register("CZ75Mag", 
+register("CZ75Mag",
     { ammoType = 'Ammo_9x19mm', maxCapacity = 15, }
 )
-register("DEagleMag", 
+register("DEagleMag",
     { ammoType = 'Ammo_44Magnum', maxCapacity = 8, }
 )
-register("DEagleXIXMag", 
+register("DEagleXIXMag",
     { ammoType = 'Ammo_50AE', maxCapacity = 7, }
 )
-register("FN57Mag", 
+register("FN57Mag",
     { ammoType = 'Ammo_57x28mm', maxCapacity = 20, }
 )
-register("FNFALAMag", 
+register("FNFALAMag",
     { ammoType = 'Ammo_762x51mm', maxCapacity = 20, }
 )
-register("FNFALMag", 
+register("FNFALMag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 20, }
 )
-register("FNP90Mag", 
+register("FNP90Mag",
     { ammoType = 'Ammo_57x28mm', maxCapacity = 50, }
 )
-register("GarandClip", 
+register("GarandClip",
     { ammoType = 'Ammo_3006Springfield', maxCapacity = 8, }
 )
 register("Glock17Mag",
@@ -94,7 +94,7 @@ register("Glock21Mag",
     { ammoType = 'Ammo_45ACP', maxCapacity = 13, }
 )
 register("Glock22Mag",
-    { ammoType = 'Ammo_40SW', maxCapacity = 10, }
+    { ammoType = 'Ammo_40SW', maxCapacity = 15, }
 )
 register("HK91Mag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 20, }

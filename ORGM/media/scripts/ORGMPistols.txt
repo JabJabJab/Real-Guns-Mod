@@ -1,7 +1,7 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{  
+{
 
     item AutomagV
     {
@@ -675,7 +675,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Glock20
     {
         AmmoType    =   Glock20Mag,
@@ -838,7 +838,7 @@ module ORGM
         AimingPerkMinAngleModifier = 0.05,
         RecoilDelay = 12,
         SoundGain = 1.5,
-        ClipSize = 10,
+        ClipSize = 15,
         ReloadTime = 10,
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
@@ -1180,7 +1180,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item RugerSR9
     {
         AmmoType    =   RugerSR9Mag,
@@ -1517,7 +1517,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item WaltherPPK
     {
         AmmoType    =   WaltherPPKMag,
