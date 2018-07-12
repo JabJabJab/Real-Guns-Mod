@@ -12,7 +12,7 @@ ORGM = {
     AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf",
     -- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
     -- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
-    -- gun build id < lastChanged build id then the gun needs to be reset to default values (fixed for the 
+    -- gun build id < lastChanged build id then the gun needs to be reset to default values (fixed for the
     -- new version.)
     BUILD_HISTORY = {
         "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
@@ -49,166 +49,46 @@ ORGM = {
     DIRECTGAS = 5, -- extra dirt, extra wear on internal parts
     LONGRECOIL = 6,
     SHORTRECOIL = 7,
-    
-    
+
+
     -- category constants
     PISTOL = 1,
     REVOLVER = 2,
     SUBMACHINEGUN = 3,
     RIFLE = 4,
     SHOTGUN = 5,
-    
+
     -- select fire mode constants
     SEMIAUTOMODE = 0,
     FULLAUTOMODE = 1,
-    
+
     -- rarity constants
     COMMON = "Common", -- TODO: replace string with int 1
     RARE = "Rare", -- TODO: replace string with int 2
     VERYRARE = "VeryRare", -- TODO: replace string with int 3
-    
-    -- Settings table to be overwritten by 'Patch Mods'. See the Patch Mod Examples.zip
-    Settings = {
-        -- LogLevel: This controls how much text ORGM prints to the console and log file.
-        -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, and ORGM.DEBUG (default ORGM.INFO)
-        LogLevel = 2,
 
-        -- JammingEnabled: Turns firearm jamming on or off.
-        -- valid options are true or false. (default true)
-        JammingEnabled = true,
-
-        -- CasesEnabled: Turns ejecting of empty cases on or off.
-        -- valid options are true or false. (default true)
-        CasesEnabled = true,
-
-        -- RemoveBaseFirearms:  Stops spawning of the base game firearms.
-        -- valid options are true or false (default true)
-        RemoveBaseFirearms = true,
-
-        -- DefaultMagazineReoadTime:  The base time it takes to load a round into a magazine 
-        -- before modifiers for panic levels and reloading skill are applied. Note specific 
-        -- magazines may override this value.
-        -- valid options are any integer number greater then 0 (default: 30)
-        DefaultMagazineReoadTime = 30,
-
-        -- DefaultReoadTime:  The base time it takes to load a magazine or round into a firearm
-        -- before modifiers for panic levels and reloading skill are applied. Note specific 
-        -- magazines may override this value.
-        -- valid options are any integer number greater then 0 (default: 15)
-        DefaultReloadTime = 15,
-
-        -- DefaultRackTime:  The base time it takes to rack a firearm before modifiers for panic 
-        -- levels and reloading skill are applied. Note specific magazines may override this value.
-        -- valid options are any integer number greater then 0 (default: 10)
-        DefaultRackTime = 10,
-        
-        -- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
-        -- firearms manufactured after 1993, if nil then no year limits will be applied.
-        LimitYear = nil,
-
-        ----------------------------------
-        -- Spawn Rate Multipliers
-        -- These values tweak the various spawn rates, and stack with the sandbox weapon loot rarity 
-        -- settings. Setting any of these to 0 will disable spawning of those items completely, while
-        -- a value of 1 is normal ORGM spawning.
-
-        -- FirearmSpawnModifier: Multiplier for ALL firearms spawning.
-        FirearmSpawnModifier = 1.0,
-
-        -- CivilianFirearmSpawnModifier: Multiplier for the chances a firearm is civilian class.
-        CivilianFirearmSpawnModifier = 1.0,
-        
-        -- PoliceFirearmSpawnModifier: Multiplier for the chances a firearm is police class.
-        PoliceFirearmSpawnModifier = 1.0,
-
-        -- MilitaryFirearmSpawnModifier: Multiplier for the chances a firearm is military class.
-        MilitaryFirearmSpawnModifier = 1.0,
-
-        -- AmmoSpawnModifier: Multiplier for controlling the spawn rate of ammo, boxes and cans.
-        AmmoSpawnModifier = 1.0,
-        
-        -- MagazineSpawnModifier: Multiplier for controlling the spawn rate of spare magazines
-        MagazineSpawnModifier = 1.0,
-
-        -- RepairKitSpawnModifier: Multiplier for controlling the spawn rate of repair kits
-        RepairKitSpawnModifier = 1.0,
-
-        -- ComponentSpawnModifier: Multiplier for controlling the spawn rate of weapon upgrades
-        -- and parts. Note this only effects upgrades not attached to guns.
-        ComponentSpawnModifier = 1.0,
-        
-        -- CorpseSpawnModifier: Multiplier for controlling the spawn rate on corpses
-        CorpseSpawnModifier = 1.0,
-
-        -- CivilianBuildingSpawnModifier: Multiplier for controlling the spawn rate in civilian buildings
-        CivilianBuildingSpawnModifier = 1.0,
-
-        -- PoliceStorageSpawnModifier: Multiplier for controlling the spawn rate in police storage rooms
-        PoliceStorageSpawnModifier = 1.0,
-
-        -- GunStoreSpawnModifier: Multiplier for controlling the spawn rate in the gun store
-        GunStoreSpawnModifier = 1.0,
-        
-        -- StorageUnitSpawnModifier: Multiplier for controlling the spawn rate in storage units
-        StorageUnitSpawnModifier = 1.0,
-        
-        -- GarageSpawnModifier: Multiplier for controlling the spawn rate in garages
-        GarageSpawnModifier = 1.0,
-        
-        -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
-        HuntingSpawnModifier = 1.0,
-        
-        ----------------------------------
-        -- Compatibility Patch Toggles
-        -- These determine if the built in compatibility patches should be used. These are only valid
-        -- If the mod in question is actually loaded.
-
-        -- UseSilencersPatch: Patch Nolan's ORGM Silencers mod
-        -- valid options are true or false (default: true)
-        UseSilencersPatch = true,
-
-        -- UseNecroforgePatch: Patch Svarog's NecroForge mod
-        -- valid options are true or false (default: true)
-        UseNecroforgePatch = true,
-
-        -- UseSurvivorsPatch: Patch Nolan's Survivors mod
-        -- valid options are true or false (default: true)
-        UseSurvivorsPatch = true,
-        -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
-        -- features (context menus and such). Do not enable this on a open server. All warranties are void of you enable this.
-        Debug = false, 
-        
-        DamageMultiplier = 0.5,
-
-        DefaultHitChancePistol = 40,
-        DefaultHitChanceSMG = 30,
-        DefaultHitChanceRifle = 40, 
-        DefaultHitChanceShotgun = 60,
-        DefaultHitChanceOther = 40,
-        DefaultAimingHitMod = 7,
-        DefaultCriticalChance = 20,
-        DefaultAimingCritMod = 10,
-        
-    },
+    -- table containing all ORGM settings
+    -- these are all defined below in the ORGM.SettingsValidator table
+    Settings = { },
 
     -- table containing all ORGM server-side functions
     -- server functions and subtables are defined in the lua/server folder
     Server = { CommandHandler = {} },
-    
-    -- table containing all ORGM client-side functions. 
+
+    -- table containing all ORGM client-side functions.
     -- client functions and subtables are defined in the lua/client folder
     Client = { CommandHandler = {} },
 
     -- Table containing all registered ammo and definitions. formally ORGMMasterAmmoTable (v2.00-v2.03)
     AmmoTable = { },
-    
+
     -- Table containing all AmmoGroup names and real ammo replacements. formally ORGMAlternateAmmoTable (v2.00-v2.03)
     AmmoGroupTable = { },
     --AlternateAmmoTable = { },
-    
+
     -- Table containing all registered firearms and definitions. formally ORGMMasterWeaponTable (v2.00-v2.03)
     FirearmTable = { },
-        
+
     -- Table containing all registered magazines and definitions. formally ORGMMasterMagTable (v2.00-v2.03)
     MagazineTable = { },
 
@@ -221,7 +101,7 @@ ORGM = {
         Police = { Common = {}, Rare = {}, VeryRare = {} },
         Military = { Common = {}, Rare = {}, VeryRare = {} },
     },
-    
+
     LogLevelStrings = { [0] = "ERROR", [1] = "WARN", [2] = "INFO", [3] = "DEBUG"},
 
     -- The ActionTypeStrings table contains all valid firearm.actionType values. It is used for error checking in ORGM.registerFirearm
@@ -229,8 +109,8 @@ ORGM = {
 
     -- The TriggerTypeStrings table contains all valid firearm.triggerType values. It is used for error checking in ORGM.registerFirearm
     TriggerTypeStrings = {"SingleAction", "DoubleAction", "DoubleActionOnly"},
-    
-    -- The ORGM.SoundBankQueueTable table contains all sounds we need to setup on the OnLoadSoundBanks event 
+
+    -- The ORGM.SoundBankQueueTable table contains all sounds we need to setup on the OnLoadSoundBanks event
     -- so sounds player properly in multiplayer. This table is set to nil after completion.
     SoundBankQueueTable = { },
 
@@ -238,7 +118,7 @@ ORGM = {
     SoundBankKeys = {"clickSound", "insertSound", "ejectSound", "rackSound", "openSound", "closeSound", "cockSound"},
 
     --[[  ORGM.log
-        
+
         Basic logging function.
 
     ]]
@@ -247,13 +127,31 @@ ORGM = {
         local prefix = "ORGM." .. ORGM.LogLevelStrings[level] .. ": "
         print(prefix .. text)
     end,
-    
+
 }
 
+--[[ ORGM.SettingsValidator Table
+
+    This table handles all the settings to be defined in ORGM.Settings, expected
+    value types, default values, min/max (for integers and floats) and any Functions
+    to run when updating this setting.
+
+]]
 ORGM.SettingsValidator = {
+    -- LogLevel: This controls how much text ORGM prints to the console and log file.
+    -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, and ORGM.DEBUG (default ORGM.INFO)
     LogLevel = {type='integer', min=0, max=3, default=2},
+
+    -- JammingEnabled: Turns firearm jamming on or off.
+    -- valid options are true or false. (default true)
     JammingEnabled = {type='boolean', default=true},
+
+    -- CasesEnabled: Turns ejecting of empty cases on or off.
+    -- valid options are true or false. (default true)
     CasesEnabled = {type='boolean', default=true},
+
+    -- RemoveBaseFirearms:  Stops spawning of the base game firearms.
+    -- valid options are true or false (default true)
     RemoveBaseFirearms = {type='boolean', default=true},
     DamageMultiplier = {type='float', min=0.1, default=0.5},
     DefaultHitChancePistol = {type='integer', min=0, max=100, default=40},
@@ -264,37 +162,111 @@ ORGM.SettingsValidator = {
     DefaultAimingHitMod = {type='integer', min=0, max=100, default=7},
     DefaultCriticalChance = {type='integer', min=0, max=100, default=20},
     DefaultAimingCritMod = {type='integer', min=0, max=100, default=10},
-    
+
+
+    -- DefaultMagazineReoadTime:  The base time it takes to load a round into a magazine
+    -- before modifiers for panic levels and reloading skill are applied. Note specific
+    -- magazines may override this value.
+    -- valid options are any integer number greater then 0 (default: 30)
     DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.MagazineTable) do data.reloadTime = value end end },
+
+    -- DefaultReloadTime:  The base time it takes to load a magazine or round into a firearm
+    -- before modifiers for panic levels and reloading skill are applied. Note specific
+    -- magazines may override this value.
+    -- valid options are any integer number greater then 0 (default: 15)
     DefaultReloadTime = {type='integer', min=1, default=15, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.reloadTime = value end end },
+
+    -- DefaultRackTime:  The base time it takes to rack a firearm before modifiers for panic
+    -- levels and reloading skill are applied. Note specific magazines may override this value.
+    -- valid options are any integer number greater then 0 (default: 10)
     DefaultRackTime = {type='integer', min=1, default=10, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.rackTime = value end end },
+
+    -- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
+    -- firearms manufactured after 1993, if nil then no year limits will be applied.
     LimitYear = {type='integer', min=0, default=0, nilAllowed=true},
+
+    ----------------------------------
+    -- Spawn Rate Multipliers
+    -- These values tweak the various spawn rates, and stack with the sandbox weapon loot rarity
+    -- settings. Setting any of these to 0 will disable spawning of those items completely, while
+    -- a value of 1 is normal ORGM spawning.
+
+    -- FirearmSpawnModifier: Multiplier for ALL firearms spawning.
     FirearmSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- CivilianFirearmSpawnModifier: Multiplier for the chances a firearm is civilian class.
     CivilianFirearmSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- PoliceFirearmSpawnModifier: Multiplier for the chances a firearm is police class.
     PoliceFirearmSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- MilitaryFirearmSpawnModifier: Multiplier for the chances a firearm is military class.
     MilitaryFirearmSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- AmmoSpawnModifier: Multiplier for controlling the spawn rate of ammo, boxes and cans.
     AmmoSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- MagazineSpawnModifier: Multiplier for controlling the spawn rate of spare magazines
     MagazineSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- RepairKitSpawnModifier: Multiplier for controlling the spawn rate of repair kits
     RepairKitSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- ComponentSpawnModifier: Multiplier for controlling the spawn rate of weapon upgrades
+    -- and parts. Note this only effects upgrades not attached to guns.
     ComponentSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- CorpseSpawnModifier: Multiplier for controlling the spawn rate on corpses
     CorpseSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- CivilianBuildingSpawnModifier: Multiplier for controlling the spawn rate in civilian buildings
     CivilianBuildingSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- PoliceStorageSpawnModifier: Multiplier for controlling the spawn rate in police storage rooms
     PoliceStorageSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- GunStoreSpawnModifier: Multiplier for controlling the spawn rate in the gun store
     GunStoreSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- StorageUnitSpawnModifier: Multiplier for controlling the spawn rate in storage units
     StorageUnitSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- GarageSpawnModifier: Multiplier for controlling the spawn rate in garages
     GarageSpawnModifier = {type='float', min=0, default=1.0},
+
+    -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
     HuntingSpawnModifier = {type='float', min=0, default=1.0},
+
+    ----------------------------------
+    -- Compatibility Patch Toggles
+    -- These determine if the built in compatibility patches should be used. These are only valid
+    -- If the mod in question is actually loaded.
+
+    -- UseSilencersPatch: Patch Nolan's ORGM Silencers mod
+    -- valid options are true or false (default: true)
     UseSilencersPatch = {type='boolean', default=true},
+
+    -- UseNecroforgePatch: Patch Svarog's NecroForge mod
+    -- valid options are true or false (default: true)
     UseNecroforgePatch = {type='boolean', default=true},
+
+    -- UseSurvivorsPatch: Patch Nolan's Survivors mod
+    -- valid options are true or false (default: true)
     UseSurvivorsPatch = {type='boolean', default=true},
+
+    -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
+    -- features (context menus and such). Do not enable this on a open server. All warranties are void of you enable this.
     Debug = {type='boolean', default=false, show=false},
 }
+for key, data in pairs(ORGM.SettingsValidator) do
+    ORGM.Settings[key] = data.default
+end
 
 ORGM[1] = "676574537"
 ORGM[2] = "465616\0684"
 
 --[[ The ORGM.SoundProfiles table contains some basic sound profiles for working the action.
-    Any key = value pairs here can be overridden by specific weapons, each key is only set in the 
+    Any key = value pairs here can be overridden by specific weapons, each key is only set in the
     weapons data table if it doesn't already exist.
     Note: shootSound is not covered in these profiles, as they are specific to each weapon, and not required
 ]]
