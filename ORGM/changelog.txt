@@ -11,7 +11,9 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 
 ---------------------------------------------------------------------------------------
-version 3.08.2
+version 3.09
+* Barrel Length now effects recoil, damage and range of firearms
+
 * Moved all recipes to a 'ORGM' tab in the build window.
 
 * Fixed issue with Reload Time, Rack Time and Magazine Reload Time options requiring PZ
@@ -40,6 +42,11 @@ version 3.08.2
 
 * Changed Glock22 magazine capacity to 15 (was 10)
 
+* Fixed .44 Magnum FMJ Recoil to match HP
+
+* Increased damage for 7.62x39mm, .30-06, .30-30
+
+* Increased recoil for .30-06, .357
 
 ---------------------------------------------------------------------------------------
 version 3.08.1
