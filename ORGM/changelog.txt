@@ -12,7 +12,12 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 ---------------------------------------------------------------------------------------
 version 3.09
-* Barrel Length now effects recoil, damage and range of firearms
+* Barrel Length now effects recoil, damage and range of firearms. To compensate for
+    reduced damages on short barrels, the Damage Mulitplier setting now defaults to 0.6
+    instead of 0.5
+    Users of previous ORGM versions will have to manually adjust the setting in the PZ
+    options screen ORGM tab. Dedicated servers will have to edit their ORGM.ini (if it
+    exists).
 
 * Moved all recipes to a 'ORGM' tab in the build window.
 
@@ -42,11 +47,15 @@ version 3.09
 
 * Changed Glock22 magazine capacity to 15 (was 10)
 
+* Corrected Cylinder capacity of the Raging Bull to 5 (was 6)
+
 * Fixed .44 Magnum FMJ Recoil to match HP
 
 * Increased damage for 7.62x39mm, .30-06, .30-30
 
 * Increased recoil for .30-06, .357
+
+* New Admin context submenu for firearms: Debug weapon and Reset to defaults
 
 ---------------------------------------------------------------------------------------
 version 3.08.1
