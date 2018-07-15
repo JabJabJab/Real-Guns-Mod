@@ -15,9 +15,12 @@ UI_EN = {
     UI_optionscreen_orgm_jamming_tooltip = "Firearms in low condition risk jamming",
     UI_optionscreen_orgm_usecases = "Eject Shell Cases",
     UI_optionscreen_orgm_usecases_tooltip = "Firearms eject spent shell cases when fired",
+    UI_optionscreen_orgm_usebarrellen = "Use Barrel Length Modifiers",
+    UI_optionscreen_orgm_usebarrellen_tooltip = "Barrel length effects damage, range and recoil",
+
     UI_optionscreen_orgm_removebase = "Remove Base Game Firearms",
     UI_optionscreen_orgm_removebase_tooltip = "Attempts to remove all vanilla firearms from containers (special stashes are not properly handled at this time)",
-    
+
     UI_optionscreen_orgm_damagemulti = "Damage Multiplier",
     UI_optionscreen_orgm_damagemulti_tooltip = "Multiplier for all firearm damage (default 0.5)",
 
@@ -37,8 +40,8 @@ UI_EN = {
     UI_optionscreen_orgm_critical_tooltip = "Chance of scoring a headshot/critical hit, before modifiers are applied (default 20)",
     UI_optionscreen_orgm_aimingcritmod = "Critical Aiming Perk Modifier",
     UI_optionscreen_orgm_aimingcritmod_tooltip = "Modifier applied to critical chances for every 2 levels of aiming perk (default 10)",
-    
-    
+
+
     UI_optionscreen_orgm_magreloadtime = "Magazine Reload Time",
     UI_optionscreen_orgm_magreloadtime_tooltip = "Time it takes to load a round into a magazine",
     UI_optionscreen_orgm_reloadtime = "Firearm Reload Time",
@@ -49,7 +52,7 @@ UI_EN = {
     UI_optionscreen_orgm_limityear_tooltip = "Remove spawning of firearms manufactured after the specified year (0 disables - no limiting)",
     UI_optionscreen_orgm_firearmspawnmulti = "Firearm Spawn Multiplier",
     UI_optionscreen_orgm_firearmspawnmulti_tooltip = "Spawn chance multiplier for firearms",
-    
+
     UI_optionscreen_orgm_ammospawnmulti = "Ammo Spawn Multiplier",
     UI_optionscreen_orgm_ammospawnmulti_tooltip = "Spawn chance multiplier for ammo",
     UI_optionscreen_orgm_magspawnmulti = "Magazine Spawn Multiplier",
@@ -80,5 +83,5 @@ UI_EN = {
     UI_optionscreen_orgm_necroforgepatch_tooltip = "Use built-in patch for NecroForge",
     UI_optionscreen_orgm_survivorspatch = "Use Survivors Patch",
     UI_optionscreen_orgm_survivorspatch_tooltip = "Use built-in patch for Nolan's Survivors mod",
-    
+
 }

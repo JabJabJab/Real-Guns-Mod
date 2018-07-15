@@ -25,7 +25,7 @@ local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
 
 
 --[[
-TODO: barrel optimization length calculations, and other stuff to consider
+NOTE: barrel optimization length calculations, and other stuff to consider
 Note 'optimal barrel length' is a completely subjective term. In this I'm referring to the length required to
 achieve full powder burn, where the bullet reaches maximum velocity. Also note 'full powder burn' is completely
 relative, different powders burn at different rates. While one might reach max velocity from a 26" barrel, another
@@ -51,12 +51,16 @@ be factored in (yet).
     the effect is.
 
 
-fps-fps*((((o-b)/o)**3)**2) this seems pretty damn close to matching, not sure were going to get much closer.
-looks like 'o' needs to be 80 for rifles, 30 for pistols, 60 for shotguns to find a close match
+fps-fps*((((o-b)/o)**3)**2) this seems pretty damn close to matching, not sure we're going to get much closer.
+After tons of pissing around with handloading simulation software, it looks like 'o' needs to be 80 for rifles,
+ 30 for pistols, 60 for shotguns to find a close match.
 ]]
 
 local calcBarrelModifier = function(optimal, barrel)
-    return ((((optimal-barrel)/optimal)^3)^2)
+    if ORGM.Settings.UseBarrelLengthModifiers then
+        return ((((optimal-barrel)/optimal)^3)^2)
+    end
+    return 0
 end
 
 local adjustDmgByBarrel = function(item, ammoType, damage)

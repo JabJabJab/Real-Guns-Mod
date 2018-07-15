@@ -1,5 +1,5 @@
 --[[
-    
+
     This file contains the code for adding options to the PZ options screen.
 
 ]]
@@ -22,7 +22,7 @@ if index then
     table.insert(keyBinding, index+4, {value = "Reload Any Magazine", key = Keyboard.KEY_G })
     table.insert(keyBinding, index+5, {value = "Select Fire Toggle", key = Keyboard.KEY_Z })
     table.insert(keyBinding, index+6, {value = "Firearm Inspection Window", key = Keyboard.KEY_U })
-    
+
 end
 
 
@@ -98,9 +98,9 @@ end
 ----------------------------------------------------------------------------------------
 
 --[[ addBoolOption(self, splitpoint, width, title, settingKey)
-    
+
     local function to define a boolean yes/no combo box.
-    
+
 ]]
 
 local function addBoolOption(self, splitpoint, width, title, settingKey)
@@ -168,7 +168,7 @@ local function addNumericOption(self, splitpoint, width, title, settingKey, asFl
         ORGM.validateSettingKey(settingKey)
         ORGM.writeSettingsFile()
         gameOption:toUI()
-        
+
 	end
 	self.gameOptions:add(gameOption)
     return opt
@@ -185,9 +185,9 @@ function MainOptions:create()
 	local comboWidth = 300
 
     local opt = self:addCombo(splitpoint, y, comboWidth, 20, getText("UI_optionscreen_orgm_loglevel"), {
-            getText("UI_optionscreen_orgm_loglevel_error"), 
-            getText("UI_optionscreen_orgm_loglevel_warn"), 
-            getText("UI_optionscreen_orgm_loglevel_info"), 
+            getText("UI_optionscreen_orgm_loglevel_error"),
+            getText("UI_optionscreen_orgm_loglevel_warn"),
+            getText("UI_optionscreen_orgm_loglevel_info"),
             getText("UI_optionscreen_orgm_loglevel_debug")}, 2)
     opt:setToolTipMap({defaultTooltip = getText("UI_optionscreen_orgm_loglevel_tooltip")})
 	local gameOption = GameOption:new('orgm_loglevel', opt)
@@ -203,8 +203,9 @@ function MainOptions:create()
 
     addBoolOption(self, splitpoint, comboWidth, "orgm_jamming", "JammingEnabled")
     addBoolOption(self, splitpoint, comboWidth, "orgm_usecases", "CasesEnabled")
+    addBoolOption(self, splitpoint, comboWidth, "orgm_usebarrellen", "UseBarrelLengthModifiers")
     addBoolOption(self, splitpoint, comboWidth, "orgm_removebase", "RemoveBaseFirearms")
-    
+
     addNumericOption(self, splitpoint, comboWidth, "orgm_damagemulti", "DamageMultiplier", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_hitpistol", "DefaultHitChancePistol", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_hitsmg", "DefaultHitChanceSMG", false)
@@ -214,7 +215,7 @@ function MainOptions:create()
     addNumericOption(self, splitpoint, comboWidth, "orgm_aiminghitmod", "DefaultAimingHitMod", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_critical", "DefaultCriticalChance", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_aimingcritmod", "DefaultAimingCritMod", false)
-    
+
 
     addNumericOption(self, splitpoint, comboWidth, "orgm_magreloadtime", "DefaultMagazineReoadTime", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_reloadtime", "DefaultReloadTime", false)
