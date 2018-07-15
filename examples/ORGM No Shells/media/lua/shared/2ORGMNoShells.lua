@@ -1,1 +1,0 @@
-ORGM.Settings.CasesEnabled = false

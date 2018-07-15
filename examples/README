@@ -1,10 +1,5 @@
 This folder contains example template mods that customize ORGM.
 
-ORGM Custom Server Settings
-Shows how to create a Settings mod, that tweaks spawn rates, spent case ejection, 
-and other various aspects, for use with servers.
-
-
 ORGM Military Only Automatics
 A example of changing weapon class (Civilian, Police, Military) and rarity values
 (Common, Rare, VeryRare) of select-fire guns.
@@ -24,6 +19,3 @@ Its main purpose is to fix errors.
 ORGM Cheat Key
 Re-enables the original ORGM's cheat/testing key, spawning 1 of every gun, magazine, upgrade and
 ammo canister in the players inventory
-
-ORGM No Shells
-Disables ORGM's spent case ejection setting.
