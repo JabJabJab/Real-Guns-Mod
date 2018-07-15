@@ -2,9 +2,9 @@
 --[[ ORGM.itemBindingHandler(key)
 
     Triggerd by Events.OnKeyPressed, this overrides PZ's ItemBindingHandler.onKeyPressed function.
-    It handles the new pistol/rifle/shotgun hotkeys, and bypasses equipping a light source if a equipped 
+    It handles the new pistol/rifle/shotgun hotkeys, and bypasses equipping a light source if a equipped
     gun has a tactical light.
-    
+
 ]]
 ORGM.itemBindingHandler = function(key)
 	local weapon = nil;
@@ -25,7 +25,7 @@ ORGM.itemBindingHandler = function(key)
             ORGM.equipBestFirearm(playerObj, "Rifle")
         elseif key == getCore():getKey("Equip/Unequip Shotgun") then
             ORGM.equipBestFirearm(playerObj, "Shotgun")
-            
+
         elseif key == getCore():getKey("Equip/Turn On/Off Light Source") then
             -- vehicle handling
             if key == getCore():getKey("ToggleVehicleHeadlights") then
@@ -39,7 +39,7 @@ ORGM.itemBindingHandler = function(key)
             end
 
             if ORGM.toggleTacticalLight(playerObj) then return end -- handled by orgm
-            
+
             -- default pz light finding code
             local primary = playerObj:getPrimaryHandItem()
             local secondary = playerObj:getSecondaryHandItem()
@@ -69,11 +69,11 @@ end
 
 --[[ ORGM.equipBestFirearm(playerObj, subCategory)
     equips the best firearm overriding the default PZ system that always finds the weapon with highest damage.
-    This bases is choice on a number of factors: 
+    This bases is choice on a number of factors:
     1) is it currently loaded
     2) does the player have ammo (loaded magazines only if the gun uses magazines)
     3) damage
-    
+
     playerObj = a IsoPlayer object
     subCategory = nil|"Pistol"|"Rifle"|"Shotgun"
 
@@ -96,21 +96,20 @@ ORGM.equipBestFirearm = function(playerObj, subCategory)
         local def = ORGM.FirearmTable[item:getType()]
         if not def then break end -- not a orgm gun
         local category = def.category
-        if subCategory == "Pistol" then 
+        if subCategory == "Pistol" then
             if category == ORGM.REVOLVER or category == ORGM.PISTOL then
-                print("adding "..item:getType())
                 table.insert(choices, item)
             elseif category == ORGM.SUBMACHINEGUN and not item:isTwoHandWeapon() then
                 print("adding "..item:getType())
                 table.insert(choices, item)
             end
-        elseif subCategory == "Shotgun" and category == ORGM.SHOTGUN then 
+        elseif subCategory == "Shotgun" and category == ORGM.SHOTGUN then
             table.insert(choices, item)
         elseif subCategory == "Rifle" and (category == ORGM.RIFLE or category == ORGM.SUBMACHINEGUN) then -- anything else is a rifle, smg, or unknown. bind these to the rifle key
             table.insert(choices, item)
         end
 	until true end
-    
+
     ------------------------------------------------------------------------------------------------
     for _, item in pairs(choices) do
         -- TODO: this needs proper handling for non-orgm guns too!
@@ -120,20 +119,20 @@ ORGM.equipBestFirearm = function(playerObj, subCategory)
             -- necroforge spawned gun? detect if its orgm, and call ORGM.setupGun
             ORGM.setupGun(ORGM.FirearmTable[item:getType()], item)
         end
-        
+
         local current = {
             item = item,
             dmg = (item:getMaxDamage() + item:getMinDamage()) / 2,
             ammo = false,
             loaded = ((modData.currentCapacity or 0) + (modData.roundChambered or 0) > 0)
         }
-        
+
         if def then -- skip these checks if its not a orgm gun
             if modData.containsClip then -- TODO: speedloader check
                 local mag = ORGM.findBestMagazineInContainer(modData.ammoType, 'any', playerObj:getInventory())
                 if mag and mag:getModData().currentCapacity > 0 then
                     current.ammo = true
-                end 
+                end
             else
                 local round = ORGM.findAmmoInContainer(modData.ammoType, 'any', playerObj:getInventory())
                 if round then current.ammo = true end
@@ -153,9 +152,9 @@ end
 
 --[[ ORGM.compareFirearms(player, item1, item2)
     Compares 2 firearms and returns the better choice.
-    
+
     item1 and item2 are tables {item=HandWeapon, loaded=boolean, ammo=boolean, dmg=float}
-    
+
     returns either item1 or item2
 ]]
 ORGM.compareFirearms = function(item1, item2)
@@ -165,7 +164,7 @@ ORGM.compareFirearms = function(item1, item2)
     if item1.ammo == false and item2.ammo == true then return item2 end
     if item2.ammo == false and item1.ammo == true then return item1 end
     if item1.dmg < item2.dmg then return item2 end
-    
+
     return item1
 end
 
@@ -202,7 +201,7 @@ end
 --[[ ORGM.Server.onClientCommand(module, command, player, args)
 
     Client command handler
-    
+
 ]]
 ORGM.Server.onClientCommand = function(module, command, player, args)
     --print("Server got command: "..tostring(module)..":"..tostring(command).." - " ..tostring(isServer()))
