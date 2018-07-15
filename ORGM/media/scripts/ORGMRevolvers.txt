@@ -1,7 +1,7 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{  
+{
     item ColtAnac
     {
         AmmoType    =   Ammo_44Magnum,
@@ -57,7 +57,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item ColtPyth
     {
         AmmoType    =   Ammo_357Magnum,
@@ -113,7 +113,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item ColtSAA
     {
         AmmoType    =   Ammo_45Colt,
@@ -169,7 +169,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item RugAlas
     {
         AmmoType    =   Ammo_454Casull,
@@ -281,7 +281,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item RugGP100
     {
         AmmoType    =   Ammo_357Magnum,
@@ -393,7 +393,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item RugSec6
     {
         AmmoType    =   Ammo_38Special,
@@ -449,7 +449,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SWM10
     {
         AmmoType    =   Ammo_38Special,
@@ -505,7 +505,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SWM19
     {
         AmmoType    =   Ammo_357Magnum,
@@ -617,7 +617,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SWM29
     {
         AmmoType    =   Ammo_44Magnum,
@@ -673,7 +673,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SWM36
     {
         AmmoType    =   Ammo_38Special,
@@ -780,12 +780,12 @@ module ORGM
         AimingPerkMinAngleModifier = 0.05,
         RecoilDelay = 12,
         SoundGain = 1.5,
-        ClipSize = 6,
+        ClipSize = 5,
         ReloadTime = 20,
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Taurus454
     {
         AmmoType    =   Ammo_454Casull,

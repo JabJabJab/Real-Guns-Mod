@@ -5,7 +5,7 @@
 --[[  ORGM.registerFirearm(name, definition)
 
     Registers a firearm type with ORGM.
-    
+
     name = string name of the firearm (without module prefix)
     definition = a table containing the firearm stats. Valid table keys/value pairs are:
         moduleName = nil, or string module name this item is from. If nil, ORGM is used
@@ -20,10 +20,10 @@
         isCivilian = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
         isPolice = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
         isMilitary = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
-        
+
         -- sound options
         soundProfile = string name of a key in ORGM.SoundProfiles (see shared\1LoadOrder\ORGMCore.lua)
-        
+
         -- these sound keys are automatically set by the soundProfile, but can be over written.
         -- they are all nil or the string name of a sound file in media/sound/*.ogg
         clickSound = nil | filename
@@ -33,8 +33,8 @@
         openSound = nil | filename
         closeSound = nil | filename
         cockSound = nil | filename
-        
-        -- firearm details, these string fill out the 'Inspection' window.  
+
+        -- firearm details, these string fill out the 'Inspection' window.
         classification = nil | string, the 'type' of weapon (Revolver, Assault Rifle, etc)
         country = nil | string, the initial country of manufacture
         manufacturer = nil | string, the initial company (or factory) of manufacture
@@ -53,7 +53,7 @@ register("ColtAnac", {
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1990,
     country = "IGUI_Firearm_Country_US",
@@ -68,9 +68,9 @@ register("ColtPyth", {
     barrelLength = 6, -- 2.5, 3, 4, 6 or 8
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader3576', 
+    speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1955,
     country = "IGUI_Firearm_Country_US",
@@ -87,7 +87,7 @@ register("ColtSAA", {
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1873,
     country = "IGUI_Firearm_Country_US",
@@ -101,7 +101,7 @@ register("RugAlas", {
     barrelLength = 2.5,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader4546', 
+    speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -132,7 +132,7 @@ register("RugGP100", {
     barrelLength = 4.2, -- 3, 4.2, 6
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader3576', 
+    speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -148,7 +148,7 @@ register("RugRH", {
     barrelLength = 5.5, -- 4, 5.5, 7.5
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader446', 
+    speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -164,7 +164,7 @@ register("RugSec6", {
     barrelLength = 4, -- 2.74, 3, 4, 6
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader386', 
+    speedLoader = 'SpeedLoader386',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -180,7 +180,7 @@ register("SWM10", {
     barrelLength = 4, -- 2, 2.5, 3, 4, 5, 6
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader386', 
+    speedLoader = 'SpeedLoader386',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -196,7 +196,7 @@ register("SWM19", {
     barrelLength = 4, -- 2.5, 3, 4, 6
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader3576', 
+    speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -212,7 +212,7 @@ register("SWM252", {
     barrelLength = 6, -- 4, 5 (very rare!), 6, 6.5, 8.4
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader456', 
+    speedLoader = 'SpeedLoader456',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -230,7 +230,7 @@ register("SWM29", {
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1955,
     country = "IGUI_Firearm_Country_US",
@@ -244,7 +244,7 @@ register("SWM36", {
     barrelLength = 1.875,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader385', 
+    speedLoader = 'SpeedLoader385',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
@@ -260,9 +260,9 @@ register("SWM610", {
     barrelLength = 6.5, -- 3.875, 6.5
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader10mm6', 
+    speedLoader = 'SpeedLoader10mm6',
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1990,
     country = "IGUI_Firearm_Country_US",
@@ -270,15 +270,15 @@ register("SWM610", {
     description = "IGUI_Firearm_Desc_SWM610",
 })
 register("Taurus454", {
-    lastChanged = 24,
+    lastChanged = 25,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 6.5, -- 2.25, 3, 4, 5, 6, 6.5, 8.425, 10
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader4546', 
+    speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
-    
+
     classification = "IGUI_Firearm_Revolver",
     year = 1997,
     country = "IGUI_Firearm_Country_BR",
@@ -297,7 +297,7 @@ register("AutomagV", {
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
-    
+
     classification = "IGUI_Firearm_SemiPistol",
     year = 1993,
     country = "IGUI_Firearm_Country_US",
@@ -326,8 +326,8 @@ register("Ber92", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.9,
     triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
-    isCivilian = ORGM.COMMON, 
-    isPolice = ORGM.COMMON, 
+    isCivilian = ORGM.COMMON,
+    isPolice = ORGM.COMMON,
     isMilitary = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -410,7 +410,7 @@ register("CZ75", {
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
-    
+
     classification = "IGUI_Firearm_SemiPistol",
     year = 1975,
     country = "IGUI_Firearm_Country_CZ",
@@ -510,7 +510,7 @@ register("Glock21", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    
+
     classification = "IGUI_Firearm_SemiPistol",
     year = 1991,
     country = "IGUI_Firearm_Country_AT",
@@ -518,7 +518,7 @@ register("Glock21", {
     description = "IGUI_Firearm_Desc_Glock21",
 })
 register("Glock22", {
-    lastChanged = 24,
+    lastChanged = 25,
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTRECOIL,
@@ -558,7 +558,7 @@ register("KahrCT40", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
-    
+
     classification = "IGUI_Firearm_SemiPistol",
     year = 2014,
     country = "IGUI_Firearm_Country_US",
@@ -604,7 +604,7 @@ register("M1911", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 5.03,
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.COMMON, 
+    isCivilian = ORGM.COMMON,
     isMilitary = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -653,7 +653,7 @@ register("SIGP226", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.4,
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.COMMON, 
+    isCivilian = ORGM.COMMON,
     isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -774,7 +774,7 @@ register("AM180", {
     soundProfile = "SMG",
     alwaysFullAuto = true,
     ejectSound = 'ORGMSMG2Out',
-    insertSound = 'ORGMSMG2In', 
+    insertSound = 'ORGMSMG2In',
 
     classification = "IGUI_Firearm_SMG",
     year = 1972,
@@ -792,7 +792,7 @@ register("Ber93R", {
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Pistol-Small",
-    
+
     classification = "IGUI_Firearm_MachinePistol",
     year = 1979,
     country = "IGUI_Firearm_Country_IT",
@@ -806,7 +806,7 @@ register("FNP90", {
     autoType = ORGM.BLOWBACK,
     barrelLength = 10.4,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     selectFire = 1,
     soundProfile = "SMG",
@@ -841,7 +841,7 @@ register("HKMP5", {
     autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 8.9, -- 4.5, 5.5, 5.7, 5.8, 8.9
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "SMG",
@@ -857,9 +857,9 @@ register("HKUMP", {
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTRECOIL,
-    barrelLength = 8,    
+    barrelLength = 8,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "SMG",
@@ -980,7 +980,7 @@ register("Skorpion", {
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Pistol-Small",
     alwaysFullAuto = true,
-    
+
     classification = "IGUI_Firearm_MachinePistol",
     year = 1961,
     country = "IGUI_Firearm_Country_CZ",
@@ -1014,11 +1014,11 @@ register("AIAW308", {
     actionType = ORGM.BOLT,
     barrelLength = 26,
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.RARE, 
-    isPolice = ORGM.RARE, 
+    isCivilian = ORGM.RARE,
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
-    
+
     classification = "IGUI_Firearm_BoltRifle",
     year = 1983,
     country = "IGUI_Firearm_Country_GB",
@@ -1034,13 +1034,13 @@ register("AKM", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_AssaultRifle",
     year = 1982,
     country = "IGUI_Firearm_Country_CN",
     manufacturer = "IGUI_Firearm_Manuf_NORINCO",
     description = "IGUI_Firearm_Desc_AKM",
-        
+
 })
 register("AKMA", {
     lastChanged = 24,
@@ -1052,7 +1052,7 @@ register("AKMA", {
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_AssaultRifle",
     year = 1959,
     country = "IGUI_Firearm_Country_SU",
@@ -1069,7 +1069,7 @@ register("AR10", {
     isPolice = ORGM.RARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_BattleRifle",
     year = 1956,
     country = "IGUI_Firearm_Country_US",
@@ -1085,7 +1085,7 @@ register("AR15", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1963,
     country = "IGUI_Firearm_Country_US",
@@ -1103,7 +1103,7 @@ register("BBGun", {
     rackSound = 'ORGMBBLever',
     clickSound = 'ORGMPistolEmpty',
     insertSound = 'ORGMMagBBLoad',
-        
+
     classification = "IGUI_Firearm_AirRifle",
     year = 1940,
     country = "IGUI_Firearm_Country_US",
@@ -1134,7 +1134,7 @@ register("FNFAL", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1982,
     country = "IGUI_Firearm_Country_AR",
@@ -1151,7 +1151,7 @@ register("FNFALA", {
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_BattleRifle",
     year = 1953,
     country = "IGUI_Firearm_Country_BE",
@@ -1167,7 +1167,7 @@ register("Garand", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1934,
     country = "IGUI_Firearm_Country_US",
@@ -1198,7 +1198,7 @@ register("HK91", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1974,
     country = "IGUI_Firearm_Country_DE",
@@ -1215,7 +1215,7 @@ register("HKG3", {
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_BattleRifle",
     year = 1958,
     country = "IGUI_Firearm_Country_DE",
@@ -1231,7 +1231,7 @@ register("HKSL8", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1998,
     country = "IGUI_Firearm_Country_DE",
@@ -1260,7 +1260,7 @@ register("LENo4", {
     barrelLength = 25.2,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = "LENo4StripperClip", 
+    speedLoader = "LENo4StripperClip",
     soundProfile = "Rifle-Bolt",
 
     classification = "IGUI_Firearm_BoltRifle",
@@ -1276,11 +1276,11 @@ register("M16", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 20,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
     selectFire = ORGM.FULLAUTOMODE,
-    
+
     classification = "IGUI_Firearm_AssaultRifle",
     year = 1964,
     country = "IGUI_Firearm_Country_US",
@@ -1294,9 +1294,9 @@ register("M1903", {
     barrelLength = 24,
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
-    speedLoader = 'M1903StripperClip', 
+    speedLoader = 'M1903StripperClip',
     soundProfile = "Rifle-Auto-IM",
-    
+
     classification = "IGUI_Firearm_BoltRifle",
     year = 1903,
     country = "IGUI_Firearm_Country_US",
@@ -1310,10 +1310,10 @@ register("M21", {
     autoType = ORGM.SHORTGAS,
     barrelLength = 22,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE, 
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1969,
     country = "IGUI_Firearm_Country_US",
@@ -1334,7 +1334,7 @@ register("M249", {
     insertSound = 'ORGMLMGIn',
     rackSound = 'ORGMLMGRack',
     alwaysFullAuto = true,
-    
+
     classification = "IGUI_Firearm_LMG",
     year = 1979,
     country = "IGUI_Firearm_Country_US",
@@ -1348,11 +1348,11 @@ register("M4C", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 14.5,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice= ORGM.RARE, 
+    isPolice= ORGM.RARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_AssaultCarbine",
     year = 1984,
     country = "IGUI_Firearm_Country_US",
@@ -1371,7 +1371,7 @@ register("Marlin60", {
     rackSound = 'ORGMRifleRack',
     clickSound = 'ORGMSmallPistolEmpty',
     insertSound = 'ORGMMagLoad',
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1960,
     country = "IGUI_Firearm_Country_US",
@@ -1385,10 +1385,10 @@ register("Mini14", {
     autoType = ORGM.LONGGAS,
     barrelLength = 18.5, -- 16.12 (tactical), 18.5, 22 (target)
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.COMMON, 
+    isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 1973,
     country = "IGUI_Firearm_Country_US",
@@ -1402,9 +1402,9 @@ register("Mosin", {
     barrelLength = 29, -- 22.2 carbine, 26.2, 29
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'MosinStripperClip', 
+    speedLoader = 'MosinStripperClip',
     soundProfile = "Rifle-Bolt-IM",
-    
+
     classification = "IGUI_Firearm_BoltRifle",
     year = 1891,
     country = "IGUI_Firearm_Country_RUSEMP",
@@ -1420,7 +1420,7 @@ register("R25", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    
+
     classification = "IGUI_Firearm_SemiRifle",
     year = 2008,
     country = "IGUI_Firearm_Country_US",
@@ -1436,7 +1436,7 @@ register("Rem700", {
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
-    
+
     classification = "IGUI_Firearm_BoltRifle",
     year = 1962,
     country = "IGUI_Firearm_Country_US",
@@ -1451,7 +1451,7 @@ register("Rem788", {
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
-    
+
     classification = "IGUI_Firearm_BoltRifle",
     year = 1967,
     country = "IGUI_Firearm_Country_US",
@@ -1533,7 +1533,7 @@ register("SKS", {
     barrelLength = 20, -- 20 or 22
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SKSStripperClip', 
+    speedLoader = 'SKSStripperClip',
     soundProfile = "Rifle-Auto-IM",
 
     classification = "IGUI_Firearm_SemiCarbine",
@@ -1580,7 +1580,7 @@ register("WinM70", {
     actionType = ORGM.BOLT,
     barrelLength = 24, -- 22, 24, 26
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.RARE, 
+    isCivilian = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
 
@@ -1613,7 +1613,7 @@ register("BenelliM3", {
     lastChanged = 24,
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
-    autoType = ORGM.LONGRECOIL, -- actually Inertia 
+    autoType = ORGM.LONGRECOIL, -- actually Inertia
     barrelLength = 22, -- 20 22, 24
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
@@ -1651,7 +1651,7 @@ register("BenelliXM1014", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.COMMON,
     soundProfile = "Shotgun",
-    rackSound = 'ORGMARRack', 
+    rackSound = 'ORGMARRack',
 
     classification = "IGUI_Firearm_SemiShotgun",
     year = 1999,
@@ -1756,7 +1756,7 @@ register("Rem870", {
     actionType = ORGM.PUMP,
     barrelLength = 26,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.COMMON, 
+    isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1819,8 +1819,8 @@ register("Spas12", {
     barrelLength = 21.5, -- 18, 19-7/8,21.5, 24 -- 21.5 is the shortest we can go with our mag tube
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
-    isCivilian = ORGM.RARE, 
-    isPolice = ORGM.RARE, 
+    isCivilian = ORGM.RARE,
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Shotgun",
 
@@ -1851,10 +1851,10 @@ register("Striker", {
     actionType = ORGM.ROTARY,
     barrelLength = 18.5, -- 7.5, 12, 14, 18.5
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.RARE, 
+    isCivilian = ORGM.RARE,
     isPolice = ORGM.RARE,
     soundProfile = "Shotgun",
-    rackSound = 'ORGMARRack', 
+    rackSound = 'ORGMARRack',
 
     classification = "IGUI_Firearm_SemiShotgun",
     year = 1983,
@@ -1870,7 +1870,7 @@ register("VEPR12", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
-    clickSound = 'ORGMShotgunEmpty', 
+    clickSound = 'ORGMShotgunEmpty',
 
     classification = "IGUI_Firearm_SemiShotgun",
     year = 2003,
