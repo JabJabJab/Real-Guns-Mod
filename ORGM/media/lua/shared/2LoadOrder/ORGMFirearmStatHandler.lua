@@ -9,7 +9,7 @@ local ABS_FULLAUTOSWINGTIME = 0.3 -- full auto only, anything else is dynamic
 -- Adjustment Constants
 local ADJ_FULLAUTOHITCHANCE = -10  -- full auto only
 local ADJ_FULLAUTORECOILDELAY = -20 -- full auto only
---local ADJ_FULLAUTOAIMINGTIME = 20 -- full auto only
+local ADJ_FULLAUTOAIMINGTIME = 20 -- full auto only
 
 local ADJ_AUTOSWINGTIME = -0.3 -- for automatics
 local ADJ_AUTORECOILDELAY = -4 -- for automatics
@@ -166,8 +166,8 @@ end
 ORGM.adjustFirearmStatsByAmmoType = function(weapon, ammoData, statsTable, effectiveWgt)
     -- adjust recoil relative to ammo, weight, barrel
     local length = ORGM.getBarrelLength(weapon) or 10 -- set to a default for safety
-    local optimal = data.OptimalBarrel or 30
-    local lenModifier = ORGM.calcBarrelModifier(optimal, length)
+    local optimal = weapon:getModData().OptimalBarrel or 30
+    local lenModifier = calcBarrelModifier(optimal, length)
     local recoil = ammoData.Recoil or 10
     statsTable.RecoilDelay = (recoil+recoil*lenModifier) / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
     statsTable.MinDamage = statsTable.MinDamage - statsTable.MinDamage * lenModifier
