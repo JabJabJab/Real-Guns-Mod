@@ -2,7 +2,7 @@
     This file handles all ORGM item context menus.
 
     TODO: cleanup and document this file
-    
+
 ]]
 -- all callback functions from context menus go into this table.
 local MenuCallbacks = { }
@@ -57,11 +57,11 @@ MenuCallbacks.onActionTypeToggle = function(item, player, data, reloadable, newt
 end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
-    local itemType = item:getFullType()    
+    local itemType = item:getFullType()
     player:playSound("ORGMRndLoad", false)
     data.selectFire = newmode
     ORGM.setWeaponStats(item, data.lastRound)
-    
+
 end
 
 MenuCallbacks.onSpinCylinder = function(item, player, data, reloadable)
@@ -82,7 +82,7 @@ MenuCallbacks.onShootSelfConfirm = function(this, button, player, item)
         reloadable:fireShot(item, 3)
         player:splatBlood(5, 0.5) -- this one vanishes after a while...
         player:splatBloodFloorBig(0.5)
-        
+
         player:playSound(item:getSwingSound(), false)
         player:getBodyDamage():RestoreToFullHealth() -- cheap trick so the corpse doesn't rise
         player:setHealth(0)
@@ -115,7 +115,7 @@ end
 MenuCallbacks.onSetPreferredAmmo = function(item, player, data, reloadable, value)
     reloadable.preferredAmmoType = value
     reloadable:syncReloadableToItem(item)
-    
+
 end
 
 MenuCallbacks.onInspectFunction = function(item, player, data, reloadable)
@@ -126,13 +126,14 @@ end
 ----------------------------------------------------
 ----------------------------------------------------
 MenuCallbacks.onDebugWeapon = function(item, player, data, reloadable)
+    reloadable:printWeaponDetails(item)
     reloadable:printReloadableWeaponDetails() -- debug data
 end
 
 -- test for backwards  compatibility function: item update
 MenuCallbacks.onBackwardsTestFunction = function(item, player, data, reloadable)
     data.BUILD_ID = 1
-    
+
     if not ORGM.getFirearmData(item).lastChanged then
         player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
         return
@@ -194,7 +195,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     elseif (data.hammerCocked == 0 and data.triggerType ~= ORGM.DOUBLEACTIONONLY) then
         context:addOption(getText("ContextMenu_ORGM_Cock"), item, MenuCallbacks.onHammerToggle, playerObj, data, reloadable);
     end
-    
+
     ---------------------
     -- add open/close bolt, cylinder etc
     local text = "ContextMenu_ORGM_PartSlide"
@@ -205,15 +206,15 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     elseif data.actionType == ORGM.BREAK then
         text = "ContextMenu_ORGM_PartBarrel"
         callback = MenuCallbacks.onBarrelToggle
-    elseif data.actionType == ORGM.BOLT then 
-        text = "ContextMenu_ORGM_PartBolt" 
+    elseif data.actionType == ORGM.BOLT then
+        text = "ContextMenu_ORGM_PartBolt"
     end
     if data.isOpen == 1 then
         context:addOption(getText("ContextMenu_ORGM_Close", getText(text)), item, callback, playerObj, data, reloadable)
     elseif data.isOpen == 0 then
         context:addOption(getText("ContextMenu_ORGM_Open", getText(text)), item, callback, playerObj, data, reloadable)
     end
-    
+
     ---------------------
     -- add actionType switching if weapon allows for item (ie: Pump to Semi-Auto)
     if data.altActionType then
@@ -243,23 +244,30 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
 
     context:addOption(getText("ContextMenu_ORGM_Suicide"), item, MenuCallbacks.onShootSelf, playerObj, data, reloadable)
     -- TODO: if open and has bullets insert round into chamber option
-    
+
+    if isAdmin() or ORGM.Settings.Debug then
+        local altTable = ORGM.getItemAmmoGroup(item)
+        local debugMenu = context:addOption(getText("ContextMenu_ORGM_Admin"), item, nil)
+        local subMenuDebug = context:getNew(context)
+        context:addSubMenu(debugMenu, subMenuDebug)
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminDebug"), item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminReset"), item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
+    end
     -- add debug/development submenu.
     if ORGM.Settings.Debug == true then
         local debugMenu = context:addOption("DEBUG", item, nil)
         local subMenuDebug = context:getNew(context)
         context:addSubMenu(debugMenu, subMenuDebug)
-        
-        subMenuDebug:addOption("* Debug Weapon", item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
+
         subMenuDebug:addOption("* Backwards Compatibility Test", item, MenuCallbacks.onBackwardsTestFunction, playerObj, data, reloadable)
         subMenuDebug:addOption("* Magazine Overflow Test", item, MenuCallbacks.onMagOverflowTestFunction, playerObj, data)
-        subMenuDebug:addOption("* Reset To Defaults", item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
         --subMenuDebug:addOption("* Full ammo")
     end
 end
 
 --[[  menuBuilderMagazine(playerObj, context, item)
-    
+
     menus specific to magazines
 
 ]]
@@ -269,6 +277,14 @@ ORGM.Client.magazineContextMenu = function(player, context, item)
     if data.currentCapacity ~= nil and data.currentCapacity > 0 then
         context:addOption(getText("ContextMenu_ORGM_Unload"), item, MenuCallbacks.onUnload, playerObj)
     end
+    if isAdmin() then
+        local altTable = ORGM.getItemAmmoGroup(item)
+        local debugMenu = context:addOption("Admin", item, nil)
+        local subMenuDebug = context:getNew(context)
+        context:addSubMenu(debugMenu, subMenuDebug)
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
+    end
+
 end
 
 
@@ -282,7 +298,7 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     end
     --if item:getModule() ~= "ORGM" then return end
     -- item must be in inventory
-    if playerObj:getInventory():contains(item) == false then return end    
+    if playerObj:getInventory():contains(item) == false then return end
 
     if ORGM.isFirearm(item) then
         ORGM.Client.firearmContextMenu(player, context, item)
@@ -291,17 +307,18 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     else
         return
     end
-    
-    
+
+
     local data = item:getModData()
     ---------------------
     -- Check for alternate ammo types so player can set gun to use a specific type
-    local ammoType = data.ammoType
-    if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
-        ammoType = ReloadUtil:getClipData(ammoType).ammoType
-    end
-    local reloadable = ReloadUtil:getReloadableWeapon(item, player)
-    local altTable = ORGM.getAmmoGroup(ammoType)
+    local altTable = ORGM.getItemAmmoGroup(item)
+    --local ammoType = data.ammoType
+    --if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
+    --    ammoType = ReloadUtil:getClipData(ammoType).ammoType
+    --end
+    --local reloadable = ReloadUtil:getReloadableWeapon(item, player)
+    --local altTable = ORGM.getAmmoGroup(ammoType)
     if #altTable > 1 then -- this ammo has alternatives
         -- create the submenu
         local preferredAmmoMenu = context:addOption(getText("ContextMenu_ORGM_UseOnly"), item, nil)
@@ -317,8 +334,4 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
         end
     end
 
-    if isAdmin() then
-        context:addOption(getText("ContextMenu_ORGM_AdminLoad"), item, MenuCallbacks.onAdminFillAmmo, playerObj, data, altTable[1])
-    end
 end
-
