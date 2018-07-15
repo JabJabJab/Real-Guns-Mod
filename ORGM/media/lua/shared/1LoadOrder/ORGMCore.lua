@@ -19,6 +19,7 @@ ORGM = {
         "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
         "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
         "3.06-stable", "3.07-beta", "3.07-stable", "3.08-stable", -- 24
+        "3.09-beta-rc1", -- 25
     },
     BUILD_ID = nil, -- set automatically at the end of this file
 
@@ -153,7 +154,8 @@ ORGM.SettingsValidator = {
     -- RemoveBaseFirearms:  Stops spawning of the base game firearms.
     -- valid options are true or false (default true)
     RemoveBaseFirearms = {type='boolean', default=true},
-    DamageMultiplier = {type='float', min=0.1, default=0.5},
+    UseBarrelLengthModifiers = {type='boolean', default=true},
+    DamageMultiplier = {type='float', min=0.1, default=0.6},
     DefaultHitChancePistol = {type='integer', min=0, max=100, default=40},
     DefaultHitChanceSMG = {type='integer', min=0, max=100, default=30},
     DefaultHitChanceRifle = {type='integer', min=0, max=100, default=40},
