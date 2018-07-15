@@ -1181,11 +1181,6 @@ end
 ]]
 function ISORGMWeapon:syncItemToReloadable(weapon)
     local modData = weapon:getModData()
-     -- handle switching difficulty
-    --if ReloadManager[1]:getDifficulty() == 1 then
-    --  modData.containsClip = 1
-    --end
-    ---------------------------------------------
     --ISReloadableWeapon.syncItemToReloadable(self, weapon)
     self.defaultAmmo = weapon:getAmmoType()
     ---------------------------------------------
@@ -1268,120 +1263,133 @@ function ISORGMWeapon:setupReloadable(weapon, v)
     ORGM.setupGun(v, weapon) --moved to save on duplicate code
 end
 
-function ISORGMWeapon:printReloadableDetails()
-    --self:printReloadableDetails()
-    print("triggerType == " .. self.triggerType)
-    print("actionType == " .. self.actionType)
 
-    if(self.roundChambered ~= nil) then
-        print("roundChambered == "..self.roundChambered)
-    else
-        print("roundChambered == nil")
-    end
+local function printDetails(data)
+    print("type == " .. tostring(data.type))
+    print("BUILD_ID == ".. tostring(data.BUILD_ID))
+    print("triggerType == " .. tostring(data.triggerType))
+    print("actionType == " .. tostring(data.actionType))
+    print("barrelLength == " .. tostring(data.barrelLength))
 
-    if(self.emptyShellChambered ~= nil) then
-        print("emptyShellChambered == "..self.emptyShellChambered)
-    else
-        print("emptyShellChambered == nil")
-    end
+    print("isOpen == " .. tostring(data.isOpen))
+    print("hammerCocked == " .. tostring(data.hammerCocked))
+    print("selectFire == " .. tostring(data.selectFire))
+    print("cylinderPosition == " .. tostring(data.cylinderPosition))
+    print("reloadTime == " .. tostring(data.reloadTime))
+    print("rackTime == " .. tostring(data.rackTime))
 
-    if(self.containsClip ~= nil) then
-        print("containsClip == "..self.containsClip)
-    else
-        print("containsClip == nil")
-    end
+    print("ammoType == " .. tostring(data.ammoType))
+    print("containsClip == "..tostring(data.containsClip))
+    print("maxCapacity == "..tostring(data.maxCapacity))
+    print("roundChambered == "..tostring(data.roundChambered))
+    print("emptyShellChambered == "..tostring(data.emptyShellChambered))
+    print("currentCapacity == "..tostring(data.currentCapacity))
+    print("isJammed == "..tostring(data.isJammed))
+    --print("speedLoader == " .. tostring(data.speedLoader))
+    --print("altActionType == " .. tostring(data.altActionType))
+    print("lastRound == "..tostring(data.lastRound))
+    print("preferredAmmoType == "..tostring(data.preferredAmmoType))
+    print("loadedAmmo == "..tostring(data.loadedAmmo))
+    print("roundsFired == " .. tostring(data.roundsFired))
+    print("roundsSinceCleaned == " .. tostring(data.roundsSinceCleaned))
 
-    if(self.maxCapacity ~= nil) then
-        print("maxCapacity == "..self.maxCapacity)
-    else
-        print("maxCapacity == nil")
-    end
-
-    if(self.currentCapacity ~= nil) then
-        print("currentCapacity == "..self.currentCapacity)
-    else
-        print("currentCapacity == nil")
-    end
-
-    if(self.isJammed ~= nil) then
-        print("isJammed == "..self.isJammed)
-    else
-        print("isJammed == nil")
-    end
-
-    print("isOpen == " .. self.isOpen)
-    print("hammerCocked == " .. self.hammerCocked)
-    if self.selectFire then print("selectFire == " .. self.selectFire) end
-    if self.cylinderPosition then print("cylinderPosition == " .. self.cylinderPosition) end
-
-    if(self.lastRound ~= nil) then
-        print("lastRound == "..self.lastRound)
-    else
-        print("lastRound == nil")
-    end
-
-    if self.preferredAmmoType then
-        print("preferredAmmoType == "..self.preferredAmmoType)
-    else
-        print("preferredAmmoType == nil")
-    end
-    if self.loadedAmmo then
-        print("loadedAmmo == "..self.loadedAmmo)
-    else
-        print("loadedAmmo == nil")
-    end
-
-    if self.magazineData then
-        for index=1, self.maxCapacity do
-            value = self.magazineData[index]
-            if value == nil then value = "nil" end
-            print("magazineData #" .. index .. " = " .. value)
-        end
-    end
-
-    print("***************************************************************");
-    print();
-    print();
-end
-
-function ISORGMWeapon:printReloadableWeaponDetails()
-    --self:printReloadableDetails()
-
-
-    print("type == " .. tostring(self.type))
---    print("BUILD_ID == ".. tostring(self.type))
-    print("triggerType == " .. tostring(self.triggerType))
-    print("actionType == " .. tostring(self.actionType))
-    print("roundChambered == "..tostring(self.roundChambered))
-    print("emptyShellChambered == "..tostring(self.emptyShellChambered))
-
-    print("containsClip == "..tostring(self.containsClip))
-    print("maxCapacity == "..tostring(self.maxCapacity))
-    print("currentCapacity == "..tostring(self.currentCapacity))
-
-    print("isJammed == "..tostring(self.isJammed))
-
-    print("isOpen == " .. tostring(self.isOpen))
-    print("hammerCocked == " .. tostring(self.hammerCocked))
-    print("selectFire == " .. tostring(self.selectFire))
-    print("cylinderPosition == " .. tostring(self.cylinderPosition))
-
-    print("lastRound == "..tostring(self.lastRound))
-
-    print("preferredAmmoType == "..tostring(self.preferredAmmoType))
-    print("loadedAmmo == "..tostring(self.loadedAmmo))
-    print("loadedAmmo == nil")
-
-    if self.magazineData then
-        for index=1, self.maxCapacity do
-            value = self.magazineData[index]
+    if data.magazineData then
+        for index=1, data.maxCapacity do
+            value = data.magazineData[index]
             print("magazineData #" .. index .. " = " .. tostring(value))
         end
     end
+end
 
-    print("***************************************************************");
-    print();
-    print();
+function ISORGMWeapon:printWeaponDetails(item)
+    print("***************************************************************")
+    print("Debug data for: ".. tostring(item:getFullType()))
+    print("DisplayName == " .. tostring(item:getDisplayName()))
+    print("AmmoType == " .. tostring(item:getAmmoType()))
+    print("ClipSize == " .. tostring(item:getClipSize()))
+    print()
+    print("*** Weapon Damage ***")
+    print("MinDamage == " .. tostring(item:getMinDamage()))
+    print("MaxDamage == " .. tostring(item:getMaxDamage()))
+    print("DoorDamage == " .. tostring(item:getDoorDamage()))
+    print("TreeDamage == " .. tostring(item:getTreeDamage()))
+    print()
+    print("*** Weapon Times ***")
+    print("SwingTime == " .. tostring(item:getSwingTime()))
+    print("MinimumSwingTime == " .. tostring(item:getMinimumSwingTime()))
+    print("RecoilDelay == " .. tostring(item:getRecoilDelay()))
+    print("AimingTime == " .. tostring(item:getAimingTime()))
+    print("ReloadTime == " .. tostring(item:getReloadTime()))
+    print()
+    print("*** Weapon Accuracy ***")
+    print("AimingMod == " .. tostring(item:getAimingMod()))
+    print("HitChance == " .. tostring(item:getHitChance()))
+    print("AimingPerkHitChanceModifier == " .. tostring(item:getAimingPerkHitChanceModifier()))
+    print("ToHitModifier == " .. tostring(item:getToHitModifier()))
+    print("MaxHitCount == " .. tostring(item:getMaxHitCount()))
+    print("ProjectileCount == " .. tostring(item:getProjectileCount()))
+    print()
+    print("CriticalChance == " .. tostring(item:getCriticalChance()))
+    print("AimingPerkCritModifier == " .. tostring(item:getAimingPerkCritModifier()))
+    print()
+    print("*** Weapon Ranges ***")
+    print("MinRange == " .. tostring(item:getMinRange()))
+    print("MinRangeRanged == " .. tostring(item:getMinRangeRanged()))
+    print("MaxRange == " .. tostring(item:getMaxRange()))
+    print("AimingPerkRangeModifier == " .. tostring(item:getAimingPerkRangeModifier()))
+    print()
+    print("*** Weapon Angles ***")
+    print("MaxAngle == " .. tostring(item:getMaxAngle()))
+    print("MinAngle == " .. tostring(item:getMinAngle()))
+    print("AimingPerkMinAngleModifier == " .. tostring(item:getAimingPerkMinAngleModifier()))
+    print()
+    print("*** Weapon Sounds ***")
+    print("SwingSound == " .. tostring(item:getSwingSound()))
+    print("SoundGain == " .. tostring(item:getSoundGain()))
+    print("SoundRadius == " .. tostring(item:getSoundRadius()))
+    print("SoundVolume == " .. tostring(item:getSoundVolume()))
+    print()
+    print("*** Weapon Weight ***")
+    print("Weight == " .. tostring(item:getWeight()))
+    print("ActualWeight == " .. tostring(item:getActualWeight()))
+    print("UnequippedWeight == " .. tostring(item:getUnequippedWeight()))
+    print()
+    print("*** Weapon Condition ***")
+    print("Condition == " .. tostring(item:getCondition()))
+    print("ConditionMax == " .. tostring(item:getConditionMax()))
+    print("CurrentCondition == " .. tostring(item:getCurrentCondition()))
+    print("ConditionLowerChance == " .. tostring(item:getConditionLowerChance()))
+    print("HaveBeenRepaired == " .. tostring(item:getHaveBeenRepaired()))
+    print()
+    print("*** Weapon Attachments ***")
+    print("Cannon == ".. (item:getCanon() and item:getCanon():getFullType() or "nil"))
+    print("Scope == ".. (item:getScope() and item:getScope():getFullType() or "nil"))
+    print("Sling == ".. (item:getSling() and item:getSling():getFullType() or "nil"))
+    print("Stock == ".. (item:getStock() and item:getStock():getFullType() or "nil"))
+    print("Clip == ".. (item:getClip() and item:getClip():getFullType() or "nil"))
+    print("Recoilpad == ".. (item:getRecoilpad() and item:getRecoilpad():getFullType() or "nil"))
+    print()
+    print()
+    print("***************************************************************")
+    print("***************************************************************")
+    print("ModData details:")
+    printDetails(item:getModData())
+    print()
+    print()
+    print("***************************************************************")
+end
+
+function ISORGMWeapon:printReloadableDetails()
+    print("***************************************************************")
+    print("Reloadable Weapon Details:")
+    printDetails(self)
+    print()
+    print()
+    print("***************************************************************")
+end
+
+function ISORGMWeapon:printReloadableWeaponDetails()
+    self:printReloadableDetails()
 end
 ORGM.NVAL = 0.1
 
