@@ -7,16 +7,16 @@
 
 ]]
 ORGM.itemBindingHandler = function(key)
-	local weapon = nil;
-	local playerObj = getSpecificPlayer(0)
+    local weapon = nil;
+    local playerObj = getSpecificPlayer(0)
     if playerObj and not playerObj:IsAiming() then
-	-- looking for the better handweapon
-		if key == getCore():getKey("Equip/Unequip Handweapon") then
+        -- looking for the better handweapon
+        if key == getCore():getKey("Equip/Unequip Handweapon") then
             ORGM.equipBestMeleeWeapon(playerObj, "Swinging")
-		elseif key == getCore():getKey("Equip/Unequip Firearm") then -- looking for the better firearm
+        elseif key == getCore():getKey("Equip/Unequip Firearm") then -- looking for the better firearm
             ORGM.equipBestFirearm(playerObj, nil)
             --ORGM.equipBestMeleeWeapon(playerObj, "Firearm")
-		elseif key == getCore():getKey("Equip/Unequip Stab weapon") then 	-- looking for the better stab weapon
+        elseif key == getCore():getKey("Equip/Unequip Stab weapon") then 	-- looking for the better stab weapon
             ORGM.equipBestMeleeWeapon(playerObj, "Stab")
 
         elseif key == getCore():getKey("Equip/Unequip Pistol") then
@@ -43,28 +43,28 @@ ORGM.itemBindingHandler = function(key)
             -- default pz light finding code
             local primary = playerObj:getPrimaryHandItem()
             local secondary = playerObj:getSecondaryHandItem()
-			if primary ~= nil and primary:getLightStrength() > 0 then
-				primary:setActivated(not primary:isActivated())
-			elseif secondary ~= nil and secondary:getLightStrength() > 0 then
-				secondary:setActivated(not secondary:isActivated())
-			else
-				local lightStrength = 0;
-				local lightSource = nil;
-				local it = playerObj:getInventory():getItems()
-				for i=0, it:size() - 1 do
-					local item = it:get(i);
-					if item:getLightStrength() > lightStrength then
-						lightSource = item;
-						lightStrength = item:getLightStrength()
-					end
-				end
-				if lightSource ~= nil then
-					ISTimedActionQueue.add(ISEquipWeaponAction:new(playerObj, lightSource, 50, false));
-					lightSource:setActivated(true);
-				end
-			end
-		end
-	end
+            if primary ~= nil and primary:getLightStrength() > 0 then
+                primary:setActivated(not primary:isActivated())
+            elseif secondary ~= nil and secondary:getLightStrength() > 0 then
+                secondary:setActivated(not secondary:isActivated())
+            else
+                local lightStrength = 0;
+                local lightSource = nil;
+                local it = playerObj:getInventory():getItems()
+                for i=0, it:size() - 1 do
+                    local item = it:get(i);
+                    if item:getLightStrength() > lightStrength then
+                        lightSource = item;
+                        lightStrength = item:getLightStrength()
+                    end
+                end
+                if lightSource ~= nil then
+                    ISTimedActionQueue.add(ISEquipWeaponAction:new(playerObj, lightSource, 50, false));
+                    lightSource:setActivated(true);
+                end
+            end
+        end
+    end
 end
 
 --[[ ORGM.equipBestFirearm(playerObj, subCategory)
@@ -79,15 +79,15 @@ end
 
 ]]
 ORGM.equipBestFirearm = function(playerObj, subCategory)
-	if not playerObj or playerObj:isDead() or playerObj:IsAiming() then return end
+    if not playerObj or playerObj:isDead() or playerObj:IsAiming() then return end
     local primary = playerObj:getPrimaryHandItem()
 
     local choices = {}
     local best = { }
-	local it = playerObj:getInventory():getItems()
-	for i=0,it:size()-1 do repeat
-		local item = it:get(i)
-		if not instanceof(item, "HandWeapon") or item:getSubCategory() ~= "Firearm" then break end
+    local it = playerObj:getInventory():getItems()
+    for i=0,it:size()-1 do repeat
+    local item = it:get(i)
+    if not instanceof(item, "HandWeapon") or item:getSubCategory() ~= "Firearm" then break end
         if item:getCondition() == 0 then break end
         if not subCategory then
             table.insert(choices, item)
@@ -108,7 +108,7 @@ ORGM.equipBestFirearm = function(playerObj, subCategory)
         elseif subCategory == "Rifle" and (category == ORGM.RIFLE or category == ORGM.SUBMACHINEGUN) then -- anything else is a rifle, smg, or unknown. bind these to the rifle key
             table.insert(choices, item)
         end
-	until true end
+    until true end
 
     ------------------------------------------------------------------------------------------------
     for _, item in pairs(choices) do
@@ -141,7 +141,7 @@ ORGM.equipBestFirearm = function(playerObj, subCategory)
         best = ORGM.compareFirearms(best, current)
     end
 
-	if best.item then
+    if best.item then
         if best.item == primary then
             ISTimedActionQueue.add(ISUnequipAction:new(playerObj, primary, 50))
         else
@@ -173,29 +173,29 @@ end
 
 ]]
 ORGM.equipBestMeleeWeapon = function(playerObj, subCategory)
-	if not (playerObj and not playerObj:isDead() and not playerObj:IsAiming()) then return end
+    if not (playerObj and not playerObj:isDead() and not playerObj:IsAiming()) then return end
 
     local primary = playerObj:getPrimaryHandItem()
-	if primary and instanceof(primary, "HandWeapon") and primary:getSubCategory() == subCategory then
+    if primary and instanceof(primary, "HandWeapon") and primary:getSubCategory() == subCategory then
         -- remove the old item
-		ISTimedActionQueue.add(ISUnequipAction:new(playerObj, primary, 50))
-		return
-	end
-	local weapon = nil
-	local weaponDmg = 0
-	local it = playerObj:getInventory():getItems()
-	for i=1,it:size() do
-		local item = it:get(i-1)
-		if instanceof(item, "HandWeapon") and item:getSubCategory() == subCategory and
-				weaponDmg < ((item:getMaxDamage() + item:getMinDamage()) / 2) and item:getCondition() > 0 then
-			weapon = item
-			weaponDmg = ((item:getMaxDamage() + item:getMinDamage()) / 2)
-		end
-	end
+        ISTimedActionQueue.add(ISUnequipAction:new(playerObj, primary, 50))
+        return
+    end
+    local weapon = nil
+    local weaponDmg = 0
+    local it = playerObj:getInventory():getItems()
+    for i=1,it:size() do
+        local item = it:get(i-1)
+        if instanceof(item, "HandWeapon") and item:getSubCategory() == subCategory and
+            weaponDmg < ((item:getMaxDamage() + item:getMinDamage()) / 2) and item:getCondition() > 0 then
+                weapon = item
+                weaponDmg = ((item:getMaxDamage() + item:getMinDamage()) / 2)
+            end
+    end
 
-	if weapon and weapon ~= primary then
-		ISTimedActionQueue.add(ISEquipWeaponAction:new(playerObj, weapon, 50, true, weapon:isTwoHandWeapon()))
-	end
+    if weapon and weapon ~= primary then
+        ISTimedActionQueue.add(ISEquipWeaponAction:new(playerObj, weapon, 50, true, weapon:isTwoHandWeapon()))
+    end
 end
 
 --[[ ORGM.Server.onClientCommand(module, command, player, args)
