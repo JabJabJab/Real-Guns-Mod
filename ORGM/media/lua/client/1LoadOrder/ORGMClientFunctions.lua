@@ -12,7 +12,7 @@ ORGM.Client.addModel = function(name, model, texture)
     local modelPrefix = dir .. "/media/models/weapons_"
     local texturePrefix = dir .. "/media/textures/Objects_"
     loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", texturePrefix .. texture .. ".png")
-    
+
 end
 
 --[[    ORGM.Client.loadModels()
@@ -46,10 +46,10 @@ ORGM.Client.loadModels = function()
     ORGM.Client.addModel('ppk') -- new
     ORGM.Client.addModel('sfieldxd') -- new
     ORGM.Client.addModel('rugermkii')
-    
-    
+
+
     ORGM.Client.addModel('henry')
-    ORGM.Client.addModel('fnfal')    
+    ORGM.Client.addModel('fnfal')
     ORGM.Client.addModel('hk91') -- new, replaces g3
     ORGM.Client.addModel('sl8') -- new
     ORGM.Client.addModel('m249') -- new
@@ -60,15 +60,15 @@ ORGM.Client.loadModels = function()
     ORGM.Client.addModel('r700') -- new
     ORGM.Client.addModel('sa80') -- updated
     ORGM.Client.addModel('sig551') -- new
-    
-    
+
+
     ORGM.Client.addModel('l96') -- new
     ORGM.Client.addModel('m16') -- updated, replaces M16, M4, AR10, AR15, SR25
     ORGM.Client.addModel('kalash') -- updated
     ORGM.Client.addModel('garand') -- new
     ORGM.Client.addModel('svd') -- updated
-    
-    
+
+
     ORGM.Client.addModel('m1216') -- new
     ORGM.Client.addModel('super90') -- new
     ORGM.Client.addModel('r870') -- new
@@ -77,7 +77,7 @@ ORGM.Client.loadModels = function()
     ORGM.Client.addModel('stevens') -- new
     ORGM.Client.addModel('spas12')
 
-    
+
     ORGM.Client.addModel('kriss')
     ORGM.Client.addModel('krissciv')
     ORGM.Client.addModel('mp5') -- updated
@@ -87,16 +87,16 @@ ORGM.Client.loadModels = function()
     ORGM.Client.addModel('skorpion') -- new
     ORGM.Client.addModel('ump') -- updated
     ORGM.Client.addModel('uzi') -- updated
-    
+
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
-end 
+end
 
 --[[  ORGM.Client.checkFirearmBuildID(player, item)
-    
+
     Note this function has the same name as the shared function ORGM.checkFirearmBuildID()
-    but is client specific. It handles the actual upgrading/replacing of firearms that require it. 
-    It is meant to be called from Events.OnEquipPrimary and OnGameStart listed in 
-    client/ORGMClientEventHooks.lua and is also called by the Survivors mod compatibility patch 
+    but is client specific. It handles the actual upgrading/replacing of firearms that require it.
+    It is meant to be called from Events.OnEquipPrimary and OnGameStart listed in
+    client/ORGMClientEventHooks.lua and is also called by the Survivors mod compatibility patch
     LoadSurvivor() function
 
 ]]
@@ -106,8 +106,8 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
     if not ORGM.isFirearm(item) then return end
 
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
-    
-    ORGM.setWeaponStats(item, item:getModData().lastRound)
+
+    ORGM.setWeaponStats(item)
     if ORGM.checkFirearmBuildID(item) then
         player:Say("Resetting this weapon to defaults due to ORGM changes. Ammo returned to inventory.")
         ORGM.Client.unequipItemNow(player, item)
@@ -123,7 +123,7 @@ end
 
 --[[ ORGM.Client.unequipItemNow(player, item)
 
-    Instantly unequip the item if it's in the player's primary hand, skipping timed actions. 
+    Instantly unequip the item if it's in the player's primary hand, skipping timed actions.
     Used by ORGM.Client.checkFirearmBuildID() above when upgrading weapons to new ORGM versions.
 
 ]]
@@ -143,7 +143,7 @@ end
 --[[ ORGM.Client.onKeyPress(key)
 
     Runs client side actions on a key being pressed. Currently this only reloads any mag.
-    
+
 ]]
 ORGM.Client.onKeyPress = function(key)
     local player = getSpecificPlayer(0)
@@ -172,12 +172,12 @@ ORGM.Client.onKeyPress = function(key)
         local data = primary:getModData()
         if not data.selectFire then return end
         player:playSound("ORGMRndLoad", false)
-        if data.selectFire == ORGM.SEMIAUTOMODE then 
+        if data.selectFire == ORGM.SEMIAUTOMODE then
             data.selectFire = ORGM.FULLAUTOMODE
         else
             data.selectFire = ORGM.SEMIAUTOMODE
         end
-        ORGM.setWeaponStats(primary, data.lastRound)
+        ORGM.setWeaponStats(primary)
     elseif key == getCore():getKey("Firearm Inspection Window") then
         --ORGMFirearmWindow:setFirearm(item)
         ORGMFirearmWindow:setVisible(not ORGMFirearmWindow:isVisible())
@@ -186,9 +186,9 @@ end
 
 
 --[[ ORGM.Client.restorePreviousSettings()
-    
+
     Called on Events.OnMainMenuEnter, this restores a clients original ORGM settings
-    
+
 ]]
 ORGM.Client.restorePreviousSettings = function()
     if ORGM.Client.PreviousSettings then
@@ -204,7 +204,7 @@ end
     This is only triggered on the first tick, it seems sendClientCommand will not
     properly trigger OnGameStart (GameClient.bIngame is false?).
     Removes itself from the event queue after.
-    
+
     Credits to Dr_Cox1911 for the OnTick trick in his CoxisReloadSync mod.
 
 ]]
@@ -240,7 +240,7 @@ ORGM.Client.CommandHandler.updateSettings = function(args)
         ORGM.log(ORGM.DEBUG, "Server Setting "..tostring(key).."="..tostring(value))
         ORGM.Settings[key] = value
     end
-    
+
     Events.OnMainMenuEnter.Remove(ORGM.Client.restorePreviousSettings)
     Events.OnMainMenuEnter.Add(ORGM.Client.restorePreviousSettings)
 end

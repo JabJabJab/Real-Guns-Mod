@@ -53,14 +53,14 @@ end
 MenuCallbacks.onActionTypeToggle = function(item, player, data, reloadable, newtype)
     player:playSound("ORGMRndLoad", false)
     data.actionType = newtype
-    ORGM.setWeaponStats(item, data.lastRound)
+    ORGM.setWeaponStats(item)
 end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
     local itemType = item:getFullType()
     player:playSound("ORGMRndLoad", false)
     data.selectFire = newmode
-    ORGM.setWeaponStats(item, data.lastRound)
+    ORGM.setWeaponStats(item)
 
 end
 

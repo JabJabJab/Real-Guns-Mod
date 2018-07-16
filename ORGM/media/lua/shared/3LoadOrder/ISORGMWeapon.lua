@@ -1044,14 +1044,15 @@ function ISORGMWeapon:setCurrentRound(ammoType, weapon)
     local roundData = ORGM.getAmmoData(ammoType)
     if roundData == nil then
         self.lastRound = nil
+        weapon:getModData().lastRound = nil
         return
     end
     if ammoType ~= self.lastRound then
-        ORGM.setWeaponStats(weapon, ammoType)
+        self.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
+        weapon:getModData().lastRound = ammoType
+        ORGM.setWeaponStats(weapon)
     end
     ORGM.setWeaponProjectilePiercing(weapon, roundData)
-    self.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
-
 end
 
 
