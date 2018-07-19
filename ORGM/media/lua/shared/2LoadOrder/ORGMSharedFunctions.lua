@@ -368,7 +368,6 @@ ORGM[13] = "4\07052474\068"
 ]]
 ORGM.setupGun = function(gunData, item)
     local modData = item:getModData()
-
     ---------------------------------------------
     -- ISReloadableWeapon.setupReloadable(self, weapon, v)
     modData.defaultAmmo = item:getAmmoType()
@@ -380,7 +379,7 @@ ORGM.setupGun = function(gunData, item)
     modData.moduleName = gunData.moduleName
     modData.reloadClass = gunData.reloadClass
     modData.ammoType = gunData.ammoType
-    modData.loadStyle = gunData.reloadStyle
+    modData.loadStyle = gunData.reloadStyle -- TODO: unused?
     modData.ejectSound = gunData.ejectSound
     modData.clickSound = gunData.clickSound
     modData.insertSound = gunData.insertSound
@@ -427,7 +426,12 @@ ORGM.setupGun = function(gunData, item)
     modData.loadedAmmo = nil
     modData.roundsFired = 0
     modData.roundsSinceCleaned = 0
-
+    if ZombRand(100) > 50 and gunData.barrelLengthOpt then
+        -- pick random length from our options
+        modData.barrelLength = gunData.barrelLengthOpt[ZombRand(#gunData.barrelLengthOpt)]
+    else
+        modData.barrelLength = gunData.barrelLength
+    end
     modData.BUILD_ID = ORGM.BUILD_ID
 end
 
