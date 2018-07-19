@@ -48,7 +48,8 @@ register("ColtAnac", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 6, -- 4, 6 or 8
+    barrelLength = 6,
+    barrelLengthOpt =  {4, 6, 8},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
@@ -65,7 +66,8 @@ register("ColtPyth", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 6, -- 2.5, 3, 4, 6 or 8
+    barrelLength = 6,
+    barrelLengthOpt = { 2.5, 3, 4, 6, 8},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader3576',
@@ -83,7 +85,8 @@ register("ColtSAA", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 5.5, -- 5.5 or 7.5
+    barrelLength = 5.5,
+    barrelLengthOpt = {5.5, 7.5 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
@@ -99,6 +102,7 @@ register("RugAlas", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 2.5,
+    barrelLengthOpt = { 2.5, 7.5, 9.5 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader4546',
@@ -114,7 +118,8 @@ register("RugBH", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 4.65, -- 4.65, 6.5, 7.5
+    barrelLength = 4.65,
+    barrelLengthOpt = { 4.65, 6.5, 7.5 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
@@ -129,7 +134,8 @@ register("RugGP100", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 4.2, -- 3, 4.2, 6
+    barrelLength = 4.2,
+    barrelLengthOpt = { 3, 4.2, 6 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader3576',
@@ -145,7 +151,8 @@ register("RugRH", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 5.5, -- 4, 5.5, 7.5
+    barrelLength = 5.5,
+    barrelLengthOpt = { 4, 5.5, 7.5 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446',
@@ -161,7 +168,8 @@ register("RugSec6", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 4, -- 2.74, 3, 4, 6
+    barrelLength = 4,
+    barrelLengthOpt = {2.74, 3, 4, 6},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader386',
@@ -177,7 +185,8 @@ register("SWM10", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 4, -- 2, 2.5, 3, 4, 5, 6
+    barrelLength = 4,
+    barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader386',
@@ -193,7 +202,8 @@ register("SWM19", {
     lastChanged = 24,
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
-    barrelLength = 4, -- 2.5, 3, 4, 6
+    barrelLength = 4,
+    barrelLengthOpt = {2.5, 3, 4, 6},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader3576',
@@ -210,6 +220,7 @@ register("SWM252", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 6, -- 4, 5 (very rare!), 6, 6.5, 8.4
+    barrelLengthOpt = {4, 5, 6, 6.5, 8.4},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader456',
@@ -226,6 +237,7 @@ register("SWM29", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 6, -- 4, 6, 6.5, 8.425, 10.63
+    barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446',
@@ -242,6 +254,7 @@ register("SWM36", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 1.875,
+    barrelLengthOpt = { 1.875, 2, 3 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader385',
@@ -258,6 +271,7 @@ register("SWM610", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 6.5, -- 3.875, 6.5
+    barrelLengthOpt = { 3.875, 6.5 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader10mm6',
@@ -274,6 +288,7 @@ register("Taurus454", {
     category = ORGM.REVOLVER,
     actionType = ORGM.ROTARY,
     barrelLength = 6.5, -- 2.25, 3, 4, 5, 6, 6.5, 8.425, 10
+    barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader4546',
@@ -293,7 +308,7 @@ register("AutomagV", {
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     autoType = ORGM.DELAYEDBLOWBACK,
-    barrelLength = 6.5,
+    barrelLength = 6.5, -- no aditional lengths
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
@@ -324,7 +339,7 @@ register("Ber92", {
     category = ORGM.PISTOL,
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTRECOIL,
-    barrelLength = 4.9,
+    barrelLength = 4.9, -- 4.7 an 4.3 for other variants (not FS)
     triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
@@ -425,6 +440,7 @@ register("DEagle", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 10, -- 6, 10 or 14
+    barrelLengthOpt = { 6, 10, 14 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
@@ -441,6 +457,7 @@ register("DEagleXIX", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 10, -- 6, or 10
+    barrelLengthOpt = { 6, 10 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
@@ -717,6 +734,7 @@ register("WaltherP22", {
     actionType = ORGM.AUTO,
     autoType = ORGM.BLOWBACK,
     barrelLength = 3.42, -- 5" target barrel
+    barrelLengthOpt = {3.42, 5 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
@@ -749,6 +767,7 @@ register("XD40", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
+    barrelLengthOpt = { 3, 4, 5 },
     triggerType = ORGM.DOUBLEACTIONONLY, -- striker trigger mechanism, DAO is close enough
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
@@ -769,6 +788,7 @@ register("AM180", {
     actionType = ORGM.AUTO,
     autoType = ORGM.BLOWBACK,
     barrelLength = 9, -- 9 or 18.5
+    barrelLengthOpt = { 9, 18.5 },
     triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
     isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
@@ -839,7 +859,8 @@ register("HKMP5", {
     category = ORGM.SUBMACHINEGUN,
     actionType = ORGM.AUTO,
     autoType = ORGM.DELAYEDBLOWBACK,
-    barrelLength = 8.9, -- 4.5, 5.5, 5.7, 5.8, 8.9
+    barrelLength = 8.9,
+    barrelLengthOpt = { 4.5, 5.5, 5.7, 5.8, 8.9 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
@@ -892,6 +913,7 @@ register("KrissA", {
     actionType = ORGM.AUTO,
     autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 5.5, -- 5.5 or 6.5
+    barrelLengthOpt = { 5.5, 6.5 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
@@ -1082,6 +1104,7 @@ register("AR15", {
     actionType = ORGM.AUTO,
     autoType = ORGM.DIRECTGAS,
     barrelLength = 20, -- 16 (carbine), 20 (standard), 24 (target)
+    barrelLengthOpt = { 16, 20, 24 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-AR",
@@ -1098,6 +1121,7 @@ register("BBGun", {
     actionType = ORGM.LEVER,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
+    -- TODO: Barrel Length
     rackTime = 3,
     soundProfile = "Rifle-Lever",
     rackSound = 'ORGMBBLever',
@@ -1115,6 +1139,7 @@ register("BLR", {
     category = ORGM.RIFLE,
     actionType = ORGM.LEVER,
     barrelLength = 22, -- 16, 18, 18.5, 20, 22, 24
+    barrelLengthOpt = { 16, 18, 18.5, 20, 22, 24 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Lever",
@@ -1147,6 +1172,7 @@ register("FNFALA", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 21, -- 17.2, 18, 21
+    barrelLengthOpt = { 17.2, 18, 21 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     selectFire = 1,
@@ -1326,6 +1352,7 @@ register("M249", {
     actionType = ORGM.AUTO,
     autoType = ORGM.LONGGAS,
     barrelLength = 21, -- 18 or 21
+    barrelLengthOpt = { 18, 21 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
@@ -1365,6 +1392,7 @@ register("Marlin60", {
     actionType = ORGM.AUTO,
     autoType = ORGM.BLOWBACK,
     barrelLength = 19, -- 19 or 22 (pre-1985)
+    barrelLengthOpt = { 19, 22 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto-IM",
@@ -1384,6 +1412,7 @@ register("Mini14", {
     actionType = ORGM.AUTO,
     autoType = ORGM.LONGGAS,
     barrelLength = 18.5, -- 16.12 (tactical), 18.5, 22 (target)
+    barrelLengthOpt = { 16.12, 18.5, 22 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
@@ -1400,6 +1429,7 @@ register("Mosin", {
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     barrelLength = 29, -- 22.2 carbine, 26.2, 29
+    barrelLengthOpt = { 22.2, 26.2, 29 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'MosinStripperClip',
@@ -1432,6 +1462,7 @@ register("Rem700", {
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     barrelLength = 24, -- varies widely from 16.5 to 26 depending on model and caliber. the .30-06's seem mostly in 24"
+    barrelLengthOpt = {16.5, 18, 20, 22, 24, 26 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
@@ -1448,6 +1479,7 @@ register("Rem788", {
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     barrelLength = 24, -- 18.5, 22, 24
+    barrelLength = { 18.5, 22, 24 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
@@ -1480,6 +1512,7 @@ register("SA80", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 20.4, -- 11.2, 20.4, 25.4
+    barrelLengthOpt = { 11.2, 20.4, 25.4 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
     selectFire = 1,
@@ -1531,6 +1564,7 @@ register("SKS", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 20, -- 20 or 22
+    barrelLengthOpt = { 20, 22 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SKSStripperClip',
@@ -1579,6 +1613,7 @@ register("WinM70", {
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     barrelLength = 24, -- 22, 24, 26
+    barrelLengthOpt = { 22, 24, 26 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     isMilitary = ORGM.RARE,
@@ -1615,6 +1650,7 @@ register("BenelliM3", {
     actionType = ORGM.AUTO,
     autoType = ORGM.LONGRECOIL, -- actually Inertia
     barrelLength = 22, -- 20 22, 24
+    barrelLengthOpt = { 20 22, 24 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
     isPolice = ORGM.COMMON,
@@ -1631,7 +1667,7 @@ register("BenelliM3SO", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     autoType = ORGM.LONGRECOIL,
-    barrelLength = 18, -- cant saw off much with that long magazine tube...
+    barrelLength = 18, -- cant saw off much with that magazine tube, the connecting brace is very forward
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
     soundProfile = "Shotgun",
@@ -1679,6 +1715,7 @@ register("Ithaca37", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     barrelLength = 20, -- 18.5, 20, -- all the way up to 30
+    barrelLengthOpt = { 18.5, 20, 22, 24, 26, 28, 30 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
@@ -1739,7 +1776,7 @@ register("Moss590SO", {
     lastChanged = 24,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
-    barrelLength = 18, -- cant chop any shorter then that without replacing the tube
+    barrelLength = 18,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
@@ -1755,6 +1792,7 @@ register("Rem870", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     barrelLength = 26,
+    barrelLengthOpt = {20, 22, 24, 26 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
@@ -1770,7 +1808,7 @@ register("Rem870SO", {
     lastChanged = 24,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
-    barrelLength = 18,
+    barrelLength = 14,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
@@ -1817,6 +1855,7 @@ register("Spas12", {
     actionType = ORGM.AUTO,
     autoType = ORGM.SHORTGAS,
     barrelLength = 21.5, -- 18, 19-7/8,21.5, 24 -- 21.5 is the shortest we can go with our mag tube
+    barrelLengthOpt = { 21.5, 24 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
     isCivilian = ORGM.RARE,
@@ -1850,6 +1889,7 @@ register("Striker", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.ROTARY,
     barrelLength = 18.5, -- 7.5, 12, 14, 18.5
+    barrelLengthOpt = { 7.5, 12, 14, 18.5 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     isPolice = ORGM.RARE,
@@ -1867,6 +1907,7 @@ register("VEPR12", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.AUTO,
     barrelLength = 22.44, -- 19, 22.44, 26.5
+    barrelLengthOpt = { 19, 22.44, 26.5 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
@@ -1883,6 +1924,7 @@ register("Win1887", {
     category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
     barrelLength = 30, -- 18, 20, 30
+    barrelLengthOpt = { 18, 20, 30 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Shotgun-Lever",
@@ -1897,7 +1939,7 @@ register("Win1887SO", {
     lastChanged = 24,
     category = ORGM.SHOTGUN,
     actionType = ORGM.LEVER,
-    barrelLength = 18,
+    barrelLength = 14,
     triggerType = ORGM.DOUBLEACTIONONLY,
     soundProfile = "Shotgun-Lever",
 
