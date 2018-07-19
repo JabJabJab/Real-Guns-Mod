@@ -113,7 +113,8 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
         ORGM.Client.unequipItemNow(player, item)
         local newItem = ORGM.replaceFirearmWithNewCopy(item, player:getInventory())
         player:setPrimaryHandItem(newItem)
-        if newItem:isTwoHandWeapon() then
+        if newItem:isRequiresEquippedBothHands() then
+        --if newItem:isTwoHandWeapon() then
             player:setSecondaryHandItem(newItem)
         end
         ISInventoryPage.dirtyUI()

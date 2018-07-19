@@ -12,50 +12,54 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 ---------------------------------------------------------------------------------------
 version 3.09
-* Barrel Length now effects recoil, damage and range of firearms. To compensate for
-    reduced damages on short barrels, the Damage Mulitplier setting now defaults to 0.6
-    instead of 0.5
+* Added Barrel Length modifiers. Length now effects recoil, damage and range of firearms.
+    To compensate for reduced damages on short barrels, the Damage Mulitplier setting now
+    defaults to 0.6 instead of 0.5
     Users of previous ORGM versions will have to manually adjust the setting in the PZ
     options screen ORGM tab. Dedicated servers will have to edit their ORGM.ini (if it
     exists).
 
+* Added new options to options screen for configuration of hit and critical chances, and
+    enabling/disabling the new barrel length modifiers.
+
+* Added support for Snake's Military Complex Mod
+
+* Added Admin context submenu for firearms:
+    Debug weapon - prints all firearm info to console
+    Reset to defaults - resets all ModData on the firearm
+
+* Changed Glock22 magazine capacity to 15 (was 10)
+
+* Changed cylinder capacity of the Raging Bull to 5 (was 6)
+
+* Changed Display Name of '.45 Colt' ammo to its proper name '.45 Long Colt'
+
+* Increased damage for 7.62x39mm, .30-06, .30-30
+
+* Increased recoil for .30-06, .357
+
 * Moved all recipes to a 'ORGM' tab in the build window.
+
+* Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
+    bug for other languages not being able to translate names that had a - in the name,
+    as well as sets up a template of all items for future languages.
 
 * Fixed issue with Reload Time, Rack Time and Magazine Reload Time options requiring PZ
     to be restarted to have a effect.
 
 * Fixed bug causing error when breaking out a reload timed action by firing a shot.
 
-* Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
-    bug for other languages not being able to translate names that had a - in the name,
-    as well as sets up a template of all items for future languages.
-
-* Changed Display Name of '.45 Colt' ammo to its proper name '.45 Long Colt'
-
 * Fixed Light Source hotkey not activating vehicle headlights.
-
-* Added new options to options screen for configuration of hit and critical chances.
 
 * Fixed bug in police storage spawning where wrong modifier was applied to weapon
     rarity chances.
 
-* Added support for Snake's Military Complex Mod
+* Fixed .44 Magnum FMJ Recoil to match HP
 
 * Added partial RU translations by Lotos
 
 * Added CN translations by Cleave
 
-* Changed Glock22 magazine capacity to 15 (was 10)
-
-* Corrected Cylinder capacity of the Raging Bull to 5 (was 6)
-
-* Fixed .44 Magnum FMJ Recoil to match HP
-
-* Increased damage for 7.62x39mm, .30-06, .30-30
-
-* Increased recoil for .30-06, .357
-
-* New Admin context submenu for firearms: Debug weapon and Reset to defaults
 
 ---------------------------------------------------------------------------------------
 version 3.08.1

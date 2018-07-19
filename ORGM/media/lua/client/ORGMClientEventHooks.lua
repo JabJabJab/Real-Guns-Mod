@@ -1,11 +1,11 @@
 --[[
 
     This file handles all client side event hooks.
-    
+
 ]]
 
 -- function in client/1LoadOrder/ORGMClientContextMenus.lua
-Events.OnFillInventoryObjectContextMenu.Add(ORGM.Client.inventoryContextMenu) 
+Events.OnFillInventoryObjectContextMenu.Add(ORGM.Client.inventoryContextMenu)
 
 --
 Events.OnGameBoot.Add(ORGM.Client.loadModels)
@@ -24,15 +24,18 @@ Events.OnEquipPrimary.Add(ORGM.Client.checkFirearmBuildID)
 -- for third party mods to overwrite or remove the event. Not sure why
 -- they'd want to since this is a pretty important backwards compatibility
 -- check..
-Events.OnGameStart.Add(function() 
+Events.OnGameStart.Add(function()
     local player = getSpecificPlayer(0)
-    local item = player:getPrimaryHandItem() -- better we equip 
+    local item = player:getPrimaryHandItem() -- better we equip
     if not item or not ORGM.isFirearm(item) then return end
     -- function in client/1LoadOrder/ORGMClientFunctions.lua
     --ORGM.Client.checkFirearmBuildID(player, item)
     -- better to just unequip and requip, it will refresh all stats
     ORGM.Client.unequipItemNow(player, item)
     player:setPrimaryHandItem(item)
+    if item:isRequiresEquippedBothHands() then
+        player:setSecondaryHandItem(item)
+    end
 
 end)
 
