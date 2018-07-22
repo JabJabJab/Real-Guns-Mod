@@ -262,9 +262,9 @@ Items_RU = {
     DisplayName_ORGM_Ammo_12g_00Buck        = "00 Дробь 12-го Калибра Ружейные патроны",
     DisplayName_ORGM_Ammo_12g_00Buck_Box    = "00 Дробь 12-го Калибра - 25 Коробка ружейных патронов",
     DisplayName_ORGM_Ammo_12g_00Buck_Can    = "00 Дробь 12-го Калибра - 250 Ящик ружейных патронов",
-    DisplayName_ORGM_Ammo_12g_Slug          = "Пуля 12-го Калибра Ружейные патроны",
-    DisplayName_ORGM_Ammo_12g_Slug_Box      = "Пуля 12-го Калибра - 25 Коробка ружейных патронов",
-    DisplayName_ORGM_Ammo_12g_Slug_Can      = "Пуля 12-го Калибра - 250 Ящик ружейных патронов",
+    DisplayName_ORGM_Ammo_12g_Slug          = "Пули 12-го Калибра Ружейные патроны",
+    DisplayName_ORGM_Ammo_12g_Slug_Box      = "Пули 12-го Калибра - 25 Коробка ружейных патронов",
+    DisplayName_ORGM_Ammo_12g_Slug_Can      = "Пули 12-го Калибра - 250 Ящик ружейных патронов",
 
 
 
@@ -324,7 +324,7 @@ Items_RU = {
     DisplayName_ORGM_SIG550Mag          = "SIG SG550 Магазин (5.56x45 или .223)",
     DisplayName_ORGM_SIGP226Mag         = "SIG P226 Магазин (.40)",
     DisplayName_ORGM_SR25Mag            = "KAC SR-25 Магазин (7.62x51 или .308)",
-    DisplayName_ORGM_STANAGMag          = "Standard STANAG Магазин (5.56x45 или .223)",
+    DisplayName_ORGM_STANAGMag          = "Стандартный STANAG Магазин (5.56x45 или .223)",
     DisplayName_ORGM_SkorpionMag        = "Skorpion vz. 61 Магазин (.32ACP)",
     DisplayName_ORGM_SKSStripperClip    = "СКС Съёмная Обойма (7.62x39мм)",
     DisplayName_ORGM_SpeedLoader10mm6   = "10x25мм 6 Круглый скоростной зарядник",
@@ -358,7 +358,7 @@ Items_RU = {
     DisplayName_ORGM_PistolLas          = "Лазерный целеуказатель для пистолетов",
     DisplayName_ORGM_PistolTL           = "Тактический фонарь для пистолетов",
     DisplayName_ORGM_RDS                = "Red Dot прицел",
-    DisplayName_ORGM_Recoil             = "Накладка",
+    DisplayName_ORGM_Recoil             = "Затыльник",
     DisplayName_ORGM_Reflex             = "Коллиматорный прицел",
     DisplayName_ORGM_RifleLas           = "Лазерный целеуказатель для винтовок",
     DisplayName_ORGM_RifleTL            = "Тактический фонарь для винтовок",
@@ -411,7 +411,7 @@ Items_RU = {
     -- Revolvers.txt
     DisplayName_ORGM_ColtAnac       = "Colt Anaconda",
     DisplayName_ORGM_ColtPyth       = "Colt Python",
-    DisplayName_ORGM_ColtSAA        = "Colt Single Action Army",
+    DisplayName_ORGM_ColtSAA        = "Colt SAA",
     DisplayName_ORGM_RugAlas        = "Ruger Alaskan",
     DisplayName_ORGM_RugBH          = "Ruger Blackhawk",
     DisplayName_ORGM_RugGP100       = "Ruger GP100",

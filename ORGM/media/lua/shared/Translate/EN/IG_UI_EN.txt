@@ -6,8 +6,8 @@ IG_UI_EN = {
     IGUI_Firearm_StatTitle = "Stats"
     IGUI_Firearm_DebugTitle = "Debug",
     IGUI_Firearm_YearUnknown = "Unknown",
-    
-    
+
+
     IGUI_Firearm_InfoPanel = " <RED> Class: <LINE> <TEXT> %1 <LINE> <LINE> <RED> Introduction Year: <LINE> <TEXT> %2 <LINE> <LINE> <RED> Country of Origin: <LINE> <TEXT> %3 <LINE> <LINE> <RED> Manufacturer: <LINE> <TEXT> %4 <LINE> <LINE> ",
     IGUI_Firearm_InfoBackGround = " <RED> Background: <LINE> <TEXT> ",
 
@@ -34,7 +34,7 @@ IG_UI_EN = {
     IGUI_Firearm_TriggerType1 = "Single Action",
     IGUI_Firearm_TriggerType2 = "Double Action",
     IGUI_Firearm_TriggerType3 = "Double Action Only",
-    
+
     IGUI_Firearm_None = "None",
     IGUI_Firearm_Negligible = "Negligible",
     IGUI_Firearm_Empty = "Empty",
@@ -52,19 +52,20 @@ IG_UI_EN = {
     IGUI_Firearm_EffectGood = "Good",
     IGUI_Firearm_EffectBad = "Bad",
     IGUI_Firearm_EffectVeryBad = "Horrible",
-    
-    
+
+
     IGUI_Firearm_DetailSemi = "Semi-Auto",
     IGUI_Firearm_DetailFull = "Full-Auto",
     IGUI_Firearm_DetailMode = "It is currently set to %1 mode. <LINE> ",
+    IGUI_Firearm_DetailBarrelLength = "It has a %1 inch barrel. <LINE> ",
     IGUI_Firearm_DetailOpen = "The %1 is currently open. <LINE> ",
     IGUI_Firearm_DetailClosed = "The %1 is currently closed. <LINE> ",
     IGUI_Firearm_DetailInserted = "A magazine is inserted. <LINE> ",
     IGUI_Firearm_DetailEjected = "The magazine is missing. <LINE> ",
-    
+
     IGUI_Firearm_DetailCocked = "The hammer is cocked. <LINE> ",
     IGUI_Firearm_DetailRest = "The hammer is at rest. <LINE> ",
-    
+
     IGUI_Firearm_DetailEmpty = "No rounds are loaded. <LINE> ",
     IGUI_Firearm_DetailLoadedCylinder = "There are rounds in the cylinder. <LINE> ",
     IGUI_Firearm_DetailLoaded1 = "There is one round loaded. <LINE> ",
@@ -72,8 +73,8 @@ IG_UI_EN = {
     IGUI_Firearm_DetailRoundChambered = "There is a round in the chamber. <LINE> ",
     IGUI_Firearm_DetailShellChambered = "There is a empty shell in the chamber. <LINE> ",
     IGUI_Firearm_DetailEmptyChamber = "The chamber is currently empty. <LINE> ",
-    
-    
+
+
     IGUI_Firearm_DetailJammed = "The gun is currently jammed. <LINE> ",
     IGUI_Firearm_DetailCondition10 = "It looks brand new. <LINE> ",
     IGUI_Firearm_DetailCondition9 = "It looks to be in good condition. <LINE> ",
@@ -84,12 +85,12 @@ IG_UI_EN = {
     IGUI_Firearm_DetailCondition2 = "It looks like its ready to fall apart. <LINE> ",
     IGUI_Firearm_DetailCondition1 = "It might break at any moment. <LINE> ",
     IGUI_Firearm_DetailCondition0 = "It's broken. <LINE> ",
-    
+
     IGUI_Firearm_DetailAttach1 = "A %1 is attached to the barrel. <LINE> ",
     IGUI_Firearm_DetailAttach2 = "It has a %1 under the barrel. <LINE> ",
     IGUI_Firearm_DetailAttach3 = "It has a %1 attached. <LINE> ",
     IGUI_Firearm_DetailAttach4 = "It has a %1 <LINE> ",
-    
+
     IGUI_Firearm_DetailSerial = "The serial number is %1 <LINE> ",
     IGUI_Firearm_DetailNoSerial = "The serial number appears to have been filed off. <LINE> ",
 
@@ -116,7 +117,7 @@ IG_UI_EN = {
     IGUI_Firearm_DebugMagazine = " <RED> Magazine: <LINE> <TEXT> ",
     IGUI_Firearm_DebugCylinder = "Cylinder Position: %1 <LINE> ",
 
-    
+
     -- weapon classifications
     IGUI_Firearm_Revolver = "Revolver",
     IGUI_Firearm_SemiPistol = "Semi-Automatic Pistol",
@@ -135,7 +136,7 @@ IG_UI_EN = {
     IGUI_Firearm_DualShotgun = "Dual-mode Shotgun",
     IGUI_Firearm_SemiShotgun = "Semi-Automatic Shotgun",
     IGUI_Firearm_PumpShotgun = "Pump-Action Shotgun",
-    IGUI_Firearm_DoubleShotgun = "Double Barrel Shotgun", 
+    IGUI_Firearm_DoubleShotgun = "Double Barrel Shotgun",
     IGUI_Firearm_LeverShotgun = "Lever-Action Shotgun",
 
     -- countries of origin
@@ -205,18 +206,18 @@ IG_UI_EN = {
     IGUI_Firearm_Manuf_SA = "Savage Arms (importer)",
     IGUI_Firearm_Manuf_Molot = "Molot Oruzhie Ltd.",
     IGUI_Firearm_Manuf_FMAP = "F.M.A.P.(Fabrique Militar Argentina Producion)",
-    
+
     -- multiple manufacturers listed under a single translation
     IGUI_Firearm_Manuf_ALCOLT = "ArmaLite, Colt's Manufacturing Company",
     IGUI_Firearm_Manuf_LBASS = "Long Branch Arsenal, Savage-Stevens Firearms",
     IGUI_Firearm_Manuf_ASARDI = "Armsel, Sentinel Arms, Reutech Defense Industries",
-    
-    
+
+
     -- firearm descriptions
     IGUI_Firearm_Desc_ColtAnac = "The Colt Anaconda is a large frame double-action revolver featuring a full length under-barrel ejection-rod lug and six round cylinder, designed and produced by the Colt's Manufacturing Company. Chambered for the powerful .44 Magnum and .45 Colt centerfire ammunition cartridges, the Anaconda marked the Hartford, Connecticut firm’s first foray into the popular large-bore Magnum pistol market.",
     IGUI_Firearm_Desc_ColtPyth = "The Colt Python is a .357 Magnum caliber revolver formerly manufactured by Colt's Manufacturing Company of Hartford, Connecticut. It is sometimes referred to as a 'Combat Magnum'. Built on Colt's large I-frame. Pythons have a reputation for accuracy, smooth trigger pull, and a tight cylinder lock-up.",
     IGUI_Firearm_Desc_ColtSAA = "The Colt Single Action Army, also known as the Single Action Army, SAA, Model P, Peacemaker, M1873, and Colt .45 is a single-action revolver with a revolving cylinder holding six metallic cartridges. It was designed for the U.S. government service revolver trials of 1872 by Colt's Patent Firearms Manufacturing Company (today's Colt's Manufacturing Company) and was adopted as the standard military service revolver until 1892. <LINE> <LINE> The Colt SAA has been offered in over 30 different calibers and various barrel lengths. Its overall appearance has remained consistent since 1873. Colt has discontinued its production twice, but brought it back due to popular demand. The revolver was popular with ranchers, lawmen, and outlaws alike, but as of the early 21st century, models are mostly bought by collectors and re-enactors. Its design has influenced the production of numerous other models from other companies. <LINE> <LINE> The Colt SAA 'Peacemaker' revolver is a famous piece of Americana known as 'The Gun That Won the West'.",
-    IGUI_Firearm_Desc_RugAlas = "Introduced in 2005, the Ruger Alaskan is Ruger's first short-barrelled, big-bore revolver, conceived by Ruger president Steve Sanetti and intended for defense against large, dangerous animals. The ​2 1⁄2-inch barrel on the Alaskan ends at the end of the frame, and the scope bases are omitted. The interchangeable front sight is replaced with a pinned-in ramp sight, but the adjustable rear sight is retained. The Alaskan is available in .44 Magnum, .454 Casull/.45 Colt, and .480 Ruger, with the .480 model originally a 6-shot, replaced in 2008 with a 5-shot model to aid in spent cartridge extraction. All Alaskans feature a brushed stainless finish and a Hogue Tamer rubber finger groove grip, rather than the standard GP100 style. The .454 and .480 versions have an unfluted cylinder while the .44 Magnum features a fluted cylinder.", 
+    IGUI_Firearm_Desc_RugAlas = "Introduced in 2005, the Ruger Alaskan is Ruger's first short-barrelled, big-bore revolver, conceived by Ruger president Steve Sanetti and intended for defense against large, dangerous animals. The ​2 1⁄2-inch barrel on the Alaskan ends at the end of the frame, and the scope bases are omitted. The interchangeable front sight is replaced with a pinned-in ramp sight, but the adjustable rear sight is retained. The Alaskan is available in .44 Magnum, .454 Casull/.45 Colt, and .480 Ruger, with the .480 model originally a 6-shot, replaced in 2008 with a 5-shot model to aid in spent cartridge extraction. All Alaskans feature a brushed stainless finish and a Hogue Tamer rubber finger groove grip, rather than the standard GP100 style. The .454 and .480 versions have an unfluted cylinder while the .44 Magnum features a fluted cylinder.",
     IGUI_Firearm_Desc_RugBH = "The Ruger Blackhawk is a 6-shot, single-action revolver manufactured by Ruger. It is produced in a variety of finishes, calibers, and barrel lengths. Ruger introduced the Blackhawk in 1955. Chambered for the .357 Magnum, the Blackhawk was a simple and strong design, and it sold well. In 1956, as Smith & Wesson was introducing the new .44 Magnum, Ruger quickly developed a variant of the Blackhawk in the new cartridge. Ruger achieved wide popularity with this firearm in a hotly anticipated new cartridge, which was both cheaper and more readily available than the Smith & Wesson Model 29 revolver. According to popular legend, Ruger was able to field a .44 Magnum revolver at nearly the same time as Smith & Wesson due to a Ruger employee finding expended .44 Magnum cartridge cases at a scrapyard and deducing that Smith & Wesson was about to launch a new cartridge.",
     IGUI_Firearm_Desc_RugGP100 = "The GP100 is a family/line of double action six or seven -shot (.357 Magnum) seven-shot (.327 Federal Magnum) or ten-shot (.22 LR) revolvers made by Sturm, Ruger & Co., manufactured in the United States. It was introduced in 1985 as a second generation of the Ruger double-action, exposed-hammer revolvers intended to replace Ruger's Security- / Service- / Speed-Six line. It was made stronger with the intent to fire an unlimited number of full-power .357 Magnum rounds and has been produced in a number of variations with three basic barrel lengths (3 in / 76 mm, 4 in / 102 mm, and 6 in / 152 mm), various barrel profiles (with offset full or short ejector rod shrouds), fixed or adjustable sights, and in blued carbon steel, and polished or satin stainless steel.",
     IGUI_Firearm_Desc_RugRH = "The Ruger Redhawk is a DA/SA, large-frame revolver that was first introduced in 1979 by Sturm, Ruger & Company. Made from high-grade steel, it is available in a stainless steel finish. The Redhawk is reinforced to handle extra stress, making it very popular for use by handloaders as it handles the hottest of Magnum loads with ease. In addition, the cylinder itself is longer than most competitors', allowing ammunition to be loaded to a longer overall length. This allows for either increased powder capacity, heavier (and therefore longer) bullets without compromising the powder load, or a combination of both. Custom ammunition manufacturers even have loads made specifically for Ruger revolvers that cannot fit in shorter chambers or revolvers of weaker construction (such as the Smith & Wesson Model 29). This makes the Redhawk popular as a bear defense gun among hunters and trappers.",
@@ -228,7 +229,7 @@ IG_UI_EN = {
     IGUI_Firearm_Desc_SWM36 = "The Smith & Wesson Model 36 is a revolver chambered for .38 Special. It is one of several models of 'J-frame' Smith & Wesson revolvers. It was introduced in 1950, and is still in production. <LINE> <LINE> The design was introduced at the International Association of Chiefs of Police (IACP) convention in 1950, and was favorably received. A vote was held to name the new revolver, and the name 'Chiefs Special' won. A three-inch barreled version of this design went into production immediately, due to high demand. It was available in either a blued or nickel-plated finish. It was produced as the 'Chiefs Special' until 1957, when it then became the Model 36. The 'Chiefs Special' continued to be manufactured as a separate variant.",
     IGUI_Firearm_Desc_SWM610 = "The Model 610 is a six-shot, double-action revolver chambered for the 10mm Auto cartridge. <LINE> <LINE> The 610 was manufactured by Smith & Wesson on the N-frame, similar to the Smith & Wesson Model 29 in .44 Magnum, and the Model 28 in .357 Magnum. The 10mm Auto is a rimless automatic pistol cartridge so moon clips are used to hold cartridges when loading and extracting spent cases en bloc. Since the .40 Smith & Wesson is a shorter, less powerful variant of the 10mm Auto but has the same diameter, the Model 610 can chamber and fire .40 Smith & Wesson rounds.",
     IGUI_Firearm_Desc_Taurus454 = "The Raging Bull is a revolver manufactured by the Brazilian Taurus International firearm company. <LINE> <LINE> In its larger calibers it is marketed as a hunter's sidearm because it is a potent weapon with plenty of stopping power. The .454 Casull cartridge has been used to hunt animals as large as Cape Buffalo. <LINE> <LINE> The Raging Bull has a ported barrel and a red rubber strip along the back of its grip, which cushions the shooter's hand and lowers perceived recoil. Functionally, the Raging Bull has a manually operated front cylinder latch, whose release can be seen on the crane. Front cylinder latches are required for such high-powered double-action revolvers, and are found on the Ruger Super Redhawk and the S&W Model 500 revolver, but they are actuated by the rear cylinder latch. The manually operated latch on the Raging Bull is simpler yet equally strong, but requires two hands to open the cylinder.",
-    
+
     IGUI_Firearm_Desc_AutomagV = "The AMT Automag V is a large single action semi-automatic pistol made by Arcadia Machine and Tool (AMT). The weapon was created by Harry Sanford, who also invented the original .44 AutoMag pistol. One of the extremely small number of handguns that fire a .50 caliber cartridge, it is also one of the few semi automatic guns that fires the .50 Action Express cartridge, it is said to be 'the most ergonomic and lightweight of all of those autoloaders'. Its built-in compensator ports in the barrel assist in keeping muzzle rise to tolerable levels. The recoil, however, is still surprisingly brisk even for the most experienced shooter. The Automag V has a 5-shot magazine capacity (5+1 total) and is, like all of the AMT pistols, made primarily of cast stainless steel.",
     IGUI_Firearm_Desc_BBPistol = "The Daisy Powerline 201 is a dual spring air powered/CO2 powered BB pistol with manual safety.",
     IGUI_Firearm_Desc_Ber92 = "The Beretta 92 is a series of semi-automatic pistols designed and manufactured by Beretta of Italy. <LINE> <LINE> The United States' military replaced the M1911A1 .45 ACP pistol in 1985 with the Beretta 92FS, designated as the M9. <LINE> <LINE> The Beretta 92 pistol evolved from earlier Beretta designs, most notably the M1923 and M1951. From the M1923 comes the open slide design, while the alloy frame and locking block barrel, originally from Walther P38, were first used in the M1951. The grip angle and the front sight integrated with the slide were also common to earlier Beretta pistols. What were perhaps the Model 92's two most important advanced design features had first appeared on its immediate predecessor, the 1974 .380 caliber Model 84. These improvements both involved the magazine, which featured direct feed; that is, there was no feed ramp between the magazine and the chamber. In addition, the magazine was a 'double-stacked' design, a feature originally introduced in 1935 on the Browning Hi-Power.",
