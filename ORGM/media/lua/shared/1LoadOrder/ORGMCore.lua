@@ -51,7 +51,6 @@ ORGM = {
     LONGRECOIL = 6,
     SHORTRECOIL = 7,
 
-
     -- category constants
     PISTOL = 1,
     REVOLVER = 2,
@@ -110,6 +109,8 @@ ORGM = {
 
     -- The TriggerTypeStrings table contains all valid firearm.triggerType values. It is used for error checking in ORGM.registerFirearm
     TriggerTypeStrings = {"SingleAction", "DoubleAction", "DoubleActionOnly"},
+
+    AutoActionTypeStrings = {"Blowback", "Delayed Blowback", "Short Gas Piston", "Long Gas Piston", "Direct Impingement Gas", "Long Recoil", "Short Recoil"},
 
     -- The ORGM.SoundBankQueueTable table contains all sounds we need to setup on the OnLoadSoundBanks event
     -- so sounds player properly in multiplayer. This table is set to nil after completion.
