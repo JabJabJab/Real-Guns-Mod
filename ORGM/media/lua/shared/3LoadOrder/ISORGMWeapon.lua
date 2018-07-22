@@ -438,7 +438,9 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
         return
 
     else -- internal mag, rotary or break barrel
-        local round = self:findBestAmmo(char):getType()
+        local round = self:findBestAmmo(char)
+        round = round:getType()
+        if not round then return end
         if self.actionType == ORGM.ROTARY then
             self:rotateCylinder(1, char, true, weapon)
             if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
