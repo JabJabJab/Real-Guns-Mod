@@ -26,13 +26,13 @@ end
 function InfoPanel:updateFirearm(item)
     if not item then return end
     local def = ORGM.getFirearmData(item)
-    if not def then 
+    if not def then
         self.textPanel.text = ""
         self.textPanel:paginate()
         return
     end
     local data = item:getModData()
-    
+
     local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
     text = text .. getText("IGUI_Firearm_InfoPanel", getText(def.classification), (def.year or getText("IGUI_Firearm_YearUnknown")), getText(def.country), getText(def.manufacturer))
 
@@ -65,20 +65,20 @@ end
 
 function DetailsPanel:updateFirearm(item)
     local def = ORGM.getFirearmData(item)
-    if not def then 
+    if not def then
         self.textPanel.text = ""
         self.textPanel:paginate()
         return
     end
-    local data = item:getModData()    
+    local data = item:getModData()
     local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
-    
+
     if data.selectFire then
         local mode = "IGUI_Firearm_DetailSemi"
         if data.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
         text = text .. getText("IGUI_Firearm_DetailMode", getText(mode))
     end
-    
+    text = text .. getText("IGUI_Firearm_DetailBarrelLength", (data.barrelLength or def.barrelLength))
     local feed = "slide"
     if data.actionType == ORGM.ROTARY then feed = "cylinder" end
     if data.actionType == ORGM.BOLT then feed = "bolt" end
@@ -88,7 +88,7 @@ function DetailsPanel:updateFirearm(item)
     else
         text = text .. getText("IGUI_Firearm_DetailClosed", getText("IGUI_Firearm_"..feed))
     end
-    
+
     if data.containsClip == 1 then
         text = text .. getText("IGUI_Firearm_DetailInserted")
     elseif data.containsClip == 0 then
@@ -101,7 +101,7 @@ function DetailsPanel:updateFirearm(item)
             text = text .. getText("IGUI_Firearm_DetailRest")
         end
     end
-    
+
     local loaded = "IGUI_Firearm_DetailEmpty"
     if data.actionType == ORGM.ROTARY then
         if data.currentCapacity > 0 then
@@ -112,7 +112,7 @@ function DetailsPanel:updateFirearm(item)
             loaded = "IGUI_Firearm_DetailLoaded2"
         elseif data.currentCapacity == 1 then
             loaded = "IGUI_Firearm_DetailLoaded1"
-        end    
+        end
     else
         if data.roundChambered > 0 then
             loaded = "IGUI_Firearm_DetailRoundChambered"
@@ -123,12 +123,12 @@ function DetailsPanel:updateFirearm(item)
         end
     end
     text = text .. getText(loaded)
-    
-    
+
+
     if data.isJammed then
         text = text .. getText("IGUI_Firearm_DetailJammed")
     end
-    
+
     local condition = item:getCondition() / item:getConditionMax()
     if condition == 1 then
         condition = 10
@@ -150,8 +150,8 @@ function DetailsPanel:updateFirearm(item)
         condition = 0
     end
     text = text .. getText("IGUI_Firearm_DetailCondition"..condition)
-    
-    
+
+
     if item:getCanon() then
         text = text.. getText("IGUI_Firearm_DetailAttach1", item:getCanon():getDisplayName())
     end
@@ -175,7 +175,7 @@ function DetailsPanel:updateFirearm(item)
     else
         text = text.. getText("IGUI_Firearm_DetailSerial", data.serialnumber)
     end
-    
+
     self.textPanel.text = text
     self.textPanel:paginate()
 
@@ -213,10 +213,10 @@ function StatPanel:updateFirearm(item)
     local data = item:getModData()
     local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
     local player = getPlayer()
-        
+
 
     text = text .. getText("IGUI_Firearm_StatDetail", string.format("%.3f", item:getActualWeight()))
-    
+
     if data.selectFire then
         local mode = "IGUI_Firearm_DetailSemi"
         if data.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
@@ -233,7 +233,7 @@ function StatPanel:updateFirearm(item)
         end
     end
     capacity = tostring(data.currentCapacity) .. capacity .. "/"..tostring(data.maxCapacity)
-    
+
     local lastRound = data.lastRound
     if lastRound then
         local ammoData = ORGM.getAmmoData(lastRound)
@@ -251,7 +251,7 @@ function StatPanel:updateFirearm(item)
         local ammoData = ORGM.getAmmoData(loadedAmmo)
         if ammoData then  loadedAmmo = (ammoData.DisplayName or loadedAmmo) .." " ..(ammoData.RoundType or "Round") .."s" end
     end
-    
+
     preferredAmmoType = data.preferredAmmoType
     if not preferredAmmoType or preferredAmmoType == 'any' then
        preferredAmmoType = getText("IGUI_Firearm_None")
@@ -263,7 +263,7 @@ function StatPanel:updateFirearm(item)
     end
     text = text ..getText("IGUI_Firearm_StatAmmo", capacity, lastRound, loadedAmmo, preferredAmmoType)
     text = text .." <LINE> "
-    
+
 
     -- hit chance
     local beenMoving = player:getBeenMovingFor()
@@ -285,7 +285,7 @@ function StatPanel:updateFirearm(item)
     else
         hitChanceMod = "IGUI_Firearm_EffectVeryBad"
     end
-    
+
     local critical = item:getCriticalChance() + item:getAimingPerkCritModifier() * (player:getPerkLevel(Perks.Aiming) / 2)
     if critical >= 100 then critical = "IGUI_Firearm_EffectSureThing"
     elseif critical > 80 then critical = "IGUI_Firearm_EffectVeryGood"
@@ -295,7 +295,7 @@ function StatPanel:updateFirearm(item)
     else
         critical = "IGUI_Firearm_EffectVeryBad"
     end
-    
+
     local rof = item:getSwingTime()
     if rof > 2.5 then rof = "IGUI_Firearm_EffectVeryLow"
     elseif rof > 1.6 then rof = "IGUI_Firearm_EffectLow"
@@ -328,8 +328,8 @@ function StatPanel:updateFirearm(item)
     end
 
     text = text..getText("IGUI_Firearm_StatMisc2", getText(damage))
-    
-    
+
+
     self.textPanel.text = text
     self.textPanel:paginate()
 end
@@ -355,14 +355,14 @@ end
 
 function DebugPanel:updateFirearm(item)
     local def = ORGM.getFirearmData(item)
-    if not def or not ORGM.Settings.Debug then 
+    if not def or not ORGM.Settings.Debug then
         self.textPanel.text = ""
         self.textPanel:paginate()
         return
     end
 --    local scriptItem = item:getScriptItem() -- getScriptManager():FindItem(def.moduleName ..'.' .. itemType)
     local data = item:getModData()
-    
+
     local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
     local player = getPlayer()
     text = text .. getText("IGUI_Firearm_DebugState1", data.actionType, data.triggerType)
@@ -371,7 +371,7 @@ function DebugPanel:updateFirearm(item)
         if data.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
         text = text .. getText("IGUI_Firearm_DebugMode", getText(mode))
     end
-    
+
     local player = getSpecificPlayer(0)
     local beenMoving = player:getBeenMovingFor()
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
@@ -383,7 +383,7 @@ function DebugPanel:updateFirearm(item)
         hitChancePenalty = (beenMoving - (item:getAimingTime() + aimingPerk * 2)) * -1
     end
     hitChanceMod = hitChanceMod + hitChancePenalty
-    
+
     if player:HasTrait("Marksman") then hitChanceMod = hitChanceMod + 20 end
     --if hitChanceMod < 10 then hitChanceMod = 10 end
     --if hitChanceMod > 100 then hitChanceMod = 100 end
@@ -402,7 +402,7 @@ function DebugPanel:updateFirearm(item)
         damageMin = damageMin * 0.4
         damageMax = damageMax * 0.4
     end
-    
+
     damageMin = damageMin / (1 / 2.0F)
     damageMax = damageMax / (1 / 2.0F)
     local endurance = player:getMoodles():getMoodleLevel(MoodleType.Endurance)
@@ -420,7 +420,7 @@ function DebugPanel:updateFirearm(item)
         damageMax = damageMax * 0.05
     end
     ]]
-    
+
     text = text .. getText("IGUI_Firearm_DebugState2", tostring(data.hammerCocked == 1 or false), tostring(data.isOpen == 1 or false))
     text = text .. getText("IGUI_Firearm_DebugWeight", tostring(item:getWeight()), tostring(item:getActualWeight()))
     text = text .. getText("IGUI_Firearm_DebugCapacity", tostring(data.currentCapacity), tostring(data.maxCapacity), tostring(data.roundChambered), tostring(data.emptyShellChambered))
@@ -436,7 +436,7 @@ function DebugPanel:updateFirearm(item)
     for i=1, data.currentCapacity do
         text = text .. "#" .. i .. ": "..tostring(data.magazineData[i]) .. " <LINE> "
     end
-    --getDamageMod(IsoGameCharacter chr) 
+    --getDamageMod(IsoGameCharacter chr)
     self.textPanel.text = text
     self.textPanel:paginate()
 end
@@ -474,16 +474,16 @@ function ORGMFirearmWindow:createChildren()
     self.infoPanel = InfoPanel:new(0, 8, self.width, self.height-16)
     self.infoPanel:initialise()
     self.panel:addView(getText("IGUI_Firearm_InfoTitle"), self.infoPanel)
-    
+
     self.detailsPanel = DetailsPanel:new(0, 8, self.width, self.height-16)
     self.detailsPanel:initialise()
     self.panel:addView(getText("IGUI_Firearm_DetailTitle"), self.detailsPanel)
-    
+
     self.statPanel = StatPanel:new(0, 8, self.width, self.height-16)
     self.statPanel:initialise()
     self.panel:addView(getText("IGUI_Firearm_StatTitle"), self.statPanel)
-    
-    
+
+
     if ORGM.Settings.Debug then
         self.debugPanel = DebugPanel:new(0, 8, self.width, self.height-16)
         self.debugPanel:initialise()
