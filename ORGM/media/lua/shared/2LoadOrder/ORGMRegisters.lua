@@ -292,7 +292,7 @@ ORGM.registerFirearm = function(name, definition)
             definition.lastChanged = nil
         elseif definition.lastChanged ~= math.floor(definition.lastChanged) then
             definition.lastChanged = math.floor(definition.lastChanged)
-            ORGM.log(ORGM.WARN, "lastChanged for " .. fullName .. " is not a float. (integer expected. Setting to "..definition.lastChanged)
+            ORGM.log(ORGM.WARN, "lastChanged for " .. fullName .. " is a float. (integer expected). Setting to "..definition.lastChanged)
         end
         if definition.lastChanged and (definition.lastChanged < 1 or definition.lastChanged > ORGM.BUILD_ID) then
             ORGM.log(ORGM.ERROR, "Invalid lastChanged for " .. fullName .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
@@ -326,6 +326,14 @@ ORGM.registerFirearm = function(name, definition)
             return
         end
         definition.altActionType = {definition.actionType, definition.altActionType}
+    end
+
+    if not definition.barrelLength then
+        ORGM.log(ORGM.WARN, "barrelLength for " .. fullName .. " is set to nil, setting to 10")
+        definition.barrelLength = 10
+    elseif type(definition.barrelLength) ~= "number" then
+        ORGM.log(ORGM.WARN, "barrelLength for " .. fullName .. " is not a number. Setting to 10")
+        definition.barrelLength = 10
     end
 
     -- apply any defaults from the ORGM.SoundProfiles table
