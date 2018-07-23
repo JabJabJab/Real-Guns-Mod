@@ -14,7 +14,7 @@ local Settings = ORGM.Settings
 ]]
 local AllRoundsTable = { }
 local AllRepairKitsTable = { }
-local AllComponentsTable = { } 
+local AllComponentsTable = { }
 
 Server.ReplacementsTable = { -- testing stuff
     ["Base.Pistol"] = "ORGM.Beretta92",
@@ -49,7 +49,7 @@ Server.ReplacementsTable = { -- testing stuff
 ----------------------------------------------------------------------------------
 
 --[[ Rnd(maxValue)
-    
+
     Returns a value between 1 and maxValue (including lower and upper values)
 
 ]]
@@ -84,7 +84,7 @@ end
 --[[ Server.spawnReloadable(container, itemType, ammoType, spawnChance, maxCount, isLoaded)
 
     Spawns a reloadable weapon or magazine.  It called by Server.spawnFirearm and Server.spawnMagazine.
-    
+
     container is a ItemContainer object.
     itemType is the name of the gun or magazine (without the ORGM. prefix)
     ammoType is the bullets to load into the gun if isLoaded = true. (A key from ORGM.AmmoTable)
@@ -102,15 +102,15 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
     local roll = ZombRandFloat(0,100)
     --if Rnd(100) > math.ceil(spawnChance) then return false end
     ORGM.log(ORGM.DEBUG, "Server.spawnReloadable for " .. itemType .. ": " ..roll.. " roll vs ".. spawnChance .. "% chance.")
-    
+
     if roll > spawnChance*(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL) then return false end
     local count = Rnd(maxCount)
-    
+
     local itemOrgmData = nil
     local isFirearm = ORGM.isFirearm(itemType)
-    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFireaarm:"..tostring(isFirearm))
+    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFirearm:"..tostring(isFirearm))
     --isFirearm = ORGM.getFirearmData(itemType)
-    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFireaarm (from data):"..tostring(isFirearm and true))
+    --ORGM.log(ORGM.DEBUG, "Server.spawnReloadable isFirearm (from data):"..tostring(isFirearm and true))
     if isFirearm then
         itemOrgmData = ORGM.getFirearmData(itemType)
     elseif ORGM.isMagazine(itemType) then
@@ -120,7 +120,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
         return nil
     end
 
-    
+
     for i=1, count do
         local additem = ItemPicker.tryAddItemToContainer(container, itemOrgmData.moduleName .. '.' .. itemType)
         if not additem then return false end
@@ -139,11 +139,11 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
         if data.roundChambered ~= nil then
             maxammo = maxammo + 1
         end
-        
+
         if isLoaded then
-            if Rnd(100) >= 30*Settings.AmmoSpawnModifier then fill = Rnd(maxammo) end 
+            if Rnd(100) >= 30*Settings.AmmoSpawnModifier then fill = Rnd(maxammo) end
         end
-        
+
         if fill > 0 then
             if data.roundChambered ~= nil then
                 data.roundChambered = 1
@@ -151,7 +151,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
                 fill = fill - 1
                 if itemOrgmData.triggerType ~= ORGM.DOUBLEACTIONONLY then data.hammerCocked = 1 end
             end
-            
+
             for i=1, fill do
                 data.magazineData[i] = ammoType
             end
@@ -161,14 +161,16 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
         if WeaponUpgrades[additem:getType()] then
             Server.doWeaponUpgrade(additem)
         end
-
+        if isFirearm then
+            ORGM.setWeaponStats(additem)
+        end
     end
     return true
 end
 
 
 --[[ Server.spawnFirearm(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
-    
+
     A wrapper function for Server.spawnReloadable()
 
     container is a ItemContainer object.
@@ -179,7 +181,7 @@ end
     isLoaded is true/false. controls if the gun/magazine is loaded with ammoType
 
     returns nil
-    
+
 ]]
 Server.spawnFirearm = function(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.FirearmSpawnModifier
@@ -188,7 +190,7 @@ end
 
 
 --[[ Server.spawnMagazine(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
-    
+
     A wrapper function for Server.spawnReloadable(), spawning magazines for the gun specified by gunType
 
     container is a ItemContainer object.
@@ -199,7 +201,7 @@ end
     isLoaded is true/false. controls if the gun/magazine is loaded with ammoType
 
     returns nil
-    
+
 ]]
 Server.spawnMagazine = function(container, gunType, ammoType, spawnChance, maxCount, isLoaded)
     spawnChance = spawnChance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
@@ -208,24 +210,24 @@ Server.spawnMagazine = function(container, gunType, ammoType, spawnChance, maxCo
     if ORGM.isMagazine(magType) then -- gun uses mags
         Server.spawnReloadable(container, magType, ammoType, spawnChance, maxCount, isLoaded)
     end
-    
+
     local magType = weaponData.speedLoader
     if ORGM.isMagazine(magType) then -- gun uses speedloaders
         Server.spawnReloadable(container, magType, ammoType, spawnChance, maxCount, isLoaded)
     end
-    
+
 end
 
 
 --[[ Server.spawnItem(container, itemType, spawnChance, maxCount)
 
     Generic spawn function for non-reloadable items (ie: ammo or repair stuff).
-    
+
     container is a ItemContainer object.
     itemType is the name of the item (WITH the module prefix)
     spawnChance is the % chance to spawn the item.
     maxCount is the max number of items to spawn. A random # is chosen between 1 and maxCount
-    
+
     returns table of spawned items
 
 ]]
@@ -305,13 +307,13 @@ Server.spawnFirearmPart = function(container, spawnChance, maxCount)
 end
 
 --[[ Server.selectFirearm(civilian, police, military)
-    
+
     Chooses a gun from the ORGM.FirearmRarityTable and appropriate ammo type.
 
     civilian is the chance of using the civilian table (int weight value)
     police is the chance of using the police table (int weight value)
     military is the chance of using the military table (int weight value)
-    
+
     returns a table with 2 keys: .gun and .ammo
 
 ]]
@@ -333,7 +335,7 @@ Server.selectFirearm = function(civilian, police, military)
         gunTbl = ORGM.FirearmRarityTable.Military
         ORGM.log(ORGM.DEBUG, "Selecting firearm from military table")
     end
-    
+
     -----------------------
     -- select the rarity
     roll = Rnd(100)
@@ -347,22 +349,22 @@ Server.selectFirearm = function(civilian, police, military)
     end
     ORGM.log(ORGM.DEBUG, "Selecting " .. rarity .." firearm")
     gunTbl = gunTbl[rarity]
-    
+
     local gunType = gunTbl[Rnd(#gunTbl)] -- randomly pick a gun
     ORGM.log(ORGM.DEBUG, "Selected " .. tostring(gunType))
 
     local weaponData = ORGM.getFirearmData(gunType)
-    
+
     --print("spawning="..gunType)
     local ammoType = weaponData.ammoType
     if ORGM.isMagazine(ammoType) then -- ammoType is a mag, get its default ammo
         ammoType = ORGM.getMagazineData(ammoType).ammoType
     end
-    
+
     local altTable = ORGM.getAmmoGroup(ammoType)
     if Rnd(100) > 50 then
         ammoType = altTable[Rnd(#altTable)]
-    else 
+    else
         ammoType = altTable[1]
     end
 
@@ -371,7 +373,7 @@ end
 
 
 --[[ Server.addToCorpse(container)
-    
+
     Function called when spawning items on corpses.
 
     container is a ItemContainer object.
@@ -416,7 +418,7 @@ end
 --[[ onFillContainer.Add
 
     Called when filling a container with loot. Controls the spawn chances.
-    
+
 ]]
 
 Server.onFillContainer = function(roomName, containerType, container)
@@ -432,21 +434,21 @@ Server.onFillContainer = function(roomName, containerType, container)
     local spawnRandomCan = Server.spawnRandomCan
     local spawnFirearmPart = Server.spawnFirearmPart
     local spawnRepairKit = Server.spawnRepairKit
-    
+
     -- find and remove any default base weapons, ie: stash handling
     -- damnit...not didnt work for removing stashes...
     --[[
-    if ORGM.Settings.RemoveBaseFirearms then 
+    if ORGM.Settings.RemoveBaseFirearms then
         for key, value in pairs(Server.ReplacementsTable) do
             local count = container:FindAll(key):size()
             if count > 0 then
                 container:RemoveAll(key)
                 container:AddItems(value, count)
             end
-        end    
+        end
     end
     ]]
-    
+
     -- room control
     if roomName == "all" and containerType == "inventorymale" then
         addToCorpse(container)
@@ -487,7 +489,7 @@ Server.onFillContainer = function(roomName, containerType, container)
             spawnRandomCan(container, 10*mod, 1)
             spawnRandomCan(container, 5*mod, 1)
             spawnRepairKit(container, 20*mod, 2)
-            
+
         elseif containerType == "counter" then
             spawnRandomBox(container, 70*mod, 1)
             spawnRandomBox(container, 60*mod, 1)
@@ -497,7 +499,7 @@ Server.onFillContainer = function(roomName, containerType, container)
             spawnRandomCan(container, 10*mod, 1)
             spawnRandomCan(container, 5*mod, 1)
             spawnRepairKit(container, 20*mod, 2)
-            
+
         elseif containerType == "displaycase" or containerType == "metal_shelves" then
             local choice = Server.selectFirearm(85, 10, 5)
             spawnFirearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
@@ -527,7 +529,7 @@ Server.onFillContainer = function(roomName, containerType, container)
         spawnRandomCan(container, 10*mod, 1)
         spawnRandomCan(container, 5*mod, 1)
         spawnRepairKit(container, 20*mod, 2)
-    
+
     elseif roomName == "storageunit" and containerType == "crate" then
         local mod = Settings.StorageUnitSpawnModifier
         local choice = Server.selectFirearm(85, 10, 5)
@@ -579,7 +581,7 @@ Server.onFillContainer = function(roomName, containerType, container)
         local choice = Server.selectFirearm(85, 10, 5)
         spawnFirearm(container, choice.gun, choice.ammo, 30*mod, 1, false)
         spawnMagazine(container, choice.gun, choice.ammo, 10*mod, 3, false)
-        
+
         choice = Server.selectFirearm(85, 10, 5)
         spawnFirearm(container, choice.gun, choice.ammo, 20*mod, 1, false)
         spawnMagazine(container, choice.gun, choice.ammo, 8*mod, 3, false)
@@ -595,7 +597,7 @@ Server.onFillContainer = function(roomName, containerType, container)
         spawnRandomCan(container, 10*mod, 1)
         spawnRandomCan(container, 5*mod, 1)
         spawnRepairKit(container, 20*mod, 2)
-    
+
     --------------------------------------------------------
     -- patch for snake's military complex mod
     elseif roomName == "mcgunstorestorage" or roomName == "ammomakerroom" then
@@ -612,7 +614,7 @@ Server.onFillContainer = function(roomName, containerType, container)
             spawnRepairKit(container, 40*mod, 2)
             if Rnd(10) > 4 then count = count -1 end
         end
-    
+
     elseif roomName == "trainingcamp" then
         if containerType == "metal_shelves" or containerType == "crate" then
             local mod = Settings.PoliceStorageSpawnModifier
@@ -656,14 +658,14 @@ Server.insertIntoRarityTables = function(name, definition)
             table.insert(ORGM.FirearmRarityTable.Police[definition.isPolice], name)
         else
             ORGM.log(ORGM.ERROR, "Invalid police rarity for " .. name .. " (" .. definition.isPolice .. ")")
-        end                
+        end
     end
     if definition.isMilitary then
         if ORGM.FirearmRarityTable.Military[definition.isMilitary] ~= nil then
             table.insert(ORGM.FirearmRarityTable.Military[definition.isMilitary], name)
         else
             ORGM.log(ORGM.ERROR, "Invalid military rarity for " .. name .. " (" .. definition.isMilitary .. ")")
-        end                
+        end
     end
 end
 
@@ -689,7 +691,7 @@ end
 Server.buildUpgradeTables = function()
     local modItems = {}
     for name, definition in pairs(ORGM.ComponentTable) do
-        modItems[name] = InventoryItemFactory.CreateItem(definition.moduleName..'.' .. name)    
+        modItems[name] = InventoryItemFactory.CreateItem(definition.moduleName..'.' .. name)
     end
     -- loop through once, clearing all old data for ORGM guns
     for gunName, gunDef in pairs(ORGM.FirearmTable) do
