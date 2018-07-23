@@ -12,12 +12,14 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 
 ---------------------------------------------------------------------------------------
 version 3.09
-* Added Barrel Length modifiers. Length now effects recoil, damage and range of firearms.
-    To compensate for reduced damages on short barrels, the Damage Mulitplier setting now
+* Due to new mechanics in effect (see below), the Damage Mulitplier setting now
     defaults to 0.6 instead of 0.5
     Users of previous ORGM versions will have to manually adjust the setting in the PZ
     options screen ORGM tab. Dedicated servers will have to edit their ORGM.ini (if it
     exists).
+
+* Added Barrel Length and action/feed-system type modifiers. These now have effects on
+    the recoil, damage and range of firearms. Barrel Length also effects weight.
 
 * Added new options to options screen for configuration of hit and critical chances, and
     enabling/disabling the new barrel length modifiers.
@@ -55,6 +57,8 @@ version 3.09
     rarity chances.
 
 * Fixed .44 Magnum FMJ Recoil to match HP
+
+* Fixed 2 handed weapons only getting equipped in primary on login
 
 * Added partial RU translations by Lotos
 
