@@ -1650,7 +1650,7 @@ register("BenelliM3", {
     actionType = ORGM.AUTO,
     autoType = ORGM.LONGRECOIL, -- actually Inertia
     barrelLength = 22, -- 20 22, 24
-    barrelLengthOpt = { 20 22, 24 },
+    barrelLengthOpt = { 20, 22, 24 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     altActionType = ORGM.PUMP,
     isPolice = ORGM.COMMON,
