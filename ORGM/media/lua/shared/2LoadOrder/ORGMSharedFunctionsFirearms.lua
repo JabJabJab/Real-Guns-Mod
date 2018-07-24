@@ -31,7 +31,16 @@ local MOD_WEIGHTAIMINGTIME = 0.5 -- aiming time + (weight * mod)
 local MOD_WEIGHTRECOILDELAY = 0.5 -- recoil / (weight * mod)
 local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
 
+local ADJ_AUTOTYPERECOILDELAY ={
+    -2, -- BLOWBACK = 1,
+    -2, -- DELAYEDBLOWBACK = 2, --
+    -3, -- SHORTGAS = 3,
+    -4, -- LONGGAS = 4,
+    0, -- DIRECTGAS = 5,
+    -1, -- LONGRECOIL = 6,
+    -1, -- SHORTRECOIL = 7,
 
+}
 
 --[[ ORGM.getFirearmData(itemType, moduleName)
 
@@ -337,22 +346,22 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
     return {
         Weight = instance:getWeight(),
         ActualWeight = instance:getActualWeight(),
-        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
-        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * ORGM.Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
+        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
+        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
-        CriticalChance = Settings.DefaultCriticalChance,
+        CriticalChance = Settings.DefaultCriticalChance, -- dynamic setting below
         AimingPerkCritModifier = Settings.DefaultAimingCritMod, -- this is modifier * (level/2)
         MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
-        HitChance = instance:getHitChance(), -- redundant, we set to absolute
+        HitChance = instance:getHitChance(), -- dynamic setting below
 
         MinAngle = instance:getMinAngle(),
-        MinRange = instance:getMinRangeRanged(),
-        AimingTime = instance:getAimingTime(), -- redundant, we set to absolute
-        RecoilDelay = ammoData.Recoil or instance:getRecoilDelay(),
+        MinRange = instance:getMinRangeRanged(), -- dynamic setting below
+        AimingTime = instance:getAimingTime(), -- dynamic setting below
+        RecoilDelay = ammoData.Recoil or instance:getRecoilDelay(), -- dynamic setting below
         ReloadTime = instance:getReloadTime(),
-        MaxRange = ammoData.Range or instance:getMaxRange(),
-        SwingTime = instance:getSwingTime(),
-        AimingPerkHitChanceModifier = Settings.DefaultAimingHitMod --ABS_AIMINGPERKHITMOD,
+        MaxRange = ammoData.Range or instance:getMaxRange(), -- dynamic setting below
+        SwingTime = instance:getSwingTime(), -- dynamic setting below
+        AimingPerkHitChanceModifier = Settings.DefaultAimingHitMod
     }
 end
 
@@ -410,12 +419,12 @@ ORGM[10] = "86\070704944"
 ORGM.adjustFirearmStatsByActionType = function(actionType, statsTable)
     -- set recoil and swingtime modifications for automatics
     if actionType == ORGM.AUTO then
-        statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_AUTORECOILDELAY -- recoil absorbed
+        --statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_AUTORECOILDELAY -- recoil absorbed
         statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
     end
 end
 
-ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt)
+ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, details)
     -- adjust recoil relative to ammo, weight, barrel
     -- TODO: automatics should be slightly reduced barrel length to factor in the feed system
     -- ie: some pressure is used to cycle the next round. This is fine for damage and
@@ -424,18 +433,22 @@ ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt)
     local optimal = weapon:getModData().OptimalBarrel or 30
     local lenModifier = calcBarrelModifier(optimal, length)
     local isAuto = weapon:getModData().actionType == ORGM.AUTO
-    -- if its not a automatic, increase barrel/optimal +4 for autos, or +8 non-autos
+    -- if its not a automatic, increase barrel/optimal +2 for autos, or +4 non-autos
     -- for damage to help balance those damn snub barrels
-    local dmgActionAdj = not isAuto and 8 or 4
+    local dmgActionAdj = not isAuto and 4 or 2
     local lenModifierDamage = calcBarrelModifier(optimal + dmgActionAdj, length + dmgActionAdj)
     statsTable.MinDamage = statsTable.MinDamage - statsTable.MinDamage * lenModifierDamage
     statsTable.MaxDamage = statsTable.MaxDamage - statsTable.MaxDamage * lenModifierDamage
     statsTable.DoorDamage = statsTable.DoorDamage - statsTable.DoorDamage * lenModifierDamage
+
     statsTable.MaxRange = statsTable.MaxRange - statsTable.MaxRange * calcBarrelModifier(optimal, length)
 
     -- if its a auto, increase barrel len by 2 for recoil, modified by feed system
     -- the auto bolt helps absorb some impact
-    local recoilActionAdj = isAuto and 2 or 0
+    local recoilActionAdj = isAuto and 4 or 0
+    if isAuto and details.autoType then
+        recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[details.autoType] or 0)
+    end
     local lenModifierRecoil = calcBarrelModifier(optimal + recoilActionAdj, length + recoilActionAdj)
     statsTable.RecoilDelay =  statsTable.RecoilDelay + statsTable.RecoilDelay * lenModifierRecoil
 
@@ -459,7 +472,7 @@ ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTabl
     end
 end
 
-ORGM.setWeaponStats = function(weapon)
+ORGM.setFirearmStats = function(weapon)
     local details = ORGM.getFirearmData(weapon)
     local modData = weapon:getModData()
     local ammoType = modData.lastRound
@@ -486,8 +499,8 @@ ORGM.setWeaponStats = function(weapon)
     stats.SwingTime = ABS_FULLAUTOSWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
 
     ORGM.adjustFirearmStatsByCategory(details.category, stats, effectiveWgt)
-    ORGM.adjustFirearmStatsByBarrel(weapon, stats, effectiveWgt)
-    statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
+    ORGM.adjustFirearmStatsByBarrel(weapon, stats, effectiveWgt, details)
+    stats.RecoilDelay = stats.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
     ----------------------------------------------------
     -- adjust all by components first
     ORGM.adjustFirearmStatsByComponents(upgrades, stats)
