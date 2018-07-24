@@ -162,7 +162,7 @@ Server.spawnReloadable = function(container, itemType, ammoType, spawnChance, ma
             Server.doWeaponUpgrade(additem)
         end
         if isFirearm then
-            ORGM.setWeaponStats(additem)
+            ORGM.setFirearmStats(additem)
         end
     end
     return true

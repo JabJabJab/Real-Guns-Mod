@@ -107,7 +107,7 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
 
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
 
-    ORGM.setWeaponStats(item)
+    ORGM.setFirearmStats(item)
     if ORGM.checkFirearmBuildID(item) then
         player:Say("Resetting this weapon to defaults due to ORGM changes. Ammo returned to inventory.")
         ORGM.Client.unequipItemNow(player, item)
@@ -178,7 +178,7 @@ ORGM.Client.onKeyPress = function(key)
         else
             data.selectFire = ORGM.SEMIAUTOMODE
         end
-        ORGM.setWeaponStats(primary)
+        ORGM.setFirearmStats(primary)
     elseif key == getCore():getKey("Firearm Inspection Window") then
         --ORGMFirearmWindow:setFirearm(item)
         ORGMFirearmWindow:setVisible(not ORGMFirearmWindow:isVisible())

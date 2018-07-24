@@ -53,14 +53,14 @@ end
 MenuCallbacks.onActionTypeToggle = function(item, player, data, reloadable, newtype)
     player:playSound("ORGMRndLoad", false)
     data.actionType = newtype
-    ORGM.setWeaponStats(item)
+    ORGM.setFirearmStats(item)
 end
 
 MenuCallbacks.onFireModeToggle = function(item, player, data, reloadable, newmode)
     local itemType = item:getFullType()
     player:playSound("ORGMRndLoad", false)
     data.selectFire = newmode
-    ORGM.setWeaponStats(item)
+    ORGM.setFirearmStats(item)
 
 end
 
@@ -171,7 +171,7 @@ MenuCallbacks.onAdminFillAmmo = function(item, player, data, ammoType)
 end
 MenuCallbacks.onBarrelEdit = function(item, player, data, length)
     data.barrelLength = length
-    ORGM.setWeaponStats(item)
+    ORGM.setFirearmStats(item)
 end
 
 ---------------------------------------------------------------------------
@@ -258,23 +258,32 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
         subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminDebug"), item, MenuCallbacks.onDebugWeapon, playerObj, data, reloadable)
         subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminReset"), item, MenuCallbacks.onResetWeapon, playerObj, data, reloadable)
         -- barrel length editor
-        local barrelMenu = subMenuDebug:addOption("Barrel Length", item, nil)
+        local barrelMenu = subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminBarrelLen"), item, nil)
         local subMenuBarrel = subMenuDebug:getNew(subMenuDebug)
         context:addSubMenu(barrelMenu, subMenuBarrel)
-        subMenuBarrel:addOption('2 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 2)
-        subMenuBarrel:addOption('4 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 4)
-        subMenuBarrel:addOption('6 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 6)
-        subMenuBarrel:addOption('8 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 8)
-        subMenuBarrel:addOption('10 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 10)
-        subMenuBarrel:addOption('12 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 12)
-        subMenuBarrel:addOption('14 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 14)
-        subMenuBarrel:addOption('16 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 16)
-        subMenuBarrel:addOption('18 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 18)
-        subMenuBarrel:addOption('20 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 20)
-        subMenuBarrel:addOption('22 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 22)
-        subMenuBarrel:addOption('24 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 24)
-        subMenuBarrel:addOption('26 inches', item, MenuCallbacks.onBarrelEdit, playerObj, data, 26)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 2), item, MenuCallbacks.onBarrelEdit, playerObj, data, 2)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 4), item, MenuCallbacks.onBarrelEdit, playerObj, data, 4)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 6), item, MenuCallbacks.onBarrelEdit, playerObj, data, 6)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 8), item, MenuCallbacks.onBarrelEdit, playerObj, data, 8)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 10), item, MenuCallbacks.onBarrelEdit, playerObj, data, 10)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 12), item, MenuCallbacks.onBarrelEdit, playerObj, data, 12)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 14), item, MenuCallbacks.onBarrelEdit, playerObj, data, 14)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 16), item, MenuCallbacks.onBarrelEdit, playerObj, data, 16)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 18), item, MenuCallbacks.onBarrelEdit, playerObj, data, 18)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 20), item, MenuCallbacks.onBarrelEdit, playerObj, data, 20)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 22), item, MenuCallbacks.onBarrelEdit, playerObj, data, 22)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 24), item, MenuCallbacks.onBarrelEdit, playerObj, data, 24)
+        subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", 26), item, MenuCallbacks.onBarrelEdit, playerObj, data, 26)
 
+        local bLengths = ORGM.getFirearmData(item).barrelLengthOpt
+        if bLengths then
+            local barrelMenu = subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminBarrelLen") .. " (factory)", item, nil)
+            local subMenuBarrel = subMenuDebug:getNew(subMenuDebug)
+            context:addSubMenu(barrelMenu, subMenuBarrel)
+            for _, l in ipairs(bLengths) do
+                subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", l), item, MenuCallbacks.onBarrelEdit, playerObj, data, l)
+            end
+        end
     end
     -- add debug/development submenu.
     if ORGM.Settings.Debug == true then
