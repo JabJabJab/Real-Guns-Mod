@@ -1052,7 +1052,7 @@ function ISORGMWeapon:setCurrentRound(ammoType, weapon)
     if ammoType ~= self.lastRound then
         self.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
         weapon:getModData().lastRound = ammoType
-        ORGM.setWeaponStats(weapon)
+        ORGM.setFirearmStats(weapon)
     end
     ORGM.setWeaponProjectilePiercing(weapon, roundData)
 end

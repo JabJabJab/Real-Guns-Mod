@@ -33,4 +33,6 @@ ContextMenu_EN = {
     ContextMenu_ORGM_AdminDebug = "Print Debug Info",
     ContextMenu_ORGM_AdminReset = "Reset To Defaults",
     ContextMenu_ORGM_AdminLoad = "Full Ammo",
+    ContextMenu_ORGM_AdminBarrelLen = "Barrel Length",
+    ContextMenu_ORGM_AdminBarrelLenInches = "%1 Inches",
 }
