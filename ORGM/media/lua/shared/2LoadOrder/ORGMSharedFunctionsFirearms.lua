@@ -1,3 +1,40 @@
+--[[    ORGMSharedFunctionsFirearms.lua
+
+    This file handles functions dealing with firearms, values in the ORGM.FirearmTable,
+    and manipulating HandWeapon/InventoryItem methods. Dynamic stat settings, reloadable
+    setup and ORGM version updates are contained.
+
+    NOTE: barrel optimization length calculations, and other stuff to consider
+    Note 'optimal barrel length' is a completely subjective term. In this I'm referring to the length required to
+    achieve full powder burn, where the bullet reaches maximum velocity. Also note 'full powder burn' is completely
+    relative, different powders burn at different rates. While one might reach max velocity from a 26" barrel, another
+    might require a 28". Bullet weight also plays a important factor here, but for the sake of simplicity should not
+    be factored in (yet).
+
+    1) action type has a effect, especially in automatics. Pressure is lost in blowback designs, gas feed systems etc.
+        This means a shorter barrel will have the same effect as a longer one in bolt actions and such.
+        These action types should have a lower 'optimal barrel' length.
+    2) Barrel length has a effect on damage, below optimal length the bullet does not reach its intended velocity,
+        above optimal it starts to slow down due to friction.
+    3) Length of barrels has a effect on noise. A longer barrel is quieter then a shorter one, as less gas escapes.
+    4) Barrel lengths effect on accuracy is a mixed bag when it comes to long range. While longer barrels are generally
+        more accurate when the barrel is resting, it also means the bullet has longer 'barrel time' which means more
+        chance to waiver off target. Above/below optimal length and velocity causes additional bullet drop. Luckly long
+        range shooting isn't really a thing in PZ, so this isn't much of a problem.
+    5) Below optimal length, the extra gas escaping causes additional recoil.
+    6) Action type effect on recoil: some action types absorb recoil more then others, but this is also a mixed bag. Take
+        the AK for example. It uses a long gas piston feed system, the gas chamber absorbs some recoil effect from the
+        gas that escapes the muzzle, but causes additional recoil due to the design of the long piston above the barrel
+        and the center of weight changes while cycling.
+    7) The effect on velocity from a barrel above/below is a definite curve. The closer we are to optimal length the less
+        the effect is.
+
+
+    fps-fps*((((o-b)/o)**3)**2) this is pretty damn close to matching the curve.
+    After tons of pissing around with handloading simulation software, it looks like 'o' needs to be 80 for rifles,
+     30 for pistols, 60 for shotguns to find a close match. These are defined in the calls to ORGM.registerAmmo().
+
+]]
 local getTableData = ORGM.getTableData
 local Settings = ORGM.Settings
 
@@ -160,20 +197,24 @@ ORGM.setupGun = function(gunData, item)
 end
 
 
---[[  ORGM.checkFirearmBuildID(item)
+--[[  ORGM.getFirearmNeedsUpdate(item)
+
+    Returns true/false if the firearm needs to be updated due to ORGM version
+    changes. This compares the mods BUILD_ID with the item's mod data BUILD_ID
+    and the definitions lastChanged property.
 
     item is a HandWeapon/InventoryItem
 
-    returns a new HandWeapon/InventoryItem or nil
+    returns a boolean (or nil if not a ORGM firearm)
 
 ]]
-ORGM.checkFirearmBuildID = function(item)
+ORGM.getFirearmNeedsUpdate = function(item)
     if item == nil then return nil end
     local data = item:getModData()
-    local def = ORGM.getFirearmData(item)
-    if not def then return nil end
+    local gunData = ORGM.getFirearmData(item)
+    if not gunData then return nil end
 
-    if def.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < def.lastChanged) then
+    if gunData.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < gunData.lastChanged) then
         ORGM.log(ORGM.INFO, "Obsolete firearm detected (" .. item:getType() .."). Running update function.")
         -- this gun has changed. reset it.
         return true
@@ -224,20 +265,21 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     if data.barrelLength then -- copy barrel lengh if the gun has one
         newData.barrelLength = data.barrelLength
     end
-
+    newData.roundsFired = data.roundsFired or 0
+    newData.roundsSinceCleaned = data.roundsSinceCleaned or 0
     newData.serialnumber = data.serialnumber -- copy the guns serial number
 
     -- empty the magazine, return all rounds to the container.
     if data.magazineData then -- no mag data, this gun has not properly been setup, or is legacy orgm
         for _, value in pairs(data.magazineData) do
-            local def = ORGM.getAmmoData(value)
-            if def then container:AddItem(def.moduleName ..'.'.. value) end
+            local ammoData = ORGM.getAmmoData(value)
+            if ammoData then container:AddItem(ammoData.moduleName ..'.'.. value) end
         end
     end
     if data.roundChambered ~= nil and data.roundChambered > 0 then
         for i=1, data.roundChambered do
-            local def = ORGM.getAmmoData(data.lastRound)
-            if def then container:AddItem(def.moduleName ..'.'.. data.lastRound) end
+            local ammoData = ORGM.getAmmoData(data.lastRound)
+            if ammoData then container:AddItem(ammoData.moduleName ..'.'.. data.lastRound) end
         end
     end
     if data.containsClip ~= nil and newData.containsClip ~= nil then
@@ -249,103 +291,111 @@ ORGM.replaceFirearmWithNewCopy = function(item, container)
     return newItem
 end
 
---[[ ORGM.getBarrelLength(item, definition)
+--[[ ORGM.getBarrelLength(item, gunData)
 
-    Gets the barrel length for the firearm
+    Gets the barrel length for the firearm.
 
     item is a HandWeapon/InventoryItem
-    definition is a table (or nil) returned from ORGM.getFirearmData(item)
+    gunData is a table (or nil) returned from ORGM.getFirearmData(item)
 
     return a integer (or nil)
 
 ]]
-ORGM.getBarrelLength = function(item, definition)
-    if not definition then
-        definition = ORGM.getFirearmData(item)
+ORGM.getBarrelLength = function(item, gunData)
+    if not gunData then
+        gunData = ORGM.getFirearmData(item)
     end
-    if not definition then return nil end
-    return item:getModData().barrelLength or definition.barrelLength
+    if not gunData then return nil end
+    return item:getModData().barrelLength or gunData.barrelLength
 end
 
 
---[[ ORGM.getBarrelWeightModifier(item, definition)
+--[[ ORGM.getBarrelWeightModifier(item, gunData)
 
     Gets the weight modifier for the firearm based on its barrel length
 
     item is a HandWeapon/InventoryItem
-    definition is a table (or nil) returned from ORGM.getFirearmData(item)
+    gunData is a table (or nil) returned from ORGM.getFirearmData(item)
 
     return a float (or nil)
 
 ]]
-ORGM.getBarrelWeightModifier = function(item, definition)
-    if not definition then
-        definition = ORGM.getFirearmData(item)
+ORGM.getBarrelWeightModifier = function(item, gunData)
+    if not gunData then
+        gunData = ORGM.getFirearmData(item)
     end
-    if not definition then return nil end
+    if not gunData then return nil end
 
-    return ((item:getModData().barrelLength or definition.barrelLength) - definition.barrelLength) * ADJ_WEIGHTBARRELLEN
+    return ((item:getModData().barrelLength or gunData.barrelLength) - gunData.barrelLength) * ADJ_WEIGHTBARRELLEN
 end
 
 
+--[[ ORGM.isFullAuto(item, gunData)
 
---[[
-    NOTE: barrel optimization length calculations, and other stuff to consider
-    Note 'optimal barrel length' is a completely subjective term. In this I'm referring to the length required to
-    achieve full powder burn, where the bullet reaches maximum velocity. Also note 'full powder burn' is completely
-    relative, different powders burn at different rates. While one might reach max velocity from a 26" barrel, another
-    might require a 28". Bullet weight also plays a important factor here, but for the sake of simplicity should not
-    be factored in (yet).
+    Returns true or false (or nil if not a ORGM firearm) if the HandWeapon is
+    currently in full auto mode.
 
-    1) action type has a effect, especially in automatics. Pressure is lost in blowback designs, gas feed systems etc.
-        This means a shorter barrel will have the same effect as a longer one in bolt actions and such.
-        These action types should have a lower 'optimal barrel' length.
-    2) Barrel length has a effect on damage, below optimal length the bullet does not reach its intended velocity,
-        above optimal it starts to slow down due to friction.
-    3) Length of barrels has a effect on noise. A longer barrel is quieter then a shorter one, as less gas escapes.
-    4) Barrel lengths effect on accuracy is a mixed bag when it comes to long range. While longer barrels are generally
-        more accurate when the barrel is resting, it also means the bullet has longer 'barrel time' which means more
-        chance to waiver off target. Above/below optimal length and velocity causes additional bullet drop. Luckly long
-        range shooting isn't really a thing in PZ, so this isn't much of a problem.
-    5) Below optimal length, the extra gas escaping causes additional recoil.
-    6) Action type effect on recoil: some action types absorb recoil more then others, but this is also a mixed bag. Take
-        the AK for example. It uses a long gas piston feed system, the gas chamber absorbs some recoil effect from the
-        gas that escapes the muzzle, but causes additional recoil due to the design of the long piston above the barrel
-        and the center of weight changes while cycling.
-    7) The effect on velocity from a barrel above/below is a definite curve. The closer we are to optimal length the less
-        the effect is.
+    item is a HandWeapon/InventoryItem
+    gunData is a table (or nil) returned from ORGM.getFirearmData(item)
 
+    returns a boolean (or nil)
 
-    fps-fps*((((o-b)/o)**3)**2) this seems pretty damn close to matching, not sure we're going to get much closer.
-    After tons of pissing around with handloading simulation software, it looks like 'o' needs to be 80 for rifles,
-     30 for pistols, 60 for shotguns to find a close match.
 ]]
+ORGM.isFullAuto = function(item, gunData)
+    if not gunData then
+        gunData = ORGM.getFirearmData(item)
+    end
+    if not gunData then return nil end
+    return (item:getModData().selectFire == ORGM.FULLAUTOMODE or gunData.alwaysFullAuto)
+end
 
+
+--[[ calcBarrelModifier(optimal, barrel)
+
+    calculates the curve modifier for the velocity drop for barrel lengths.
+
+    optimal is a float, the OptimalBarrel defined in when ORGM.registerAmmo is called.
+    barrel is a float, the barrel length to check against.
+
+    returns a float
+
+]]
+local calcBarrelModifier = function(optimal, barrel)
+    return ((((optimal-barrel)/optimal)^3)^2)
+end
 ORGM[4] = "5416374697665"
 
-ORGM[3] = "\0686\070646"
 
+--[[ORGM.getOptimalBarrelLength(ammoType)
 
-local calcBarrelModifier = function(optimal, barrel)
-    if ORGM.Settings.UseBarrelLengthModifiers then
-        return ((((optimal-barrel)/optimal)^3)^2)
-    end
-    return 0
-end
+    Returns the optimal barrel length for the specified ammo.
 
-local adjustDmgByBarrel = function(item, ammoType, damage)
-    local barrel = ORGM.getBarrelLength(item)
-    local optimal = ORGM.getOptimalBarrelLength(ammoType)
-    return damage - damage * calcBarrelModifier(optimal, barrel)
-end
+    ammoType is a string or InventoryItem
 
+    returns a integer or nil
+
+]]
 ORGM.getOptimalBarrelLength = function(ammoType)
     local data = ORGM.getAmmoData(ammoType)
+    if not data then return nil end
     return data.OptimalBarrel
 end
 
 
-ORGM.getInitialFirearmStats = function(instance, ammoData)
+--[[ ORGM.getInitialFirearmStats(gunData, ammoData)
+
+    Gets the initial stats table for the firearm.
+    This is only called by ORGM.setFirearmStats() before modifying the stats table
+    and setting the item's properties.
+
+    gunData is a value in the ORGM.FirearmTable
+    ammoData is a value in the ORGM.AmmoTable
+
+    returns a table of initial values
+
+]]
+ORGM.getInitialFirearmStats = function(gunData, ammoData)
+    local instance = gunData.instance
     return {
         Weight = instance:getWeight(),
         ActualWeight = instance:getActualWeight(),
@@ -367,6 +417,7 @@ ORGM.getInitialFirearmStats = function(instance, ammoData)
         AimingPerkHitChanceModifier = Settings.DefaultAimingHitMod
     }
 end
+ORGM[3] = "\0686\070646"
 
 
 --[[ ORGM.adjustFirearmStatsByCategory(category, statsTable, effectiveWgt)
@@ -401,44 +452,62 @@ ORGM.adjustFirearmStatsByCategory = function(category, statsTable, effectiveWgt)
     end
 end
 
-ORGM.adjustFirearmStatsByComponents = function(compnentTable, statsTable)
-    for _, mod in pairs(compnentTable) do
-      local cdetails = ORGM.getComponentData(mod) or { }
-      statsTable.CriticalChance = statsTable.CriticalChance + (cdetails.CriticalChance or 0)
-      statsTable.HitChance = statsTable.HitChance + (cdetails.HitChance or 0)
 
-      statsTable.SwingTime = statsTable.SwingTime + (cdetails.SwingTime or 0)
-      statsTable.AimingTime = statsTable.AimingTime + (cdetails.AimingTime or 0)
-      statsTable.ReloadTime = statsTable.ReloadTime + (cdetails.ReloadTime or 0)
-      statsTable.RecoilDelay = statsTable.RecoilDelay + (cdetails.RecoilDelay or 0)
+--[[ ORGM.adjustFirearmStatsByComponents(compTable, statsTable)
 
-      statsTable.MinDamage = statsTable.MinDamage + (cdetails.MinDamage or 0)
-      statsTable.MaxDamage = statsTable.MaxDamage + (cdetails.MaxDamage or 0)
-      statsTable.MinAngle = statsTable.MinAngle + (cdetails.MinAngle or 0)
-      statsTable.MinRange = statsTable.MinRange + (cdetails.MinRange or 0)
-      statsTable.MaxRange = statsTable.MaxRange + (cdetails.MaxRange or 0)
+    Adjusts the values in the statsTable based on the items in the
+    compTable. Note only specific key/values defined by components
+    can be changed here.
+    This function is called by ORGM.setFirearmStats()
 
+    compTable is a table, a return value of ORGM.getItemComponents(item)
+    statsTable is a table, the firearm stats
+    effectiveWgt is the weight of the firearm and all attachments excluding slings.
+
+    Returns nil
+
+]]
+ORGM.adjustFirearmStatsByComponents = function(compTable, statsTable)
+    for _, mod in pairs(compTable) do
+      local compData = ORGM.getComponentData(mod) or { }
+      statsTable.CriticalChance = statsTable.CriticalChance + (compData.CriticalChance or 0)
+      statsTable.HitChance = statsTable.HitChance + (compData.HitChance or 0)
+
+      statsTable.SwingTime = statsTable.SwingTime + (compData.SwingTime or 0)
+      statsTable.AimingTime = statsTable.AimingTime + (compData.AimingTime or 0)
+      statsTable.ReloadTime = statsTable.ReloadTime + (compData.ReloadTime or 0)
+      statsTable.RecoilDelay = statsTable.RecoilDelay + (compData.RecoilDelay or 0)
+
+      statsTable.MinDamage = statsTable.MinDamage + (compData.MinDamage or 0)
+      statsTable.MaxDamage = statsTable.MaxDamage + (compData.MaxDamage or 0)
+      statsTable.MinAngle = statsTable.MinAngle + (compData.MinAngle or 0)
+      statsTable.MinRange = statsTable.MinRange + (compData.MinRange or 0)
+      statsTable.MaxRange = statsTable.MaxRange + (compData.MaxRange or 0)
     end
 end
-ORGM[10] = "86\070704944"
 
-ORGM.adjustFirearmStatsByActionType = function(actionType, statsTable)
-    -- set recoil and swingtime modifications for automatics
-    if actionType == ORGM.AUTO then
-        --statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_AUTORECOILDELAY -- recoil absorbed
-        statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
-    end
-end
 
-ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, details)
+--[[ ORGM.adjustFirearmStatsByBarrel(item, gunData, statsTable, effectiveWgt)
+
+    Adjusts the values in the statsTable based on the firearms barrel length.
+    Adjustments to compensate for automatic feed systems are also done here.
+    This function is called by ORGM.setFirearmStats()
+
+    item is a HandWeapon/InventoryItem
+    gunData is a table, a value in the ORGM.FirearmTable
+    ammoData is a table, a value in the ORGM.AmmoTable
+    statsTable is a table, the firearm stats
+    effectiveWgt is the weight of the firearm and all attachments excluding slings.
+
+    returns nil
+
+]]
+ORGM.adjustFirearmStatsByBarrel = function(item, gunData, ammoData, statsTable, effectiveWgt)
     -- adjust recoil relative to ammo, weight, barrel
-    -- TODO: automatics should be slightly reduced barrel length to factor in the feed system
-    -- ie: some pressure is used to cycle the next round. This is fine for damage and
-    -- range, but for recoil it should be treated as slightly longer barrel
-    local length = ORGM.getBarrelLength(weapon) or 10 -- set to a default for safety
-    local optimal = weapon:getModData().OptimalBarrel or 30
-    local lenModifier = calcBarrelModifier(optimal, length)
-    local isAuto = weapon:getModData().actionType == ORGM.AUTO
+    if not Settings.UseBarrelLengthModifiers then return end
+    local length = ORGM.getBarrelLength(item) or 10 -- set to a default for safety
+    local optimal = ammoData.OptimalBarrel or 30 --item:getModData().OptimalBarrel or 30
+    local isAuto = item:getModData().actionType == ORGM.AUTO
     -- if its not a automatic, increase barrel/optimal +2 for autos, or +4 non-autos
     -- for damage to help balance those damn snub barrels
     local dmgActionAdj = not isAuto and 4 or 2
@@ -452,8 +521,8 @@ ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, det
     -- if its a auto, increase barrel len by 2 for recoil, modified by feed system
     -- the auto bolt helps absorb some impact
     local recoilActionAdj = isAuto and 6 or 0
-    if isAuto and details.autoType then
-        recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[details.autoType] or 0)
+    if isAuto and gunData.autoType then
+        recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[gunData.autoType] or 0)
     end
     local lenModifierRecoil = calcBarrelModifier(optimal + recoilActionAdj, length + recoilActionAdj)
     statsTable.RecoilDelay =  statsTable.RecoilDelay + statsTable.RecoilDelay * lenModifierRecoil
@@ -461,14 +530,36 @@ ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, det
     -- now for the noise...
     --statsTable.SoundRadius = ???
 end
+ORGM[10] = "86\070704944"
 
 
-ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTable)
-    if alwaysFullAuto then fireMode = ORGM.FULLAUTOMODE end
-    if fireMode == ORGM.FULLAUTOMODE then -- full auto mode
+--[[ ORGM.adjustFirearmStatsByFeedSystem(item, gunData, statsTable)
+
+    Makes adjustments to SwingTime, applying limits and setting up full auto.
+    The bulk of full auto behavior is defined in the function.
+    This function is called by ORGM.setFirearmStats()
+
+    item is a HandWeapon/InventoryItem
+    gunData is a table, a value in the ORGM.FirearmTable
+    statsTable is a table, the firearm stats
+
+    returns nil
+
+]]
+ORGM.adjustFirearmStatsByFeedSystem = function(item, gunData, statsTable)
+    local isFullAuto = ORGM.isFullAuto(item, gunData)
+    --if alwaysFullAuto then fireMode = ORGM.FULLAUTOMODE end
+    if gunData.actionType == ORGM.AUTO then
+        statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
+    end
+    if isFullAuto then -- full auto mode
         statsTable.HitChance = statsTable.HitChance + ADJ_FULLAUTOHITCHANCE
         if statsTable.RecoilDelay > -5 then
-            statsTable.HitChance = statsTable.HitChance - statsTable.RecoilDelay -- was -20
+            -- transfer all recoil to the hit chance penalty
+            statsTable.HitChance = statsTable.HitChance - statsTable.RecoilDelay
+        else
+            -- too much negative recoil will completely nerf the full auto penalty
+            statsTable.HitChance = statsTable.HitChance - -5
         end
         statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_FULLAUTORECOILDELAY
         statsTable.AimingTime = statsTable.AimingTime + ADJ_FULLAUTOAIMINGTIME
@@ -480,52 +571,56 @@ ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTabl
 end
 
 
---[[ORGM.setFirearmStats(weapon)
+--[[ ORGM.setFirearmStats(item)
 
     Sets the HandWeapon/InventoryItem properties. This is crucial to the ORGM Framework's
     dynamic stats for guns. It calculates the stats for firearms based on: ammo, weight,
     accessories attached, barrel length, action type, select fire type (and other modData)
 
+    item is a HandWeapon/InventoryItem
+
+    returns nil
+
 ]]
-ORGM.setFirearmStats = function(weapon)
-    local details = ORGM.getFirearmData(weapon)
-    local modData = weapon:getModData()
+ORGM.setFirearmStats = function(item)
+    local gunData = ORGM.getFirearmData(item)
+    local modData = item:getModData()
     local ammoType = modData.lastRound
-    ORGM.log(ORGM.DEBUG, "Setting "..weapon:getType() .. " ammo to "..tostring(ammoType))
+    ORGM.log(ORGM.DEBUG, "Setting "..item:getType() .. " ammo to "..tostring(ammoType))
     local ammoData = ORGM.getAmmoData(ammoType) or {}
-    local upgrades = ORGM.getItemComponents(weapon)
+    local compTable = ORGM.getItemComponents(item)
 
     -- set inital values from defaults
-    local statsTable = ORGM.getInitialFirearmStats(details.instance, ammoData)
+    local statsTable = ORGM.getInitialFirearmStats(gunData, ammoData)
     -- adjust weight first
-    statsTable.ActualWeight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
-    statsTable.Weight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
-    for _, mod in pairs(upgrades) do
+    statsTable.ActualWeight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(item, gunData)
+    statsTable.Weight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(item, gunData)
+    for _, mod in pairs(compTable) do
         statsTable.ActualWeight = statsTable.ActualWeight + mod:getWeightModifier()
         statsTable.Weight = statsTable.Weight + mod:getWeightModifier()
     end
     -- effectiveWgt is the weight we use to calculate stats
     -- slings should not effect things like recoil or other stats
-    local effectiveWgt = statsTable.ActualWeight - ((upgrades.Sling and upgrades.Sling:getWeightModifier()) or 0)
+    local effectiveWgt = statsTable.ActualWeight - ((compTable.Sling and compTable.Sling:getWeightModifier()) or 0)
 
     ----------------------------------------------------
     -- adjust swingtime based on weight
     -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
     statsTable.SwingTime = LIMIT_FASWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
 
-    ORGM.adjustFirearmStatsByCategory(details.category, statsTable, effectiveWgt)
-    ORGM.adjustFirearmStatsByBarrel(weapon, statsTable, effectiveWgt, details)
+    ORGM.adjustFirearmStatsByCategory(gunData.category, statsTable, effectiveWgt)
+    ORGM.adjustFirearmStatsByBarrel(item, gunData, ammoData, statsTable, effectiveWgt)
     statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
     ----------------------------------------------------
     -- adjust all by components first
-    ORGM.adjustFirearmStatsByComponents(upgrades, statsTable)
-    ORGM.adjustFirearmStatsByActionType(modData.actionType, statsTable)
+    ORGM.adjustFirearmStatsByComponents(compTable, statsTable)
+    --ORGM.adjustFirearmStatsByActionType(modData.actionType, statsTable)
 
     -- set other relative ammoData adjustments
     statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
     statsTable.CriticalChance = statsTable.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
 
-    ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, statsTable)
+    ORGM.adjustFirearmStatsByFeedSystem(item, gunData, statsTable)
 
     -- finalize any limits
     if statsTable.SwingTime < LIMIT_FASWINGTIME then statsTable.SwingTime = LIMIT_FASWINGTIME end
@@ -540,7 +635,10 @@ ORGM.setFirearmStats = function(weapon)
     end
     for k,v in pairs(statsTable) do
         ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
-        weapon["set"..k](weapon, v)
+        -- treat the HandWeapon java class like a lua table, and call a function
+        -- based on strings. If we've got a bad key in the statsTable we deserve
+        -- to crash and burn. No error checking.
+        item["set"..k](item, v)
     end
 end
 
