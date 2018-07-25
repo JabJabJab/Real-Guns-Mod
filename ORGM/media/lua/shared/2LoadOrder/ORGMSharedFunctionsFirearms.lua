@@ -640,4 +640,69 @@ ORGM.setFirearmStats = function(item)
     end
 end
 
+
+--[[ ORGM.setFirearmPiercingBullets(item, ammoData)
+
+    Sets the PiercingBullets flag on a gun, dependent on the round.
+    This is called when loading a new round into the chamber.
+
+    item is a HandWeapon Item
+    ammoData is a entry in the ORGM.AmmoTable
+
+    returns boolean, if the flag is set or not.
+
+]]
+ORGM.setFirearmPiercingBullets = function(item, ammoData)
+    local result = false
+    if ammoData.PiercingBullets == true or ammoData.PiercingBullets == false then
+        result = ammoData.PiercingBullets
+    elseif ammoData.PiercingBullets == nil then
+        result = false
+    else
+        result = ZombRand(100) + 1 <= ammoData.PiercingBullets
+    end
+    item:setPiercingBullets(result)
+    return result
+end
+
+-- currently not used
+--[[
+ORGM.resetFirearmToDefaults = function(item, container)
+    if item == nil then return end
+    local data = item:getModData()
+
+    local scriptItem = item:getScriptItem()
+    -- change the item properties to the new scriptItem values.
+    item:setAmmoType(def.ammoType)
+    if ORGM.isMagazine(def.ammoType) then
+        -- we can only fetch the clip size for magazines, internal mags theres no scriptItem:getClipSize()
+       item:setClipSize(ORGM.getMagazineData(ammoType).maxCapacity)
+    end
+
+    ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
+end
+
+-- TODO: finish this function.
+ORGM.filterGuns = function(filters)
+    local compiledFilters = { }
+    local resuts = { }
+    for key, value in pairs(filters) do
+        if type(value) == 'number' or type(value) == number then
+            compiledFilters[key] = function(v) return v == value end
+        end
+    end
+    for name, definition in pairs(ORGM.FirearmTable) do
+        local isValid = true
+        for key, code in pairs(compiledFilters) do
+            if definition[key] == nil or code(definition[key]) == false then
+                isValid = false
+            end
+        end
+        if isValid then table.insert(results, name) end
+    end
+    return results
+end
+]]
+
+
 ORGM[16] = "\116\111\110\117"
