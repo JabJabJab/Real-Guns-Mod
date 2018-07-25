@@ -250,7 +250,7 @@ ORGM.Client.firearmContextMenu = function(player, context, item)
     -- TODO: if open and has bullets insert round into chamber option
 
     if isAdmin() or ORGM.Settings.Debug then
-        local altTable = ORGM.getItemAmmoGroup(item)
+        local altTable = ORGM.getItemAmmoGroup(item, true)
         local debugMenu = context:addOption(getText("ContextMenu_ORGM_Admin"), item, nil)
         local subMenuDebug = context:getNew(context)
         context:addSubMenu(debugMenu, subMenuDebug)
@@ -309,7 +309,7 @@ ORGM.Client.magazineContextMenu = function(player, context, item)
         context:addOption(getText("ContextMenu_ORGM_Unload"), item, MenuCallbacks.onUnload, playerObj)
     end
     if isAdmin() then
-        local altTable = ORGM.getItemAmmoGroup(item)
+        local altTable = ORGM.getItemAmmoGroup(item, true)
         local debugMenu = context:addOption("Admin", item, nil)
         local subMenuDebug = context:getNew(context)
         context:addSubMenu(debugMenu, subMenuDebug)
@@ -343,12 +343,12 @@ ORGM.Client.inventoryContextMenu = function(player, context, items)
     local data = item:getModData()
     ---------------------
     -- Check for alternate ammo types so player can set gun to use a specific type
-    local altTable = ORGM.getItemAmmoGroup(item)
+    local altTable = ORGM.getItemAmmoGroup(item, true)
     --local ammoType = data.ammoType
     --if data.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
     --    ammoType = ReloadUtil:getClipData(ammoType).ammoType
     --end
-    --local reloadable = ReloadUtil:getReloadableWeapon(item, player)
+    local reloadable = ReloadUtil:getReloadableWeapon(item, player)
     --local altTable = ORGM.getAmmoGroup(ammoType)
     if #altTable > 1 then -- this ammo has alternatives
         -- create the submenu

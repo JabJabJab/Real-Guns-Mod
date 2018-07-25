@@ -81,22 +81,23 @@ ORGM.getAmmoGroup = function(itemType)
 end
 
 
---[[  ORGM.getItemAmmoGroup(item)
+--[[  ORGM.getItemAmmoGroup(item, asTable)
 
     return the AmmoGroup for the item.
     item is a string of the item, or a InventoryItem weapon or magazine
+    asTable a boolean if the results returned should be a table
 
-    returns a string ammo group name
+    returns a string ammo group name, or a table list of strings
 ]]
-ORGM.getItemAmmoGroup = function(item)
+ORGM.getItemAmmoGroup = function(item, asTable)
     local gun = ORGM.getFirearmData(item)
     local mag = ORGM.getMagazineData(item)
-    if gun then
-        mag = gun.clipData
+    if gun then mag = gun.clipData end -- check if it might be a mag
+    if mag then
+        return asTable and ORGM.getAmmoGroup(mag.ammoType) or mag.ammoType
     end
-    if mag then return mag.ammoType end
     if not gun then return nil end
-    return gun.ammoType
+    return asTable and ORGM.getAmmoGroup(gun.ammoType) or gun.ammoType
     --return item:getAmmoType()
 end
 
