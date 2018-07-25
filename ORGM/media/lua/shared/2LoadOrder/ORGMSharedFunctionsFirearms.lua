@@ -472,6 +472,14 @@ ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTabl
     end
 end
 
+
+--[[ORGM.setFirearmStats(weapon)
+
+    Sets the HandWeapon/InventoryItem properties. This is crucial to the ORGM Framework's
+    dynamic stats for guns. It calculates the stats for firearms based on: ammo, weight,
+    accessories attached, barrel length, action type, select fire type (and other modData)
+
+]]
 ORGM.setFirearmStats = function(weapon)
     local details = ORGM.getFirearmData(weapon)
     local modData = weapon:getModData()
@@ -481,49 +489,49 @@ ORGM.setFirearmStats = function(weapon)
     local upgrades = ORGM.getItemComponents(weapon)
 
     -- set inital values from defaults
-    local stats = ORGM.getAbsoluteFirearmStats(details.instance, ammoData)
+    local statsTable = ORGM.getAbsoluteFirearmStats(details.instance, ammoData)
     -- adjust weight first
-    stats.ActualWeight = stats.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
-    stats.Weight = stats.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
+    statsTable.ActualWeight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
+    statsTable.Weight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
     for _, mod in pairs(upgrades) do
-        stats.ActualWeight = stats.ActualWeight + mod:getWeightModifier()
-        stats.Weight = stats.Weight + mod:getWeightModifier()
+        statsTable.ActualWeight = statsTable.ActualWeight + mod:getWeightModifier()
+        statsTable.Weight = statsTable.Weight + mod:getWeightModifier()
     end
     -- effectiveWgt is the weight we use to calculate stats
     -- slings should not effect things like recoil or other stats
-    local effectiveWgt = stats.ActualWeight - ((upgrades.Sling and upgrades.Sling:getWeightModifier()) or 0)
+    local effectiveWgt = statsTable.ActualWeight - ((upgrades.Sling and upgrades.Sling:getWeightModifier()) or 0)
 
     ----------------------------------------------------
     -- absolute values
     -- adjust swingtime based on weight
-    stats.SwingTime = ABS_FULLAUTOSWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
+    statsTable.SwingTime = ABS_FULLAUTOSWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
 
-    ORGM.adjustFirearmStatsByCategory(details.category, stats, effectiveWgt)
-    ORGM.adjustFirearmStatsByBarrel(weapon, stats, effectiveWgt, details)
-    stats.RecoilDelay = stats.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
+    ORGM.adjustFirearmStatsByCategory(details.category, statsTable, effectiveWgt)
+    ORGM.adjustFirearmStatsByBarrel(weapon, statsTable, effectiveWgt, details)
+    statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
     ----------------------------------------------------
     -- adjust all by components first
-    ORGM.adjustFirearmStatsByComponents(upgrades, stats)
-    ORGM.adjustFirearmStatsByActionType(modData.actionType, stats)
+    ORGM.adjustFirearmStatsByComponents(upgrades, statsTable)
+    ORGM.adjustFirearmStatsByActionType(modData.actionType, statsTable)
 
     -- set other relative ammoData adjustments
-    stats.HitChance = stats.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
-    stats.CriticalChance = stats.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
+    statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
+    statsTable.CriticalChance = statsTable.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
 
-    ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, stats)
+    ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, statsTable)
 
     -- finalize any limits
-    if stats.SwingTime < ABS_FULLAUTOSWINGTIME then stats.SwingTime = ABS_FULLAUTOSWINGTIME end
-    stats.MinimumSwingTime = stats.SwingTime - 0.1
-    if stats.RecoilDelay < LIMIT_RECOILDELAY then stats.RecoilDelay = LIMIT_RECOILDELAY end
-    if stats.AimingTime < 1 then stats.AimingTime = 1 end
-    stats.AimingTime = math.floor(stats.AimingTime) -- make sure to pass int
+    if statsTable.SwingTime < ABS_FULLAUTOSWINGTIME then statsTable.SwingTime = ABS_FULLAUTOSWINGTIME end
+    statsTable.MinimumSwingTime = statsTable.SwingTime - 0.1
+    if statsTable.RecoilDelay < LIMIT_RECOILDELAY then statsTable.RecoilDelay = LIMIT_RECOILDELAY end
+    if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end
+    statsTable.AimingTime = math.floor(statsTable.AimingTime) -- make sure to pass int
 
-    if stats.MinRange then
-        stats.MinRangeRanged = stats.MinRange -- change to proper name
-        stats.MinRange = nil -- nil it so it doesnt nerf our melee range
+    if statsTable.MinRange then
+        statsTable.MinRangeRanged = statsTable.MinRange -- change to proper name
+        statsTable.MinRange = nil -- nil it so it doesnt nerf our melee range
     end
-    for k,v in pairs(stats) do
+    for k,v in pairs(statsTable) do
         ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
         weapon["set"..k](weapon, v)
     end
