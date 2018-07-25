@@ -5,14 +5,13 @@ local Settings = ORGM.Settings
 --[[ Constants
 
     This are primarily used when setting up a firearms stats.
+    NOTE: I really hate constants in ORGM. These little bastards as efficient
+    as they are, they're more of a pain in regards to ORGM's core philosophy of
+    giving addons access to everything and end user configuration.
+    In short, I need to move these bloody things....
 
 ]]
--- barrel length weight modifier. Each 1" of barrel length off the default
--- modifies the weight of the firearm either + or -
-local BARRELLEN_WEIGHTMOD = 0.1
 
--- Absolute Constants
-local ABS_FULLAUTOSWINGTIME = 0.3 -- full auto only, anything else is dynamic
 
 -- Adjustment Constants
 local ADJ_FULLAUTOHITCHANCE = -10  -- full auto only
@@ -20,9 +19,14 @@ local ADJ_FULLAUTORECOILDELAY = -20 -- full auto only
 local ADJ_FULLAUTOAIMINGTIME = 20 -- full auto only
 
 local ADJ_AUTOSWINGTIME = -0.3 -- for automatics
-local ADJ_AUTORECOILDELAY = -4 -- for automatics
+local ADJ_AUTORECOILDELAY = -4 -- for automatics, obsolete
+
+-- barrel length weight modifier. Each 1" of barrel length off the default
+-- modifies the weight of the firearm either + or -
+local ADJ_WEIGHTBARRELLEN = 0.1
 
 -- Limit Constants
+local LIMIT_FASWINGTIME = 0.3 -- full auto only
 local LIMIT_SWINGTIME = 0.6 -- does not apply to full autos
 local LIMIT_RECOILDELAY = 1
 
@@ -32,14 +36,13 @@ local MOD_WEIGHTRECOILDELAY = 0.5 -- recoil / (weight * mod)
 local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
 
 local ADJ_AUTOTYPERECOILDELAY ={
-    -2, -- BLOWBACK = 1,
-    -2, -- DELAYEDBLOWBACK = 2, --
-    -3, -- SHORTGAS = 3,
-    -4, -- LONGGAS = 4,
+    -4, -- BLOWBACK = 1,
+    -3, -- DELAYEDBLOWBACK = 2, --
+    -1, -- SHORTGAS = 3,
+    -2, -- LONGGAS = 4,
     0, -- DIRECTGAS = 5,
-    -1, -- LONGRECOIL = 6,
-    -1, -- SHORTRECOIL = 7,
-
+    -3, -- LONGRECOIL = 6,
+    -2, -- SHORTRECOIL = 7,
 }
 
 --[[ ORGM.getFirearmData(itemType, moduleName)
@@ -281,7 +284,7 @@ ORGM.getBarrelWeightModifier = function(item, definition)
     end
     if not definition then return nil end
 
-    return ((item:getModData().barrelLength or definition.barrelLength) - definition.barrelLength) * BARRELLEN_WEIGHTMOD
+    return ((item:getModData().barrelLength or definition.barrelLength) - definition.barrelLength) * ADJ_WEIGHTBARRELLEN
 end
 
 
@@ -342,7 +345,7 @@ ORGM.getOptimalBarrelLength = function(ammoType)
 end
 
 
-ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
+ORGM.getInitialFirearmStats = function(instance, ammoData)
     return {
         Weight = instance:getWeight(),
         ActualWeight = instance:getActualWeight(),
@@ -365,6 +368,20 @@ ORGM.getAbsoluteFirearmStats = function(instance, ammoData)
     }
 end
 
+
+--[[ ORGM.adjustFirearmStatsByCategory(category, statsTable, effectiveWgt)
+
+    Adjusts the values in the statsTable for HitChance and AimingTime based
+    on values in the ORGM.Settings table.
+    This function is called by ORGM.setFirearmStats()
+
+    category is a integer (a ORGM constant defined in ORGMCore.lua)
+    statsTable is a table, the firearm stats
+    effectiveWgt is the weight of the firearm and all attachments excluding slings.
+
+    Returns nil
+
+]]
 ORGM.adjustFirearmStatsByCategory = function(category, statsTable, effectiveWgt)
     if category == ORGM.PISTOL or category == ORGM.REVOLVER then
         statsTable.HitChance = Settings.DefaultHitChancePistol
@@ -386,17 +403,6 @@ end
 
 ORGM.adjustFirearmStatsByComponents = function(compnentTable, statsTable)
     for _, mod in pairs(compnentTable) do
-      --statsTable.MaxRange = statsTable.MaxRange + mod:getMaxRange()
-      --item:setMinRangeRanged(getMinRangeRanged() + mod:getMinRangeRanged())
-      --setClipSize(getClipSize() + part.getClipSize());
-      --statsTable.ReloadTime = statsTable.ReloadTime + mod:getReloadTime()
-      --statsTable.RecoilDelay = statsTable.RecoilDelay + mod:getRecoilDelay()
-      --statsTable.AimingTime = statsTable.AimingTime + mod:getAimingTime()
-      --statsTable.HitChance = statsTable.HitChance + mod:getHitChance()
-      --statsTable.MinAngle = statsTable.MinAngle + mod:getAngle()
-      --statsTable.MinDamage = statsTable.MinDamage + mod:getDamage()
-      --statsTable.MaxDamage = statsTable.MaxDamage + mod:getDamage()
-
       local cdetails = ORGM.getComponentData(mod) or { }
       statsTable.CriticalChance = statsTable.CriticalChance + (cdetails.CriticalChance or 0)
       statsTable.HitChance = statsTable.HitChance + (cdetails.HitChance or 0)
@@ -445,7 +451,7 @@ ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, det
 
     -- if its a auto, increase barrel len by 2 for recoil, modified by feed system
     -- the auto bolt helps absorb some impact
-    local recoilActionAdj = isAuto and 4 or 0
+    local recoilActionAdj = isAuto and 6 or 0
     if isAuto and details.autoType then
         recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[details.autoType] or 0)
     end
@@ -456,6 +462,7 @@ ORGM.adjustFirearmStatsByBarrel = function(weapon, statsTable, effectiveWgt, det
     --statsTable.SoundRadius = ???
 end
 
+
 ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTable)
     if alwaysFullAuto then fireMode = ORGM.FULLAUTOMODE end
     if fireMode == ORGM.FULLAUTOMODE then -- full auto mode
@@ -465,7 +472,7 @@ ORGM.adjustFirearmStatsByFireMode = function(fireMode, alwaysFullAuto, statsTabl
         end
         statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_FULLAUTORECOILDELAY
         statsTable.AimingTime = statsTable.AimingTime + ADJ_FULLAUTOAIMINGTIME
-        statsTable.SwingTime = ABS_FULLAUTOSWINGTIME
+        statsTable.SwingTime = LIMIT_FASWINGTIME
     else
         -- set swing time to a min value, or some fire too fast
         if statsTable.SwingTime < LIMIT_SWINGTIME then statsTable.SwingTime = LIMIT_SWINGTIME end
@@ -489,7 +496,7 @@ ORGM.setFirearmStats = function(weapon)
     local upgrades = ORGM.getItemComponents(weapon)
 
     -- set inital values from defaults
-    local statsTable = ORGM.getAbsoluteFirearmStats(details.instance, ammoData)
+    local statsTable = ORGM.getInitialFirearmStats(details.instance, ammoData)
     -- adjust weight first
     statsTable.ActualWeight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
     statsTable.Weight = statsTable.ActualWeight + ORGM.getBarrelWeightModifier(weapon, details)
@@ -502,9 +509,9 @@ ORGM.setFirearmStats = function(weapon)
     local effectiveWgt = statsTable.ActualWeight - ((upgrades.Sling and upgrades.Sling:getWeightModifier()) or 0)
 
     ----------------------------------------------------
-    -- absolute values
     -- adjust swingtime based on weight
-    statsTable.SwingTime = ABS_FULLAUTOSWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
+    -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
+    statsTable.SwingTime = LIMIT_FASWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
 
     ORGM.adjustFirearmStatsByCategory(details.category, statsTable, effectiveWgt)
     ORGM.adjustFirearmStatsByBarrel(weapon, statsTable, effectiveWgt, details)
@@ -521,7 +528,7 @@ ORGM.setFirearmStats = function(weapon)
     ORGM.adjustFirearmStatsByFireMode(modData.selectFire, details.alwaysFullAuto, statsTable)
 
     -- finalize any limits
-    if statsTable.SwingTime < ABS_FULLAUTOSWINGTIME then statsTable.SwingTime = ABS_FULLAUTOSWINGTIME end
+    if statsTable.SwingTime < LIMIT_FASWINGTIME then statsTable.SwingTime = LIMIT_FASWINGTIME end
     statsTable.MinimumSwingTime = statsTable.SwingTime - 0.1
     if statsTable.RecoilDelay < LIMIT_RECOILDELAY then statsTable.RecoilDelay = LIMIT_RECOILDELAY end
     if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end
