@@ -18,7 +18,7 @@ Events.OnGameBoot.Add(ORGM.Client.loadCompatibilityPatches)
 -- Backwards compatibility firearm updating
 
 -- function in client/1LoadOrder/ORGMClientFunctions.lua
-Events.OnEquipPrimary.Add(ORGM.Client.checkFirearmBuildID)
+Events.OnEquipPrimary.Add(ORGM.Client.getFirearmNeedsUpdate)
 
 -- TODO: this should really not be written like this, as it doesn't allow
 -- for third party mods to overwrite or remove the event. Not sure why
@@ -29,7 +29,7 @@ Events.OnGameStart.Add(function()
     local item = player:getPrimaryHandItem() -- better we equip
     if not item or not ORGM.isFirearm(item) then return end
     -- function in client/1LoadOrder/ORGMClientFunctions.lua
-    --ORGM.Client.checkFirearmBuildID(player, item)
+    --ORGM.Client.getFirearmNeedsUpdate(player, item)
     -- better to just unequip and requip, it will refresh all stats
     ORGM.Client.unequipItemNow(player, item)
     player:setPrimaryHandItem(item)

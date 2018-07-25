@@ -91,16 +91,16 @@ ORGM.Client.loadModels = function()
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end
 
---[[  ORGM.Client.checkFirearmBuildID(player, item)
+--[[  ORGM.Client.getFirearmNeedsUpdate(player, item)
 
-    Note this function has the same name as the shared function ORGM.checkFirearmBuildID()
+    Note this function has the same name as the shared function ORGM.getFirearmNeedsUpdate()
     but is client specific. It handles the actual upgrading/replacing of firearms that require it.
     It is meant to be called from Events.OnEquipPrimary and OnGameStart listed in
     client/ORGMClientEventHooks.lua and is also called by the Survivors mod compatibility patch
     LoadSurvivor() function
 
 ]]
-ORGM.Client.checkFirearmBuildID = function(player, item)
+ORGM.Client.getFirearmNeedsUpdate = function(player, item)
     if item == nil or player == nil then return end
     if not player:isLocalPlayer() then return end
     if not ORGM.isFirearm(item) then return end
@@ -108,7 +108,7 @@ ORGM.Client.checkFirearmBuildID = function(player, item)
     ORGM.log(ORGM.DEBUG, "Checking BUILD_ID for ".. item:getType())
 
     ORGM.setFirearmStats(item)
-    if ORGM.checkFirearmBuildID(item) then
+    if ORGM.getFirearmNeedsUpdate(item) then
         player:Say("Resetting this weapon to defaults due to ORGM changes. Ammo returned to inventory.")
         ORGM.Client.unequipItemNow(player, item)
         local newItem = ORGM.replaceFirearmWithNewCopy(item, player:getInventory())
@@ -125,7 +125,7 @@ end
 --[[ ORGM.Client.unequipItemNow(player, item)
 
     Instantly unequip the item if it's in the player's primary hand, skipping timed actions.
-    Used by ORGM.Client.checkFirearmBuildID() above when upgrading weapons to new ORGM versions.
+    Used by ORGM.Client.getFirearmNeedsUpdate() above when upgrading weapons to new ORGM versions.
 
 ]]
 ORGM.Client.unequipItemNow = function(player, item)
