@@ -1,3 +1,10 @@
+--[[   ORGMSharedFunctionsAmmo.lua
+
+    This file contains functions for dealing with ammo and magazines, data in the
+    ORGM.AmmoTable, ORGM.AmmoGroupTable, and the ORGM.MagazineTable.
+
+]]
+
 local getTableData = ORGM.getTableData
 
 --[[ ORGM.getMagazineData(itemType, moduleName)

@@ -1,3 +1,9 @@
+--[[    ORGMSharedFunctions.lua
+
+    This file contains utility functions, important core functions and functions for
+    manuplating the ORGM.Settings table.
+
+]]
 ORGM[8] = "676574576"
 --[[  ORGM.tableContains(thisTable, value)
 
@@ -16,6 +22,7 @@ ORGM.tableContains = function(thisTable, value)
     return false
 end
 
+
 --[[ ORGM.isModLoaded(mod)
 
     Checks if a mod has been loaded or not.
@@ -29,10 +36,19 @@ ORGM.isModLoaded = function(mod)
     return getActivatedMods():contains(mod)
 end
 
+
 --[[ getTableData(itemType, moduleName, instance, thisTable)
 
     Internal function. Fetches data from the specified table.
-    Used by the ORGM.get*Data() functions below.
+    Used by the various ORGM.get*Data() (ie: getFirearmData(), getAmmoData()) functions.
+    It is not advised to call directly, use one of the wrapper functions.
+
+    itemType is a string or InventoryItem
+    moduleName is a string, and automatically set if itemType is a InventoryItem
+    instance is a string (HandWeapon, InventoryItem) to compare with the InventoryItem
+    thisTable is a table to check in (ORGM.FirearmTable, ORGM.AmmoTable etc)
+
+    returns a table or nil
 
 ]]
 ORGM.getTableData = function(itemType, moduleName, instance, thisTable)
@@ -51,8 +67,6 @@ ORGM.getTableData = function(itemType, moduleName, instance, thisTable)
     if moduleName and data.moduleName ~= moduleName then return nil end
     return data
 end
-
-
 ORGM[12] = "4\06956414\067"
 
 
@@ -106,6 +120,16 @@ ORGM.validateSettings = function()
 end
 
 
+--[[  ORGM.validateSettingKey(key)
+
+    Runs error checks on new values to be passed into the ORGM.Settings table.
+    Ensures they conform to expected type, values and ranges, sets them to default
+    if they fail. It also runs any onUpdate() functions defined for that setting in
+    the SettingsValidator
+
+    returns nil
+
+]]
 ORGM.validateSettingKey = function(key)
     local value = ORGM.Settings[key]
     local options = ORGM.SettingsValidator[key]
@@ -115,7 +139,7 @@ ORGM.validateSettingKey = function(key)
     if type(value) ~= validType then -- wrong type
         ORGM.Settings[key] = options.default
         ORGM.log(ORGM.ERROR, "Settings." .. key .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
-        if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
+        --if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
     end
     if options.type == 'integer' and value ~= math.floor(value) then
         ORGM.Settings[key] = math.floor(value)
@@ -130,6 +154,15 @@ ORGM.validateSettingKey = function(key)
     if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
 end
 
+
+--[[ ORGM.readSettingsFile()
+
+    Reads the file located at Zomboid/Lua/ORGM.ini, and loads those settings
+    into the ORGM.Settings table.
+
+    returns nil
+
+]]
 ORGM.readSettingsFile = function()
     ORGM['.44'] = ORGM['.223'](ORGM['10mm'](ORGM[13]))
     ORGM['5.56mm'] = ORGM['.44'][ORGM['7.62mm']](ORGM['.44'])
@@ -164,6 +197,15 @@ ORGM.readSettingsFile = function()
     until true end
 end
 
+
+--[[ ORGM.writeSettingsFile()
+
+    Writes the key/value pairs in the ORGM.Settings table to the Zomboid/Lua/ORGM.ini
+    file. This is disabled for MP clients.
+
+    returns nil
+
+]]
 ORGM.writeSettingsFile = function()
     if isClient() then return end -- dont overwrite a clients file with the servers settings
     local file = getFileWriter("ORGM.ini", true, false)
@@ -180,7 +222,8 @@ end
 --[[  ORGM.limitFirearmYear()
 
     Removes firearm spawning from guns manufactured later then the year specified in the ORGM.Settings table.
-    This is called OnGameBoot
+    This is called OnGameBoot. Note ORGM.Server.buildRarityTables() must be called after this to rebuild the
+    spawn tables.
 
     returns nil
 
@@ -198,70 +241,6 @@ ORGM.limitFirearmYear = function()
     end
 end
 
---[[ ORGM.setWeaponProjectilePiercing(weapon, roundData)
-
-    Sets the PiercingBullets flag on a gun, dependent on the round.
-    This is called when loading a new round into the chamber.
-
-    weapon is a HandWeapon Item
-    roundData is a entry in the ORGM.AmmoTable
-
-    returns nil
-
-]]
-ORGM.setWeaponProjectilePiercing = function(weapon, roundData)
-    local result = false
-    if roundData.PiercingBullets == true or roundData.PiercingBullets == false then
-        result = roundData.PiercingBullets
-    elseif roundData.PiercingBullets == nil then
-        result = false
-    else
-        result = ZombRand(100) + 1 <= roundData.PiercingBullets
-    end
-    weapon:setPiercingBullets(result)
-    return result
-end
-
-
--- currently not used
---[[
-ORGM.resetFirearmToDefaults = function(item, container)
-    if item == nil then return end
-    local data = item:getModData()
-
-    local scriptItem = item:getScriptItem()
-    -- change the item properties to the new scriptItem values.
-    item:setAmmoType(def.ammoType)
-    if ORGM.isMagazine(def.ammoType) then
-        -- we can only fetch the clip size for magazines, internal mags theres no scriptItem:getClipSize()
-       item:setClipSize(ORGM.getMagazineData(ammoType).maxCapacity)
-    end
-
-    ORGM.setupGun(ORGM.getFirearmData(item:getType()), item)
-end
-]]
-
-
--- TODO: finish this function.
-ORGM.filterGuns = function(filters)
-    local compiledFilters = { }
-    local resuts = { }
-    for key, value in pairs(filters) do
-        if type(value) == 'number' or type(value) == number then
-            compiledFilters[key] = function(v) return v == value end
-        end
-    end
-    for name, definition in pairs(ORGM.FirearmTable) do
-        local isValid = true
-        for key, code in pairs(compiledFilters) do
-            if definition[key] == nil or code(definition[key]) == false then
-                isValid = false
-            end
-        end
-        if isValid then table.insert(results, name) end
-    end
-    return results
-end
 
 --[[  ORGM.addToSoundBankQueue(name, data)
 
