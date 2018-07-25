@@ -18,8 +18,18 @@ version 3.09
     options screen ORGM tab. Dedicated servers will have to edit their ORGM.ini (if it
     exists).
 
-* Added Barrel Length and action/feed-system type modifiers. These now have effects on
-    the recoil, damage and range of firearms. Barrel Length also effects weight.
+* Firearms now spawn with varying barrel lengths, based on factory options that were
+    produced by the manufacturer. These lengths effect the weight of the weapon and
+    indirectly, all the weapon stats that are effected by weight. The new barrel length
+    mechanic also has a direct effect on damage, range and recoil of the firearm.
+    Lower lengths release more unburnt gas producing lower velocity bullets (damage/range)
+    and generate more recoil.
+
+* Firearms stats are now effected by the action type/feed system. With automatics some
+    of the pressure in the chamber is redirected to drive the automatic feed system,
+    resulting in slightly lower bullet velocity for a similar length barrel in a
+    non-automatic. The end result is slightly less damage and range. However, recoil is
+    reduced by a amount based on what type of automatic bolt it uses.
 
 * Added new options to options screen for configuration of hit and critical chances, and
     enabling/disabling the new barrel length modifiers.
