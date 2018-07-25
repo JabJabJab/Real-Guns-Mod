@@ -3,7 +3,6 @@ local getTableData = ORGM.getTableData
 --[[ ORGM.getMagazineData(itemType, moduleName)
 
     Safer way of accessing the ORGM.MagazineTable table, supports module checking.
-    Less to break in the future.
 
     itemType is a string magazine name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
@@ -18,8 +17,7 @@ end
 
 --[[ ORGM.isMagazine(itemType, moduleName)
 
-    Safer way of accessing the ORGM.MagazineTable table, supports module
-    checking. Less to break in the future.
+    Safer way of accessing the ORGM.MagazineTable table, supports module checking.
 
     itemType is a string magazine name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
@@ -35,8 +33,7 @@ end
 
 --[[ ORGM.getAmmoData(itemType, moduleName)
 
-    Safer way of accessing the ORGM.AmmoTable table, supports module
-    checking. Less to break in the future.
+    Safer way of accessing the ORGM.AmmoTable table, supports module checking.
 
     itemType is a string component name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
@@ -51,8 +48,7 @@ end
 
 --[[ ORGM.isAmmo(itemType, moduleName)
 
-    Safer way of accessing the ORGM.AmmoTable table, supports module
-    checking. Less to break in the future.
+    Safer way of accessing the ORGM.AmmoTable table, supports module checking.
 
     itemType is a string ammo name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
@@ -83,11 +79,13 @@ end
 
 --[[  ORGM.getItemAmmoGroup(item, asTable)
 
-    return the AmmoGroup for the item.
+    Gets the ammoGroup string name or table of valid ammo for this group.
+
     item is a string of the item, or a InventoryItem weapon or magazine
     asTable a boolean if the results returned should be a table
 
     returns a string ammo group name, or a table list of strings
+
 ]]
 ORGM.getItemAmmoGroup = function(item, asTable)
     local gun = ORGM.getFirearmData(item)
@@ -253,7 +251,16 @@ ORGM.findAmmoInContainer = function(ammoGroup, preferredType, containerItem, mod
 end
 
 
---[[ ORGM.findAllAmmoInContainer(ammoGroup, preferredType, containerItem)
+--[[ ORGM.findAllAmmoInContainer(ammoGroup, containerItem)
+
+    Finds and returns all ammo for the ammoGroup in the container, including
+    boxes and canisters.
+
+    ammoGroup is a string, the name of a key in the ORGM.AmmoGroupTable
+    containerItem is a ItemContainer object
+
+    returns a table: keys are 'rounds', 'boxes' and 'cans', values are java
+        ArrayList objects of InventoryItem objects
 
 ]]
 ORGM.findAllAmmoInContainer = function(ammoGroup, containerItem)
@@ -307,6 +314,17 @@ ORGM.convertAllAmmoGroupRounds = function(ammoGroupName, containerItem)
     return count
 end
 
+
+--[[ ORGM.getAmmoTypeForBox(item)
+
+    Returns the type of ammo opening a box (or can) will yeald. This assumes a
+    strict naming convention was used (ie: ORGM standard names for ammo).
+
+    item is a InventoryItem or a string, the box or canister
+
+    returns a string or nil, the ammo inside the container.
+
+]]
 ORGM.getAmmoTypeForBox = function(item)
     if instanceof(item, "InventoryItem") then
         item = item:getType()
@@ -317,6 +335,15 @@ ORGM.getAmmoTypeForBox = function(item)
 end
 
 
+--[[ ORGM.unboxAmmoItem(item)
+
+    Unboxes a box (or canister), placing all rounds in the container.
+
+    item is a InventoryItem, the item to be unboxed.
+
+    returns nil
+
+]]
 ORGM.unboxAmmoItem = function(item)
     local container = item:getContainer()
     local ammoType = ORGM.getAmmoTypeForBox(item)

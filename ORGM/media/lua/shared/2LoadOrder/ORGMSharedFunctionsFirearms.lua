@@ -85,7 +85,6 @@ local ADJ_AUTOTYPERECOILDELAY ={
 --[[ ORGM.getFirearmData(itemType, moduleName)
 
     Safer way of accessing the ORGM.FirearmTable table, supports module checking.
-    Less to break in the future.
 
     itemType is a string firearm name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
@@ -101,7 +100,6 @@ end
 --[[ ORGM.isFirearm(itemType, moduleName)
 
     Safer way of accessing the ORGM.FirearmTable table, supports module checking.
-    Less to break in the future.
 
     itemType is a string firearm name, or a InventoryItem object
     moduleName is a string module name to compare (optional)
