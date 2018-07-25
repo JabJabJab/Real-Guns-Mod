@@ -1054,7 +1054,7 @@ function ISORGMWeapon:setCurrentRound(ammoType, weapon)
         weapon:getModData().lastRound = ammoType
         ORGM.setFirearmStats(weapon)
     end
-    ORGM.setWeaponProjectilePiercing(weapon, roundData)
+    ORGM.setFirearmPiercingBullets(weapon, roundData)
 end
 
 
