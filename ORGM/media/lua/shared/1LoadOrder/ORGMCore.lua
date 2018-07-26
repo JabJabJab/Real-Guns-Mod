@@ -257,8 +257,27 @@ ORGM.SettingsValidator = {
     -- valid options are true or false (default: true)
     UseSurvivorsPatch = {type='boolean', default=true},
 
+
+    ----------------------------------
+    -- WARNING DEBUG AND ADVANCED Settings. Touch at own risk.
+    -- these are hidden from the options screen but show up in the ORGM.ini
+
+    -- RecoilDelay is reduced by this much in full auto
+    FullAutoRecoilDelayAdjustment = {type='integer', default=-20},
+    -- HitChance penalty in full auto
+    FullAutoHitChanceAdjustment = {type='integer', default=-10},
+
+    -- recoil is: (ammo recoil+barrel and feed system modifer) / (weapon weight * multiplier).
+    -- the higher the multiplier the more weight effects recoil
+    WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.5},
+
+    WeightSwingTimeModifier  = {type='float', min=0.1, default=0.5},
+
+    RecoilDelayLimit  = {type='integer', min=1, default=1},
+
     -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
-    -- features (context menus and such). Do not enable this on a open server. All warranties are void of you enable this.
+    -- features (context menus and such), as well as MP admin orgm menus. Do not enable this on a open server.
+    -- All warranties are void of you enable this.
     Debug = {type='boolean', default=false, show=false},
 }
 for key, data in pairs(ORGM.SettingsValidator) do

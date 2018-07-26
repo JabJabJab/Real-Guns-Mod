@@ -51,12 +51,11 @@ local Settings = ORGM.Settings
 
 
 -- Adjustment Constants
-local ADJ_FULLAUTOHITCHANCE = -10  -- full auto only
-local ADJ_FULLAUTORECOILDELAY = -20 -- full auto only
+--local ADJ_FULLAUTOHITCHANCE = -10  -- full auto only
 local ADJ_FULLAUTOAIMINGTIME = 20 -- full auto only
 
 local ADJ_AUTOSWINGTIME = -0.3 -- for automatics
-local ADJ_AUTORECOILDELAY = -4 -- for automatics, obsolete
+--local ADJ_AUTORECOILDELAY = -4 -- for automatics, obsolete
 
 -- barrel length weight modifier. Each 1" of barrel length off the default
 -- modifies the weight of the firearm either + or -
@@ -65,12 +64,11 @@ local ADJ_WEIGHTBARRELLEN = 0.1
 -- Limit Constants
 local LIMIT_FASWINGTIME = 0.3 -- full auto only
 local LIMIT_SWINGTIME = 0.6 -- does not apply to full autos
-local LIMIT_RECOILDELAY = 1
+--local LIMIT_RECOILDELAY = 1
 
 -- Multiplier Constants
 local MOD_WEIGHTAIMINGTIME = 0.5 -- aiming time + (weight * mod)
-local MOD_WEIGHTRECOILDELAY = 0.5 -- recoil / (weight * mod)
-local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
+--local MOD_WEIGHTSWINGTIME = 0.3 -- full auto swing + (weight * mod)
 
 local ADJ_AUTOTYPERECOILDELAY ={
     -4, -- BLOWBACK = 1,
@@ -446,7 +444,7 @@ ORGM.adjustFirearmStatsByCategory = function(category, statsTable, effectiveWgt)
         statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     else
         statsTable.HitChance = Settings.DefaultHitChanceOther
-        statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     end
 end
 
@@ -551,7 +549,7 @@ ORGM.adjustFirearmStatsByFeedSystem = function(item, gunData, statsTable)
         statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
     end
     if isFullAuto then -- full auto mode
-        statsTable.HitChance = statsTable.HitChance + ADJ_FULLAUTOHITCHANCE
+        statsTable.HitChance = statsTable.HitChance + Settings.FullAutoHitChanceAdjustment
         if statsTable.RecoilDelay > -5 then
             -- transfer all recoil to the hit chance penalty
             statsTable.HitChance = statsTable.HitChance - statsTable.RecoilDelay
@@ -559,7 +557,7 @@ ORGM.adjustFirearmStatsByFeedSystem = function(item, gunData, statsTable)
             -- too much negative recoil will completely nerf the full auto penalty
             statsTable.HitChance = statsTable.HitChance - -5
         end
-        statsTable.RecoilDelay = statsTable.RecoilDelay + ADJ_FULLAUTORECOILDELAY
+        statsTable.RecoilDelay = statsTable.RecoilDelay + Settings.FullAutoRecoilDelayAdjustment
         statsTable.AimingTime = statsTable.AimingTime + ADJ_FULLAUTOAIMINGTIME
         statsTable.SwingTime = LIMIT_FASWINGTIME
     else
@@ -604,11 +602,11 @@ ORGM.setFirearmStats = function(item)
     ----------------------------------------------------
     -- adjust swingtime based on weight
     -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
-    statsTable.SwingTime = LIMIT_FASWINGTIME + (effectiveWgt * MOD_WEIGHTSWINGTIME) -- needs to also be adjusted by trigger
+    statsTable.SwingTime = LIMIT_FASWINGTIME + (effectiveWgt * Settings.WeightSwingTimeModifier) -- needs to also be adjusted by trigger
 
     ORGM.adjustFirearmStatsByCategory(gunData.category, statsTable, effectiveWgt)
     ORGM.adjustFirearmStatsByBarrel(item, gunData, ammoData, statsTable, effectiveWgt)
-    statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * MOD_WEIGHTRECOILDELAY)
+    statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * Settings.WeightRecoilDelayModifier)
     ----------------------------------------------------
     -- adjust all by components first
     ORGM.adjustFirearmStatsByComponents(compTable, statsTable)
@@ -623,7 +621,7 @@ ORGM.setFirearmStats = function(item)
     -- finalize any limits
     if statsTable.SwingTime < LIMIT_FASWINGTIME then statsTable.SwingTime = LIMIT_FASWINGTIME end
     statsTable.MinimumSwingTime = statsTable.SwingTime - 0.1
-    if statsTable.RecoilDelay < LIMIT_RECOILDELAY then statsTable.RecoilDelay = LIMIT_RECOILDELAY end
+    if statsTable.RecoilDelay < Settings.RecoilDelayLimit then statsTable.RecoilDelay = Settings.RecoilDelayLimit end
     if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end
     statsTable.AimingTime = math.floor(statsTable.AimingTime) -- make sure to pass int
 
