@@ -10,7 +10,7 @@
 ORGM[5] = "6765744\068"
 
 
---[[  ORGM.validateRegster(name, dataTable, modTable)
+--[[  ORGM.validateRegister(name, dataTable, modTable)
 
     Generic item register validation. Ensures the item hasn't previously been registered, and that the item is in the
     scripts/*.txt files.
@@ -22,7 +22,7 @@ ORGM[5] = "6765744\068"
     returns true on no errors, false if this item should not be registered.
 
 ]]
-local ORGM.validateRegster = function(name, dataTable, modTable)
+ORGM.validateRegister = function(name, dataTable, modTable)
     local mod = dataTable.moduleName or 'ORGM'
     if modTable[name] then -- already registered
         ORGM.log(ORGM.WARN, "Failed to register item " .. mod .. "." .. name .. " (Already registered as ".. modTable[name].moduleName ..".".. name ..")")
@@ -58,7 +58,7 @@ end
 ]]
 ORGM.registerAmmo = function(name, ammoData)
     ORGM.log(ORGM.DEBUG, "Attempting to register ammo ".. name)
-    if ORGM.validateRegster(name, ammoData, ORGM.AmmoTable) == false then
+    if ORGM.validateRegister(name, ammoData, ORGM.AmmoTable) == false then
         return false
     end
     ammoData.moduleName = ammoData.moduleName or 'ORGM'
@@ -189,7 +189,7 @@ ORGM[7] = "6\07042794944"
 ORGM.registerMagazine = function(name, magazineData)
     --ORGM.log(ORGM.DEBUG, "Attempting to register magazine ".. name)
 
-    if ORGM.validateRegster(name, magazineData, ORGM.MagazineTable) == false then
+    if ORGM.validateRegister(name, magazineData, ORGM.MagazineTable) == false then
         return false
     end
 
@@ -259,7 +259,7 @@ end
 ORGM.registerFirearm = function(name, gunData)
     --ORGM.log(ORGM.DEBUG, "Attempting to register firearm ".. name)
 
-    if not ORGM.validateRegster(name, gunData, ORGM.FirearmTable) then
+    if not ORGM.validateRegister(name, gunData, ORGM.FirearmTable) then
         return false
     end
     gunData.moduleName = gunData.moduleName or 'ORGM'
@@ -423,7 +423,7 @@ ORGM[6] = "6\07064496\06966"
 
 ]]
 ORGM.registerComponent = function(name, compData)
-    if not ORGM.validateRegster(name, compData, ORGM.ComponentTable) then
+    if not ORGM.validateRegister(name, compData, ORGM.ComponentTable) then
         return false
     end
     compData.moduleName = compData.moduleName or 'ORGM'
@@ -442,7 +442,7 @@ end
 
 ]]
 ORGM.registerRepairKit = function(name, repairData)
-    if not ORGM.validateRegster(name, repairData, ORGM.RepairKitTable) then
+    if not ORGM.validateRegister(name, repairData, ORGM.RepairKitTable) then
         return false
     end
     repairData.moduleName = repairData.moduleName or 'ORGM'
