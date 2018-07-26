@@ -184,18 +184,18 @@ function ISORGMWeapon:isLoaded(difficulty)
     end
 
     if self.actionType == ORGM.ROTARY then
-        local round = nil
+        local ammoType = nil
         if self.hammerCocked == 1 then -- hammer is cocked, check this position
-            round = self.magazineData[self.cylinderPosition]
+            ammoType = self.magazineData[self.cylinderPosition]
         else -- uncocked doubleaction, the chamber will rotate when the player pulls
-            round = self:getMagazineAtNextPosition(true)
+            ammoType = self:getMagazineAtNextPosition(true)
         end
-        if round == nil or round:sub(1, 5) == "Case_" then return false end
+        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
         return true
 
     elseif self.actionType == ORGM.BREAK then
-        local round = self.magazineData[self.cylinderPosition]
-        if round == nil or round:sub(1, 5) == "Case_" then return false end
+        local ammoType = self.magazineData[self.cylinderPosition]
+        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
         return true
     end
 
@@ -209,12 +209,13 @@ function ISORGMWeapon:preFireShot(difficulty, character, weapon)
     -- check mechanical failures and malfunctions
     -- check squib
     -- check for dud, note dud should probably behave as fire empty
+    -- set piercing bullets here.
     return true
 end
 
 --[[ ISORGMWeapon:fireShot(weapon, difficulty)
 
-    called when the actual shot is fired from ISReloadManager:checkLoaded
+    Called when the actual shot is fired from ISReloadManager:checkLoaded
 
     weapon is a HandWeapon object.
     difficulty is 1-3 (players reloading difficulty) and not used here
@@ -241,9 +242,9 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == ORGM.ROTARY then
         -- fire shot
-        local round = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
-        if round and round.Case then
-            self.magazineData[self.cylinderPosition] = round.Case
+        local ammoType = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
+        if ammoType and ammoType.Case then
+            self.magazineData[self.cylinderPosition] = ammoType.Case
         else
             self.magazineData[self.cylinderPosition] = nil
         end
@@ -251,9 +252,9 @@ function ISORGMWeapon:fireShot(weapon, difficulty)
 
     elseif self.actionType == ORGM.BREAK then
         -- fire shot
-        local round = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
-        if round and round.Case then
-            self.magazineData[self.cylinderPosition] = round.Case
+        local ammoType = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
+        if ammoType and ammoType.Case then
+            self.magazineData[self.cylinderPosition] = ammoType.Case
         else
             self.magazineData[self.cylinderPosition] = nil
         end
@@ -317,12 +318,14 @@ function ISORGMWeapon:canReload(char)
         -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
         if speed and self.containsClip ~= 0 then
             speed = speed:getModData()
-            -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
-            if speed.currentCapacity > 0 and self.actionType == ORGM.ROTARY then
-                return true
-            -- rifles however, do
-            elseif speed.currentCapacity > 0 and speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
-                return true
+            if speed.currentCapacity > 0 then
+                -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
+                if self.actionType == ORGM.ROTARY and self.maxCapacity ~= self.currentCapacity then
+                    return true
+                -- rifles however, do
+                elseif speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
+                    return true
+                end
             end
         end
     end
@@ -439,8 +442,8 @@ function ISORGMWeapon:reloadPerform(char, square, difficulty, weapon)
 
     else -- internal mag, rotary or break barrel
         local round = self:findBestAmmo(char)
-        round = round:getType()
         if not round then return end
+        round = round:getType()
         if self.actionType == ORGM.ROTARY then
             self:rotateCylinder(1, char, true, weapon)
             if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
