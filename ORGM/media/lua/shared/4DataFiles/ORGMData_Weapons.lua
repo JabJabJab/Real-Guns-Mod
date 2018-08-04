@@ -1,48 +1,14 @@
---[[
-    This file contains all the default firearm data
-]]
+--[[- This file contains all default firearm data.
 
---[[  ORGM.registerFirearm(name, definition)
+All calls made by this script are to `ORGM.Firearm.register`. See the documention there.
 
-    Registers a firearm type with ORGM.
-
-    name = string name of the firearm (without module prefix)
-    definition = a table containing the firearm stats. Valid table keys/value pairs are:
-        moduleName = nil, or string module name this item is from. If nil, ORGM is used
-        actionType = ORGM.AUTO | ORGM.BOLT | ORGM.LEVER | ORGM.PUMP | ORGM.BREAK | ORGM.ROTARY
-        triggerType = ORGM.SINGLEACTION | ORGM.DOUBLEACTION | ORGM.DOUBLEACTIONONLY
-        lastChanged = nil| integer > 0 <= ORGM.BUILD_ID, the ORGM version this firearm was
-            last changed in (see shared\1LoadOrder\ORGMCore.lua)
-        rackTime = nil | integer > 0, if nil then ORGM.Settings.DefaultRackTime is used
-        reloadTime = nil | integer > 0, if nil then ORGM.Settings.DefaultReloadTime is used
-        selectFire = nil | ORGM.SEMIAUTOMODE | ORGM.FULLAUTOMODE
-        speedLoader = nil | string name of registered magazine
-        isCivilian = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
-        isPolice = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
-        isMilitary = nil | ORGM.COMMON | ORGM.RARE | ORGM.VERYRARE
-
-        -- sound options
-        soundProfile = string name of a key in ORGM.SoundProfiles (see shared\1LoadOrder\ORGMCore.lua)
-
-        -- these sound keys are automatically set by the soundProfile, but can be over written.
-        -- they are all nil or the string name of a sound file in media/sound/*.ogg
-        clickSound = nil | filename
-        insertSound = nil | filename
-        ejectSound = nil | filename
-        rackSound = nil | filename
-        openSound = nil | filename
-        closeSound = nil | filename
-        cockSound = nil | filename
-
-        -- firearm details, these string fill out the 'Inspection' window.
-        classification = nil | string, the 'type' of weapon (Revolver, Assault Rifle, etc)
-        country = nil | string, the initial country of manufacture
-        manufacturer = nil | string, the initial company (or factory) of manufacture
-        year = nil | integer, the initial year of manufacture, this is used by ORGM.Settings.LimitYear
-        description = nil | string, background information
+@script ORGMData_Weapons.lua
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/4DataFiles/ORGMData_Weapons.lua
 
 ]]
-local register = ORGM.registerFirearm
+local register = ORGM.Firearm.register
 
 register("ColtAnac", {
     lastChanged = 24,
@@ -1672,11 +1638,11 @@ register("BenelliM3SO", {
     altActionType = ORGM.PUMP,
     soundProfile = "Shotgun",
 
-    classification = ORGM.FirearmTable["BenelliM3"].classification,
-    year = ORGM.FirearmTable["BenelliM3"].year,
-    country = ORGM.FirearmTable["BenelliM3"].country,
-    manufacturer = ORGM.FirearmTable["BenelliM3"].manufacturer,
-    description = ORGM.FirearmTable["BenelliM3"].description,
+    classification = ORGM.Firearm.getData("BenelliM3").classification,
+    year = ORGM.Firearm.getData("BenelliM3").year,
+    country = ORGM.Firearm.getData("BenelliM3").country,
+    manufacturer = ORGM.Firearm.getData("BenelliM3").manufacturer,
+    description = ORGM.Firearm.getData("BenelliM3").description,
 })
 register("BenelliXM1014", {
     lastChanged = 24,
@@ -1735,11 +1701,11 @@ register("Ithaca37SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.FirearmTable["Ithaca37"].classification,
-    year = ORGM.FirearmTable["Ithaca37"].year,
-    country = ORGM.FirearmTable["Ithaca37"].country,
-    manufacturer = ORGM.FirearmTable["Ithaca37"].manufacturer,
-    description = ORGM.FirearmTable["Ithaca37"].description,
+    classification = ORGM.Firearm.getData("Ithaca37").classification,
+    year = ORGM.Firearm.getData("Ithaca37").year,
+    country = ORGM.Firearm.getData("Ithaca37").country,
+    manufacturer = ORGM.Firearm.getData("Ithaca37").manufacturer,
+    description = ORGM.Firearm.getData("Ithaca37").description,
 })
 register("M1216", {
     lastChanged = 24,
@@ -1781,11 +1747,11 @@ register("Moss590SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.FirearmTable["Moss590"].classification,
-    year = ORGM.FirearmTable["Moss590"].year,
-    country = ORGM.FirearmTable["Moss590"].country,
-    manufacturer = ORGM.FirearmTable["Moss590"].manufacturer,
-    description = ORGM.FirearmTable["Moss590"].description,
+    classification = ORGM.Firearm.getData("Moss590").classification,
+    year = ORGM.Firearm.getData("Moss590").year,
+    country = ORGM.Firearm.getData("Moss590").country,
+    manufacturer = ORGM.Firearm.getData("Moss590").manufacturer,
+    description = ORGM.Firearm.getData("Moss590").description,
 })
 register("Rem870", {
     lastChanged = 24,
@@ -1813,11 +1779,11 @@ register("Rem870SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.FirearmTable["Rem870"].classification,
-    year = ORGM.FirearmTable["Rem870"].year,
-    country = ORGM.FirearmTable["Rem870"].country,
-    manufacturer = ORGM.FirearmTable["Rem870"].manufacturer,
-    description = ORGM.FirearmTable["Rem870"].description,
+    classification = ORGM.Firearm.getData("Rem870").classification,
+    year = ORGM.Firearm.getData("Rem870").year,
+    country = ORGM.Firearm.getData("Rem870").country,
+    manufacturer = ORGM.Firearm.getData("Rem870").manufacturer,
+    description = ORGM.Firearm.getData("Rem870").description,
 })
 register("Silverhawk", {
     lastChanged = 24,
@@ -1843,11 +1809,11 @@ register("SilverHawkSO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
 
-    classification = ORGM.FirearmTable["Silverhawk"].classification,
-    year = ORGM.FirearmTable["Silverhawk"].year,
-    country = ORGM.FirearmTable["Silverhawk"].country,
-    manufacturer = ORGM.FirearmTable["Silverhawk"].manufacturer,
-    description = ORGM.FirearmTable["Silverhawk"].description
+    classification = ORGM.Firearm.getData("Silverhawk").classification,
+    year = ORGM.Firearm.getData("Silverhawk").year,
+    country = ORGM.Firearm.getData("Silverhawk").country,
+    manufacturer = ORGM.Firearm.getData("Silverhawk").manufacturer,
+    description = ORGM.Firearm.getData("Silverhawk").description
 })
 register("Spas12", {
     lastChanged = 24,
@@ -1943,11 +1909,11 @@ register("Win1887SO", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     soundProfile = "Shotgun-Lever",
 
-    classification = ORGM.FirearmTable["Win1887"].classification,
-    year = ORGM.FirearmTable["Win1887"].year,
-    country = ORGM.FirearmTable["Win1887"].country,
-    manufacturer = ORGM.FirearmTable["Win1887"].manufacturer,
-    description = ORGM.FirearmTable["Win1887"].description,
+    classification = ORGM.Firearm.getData("Win1887").classification,
+    year = ORGM.Firearm.getData("Win1887").year,
+    country = ORGM.Firearm.getData("Win1887").country,
+    manufacturer = ORGM.Firearm.getData("Win1887").manufacturer,
+    description = ORGM.Firearm.getData("Win1887").description,
 })
 
 ORGM[15] = "138363034"

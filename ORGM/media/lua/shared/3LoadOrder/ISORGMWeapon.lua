@@ -1,151 +1,18 @@
---[[
-    This module handles all orgm weapons.
-    Guns are no longer broken up into various classes (eg: WeaponAutoMF, etc), instead they are given they use a
-    single class that behaves based on attributes of that weapon:
-        Action Type (Single Action, Double action or Both)
-        Slide Type (Bolt, Auto, Pump, Lever, Rotary, Break Barrel)
-        Magazine Type (fixed, detachable)
+--[[- This serves as a wrapper between PZ's Reloadable system and the `ORGM.ReloadableWeapon`.
 
-    These 3 values determine how a firearm behaves when various actions happen.
-    The logic flow of the code follows the real life logic of the firearm.
+Most functions have been moved there, as it allows for the same functions on both
+ISORGMWeapon objects and a HandWeapon/InventoryItem's modData. As such method calls in here are
+depreciated, as they are no longer called for by anywhere else in this file,
+and should be removed at a later date.
 
-    For example a M1911 single action semi-auto pistol:
-    player inserts magazine
-    player racks slide:
-        slide opens, chamber is emptied
-        hammer cocks
-        slide closes, new round is chambered
-    player presses trigger
-        hammer releases, gun fires
-        slide opens, hammer cocks, empty shell ejected
-        slide closes, new round chambered
+    @classmod ISORGMWeapon
+    @author Fenris_Wolf
+    @release 3.09
+    @copyright 2018 **File:** shared/3LoadOrder/ISORGMWeapon.lua
 
-    a double action revolver:
-    player pulls trigger
-        hammer cocks, cylinder rotates
-        hammer releases. gun fires
-    *note cocking the hammer on a revolver rotates the cylinder BEFORE the shot is fired.
-
-
-        NOTE:
-    The oddness of how PZ works weapon variables are stored in 2 places (the weapon's modData entry and the ISORGMWeapon table)
-    that need to be synced with ISORGMWeapon:syncReloadableToItem(weapon) and ISORGMWeapon:syncItemToReloadable(weapon)
-    function calls.  Care must be taken that when variables change in the ISORGMWeapon table that the data is synced. Not all
-    functions in this module sync the data after changing to avoid excessive syncing (performance).  All functions that change
-    variables are labelled in the comments directly above that function, and will state 1 of 2 things. Either:
-
-        Note: self has variables changed and Reloadable is synced.
-
-        OR
-
-        WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-        is NOT called in this function.
-
-    If labelled with the warning, it is the responsibility of the function that called the warning function to handle the sync.
-    If you call any of these functions from a external source (like :openSlide from a popup menu), you must call the data sync
-    in your code.
-    The only functions that sync the data are :fireShot(), :fireEmpty(), :reloadPerform(), unloadPerform() and :rackingPerform()
-
-
-    ISORGMWeapon objects use a number of custom variables that help define a guns behavior (these are also in a item's modData)
-    for a complete list and descriptions, see ISORGMWeapon:setupReloadable()
-
-
-    TODO: some slides should lock open after last shot
-
-
-    There are 3 main logic flows to this file: trigger, reload and unload.
-
-    ----------------------------------------------------------------
-    Trigger Logic Flow and function calls:
-
-    ISReloadManager:checkLoaded()
-    -> if :isLoaded()
-                \ is Open (returns false)
-                \ single action not cocked (returns false)
-                \ rotary chamber is empty or shell (returns false)
-                \ breaks chamber is empty or shell (returns false)
-        -> if :preFireShot()
-                    \
-            -> :fireShot()
-                -> if not cocked
-                    -> :cockHammer()
-                        -> if rotary and not open
-                            -> rotateCylinder()
-                                -> :setCurrentRound()
-                -> :releaseHammer()
-                -> if auto
-                    -> :openSlide()
-                        -> eject shell
-                    -> :closeSlide()
-                        -> if not double action only
-                            -> :cockHammer()
-                        :feedNextRound()
-                            -> chamber round and lower capacity, adjust magazineData
-                            -> :setCurrentRound()
-                -> else if rotary
-                    -> set magazineData position to shell and lower capacity
-                -> else if break
-                    -> set magazineData position to shell and lower capacity
-                    -> :setCurrentRound(next chamber)
-                -> else
-                    -> set to shell chambered
-                -> SYNC
-    -> else
-        -> :fireEmpty()
-            ->  if cocked
-                -> :releaseHammer()
-            -> else if not single action
-                -> :cockHammer()
-                    -> if rotary and not open
-                        -> rotateCylinder()
-                            -> :setCurrentRound()
-                -> :releaseHammer()
-            -> SYNC
-
-
-
-    ----------------------------------------------------------------
-    Reload Logic Flow and function calls:
-    :reloadStart()
-        -> if rotary
-            -> :openCylinder()
-            -> if :hasEmptyCasesInMagazine()
-                -> :emptyMagazineAtOnce()
-        -> else if break
-            -> :openBreak()
-                -> :emptyMagazineAtOnce()
-
-    :reloadPerform()
-        -> if uses clip
-            -> if has clip
-                -> :ejectMagazine()
-            -> else
-                -> :insertMagazine()
-            SYNC and return
-        -> :findBestAmmo()
-        -> if rotary
-            -> :rotateCylinder()
-        -> :loadRoundIntoMagazine()
-            -> increase capacity, adjust loadedAmmo and magazineData
-        -> remove ammo
-        -> SYNC
-
-
-    ----------------------------------------------------------------
-    Unload Logic Flow and function calls:
-    :unloadStart()
-        -> if rotary
-            -> :openCylinder()
-
-    :unloadPerform()
-        -> if rotary
-            -> :emptyMagazineAtOnce()
-            -> SYNC and return
-        -> :rackingPerform()
-        -> SYNC
 ]]
-
+local ORGM = ORGM
+local Reloadable = ORGM.ReloadableWeapon
 
 ISORGMWeapon = ISReloadableWeapon:derive("ISORGMWeapon")
 
@@ -160,318 +27,149 @@ function ISORGMWeapon:new()
     return o
 end
 
+--- Attacking Methods.
+-- These are called from ISReloadManager:checkLoaded()
+-- @section ReloadManager
 
---[[ ISORGMWeapon:isLoaded(difficulty)
+--[[- Called to determine if ISORGMWeapon:fireShot should be called in `ISReloadManager:checkLoaded`.
 
-    called when the player clicks to determine if ISORGMWeapon:fireShot should be called
-    (from ISReloadManager:checkLoaded)
-    Also called after the shot is taken (this is actually called a ridiculous number of
-    times)
+@tparam int difficulty players reloading difficulty, not used
 
-    difficulty is 1-3 (players reloading difficulty) and not used here
-
-    return true|false
+@treturn bool
 
 ]]
 function ISORGMWeapon:isLoaded(difficulty)
-    -- cant fire with a open slide
-    if self.isOpen == 1 then
-        return false
-    end
-    -- single action with hammer at rest cant fire
-    if (self.hammerCocked == 0 and self.triggerType == ORGM.SINGLEACTION) then
-        return false
-    end
-
-    if self.actionType == ORGM.ROTARY then
-        local ammoType = nil
-        if self.hammerCocked == 1 then -- hammer is cocked, check this position
-            ammoType = self.magazineData[self.cylinderPosition]
-        else -- uncocked doubleaction, the chamber will rotate when the player pulls
-            ammoType = self:getMagazineAtNextPosition(true)
-        end
-        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
-        return true
-
-    elseif self.actionType == ORGM.BREAK then
-        local ammoType = self.magazineData[self.cylinderPosition]
-        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
-        return true
-    end
-
-    -- anything else needs a live round chambered
-    return self.roundChambered > 0
+    return Reloadable.Fire.valid(self)
 end
+
 ORGM['.50AE'] = ORGM['.440'][ORGM['.357'](ORGM,'',16,17)]
 
+--[[- Called before the IsoPlayer.DoAttack in `ISReloadManager:checkLoaded`.
+
+@usage local result = reloadable:preFireShot(3, playerObj, weaponItem)
+@tparam int difficulty players reloading difficulty, not used
+@tparam IsoPlayer playerObj
+@tparam HandWeapon weaponItem
+
+@treturn bool true if the attack can continue.
+
+]]
+
 function ISORGMWeapon:preFireShot(difficulty, playerObj, weaponItem)
-    -- check for dud round, hangfire and other malfunctions
-    -- check mechanical failures and malfunctions
-    -- check squib
-    -- check for dud, note dud should probably behave as fire empty
-    -- set piercing bullets here.
-    return true
+    return Reloadable.Fire.pre(self, playerObj, weaponItem)
 end
 
---[[ ISORGMWeapon:fireShot(weaponItem, difficulty)
+--[[- Called after the IsoPlayer.DoAttack in ISReloadManager:checkLoaded`.
 
-    Called when the actual shot is fired from ISReloadManager:checkLoaded
-
-    weaponItem is a HandWeapon object.
-    difficulty is 1-3 (players reloading difficulty) and not used here
-
-    returns nil
-
-    Note: self has variables changed and Reloadable is synced.
+@usage reloadable:fireShot(weaponItem, 3)
+@tparam HandWeapon weaponItem
+@tparam int difficulty players reloading difficulty, not used
 
 ]]
 function ISORGMWeapon:fireShot(weaponItem, difficulty)
-    if self.hammerCocked == 0 then -- SA already has hammer cocked by this point,
-        self:cockHammer(self.playerObj, false, weaponItem) -- chamber rotates here for revolvers
-    end
-    self:releaseHammer(self.playerObj, false)
-
-    self.roundsSinceCleaned = self.roundsSinceCleaned + 1
-    self.roundsFired = self.roundsFired + 1
-    if self.actionType == ORGM.AUTO then
-        --fire shot
-        self.roundChambered = 0
-        self.emptyShellChambered = 1
-        self:openSlide(self.playerObj, false, weaponItem)
-        self:closeSlide(self.playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
-
-    elseif self.actionType == ORGM.ROTARY then
-        -- fire shot
-        local ammoData = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
-        self.magazineData[self.cylinderPosition] = ammoData and ammoData.Case or nil
-        self.currentCapacity = self.currentCapacity - 1
-
-    elseif self.actionType == ORGM.BREAK then
-        -- fire shot
-        local ammoData = ORGM.getAmmoData(self.magazineData[self.cylinderPosition])
-        self.magazineData[self.cylinderPosition] = ammoData and ammoData.Case or nil
-        self.currentCapacity = self.currentCapacity - 1
-        self.cylinderPosition = self.cylinderPosition + 1 -- this can bypass our maxCapacity limit
-        -- TODO: if there are barrels left, auto recock the hammer (dual hammer double barrels)
-        if self.magazineData[self.cylinderPosition] then -- set the next round
-            self:setCurrentRound(self.magazineData[self.cylinderPosition], weaponItem)
-        end
-
-    else -- bolt, lever,and pump actions
-        -- fire shot
-        self.roundChambered = self.roundChambered - 1
-        self.emptyShellChambered = self.emptyShellChambered + 1
-    end
-
-    --self:printReloadableWeaponDetails() -- DEBUG
+    Reloadable.Fire.post(self, self.playerObj, weaponItem)
     self:syncReloadableToItem(weaponItem)
 end
 
 
---[[ ISORGMWeapon:fireEmpty(playerObj, weaponItem)
+--[[- Called when the trigger is pulled on a empty chamber in `ISReloadManager:checkLoaded`.
 
-    called when the trigger is pulled on a empty chamber (from overloaded
-    ISReloadManager:checkLoaded)
-
-    playerObj is a IsoGameCharacter object (the player)
-    weaponItem is a HandWeapon object
-
-    return nil
-
-    Note: self MIGHT have variable changed and Reloadable is synced.
+@usage reloadable:fireShot(playerObj, weaponItem)
+@tparam IsoPlayer playerObj
+@tparam HandWeapon weaponItem
 
 ]]
 function ISORGMWeapon:fireEmpty(playerObj, weaponItem)
-    if self.hammerCocked == 1 then
-        self:releaseHammer(playerObj, false)
-    elseif self.actionType ~= ORGM.SINGLEACTION then
-        self:cockHammer(playerObj, false, weaponItem)
-        self:releaseHammer(playerObj, false)
-    end
-    self:syncReloadableToItem(weaponItem)
+    return Reloadable.Fire.dry(self, playerObj, weaponItem)
 end
 ORGM['9mm'] = function(caliber) return ORGM['.303'](ORGM['.50AE'](caliber, 16)) end
 
 
---[[ ISORGMWeapon:canReload(playerObj)
+--- Reload Action Methods.
+-- Methods relating to the reload timed action.
+-- @section ReloadAction
 
-    Whether the character attempting to reload has the necessary
-    prerequisites to perform the reload action. Called prior to
-    the timed action and not to be confused with isReloadValid
+--[[- Called at the start of a reload timed action.
 
-    return true|false
+@usage local result = reloadable:canReload(playerObj)
+@tparam IsoPlayer playerObj
+
+@treturn bool true if the timed action can start.
 
 ]]
 function ISORGMWeapon:canReload(playerObj)
-    local result = false
-    if self.speedLoader ~= nil then
-        local speed = self:findBestMagazine(playerObj, self.speedLoader)
-        -- we have a speedLoader, check if its .max is less then .max - .current
-        -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
-        if speed and self.containsClip ~= 0 then
-            speed = speed:getModData()
-            if speed.currentCapacity > 0 then
-                -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
-                if self.actionType == ORGM.ROTARY and self.maxCapacity ~= self.currentCapacity then
-                    return true
-                -- rifles however, do
-                elseif speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
-                    return true
-                end
-            end
-        end
-    end
-
-    if self.containsClip == 1 then -- a magazine is currently in place, we can unload
-        result = true
-    elseif self.containsClip == 0 then -- gun uses magazines, but none loaded. check if player has some
-        result = self:findBestMagazine(playerObj, self.ammoType) ~= nil
-
-    elseif self.containsClip == nil then -- doesn't use a clip, check for speedloaders or bullets
-        if self.currentCapacity == self.maxCapacity then -- gun already at full
-            result = false
-        elseif self.currentCapacity < self.maxCapacity then -- check for bullets
-            result = self:findBestAmmo(playerObj) ~= nil
-        end
-    end
-    return result
+    return Reloadable.Reload.valid(self, playerObj)
 end
 
 
---[[ ISORGMWeapon:isReloadValid(playerObj, square, difficulty)
+--[[- Checks if the reload timed action is still valid.
 
-    Function for the TimedAction that determines whether the reload
-    action is still valid. If the player does something that should
-    interrupt the action, this should return false
+@usage local result = reloadable:isReloadValid(playerObj, square, 3)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
 
-    return true|false
+@treturn bool true to continue, false to halt.
 
 ]]
 function ISORGMWeapon:isReloadValid(playerObj, square, difficulty)
     -- this is actually almost identical to canReload, we can just call that instead of duplicating code
-    local result = self:canReload(playerObj)
-    if result then
-        return true
-    end
+    if Reloadable.Reload.valid(self, playerObj) then return true end
     self.reloadInProgress = false
     return false
 end
 ORGM['10mm'] = function(caliber) return ORGM['.38'](caliber, '..', ORGM['9mm']) end
 
 
---[[ ISORGMWeapon:reloadStart(playerObj, square, difficulty)
+--[[- Called at the start of the reload timed action.
 
-    performed upon the start of the timed action.
-    This mostly just plays sounds, and opens the break barrel (for shotguns)
-    or revolver cylinder.
-
-    Note: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:reloadStart(playerObj, square, 3)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
 
 ]]
 function ISORGMWeapon:reloadStart(playerObj, square, difficulty)
     self.reloadInProgress = true
-    if self.containsClip == 1 then
-        getSoundManager():PlayWorldSound(self.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
-    elseif self.containsClip == 0 then
-        getSoundManager():PlayWorldSound(self.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
-    else
-        if self.actionType == ORGM.ROTARY then
-            -- TODO: this needs to sync, causes issues,
-            -- NOTE: weaponItem is nil!!!!
-            self:openCylinder(playerObj, true, weaponItem) -- play the open sound
-            -- if rotary and contains spent shells, we need to empty the cylinder. this is all or nothing
-            if self:hasEmptyCasesInMagazine() > 0 then
-                self:emptyMagazineAtOnce(playerObj, true)
-            end
-        elseif self.actionType == ORGM.BREAK then
-            self:openBreak(playerObj, true, weaponItem)
-        end
-    end
-
+    Reloadable.Reload.start(self, playerObj, weaponItem)-- weaponItem is nil
 end
 
 
---[[ ISORGMWeapon:reloadPerform(playerObj, square, difficulty, weaponItem)
+--[[- Called at completion of the reload timed action.
 
-    performed upon successful completion of the timed action.
-
-    Note: self has variables changed and Reloadable is synced.
+@usage reloadable:reloadPerform(playerObj, square, 3, weaponItem)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
+@tparam HandWeapon weaponItem
 
 ]]
 function ISORGMWeapon:reloadPerform(playerObj, square, difficulty, weaponItem)
-    if self.speedLoader ~= nil then
-        local speed = self:findBestMagazine(playerObj, self.speedLoader)
-        -- we have a speedLoader, check if its .max is less then .max - .current
-        -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
-        if speed and self.containsClip ~= 0 then
-            speed = speed:getModData()
-            if speed.currentCapacity > 0 and speed.maxCapacity <= self.maxCapacity - self.currentCapacity then
-                getSoundManager():PlayWorldSound(self.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
-                for i=1, speed.maxCapacity do repeat
-                    if speed.magazineData[i] == nil then break end
-                    self:loadRoundIntoMagazine(speed.magazineData[i], weaponItem)
-                    speed.magazineData[i] = nil
-                    speed.currentCapacity = speed.currentCapacity - 1
-                until true end
-                speed.loadedAmmo = nil
-                self.reloadInProgress = false
-                self:syncReloadableToItem(weaponItem)
-                playerObj:getXp():AddXP(Perks.Reloading, 1)
-                return
-            end
-        end
-    end
-
-    if self.containsClip ~= nil then
-        if self.containsClip == 1 then -- eject the current clip
-            self:ejectMagazine(playerObj, false)
-        else
-            self:insertMagazine(playerObj, false)
-        end
-        self.reloadInProgress = false
-        self:syncReloadableToItem(weaponItem)
-        return
-
-    else -- internal mag, rotary or break barrel
-        local ammoItem = self:findBestAmmo(playerObj)
-        if not ammoItem then return end
-        local ammoType = ammoItem:getType()
-        if self.actionType == ORGM.ROTARY then
-            self:rotateCylinder(1, playerObj, true, weaponItem)
-            if self.magazineData[self.cylinderPosition] ~= nil then -- something is in this spot, return now
-                self:syncReloadableToItem(weaponItem)
-                return
-            end
-
-        end
-        getSoundManager():PlayWorldSound(self.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
-
-        self:loadRoundIntoMagazine(ammoType, weaponItem, self.cylinderPosition) -- cylinderPosition will be nil for non-rotary
-        if self.actionType == ORGM.BREAK then
-            self.cylinderPosition = self.cylinderPosition + 1 -- increment to load the next chamber, it resets on close
-        end
-        -- remove the necessary ammo
-        playerObj:getInventory():RemoveOneOf(ammoType)
-        self.reloadInProgress = false
-        self:syncReloadableToItem(weaponItem)
-        playerObj:getXp():AddXP(Perks.Reloading, 1)
-        --if self.currentCapacity == self.maxCapacity then
-        --    return false
-        --end
-        --return true
-    end
+    self.reloadInProgress = Reloadable.Reload.perform(self, playerObj, weaponItem) and true or false
+    self:syncReloadableToItem(weaponItem)
 end
 ORGM['5.7mm'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',1,4))]
 
 
---[[ ISORGMWeapon:getReloadTime()
+--[[- Returns the time it takes to perform the reload timed action.
+
+@usage local time = reloadable:getReloadTime()
+
+@treturn integer the reload time.
 
 ]]
 function ISORGMWeapon:getReloadTime()
     return self.reloadTime
 end
 
+
+--[[- Gets the translated context menu text for reloading.
+
+@usage local text = reloadable:getReloadText()
+
+@treturn string the translated text
+
+]]
 function ISORGMWeapon:getReloadText()
     if self.containsClip == nil then
         return getText('ContextMenu_Reload')
@@ -480,429 +178,149 @@ function ISORGMWeapon:getReloadText()
     else
         return getText('ContextMenu_InsertMagazine')
     end
-
 end
 
---[[ ISORGMWeapon:isChainReloading()
+--[[- Checks if a reload action should be performed immediately after this one.
 
-    Checks if a reload action should be performed immediately after this one.
-    This is called after ISORGMWeapon:reloadPerform()
-    Does not take into account ammunition availability
+Does not take into account ammunition availability.
 
-    return true|false
+@usage local result = reloadable:isChainReloading()
+
+@treturn bool true if the reloading should continue.
 
 ]]
 function ISORGMWeapon:isChainReloading()
-    if self.containsClip == nil then
-        return true
-    end
-    return false
+    return (self.containsClip == nil)
 end
 ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 
+--- Unload Action Methods.
+-- Methods relating to the unload timed action.
+-- @section UnloadAction
 
---[[ ISORGMWeapon:loadRoundIntoMagazine(ammoType, weaponItem, position)
+--[[- Called at the start of a unload timed action.
 
-    Loads a round into a internal magazine or cylinder.
+@usage local result = reloadable:canUnload(playerObj)
+@tparam IsoPlayer playerObj
 
-    Note: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:loadRoundIntoMagazine(ammoType, weaponItem, position)
-    -- TODO: ammoType should allow for InventoryItems, so we can check for modData
-    -- and flag any faulty ammo
-    if self.currentCapacity == self.maxCapacity then return end
-    self.currentCapacity = self.currentCapacity + 1
-    if position == nil then position = self.currentCapacity end
-    self.magazineData[position] = self:convertAmmoGroupRound(ammoType)
-
-    if self.loadedAmmo == nil then
-        self.loadedAmmo = ammoType
-    elseif self.loadedAmmo ~= ammoType then
-        self.loadedAmmo = 'mixed'
-    end
-end
-
---[[ ISORGMWeapon:convertAmmoGroupRound(ammoType)
-    Converts a AmmoGroup round to a real round if required. Some mods like Survivors don't handle
-    the new ammo system properly, and guns are always loaded with AmmoGroup ammo.
-]]
-function ISORGMWeapon:convertAmmoGroupRound(ammoType)
-    local groupName = self.ammoType
-    if self.containsClip ~= nil then -- get the mag's ammo type
-        groupName = ReloadUtil:getClipData(self.ammoType).ammoType
-    end
-    if ammoType == groupName and ORGM.getAmmoGroup(ammoType) ~= nil then -- a AmmoGroup round is being used
-        ORGM.log(ORGM.DEBUG, "Converting AmmoGroup round ".. ammoType .. " > ".. ORGM.getAmmoGroup(ammoType)[1])
-        ammoType = ORGM.getAmmoGroup(ammoType)[1]
-    end
-    return ammoType
-end
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      Unloading functions
-
---[[ ISORGMWeapon:canUnload(playerObj)
+@treturn bool true if the timed action can start.
 
 ]]
 function ISORGMWeapon:canUnload(playerObj)
-    if self.currentCapacity > 0 then return true end
-    if (self.roundChambered ~= nil and self.roundChambered > 0) then
-        return true
-    end
-    return false
+    return Reloadable.Unload.valid(self, playerObj)
 end
 ORGM['7.62mm'] = ORGM['10mm'](ORGM['.357'](ORGM,'',8,10))
 
 
---[[ ISORGMWeapon:isUnloadValid(playerObj, square, difficulty)
+--[[- Checks if the unload timed action is still valid.
+
+@usage local result = reloadable:isUnloadValid(playerObj, square, 3)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
+
+@treturn bool true to continue, false to halt.
 
 ]]
 function ISORGMWeapon:isUnloadValid(playerObj, square, difficulty)
-    if self.currentCapacity > 0 then return true end
-    if (self.roundChambered ~= nil and self.roundChambered > 0) then
-        return true
-    end
+    if Reloadable.Unload.valid(self, playerObj) then return true end
     self.unloadInProgress = false
     return false
 end
 
 
---[[ ISORGMWeapon:unloadStart(playerObj, square, difficulty)
+--[[- Called at the start of the unload timed action.
 
-    Note: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
+@usage reloadable:unloadStart(playerObj, square, 3)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
 
 ]]
 function ISORGMWeapon:unloadStart(playerObj, square, difficulty)
     self.unloadInProgress = true
+    Reloadable.Unload.start(self, playerObj, weaponItem) -- WARNING weaponItem is nil
 end
 
 
---[[ ISORGMWeapon:unloadPerform(playerObj, square, difficulty, weaponItem)
+--[[- Called at completion of the unload timed action.
+
+@usage reloadable:unloadPerform(playerObj, square, 3, weaponItem)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam int difficulty players reloading difficulty, not used
+@tparam HandWeapon weaponItem
 
 ]]
 function ISORGMWeapon:unloadPerform(playerObj, square, difficulty, weaponItem)
-    if self.actionType == ORGM.ROTARY then
-        self:openCylinder(playerObj, true)
-        -- revolvers drop them all at once
-        self:emptyMagazineAtOnce(playerObj, false)
-        self.unloadInProgress = false
-        self:syncReloadableToItem(weaponItem)
-        return false
-    end
-    if self.actionType == ORGM.BREAK then
-        self:openBreak(playerObj, false, weaponItem)
-        self.unloadInProgress = false
-        self:syncReloadableToItem(weaponItem)
-        return false
-    end
-    -- we can just rack the weaponItem to unload it
-    self:rackingPerform(playerObj, square, weaponItem)
-    self.unloadInProgress = false
+    self.unloadInProgress = Reloadable.Unload.perform(self, playerObj, weaponItem) and true or false
     self:syncReloadableToItem(weaponItem)
-    if(self.currentCapacity == 0 and self.roundChambered == 0) then
-        self.loadedAmmo = nil
-        return false
-    end
-    return true
 end
 
---[[ ISORGMWeapon:isChainUnloading()
+--[[- Checks if a unload action should be performed immediately after this one.
+
+@usage local result = reloadable:isChainUnloading()
+
+@treturn bool true if the unloading should continue.
 
 ]]
 function ISORGMWeapon:isChainUnloading()
     if self.actionType == ORGM.ROTARY or self.actionType == ORGM.BREAK then return false end
     return true
 end
-ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      Ejectable Magazine handling functions
-
---[[ ISORGMWeapon:ejectMagazine(playerObj, playSound)
-
-    Ejects the current magazine and adds it to the players inventory.
-
-    If playSound is true, plays the ejectSound
-
-    Note: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:ejectMagazine(playerObj, playSound)
-    local clip = self:createMagazine()
-    self.currentCapacity = 0
-    self.magazineData = {}
-    playerObj:getInventory():AddItem(clip)
-    ISInventoryPage.dirtyUI()
-    self.containsClip = 0
-    self.reloadInProgress = false
-    self.loadedAmmo = nil -- might still have a round in chamber, but this is only required for magazine setup anyways
-    if (playSound and self.ejectSound) then playerObj:playSound(self.ejectSound, false) end
-end
+--- Rack Action Methods.
+-- Methods relating to the racking timed action.
+-- @section RackAction
 
 
---[[ ISORGMWeapon:insertMagazine(playerObj, playSound)
+--[[- Called at the start of a reack timed action.
 
-    Inserts a new magazine. Selects the best magazine from the players inventory.
+On Easy/Normal this returns false if there is already a round chambered.
 
-    If playSound is true, plays the insertSound
+@usage local result = reloadable:canRack(playerObj)
+@tparam IsoPlayer playerObj
 
-    Note: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:insertMagazine(playerObj, playSound)
-    local magItem = self:findBestMagazine(playerObj, self.ammoType)
-    if magItem == nil then return end
-    modData = magItem:getModData()
-    local magData = ORGM.getMagazineData(magItem)
-    if modData.currentCapacity > magData.maxCapacity then
-        -- this mag is holding more then it should. possibly was loaded in a previous
-        -- ORGM version and the maxCapacity has changed.
-        playerObj:Say("Magazine contains more then it should. Sending some rounds back to inventory")
-        local container = playerObj:getInventory()
-        for i=magData.maxCapacity+1, modData.currentCapacity do
-            local round = modData.magData[i]
-            modData.magData[i] = nil
-            container:AddItem(ORGM.getAmmoData(round).moduleName ..'.'.. round)
-        end
-        modData.currentCapacity = magData.maxCapacity
-    end
-    -- TODO: flag more of the magazines mod data, faulty ammo and its positions
-    self.currentCapacity = modData.currentCapacity
-    self.magazineData = modData.magazineData
-    playerObj:getInventory():Remove(magItem)
-    ISInventoryPage.dirtyUI()
-    self.reloadInProgress = false
-    self.containsClip = 1
-    self.loadedAmmo = modData.loadedAmmo
-    playerObj:getXp():AddXP(Perks.Reloading, 1)
-    if (playSound and self.insertSound) then playerObj:playSound(self.insertSound, false) end
-end
-
-
---[[ ISORGMWeapon:createMagazine()
-
-    Creates a new magazine for this weapon type containing as many rounds
-    as there are in this weapon
-
-]]
-function ISORGMWeapon:createMagazine()
-    local magItem = InventoryItemFactory.CreateItem(self.moduleName .. '.' .. self.ammoType)
-    self:setupMagazine(magItem)
-    data = magItem:getModData()
-    -- TODO: transfer fault ammo back to the magazine.
-    data.currentCapacity = self.currentCapacity
-    data.magazineData = self.magazineData
-    if self.preferredAmmoType then
-        data.preferredAmmoType = self.preferredAmmoType
-    end
-    data.loadedAmmo = self.loadedAmmo
-    return magItem
-end
-
---[[ ISORGMWeapon:setupMagazine(magItem)
-
-    Sets up the ISReloadableMagazine on the InventoryItem
-
-    @param magazine the InventoryItem to add the ISReloadableMagazine to
-
-]]
-function ISORGMWeapon:setupMagazine(magItem)
-    local magazineData = ReloadUtil:getClipData(self.ammoType)
-    ReloadUtil:setupMagazine(magItem, magazineData, self.playerObj)
-end
-
-
---[[ ISORGMWeapon:findBestMagazine(playerObj, ammoType)
-
-    Finds and returns the best magazine available in the players inventory.
-    If ammoType is nil, uses self.ammoType.  If checking for the best speed loader
-    or stripper clip, ammoType should be set to self.speedLoader.
-
-]]
-function ISORGMWeapon:findBestMagazine(playerObj, ammoType)
-    if ammoType == nil then ammoType = self.ammoType end
-    return ORGM.findBestMagazineInContainer(ammoType, self.preferredAmmoType, playerObj:getInventory())
-end
-ORGM['.380ACP'] = ORGM['10mm'](ORGM[12])
-
-
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      All Types Magazine functions
-
-
-function ISORGMWeapon:findBestAmmo(playerObj)
-    return ORGM.findAmmoInContainer(self.ammoType, self.preferredAmmoType, playerObj:getInventory())
-end
-
-
---[[ ISORGMWeapon:getMagazineAtPosition(position)
-
-    Returns 1 if live ammo is at the position, 0 if empty shell, or nil if empty.
-
-]]
-function ISORGMWeapon:getMagazineAtPosition(position)
-    return self.magazineData[position] -- arrays start at 1
-end
-
-
---[[ ISORGMWeapon:getMagazineAtNextPosition(wrap)
-
-    Gets the state of the next cylinder position. Used for checking isLoaded on uncocked double action
-    rotary types.
-
-    Returns 1 if live ammo is at the position, 0 if empty shell, or nil if empty.
-
-]]
-function ISORGMWeapon:getMagazineAtNextPosition(wrap)
-    if wrap then
-        return self.magazineData[(self.cylinderPosition % self.maxCapacity) +1]
-    end
-    return self.magazineData[self.currentCapacity]
-end
-
-
---[[ ISORGMWeapon:emptyMagazineAtOnce(playerObj, playSound)
-
-    Empties all shells (live and spent) from the cylinder. The Cylinder must be opened first.
-
-    If playSound is true, plays the ejectSound.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:emptyMagazineAtOnce(playerObj, playSound)
-    if self.isOpen == 0 then return end
-    local square = playerObj:getCurrentSquare()
-
-    for index = 1, self.maxCapacity do
-        local ammoType = self.magazineData[index]
-        local ammoItem = nil
-        if ammoType and ammoType:sub(1, 5) == 'Case_' then -- eject shell
-            if ORGM.Settings.CasesEnabled then
-                -- TODO: cases need proper module checking
-                ammoItem = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
-            end
-        elseif ammoType then -- eject bullet
-            ammoItem = self:convertAmmoGroupRound(ammoType)
-            ammoItem = InventoryItemFactory.CreateItem(ORGM.getAmmoData(ammoItem).moduleName..'.' .. ammoItem)
-            -- TODO: check if this is faulty ammo and flag it
-        end
-        if (ammoItem and square) then
-            square:AddWorldInventoryItem(ammoItem, 0, 0, 0)
-        end
-        self.magazineData[index] = nil
-    end
-    self.loadedAmmo = nil
-    self.currentCapacity = 0
-end
-
-
---[[  ISORGMWeapon:hasEmptyCasesInMagazine()
-
-    Returns the number of spent shells in the magazine/cylinder.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:hasEmptyCasesInMagazine()
-    local count = 0
-    for index = 1, self.maxCapacity do
-        local ammoType = self.magazineData[index]
-
-        if ammoType and ammoType:sub(1, 5) == "Case_" then
-            count = count + 1
-        end
-    end
-    return count
-end
-
-
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      Racking functions
-
---[[ ISORGMWeapon:canRack(playerObj)
-
-    Can the weaponItem be racked (overloaded from ISReloadableWeapon)
-
-    return true|false
-    On Easy/Normal, normally this returns false if there is already a round chambered.
-    Clients on Easy/Normal seem to continually try to rack the gun! (Insane amount of
-    pointless function calling, ISReloadManager:autoRackNeeded())
+@treturn bool true if the timed action can start.
 
 ]]
 function ISORGMWeapon:canRack(playerObj)
-    if (self.triggerType == ORGM.SINGLEACTION and self.hammerCocked == 0) then
-        return true
-    end
-    if (self.actionType == ORGM.BREAK or self.actionType == ORGM.ROTARY) then
-        if self.isOpen == 1 then return true end
-        return false
-    end
-    if self.emptyShellChambered == 1 then return true end
-    if ReloadManager[1]:getDifficulty() < 3 or playerObj:getJoypadBind() ~= -1 then
-        if self.isJammed then return true end
-        return self.roundChambered == 0 and self.currentCapacity > 0
-    end
-
-    return true
+    return Reloadable.Rack.valid(self, playerObj)
 end
 
 
---[[ ISORGMWeapon:rackingStart(playerObj, square, weaponItem)
+--[[- Called at the start of the rack timed action.
+
+@usage reloadable:rackingStart(playerObj, square, weaponItem)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam HandWeapon weaponItem
 
 ]]
 function ISORGMWeapon:rackingStart(playerObj, square, weaponItem)
-    if (self.actionType == ORGM.BREAK or self.actionType == ORGM.ROTARY) then
-        return
-    end
-    if self.rackSound then
-        getSoundManager():PlayWorldSound(self.rackSound, playerObj:getSquare(), 0, 10, 1.0, false)
-    end
+    return Reloadable.Rack.start(self, playerObj, weaponItem)
 end
 
 
---[[ ISORGMWeapon:rackingPerform(playerObj, square, weaponItem)
+--[[- Called at completion of the rack timed action.
 
-    Note: self has variables changed and Reloadable is synced.
+@usage reloadable:rackingPerform(playerObj, square, weaponItem)
+@tparam IsoPlayer playerObj
+@tparam IsoGridSquare square
+@tparam HandWeapon weaponItem
 
 ]]
 function ISORGMWeapon:rackingPerform(playerObj, square, weaponItem)
-    if self.actionType == ORGM.BREAK then
-        if self.isOpen then self:closeBreak(playerObj, true, weaponItem) end
-
-    elseif self.actionType == ORGM.ROTARY then
-        if self.isOpen == 1 then self:closeCylinder(playerObj, true, weaponItem) end
-
-    else
-        self:openSlide(playerObj, false, weaponItem)
-        self:closeSlide(playerObj, false, weaponItem)
-    end
-
-    if (self.triggerType == ORGM.SINGLEACTION and self.hammerCocked == 0) then
-        self:cockHammer(playerObj, true, weaponItem) -- play the cock sound
-    end
-
-
+    Reloadable.Rack.perform(self, playerObj, weaponItem)
     self:syncReloadableToItem(weaponItem)
 end
 
 
---[[ ISORGMWeapon:getRackTime()
+--[[- Returns the time it takes to perform the reload timed action.
+
+@usage local time = reloadable:getReloadTime()
+
+@treturn int the reload time.
 
 ]]
 function ISORGMWeapon:getRackTime()
@@ -910,277 +328,331 @@ function ISORGMWeapon:getRackTime()
 end
 
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---   Slide, Cylinder and Hammer functions
+--- Magazine Methods
+-- @section Magazine
 
---[[ ISORGMWeapon:openSlide(playerObj, playSound, weaponItem)
+--[[- Ejects the current magazine and adds it to the players inventory.
 
-    Opens the slide, ejecting whatever is currently in the chamber onto the ground.
+@usage reloadable:ejectMagazine(playerObj, true)
 
-    If playSound is true plays the openSound.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@tparam IsoPlayer playerObj
+@tparam[opt] bool playSound if true plays the ejectSound
 
 ]]
-function ISORGMWeapon:openSlide(playerObj, playSound, weaponItem)
-    if self.isOpen == 1 then -- already opened!
-        return
-    end
-    -- first open the slide...
-    self.isOpen = 1
-    self.isJammed = nil
-    if (playSound and self.openSound) then playerObj:playSound(self.openSound, false) end
-    local square = playerObj:getCurrentSquare()
-    local ammoType = self.lastRound
-    local ammoItem = nil
-    -- eject whatever is in the chamber
-    if self.roundChambered == 1 then
-        if ammoType == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
-            self.lastRound = self:convertAmmoGroupRound(self.ammoType)
-        end
-        ammoItem = InventoryItemFactory.CreateItem(ORGM.getAmmoData(self.lastRound).moduleName ..'.'.. self.lastRound)
-    elseif self.emptyShellChambered == 1 then
-        local ammoData = ORGM.getAmmoData(ammoType)
-        if ammoData and ammoData.Case and ORGM.Settings.CasesEnabled then
-            -- TODO: cases need proper module checking
-            ammoItem = InventoryItemFactory.CreateItem('ORGM.' .. ammoData.Case)
-        end
-    else -- nothing actually chambered?
-        return
-    end
-    self.roundChambered = 0
-    self.emptyShellChambered = 0
-    if (ammoItem and square) then
-        square:AddWorldInventoryItem(ammoItem, 0, 0, 0)
-        ISInventoryPage.dirtyUI()
-    end
-end
-ORGM.PVAL = 5
-
---[[ ISORGMWeapon:closeSlide(playerObj, playSound, weaponItem)
-
-    Closes the slide and chambers the next round. For Single and Double actions this cocks the hammer.
-
-    If playSound is true plays the closeSound.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
-
-]]
-function ISORGMWeapon:closeSlide(playerObj, playSound, weaponItem)
-    if self.isOpen == 0 then -- already closed!
-        return
-    end
-    if self.triggerType ~= ORGM.DOUBLEACTIONONLY then
-        self:cockHammer(playerObj, false, weaponItem)
-    end
-    self.isOpen = 0
-    if (playSound and self.closeSound) then playerObj:playSound(self.closeSound, false) end
-    -- load next shot, this isn't always true though:
-    -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
-    -- a mag inserted while slide open will chamber when closed
-    self:feedNextRound(playerObj, weaponItem)
+function ISORGMWeapon:ejectMagazine(playerObj, playSound)
+    Reloadable.Magazine.eject(self, playerObj, playSound)
+    self.reloadInProgress = false
 end
 
 
---[[ ISORGMWeapon:feedNextRound(weaponItem)
+--[[- Inserts the best magazine from the players inventory into the firearm.
 
-    Feeds the next round from the mag into the chamber
+@usage reloadable:insertMagazine(playerObj, true)
 
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@tparam IsoPlayer playerObj
+@tparam[opt] bool playSound if true plays the insertSound
+
+]]
+function ISORGMWeapon:insertMagazine(playerObj, playSound)
+    Reloadable.Magazine.insert(self, playerObj, playSound)
+    self.reloadInProgress = false
+end
+
+
+--[[- Sets up the ISReloadableMagazine on the InventoryItem
+
+@tparam InventoryItem magItem to add ISReloadableMagazine to.
+
+]]
+function ISORGMWeapon:setupMagazine(magItem)
+    Reloadable.Magazine.setup(self, magItem, self.playerObj)
+    --local magData = ORGM.Magazine.getData(magItem)
+    --ReloadUtil:setupMagazine(magItem, magData, self.playerObj)
+end
+
+
+
+--- Depreciated Methods
+-- @section Depreciated
+
+
+--[[- DEPRECIATED.
+Creates a new magazine for this weapon type and transfers some modData
+
+@usage local magItem = reloadable:createMagazine()
+
+]]
+function ISORGMWeapon:createMagazine()
+    return Reloadable.Magazine.create(self, self.playerObj)
+end
+
+
+--[[- DEPRECIATED. Loads a round into a internal magazine or cylinder.
+
+@usage reloadable:loadRoundIntoMagazine('Ammo_9x19mm_FMJ', weaponItem, nil)
+@param ammoType a string name of a registered ORGM ammo
+@param weaponItem a HandWeapon/InventoryItem
+@param position integer (or nil) of position to insert the round at. If nil it is appended to the list.
+
+]]
+function ISORGMWeapon:loadRoundIntoMagazine(ammoType, weaponItem, position)
+    Reloadable.Ammo.load(self, ammoType, weaponItem, position)
+end
+
+--[[- DEPRECIATED. Converts a AmmoGroup round to a real round if required.
+
+@usage local result = reloadable:convertAmmoGroupRound('Ammo_9x19mm')
+@param ammoType a string name of a AmmoGroup or registered ORGM ammo
+
+@return string, the name of the first ammo in the group or ammoType if a real ammo was already passed in.
+
+]]
+function ISORGMWeapon:convertAmmoGroupRound(ammoType)
+    return Reloadable.Ammo.convert(self, ammoType)
+end
+
+ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
+
+--[[- DEPRECIATED. Finds and returns the best magazine available in the players inventory.
+
+@usage local magItem = reloadable:findBestMagazine(playerObj, nil)
+@param playerObj a IsoPlayer object
+@param ammoType nil (auto detected), or string name of a registered ORGM magazine
+
+@return InventoryItem, the best suited magazine, or nil.
+
+]]
+function ISORGMWeapon:findBestMagazine(playerObj, ammoType)
+    return Reloadable.Magazine.findBest(self, playerObj, ammoType)
+end
+ORGM['.380ACP'] = ORGM['10mm'](ORGM[12])
+
+
+--[[- DEPRECIATED. Finds and returns the best ammo available in the players inventory.
+
+@usage local magItem = reloadable:findBestAmmo(playerObj)
+@param playerObj a IsoPlayer object
+
+@return InventoryItem, the best suited ammo, or nil.
+
+]]
+function ISORGMWeapon:findBestAmmo(playerObj)
+    -- TODO: this should use the Reloadable.Ammo.findBest()
+    return ORGM.Ammo.findIn(self.ammoType, self.preferredAmmoType, playerObj:getInventory())
+end
+
+
+--[[- DEPRECIATED. Gets the ammo at specified position.
+
+@usage local ammoType = reloadable:getMagazineAtPosition(position)
+@param position integer, the index position to get.
+
+@return string, the ammo (or case) name at the position, or nil.
+
+]]
+function ISORGMWeapon:getMagazineAtPosition(position)
+    return Reloadable.Ammo.get(self, position)
+end
+
+
+--[[- DEPRECIATED. Gets the ammo at the next position.
+
+@usage local ammoType = reloadable:getMagazineAtNextPosition(true)
+@param wrap boolean, if we should wrap around back to the begining past maxCapacity. true for rotary actions.
+
+@return string, the ammo (or case) name at the next position, or nil.
+
+]]
+function ISORGMWeapon:getMagazineAtNextPosition(wrap)
+    return Reloadable.Ammo.peek(self, wrap)
+end
+
+
+--[[- DEPRECIATED. Ejects all shells (live and spent) onto the ground.
+
+Used primarly with revolvers and break barrels on opening.
+
+@usage reloadable:emptyMagazineAtOnce(playerObj, true)
+
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the ejectSound if true
+
+]]
+function ISORGMWeapon:emptyMagazineAtOnce(playerObj, playSound)
+    Reloadable.Ammo.ejectAll(self, playerObj, playSound)
+end
+
+
+--[[- DEPRECIATED. Gets the number of empty cases in the magazine/cylinder.
+
+@usage local count = reloadabe:hasEmptyCasesInMagazine()
+
+@return integer, number of spent cases
+
+]]
+
+function ISORGMWeapon:hasEmptyCasesInMagazine()
+    return Reloadable.Ammo.hasCases(self)
+end
+
+--[[- DEPRECIATED. Loads the next round into the chamber
+
+@usage reloadabe:feedNextRound(playerObj, weaponItem)
+@param playerObj a IsoPlayer object
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:feedNextRound(playerObj, weaponItem)
-    if self.currentCapacity == 0 or self.currentCapacity == nil then
-        self.loadedAmmo = nil
-        return
-    end
-    local ammoType = self.magazineData[self.currentCapacity]
-    if ammoType == nil then -- problem, currentCapacity doesn't match our magazineData
-        -- TODO: seems i missed filling out this part...
-    end
-    -- remove last entry from data table (Note: using #table to find the length is slow)
-    -- TODO: check failure to feed jams here
-    self.magazineData[self.currentCapacity] = nil
-    self.currentCapacity = self.currentCapacity - 1
-    self.roundChambered = 1
-    -- a different round has been chambered, change the stats
-    self:setCurrentRound(ammoType, weaponItem)
-
-    -- check for a jam
-    if ORGM.Settings.JammingEnabled or ORGM.PVAL > 1 then
-        -- TODO: chances need to be more dynamic, it assumes a max condition of 10
-        local chance = (weaponItem:getConditionMax() / weaponItem:getCondition()) *2
-        if playerObj:HasTrait("Lucky") then
-            chance = chance * 0.8
-        elseif playerObj:HasTrait("Unlucky") then
-            chance = chance * 1.2
-        end
-        if ORGM.PVAL > 1 then
-            chance = chance + ORGM.PVAL
-        end
-        local result = ZombRand(300 - math.ceil(chance)*2)+1
-        if result <= chance then
-            self.isJammed = true
-            weaponItem:getModData().isJammed = true
-        end
-    end
+    Reloadable.Ammo.next(self, playerObj, weaponItem)
 end
 
 
---[[ ISORGMWeapon:setCurrentRound(ammoType, weaponItem)
+--[[- DEPRECIATED. Triggers a recalcuation of firearm stats on ammo changes.
 
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:setCurrentRound(ammoType, weaponItem)
+@param ammoType a string, the name of the ammo
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:setCurrentRound(ammoType, weaponItem)
-    if ammoType == nil or ammoType:sub(1, 5) == 'Case_' then return end
-    ammoType = self:convertAmmoGroupRound(ammoType)
-    local roundData = ORGM.getAmmoData(ammoType)
-    if roundData == nil then
-        self.lastRound = nil
-        weaponItem:getModData().lastRound = nil
-        return
-    end
-    if ammoType ~= self.lastRound then
-        self.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
-        weaponItem:getModData().lastRound = ammoType
-        ORGM.setFirearmStats(weaponItem)
-    end
-    ORGM.setFirearmPiercingBullets(weaponItem, roundData)
+    Reloadable.Ammo.setCurrent(self, ammoType, weaponItem)
 end
 
 
---[[ ISORGMWeapon:cockHammer(playerObj, playSound)
+--[[- DEPRECIATED. Cocks the hammer and rotates the cylinder for Rotary actionType.
 
-    Cocks the hammer and rotates the cylinder for Rotary actionType
-
-    If playSound is true plays the cockSound.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:cockHammer(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the cockSound if true
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:cockHammer(playerObj, playSound, weaponItem)
-    -- rotary cylinders rotate the chamber when the hammer is cocked
-    if self.actionType == ORGM.ROTARY and self.isOpen == 0 then
-        self:rotateCylinder(1, playerObj, false, weaponItem)
-    end
-    if (playSound and self.cockSound) then playerObj:playSound(self.cockSound, false) end
-    self.hammerCocked = 1
+    Reloadable.Hammer.cock(self, playerObj, playSound, weaponItem)
 end
 
 
---[[ ISORGMWeapon:releaseHammer(playerObj, playSound)
+--[[- DEPRECIATED. Releases a cocked hammer.
 
-    Releases a cocked hammer.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:releaseHammer(playerObj, true)
+@param playerObj a IsoPlayer object
+@param playSound boolean, not used
 
 ]]
 function ISORGMWeapon:releaseHammer(playerObj, playSound)
-    self.hammerCocked = 0
+    Reloadable.Hammer.release(self, playerObj, playSound)
 end
 
+--[[- DEPRECIATED. Opens the bolt, ejecting whatever is currently in the chamber onto the ground.
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
--- REVOLVER/ROTARY SPECIFIC
-
---[[ ISORGMWeapon:rotateCylinder(count, playerObj, playSound)
-
-    Rotates the cylinder by the specified amount.
-
-    If count is nil or 0, randomly selects (chamber spin)
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:openSlide(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
-function ISORGMWeapon:rotateCylinder(count, playerObj, playSound, weaponItem)
-    local position = self.cylinderPosition
-    if (count == nil or count == 0) then -- random count
-        count = ZombRand(self.maxCapacity)+1
-    end
-    self.cylinderPosition = ((self.cylinderPosition - 1 + count) % self.maxCapacity) +1
-    self:setCurrentRound(self.magazineData[self.cylinderPosition], weaponItem)
+function ISORGMWeapon:openSlide(playerObj, playSound, weaponItem)
+    Reloadable.Bolt.open(self, playerObj, playSound, weaponItem)
+end
+ORGM.PVAL = 5
+
+--[[- DEPRECIATED. Closes the bolt and chambers the next round.
+
+Single and Double actions this also cocks the hammer.
+
+@usage reloadable:closeSlide(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
+
+]]
+function ISORGMWeapon:closeSlide(playerObj, playSound, weaponItem)
+    Reloadable.Bolt.close(self, playerObj, playSound, weaponItem)
 end
 
 
---[[  ISORGMWeapon:openCylinder(playerObj, playSound)
+--[[- DEPRECIATED. Rotates the cylinder by the specified amount.
 
-    If playSound is true, plays the openSound.
+@usage reloadable:rotateCylinder(1, playerObj, true, weaponItem)
+@param count a integer, the number of positions to rotate. If nil or 0, randomly selects (chamber spin)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
 
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+]]
+
+function ISORGMWeapon:rotateCylinder(count, playerObj, playSound, weaponItem)
+    Reloadable.Cylinder.rotate(self, count, playerObj, playSound, weaponItem)
+end
+
+
+--[[- DEPRECIATED. Opens the cylinder.
+
+@usage reloadable:openCylinder(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:openCylinder(playerObj, playSound, weaponItem)
-    if self.isOpen == 1 then return end
-    self.isOpen = 1
-    if (playSound and self.openSound) then playerObj:playSound(self.openSound, false) end
+    Reloadable.Cylinder.open(self, playerObj, playSound, weaponItem)
 end
 
---[[ ISORGMWeapon:closeCylinder(playerObj, playSound)
+--[[- DEPRECIATED. Closes the cylinder and sets the current round.
 
-    Closes a open rotary cylinder.
-
-    If playSound is true, plays the closeSound.
-
-    WARNING: self has variables changed but ISORGMWeapon:syncReloadableToItem(weaponItem)
-    is NOT called in this function.
+@usage reloadable:closeCylinder(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:closeCylinder(playerObj, playSound, weaponItem)
-    if self.isOpen == 0 then return end
-    self.isOpen = 0
-    self:setCurrentRound(self.magazineData[self.cylinderPosition], weaponItem)
-    if (playSound and self.closeSound) then playerObj:playSound(self.closeSound, false) end
+    Reloadable.Cylinder.close(self, playerObj, playSound, weaponItem)
 end
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
--- BREAK BARREL SPECIFIC
 
+--[[- DEPRECIATED. Opens the breech and ejects any shells.
+
+@usage reloadable:openBreak(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
+
+]]
 function ISORGMWeapon:openBreak(playerObj, playSound, weaponItem)
-    if self.isOpen == 1 then return end
-    self.isOpen = 1
-    self.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire, set to 1 for reloading
-    if (playSound and self.openSound) then playerObj:playSound(self.openSound, false) end
-    self:emptyMagazineAtOnce(playerObj, false)
+    Reloadable.Break.open(self, playerObj, playSound, weaponItem)
 end
 
+--[[- DEPRECIATED. Closes the breech and sets the current round.
 
+@usage reloadable:closeBreak(playerObj, true, weaponItem)
+@param playerObj a IsoPlayer object
+@param playSound boolean, plays the openSound if true
+@param weaponItem a HandWeapon/InventoryItem
+
+]]
 function ISORGMWeapon:closeBreak(playerObj, playSound, weaponItem)
-    if self.isOpen == 0 then return end
-    self.isOpen = 0
-    self.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire
-    self:setCurrentRound(self.magazineData[1], weaponItem)
-    if (playSound and self.closeSound) then playerObj:playSound(self.closeSound, false) end
+    Reloadable.Break.close(self, playerObj, playSound, weaponItem)
 end
----------------------------------------------------------------------------
---
--- These 3 functions by-pass the superclass calls in ISReloadableWeapon and ISReloadable,
--- and sync the data themselves. Probably not the best idea if the PZ devs change the
--- functions in those files at a later date, but it makes it much easier to see here
--- exactly what data is being set.
 
---[[
+
+--- Setup and Sync Methods.
+-- These are used in intial setup of the reloadable, and keeping data synced between the
+-- HandWeapon's mod data and the reloadable object.
+--
+-- @section Sync
+
+--[[- Copies modData from the weaponItem to the reloadable object.
+
+@usage reloadable:syncItemToReloadable(weaponItem)
+@param weaponItem a HandWeapon/InventoryItem
 
 ]]
 function ISORGMWeapon:syncItemToReloadable(weaponItem)
     local modData = weaponItem:getModData()
     --ISReloadableWeapon.syncItemToReloadable(self, weaponItem)
     self.defaultAmmo = weaponItem:getAmmoType()
-    ---------------------------------------------
+
     --ISReloadable.syncItemToReloadable(self, weaponItem)
     self.type = modData.type or weaponItem:getType()
     self.moduleName = modData.moduleName
@@ -1195,7 +667,6 @@ function ISORGMWeapon:syncItemToReloadable(weaponItem)
     self.reloadTime = modData.reloadTime or weaponItem:getReloadTime()
     self.rackTime = modData.rackTime
     self.currentCapacity = modData.currentCapacity
-    ---------------------------------------------
 
     self.openSound = modData.openSound
     self.closeSound = modData.closeSound
@@ -1225,6 +696,13 @@ function ISORGMWeapon:syncItemToReloadable(weaponItem)
     -- self.shootSound = modData.shootSound
 end
 
+
+--[[- Copies properties of the reloadable object to the weaponItem's modData.
+
+@usage reloadable:syncItemToReloadable(weaponItem)
+@param weaponItem a HandWeapon/InventoryItem
+
+]]
 function ISORGMWeapon:syncReloadableToItem(weaponItem)
      -- handle switching difficulty
     local modData = weaponItem:getModData()
@@ -1232,12 +710,12 @@ function ISORGMWeapon:syncReloadableToItem(weaponItem)
     --if ReloadManager[1]:getDifficulty() == 1 then
     --  self.containsClip = 1
     --end
-    ---------------------------------------------
+
     --ISReloadableWeapon.syncReloadableToItem(self, weaponItem)
     --ISReloadable.syncReloadableToItem(self, weaponItem)
     modData.type = self.type
     modData.currentCapacity = self.currentCapacity
-    ---------------------------------------------
+
     modData.speedLoader = self.speedLoader
     modData.roundChambered = self.roundChambered
     modData.emptyShellChambered = self.emptyShellChambered
@@ -1256,8 +734,8 @@ function ISORGMWeapon:syncReloadableToItem(weaponItem)
     modData.roundsSinceCleaned = self.roundsSinceCleaned or 0
 end
 
-function ISORGMWeapon:setupReloadable(weaponItem, v)
-    ORGM.setupGun(v, weaponItem) --moved to save on duplicate code
+function ISORGMWeapon:setupReloadable(weaponItem, gunData)
+    ORGM.Firearm.setup(gunData, weaponItem) --moved to save on duplicate code
 end
 
 
@@ -1389,7 +867,3 @@ function ISORGMWeapon:printReloadableWeaponDetails()
     self:printReloadableDetails()
 end
 ORGM.NVAL = 0.1
-
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------

@@ -6,38 +6,38 @@ Events.OnKeyPressed.Add(function(key)
     local inventory = getPlayer():getInventory()
     local square = getPlayer():getCurrentSquare()
 
-    for name, def in pairs(ORGM.FirearmTable) do
+    for name, def in pairs(ORGM.Firearm.getTable()) do
         print(name)
         --inventory:AddItem(def.moduleName ..'.'.. name)
         local item = InventoryItemFactory.CreateItem(def.moduleName ..'.'.. name)
-        ORGM.setupGun(def, item)
-        ORGM.setFirearmStats(item)
+        ORGM.Firearm.setup(def, item)
+        ORGM.Firearm.Stats.set(item)
         square:AddWorldInventoryItem(item, 0, 0, 0)
     end
-    for name, def in pairs(ORGM.MagazineTable) do
+    for name, def in pairs(ORGM.Magazine.getTable()) do
         print(name)
         --inventory:AddItem(def.moduleName ..'.'.. name)
         for i=1, 10 do
             local item = InventoryItemFactory.CreateItem(def.moduleName ..'.'.. name)
-            --ORGM.setupMagazine(item)
+            --ORGM.Magazine.setup(item)
             square:AddWorldInventoryItem(item, 0, 0, 0)
         end
     end
-    for name, def in pairs(ORGM.AmmoTable) do
+    for name, def in pairs(ORGM.Ammo.getTable()) do
         print(name)
         --inventory:AddItem(def.moduleName ..'.'.. name ..'_Can')
         for i=1, 5 do
             square:AddWorldInventoryItem(InventoryItemFactory.CreateItem(def.moduleName ..'.'.. name..'_Can'), 0, 0, 0)
         end
     end
-    for name, def in pairs(ORGM.ComponentTable) do
+    for name, def in pairs(ORGM.Component.getTable()) do
         print(name)
         --inventory:AddItem(def.moduleName ..'.'.. name)
         for i=1, 10 do
             square:AddWorldInventoryItem(InventoryItemFactory.CreateItem(def.moduleName ..'.'.. name), 0, 0, 0)
         end
     end
-    for name, def in pairs(ORGM.RepairKitTable) do
+    for name, def in pairs(ORGM.Maintance.getTable()) do
         --inventory:AddItem(def.moduleName ..'.'.. name)
         for i=1, 5 do
             square:AddWorldInventoryItem(InventoryItemFactory.CreateItem(def.moduleName ..'.'.. name), 0, 0, 0)

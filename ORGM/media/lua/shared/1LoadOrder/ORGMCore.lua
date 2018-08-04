@@ -1,148 +1,272 @@
---[[
+--[[- ORGM Rechambered
 
-    This file contains the core table of ORGM Rechambered.
-    It is kept in the shared/1LoadOrder folder to ensure is loaded before any other ORGM files.
-    All functions and tables can be accessed via the global table named ORGM.
-    Functions are not listed in this file, they are loaded into it by the other files in the mod.
+The core ORGM table of ORGM Rechambered.
+
+All functions and tables can be accessed via the global table named ORGM.
+This mod's core philosophy is to place as little as possible in the global
+namespace for performance reasons as Zomboid's lua global namespace is already
+heavily polluted.
+Because of this, you should always pull the ORGM table (or it's sub-tables)
+into the local namespace.
+
+    local ORGM = ORGM
+
+## Example
+    -- pull tables into local namespace
+    local ORGM = ORGM
+    local Firearm = ORGM.Firearm
+    local Cylinder = ORGM.ReloadableWeapon.Cylinder
+    local Hammer = ORGM.ReloadableWeapon.Hammer
+
+    -- Spin the cylinder and cock the hammer for a IsoPlayer.
+    local function spinAndCock(playerObj)
+        local item = Firearm.getFirearm(playerObj)
+        if not item return end
+        -- check if its rotary fed
+        if not Firearm.isRotary(item) then return end
+        -- rotate the cylinder
+        Cylinder.rotate(item:getModData(), nil, playerObj, true, item)
+        -- Can't cock a double action only
+        if Firearm.Hammer.isDAO() then return end
+        Hammer.cock(item:getModData(), playerObj, true, item)
+    end
+
+@module ORGM
+@release 3.09
+@author Fenris_Wolf.
+@copyright 2018 **File:** shared/1LoadOrder/ORGMCore.lua
 
 ]]
 
+-- Functions are not listed in this file, they are loaded into it by the other files in the mod.
 
-ORGM = {
-    AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf",
-    -- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
-    -- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
-    -- gun build id < lastChanged build id then the gun needs to be reset to default values (fixed for the
-    -- new version.)
-    BUILD_HISTORY = {
-        "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
-        "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
-        "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
-        "3.06-stable", "3.07-beta", "3.07-stable", "3.08-stable", -- 24
-        "3.09-beta-rc1", -- 25
-    },
-    BUILD_ID = nil, -- set automatically at the end of this file
+ORGM = { }
 
-    -- logging constants
-    ERROR = 0,
-    WARN = 1,
-    INFO = 2,
-    DEBUG = 3,
+--- Modules
+-- @section Modules
 
-    -- trigger type constants
-    SINGLEACTION = 1,
-    DOUBLEACTION = 2,
-    DOUBLEACTIONONLY = 3,
+--- Contains all ORGM server-side functions, see: `ORGM.Server`
+ORGM.Server = { }
+ORGM.Server.Spawn = { }
+ORGM.Server.CommandHandler = { }
+ORGM.Server.Callbacks = { }
 
-    -- action/feed type constants
-    AUTO = 1,
-    BOLT = 2,
-    LEVER = 3,
-    PUMP = 4,
-    BREAK = 5,
-    ROTARY = 6,
+--- Contains all ORGM client-side functions, see: `ORGM.Client`.
+ORGM.Client = { }
+ORGM.Client.CommandHandler = { }
+ORGM.Client.Callbacks = { }
+ORGM.Client.Menu = { }
 
-    -- auto action feed mechanisms
-    BLOWBACK = 1,
-    DELAYEDBLOWBACK = 2, --
-    SHORTGAS = 3, -- extra wear
-    LONGGAS = 4, -- reduced full auto accuracy, more gas required
-    DIRECTGAS = 5, -- extra dirt, extra wear on internal parts
-    LONGRECOIL = 6,
-    SHORTRECOIL = 7,
+--- Functions for controlling and performing actions with firearms, see: `ORGM.ReloadableWeapon`.
+--
+-- These work on both ISReloadableWeapon objects, and a InventoryItem's modData.
+ORGM.ReloadableWeapon = { }
+ORGM.ReloadableWeapon.Fire = { }
+ORGM.ReloadableWeapon.Ammo = { }
+ORGM.ReloadableWeapon.Magazine = { }
+ORGM.ReloadableWeapon.Cylinder = { }
+ORGM.ReloadableWeapon.Break = { }
+ORGM.ReloadableWeapon.Bolt = { }
+ORGM.ReloadableWeapon.Reload = { }
+ORGM.ReloadableWeapon.Unload = { }
+ORGM.ReloadableWeapon.Rack = { }
+ORGM.ReloadableWeapon.Hammer = { }
 
-    -- category constants
-    PISTOL = 1,
-    REVOLVER = 2,
-    SUBMACHINEGUN = 3,
-    RIFLE = 4,
-    SHOTGUN = 5,
+--- Contains all firearm functions, see: `ORGM.Firearm`.
+ORGM.Firearm = { }
+ORGM.Firearm.Stats = { }
+ORGM.Firearm.Barrel = { }
+ORGM.Firearm.Hammer = { }
 
-    -- select fire mode constants
-    SEMIAUTOMODE = 0,
-    FULLAUTOMODE = 1,
+--- Contains all ammo functions, see: `ORGM.Ammo`.
+ORGM.Ammo = { }
 
-    -- rarity constants
-    COMMON = "Common", -- TODO: replace string with int 1
-    RARE = "Rare", -- TODO: replace string with int 2
-    VERYRARE = "VeryRare", -- TODO: replace string with int 3
+--- Contains all component functions, see: `ORGM.Component`.
+ORGM.Component = { }
 
-    -- table containing all ORGM settings
-    -- these are all defined below in the ORGM.SettingsValidator table
-    Settings = { },
+--- Contains all magazine functions, see: `ORGM.Magazine`.
+ORGM.Magazine = { }
 
-    -- table containing all ORGM server-side functions
-    -- server functions and subtables are defined in the lua/server folder
-    Server = { CommandHandler = {} },
+--- Contains all maintance functions, see: `ORGM.Maintance`.
+ORGM.Maintance = { }
 
-    -- table containing all ORGM client-side functions.
-    -- client functions and subtables are defined in the lua/client folder
-    Client = { CommandHandler = {} },
+--- Contains all callback functions, see: `ORGM.Callbacks`.
+ORGM.Callbacks = { }
 
-    -- Table containing all registered ammo and definitions. formally ORGMMasterAmmoTable (v2.00-v2.03)
-    AmmoTable = { },
+--- Contains all callback functions, see: `ORGM.Sounds`.
+ORGM.Sounds = { }
+ORGM.Sounds.Profiles = { }
 
-    -- Table containing all AmmoGroup names and real ammo replacements. formally ORGMAlternateAmmoTable (v2.00-v2.03)
-    AmmoGroupTable = { },
-    --AlternateAmmoTable = { },
+--- Constants
+-- @section Constants
 
-    -- Table containing all registered firearms and definitions. formally ORGMMasterWeaponTable (v2.00-v2.03)
-    FirearmTable = { },
+--- Author of the mod.
+ORGM.AUTHOR = "Original mod by ORMtnMan, Rechambered by Fenris_Wolf"
 
-    -- Table containing all registered magazines and definitions. formally ORGMMasterMagTable (v2.00-v2.03)
-    MagazineTable = { },
-
-    ComponentTable = { },
-
-    RepairKitTable = { },
-
-    FirearmRarityTable = {
-        Civilian = { Common = {},Rare = {}, VeryRare = {} },
-        Police = { Common = {}, Rare = {}, VeryRare = {} },
-        Military = { Common = {}, Rare = {}, VeryRare = {} },
-    },
-
-    LogLevelStrings = { [0] = "ERROR", [1] = "WARN", [2] = "INFO", [3] = "DEBUG"},
-
-    -- The ActionTypeStrings table contains all valid firearm.actionType values. It is used for error checking in ORGM.registerFirearm
-    ActionTypeStrings = {"Auto", "Bolt", "Lever", "Pump", "Break", "Rotary"},
-
-    -- The TriggerTypeStrings table contains all valid firearm.triggerType values. It is used for error checking in ORGM.registerFirearm
-    TriggerTypeStrings = {"SingleAction", "DoubleAction", "DoubleActionOnly"},
-
-    AutoActionTypeStrings = {"Blowback", "Delayed Blowback", "Short Gas Piston", "Long Gas Piston", "Direct Impingement Gas", "Long Recoil", "Short Recoil"},
-
-    -- The ORGM.SoundBankQueueTable table contains all sounds we need to setup on the OnLoadSoundBanks event
-    -- so sounds player properly in multiplayer. This table is set to nil after completion.
-    SoundBankQueueTable = { },
-
-    -- The SoundBankKeys table contains a a list of firearm keys we need to add to the SoundBankQueueTable.
-    SoundBankKeys = {"clickSound", "insertSound", "ejectSound", "rackSound", "openSound", "closeSound", "cockSound"},
-
-    --[[  ORGM.log
-
-        Basic logging function.
-
-    ]]
-    log = function(level, text)
-        if level > ORGM.Settings.LogLevel then return end
-        local prefix = "ORGM." .. ORGM.LogLevelStrings[level] .. ": "
-        print(prefix .. text)
-    end,
-
+--- this table is used to track build #'s for backwards compatibility. All guns will be stamped with a index
+-- number - the build it was last used in. A table exists changes to firearms (name = buildnumber). If the
+-- gun build id < lastChanged build id then the gun needs to be reset to default values (fixed for the
+-- new version.)
+ORGM.BUILD_HISTORY = {
+    "2.00-alpha", "2.00-beta-rc1", "2.00-beta-rc2", "2.00-beta-rc3", "2.00-beta-rc4", "2.00-beta-rc5", "2.00-beta-rc6", -- 7
+    "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
+    "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
+    "3.06-stable", "3.07-beta", "3.07-stable", "3.08-stable", -- 24
+    "3.09-beta-rc1", -- 25
 }
+--- Set automatically. The current version number.
+ORGM.BUILD_ID = nil
+
+--[[- Logging Constants.
+These are passed to and checked when making calls to `ORGM.log`.
+@section Logging
+]]
+
+--- integer 0
+ORGM.ERROR = 0
+--- integer 1
+ORGM.WARN = 1
+--- integer 2
+ORGM.INFO = 2
+--- integer 3
+ORGM.DEBUG = 3
+--- integer 4
+ORGM.VERBOSE = 4
+
+--- Trigger Constants
+-- @section Trigger
+
+--- integer 1
+ORGM.SINGLEACTION = 1
+--- integer 2
+ORGM.DOUBLEACTION = 2
+--- integer 3
+ORGM.DOUBLEACTIONONLY = 3
+
+--- Feed System Constants
+-- @section FeedSystem
+
+--- integer 1
+ORGM.AUTO = 1
+--- integer 2
+ORGM.BOLT = 2
+--- integer 3
+ORGM.LEVER = 3
+--- integer 4
+ORGM.PUMP = 4
+--- integer 5
+ORGM.BREAK = 5
+--- integer 6
+ORGM.ROTARY = 6
+
+--- Auto Feed Constants
+-- @section AutoFeed
+
+--- integer 1
+ORGM.BLOWBACK = 1
+--- integer 2
+ORGM.DELAYEDBLOWBACK = 2
+--- integer 3
+ORGM.SHORTGAS = 3
+--- integer 4
+ORGM.LONGGAS = 4
+--- integer 5
+ORGM.DIRECTGAS = 5
+--- integer 6
+ORGM.LONGRECOIL = 6
+--- integer 7
+ORGM.SHORTRECOIL = 7
+
+--- Category Constants
+-- @section Category
+
+--- integer 1
+ORGM.PISTOL = 1
+--- integer 2
+ORGM.REVOLVER = 2
+--- integer 3
+ORGM.SUBMACHINEGUN = 3
+--- integer 4
+ORGM.RIFLE = 4
+--- integer 5
+ORGM.SHOTGUN = 5
+
+--- Select Fire Constants
+-- @section SelectFire
+
+--- integer 0
+ORGM.SEMIAUTOMODE = 0
+--- integer 1
+ORGM.FULLAUTOMODE = 1
+
+--- Rarity Constants
+-- @section Rarity
+
+-- TODO: replace string with int
+
+--- Common
+ORGM.COMMON = "Common"
+--- Rare
+ORGM.RARE = "Rare"
+--- VeryRare
+ORGM.VERYRARE = "VeryRare"
+
+--- String Tables
+-- @section StringTable
+
+ORGM.LogLevelStrings = { [0] = "ERROR", [1] = "WARN", [2] = "INFO", [3] = "DEBUG", [4] = "VERBOSE"}
+
+--- Contains string names for actionType constants.
+ORGM.ActionTypeStrings = {"Auto", "Bolt", "Lever", "Pump", "Break", "Rotary"}
+
+--- Contains string names for triggerType constants.
+ORGM.TriggerTypeStrings = {"SingleAction", "DoubleAction", "DoubleActionOnly"}
+
+--- Contains string names for autoType constants.
+ORGM.AutoActionTypeStrings = {"Blowback", "Delayed Blowback", "Short Gas Piston", "Long Gas Piston", "Direct Impingement Gas", "Long Recoil", "Short Recoil"}
+
+--- Settings
+-- @section Settings
+
+--- table containing all ORGM settings
+-- these are all defined below in the ORGM.SettingsValidator table
+ORGM.Settings = { }
+
+
+--- This table handles all the settings to be defined in ORGM.Settings, expected
+-- value types, default values, min/max (for integers and floats) and any Functions
+-- to run when updating this setting.
+ORGM.SettingsValidator = { }
+
+
+
+
+-- Table containing firearms sorted by rarity.
+-- ORGM.FirearmRarityTable = {}
+
+
+-- Table containing basic sound profiles for working the action.
+-- Any key = value pairs here can be overridden by specific weapons, each key is only set in the
+-- weapons data table if it doesn't already exist.
+-- Note: shootSound is not covered in these profiles, as they are specific to each weapon, and not required
+ORGM.Sounds.Profiles = { }
+
+-- Table contains a a list of firearm keys we need to add to the SoundBankQueueTable.
+ORGM.Sounds.KeyTable = { "clickSound", "insertSound", "ejectSound", "rackSound", "openSound", "closeSound", "cockSound" }
 
 --[[ ORGM.SettingsValidator Table
 
-    This table handles all the settings to be defined in ORGM.Settings, expected
-    value types, default values, min/max (for integers and floats) and any Functions
-    to run when updating this setting.
+This table handles all the settings to be defined in ORGM.Settings, expected
+value types, default values, min/max (for integers and floats) and any Functions
+to run when updating this setting.
 
 ]]
+
 ORGM.SettingsValidator = {
+
     -- LogLevel: This controls how much text ORGM prints to the console and log file.
-    -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, and ORGM.DEBUG (default ORGM.INFO)
-    LogLevel = {type='integer', min=0, max=3, default=2},
+    -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, ORGM.DEBUG, ORGM.VERBOSE (default ORGM.INFO)
+    LogLevel = {type='integer', min=0, max=4, default=ORGM.VERBOSE},
 
     -- JammingEnabled: Turns firearm jamming on or off.
     -- valid options are true or false. (default true)
@@ -171,24 +295,23 @@ ORGM.SettingsValidator = {
     -- before modifiers for panic levels and reloading skill are applied. Note specific
     -- magazines may override this value.
     -- valid options are any integer number greater then 0 (default: 30)
-    DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.MagazineTable) do data.reloadTime = value end end },
+    DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.Magazine.getTable()) do data.reloadTime = value end end },
 
     -- DefaultReloadTime:  The base time it takes to load a magazine or round into a firearm
     -- before modifiers for panic levels and reloading skill are applied. Note specific
     -- magazines may override this value.
     -- valid options are any integer number greater then 0 (default: 15)
-    DefaultReloadTime = {type='integer', min=1, default=15, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.reloadTime = value end end },
+    DefaultReloadTime = {type='integer', min=1, default=15, onUpdate=function(value) for _,data in pairs(ORGM.Firearm.getTable()) do data.reloadTime = value end end },
 
     -- DefaultRackTime:  The base time it takes to rack a firearm before modifiers for panic
     -- levels and reloading skill are applied. Note specific magazines may override this value.
     -- valid options are any integer number greater then 0 (default: 10)
-    DefaultRackTime = {type='integer', min=1, default=10, onUpdate=function(value) for _,data in pairs(ORGM.FirearmTable) do data.rackTime = value end end },
+    DefaultRackTime = {type='integer', min=1, default=10, onUpdate=function(value) for _,data in pairs(ORGM.Firearm.getTable()) do data.rackTime = value end end },
 
     -- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
     -- firearms manufactured after 1993, if nil then no year limits will be applied.
     LimitYear = {type='integer', min=0, default=0, nilAllowed=true},
 
-    ----------------------------------
     -- Spawn Rate Multipliers
     -- These values tweak the various spawn rates, and stack with the sandbox weapon loot rarity
     -- settings. Setting any of these to 0 will disable spawning of those items completely, while
@@ -240,7 +363,6 @@ ORGM.SettingsValidator = {
     -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
     HuntingSpawnModifier = {type='float', min=0, default=1.0},
 
-    ----------------------------------
     -- Compatibility Patch Toggles
     -- These determine if the built in compatibility patches should be used. These are only valid
     -- If the mod in question is actually loaded.
@@ -260,20 +382,21 @@ ORGM.SettingsValidator = {
 
     ----------------------------------
     -- WARNING DEBUG AND ADVANCED Settings. Touch at own risk.
-    -- these are hidden from the options screen but show up in the ORGM.ini
+    -- these are hidden from the options screen, and never saved in ORGM.ini but will
+    -- be read from the file if the keys/values exist.
 
     -- RecoilDelay is reduced by this much in full auto
-    FullAutoRecoilDelayAdjustment = {type='integer', default=-20},
+    FullAutoRecoilDelayAdjustment = {type='integer', default=-20, show=false},
     -- HitChance penalty in full auto
-    FullAutoHitChanceAdjustment = {type='integer', default=-10},
+    FullAutoHitChanceAdjustment = {type='integer', default=-10, show=false},
 
     -- recoil is: (ammo recoil+barrel and feed system modifer) / (weapon weight * multiplier).
     -- the higher the multiplier the more weight effects recoil
-    WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.5},
+    WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.5, show=false},
 
-    WeightSwingTimeModifier  = {type='float', min=0.1, default=0.5},
+    WeightSwingTimeModifier  = {type='float', min=0.1, default=0.5, show=false},
 
-    RecoilDelayLimit  = {type='integer', min=1, default=1},
+    RecoilDelayLimit  = {type='integer', min=1, default=1, show=false},
 
     -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
     -- features (context menus and such), as well as MP admin orgm menus. Do not enable this on a open server.
@@ -284,140 +407,9 @@ for key, data in pairs(ORGM.SettingsValidator) do
     ORGM.Settings[key] = data.default
 end
 
+
 ORGM[1] = "676574537"
 ORGM[2] = "465616\0684"
 
---[[ The ORGM.SoundProfiles table contains some basic sound profiles for working the action.
-    Any key = value pairs here can be overridden by specific weapons, each key is only set in the
-    weapons data table if it doesn't already exist.
-    Note: shootSound is not covered in these profiles, as they are specific to each weapon, and not required
-]]
-ORGM.SoundProfiles = {
-    ["Revolver"] = {
-        clickSound = 'ORGMRevolverEmpty',
-        insertSound = 'ORGMMagLoad',
-        ejectSound = nil,
-        rackSound = 'ORGMRevolverCock',
-        openSound = 'ORGMRevolverOpen',
-        closeSound = 'ORGMRevolverClose',
-        cockSound = 'ORGMRevolverCock'
-    },
-    ["Pistol-Small"] = {
-        clickSound = 'ORGMSmallPistolEmpty',
-        insertSound = 'ORGMSmallPistolIn',
-        ejectSound = 'ORGMSmallPistolOut',
-        rackSound = 'ORGMSmallPistolRack',
-        openSound = nil,
-        closeSound = 'ORGMPistolClose',
-        cockSound = nil
-    },
-    ["Pistol-Large"] = {
-        clickSound = 'ORGMPistolEmpty',
-        insertSound = 'ORGMPistolIn',
-        ejectSound = 'ORGMPistolOut',
-        rackSound = 'ORGMPistolRack',
-        openSound = nil,
-        closeSound = 'ORGMPistolClose',
-        cockSound = nil
-    },
-    ["SMG"] = {
-        clickSound = 'ORGMSMGEmpty',
-        insertSound = 'ORGMSMGIn',
-        ejectSound = 'ORGMSMGOut',
-        rackSound = 'ORGMSMGRack',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-    },
-    ["Rifle-Auto"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMRifleIn',
-        ejectSound = 'ORGMRifleOut',
-        rackSound = 'ORGMRifleRack',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-    },
-    ["Rifle-Auto-IM"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        ejectSound = 'ORGMRifleOut',
-        rackSound = 'ORGMRifleRack',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-    },
-    ["Rifle-Bolt"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        ejectSound = 'ORGMRifleOut',
-        rackSound = 'ORGMRifleBolt',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = "ORGMRifleBolt"
-    },
-    ["Rifle-Bolt-IM"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMRifleIn',
-        ejectSound = nil,
-        rackSound = 'ORGMRifleBolt',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = "ORGMRifleBolt"
-    },
-    ["Rifle-Lever"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMMagLoad',
-        ejectSound = nil,
-        rackSound = 'ORGMRifleLever',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = "ORGMRifleLever"
-    },
-    ["Rifle-AR"] = {
-        clickSound = 'ORGMRifleEmpty',
-        insertSound = 'ORGMARIn',
-        ejectSound = 'ORGMAROut',
-        rackSound = 'ORGMARRack',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-    },
-    ["Shotgun"] = { -- Pump, auto, bolt
-        clickSound = 'ORGMShotgunEmpty',
-        insertSound = 'ORGMShotgunRoundIn',
-        ejectSound = nil,
-        rackSound = 'ORGMShotgunRack',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = 'ORGMShotgunRack'
-    },
-    ["Shotgun-Lever"] = {
-        clickSound = 'ORGMShotgunEmpty',
-        insertSound = 'ORGMShotgunRoundIn',
-        ejectSound = nil,
-        rackSound = 'ORGMRifleLever',
-        openSound = nil,
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = 'ORGMRifleLever'
-    },
-    ["Shotgun-Break"] = {
-        rackSound = 'ORGMShotgunDBRack',
-        clickSound = 'ORGMShotgunEmpty',
-        insertSound = 'ORGMShotgunRoundIn',
-        ejectSound = nil,
-        openSound = 'ORGMShotgunOpen',
-        closeSound = nil,
-        cockSound = nil
-        --bulletOutSound = 'ORGMShotgunOpen'
-    }
-}
-
 ORGM.BUILD_ID = #ORGM.BUILD_HISTORY
-ORGM.log(ORGM.INFO, "ORGM Rechambered Core Loaded v" .. ORGM.BUILD_HISTORY[ORGM.BUILD_ID])
-if getModInfoByID("ORGM") then ORGM.log(ORGM.INFO, "Workshop ID is "..tostring(getModInfoByID("ORGM"):getWorkshopID())) end
+--- @section end

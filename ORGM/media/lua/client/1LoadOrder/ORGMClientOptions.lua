@@ -1,6 +1,7 @@
---[[
+--[[- Contains the code for adding options to the PZ options screen.
+    ORGMClientOptions.lua
 
-    This file contains the code for adding options to the PZ options screen.
+    @classmod MainOptions
 
 ]]
 
@@ -26,10 +27,10 @@ if index then
 end
 
 
-----------------------------------------------------------------------------------------
 -- GameOption crap copied from MainOptions.lua, since it was defined local
 local GameOption = ISBaseObject:derive("GameOption")
 
+--- creates a new option.
 function GameOption:new(name, control, arg1, arg2)
 	local o = {}
 	setmetatable(o, self)
@@ -125,7 +126,7 @@ local function addBoolOption(self, splitpoint, width, title, settingKey)
     return opt
 end
 
---[[ addNumericOption(self, splitpoint, width, title, settingKey, asFloat)
+--[[- addNumericOption(self, splitpoint, width, title, settingKey, asFloat)
 
 ]]
 local function addNumericOption(self, splitpoint, width, title, settingKey, asFloat)
@@ -175,9 +176,16 @@ local function addNumericOption(self, splitpoint, width, title, settingKey, asFl
 end
 
 local oldCreate = MainOptions.create
+--[[- Override PZ's function for creating the Options screen.
+
+    This needs to be done to add the 'ORGM' tab.
+    The original MainOptions:create() is called at the start of our override,
+    with the new code triggering after.
+
+]]
 function MainOptions:create()
     oldCreate(self)
-    self:addPage("ORGM")
+    self:addPage("ORGM") -- TODO: use translation?
 	local y = 5;
     self.addY = 0
 	local splitpoint = self:getWidth() / 3;

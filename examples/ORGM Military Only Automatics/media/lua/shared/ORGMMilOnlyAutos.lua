@@ -1,6 +1,6 @@
 
--- All weapon defintions are contained within the ORGM.FirearmTable
-local FirearmTable = ORGM.FirearmTable
+-- All weapon defintions are contained within the ORGM.Firearm.getTable()
+local FirearmTable = ORGM.Firearm.getTable()
 
 for name, definition in pairs(FirearmTable) do
     -- first find if the gun is a select fire automatic

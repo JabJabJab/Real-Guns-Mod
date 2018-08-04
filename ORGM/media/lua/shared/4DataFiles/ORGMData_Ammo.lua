@@ -1,35 +1,14 @@
---[[
-    This file contains all default ammo data.
-]]
+--[[- This file contains all default ammo data.
 
---[[  ORGM.registerAmmo(name, definition)
+All calls made by this script are to `ORGM.Ammo.register`. See the documention there.
 
-    Registers a ammo type with ORGM.  This must be called before any registerMagazine or registerFirearm that plans
-    to use that ammo.
-    NOTE: this should only be called with real ammo (ie: Ammo_9x19mm_FMJ) and not AmmoGroup (ie: Ammo_9x19mm)
-
-    name = string name of the ammo (without module prefix)
-    definition = a table containing the ammo stats. Valid table keys/value pairs are:
-        moduleName = nil, or string module name this item is from. If nil, ORGM is used
-        MinDamage = float, the min damage of the bullet. This overrides the firearm item MinDamage
-        MaxDamage = float, the max damage of the bullet. This overrides the firearm item MaxDamage
-        PiercingBullets = boolean | integer (% chance). This overrides the firearm item PiercingBullets
-        MaxHitCount = nil | integer. This overrides the firearm item MaxHitCount. Only valid for firearms with multiple
-            projectiles (ie: shotguns)
-        Case = string | the empty case to eject
-        UseWith = nil | table, the AmmoGroup names this ammo can be used for. if nil, the name parameter is used
-        BoxCount = integer, the number of rounds that come in a box.
-        CanCount = integer, the number of rounds that come in a canister.
-
-        OptimalBarrel = integer, the length of the barrel required to reach 'full powder burn'. This should generally be
-            30 for pistol calibers, 80 for rifle rounds, and 60 for shotguns.
-        Recoil = integer, the recoil factor applied to this round. Increased by shorter barrels.
-        Range = integer, the max effective range for this round, Reduced from shorter barrels.
-
-    returns true on success, false if the ammo fails to register
+@script ORGMData_Ammo.lua
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/4DataFiles/ORGMData_Ammo.lua
 
 ]]
-local register = ORGM.registerAmmo
+local register = ORGM.Ammo.register
 
 register("Ammo_117BB",
     { OptimalBarrel = 12, Range = 15, Recoil = 2, MinDamage = 0.1, MaxDamage = 0.1, PiercingBullets = false, UseWith = {"Ammo_117BB"}, BoxCount = 250, CanCount = 1000, DisplayName = ".117", RoundType = "BB", Weight = 0.001 }

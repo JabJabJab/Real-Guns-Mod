@@ -1,17 +1,15 @@
---[[
-    This file contains all component/upgrade data.
+--[[- This file contains all default components/attachment data.
+
+All calls made by this script are to `ORGM.Component.register`. See the documention there.
+
+@script ORGMData_Components.lua
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/4DataFiles/ORGMData_Components.lua
+
 ]]
 
---[[  ORGM.registerComponent(name, definition)
-    
-    Registers a component/upgrade type with ORGM.
-    
-    name = string name of the component/upgrade (without module prefix)
-    definition = a table. Valid table keys/value pairs are:
-        moduleName = nil, or string module name this item is from. If nil, ORGM is used
-    
-]]
-local register = ORGM.registerComponent
+local register = ORGM.Component.register
 
 register('2xScope', { lastChanged = 22, CriticalChance = 10, SwingTime = 0.2, HitChance = 6, MaxRange = 4, MinRange = 2, AimingTime = -4 } )
 register('4xScope', { lastChanged = 22, CriticalChance = 15, SwingTime = 0.4, HitChance = 12, MaxRange = 8, MinRange = 4, AimingTime = -8 } )

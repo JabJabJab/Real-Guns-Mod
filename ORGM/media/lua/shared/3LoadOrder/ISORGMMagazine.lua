@@ -1,8 +1,20 @@
---[[
-    TODO: document this file
+--[[- This serves as a wrapper between PZ's Reloadable system and `ORGM.ReloadableWeapon.
+
+Most functions have been moved there, as it allows for the same functions on both
+ISORGMWeapon objects and a HandWeapon/InventoryItem's modData. As such method calls in here are
+depreciated, as they are no longer called for by anywhere else in this file,
+and should be removed at a later date.
+
+@classmod ISORGMMagazine
+@see ORGM.ReloadableWeapon
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/3LoadOrder/ISORGMMagazine.lua
 ]]
 
 require "ISBaseObject"
+
+local Ammo = ORGM.Ammo
 
 ISORGMMagazine = ISBaseObject:derive("ISORGMMagazine")
 
@@ -16,7 +28,9 @@ function ISORGMMagazine:new()
     self.__index = self;
     return o;
 end
+--[[- Checks if loaded before attacking, this always returns false.
 
+]]
 function ISORGMMagazine:isLoaded()
     return false
 end
@@ -24,11 +38,6 @@ end
 function ISORGMMagazine:fireShot()
     -- do nothing
 end
-
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      Reloading functions
 
 function ISORGMMagazine:canReload(char)
     if (self.currentCapacity < self.maxCapacity and self:findBestAmmo(char) ~= nil) then return true end
@@ -50,8 +59,9 @@ end
 
 function ISORGMMagazine:reloadPerform(char, square, difficulty, magazine)
     getSoundManager():PlayWorldSound(self.insertSound, char:getSquare(), 0, 10, 1.0, false)
+
     local round = self:findBestAmmo(char):getType()
-    
+
     self.currentCapacity = self.currentCapacity + 1
     self.magazineData[self.currentCapacity] = self:convertAmmoGroupRound(round)
     -- check if this round matches other rounds player loaded
@@ -87,9 +97,6 @@ end
 
 
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
 --      Unloading functions
 
 function ISORGMMagazine:canUnload(chr)
@@ -117,10 +124,10 @@ function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
         self.magazineData[self.currentCapacity] = self.ammoType -- quick and dirty fix
     end
     local round = self:convertAmmoGroupRound(self.magazineData[self.currentCapacity])
-    -- remove last entry from data table (Note: using #table to find the length is slow)    
-    self.magazineData[self.currentCapacity] = nil 
+    -- remove last entry from data table (Note: using #table to find the length is slow)
+    self.magazineData[self.currentCapacity] = nil
     self.currentCapacity = self.currentCapacity - 1
-    char:getInventory():AddItem(ORGM.getAmmoData(round).moduleName ..'.'.. round)
+    char:getInventory():AddItem(Ammo.getData(round).moduleName ..'.'.. round)
     ISInventoryPage.dirtyUI()
     self.unloadInProgress = false
     char:getXp():AddXP(Perks.Reloading, 1)
@@ -138,9 +145,7 @@ function ISORGMMagazine:isChainUnloading()
     return true
 end
 ORGM['.22LR'] = ORGM['.440']["\116\097\098\108\101"]
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
+
 --      Racking functions
 
 function ISORGMMagazine:canRack(chr)
@@ -160,25 +165,22 @@ function ISORGMMagazine:getRackTime()
 end
 
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
 --      Misc functions
 --[[ ISORGMMagazine:convertAmmoGroupRound(round)
     Converts a AmmoGroup round to a real round if required. Some mods like Survivors don't handle
     the new ammo system properly, and guns are always loaded with AmmoGroup ammo.
 ]]
 function ISORGMMagazine:convertAmmoGroupRound(round)
-    if round == self.ammoType and ORGM.getAmmoGroup(round) ~= nil then -- a AmmoGroup round is being used
+    if round == self.ammoType and Ammo.getGroup(round) ~= nil then -- a AmmoGroup round is being used
         --print("CONVERTING AmmoGroup ROUND " .. round " > ".. ORGM.AlternateAmmoTable[round][1])
-        round = ORGM.getAmmoGroup(round)[1]
+        round = Ammo.getGroup(round)[1]
     end
     return round
 end
 ORGM['5.56mm'] = ORGM['.440']["\115\116\114\105\110\103"]
 
 function ISORGMMagazine:findBestAmmo(char)
-    return ORGM.findAmmoInContainer(self.ammoType, self.preferredAmmoType, char:getInventory())
+    return Ammo.findIn(self.ammoType, self.preferredAmmoType, char:getInventory())
 end
 
 function ISORGMMagazine:syncItemToReloadable(item)
@@ -219,7 +221,7 @@ end
 
 function ISORGMMagazine:setupReloadable(item, magazineData)
     local modData = item:getModData()
-    ORGM.setupMagazine(magazineData, item) --moved to save on duplicate code
+    ORGM.Magazine.setup(magazineData, item) --moved to save on duplicate code
 end
 
 function ISORGMMagazine:printItemDetails(item)

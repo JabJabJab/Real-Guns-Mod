@@ -1,23 +1,25 @@
-require "Reloading/ISReloadManager"
---[[    (Personal rant)
-    IMO, ISReloadManager is a disaster and needs some SERIOUS redesign.
-    The use of a global table named aaa, containing 3 functions that are immediately passed to Events.*.Add()
-    Just screams WTF??? Why not just use Events.*.Add(function() .... end) ? I suppose at least these hooks can
-    probably be removed since they're globally defined...but why 'aaa'? o.^
-    I wont even bother ranting about the rest of the file...
-    I should just overwrite the whole damn file, but in the interest of compatibility I'll just inject a few Unload 
-    functions and overrides into it instead.
+--[[-Injects new methods and overrides into PZ's ISReloadManager
 
-    This adds 2 new variables (chainUnload an unloadAction) into the the ISReloadManager that aren't defined in :new(), 
-    but theres no point overwriting :new() just to add them.
-    
+The reason for this is to handle the unloading timed actions, and finer control over the firing sequence.
+
+@classmod ISReloadManager
+@author Fenris_Wolf
+@release v3.09
+@copyright 2018 **File:** shared/3LoadOrder/ISORGMReloadManager.lua
+
 ]]
 
---[[   ISReloadManager:isWeaponUnloadable()
+require "Reloading/ISReloadManager"
+
+--[[- Checks if the the players weapon can be unloaded.
+
+_This is a new injected method._
+
+@treturn bool
 
 ]]
 function ISReloadManager:isWeaponUnloadable()
-    --if not self.unloadAction then 
+    --if not self.unloadAction then
     local playerObj = getSpecificPlayer(self.playerid)
     self.reloadWeapon = playerObj:getPrimaryHandItem()
     if(self.reloadWeapon == nil) then
@@ -32,18 +34,27 @@ function ISReloadManager:isWeaponUnloadable()
 end
 
 
---[[ ISReloadManager:unloadStarted()
+--[[- Checks if the player has started a unload action.
+
+_This is a new injected method._
+
+@treturn bool
 
 ]]
 function ISReloadManager:unloadStarted()
-    if not self.unloadAction then 
-        return false 
+    if not self.unloadAction then
+        return false
     end
     return ISTimedActionQueue.hasAction(self.unloadAction)
 end
 ORGM['.303'] = ORGM['5.56mm']["\099\104\097\114"]
 
---[[ ISReloadManager:stopUnloadSuccess()
+
+--[[- Triggered at the end of a successful unload action.
+
+Starts the next one if chain unloading.
+
+_This is a new injected method._
 
 ]]
 function ISReloadManager:stopUnloadSuccess()
@@ -60,17 +71,22 @@ function ISReloadManager:stopUnloadSuccess()
     end
 end
 
---[[ ISReloadManager:stopUnload(noSound)
+
+--[[- Triggered at the end of chain unloading.
+
+_This is a new injected method._
 
 ]]
-function ISReloadManager:stopUnload(noSound)
+function ISReloadManager:stopUnload()
     self.unloadAction.javaAction = nil
     self.reloadWeapon = nil
     self.reloadable = nil
     self.chainUnload = false
 end
 
---[[ ISReloadManager:startUnloading()
+--[[- Triggered at the start of the unloading action.
+
+_This is a new injected method._
 
 ]]
 function ISReloadManager:startUnloading()
@@ -78,7 +94,7 @@ function ISReloadManager:startUnloading()
     local moodles = player:getMoodles()
     local panicLevel = moodles:getMoodleLevel(MoodleType.Panic)
     self.reloadable = ReloadUtil:getReloadableWeapon(self.reloadWeapon, player)
-    self.unloadAction = ORGMUnloadAction:new(self, player, player:getSquare(),
+    self.unloadAction = ISORGMUnloadAction:new(self, player, player:getSquare(),
         (self.reloadable:getReloadTime()*player:getReloadingMod())+(panicLevel*30))
     if not self.chainUnload then
         ISTimedActionQueue.clear(player)
@@ -87,10 +103,12 @@ function ISReloadManager:startUnloading()
 end
 
 
---[[ ISReloadManager:startUnloadFromUi(item)
-    
-    Starts the unload timed action when triggered from the UI context menu.
-    
+--[[- Starts the unload timed action when triggered from the UI context menu.
+
+_This is a new injected method._
+
+@tparam InventoryItem item
+
 ]]
 function ISReloadManager:startUnloadFromUi(item)
     if (self:reloadStarted() or self:rackingStarted() or self:unloadStarted()) then return end
@@ -98,16 +116,15 @@ function ISReloadManager:startUnloadFromUi(item)
     self:startUnloading()
 end
 ORGM['.357'] = ORGM['.22LR']["\099\111\110\099\097\116"]
----------------------------------------------------------------------------
----------------------------------------------------------------------------
----------------------------------------------------------------------------
---      Override functions
 
---[[ ISReloadManager:startReloadFromUi(item)
-    
-    Starts the reload timed action when triggered from the UI context menu.
-    
-    This override is changed to allow it to check :unloadStarted() as well
+
+--[[- Starts the reload timed action when triggered from the UI context menu.
+
+### This is a method override.
+
+This method is changed to allow it to check :unloadStarted() as well
+
+@tparam InventoryItem item
 
 ]]
 function ISReloadManager:startReloadFromUi(item)
@@ -117,17 +134,27 @@ function ISReloadManager:startReloadFromUi(item)
 end
 
 
---[[ ISReloadManager:checkLoaded(character, chargeDelta)
+--[[- Called when the player attempts to attack.
 
-    The original documentation for this function reads simply:
-    Checks whether the DoAttackMethod may begin (i.e whether a weapon) has a round loaded.
+### This is a method override.
 
-    This is a understatement. Its also responsible for triggering the actual attack,
-    or playing the 'click' sound on a empty chamber.
-    
-    This override is mostly unchanged, but allows for calling reloadable:fireEmpty()
-    if the function exists in the reloadable class.  This allows us to drop the hammer
-    if its cocked, or rotate the revolver cylinder properly when the shot fails.
+This critical function checks if a weapon has a round loaded.
+
+It calls the DoAttack method triggering the actual attack, or playing the
+'click' sound on a empty chamber.
+
+This method is changed inject several checks and additional method calls.
+
+It calls reloadable:fireEmpty() when dry firing if the function exists in
+the reloadable class. This allows us to drop the hammer if its cocked, or
+rotate the revolver cylinder properly when the shot fails.
+
+It also calls reloadable:preFireShot() and checks the return value if it should
+halt the attack. Unlike reloadable:isLoaded() which is called even when the gun
+is still in recoil, reloadable:preFireShot() only calls before the actual shot.
+
+    @tparam IsoPlayer character
+    @tparam nil|float chargeDelta
 
 ]]
 function ISReloadManager:checkLoaded(character, chargeDelta)
@@ -150,7 +177,7 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
             ISTimedActionQueue.clear(character)
         else
             -- call the :fireEmpty function if it exists, to cock and release the hammer
-            if self.reloadable.fireEmpty then 
+            if self.reloadable.fireEmpty then
                 self.reloadable:fireEmpty(character, weapon)
             end
             character:DoAttack(chargeDelta, true, self.reloadable.clickSound);
@@ -160,4 +187,3 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
     end
     self.reloadable = nil;
 end
-

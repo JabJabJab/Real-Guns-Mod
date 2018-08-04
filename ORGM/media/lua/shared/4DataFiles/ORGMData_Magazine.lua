@@ -1,25 +1,15 @@
---[[
-    This file contains all the default magazine data.
-]]
+--[[- This file contains all default magazine data.
 
---[[  ORGM.registerMagazine(name, definition)
+All calls made by this script are to `ORGM.Magazine.register`. See the documention there.
 
-    Registers a magazine type with ORGM.  This must be called before any registerFirearm that plans to use that magazine.
-
-    name = the string name of the magazine (without module prefix)
-    definition = a table containing the magazine stats. Valid table keys/value pairs are:
-        moduleName = nil | string, module name this item is from. If nil, ORGM is used
-        ammoType = string, the name of a ammo AmmoGroup (not real ammo name)
-        reloadTime = nil | integer, if nil then ORGM.Settings.DefaultMagazineReoadTime is used
-        maxCapacity = int, the max amount of bullets this magazine can hold
-        ejectSound = nil | string, the string name of a sound file. If nil 'ORGMMagLoad' is used
-        insertSound = nil | string, the string name of a sound file. If nil 'ORGMMagLoad' is used
-
-    returns true on success, false if the magazine fails to register
+@script ORGMData_Magazine.lua
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/4DataFiles/ORGMData_Magazine.lua
 
 ]]
-local register = ORGM.registerMagazine
 
+local register = ORGM.Magazine.register
 
 register("AIAW308Mag",
     { ammoType = 'Ammo_308Winchester', maxCapacity = 5, }

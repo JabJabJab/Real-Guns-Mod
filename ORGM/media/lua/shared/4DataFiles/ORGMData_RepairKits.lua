@@ -1,17 +1,15 @@
---[[
-    This file contains all default repair kit data.
-]]
+--[[- This file contains all default maintance kit data.
 
---[[  ORGM.registerRepairKit(name, definition)
-    
-    Registers a repair kit type with ORGM.
-    
-    name = string name of the repair kit (without module prefix)
-    definition = a table. Valid table keys/value pairs are:
-        moduleName = nil, or string module name this item is from. If nil, ORGM is used
+All calls made by this script are to `ORGM.Maintance.register`. See the documention there.
+
+@script ORGMData_RepairKits.lua
+@author Fenris_Wolf
+@release 3.09
+@copyright 2018 **File:** shared/4DataFiles/ORGMData_RepairKits.lua
 
 ]]
-local register = ORGM.registerRepairKit
+
+local register = ORGM.Maintance.register
 
 register('WD40', {} )
 register('Brushkit', {} )

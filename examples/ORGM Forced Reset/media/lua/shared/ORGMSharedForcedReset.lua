@@ -1,18 +1,18 @@
 -- this file changes each weapons 'lastChanged' key to the current ORGM build number,
--- and overrides the ORGM.getFirearmNeedsUpdate to have a random number check as well.
+-- and overrides the ORGM.Firearm.needsUpdate to have a random number check as well.
 -- if the random doesn't match whats in the item's moddata then we haven't reset the
 -- item yet.
 
 -- by having this random generation in shared, the server and client will actually end
--- up having different values, but since ORGM.getFirearmNeedsUpdate is only really called
+-- up having different values, but since ORGM.Firearm.needsUpdate is only really called
 -- by the client, the server's random number is never actually used.
 local forcedResetID = ZombRand(1000000)
 
 -- replace the original function
-ORGM.getFirearmNeedsUpdate = function(item)
+ORGM.Firearm.needsUpdate = function(item)
     if item == nil then return nil end
     local data = item:getModData()
-    local def = ORGM.FirearmTable[item:getType()]
+    local def = ORGM.Firearm.getTable()[item:getType()]
     if not def then return nil end
     ------------------------------------------
     -- this part is the change from original function
@@ -34,7 +34,7 @@ end
 
 -- set the lastChanged key on every firearm definition to current build id
 Events.OnGameBoot.Add(function()
-    for name, definition in pairs(ORGM.FirearmTable) do
+    for name, definition in pairs(ORGM.Firearm.getTable()) do
         definition.lastChanged = ORGM.BUILD_ID
     end
 end)
