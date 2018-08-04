@@ -106,7 +106,9 @@ Callbacks.keyPress = function(key)
 end
 
 
-Callbacks.onFillContainer = Server.Spawn.fillContainer
+Callbacks.onFillContainer = function(roomName, containerType, container)
+    Server.Spawn.fillContainer(roomName, containerType, container)
+end
 
 --[[- Handles command requests from the clients in MP.
 
