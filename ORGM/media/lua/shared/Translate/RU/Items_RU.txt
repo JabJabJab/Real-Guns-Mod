@@ -270,7 +270,7 @@ Items_RU = {
 
     -- Magazines.txt
     DisplayName_ORGM_AIAW308Mag         = "AI-AW .308 Магазин (.308 или 7.62x51)",
-    DisplayName_ORGM_AKMMag             = "AKM Магазин (7.62x39мм)",
+    DisplayName_ORGM_AKMMag             = "АКМ Магазин (7.62x39мм)",
     DisplayName_ORGM_AM180Mag           = "American-180 Магазин (.22LR)",
     DisplayName_ORGM_AR10Mag            = "AR-10 Магазин (7.62x51 или .308)",
     DisplayName_ORGM_AutomagVMag        = "AMT Automag V Магазин (.50AE)",
@@ -348,16 +348,16 @@ Items_RU = {
 
 
     -- Mods.txt
-    DisplayName_ORGM_2xScope            = "Оптический прицел - 2x",
-    DisplayName_ORGM_4xScope            = "Оптический прицел - 4x",
-    DisplayName_ORGM_8xScope            = "Оптический прицел - 8x",
+    DisplayName_ORGM_2xScope            = "Оптический прицел - 2X",
+    DisplayName_ORGM_4xScope            = "Оптический прицел - 4X",
+    DisplayName_ORGM_8xScope            = "Оптический прицел - 8X",
     DisplayName_ORGM_FibSig             = "Волоконно-оптический прицел",
     DisplayName_ORGM_Foregrip           = "Вертикальная передняя рукоятка",
     DisplayName_ORGM_FullCh             = "Полноразмерный чок",
     DisplayName_ORGM_HalfCh             = "Половинный чок",
     DisplayName_ORGM_PistolLas          = "Лазерный целеуказатель для пистолетов",
     DisplayName_ORGM_PistolTL           = "Тактический фонарь для пистолетов",
-    DisplayName_ORGM_RDS                = "Red Dot прицел",
+    DisplayName_ORGM_RDS                = "Прицел красная точка",
     DisplayName_ORGM_Recoil             = "Затыльник",
     DisplayName_ORGM_Reflex             = "Коллиматорный прицел",
     DisplayName_ORGM_RifleLas           = "Лазерный целеуказатель для винтовок",
@@ -370,7 +370,7 @@ Items_RU = {
     
     -- Pistols.txt
     DisplayName_ORGM_AutomagV       = "AMT Automag V",
-    DisplayName_ORGM_BBPistol       = "Daisy Powerline Модель 201",
+    DisplayName_ORGM_BBPistol       = "Daisy Powerline Model 201",
     DisplayName_ORGM_Ber92          = "Beretta 92FS",
     DisplayName_ORGM_BrenTen        = "Bren Ten",
     DisplayName_ORGM_BrownHP        = "Browning Hi-Power",

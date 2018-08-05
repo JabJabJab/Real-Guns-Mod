@@ -5,7 +5,7 @@ UI_RU = {
     UI_optionscreen_binding_Reload Any Magazine = "Перезаряжать любые магазины",
     UI_optionscreen_binding_Select Fire Toggle = "Выбрать переключатель огня",
     UI_optionscreen_binding_Firearm Inspection Window = "Окно обзора огнестрельного оружия",
-    UI_optionscreen_orgm_loglevel = "Logging",
+    UI_optionscreen_orgm_loglevel = "Отчет об ошибках",
     UI_optionscreen_orgm_loglevel_error = "Только ошибки",
     UI_optionscreen_orgm_loglevel_warn = "Ошибки и предупреждения",
     UI_optionscreen_orgm_loglevel_info = "Информативность (по умолчанию)",
@@ -15,6 +15,9 @@ UI_RU = {
     UI_optionscreen_orgm_jamming_tooltip = "Оружие в плохом состоянии может заклинить",
     UI_optionscreen_orgm_usecases = "Оставлять стреляные гильзы",
     UI_optionscreen_orgm_usecases_tooltip = "Оружие выбрасывает стреляные гильзы при стрельбе",
+	UI_optionscreen_orgm_usebarrellen = "Использовать модификаторы длины ствола",
+    UI_optionscreen_orgm_usebarrellen_tooltip = "Длина ствола влияет на урон, дольность и отдачу",
+	
     UI_optionscreen_orgm_removebase = "Убрать огнестрельное оружие базовой игры",
     UI_optionscreen_orgm_removebase_tooltip = "Попытаться удалить всё ванильное огнестрельное оружие из контейнеров (Особые тайники ещё не обрабатываются должным образом)",
     
