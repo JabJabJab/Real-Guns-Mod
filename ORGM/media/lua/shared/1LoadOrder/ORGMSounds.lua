@@ -12,7 +12,7 @@ local Sounds = ORGM.Sounds
 
 --[[- Profiles Table.
 
-Sound profiles are used to safe redundant work when settings up new firearms.
+Sound profiles are used to save redundant work when settings up new firearms.
 Many firearms use identical sounds for the actions, this profile can be used to
 save on repetative data entry.
 

@@ -180,7 +180,7 @@ end
 
 --[[- Deregisters Ammo from ORGM.
 
-    WARNING: Incomplete code, do not use.
+WARNING: Incomplete code, do not use.
 
     @tparam string name name without module prefix
 

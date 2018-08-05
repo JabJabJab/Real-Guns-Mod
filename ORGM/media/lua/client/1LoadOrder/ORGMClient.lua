@@ -96,13 +96,9 @@ Client.loadModels = function()
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end
 
---[[-  Client.getFirearmNeedsUpdate(player, item)
+--[[-
 
-    Note this function has the same name as the shared function ORGM.Firearm.needsUpdate()
-    but is client specific. It handles the actual upgrading/replacing of firearms that require it.
-    It is meant to be called from Events.OnEquipPrimary and OnGameStart listed in
-    client/ORGMClientEventHooks.lua and is also called by the Survivors mod compatibility patch
-    LoadSurvivor() function
+Called from OnEquipPrimary and OnGameStart in `ORGMClientEvents.lua`
 
 ]]
 Client.getFirearmNeedsUpdate = function(player, item)
@@ -126,10 +122,9 @@ Client.getFirearmNeedsUpdate = function(player, item)
 end
 
 
---[[- Client.unequipItemNow(player, item)
+--[[- Instantly unequip the item if it's in the player's primary hand, skipping timed actions.
 
-    Instantly unequip the item if it's in the player's primary hand, skipping timed actions.
-    Used by Client.getFirearmNeedsUpdate() above when upgrading weapons to new ORGM versions.
+Used by Client.getFirearmNeedsUpdate() above when upgrading weapons to new ORGM versions.
 
 ]]
 Client.unequipItemNow = function(player, item)

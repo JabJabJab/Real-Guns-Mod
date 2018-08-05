@@ -93,7 +93,7 @@ ORGM.Maintance = { }
 --- Contains all callback functions, see: `ORGM.Callbacks`.
 ORGM.Callbacks = { }
 
---- Contains all callback functions, see: `ORGM.Sounds`.
+--- Contains all sound setup functions, see: `ORGM.Sounds`.
 ORGM.Sounds = { }
 ORGM.Sounds.Profiles = { }
 

@@ -18,7 +18,7 @@ local CommandHandler = ORGM.Server.CommandHandler
 
 --[[-
 
-Triggerd by Events.OnKeyPressed,  this replaces PZ'sItemBindingHandler.onKeyPressed function.
+Triggerd by Events.OnKeyPressed, this replaces PZ's ItemBindingHandler.onKeyPressed function.
 
 It handles the new pistol/rifle/shotgun hotkeys, and bypasses equipping a light source if a equippedgun has a tactical light.
 

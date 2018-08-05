@@ -1,23 +1,24 @@
 --[[- Callback functions for various shared events.
 
-    All events are hooked in `ORGMEvents.lua` and call these functions.
-    It is unlikely that you will need to call any of these functions manually.
+All events are hooked in `ORGMEvents.lua` and call these functions.
+It is unlikely that you will need to call any of these functions manually.
 
 
-    @module ORGM.Callbacks
-    @copyright 2018 **File:** shared/2LoadOrder/ORGMCallbacks.lua
-    @author Fenris_Wolf
-    @release 3.09
+@module ORGM.Callbacks
+@copyright 2018 **File:** shared/2LoadOrder/ORGMCallbacks.lua
+@author Fenris_Wolf
+@release 3.09
+
 ]]
 
 local ORGM = ORGM
 local Callbacks = ORGM.Callbacks
 
---[[- Checks the values in the ORGM.Settings table and ensures they conform to expected
-    values.
-    For invalid values it will set to defaults and logs errors.
+--[[- Checks the values in the ORGM.Settings table and ensures they conform to expected values.
 
-    This is triggered by Events.OnGameBoot.
+For invalid values it will set to defaults and logs errors.
+
+This is triggered by Events.OnGameBoot.
 
 ]]
 Callbacks.validateSettings = function()
@@ -64,7 +65,7 @@ end
 
 --[[- Removes firearm spawning from guns manufactured later then the year specified in the ORGM.Settings table.
 
-    This is triggered by Events.OnGameBoot.
+This is triggered by Events.OnGameBoot.
 
 ]]
 Callbacks.limitFirearmYear = function()
@@ -84,7 +85,7 @@ end
 
 --[[- Loads any shared compatibility patches for mods.
 
-    This is triggered by Events.OnGameBoot.
+This is triggered by Events.OnGameBoot.
 
 ]]
 Callbacks.loadPatches = function()
@@ -103,7 +104,7 @@ end
 
 --[[- Sets up any backwards compatibility patches.
 
-    This is triggered by Events.OnGameBoot.
+This is triggered by Events.OnGameBoot.
 
 ]]
 Callbacks.loadBackPatches = function()
@@ -120,7 +121,7 @@ end
 
 --[[-  Adds any sounds in the Sound setup queue to the FMOD soundbanks.
 
-    This is triggered by Events.OnLoadSoundBanks.
+This is triggered by Events.OnLoadSoundBanks.
 
 ]]
 Callbacks.loadSoundBanks = function()
