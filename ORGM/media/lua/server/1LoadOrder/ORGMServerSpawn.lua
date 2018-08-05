@@ -386,6 +386,9 @@ Spawn.select = function(civilian, police, military)
 
     local gunType = Firearm.random(thisTable)
     ORGM.log(ORGM.DEBUG, "Selected " .. tostring(gunType))
+    if not gunType then
+        return {gun = nil, ammo = nil}
+    end
 
     local weaponData = Firearm.getData(gunType)
 
@@ -414,6 +417,7 @@ Attempts to spawn items on the corpse.
 ]]
 Spawn.addToCorpse = function(container)
     local choice = Spawn.select(80, 14, 6)
+    if not choice then return end
     Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CorpseSpawnModifier, 1, true) -- has gun
     Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CorpseSpawnModifier, 3, true) -- has mags
     Spawn.ammo(container, choice.ammo, 3*Settings.CorpseSpawnModifier, 15) -- loose shells
@@ -430,10 +434,12 @@ Attempts to spawn items in the room.
 ]]
 Spawn.addToCivRoom = function(container)
     local choice = Spawn.select(80, 14, 6)
-    Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CivilianBuildingSpawnModifier, 1, true) -- has gun
-    Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1, true) -- has mags
-    Spawn.ammo(container, choice.ammo, 2*Settings.CivilianBuildingSpawnModifier, 29) -- loose shells
-    Spawn.ammoBox(container, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has box
+    if choice then
+        Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CivilianBuildingSpawnModifier, 1, true) -- has gun
+        Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1, true) -- has mags
+        Spawn.ammo(container, choice.ammo, 2*Settings.CivilianBuildingSpawnModifier, 29) -- loose shells
+        Spawn.ammoBox(container, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has box
+    end
     Spawn.component(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has a mod
     Spawn.maintance(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has repair stuff
 end
@@ -450,20 +456,6 @@ Spawn.fillContainer = function(roomName, containerType, container)
     ORGM.log(ORGM.DEBUG, "Checking spawns for "..tostring(roomName) ..", ".. tostring(containerType))
     local addToCorpse = Spawn.addToCorpse
     local addToCivRoom = Spawn.addToCivRoom
-
-    -- find and remove any default base weapons, ie: stash handling
-    -- damnit...not didnt work for removing stashes...
-    --[[
-    if Settings.RemoveBaseFirearms then
-        for key, value in pairs(Spawn.ReplacementsTable) do
-            local count = container:FindAll(key):size()
-            if count > 0 then
-                container:RemoveAll(key)
-                container:AddItems(value, count)
-            end
-        end
-    end
-    ]]
 
     -- room control
     if roomName == "all" and containerType == "inventorymale" then
@@ -485,11 +477,13 @@ Spawn.fillContainer = function(roomName, containerType, container)
         local count = Rnd(3)
         while count ~= 0 do
             local choice = Spawn.select(0, 70, 30)
-            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-            Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+            if choice then
+                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+                Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
-            Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-            Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+            end
             Spawn.component(container, 30*mod, 2)
             Spawn.maintance(container, 40*mod, 2)
             if Rnd(10) > 4 then count = count -1 end
@@ -518,22 +512,30 @@ Spawn.fillContainer = function(roomName, containerType, container)
 
         elseif containerType == "displaycase" or containerType == "metal_shelves" then
             local choice = Spawn.select(85, 10, 5)
-            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-            Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
+            if choice then
+                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+                Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
+            end
             choice = Spawn.select(85, 10, 5)
-            Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
-            Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+            if choice then
+                Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
+                Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+            end
             Spawn.component(container, 40*mod, 2)
             Spawn.maintance(container, 30*mod, 2)
         end
     elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
         local mod = Settings.GunStoreSpawnModifier
         local choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
+        end
         choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+        end
         Spawn.component(container, 40*mod, 2)
         Spawn.maintance(container, 30*mod, 2)
 
@@ -549,11 +551,15 @@ Spawn.fillContainer = function(roomName, containerType, container)
     elseif roomName == "storageunit" and containerType == "crate" then
         local mod = Settings.StorageUnitSpawnModifier
         local choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        end
         choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        end
         Spawn.component(container, 5*mod, 2)
         Spawn.component(container, 2*mod, 2)
         Spawn.maintance(container, 10*mod, 2)
@@ -572,11 +578,15 @@ Spawn.fillContainer = function(roomName, containerType, container)
     elseif roomName == "garagestorage" and containerType == "smallbox" then
         local mod = Settings.GarageSpawnModifier
         local choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        end
         choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 10*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 5*mod, 3, false)
+        end
         Spawn.component(container, 5*mod, 2)
         Spawn.component(container, 2*mod, 2)
         Spawn.maintance(container, 10*mod, 2)
@@ -595,12 +605,15 @@ Spawn.fillContainer = function(roomName, containerType, container)
     elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
         local mod = Settings.HuntingSpawnModifier
         local choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 30*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 10*mod, 3, false)
-
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 30*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 10*mod, 3, false)
+        end
         choice = Spawn.select(85, 10, 5)
-        Spawn.firearm(container, choice.gun, choice.ammo, 20*mod, 1, false)
-        Spawn.magazine(container, choice.gun, choice.ammo, 8*mod, 3, false)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 20*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 8*mod, 3, false)
+        end
         Spawn.component(container, 15*mod, 2)
         Spawn.component(container, 2*mod, 1)
         Spawn.maintance(container, 20*mod, 2)
@@ -620,11 +633,13 @@ Spawn.fillContainer = function(roomName, containerType, container)
         local count = Rnd(3)
         while count ~= 0 do
             local choice = Spawn.select(0, 30, 70)
-            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-            Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+            if choice then
+                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+                Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
-            Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-            Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+            end
             Spawn.component(container, 30*mod, 2)
             Spawn.maintance(container, 40*mod, 2)
             if Rnd(10) > 4 then count = count -1 end
@@ -636,11 +651,13 @@ Spawn.fillContainer = function(roomName, containerType, container)
             local count = Rnd(3)
             while count ~= 0 do
                 local choice = Spawn.select(0, 30, 70)
-                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-                Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+                if choice then
+                    Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+                    Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
-                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                    Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+                    Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                end
                 Spawn.component(container, 30*mod, 2)
                 Spawn.maintance(container, 40*mod, 2)
                 if Rnd(10) > 4 then count = count -1 end
@@ -648,8 +665,11 @@ Spawn.fillContainer = function(roomName, containerType, container)
         else
             local count = Rnd(3)
             while count ~= 0 do
-                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                local choice = Spawn.select(0, 30, 70)
+                if choice then
+                    Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+                    Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+                end
                 Spawn.component(container, 30*mod, 2)
                 Spawn.maintance(container, 40*mod, 2)
                 if Rnd(10) > 3 then count = count -1 end
@@ -657,23 +677,3 @@ Spawn.fillContainer = function(roomName, containerType, container)
         end
     end
 end
-
-
---[[ Purges and recalculates the ORGM.FirearmRarityTable.
-    This must be called if another mod edit the weapon rarity values for any firearms after the
-    OnGameBoot event has been triggered.
-
-]]
---[[
-Server.buildRarityTables = function()
-    ORGM.log(ORGM.INFO, "Recalculating Firearm Rarity Tables")
-    ORGM.FirearmRarityTable = {
-        Civilian = { Common = {},Rare = {}, VeryRare = {} },
-        Police = { Common = {}, Rare = {}, VeryRare = {} },
-        Military = { Common = {}, Rare = {}, VeryRare = {} },
-    }
-    for gunType, gunData in pairs(ORGM.Firearm.getTable()) do
-        Server.insertIntoRarityTables(gunType, gunData)
-    end
-end
-]]
