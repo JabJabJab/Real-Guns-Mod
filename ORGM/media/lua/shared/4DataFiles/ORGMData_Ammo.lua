@@ -62,10 +62,10 @@ register("Ammo_44Magnum_HP",
     { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.6, MaxDamage = 2.2, PiercingBullets = 13, Case = "Case_44Magnum", UseWith = {"Ammo_44Magnum"}, BoxCount = 50, CanCount = 500, DisplayName = ".44 Magnum HP", Weight = 0.012 }
 )
 register("Ammo_45ACP_FMJ",
-    { OptimalBarrel = 30, Range = 20, Recoil = 13, MinDamage = 1.0, MaxDamage = 1.8, PiercingBullets = 50, Case = "Case_45ACP", UseWith = {"Ammo_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP FMJ", Weight = 0.01 }
+    { OptimalBarrel = 30, Range = 17, Recoil = 13, MinDamage = 1.0, MaxDamage = 1.8, PiercingBullets = 45, Case = "Case_45ACP", UseWith = {"Ammo_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP FMJ", Weight = 0.01 }
 )
 register("Ammo_45ACP_HP",
-    { OptimalBarrel = 30, Range = 20, Recoil = 13, MinDamage = 1.3, MaxDamage = 1.8, PiercingBullets = 10, Case = "Case_45ACP", UseWith = {"Ammo_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP HP", Weight = 0.01 }
+    { OptimalBarrel = 30, Range = 17, Recoil = 13, MinDamage = 1.3, MaxDamage = 1.8, PiercingBullets = 10, Case = "Case_45ACP", UseWith = {"Ammo_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP HP", Weight = 0.01 }
 )
 register("Ammo_45Colt_FMJ",
     { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.1, MaxDamage = 2.1, PiercingBullets = 60, Case = "Case_45Colt", UseWith = {"Ammo_45Colt", "Ammo_454Casull"}, BoxCount = 50, CanCount = 500, DisplayName = ".45 Colt FMJ", Weight = 0.01 }
@@ -116,10 +116,10 @@ register("Ammo_57x28mm_HP",
     { OptimalBarrel = 30, Range = 25, Recoil = 7, MinDamage = 1.0, MaxDamage = 1.6, PiercingBullets = 40, Case = "Case_57x28mm", UseWith = {"Ammo_57x28mm"}, BoxCount = 50, CanCount = 500, DisplayName = "5.7x28mm HP", Weight = 0.01 }
 )
 register("Ammo_9x19mm_FMJ",
-    { OptimalBarrel = 30, Range = 18, Recoil = 10, MinDamage = 0.7, MaxDamage = 1.6, PiercingBullets = 50, Case = "Case_9x19mm", UseWith = {"Ammo_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum FMJ", Weight = 0.01 }
+    { OptimalBarrel = 30, Range = 20, Recoil = 10, MinDamage = 0.7, MaxDamage = 1.6, PiercingBullets = 50, Case = "Case_9x19mm", UseWith = {"Ammo_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum FMJ", Weight = 0.01 }
 )
 register("Ammo_9x19mm_HP",
-    { OptimalBarrel = 30, Range = 18, Recoil = 10, MinDamage = 1.0, MaxDamage = 1.6, PiercingBullets = 10, Case = "Case_9x19mm", UseWith = {"Ammo_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum HP", Weight = 0.01 }
+    { OptimalBarrel = 30, Range = 20, Recoil = 10, MinDamage = 1.0, MaxDamage = 1.6, PiercingBullets = 10, Case = "Case_9x19mm", UseWith = {"Ammo_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum HP", Weight = 0.01 }
 )
 register("Ammo_10x25mm_FMJ",
     { OptimalBarrel = 30, Range = 20, Recoil = 12, MinDamage = 0.9, MaxDamage = 1.9, PiercingBullets = 55, Case = "Case_10x25mm", UseWith = {"Ammo_10x25mm"}, BoxCount = 50, CanCount = 500, DisplayName = "10x25mm FMJ", Weight = 0.01 }
