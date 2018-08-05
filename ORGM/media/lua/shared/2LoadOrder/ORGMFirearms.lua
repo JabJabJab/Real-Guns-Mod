@@ -430,7 +430,7 @@ end
 
 ]]
 Firearm.random = function(thisTable)
-    if not thisTable then thisTable = AmmoKeyTable end
+    if not thisTable then thisTable = FirearmKeyTable end
     return thisTable[ZombRand(#thisTable) +1]
 end
 
@@ -957,7 +957,7 @@ Stats.set = function(weaponItem)
     local statsTable = Stats.initial(gunData, ammoData)
     -- adjust weight first
     statsTable.ActualWeight = statsTable.ActualWeight + Barrel.getWeight(weaponItem, gunData)
-    statsTable.Weight = statsTable.ActualWeight + Barrel.getWeight(weaponItem, gunData)
+    statsTable.Weight = statsTable.Weight + Barrel.getWeight(weaponItem, gunData)
     for _, mod in pairs(compTable) do
         statsTable.ActualWeight = statsTable.ActualWeight + mod:getWeightModifier()
         statsTable.Weight = statsTable.Weight + mod:getWeightModifier()
@@ -973,6 +973,13 @@ Stats.set = function(weaponItem)
     Stats.adjustByCategory(gunData.category, statsTable, effectiveWgt)
     Stats.adjustByBarrel(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
     statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * Settings.WeightRecoilDelayModifier)
+
+    -- adjust recoil by player strength
+    local playerObj = getPlayer()
+    if playerObj then
+        local strPerk = playerObj:getPerkLevel(Perks.Strength)
+        if strPerk then statsTable.RecoilDelay = statsTable.RecoilDelay + (5 - strPerk) end
+    end
 
     -- adjust all by components first
     Stats.adjustByComponents(compTable, statsTable)
@@ -1195,6 +1202,7 @@ Stats.setPenetration = function(weaponItem, ammoData)
     elseif ammoData.PiercingBullets == nil then
         result = false
     else
+        -- TODO: factor in barrel length!!!
         result = ZombRand(100) + 1 <= ammoData.PiercingBullets
     end
     weaponItem:setPiercingBullets(result)
