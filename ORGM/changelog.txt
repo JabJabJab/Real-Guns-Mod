@@ -35,6 +35,8 @@ resulting in slightly lower bullet velocity for a similar length barrel in a
 non-automatic. The end result is slightly less damage and range. However, recoil is
 reduced by a amount based on what type of automatic bolt it uses.
 
+* Player strength now effects recoil.
+
 * Added new options to options screen for configuration of hit and critical chances, and
 enabling/disabling the new barrel length modifiers.
 
@@ -62,6 +64,8 @@ options screen ORGM tab.
 
 * Increased recoil for .30-06, .357
 
+* Slightly reduced penetration for .45ACP FMJ
+
 * Moved all recipes to a 'ORGM' tab in the build window.
 
 * Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
@@ -83,6 +87,10 @@ rarity chances.
 * Fixed 2 handed weapons only getting equipped in primary on login
 
 * Fixed issue when reloading with speed loaders and stripper clips.
+
+* Fixed bug with detail tab on inspection window always saying the hammer was cocked.
+
+* Fixed issue when trying to spawn a random gun from a empty rarity table.
 
 ---------------------------------------------------------------------------------------
 
