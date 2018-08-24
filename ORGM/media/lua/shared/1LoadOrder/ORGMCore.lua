@@ -392,9 +392,9 @@ ORGM.SettingsValidator = {
 
     -- recoil is: (ammo recoil+barrel and feed system modifer) / (weapon weight * multiplier).
     -- the higher the multiplier the more weight effects recoil
-    WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.5, show=false},
+    WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.55, show=false},
 
-    WeightSwingTimeModifier  = {type='float', min=0.1, default=0.5, show=false},
+    WeightSwingTimeModifier  = {type='float', min=0.1, default=0.2, show=false},
 
     RecoilDelayLimit  = {type='integer', min=1, default=1, show=false},
 
