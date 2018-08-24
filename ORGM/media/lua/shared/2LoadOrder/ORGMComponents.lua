@@ -11,6 +11,7 @@ This file handles functions dealing with components and attachments.
 ]]
 local ORGM = ORGM
 local Component = ORGM.Component
+local Firearm = ORGM.Firearm
 local getTableData = ORGM.getTableData
 
 local table = table
