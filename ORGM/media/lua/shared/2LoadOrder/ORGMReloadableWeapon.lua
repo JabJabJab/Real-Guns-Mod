@@ -369,7 +369,7 @@ function Unload.perform(this, playerObj, weaponItem)
         return false
     end
     -- we can just rack the weaponItem to unload it
-    Rack.perform(this, playerObj, square, weaponItem)
+    Rack.perform(this, playerObj, weaponItem)
     return false
 end
 
