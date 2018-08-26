@@ -1445,7 +1445,7 @@ register("Rem788", {
     category = ORGM.RIFLE,
     actionType = ORGM.BOLT,
     barrelLength = 24, -- 18.5, 22, 24
-    barrelLength = { 18.5, 22, 24 },
+    barrelLengthOpt = { 18.5, 22, 24 },
     triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Bolt",
