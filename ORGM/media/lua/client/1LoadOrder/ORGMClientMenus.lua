@@ -143,10 +143,10 @@ Menu.firearm = function()
 
     -- switch fire mode option (semi to full auto)
     if Firearm.isSelectFire(thisItem) then
-        local text = "ContextMenu_ORGM_FullAuto"
+        local text = getText("ContextMenu_ORGM_FullAuto")
         local mode = 1
         if Firearm.isFullAuto(thisItem) then
-            text = "ContextMenu_ORGM_Auto"
+            text = getText("ContextMenu_ORGM_Auto")
             mode = 0
         end
         thisContext:addOption(getText("ContextMenu_ORGM_Switch", text), thisItem, Menu.onFireModeToggle, playerObj, modData, reloadable, mode)
