@@ -17,6 +17,8 @@ UI_RU = {
     UI_optionscreen_orgm_usecases_tooltip = "Оружие выбрасывает стреляные гильзы при стрельбе",
 	UI_optionscreen_orgm_usebarrellen = "Использовать модификаторы длины ствола",
     UI_optionscreen_orgm_usebarrellen_tooltip = "Длина ствола влияет на урон, дольность и отдачу",
+	UI_optionscreen_orgm_disablefullauto = "Отключить автоматический режим ведения огня",
+    UI_optionscreen_orgm_disablefullauto_tooltip = "Оружие в автоматическом режиме ведёт себя так, словно оно в полуавтоматичеком",
 	
     UI_optionscreen_orgm_removebase = "Убрать огнестрельное оружие базовой игры",
     UI_optionscreen_orgm_removebase_tooltip = "Попытаться удалить всё ванильное огнестрельное оружие из контейнеров (Особые тайники ещё не обрабатываются должным образом)",
