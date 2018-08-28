@@ -363,6 +363,9 @@ ORGM.SettingsValidator = {
     -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
     HuntingSpawnModifier = {type='float', min=0, default=1.0},
 
+    DisableFullAuto = {type='boolean', default=false},
+
+
     -- Compatibility Patch Toggles
     -- These determine if the built in compatibility patches should be used. These are only valid
     -- If the mod in question is actually loaded.
@@ -394,9 +397,12 @@ ORGM.SettingsValidator = {
     -- the higher the multiplier the more weight effects recoil
     WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.55, show=false},
 
+    -- how weight effects swingtime (lower is faster)
     WeightSwingTimeModifier  = {type='float', min=0.1, default=0.2, show=false},
 
     RecoilDelayLimit  = {type='integer', min=1, default=1, show=false},
+
+
 
     -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
     -- features (context menus and such), as well as MP admin orgm menus. Do not enable this on a open server.

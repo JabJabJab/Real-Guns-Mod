@@ -681,6 +681,7 @@ end
 Firearm.isFullAuto = function(weaponItem, gunData)
     gunData = gunData or Firearm.getData(weaponItem)
     if not gunData then return nil end
+    if Settings.DisableFullAuto then return false end
     return (weaponItem:getModData().selectFire == ORGM.FULLAUTOMODE or gunData.alwaysFullAuto == true)
 end
 

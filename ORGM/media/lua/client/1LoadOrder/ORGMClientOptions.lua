@@ -213,6 +213,8 @@ function MainOptions:create()
     addBoolOption(self, splitpoint, comboWidth, "orgm_usecases", "CasesEnabled")
     addBoolOption(self, splitpoint, comboWidth, "orgm_usebarrellen", "UseBarrelLengthModifiers")
     addBoolOption(self, splitpoint, comboWidth, "orgm_removebase", "RemoveBaseFirearms")
+    addBoolOption(self, splitpoint, comboWidth, "orgm_disablefullauto", "DisableFullAuto")
+
 
     addNumericOption(self, splitpoint, comboWidth, "orgm_damagemulti", "DamageMultiplier", false)
     addNumericOption(self, splitpoint, comboWidth, "orgm_hitpistol", "DefaultHitChancePistol", false)

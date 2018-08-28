@@ -17,6 +17,9 @@ UI_EN = {
     UI_optionscreen_orgm_usecases_tooltip = "Firearms eject spent shell cases when fired",
     UI_optionscreen_orgm_usebarrellen = "Use Barrel Length Modifiers",
     UI_optionscreen_orgm_usebarrellen_tooltip = "Barrel length effects damage, range and recoil",
+    UI_optionscreen_orgm_disablefullauto = "Disable Full-Auto Fire",
+    UI_optionscreen_orgm_disablefullauto_tooltip = "Weapons in full-auto mode behave like they were in semi-auto",
+
 
     UI_optionscreen_orgm_removebase = "Remove Base Game Firearms",
     UI_optionscreen_orgm_removebase_tooltip = "Attempts to remove all vanilla firearms from containers (special stashes are not properly handled at this time)",
