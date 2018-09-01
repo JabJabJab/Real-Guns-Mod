@@ -363,6 +363,8 @@ ORGM.SettingsValidator = {
     -- HuntingSpawnModifier: Multiplier for controlling the spawn rate in the hunting lodge
     HuntingSpawnModifier = {type='float', min=0, default=1.0},
 
+    -- Full-auto weapons behave as semi-auto if true (no full-auto fire rates, bonuses or penalties).
+    -- This does not prevent them from spawning.
     DisableFullAuto = {type='boolean', default=false},
 
 
@@ -388,24 +390,32 @@ ORGM.SettingsValidator = {
     -- these are hidden from the options screen, and never saved in ORGM.ini but will
     -- be read from the file if the keys/values exist.
 
-    -- RecoilDelay is reduced by this much in full auto
-    FullAutoRecoilDelayAdjustment = {type='integer', default=-20, show=false},
-    -- HitChance penalty in full auto
+    -- HitChance penalty in full auto, recoil delay is applied to this
     FullAutoHitChanceAdjustment = {type='integer', default=-10, show=false},
+
+    -- RecoilDelay is reduced by this much in full auto, after HitChance has been modified
+    FullAutoRecoilDelayAdjustment = {type='integer', default=-20, show=false},
 
     -- recoil is: (ammo recoil+barrel and feed system modifer) / (weapon weight * multiplier).
     -- the higher the multiplier the more weight effects recoil
+    -- WARNING: editing this setting can greatly upset the balance of weapons of different weights
     WeightRecoilDelayModifier  = {type='float', min=0.1, default=0.55, show=false},
 
-    -- how weight effects swingtime (lower is faster)
+    -- how weight effects swingtime (lower is faster), swingtime is: BaseSwingTime + (effectiveWgt * WeightSwingTimeModifier)
+    -- WARNING: editing this setting can greatly upset the balance of weapons of different weights
     WeightSwingTimeModifier  = {type='float', min=0.1, default=0.2, show=false},
 
+    -- minumum limit for recoil delay, this is also the end recoil delay for full-autos
     RecoilDelayLimit  = {type='integer', min=1, default=1, show=false},
 
+    -- base swingtime applied before weight additions. this is also the swingtime used for full-autos
+    BaseSwingTime  = {type='float', min=0.1, default=0.3, show=false},
 
+    -- swingtime limiter, applies to all firearms except those in full-auto mode
+    SwingTimeLimit  = {type='float', min=0.1, default=0.5, show=false},
 
     -- development/debug flag. Note this is not related to debug logging. It is for accessing development, test and debugging
-    -- features (context menus and such), as well as MP admin orgm menus. Do not enable this on a open server.
+    -- features (context menus and such), as well as MP admin orgm menus in SP mode. Do not enable this on a open server.
     -- All warranties are void of you enable this.
     Debug = {type='boolean', default=false, show=false},
 }

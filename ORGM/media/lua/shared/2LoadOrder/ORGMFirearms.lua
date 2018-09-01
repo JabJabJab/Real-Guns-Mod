@@ -57,8 +57,8 @@ local ADJ_AUTOSWINGTIME = 0 -- -0.3 -- for automatics
 local ADJ_WEIGHTBARRELLEN = 0.1
 
 -- Limit Constants
-local LIMIT_FASWINGTIME = 0.3 -- full auto only
-local LIMIT_SWINGTIME = 0.5 -- does not apply to full autos
+--local Settings.BaseSwingTime = 0.3 -- full auto only
+--local Settings.SwingTimeLimit = 0.5 -- does not apply to full autos
 --local LIMIT_RECOILDELAY = 1
 
 -- Multiplier Constants
@@ -969,7 +969,7 @@ Stats.set = function(weaponItem)
 
     -- adjust swingtime based on weight
     -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
-    statsTable.SwingTime = LIMIT_FASWINGTIME + (effectiveWgt * Settings.WeightSwingTimeModifier) -- needs to also be adjusted by trigger
+    statsTable.SwingTime = Settings.BaseSwingTime + (effectiveWgt * Settings.WeightSwingTimeModifier) -- needs to also be adjusted by trigger
 
     Stats.adjustByCategory(gunData.category, statsTable, effectiveWgt)
     Stats.adjustByBarrel(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
@@ -993,7 +993,7 @@ Stats.set = function(weaponItem)
     Stats.adjustByFeed(weaponItem, gunData, statsTable)
 
     -- finalize any limits
-    if statsTable.SwingTime < LIMIT_FASWINGTIME then statsTable.SwingTime = LIMIT_FASWINGTIME end
+    if statsTable.SwingTime < Settings.BaseSwingTime then statsTable.SwingTime = Settings.BaseSwingTime end
     statsTable.MinimumSwingTime = statsTable.SwingTime - 0.1
     if statsTable.RecoilDelay < Settings.RecoilDelayLimit then statsTable.RecoilDelay = Settings.RecoilDelayLimit end
     if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end
@@ -1179,10 +1179,10 @@ Stats.adjustByFeed = function(weaponItem, gunData, statsTable)
         end
         statsTable.RecoilDelay = statsTable.RecoilDelay + Settings.FullAutoRecoilDelayAdjustment
         statsTable.AimingTime = statsTable.AimingTime + ADJ_FULLAUTOAIMINGTIME
-        statsTable.SwingTime = LIMIT_FASWINGTIME
+        statsTable.SwingTime = Settings.BaseSwingTime
     else
         -- set swing time to a min value, or some fire too fast
-        if statsTable.SwingTime < LIMIT_SWINGTIME then statsTable.SwingTime = LIMIT_SWINGTIME end
+        if statsTable.SwingTime < Settings.SwingTimeLimit then statsTable.SwingTime = Settings.SwingTimeLimit end
     end
 end
 
