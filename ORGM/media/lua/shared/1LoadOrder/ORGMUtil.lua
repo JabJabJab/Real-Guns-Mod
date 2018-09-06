@@ -208,6 +208,9 @@ ORGM.readSettingsFile = function()
     ORGM.log(ORGM.DEBUG, "Settings: Reading ORGM.ini")
     local file = getFileReader("ORGM.ini", true)
     if not file then return end
+    for key, value in pairs(ORGM.SettingsValidator) do
+        value.wasLoaded = nil -- set the wasLoaded flag to nil
+    end
     while true do repeat
         local line = file:readLine()
         if line == nil then
@@ -229,6 +232,7 @@ ORGM.readSettingsFile = function()
             elseif options.type == "integer" or options.type == "float" then
                 value = tonumber(value)
             end
+            options.wasLoaded = true -- option was loaded from the config, so flag it for saving later
             ORGM.log(ORGM.VERBOSE, "Settings: ORGM.ini Read Setting "..key .. " as "..tostring(value))
             Settings[key] = value
         end
@@ -251,7 +255,7 @@ ORGM.writeSettingsFile = function()
     end
     for key, value in pairs(Settings) do
         local validator = ORGM.SettingsValidator[key]
-        if validator and validator.show ~= false then
+        if validator and (validator.wasLoaded or validator.show ~= false) then
             file:write(key .. " = ".. tostring(value) .. "\r\n")
         end
     end
