@@ -38,7 +38,7 @@ reduced by a amount based on what type of automatic bolt it uses.
 * Player strength now effects recoil.
 
 * Added new options to options screen for configuration of hit and critical chances, and
-enabling/disabling the new barrel length modifiers.
+enabling/disabling the new barrel length modifiers, and disabling full auto fire.
 
 * Added support for Snake's Military Complex Mod
 
@@ -49,6 +49,8 @@ Reset to defaults - resets all ModData on the firearm
 * Added multiple new advanced settings in the ORGM.ini for controlling how the dynamic
 stats system for firearms handles. These advanced settings are not shown in the PZ
 options screen ORGM tab.
+
+* Added verbose logging level (more detailed then debug)
 
 * Added RU translations by Lotos
 
