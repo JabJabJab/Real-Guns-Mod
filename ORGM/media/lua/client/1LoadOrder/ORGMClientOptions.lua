@@ -196,7 +196,9 @@ function MainOptions:create()
             getText("UI_optionscreen_orgm_loglevel_error"),
             getText("UI_optionscreen_orgm_loglevel_warn"),
             getText("UI_optionscreen_orgm_loglevel_info"),
-            getText("UI_optionscreen_orgm_loglevel_debug")}, 2)
+            getText("UI_optionscreen_orgm_loglevel_debug")
+            getText("UI_optionscreen_orgm_loglevel_verbose")
+        }, 2)
     opt:setToolTipMap({defaultTooltip = getText("UI_optionscreen_orgm_loglevel_tooltip")})
 	local gameOption = GameOption:new('orgm_loglevel', opt)
 	function gameOption.toUI(self)

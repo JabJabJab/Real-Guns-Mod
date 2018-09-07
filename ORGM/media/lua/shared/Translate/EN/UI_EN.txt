@@ -10,6 +10,7 @@ UI_EN = {
     UI_optionscreen_orgm_loglevel_warn = "Errors and Warnings",
     UI_optionscreen_orgm_loglevel_info = "Informative (default)",
     UI_optionscreen_orgm_loglevel_debug = "Debugging",
+    UI_optionscreen_orgm_loglevel_verbose = "Verbose",
     UI_optionscreen_orgm_loglevel_tooltip = "Sets the amount of information printed to the console.txt file",
     UI_optionscreen_orgm_jamming = "Jamming Enabled",
     UI_optionscreen_orgm_jamming_tooltip = "Firearms in low condition risk jamming",
