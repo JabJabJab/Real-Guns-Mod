@@ -10,6 +10,7 @@ UI_RU = {
     UI_optionscreen_orgm_loglevel_warn = "Ошибки и предупреждения",
     UI_optionscreen_orgm_loglevel_info = "Информативность (по умолчанию)",
     UI_optionscreen_orgm_loglevel_debug = "Отладка",
+	UI_optionscreen_orgm_loglevel_verbose = "Подробно",
     UI_optionscreen_orgm_loglevel_tooltip = "Устанавливает количество информации, отображаемой в файле console.txt.",
     UI_optionscreen_orgm_jamming = "Заедание включено",
     UI_optionscreen_orgm_jamming_tooltip = "Оружие в плохом состоянии может заклинить",
@@ -18,7 +19,7 @@ UI_RU = {
 	UI_optionscreen_orgm_usebarrellen = "Использовать модификаторы длины ствола",
     UI_optionscreen_orgm_usebarrellen_tooltip = "Длина ствола влияет на урон, дольность и отдачу",
 	UI_optionscreen_orgm_disablefullauto = "Отключить автоматический режим ведения огня",
-    UI_optionscreen_orgm_disablefullauto_tooltip = "Оружие в автоматическом режиме ведёт себя так, словно оно в полуавтоматичеком",
+    UI_optionscreen_orgm_disablefullauto_tooltip = "Оружие в автоматическом режиме ведёт себя так, словно оно в полуавтоматическом",
 	
     UI_optionscreen_orgm_removebase = "Убрать огнестрельное оружие базовой игры",
     UI_optionscreen_orgm_removebase_tooltip = "Попытаться удалить всё ванильное огнестрельное оружие из контейнеров (Особые тайники ещё не обрабатываются должным образом)",
