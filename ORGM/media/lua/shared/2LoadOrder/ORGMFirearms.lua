@@ -90,7 +90,7 @@ ORGM.Firearm.applyRarity('Ber92', gunData)
 
 ]]
 Firearm.applyRarity = function(gunType, gunData, safe)
-    if safe == false then
+    if safe ~= false then
         Firearm.removeRarity(gunType)
     end
     if gunData.isCivilian then
