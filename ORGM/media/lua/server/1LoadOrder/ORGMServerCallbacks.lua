@@ -32,6 +32,34 @@ local RemoveTable = {
     "RedDot", "ChokeTubeFull", "ChokeTubeImproved"
 }
 
+
+local removeFromThisTable = function(thisTable)
+    local index=1
+    while index <= #thisTable do
+        local thisItem = thisTable[index]
+        local removed = false
+        for _, removeItem in ipairs(RemoveTable) do
+            if thisItem == removeItem or thisItem == "Base." .. removeItem then
+                ORGM.log(ORGM.VERBOSE, "Spawn: Removing  " .. tostring(thisItem))
+                table.remove(thisTable, index)
+                table.remove(thisTable, index)
+                removed = true
+                break
+            end
+        end
+        if not removed then
+            index = index + 1
+        end
+    end
+end
+
+local recurseTable = function(thisTable, keys)
+    for _, key in ipairs(keys) do
+        if not thisTable[key] then return nil end
+        thisTable = thisTable[key]
+    end
+    return thisTable
+end
 --[[- Removes vanilla firearms and ammo from the Distributions tables.
 
 Triggered on the OnPostDistributionMerge event if ORGM.Settings.RemoveBaseFirearms is true
@@ -43,47 +71,32 @@ Callbacks.removeBaseFirearms = function()
     for roomName, room in pairs(SuburbsDistributions) do
         ORGM.log(ORGM.VERBOSE, "Spawn: Removing Distributions for " .. tostring(roomName))
         if room.items ~= nil then
-            local index=1
-            while index <= #room.items do
-                local thisItem = room.items[index]
-                local removed = false
-                for _, removeItem in ipairs(RemoveTable) do
-                    if thisItem == removeItem or thisItem == "Base." .. removeItem then
-                        ORGM.log(ORGM.VERBOSE, "Spawn: Removing  " .. tostring(thisItem))
-                        table.remove(room.items, index)
-                        table.remove(room.items, index)
-                        removed = true
-                        break
-                    end
-                end
-                if not removed then
-                    index = index + 1
-                end
-            end
+            removeFromThisTable(room.items)
         else
             for containerName, container in pairs(room) do
                 if container.items ~= nil then
                     ORGM.log(ORGM.VERBOSE, "Spawn: Removing from " .. tostring(containerName))
-                    local index=1
-                    while index <= #container.items do
-                        local thisItem = container.items[index]
-                        local removed = false
-                        for _, removeItem in ipairs(RemoveTable) do
-                            if thisItem == removeItem or thisItem == "Base." .. removeItem then
-                                ORGM.log(ORGM.VERBOSE, "Spawn: Removing  " .. tostring(thisItem))
-                                table.remove(container.items, index)
-                                table.remove(container.items, index)
-                                removed = true
-                                break
-                            end
-                        end
-                        if not removed then
-                            index = index + 1
-                        end
-                    end
+                    removeFromThisTable(container.items)
                 end
             end
         end
+    end
+
+    if VehicleDistributions then
+        -- recursive table levels to look for vanilla guns
+        local vTables = {
+            {'Police','TruckBed','items'},
+            {'RangerTruckBed', 'items'},
+            {'SurvivalistTruckBed', 'items'},
+            {'Seat', 'items'},
+            {'GloveBox', 'items'},
+        }
+        for _, vtab in ipairs(vTables) do repeat
+            local thisTable = recurseTable(VehicleDistributions, vtab)
+            if not thisTable then break end
+            ORGM.log(ORGM.VERBOSE, "Spawn: Removing from VehicleDistributions" .. table.concat(vtab, '.'))
+            removeFromThisTable(thisTable)
+        until true end
     end
 end
 
