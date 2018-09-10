@@ -50,6 +50,9 @@ Callbacks.onStart = function()
 end
 
 --[[- Triggered by the OnPlayerUpdate Event.
+
+@tparam IsoPlayer player
+
 ]]
 Callbacks.playerUpdate = function(player)
     if not player:isLocalPlayer() then return end
@@ -62,6 +65,9 @@ end
 
 
 --[[- Triggered by the OnKeyPress Event.
+
+@tparam int key
+
 ]]
 Callbacks.keyPress = function(key)
     local player = getSpecificPlayer(0)

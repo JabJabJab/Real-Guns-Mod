@@ -10,8 +10,13 @@
 local ORGM = ORGM
 local Client = ORGM.Client
 local Firearm = ORGM.Firearm
+local loadStaticZomboidModel = loadStaticZomboidModel
 
 --[[- Loads a 3d model. Trigged by OnGameBoot event in `ORGMClientEvents.lua`
+
+@tparam string name the name alias for the model
+@tparam[opt] string model the file name. defaults to the name argument if nil.
+@tparam[opt] string texture the texture file name. defaults to the name argument if nil.
 ]]
 Client.addModel = function(name, model, texture)
     if not model then model = name end
@@ -100,6 +105,9 @@ end
 
 Called from OnEquipPrimary and OnGameStart in `ORGMClientEvents.lua`
 
+@tparam IsoPlayer player
+@tparam HandWeapon item
+
 ]]
 Client.getFirearmNeedsUpdate = function(player, item)
     if item == nil or player == nil then return end
@@ -125,6 +133,9 @@ end
 --[[- Instantly unequip the item if it's in the player's primary hand, skipping timed actions.
 
 Used by Client.getFirearmNeedsUpdate() above when upgrading weapons to new ORGM versions.
+
+@tparam IsoPlayer player
+@tparam HandWeapon item
 
 ]]
 Client.unequipItemNow = function(player, item)

@@ -94,6 +94,9 @@ rarity chances.
 
 * Fixed issue when trying to spawn a random gun from a empty rarity table.
 
+* Fixed issue with firearm stats/weight not being properly adjusted when atttaching or
+removing components.
+
 ---------------------------------------------------------------------------------------
 
 ## version 3.08.1
