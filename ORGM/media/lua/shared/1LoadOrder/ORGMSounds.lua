@@ -187,9 +187,11 @@ This is triggered by `ORGM.Callbacks.loadSoundBanks`.
 ]]
 Sounds.setup = function()
     ORGM.log(ORGM.DEBUG, "Sounds: Setting up soundbanks...")
-    for key, value in pairs(QueueTable) do
-        ORGM.log(ORGM.VERBOSE, "Sounds: Adding ".. key .. " with getFMODSoundBank():addSound()")
-        getFMODSoundBank():addSound(key, "media/sound/" .. key .. ".ogg", value.gain, value.minrange, value.maxrange, value.maxreverbrange, value.reverbfactor, value.priority, false)
+    if getFMODSoundBank().addSound then -- check the function exists, so we dont throw a exception with PZ build 40
+        for key, value in pairs(QueueTable) do
+            ORGM.log(ORGM.VERBOSE, "Sounds: Adding ".. key .. " with getFMODSoundBank():addSound()")
+            getFMODSoundBank():addSound(key, "media/sound/" .. key .. ".ogg", value.gain, value.minrange, value.maxrange, value.maxreverbrange, value.reverbfactor, value.priority, false)
+        end
     end
     QueueTable = {}
 end
