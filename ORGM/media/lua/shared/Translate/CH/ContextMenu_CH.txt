@@ -1,36 +1,36 @@
-ï»¿// CleaveJiang/æ°´æœˆæ¹˜å¯’/æˆ°å ´è’²å…¬è‹±(ç™¾åº¦è²¼å§ID) ç¿»è­¯
-// æœªç¶“ä½œè€…è¨±å¯ï¼Œç¦æ­¢ç·¨è¼¯/è½‰è¼‰/æ‹·è²/å‚³æ’­/ä»¥ä¸‹å…§å®¹ï¼
+// CleaveJiang/¤ô¤ë´ğ´H/¾Ô³õ»Z¤½­^(¦Ê«×¶K§aID) Â½Ä¶
+// ¥¼¸g§@ªÌ³\¥i¡A¸T¤î½s¿è/Âà¸ü/«ş¨©/¶Ç¼½/¥H¤U¤º®e¡I
 *****************************************
 ContextMenu_CH = {
-	ContextMenu_ORGM_Unload = "å¸è¼‰å½ˆè—¥",
-	ContextMenu_ORGM_Inspect = "æª¢æŸ¥æ­¦å™¨",
-    ContextMenu_ORGM_Release = "é‡‹æ”¾æ“ŠéŒ˜",
-    ContextMenu_ORGM_Cock = "è±èµ·æ“ŠéŒ˜",
-    
-    ContextMenu_ORGM_Spin = "æ—‹è½‰å½ˆç­’",
-    ContextMenu_ORGM_Suicide = "é–‹æ§è‡ªæ®º",
+	ContextMenu_ORGM_Unload = "¨ø¸ü¼uÃÄ",
+	ContextMenu_ORGM_Inspect = "ÀË¬dªZ¾¹",
+    ContextMenu_ORGM_Release = "ÄÀ©ñÀ»Áè",
+    ContextMenu_ORGM_Cock = "½İ°_À»Áè",
+
+    ContextMenu_ORGM_Spin = "±ÛÂà¼uµ©",
+    ContextMenu_ORGM_Suicide = "¶}ºj¦Û±ş",
 
     -- partial strings, the first half
-    ContextMenu_ORGM_Switch = "åˆ‡æ›åˆ° %1",
-    ContextMenu_ORGM_Open = "æ‰“é–‹åˆ° %1",
-    ContextMenu_ORGM_Close = "é—œé–‰ %1",
-    
+    ContextMenu_ORGM_Switch = "¤Á´«¨ì %1",
+    ContextMenu_ORGM_Open = "¥´¶}¨ì %1",
+    ContextMenu_ORGM_Close = "Ãö³¬ %1",
+
     -- the second half
-    ContextMenu_ORGM_PartSlide = "æ»‘æ¶",
-    ContextMenu_ORGM_PartBolt = "æ§æ “",
-    ContextMenu_ORGM_PartBarrel = "æ§ç®¡",
-    ContextMenu_ORGM_Cylinder = "å½ˆç­’",
-    
-    ContextMenu_ORGM_FullAuto = "å…¨è‡ªå‹•",
-    ContextMenu_ORGM_Auto = "åŠè‡ªå‹•",
-    ContextMenu_ORGM_Bolt = "æ‹‰æ “å¼",
-    ContextMenu_ORGM_Lever = "æ æ†å¼",
-    ContextMenu_ORGM_Pump = "æ³µå‹•å¼",
-    ContextMenu_ORGM_Break = "é–‹è†›å¼",
-    ContextMenu_ORGM_Rotary = "æ—‹è½‰å½ˆç­’",
-    
-    ContextMenu_ORGM_UseOnly = "åƒ…ç”¨æ–¼...",
-    ContextMenu_ORGM_Any = "ä»»æ„å½ˆè—¥",
-    ContextMenu_ORGM_Mixed = "æ··è£å½ˆè—¥",
-    ContextMenu_ORGM_AdminLoad = "ç®¡ç† - æ»¿è£è¼‰å½ˆ",
+    ContextMenu_ORGM_PartSlide = "·Æ¬[",
+    ContextMenu_ORGM_PartBolt = "ºj®ê",
+    ContextMenu_ORGM_PartBarrel = "ºjºŞ",
+    ContextMenu_ORGM_Cylinder = "¼uµ©",
+
+    ContextMenu_ORGM_FullAuto = "¥ş¦Û°Ê",
+    ContextMenu_ORGM_Auto = "¥b¦Û°Ê",
+    ContextMenu_ORGM_Bolt = "©Ô®ê¦¡",
+    ContextMenu_ORGM_Lever = "§ş§ı¦¡",
+    ContextMenu_ORGM_Pump = "¬¦°Ê¦¡",
+    ContextMenu_ORGM_Break = "¶}½£¦¡",
+    ContextMenu_ORGM_Rotary = "±ÛÂà¼uµ©",
+
+    ContextMenu_ORGM_UseOnly = "¶È¥Î©ó...",
+    ContextMenu_ORGM_Any = "¥ô·N¼uÃÄ",
+    ContextMenu_ORGM_Mixed = "²V¸Ë¼uÃÄ",
+    ContextMenu_ORGM_AdminLoad = "ºŞ²z - º¡¸Ë¸ü¼u",
 }
