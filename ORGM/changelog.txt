@@ -54,7 +54,7 @@ options screen ORGM tab.
 
 * Added RU translations by Lotos
 
-* Added CN translations by Cleave
+* Added partial CN and CH translations by Cleave
 
 * Changed Glock22 magazine capacity to 15 (was 10)
 
