@@ -14,7 +14,7 @@ or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/OR
 
 * Complete code restructuring with a focus on performance optimization and code consistency.
 
-* Full html documentation.
+* Full html API documentation.
 
 * Due to new mechanics in effect (see below), the Damage Multiplier setting now
 defaults to 0.6 instead of 0.5.
@@ -94,8 +94,11 @@ rarity chances.
 
 * Fixed issue when trying to spawn a random gun from a empty rarity table.
 
-* Fixed issue with firearm stats/weight not being properly adjusted when atttaching or
+* Fixed issue with firearm stats/weight not being properly adjusted when attaching or
 removing components.
+
+* Fixed recipes for converting base game ammo boxes to ORGM ammo to return the correct
+amount of rounds.
 
 ---------------------------------------------------------------------------------------
 
