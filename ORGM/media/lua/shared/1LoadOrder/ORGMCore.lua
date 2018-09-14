@@ -266,7 +266,7 @@ ORGM.SettingsValidator = {
 
     -- LogLevel: This controls how much text ORGM prints to the console and log file.
     -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, ORGM.DEBUG, ORGM.VERBOSE (default ORGM.INFO)
-    LogLevel = {type='integer', min=0, max=4, default=ORGM.VERBOSE},
+    LogLevel = {type='integer', min=0, max=4, default=ORGM.INFO},
 
     -- JammingEnabled: Turns firearm jamming on or off.
     -- valid options are true or false. (default true)
