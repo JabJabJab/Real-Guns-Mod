@@ -90,6 +90,7 @@ Callbacks.removeBaseFirearms = function()
             {'SurvivalistTruckBed', 'items'},
             {'Seat', 'items'},
             {'GloveBox', 'items'},
+            {'MilitaryGear', 'items'},
         }
         for _, vtab in ipairs(vTables) do repeat
             local thisTable = recurseTable(VehicleDistributions, vtab)
