@@ -174,6 +174,7 @@ ORGM.validateSettingKey = function(key)
     if validType == 'integer' or validType == 'float' then validType = 'number' end
     if type(value) ~= validType then -- wrong type
         Settings[key] = options.default
+        value = options.default
         ORGM.log(ORGM.ERROR, "Settings: " .. key .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
         --if options.onUpdate then options.onUpdate(ORGM.Settings[key]) end
     end
