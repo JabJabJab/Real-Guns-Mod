@@ -29,12 +29,12 @@ local silencerCheck = function(player, item)
         -- just skip
     elseif item:getCanon():getType() == "Silencer" then
         --print("NPC has silencer on " .. item:getType())
-        soundVolume = soundVolume * 0.1
-        soundRadius = soundRadius * 0.1
+        soundVolume = soundVolume * 0.2
+        soundRadius = soundRadius * 0.2
         swingSound = 'silenced_shot'
     elseif item:getCanon():getType() == "HMSilencer" then
-        soundVolume = soundVolume * 0.3
-        soundRadius = soundRadius * 0.3
+        soundVolume = soundVolume * 0.35
+        soundRadius = soundRadius * 0.35
         swingSound = 'silenced_shot'
     end
     item:setSoundVolume(soundVolume)
