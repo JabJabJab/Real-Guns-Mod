@@ -52,7 +52,7 @@ options screen ORGM tab.
 
 * Added verbose logging level (more detailed then debug)
 
-* Added RU translations by Lotos
+* Added RU translations by Lotus
 
 * Added partial CN and CH translations by Cleave
 
