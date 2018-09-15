@@ -368,7 +368,7 @@ end
 
 function DebugPanel:updateFirearm(item)
     local def = Firearm.getData(item)
-    if not def or not Settings.Debug then
+    if not def or not (Settings.Debug or isAdmin()) then
         self.textPanel.text = ""
         self.textPanel:paginate()
         return
