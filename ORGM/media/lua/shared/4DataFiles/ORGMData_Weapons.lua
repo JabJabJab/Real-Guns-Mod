@@ -257,7 +257,7 @@ register("Taurus454", {
     barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader4546',
+    --speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
 
     classification = "IGUI_Firearm_Revolver",
