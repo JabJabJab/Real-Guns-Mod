@@ -57,6 +57,7 @@ IG_UI_RU = {
     IGUI_Firearm_DetailSemi = "полуавтоматический",
     IGUI_Firearm_DetailFull = "автоматический",
     IGUI_Firearm_DetailMode = "Установлен %1 режим. <LINE> ",
+	IGUI_Firearm_DetailBarrelLength = "Длина ствола %1 дюйма(ов). <LINE> ",
     IGUI_Firearm_DetailOpen = "%1 открыт. <LINE> ",
     IGUI_Firearm_DetailClosed = "%1 закрыт. <LINE> ",
     IGUI_Firearm_DetailInserted = "Вставлен магазин. <LINE> ",
@@ -91,7 +92,10 @@ IG_UI_RU = {
     IGUI_Firearm_DetailAttach4 = "Установлен(-а) %1. <LINE> ",
     
     IGUI_Firearm_DetailSerial = "Серийный номер - %1 <LINE> ",
-    IGUI_Firearm_DetailNoSerial = "Серийный номер спилен. <LINE> ",
+    IGUI_Firearm_DetailNoSerial = "Серийный номер сточен. <LINE> ",
+	
+    IGUI_Firearm_DetailRoundsFired = "%1 патрон(-ов|-а) выпущен(-о) за всё время. <LINE> ",
+    IGUI_Firearm_DetailRoundsSinceCleaned = "%1 патрон(-ов|-а) выпущен(-о) с момента последней чистки. <LINE> ",
 
     -------------------------------------------------------------------------------------------------
     IGUI_Firearm_StatDetail = " <RED> Детали <LINE> <TEXT> Вес: %1 <LINE> ",
