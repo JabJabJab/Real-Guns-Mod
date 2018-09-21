@@ -94,6 +94,9 @@ IG_UI_EN = {
     IGUI_Firearm_DetailSerial = "The serial number is %1 <LINE> ",
     IGUI_Firearm_DetailNoSerial = "The serial number appears to have been filed off. <LINE> ",
 
+    IGUI_Firearm_DetailRoundsFired = "%1 Rounds have been fired in total. <LINE> ",
+    IGUI_Firearm_DetailRoundsSinceCleaned = "%1 Rounds have been fired since it was last cleaned. <LINE> ",
+
     -------------------------------------------------------------------------------------------------
     IGUI_Firearm_StatDetail = " <RED> Details <LINE> <TEXT> Weight: %1 <LINE> ",
     IGUI_Firearm_StatDetail2 = "Action Type: %1 <LINE> Trigger Type: %2 <LINE> "
