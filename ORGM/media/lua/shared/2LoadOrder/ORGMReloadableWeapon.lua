@@ -106,7 +106,7 @@ function Fire.post(this, playerObj, weaponItem)
     end
     Hammer.release(this, playerObj, false)
 
-    this.roundsSinceCleaned = this.roundsSinceCleaned + 1
+    --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
     this.roundsFired = this.roundsFired + 1
     if this.actionType == ORGM.AUTO then
         --fire shot
