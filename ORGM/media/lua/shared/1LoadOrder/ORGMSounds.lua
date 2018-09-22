@@ -192,6 +192,31 @@ Sounds.setup = function()
             ORGM.log(ORGM.VERBOSE, "Sounds: Adding ".. key .. " with getFMODSoundBank():addSound()")
             getFMODSoundBank():addSound(key, "media/sound/" .. key .. ".ogg", value.gain, value.minrange, value.maxrange, value.maxreverbrange, value.reverbfactor, value.priority, false)
         end
+    else -- build 40, need a sounds.txt file
+        local swingSounds = { }
+        local insert = table.insert
+        for name, details in pairs(ORGM.Firearm.getTable()) do repeat
+            local sound = details.instance:getSwingSound()
+            local range = details.instance:getSoundRadius()
+            if not sound or not range then break end
+            if swingSounds[sound] and swingSounds[sound] >= range then break end
+            swingSounds[sound] = range
+        until true end
+        local script = {"module Base {"}
+        for sound, range in pairs(swingSounds) do
+            table.insert(script, "\tsound ".. sound)
+            table.insert(script, "\t{")
+            table.insert(script, "\t\tcategory = Item,")
+            table.insert(script, "\t\tclip")
+            table.insert(script, "\t\t{")
+            table.insert(script, "\t\t\tevent = ".. sound ..",")
+            table.insert(script, "\t\t\tdistanceMax = ".. range ..",")
+            table.insert(script, "\t\t}")
+            table.insert(script, "\t}")
+        end
+        table.insert(script, "}")
+        --print(table.concat(script, "\r\n"))
+        --getScriptManager():ParseScript(table.concat(script, "\r\n"))
     end
     QueueTable = {}
 end

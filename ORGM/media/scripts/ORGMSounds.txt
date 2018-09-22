@@ -1,0 +1,821 @@
+module Base {
+	sound ORGMColtAnac
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMColtAnac.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMColtPyth
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMColtPyth.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMColtSAA
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMColtSAA.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMRugAlas
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugAlas.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMRugBH
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugBH.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMRugGP100
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugGP100.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMRugRH
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugRH.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMRugSec6
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugSec6.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSWM10
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM10.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSWM19
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM19.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSWM252
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM252.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSWM29
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM29.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMSWM36
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM36.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSWM610
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSWM610.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMRagingBull
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRagingBull.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMAutomag
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMAutomag.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMDaisy
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMDaisy.ogg,
+			distanceMax = 5,
+		}
+	}
+	sound ORGMBeretta
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMBeretta.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMBrenTen
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMBrenTen.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMBrowningHP
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMBrowningHP.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMColtSuper38
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMColtSuper38.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMColtDelta
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMColtDelta.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMCZ75
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMCZ75.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMDeagle44
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMDeagle44.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMDeagle50
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMDeagle50.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMFiveseven
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMFiveseven.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMGlock17
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMGlock17.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMGlock20
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMGlock20.ogg,
+			distanceMax = 160,
+		}
+	}
+	sound ORGMGlock21
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMGlock21.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMGlock22
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMGlock22.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMMK23
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMK23.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMKahrCT40
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMKahrCT40.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMKahrP380
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMKahrP380.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMKelTecP32
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMKelTecP32.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMM1911
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM1911.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMRugerMKII
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugerMKII.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGMRugerSR9
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRugerSR9.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSIGP226
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSIGP226.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSpr19119
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSpr19119.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMTaurus38S
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMTaurus38S.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMTaurusP132
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMTaurusP132.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMWaltherP22
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMWaltherP22.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGMWaltherPPK
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMWaltherPPK.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSprXD
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSprXD.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMAM180
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMAM180.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGMFNP90
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMFNP90.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMHKMP5
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMHKMP5.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMUMP45
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMUMP45.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMKriss
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMKriss.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMKTPLR
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMKTPLR.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMM1A1
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM1A1.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMMac10
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMac10.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMMac11
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMac11.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMSkorpion
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSkorpion.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGMUzi
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMUzi.ogg,
+			distanceMax = 150,
+		}
+	}
+	sound ORGML96
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGML96.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMAKM
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMAKM.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMAR10
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMAR10.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMAR15
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMAR15.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMRedRyder
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRedRyder.ogg,
+			distanceMax = 5,
+		}
+	}
+	sound ORGMBLR
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMBLR.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMFNFAL
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMFNFAL.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMM1Garand
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM1Garand.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMHenryBB
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMHenryBB.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMG3
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMG3.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMHKSL8
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMHKSL8.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMLENo4
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMLENo4.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMM1903
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM1903.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMM21
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM21.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMM249
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM249.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMMarlin60
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMarlin60.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGMMini14
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMini14.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMMosin
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMMosin.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMRem700
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRem700.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMRem788
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRem788.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMRuger1022
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMRuger1022.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGML85
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGML85.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMSIG550
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSIG550.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMSKS
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSKS.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMSVD
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSVD.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMWinM70
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMWinM70.ogg,
+			distanceMax = 170,
+		}
+	}
+	sound ORGMWinM1894
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMWinM1894.ogg,
+			distanceMax = 130,
+		}
+	}
+	sound ORGMM3
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM3.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMR870SO
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMR870SO.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMR870
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMR870.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMM1216
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMM1216.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMSilverhawk
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSilverhawk.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMSPAS
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMSPAS.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMStriker
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMStriker.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMVEPR
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMVEPR.ogg,
+			distanceMax = 200,
+		}
+	}
+	sound ORGMWinM1887
+	{
+		category = Item,
+		clip
+		{
+			file = media/sound/ORGMWinM1887.ogg,
+			distanceMax = 200,
+		}
+	}
+}
