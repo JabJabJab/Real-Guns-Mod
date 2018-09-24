@@ -625,7 +625,7 @@ Spawn.fillContainer = function(roomName, containerType, container)
         Spawn.ammoBox(container, nil, 30*mod, 1)
         Spawn.ammoCan(container, nil, 10*mod, 1)
         Spawn.ammoCan(container, nil, 5*mod, 1)
-        Spawn.maintance(container, nil, 20*mod, 2)
+        Spawn.maintance(container, 20*mod, 2)
 
     -- patch for snake's military complex mod
     elseif roomName == "mcgunstorestorage" or roomName == "ammomakerroom" then
