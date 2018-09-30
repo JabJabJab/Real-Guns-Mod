@@ -646,8 +646,8 @@ Spawn.fillContainer = function(roomName, containerType, container)
         end
 
     elseif roomName == "trainingcamp" then
+        local mod = Settings.PoliceStorageSpawnModifier
         if containerType == "metal_shelves" or containerType == "crate" then
-            local mod = Settings.PoliceStorageSpawnModifier
             local count = Rnd(3)
             while count ~= 0 do
                 local choice = Spawn.select(0, 30, 70)
