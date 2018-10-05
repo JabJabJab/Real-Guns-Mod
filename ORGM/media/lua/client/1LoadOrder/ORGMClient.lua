@@ -25,7 +25,8 @@ Client.addModel = function(name, model, texture)
     local dir = getDir("ORGM")
     local modelPrefix = dir .. "/media/models/weapons_"
     local texturePrefix = dir .. "/media/textures/Objects_"
-    loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", texturePrefix .. texture .. ".png")
+    --loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", texturePrefix .. texture .. ".png")
+    loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", "Objects_".. texture)
 end
 
 --[[-Loads all 3d models. Trigged by OnGameBoot Event in client/ORGMClientEventHooks.lua
