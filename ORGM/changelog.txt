@@ -70,6 +70,8 @@ options screen ORGM tab.
 
 * Slightly reduced penetration for .45ACP FMJ
 
+* Increased sound radius from 10% to 20% for Nolan's ORGM Silencer mod.
+
 * Moved all recipes to a 'ORGM' tab in the build window.
 
 * Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
