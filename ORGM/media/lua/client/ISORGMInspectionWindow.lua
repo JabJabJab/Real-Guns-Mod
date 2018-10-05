@@ -167,9 +167,9 @@ function DetailsPanel:updateFirearm(item)
     if modData.roundsFired then
         text = text .. getText("IGUI_Firearm_DetailRoundsFired", modData.roundsFired)
     end
-    if modData.roundsSinceCleaned then
-        text = text .. getText("IGUI_Firearm_DetailRoundsSinceCleaned", modData.roundsSinceCleaned)
-    end
+    --if modData.roundsSinceCleaned then
+    --    text = text .. getText("IGUI_Firearm_DetailRoundsSinceCleaned", modData.roundsSinceCleaned)
+    --end
 
     if item:getCanon() then
         text = text.. getText("IGUI_Firearm_DetailAttach1", item:getCanon():getDisplayName())
