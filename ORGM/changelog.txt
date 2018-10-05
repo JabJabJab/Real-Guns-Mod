@@ -56,6 +56,8 @@ options screen ORGM tab.
 
 * Added partial CN and CH translations by Cleave
 
+* Added total rounds fired to the Inspection Window.
+
 * Changed Glock22 magazine capacity to 15 (was 10)
 
 * Changed cylinder capacity of the Raging Bull to 5 (was 6)
@@ -99,6 +101,8 @@ removing components.
 
 * Fixed recipes for converting base game ammo boxes to ORGM ammo to return the correct
 amount of rounds.
+
+* Fixed model textures not displaying on Linux (and hopefully Mac)
 
 ---------------------------------------------------------------------------------------
 
