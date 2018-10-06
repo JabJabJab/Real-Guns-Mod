@@ -153,7 +153,7 @@ register("MosinStripperClip",
     { ammoType = 'Ammo_762x54mm', maxCapacity = 5, }
 )
 register("R25Mag",
-    { ammoType = 'Ammo_308Winchester', maxCapacity = 10, }
+    { ammoType = 'Ammo_308Winchester', maxCapacity = 4, }
 )
 register("Rem788Mag",
     { ammoType = 'Ammo_3030Winchester', maxCapacity = 3, }
