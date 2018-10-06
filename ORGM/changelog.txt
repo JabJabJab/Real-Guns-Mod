@@ -56,6 +56,9 @@ options screen ORGM tab.
 
 * Added partial CN and CH translations by Cleave
 
+* New models for the AR-10, AR-15, M-16, M4, SR-25 and R-25.
+Handcrafted by the excellent Filibuster Rhymes!
+
 * Added total rounds fired to the Inspection Window.
 
 * Changed Glock22 magazine capacity to 15 (was 10)
@@ -77,6 +80,8 @@ options screen ORGM tab.
 * Moved All english (default) DisplayNames to Items_EN.txt translation file. This fixes a
 bug for other languages not being able to translate names that had a - in the name,
 as well as sets up a template of all items for future languages.
+
+* Corrected R-25 magazine capacity to 4 (was 10)
 
 * Fixed issue with Reload Time, Rack Time and Magazine Reload Time options requiring PZ
 to be restarted to have a effect.

@@ -24,8 +24,6 @@ Client.addModel = function(name, model, texture)
 
     local dir = getDir("ORGM")
     local modelPrefix = dir .. "/media/models/weapons_"
-    local texturePrefix = dir .. "/media/textures/Objects_"
-    --loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", texturePrefix .. texture .. ".png")
     loadStaticZomboidModel("weapons_".. name, modelPrefix .. model .. ".txt", "Objects_".. texture)
 end
 
@@ -74,7 +72,12 @@ Client.loadModels = function()
 
 
     Client.addModel('l96') -- new
-    Client.addModel('m16') -- updated, replaces M16, M4, AR10, AR15, SR25
+    Client.addModel('m4c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ar10') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ar15', 'ar15', 'm16') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m16') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('sr25') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('r25', 'r25', 'sr25') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('kalash') -- updated
     Client.addModel('garand') -- new
     Client.addModel('svd') -- updated

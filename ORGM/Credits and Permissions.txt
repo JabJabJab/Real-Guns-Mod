@@ -44,6 +44,9 @@ ORMntMan - Author of the original ORGM mod, who without his hard work this mod
 Khaos - For helping to maintain the steam workshop page, providing support for
     the steam users, bug testing, and generally inspiring me to keep going.
 
+Filibuster Rhymes - For the custom weapon models, and his used cars mod which makes
+    driveby's way more fun.
+
 FinestHops/Legion - For having strict requirements for the newdawn server, without
     his input ORGM would not be nearly as customizable.
 

@@ -1,7 +1,7 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{   
+{
 
     item AIAW308
     {
@@ -62,7 +62,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item AKM
     {
         AmmoType    =   AKMMag,
@@ -122,7 +122,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item AKMA
     {
         AmmoType    =   AKMMag,
@@ -188,7 +188,7 @@ module ORGM
         AmmoType    =   AR10Mag,
         ImpactSound =   null,
         MaxRange    =   20,
-        WeaponSprite    =   m16,
+        WeaponSprite    =   ar10,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -242,13 +242,13 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item AR15
     {
         AmmoType    =   STANAGMag,
         ImpactSound =   null,
         MaxRange    =   20,
-        WeaponSprite    =   m16,
+        WeaponSprite    =   ar15,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -302,7 +302,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item BBGun
     {
         AmmoType    =   Ammo_117BB,
@@ -364,7 +364,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item BLR
     {
         AmmoType    =   BLRMag,
@@ -424,7 +424,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item FNFAL
     {
         AmmoType    =   FNFALMag,
@@ -484,7 +484,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item FNFALA
     {
         AmmoType    =   FNFALAMag,
@@ -544,7 +544,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Garand
     {
         AmmoType    =   GarandClip,
@@ -664,7 +664,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item HK91
     {
         AmmoType    =   HK91Mag,
@@ -724,7 +724,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item HKG3
     {
         AmmoType    =   HKG3Mag,
@@ -785,7 +785,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item HKSL8
     {
         AmmoType    =   HKSL8Mag,
@@ -905,7 +905,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item LENo4
     {
         AmmoType    =   LENo4Mag,
@@ -1211,7 +1211,7 @@ module ORGM
         AmmoType    =   STANAGMag,
         ImpactSound =   null,
         MaxRange    =   18,
-        WeaponSprite    =   m16,
+        WeaponSprite    =   m4c,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -1265,7 +1265,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Marlin60
     {
         AmmoType    =   Ammo_22LR,
@@ -1451,7 +1451,7 @@ module ORGM
         AmmoType    =   R25Mag,
         ImpactSound =   null,
         MaxRange    =   20,
-        WeaponSprite    =   m16,
+        WeaponSprite    =   r25,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -1745,7 +1745,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SIG550
     {
         AmmoType    =   SIG550Mag,
@@ -1865,7 +1865,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SKS
     {
         AmmoType    =   Ammo_762x39mm,
@@ -1925,13 +1925,13 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item SR25
     {
         AmmoType    =   SR25Mag,
         ImpactSound =   null,
         MaxRange    =   26,
-        WeaponSprite    =   m16,
+        WeaponSprite    =   sr25,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
