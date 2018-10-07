@@ -161,26 +161,28 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
     local weapon = character:getPrimaryHandItem();
     if ReloadUtil:setUpGun(weapon, character) then
         self.reloadable = ReloadUtil:getReloadableWeapon(weapon, character)
-        if (self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
-            ISTimedActionQueue.clear(character)
-            local willFire = true
-            -- again, we need to check self.reloadable ~= nil..seems it gets cleared when breaking a reload timed action by shooting
-            if self.reloadable and self.reloadable.preFireShot and character:getRecoilDelay() == 0 and character:getCurrentState() ~= SwipeStatePlayer.instance() then
-                willFire = self.reloadable:preFireShot(self:getDifficulty(), character, weapon)
-                --if (((this.AttackDelay <= 0.0F) && ((!this.sprite.CurrentAnim.name.contains("Attack")) || (this.def.Frame >= this.sprite.CurrentAnim.Frames.size() - 1))) || (this.def.Frame == 0.0F))
+        if character:getCurrentState() ~= SwipeStatePlayer.instance() then
+            if (self.reloadable:isLoaded(self:getDifficulty()) and self.reloadable.isJammed ~= true) then -- check if its jammed as well
+                ISTimedActionQueue.clear(character)
+                local willFire = true
+                -- again, we need to check self.reloadable ~= nil..seems it gets cleared when breaking a reload timed action by shooting
+                if self.reloadable and self.reloadable.preFireShot and character:getRecoilDelay() == 0 then
+                    willFire = self.reloadable:preFireShot(self:getDifficulty(), character, weapon)
+                    --if (((this.AttackDelay <= 0.0F) && ((!this.sprite.CurrentAnim.name.contains("Attack")) || (this.def.Frame >= this.sprite.CurrentAnim.Frames.size() - 1))) || (this.def.Frame == 0.0F))
+                end
+                if willFire then character:DoAttack(chargeDelta or 0) end
+            elseif self:rackingNow() then
+                -- Don't interrupt the racking action
+            elseif self:autoRackNeeded() then
+                -- interrupt actions so racking can begin before firing
+                ISTimedActionQueue.clear(character)
+            elseif character:getRecoilDelay() == 0 then
+                -- call the :fireEmpty function if it exists, to cock and release the hammer
+                if self.reloadable.fireEmpty then
+                    self.reloadable:fireEmpty(character, weapon)
+                end
+                character:DoAttack(chargeDelta, true, self.reloadable.clickSound);
             end
-            if willFire then character:DoAttack(chargeDelta or 0) end
-        elseif self:rackingNow() then
-            -- Don't interrupt the racking action
-        elseif self:autoRackNeeded() then
-            -- interrupt actions so racking can begin before firing
-            ISTimedActionQueue.clear(character)
-        elseif character:getRecoilDelay() == 0 and character:getCurrentState() ~= SwipeStatePlayer.instance() then -- limit the dry fire speed
-            -- call the :fireEmpty function if it exists, to cock and release the hammer
-            if self.reloadable.fireEmpty then
-                self.reloadable:fireEmpty(character, weapon)
-            end
-            character:DoAttack(chargeDelta, true, self.reloadable.clickSound);
         end
     else
         character:DoAttack(chargeDelta);
