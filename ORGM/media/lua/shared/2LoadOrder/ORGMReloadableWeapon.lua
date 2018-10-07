@@ -150,7 +150,7 @@ end
 function Fire.dry(this, playerObj, weaponItem)
     if this.hammerCocked == 1 then
         Hammer.release(this, playerObj, false)
-    elseif this.actionType ~= ORGM.SINGLEACTION then
+    elseif this.triggerType ~= ORGM.SINGLEACTION then
         Hammer.cock(this, playerObj, false, weaponItem)
         Hammer.release(this, playerObj, false)
     end
