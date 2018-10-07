@@ -175,7 +175,7 @@ function ISReloadManager:checkLoaded(character, chargeDelta)
         elseif self:autoRackNeeded() then
             -- interrupt actions so racking can begin before firing
             ISTimedActionQueue.clear(character)
-        else
+        elseif character:getRecoilDelay() == 0 and character:getCurrentState() ~= SwipeStatePlayer.instance() then -- limit the dry fire speed
             -- call the :fireEmpty function if it exists, to cock and release the hammer
             if self.reloadable.fireEmpty then
                 self.reloadable:fireEmpty(character, weapon)
