@@ -111,6 +111,12 @@ amount of rounds.
 
 * Fixed model textures not displaying on Linux (and hopefully Mac)
 
+* Fixed issue dry firing revolvers cycled through the chambers too fast.
+
+* Fixed wrong variable check when dry firing.
+
+* Fixed InspectionWindow debug tab not properly listing half loaded revolvers.
+
 ---------------------------------------------------------------------------------------
 
 ## version 3.08.1
