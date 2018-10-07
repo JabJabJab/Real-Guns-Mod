@@ -451,8 +451,11 @@ function DebugPanel:updateFirearm(item)
     text = text .. getText("IGUI_Firearm_DebugSpeed2", tostring(item:getAimingTime()), tostring(beenMoving))
     text = text .. getText("IGUI_Firearm_DebugMagazine")
     text = text .. getText("IGUI_Firearm_DebugCylinder", tostring(data.cylinderPosition))
-    for i=1, data.currentCapacity do
-        text = text .. "#" .. i .. ": "..tostring(data.magazineData[i]) .. " <LINE> "
+    for i=1, data.maxCapacity do
+        local ammoType = data.magazineData[i]
+        if ammoType then
+            text = text .. "#" .. i .. ": "..tostring(data.magazineData[i]) .. " <LINE> "
+        end
     end
     --getDamageMod(IsoGameCharacter chr)
     self.textPanel.text = text
