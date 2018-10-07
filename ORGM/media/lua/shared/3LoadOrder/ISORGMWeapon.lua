@@ -80,7 +80,8 @@ end
 
 ]]
 function ISORGMWeapon:fireEmpty(playerObj, weaponItem)
-    return Reloadable.Fire.dry(self, playerObj, weaponItem)
+    Reloadable.Fire.dry(self, playerObj, weaponItem)
+    self:syncReloadableToItem(weaponItem)
 end
 ORGM['9mm'] = function(caliber) return ORGM['.303'](ORGM['.50AE'](caliber, 16)) end
 
