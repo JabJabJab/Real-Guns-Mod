@@ -56,8 +56,9 @@ options screen ORGM tab.
 
 * Added partial CN and CH translations by Cleave
 
-* New models for the AR-10, AR-15, M-16, M4, SR-25 and R-25.
-Handcrafted by the excellent Filibuster Rhymes!
+* New models Handcrafted by the excellent Filibuster Rhymes!
+AKM, AR-10, AR-15, M-16, M4, SR-25 and R-25, and all revolvers.
+
 
 * Added total rounds fired to the Inspection Window.
 
