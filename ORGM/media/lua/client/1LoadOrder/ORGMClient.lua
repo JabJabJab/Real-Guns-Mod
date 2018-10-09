@@ -36,12 +36,28 @@ Client.loadModels = function()
     Client.addModel('shotgunblack', 'shotgunblack', 'Shotgun_Black')
     Client.addModel('shotgunsawnblack', 'shotgunsawnblack', 'ShotgunSawn_Black')
 
-    Client.addModel('anaconda') -- new
-    Client.addModel('python') -- new
-    Client.addModel('model19bwg')
-    Client.addModel('model19cwg')
-    Client.addModel('model19cbg')
-    Client.addModel('revolverlarge')
+    -- revolvers
+    Client.addModel("coltanaconda", "coltanaconda", "coltpython") -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('coltpython') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('coltsaa') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rugalaskan') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rugblackhawk') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ruggp100') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rugredhawk') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rugsecsix', 'rugsecsix', 'swm10') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rugblackhawk') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm10') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm19') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm252', 'swm29', 'swm19') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm29', 'swm29', 'swm19') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm36', 'swm36', 'sw10c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm610', 'swm610', 'swm19c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('taurusraging') -- 3.09, credits to Filibuster Rhymes
+
+    --Client.addModel('model19bwg')
+    --Client.addModel('model19cwg')
+    --Client.addModel('model19cbg')
+    --Client.addModel('revolverlarge')
 
     Client.addModel('beretta92') -- new
     Client.addModel('coltcommander') -- new
@@ -69,6 +85,10 @@ Client.loadModels = function()
     Client.addModel('r700') -- new
     Client.addModel('sa80') -- updated
     Client.addModel('sig551') -- new
+
+
+    Client.addModel('akm') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('akmn') -- 3.09, credits to Filibuster Rhymes
 
 
     Client.addModel('l96') -- new
