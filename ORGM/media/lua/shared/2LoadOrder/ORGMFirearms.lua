@@ -530,7 +530,11 @@ Firearm.setup = function(gunData, weaponItem)
     modData.openSound = gunData.openSound
     modData.closeSound = gunData.closeSound
 
-    if gunData.clipData then modData.containsClip = 1 end
+    if gunData.clipData then
+        modData.containsClip = 1
+    else -- sanity check when resetting to default
+        modData.containsClip = nil
+    end
     modData.clipName = gunData.clipName
     modData.clipIcon = gunData.clipIcon
 
