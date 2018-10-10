@@ -54,64 +54,28 @@ Client.loadModels = function()
     Client.addModel('swm610', 'swm610', 'swm19c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('taurusraging') -- 3.09, credits to Filibuster Rhymes
 
-    --Client.addModel('model19bwg')
-    --Client.addModel('model19cwg')
-    --Client.addModel('model19cbg')
-    --Client.addModel('revolverlarge')
-
-    Client.addModel('beretta92') -- new
+    -- pistols
+    Client.addModel('beretta92') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('browninghp') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('glock17') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('glock20', 'glock20', 'glock17') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('glock21', 'glock21', 'glock17') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('glock22', 'glock17', 'glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('coltcommander') -- new
     Client.addModel('deltaelite') -- new
     Client.addModel('deagle44') -- new
     Client.addModel('deaglexix') -- new
     Client.addModel('fn57') -- new
-    Client.addModel('glock') -- new, replaces all glocks
+    Client.addModel('glock') -- new,
     Client.addModel('m1911') -- new
     Client.addModel('sfield19119') -- new
     Client.addModel('ppk') -- new
     Client.addModel('sfieldxd') -- new
     Client.addModel('rugermkii')
 
-
-    Client.addModel('henry')
-    Client.addModel('fnfal')
-    Client.addModel('hk91') -- new, replaces g3
-    Client.addModel('sl8') -- new
-    Client.addModel('m249') -- new
-    Client.addModel('m14') -- updated
-    Client.addModel('mini14')
-    Client.addModel('mosin') -- new
-    Client.addModel('sks') -- updated
-    Client.addModel('r700') -- new
-    Client.addModel('sa80') -- updated
-    Client.addModel('sig551') -- new
-
-
-    Client.addModel('akm') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('akmn') -- 3.09, credits to Filibuster Rhymes
-
-
-    Client.addModel('l96') -- new
-    Client.addModel('m4c') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('ar10') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('ar15', 'ar15', 'm16') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('m16') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('sr25') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('r25', 'r25', 'sr25') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('kalash') -- updated
-    Client.addModel('garand') -- new
-    Client.addModel('svd') -- updated
-
-
-    Client.addModel('m1216') -- new
-    Client.addModel('super90') -- new
-    Client.addModel('r870') -- new
-    Client.addModel('silver') -- new
-    Client.addModel('striker') -- new
-    Client.addModel('stevens') -- new
-    Client.addModel('spas12')
-
-
+    -- smgs
+    Client.addModel('beretta93r') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('glock18c', 'glock17', 'glock18c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('kriss')
     Client.addModel('krissciv')
     Client.addModel('mp5') -- updated
@@ -121,6 +85,48 @@ Client.loadModels = function()
     Client.addModel('skorpion') -- new
     Client.addModel('ump') -- updated
     Client.addModel('uzi') -- updated
+
+    -- rifles
+    Client.addModel('akm') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('akmn') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ar10') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ar15', 'ar15', 'm16') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m16') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m4c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('sr25') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('r25', 'r25', 'sr25') -- 3.09, credits to Filibuster Rhymes
+
+    Client.addModel('enfield') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('fnfal') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('lsr') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m1903') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('mini14') -- 3.09, credits to Filibuster Rhymes
+
+
+    Client.addModel('henry')
+    Client.addModel('hk91') -- new, replaces g3
+    Client.addModel('sl8') -- new
+    Client.addModel('m249') -- new
+    Client.addModel('m14') -- updated
+    Client.addModel('mosin') -- new
+    Client.addModel('sks') -- updated
+    Client.addModel('r700') -- new
+    Client.addModel('sa80') -- updated
+    Client.addModel('sig551') -- new
+
+    Client.addModel('l96') -- new
+    Client.addModel('kalash') -- updated
+    Client.addModel('garand') -- new
+    Client.addModel('svd') -- updated
+
+    -- shotguns
+    Client.addModel('m1216') -- new
+    Client.addModel('super90') -- new
+    Client.addModel('r870') -- new
+    Client.addModel('silver') -- new
+    Client.addModel('striker') -- new
+    Client.addModel('stevens') -- new
+    Client.addModel('spas12')
 
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end

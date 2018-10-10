@@ -1,7 +1,7 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{   
+{
     item AM180
     {
         AmmoType    =   AM180Mag,
@@ -68,7 +68,7 @@ module ORGM
         AmmoType    =   Ber93RMag,
         ImpactSound =   null,
         MaxRange    =   10,
-        WeaponSprite    =   beretta92,
+        WeaponSprite    =   beretta93r,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -118,7 +118,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item FNP90
     {
         AmmoType    =   FNP90Mag,
@@ -177,13 +177,13 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Glock18
     {
         AmmoType    =   Glock17Mag,
         ImpactSound =   null,
         MaxRange    =   10,
-        WeaponSprite    =   glock,
+        WeaponSprite    =   glock18c,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
@@ -233,7 +233,7 @@ module ORGM
         AimingTime = 40,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item HKMP5
     {
         AmmoType    =   HKMP5Mag,
@@ -292,7 +292,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item HKUMP
     {
         AmmoType    =   HKUMPMag,
@@ -351,7 +351,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item Kriss
     {
         AmmoType    =   Glock21Mag,
@@ -410,7 +410,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item KrissA
     {
         AmmoType    =   Glock21Mag,
@@ -530,7 +530,7 @@ module ORGM
         RequiresEquippedBothHands = TRUE,
         BreakSound  =   PZ_MetalSnap,
     }
-    
+
     item M1A1
     {
         AmmoType    =   M1A1Mag,
