@@ -1,13 +1,13 @@
 
 /**        ORMtnMan's Real Gun Mod       **/
-/** 
+/**
     TODO: .40 S&W HP Icons
     TODO: .30-30 HP Icons
     IGUI_ItemCat_Spent Shell
 **/
- 
+
 module ORGM
-{  
+{
     /** .117 BB **/
     item Ammo_117BB
     {
@@ -27,7 +27,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmBBCan,
     }
- 
+
     item Ammo_117BB_Can
     {
         Weight = 0.25,
@@ -57,7 +57,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am22Box,
     }
-    
+
     item Case_22LR_Can
     {
         Weight = 1.5,
@@ -86,7 +86,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am22Rounds,
     }
- 
+
     item Ammo_22LR_FMJ_Box
     {
         Weight = 0.3,
@@ -95,7 +95,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am22Box,
     }
-    
+
     item Ammo_22LR_FMJ_Can
     {
         Weight = 3.0,
@@ -114,7 +114,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am22HPRounds,
     }
- 
+
     item Ammo_22LR_HP_Box
     {
         Weight = 0.3,
@@ -123,7 +123,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am22HPBox,
     }
-    
+
     item Ammo_22LR_HP_Can
     {
         Weight = 3.0,
@@ -153,7 +153,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am32ACPBox,
     }
- 
+
     item Case_32ACP_Can
     {
         Weight = 2.5,
@@ -182,7 +182,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am32ACPRounds,
     }
- 
+
     item Ammo_32ACP_FMJ_Box
     {
         Weight = 0.5,
@@ -191,7 +191,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am32ACPBox,
     }
- 
+
     item Ammo_32ACP_FMJ_Can
     {
         Weight = 5.0,
@@ -210,7 +210,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am32ACPHPRounds,
     }
- 
+
     item Ammo_32ACP_HP_Box
     {
         Weight = 0.5,
@@ -219,7 +219,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am32ACPHPBox,
     }
- 
+
     item Ammo_32ACP_HP_Can
     {
         Weight = 5.0,
@@ -345,7 +345,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am38SpecialBox,
     }
-    
+
     item Case_38Special_Can
     {
         Weight = 2.5,
@@ -374,7 +374,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SpecialRounds,
     }
- 
+
     item Ammo_38Special_FMJ_Box
     {
         Weight = 0.5,
@@ -383,7 +383,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SpecialBox,
     }
-    
+
     item Ammo_38Special_FMJ_Can
     {
         Weight = 5.0,
@@ -402,7 +402,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SpecialHPRounds,
     }
- 
+
     item Ammo_38Special_HP_Box
     {
         Weight = 0.5,
@@ -411,7 +411,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SpecialHPBox,
     }
-    
+
     item Ammo_38Special_HP_Can
     {
         Weight = 5.0,
@@ -432,7 +432,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case38Super,
     }
- 
+
     item Case_38Super_Box
     {
         Weight = 0.25,
@@ -441,7 +441,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am38SuperBox,
     }
-    
+
     item Case_38Super_Can
     {
         Weight = 2.5,
@@ -450,7 +450,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_38Super
     {
         Count = 1,
@@ -460,7 +460,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SuperRounds,
     }
- 
+
     item Ammo_38Super_FMJ
     {
         Count = 1,
@@ -470,7 +470,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SuperRounds,
     }
-    
+
     item Ammo_38Super_FMJ_Box
     {
         Weight = 0.5,
@@ -479,7 +479,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SuperBox,
     }
-    
+
     item Ammo_38Super_FMJ_Can
     {
         Weight = 5.0,
@@ -488,7 +488,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_38Super_HP
     {
         Count = 1,
@@ -498,7 +498,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SuperHPRounds,
     }
-    
+
     item Ammo_38Super_HP_Box
     {
         Weight = 0.5,
@@ -507,7 +507,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am38SuperHPBox,
     }
-    
+
     item Ammo_38Super_HP_Can
     {
         Weight = 5.0,
@@ -516,7 +516,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
 
     /** .380 ACP **/
     item Case_380ACP
@@ -528,7 +528,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case380ACP,
     }
- 
+
     item Case_380ACP_Box
     {
         Weight = 0.5,
@@ -537,7 +537,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am380ACPBox,
     }
-    
+
     item Case_380ACP_Can
     {
         Weight = 2.5,
@@ -556,7 +556,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am380ACPRounds,
     }
- 
+
     item Ammo_380ACP_FMJ
     {
         Count = 1,
@@ -566,7 +566,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am380ACPRounds,
     }
-    
+
     item Ammo_380ACP_FMJ_Box
     {
         Weight = 0.5,
@@ -575,7 +575,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am380ACPBox,
     }
-    
+
     item Ammo_380ACP_FMJ_Can
     {
         Weight = 5.0,
@@ -594,7 +594,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am380ACPHPRounds,
     }
-    
+
     item Ammo_380ACP_HP_Box
     {
         Weight = 0.5,
@@ -603,7 +603,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am380ACPHPBox,
     }
-    
+
     item Ammo_380ACP_HP_Can
     {
         Weight = 5.0,
@@ -624,7 +624,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case40SW,
     }
- 
+
     item Case_40SW_Box
     {
         Weight = 0.25,
@@ -633,7 +633,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am40SWBox,
     }
-    
+
     item Case_40SW_Can
     {
         Weight = 2.5,
@@ -642,7 +642,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_40SW
     {
         Count = 1,
@@ -652,7 +652,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
- 
+
     item Ammo_40SW_FMJ
     {
         Count = 1,
@@ -662,7 +662,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
- 
+
     item Ammo_40SW_FMJ_Box
     {
         Weight = 0.5,
@@ -671,7 +671,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am40SWBox,
     }
-    
+
     item Ammo_40SW_FMJ_Can
     {
         Weight = 5.0,
@@ -680,7 +680,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_40SW_HP
     {
         Count = 1,
@@ -690,7 +690,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am40SWRounds,
     }
- 
+
     item Ammo_40SW_HP_Box
     {
         Weight = 0.5,
@@ -699,7 +699,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am40SWBox,
     }
-    
+
     item Ammo_40SW_HP_Can
     {
         Weight = 5.0,
@@ -708,7 +708,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
 
     /** .44 Magnum **/
     item Case_44Magnum
@@ -720,7 +720,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case44,
     }
- 
+
     item Case_44Magnum_Box
     {
         Weight = 0.3,
@@ -729,7 +729,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am44Box,
     }
-    
+
     item Case_44Magnum_Can
     {
         Weight = 3.0,
@@ -738,7 +738,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_44Magnum
     {
         Count = 1,
@@ -748,7 +748,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am44Rounds,
     }
- 
+
     item Ammo_44Magnum_FMJ
     {
         Count = 1,
@@ -758,7 +758,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am44Rounds,
     }
- 
+
     item Ammo_44Magnum_FMJ_Box
     {
         Weight = 0.6,
@@ -767,7 +767,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am44Box,
     }
-    
+
     item Ammo_44Magnum_FMJ_Can
     {
         Weight = 6.0,
@@ -776,7 +776,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_44Magnum_HP
     {
         Count = 1,
@@ -786,7 +786,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am44HPRounds,
     }
- 
+
     item Ammo_44Magnum_HP_Box
     {
         Weight = 0.6,
@@ -795,7 +795,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am44HPBox,
     }
-    
+
     item Ammo_44Magnum_HP_Can
     {
         Weight = 6.0,
@@ -804,8 +804,8 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
- 
+
+
     /** .45 ACP **/
     item Case_45ACP
     {
@@ -816,7 +816,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case45ACP,
     }
- 
+
     item Case_45ACP_Box
     {
         Weight = 0.25,
@@ -825,7 +825,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am45ACPBox,
     }
-    
+
     item Case_45ACP_Can
     {
         Weight = 2.5,
@@ -834,7 +834,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_45ACP
     {
         Count = 1,
@@ -844,7 +844,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ACPRounds,
     }
- 
+
     item Ammo_45ACP_FMJ
     {
         Count = 1,
@@ -854,7 +854,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ACPRounds,
     }
- 
+
     item Ammo_45ACP_FMJ_Box
     {
         Weight = 0.5,
@@ -863,7 +863,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ACPBox,
     }
-    
+
     item Ammo_45ACP_FMJ_Can
     {
         Weight = 5.0,
@@ -872,7 +872,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_45ACP_HP
     {
         Count = 1,
@@ -882,7 +882,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ACPHPRounds,
     }
- 
+
     item Ammo_45ACP_HP_Box
     {
         Weight = 0.5,
@@ -891,7 +891,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ACPHPBox,
     }
-    
+
     item Ammo_45ACP_HP_Can
     {
         Weight = 5.0,
@@ -912,7 +912,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case45Colt,
     }
- 
+
     item Case_45Colt_Box
     {
         Weight = 0.25,
@@ -921,7 +921,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am45ColtBox,
     }
-    
+
     item Case_45Colt_Can
     {
         Weight = 2.5,
@@ -930,7 +930,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_45Colt
     {
         Count = 1,
@@ -940,7 +940,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ColtRounds,
     }
- 
+
     item Ammo_45Colt_FMJ
     {
         Count = 1,
@@ -950,7 +950,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ColtRounds,
     }
- 
+
     item Ammo_45Colt_FMJ_Box
     {
         Weight = 0.5,
@@ -959,7 +959,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ColtBox,
     }
-    
+
     item Ammo_45Colt_FMJ_Can
     {
         Weight = 5.0,
@@ -968,7 +968,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_45Colt_HP
     {
         Count = 1,
@@ -978,7 +978,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ColtHPRounds,
     }
- 
+
     item Ammo_45Colt_HP_Box
     {
         Weight = 0.5,
@@ -987,7 +987,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am45ColtHPBox,
     }
-    
+
     item Ammo_45Colt_HP_Can
     {
         Weight = 5.0,
@@ -996,11 +996,11 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
- 
+
+
     /** .454 Casull **/
     item Case_454Casull
-    {   
+    {
         Count = 1,
         Weight = 0.006,
         Type = Normal,
@@ -1008,7 +1008,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case454,
     }
- 
+
     item Case_454Casull_Box
     {
         Weight = 0.3,
@@ -1017,7 +1017,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am454Box,
     }
-    
+
     item Case_454Casull_Can
     {
         Weight = 3.0,
@@ -1026,9 +1026,9 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_454Casull
-    {   
+    {
         Count = 1,
         Weight = 0.012,
         Type = Normal,
@@ -1036,9 +1036,9 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am454Rounds,
     }
- 
+
     item Ammo_454Casull_FMJ
-    {   
+    {
         Count = 1,
         Weight = 0.012,
         Type = Normal,
@@ -1055,7 +1055,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am454Box,
     }
-    
+
     item Ammo_454Casull_FMJ_Can
     {
         Weight = 5.0,
@@ -1064,9 +1064,9 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_454Casull_HP
-    {   
+    {
         Count = 1,
         Weight = 0.012,
         Type = Normal,
@@ -1083,7 +1083,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am454HPBox,
     }
-    
+
     item Ammo_454Casull_HP_Can
     {
         Weight = 5.0,
@@ -1092,7 +1092,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
 
     /** .50AE **/
     item Case_50AE
@@ -1104,7 +1104,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case50AE,
     }
- 
+
     item Case_50AE_Box
     {
         Weight = 0.3,
@@ -1113,7 +1113,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am50AEBox,
     }
-    
+
     item Case_50AE_Can
     {
         Weight = 3.0,
@@ -1122,7 +1122,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_50AE
     {
         Count = 1,
@@ -1132,7 +1132,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am50AERounds,
     }
- 
+
     item Ammo_50AE_FMJ
     {
         Count = 1,
@@ -1151,7 +1151,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am50AEBox,
     }
-    
+
     item Ammo_50AE_FMJ_Can
     {
         Weight = 6.0,
@@ -1160,7 +1160,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_50AE_HP
     {
         Count = 1,
@@ -1179,7 +1179,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am50AEHPBox,
     }
-    
+
     item Ammo_50AE_HP_Can
     {
         Weight = 6.0,
@@ -1188,7 +1188,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
 
     /** .223 Remington **/
     item Case_223Remington
@@ -1200,7 +1200,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case223,
     }
- 
+
     item Case_223Remington_Box
     {
         Weight = 0.2,
@@ -1209,7 +1209,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am223Box,
     }
- 
+
     item Case_223Remington_Can
     {
         Weight = 2.0,
@@ -1218,7 +1218,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_223Remington
     {
         Count = 1,
@@ -1228,7 +1228,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am223Rounds,
     }
- 
+
     item Ammo_223Remington_FMJ
     {
         Count = 1,
@@ -1238,7 +1238,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am223Rounds,
     }
- 
+
     item Ammo_223Remington_FMJ_Box
     {
         Weight = 0.375,
@@ -1247,7 +1247,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am223Box,
     }
- 
+
     item Ammo_223Remington_FMJ_Can
     {
         Weight = 3.75,
@@ -1256,7 +1256,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_223Remington_HP
     {
         Count = 1,
@@ -1266,26 +1266,26 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am223HPRounds,
     }
- 
+
     item Ammo_223Remington_HP_Box
     {
         Weight = 0.375,
         Type = Normal,
-        DisplayName = ORGM_Ammo_223Remington_HP,
+        DisplayName = ORGM_Ammo_223Remington_HP_Box,
         DisplayCategory = Ammo,
         Icon = Am223HPBox,
     }
- 
+
     item Ammo_223Remington_HP_Can
     {
         Weight = 3.75,
         Type = Normal,
-        DisplayName = ORGM_Ammo_223Remington_HP,
+        DisplayName = ORGM_Ammo_223Remington_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
- 
+
+
     /** .30-06 Springfield **/
     item Case_3006Springfield
     {
@@ -1296,7 +1296,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case3006,
     }
- 
+
     item Case_3006Springfield_Box
     {
         Weight = 0.2,
@@ -1305,7 +1305,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am3006Box,
     }
-    
+
     item Case_3006Springfield_Can
     {
         Weight = 2.0,
@@ -1314,7 +1314,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_3006Springfield
     {
         Count = 1,
@@ -1324,7 +1324,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3006Rounds,
     }
- 
+
     item Ammo_3006Springfield_FMJ
     {
         Count = 1,
@@ -1343,7 +1343,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3006Box,
     }
-    
+
     item Ammo_3006Springfield_FMJ_Can
     {
         Weight = 4.0,
@@ -1352,7 +1352,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_3006Springfield_HP
     {
         Count = 1,
@@ -1371,17 +1371,17 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3006HPBox,
     }
-    
+
     item Ammo_3006Springfield_HP_Can
     {
         Weight = 4.0,
         Type = Normal,
-        DisplayName = ORGM_Ammo_3006Springfield_HP_Box,
+        DisplayName = ORGM_Ammo_3006Springfield_HP_Can,
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
- 
+
+
     /** .30-30 Winchester **/
     item Case_3030Winchester
     {
@@ -1392,7 +1392,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case3030,
     }
- 
+
     item Case_3030Winchester_Box
     {
         Weight = 0.2,
@@ -1401,7 +1401,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am3030Box,
     }
-    
+
     item Case_3030Winchester_Can
     {
         Weight = 2.0,
@@ -1420,7 +1420,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
- 
+
     item Ammo_3030Winchester_FMJ
     {
         Count = 1,
@@ -1430,7 +1430,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
- 
+
     item Ammo_3030Winchester_FMJ_Box
     {
         Weight = 0.4,
@@ -1439,7 +1439,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3030Box,
     }
-    
+
     item Ammo_3030Winchester_FMJ_Can
     {
         Weight = 4.0,
@@ -1458,7 +1458,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3030Rounds,
     }
- 
+
     item Ammo_3030Winchester_HP_Box
     {
         Weight = 0.4,
@@ -1467,7 +1467,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am3030Box,
     }
-    
+
     item Ammo_3030Winchester_HP_Can
     {
         Weight = 4.0,
@@ -1477,7 +1477,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    
+
     /** .308 Winchester **/
     item Case_308Winchester
     {
@@ -1488,7 +1488,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case308,
     }
- 
+
     item Case_308Winchester_Box
     {
         Weight = 0.2,
@@ -1497,7 +1497,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am308Box,
     }
-    
+
     item Case_308Winchester_Can
     {
         Weight = 2.0,
@@ -1516,7 +1516,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am308Rounds,
     }
- 
+
     item Ammo_308Winchester_FMJ
     {
         Count = 1,
@@ -1526,7 +1526,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am308Rounds,
     }
- 
+
     item Ammo_308Winchester_FMJ_Box
     {
         Weight = 0.4,
@@ -1535,7 +1535,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am308Box,
     }
-    
+
     item Ammo_308Winchester_FMJ_Can
     {
         Weight = 4.0,
@@ -1554,7 +1554,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am308HPRounds,
     }
- 
+
     item Ammo_308Winchester_HP_Box
     {
         Weight = 0.4,
@@ -1563,7 +1563,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am308HPBox,
     }
-    
+
     item Ammo_308Winchester_HP_Can
     {
         Weight = 4.0,
@@ -1573,7 +1573,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
- 
+
     /** 5.7x28mm **/
     item Case_57x28mm
     {
@@ -1584,7 +1584,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case57x28,
     }
- 
+
     item Case_57x28mm_Box
     {
         Weight = 0.25,
@@ -1593,7 +1593,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am57x28Box,
     }
-    
+
     item Case_57x28mm_Can
     {
         Weight = 2.5,
@@ -1602,7 +1602,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_57x28mm
     {
         Count = 1,
@@ -1612,7 +1612,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am57x28Rounds,
     }
- 
+
     item Ammo_57x28mm_FMJ
     {
         Count = 1,
@@ -1622,7 +1622,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am57x28Rounds,
     }
- 
+
     item Ammo_57x28mm_FMJ_Box
     {
         Weight = 0.5,
@@ -1631,7 +1631,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am57x28Box,
     }
-    
+
     item Ammo_57x28mm_FMJ_Can
     {
         Weight = 5.0,
@@ -1640,7 +1640,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_57x28mm_HP
     {
         Count = 1,
@@ -1650,7 +1650,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am57x28HPRounds,
     }
- 
+
     item Ammo_57x28mm_HP_Box
     {
         Weight = 0.5,
@@ -1659,7 +1659,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am57x28HPBox,
     }
-    
+
     item Ammo_57x28mm_HP_Can
     {
         Weight = 5.0,
@@ -1668,8 +1668,8 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
- 
+
+
     /** 9x19mm **/
     item Case_9x19mm
     {
@@ -1680,7 +1680,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case9x19,
     }
- 
+
     item Case_9x19mm_Box
     {
         Weight = 0.5,
@@ -1689,7 +1689,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am9x19Box,
     }
- 
+
     item Case_9x19mm_Can
     {
         Weight = 2.5,
@@ -1708,7 +1708,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am9x19Rounds,
     }
- 
+
     item Ammo_9x19mm_FMJ
     {
         Count = 1,
@@ -1718,7 +1718,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am9x19Rounds,
     }
- 
+
     item Ammo_9x19mm_FMJ_Box
     {
         Weight = 0.5,
@@ -1727,7 +1727,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am9x19Box,
     }
- 
+
     item Ammo_9x19mm_FMJ_Can
     {
         Weight = 5.0,
@@ -1746,7 +1746,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am9x19HPRounds,
     }
- 
+
     item Ammo_9x19mm_HP_Box
     {
         Weight = 0.5,
@@ -1755,7 +1755,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am9x19HPBox,
     }
- 
+
     item Ammo_9x19mm_HP_Can
     {
         Weight = 5.0,
@@ -1776,7 +1776,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case10x25,
     }
- 
+
     item Case_10x25mm_Box
     {
         Weight = 0.25,
@@ -1785,7 +1785,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am10x25Box,
     }
-    
+
     item Case_10x25mm_Can
     {
         Weight = 2.5,
@@ -1794,7 +1794,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_10x25mm
     {
         Count = 1,
@@ -1804,7 +1804,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am10x25Rounds,
     }
- 
+
     item Ammo_10x25mm_FMJ
     {
         Count = 1,
@@ -1814,7 +1814,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am10x25Rounds,
     }
- 
+
     item Ammo_10x25mm_FMJ_Box
     {
         Weight = 0.5,
@@ -1823,7 +1823,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am10x25Box,
     }
-    
+
     item Ammo_10x25mm_FMJ_Can
     {
         Weight = 5.0,
@@ -1832,7 +1832,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_10x25mm_HP
     {
         Count = 1,
@@ -1842,7 +1842,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am10x25HPRounds,
     }
- 
+
     item Ammo_10x25mm_HP_Box
     {
         Weight = 0.5,
@@ -1851,7 +1851,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am10x25HPBox,
     }
-    
+
     item Ammo_10x25mm_HP_Can
     {
         Weight = 5.0,
@@ -1871,7 +1871,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Case556x45,
     }
- 
+
     item Case_556x45mm_Box
     {
         Weight = 0.2,
@@ -1880,7 +1880,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am556x45Box,
     }
-    
+
     item Case_556x45mm_Can
     {
         Weight = 2.0,
@@ -1899,7 +1899,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am556x45Rounds,
     }
- 
+
     item Ammo_556x45mm_FMJ
     {
         Count = 1,
@@ -1909,7 +1909,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am556x45Rounds,
     }
- 
+
     item Ammo_556x45mm_FMJ_Box
     {
         Weight = 0.375,
@@ -1918,7 +1918,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am556x45Box,
     }
-    
+
     item Ammo_556x45mm_FMJ_Can
     {
         Weight = 3.75,
@@ -1937,7 +1937,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am556x45HPRounds,
     }
- 
+
     item Ammo_556x45mm_HP_Box
     {
         Weight = 0.375,
@@ -1946,7 +1946,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am556x45HPBox,
     }
-    
+
     item Ammo_556x45mm_HP_Can
     {
         Weight = 3.75,
@@ -1976,7 +1976,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am762x39Box,
     }
-    
+
     item Case_762x39mm_Can
     {
         Weight = 2.0,
@@ -2014,7 +2014,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x39Box,
     }
-    
+
     item Ammo_762x39mm_FMJ_Can
     {
         Weight = 4.0,
@@ -2042,7 +2042,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x39HPBox,
     }
-    
+
     item Ammo_762x39mm_HP_Can
     {
         Weight = 4.0,
@@ -2072,7 +2072,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am762x51Box,
     }
-    
+
     item Case_762x51mm_Can
     {
         Weight = 2.0,
@@ -2081,7 +2081,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_762x51mm
     {
         Count = 1,
@@ -2101,7 +2101,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x51Rounds,
     }
-    
+
     item Ammo_762x51mm_FMJ_Box
     {
         Weight = 0.4,
@@ -2110,7 +2110,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x51Box,
     }
-    
+
     item Ammo_762x51mm_FMJ_Can
     {
         Weight = 4.0,
@@ -2119,7 +2119,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
     item Ammo_762x51mm_HP
     {
         Count = 1,
@@ -2129,7 +2129,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x51HPRounds,
     }
-    
+
     item Ammo_762x51mm_HP_Box
     {
         Weight = 0.4,
@@ -2138,7 +2138,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x51HPBox,
     }
-    
+
     item Ammo_762x51mm_HP_Can
     {
         Weight = 4.0,
@@ -2147,8 +2147,8 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
-  
- 
+
+
     /** 7.62x54R **/
     item Case_762x54mm
     {
@@ -2168,7 +2168,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am762x54Box,
     }
-    
+
     item Case_762x54mm_Can
     {
         Weight = 2.5,
@@ -2187,7 +2187,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x54Rounds,
     }
- 
+
     item Ammo_762x54mm_FMJ
     {
         Count = 1,
@@ -2197,7 +2197,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x54Rounds,
     }
-    
+
     item Ammo_762x54mm_FMJ_Box
     {
         Weight = 0.5,
@@ -2206,7 +2206,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x54Box,
     }
-    
+
     item Ammo_762x54mm_FMJ_Can
     {
         Weight = 5.0,
@@ -2225,7 +2225,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x54HPRounds,
     }
-    
+
     item Ammo_762x54mm_HP_Box
     {
         Weight = 0.5,
@@ -2234,7 +2234,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am762x54HPBox,
     }
-    
+
     item Ammo_762x54mm_HP_Can
     {
         Weight = 5.0,
@@ -2243,7 +2243,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = AmmoBox,
     }
- 
+
 
     /** 12g **/
     item Case_12g
@@ -2264,7 +2264,7 @@ module ORGM
         DisplayCategory = Item,
         Icon = Am12gBox,
     }
-    
+
     item Case_12g_Can
     {
         Weight = 2.5,
@@ -2274,7 +2274,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    
+
     item Ammo_12g
     {
         Count = 1,
@@ -2284,7 +2284,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am12gRounds,
     }
- 
+
     item Ammo_12g_00Buck
     {
         Count = 1,
@@ -2294,7 +2294,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am12gRounds,
     }
- 
+
     item Ammo_12g_00Buck_Box
     {
         Weight = 1,
@@ -2303,7 +2303,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am12gBox,
     }
-    
+
     item Ammo_12g_00Buck_Can
     {
         Weight = 10.0,
@@ -2322,7 +2322,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am12gSlugRounds,
     }
- 
+
     item Ammo_12g_Slug_Box
     {
         Weight = 1,
@@ -2331,7 +2331,7 @@ module ORGM
         DisplayCategory = Ammo,
         Icon = Am12gSlugBox,
     }
-    
+
     item Ammo_12g_Slug_Can
     {
         Weight = 10.0,
