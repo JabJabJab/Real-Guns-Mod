@@ -1,7 +1,7 @@
 /**        ORMtnMan's Real Gun Mod       **/
 
 module ORGM
-{   
+{
     item BenelliM3
     {
         DisplayName                 = ORGM_BenelliM3,
@@ -65,9 +65,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
-    
+
     item BenelliM3SO
     {
         DisplayName                 = ORGM_BenelliM3SO,
@@ -132,9 +132,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
-    
+
 
     item BenelliXM1014
     {
@@ -175,7 +175,7 @@ module ORGM
         ConditionMax                = 10,
         ConditionLowerChanceOneIn   =   200,
         MultipleHitConditionAffected = FALSE,
-        
+
         SwingSound                  = ORGMM3,
         SoundRadius                 = 200,
         SoundVolume                 = 200,
@@ -199,9 +199,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
-    
+
     item Hawk982
     {
         DisplayName                 = ORGM_Hawk982,
@@ -266,7 +266,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Ithaca37
@@ -332,7 +332,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Ithaca37SO
@@ -398,7 +398,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item M1216
@@ -464,7 +464,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Moss590
@@ -476,7 +476,7 @@ module ORGM
         WeaponWeight                = 3.6,
 
         AmmoType                    = Ammo_12g,
-        ClipSize                    = 6,
+        ClipSize                    = 8,
         MinRange                    = 0.6,
         MaxRange                    = 7,
         MinDamage                   = 1.0,
@@ -530,7 +530,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Moss590SO
@@ -542,7 +542,7 @@ module ORGM
         WeaponWeight                = 3.1,
 
         AmmoType                    = Ammo_12g,
-        ClipSize                    = 5,
+        ClipSize                    = 6,
         MinRange                    = 0.6,
         MaxRange                    = 7,
         MinDamage                   = 1.0,
@@ -596,7 +596,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Rem870
@@ -662,7 +662,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Rem870SO
@@ -728,8 +728,8 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
-    }   
+
+    }
 
     item Silverhawk
     {
@@ -794,7 +794,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item SilverHawkSO
@@ -860,9 +860,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
-    }   
-    
+
+    }
+
     item Spas12
     {
         DisplayName                 = ORGM_Spas12,
@@ -926,9 +926,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
-    
+
     item Stevens320
     {
         DisplayName                 = ORGM_Stevens320,
@@ -992,7 +992,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Striker
@@ -1058,9 +1058,9 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
-    
+
     item VEPR12
     {
         DisplayName                 = ORGM_VEPR12,
@@ -1124,7 +1124,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Win1887
@@ -1190,7 +1190,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
     item Win1887SO
@@ -1256,7 +1256,7 @@ module ORGM
         SwingAnim                   = Rifle,
         IdleAnim                    = Idle_Weapon2,
         RunAnim                     = Run_Weapon2,
-        
+
     }
 
 }
