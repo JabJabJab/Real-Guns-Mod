@@ -348,9 +348,9 @@ Items_RU = {
 
 
     -- Mods.txt
-    DisplayName_ORGM_2xScope            = "Оптический прицел - 2X увеличение",
-    DisplayName_ORGM_4xScope            = "Оптический прицел - 4X увеличение",
-    DisplayName_ORGM_8xScope            = "Оптический прицел - 8X увеличение",
+    DisplayName_ORGM_2xScope            = "Оптический прицел - 2X",
+    DisplayName_ORGM_4xScope            = "Оптический прицел - 4X",
+    DisplayName_ORGM_8xScope            = "Оптический прицел - 8X",
     DisplayName_ORGM_FibSig             = "Световолокновый прицел",
     DisplayName_ORGM_Foregrip           = "Вертикальная передняя рукоятка",
     DisplayName_ORGM_FullCh             = "Полноразмерный чок-бор",
@@ -477,7 +477,7 @@ Items_RU = {
     DisplayName_ORGM_Ithaca37SO         = "Ithaca Model 37 Обрез",
     DisplayName_ORGM_M1216              = "SRM Arms Model 1216",
     DisplayName_ORGM_Moss590            = "Mossberg 590",
-    DisplayName_ORGM_Moss590SO          = "Mossberg 590 Обрез",
+    DisplayName_ORGM_Moss590SO          = "Mossberg 590A1",
     DisplayName_ORGM_Rem870             = "Remington 870",
     DisplayName_ORGM_Rem870SO           = "Remington 870 Обрез",
     DisplayName_ORGM_Silverhawk         = "Beretta Model 471 Silverhawk",
