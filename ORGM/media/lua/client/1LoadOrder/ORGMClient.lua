@@ -34,7 +34,7 @@ Client.loadModels = function()
     Client.addModel('shotgun', 'shotgun', 'Shotgun')
     Client.addModel('shotgunsawn', 'shotgunsawn', 'ShotgunSawn')
     Client.addModel('shotgunblack', 'shotgunblack', 'Shotgun_Black')
-    Client.addModel('shotgunsawnblack', 'shotgunsawnblack', 'ShotgunSawn_Black')
+    --Client.addModel('shotgunsawnblack', 'shotgunsawnblack', 'ShotgunSawn_Black')
 
     -- revolvers
     Client.addModel("coltanaconda", "coltanaconda", "coltpython") -- 3.09, credits to Filibuster Rhymes
@@ -120,9 +120,18 @@ Client.loadModels = function()
     Client.addModel('svd') -- updated
 
     -- shotguns
+    Client.addModel('benellim3') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('benellim3so', 'benellim3so', 'benellim3') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('benellixm1014', 'benellixm1014', 'benellim3') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ithaca37') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('ithaca37so', 'ithaca37so', 'ithaca37') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('moss590') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('moss590a1', 'moss590a1', 'moss590') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rem870') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('rem870so', 'rem870so', 'rem870') -- 3.09, credits to Filibuster Rhymes
+
+
     Client.addModel('m1216') -- new
-    Client.addModel('super90') -- new
-    Client.addModel('r870') -- new
     Client.addModel('silver') -- new
     Client.addModel('striker') -- new
     Client.addModel('stevens') -- new
