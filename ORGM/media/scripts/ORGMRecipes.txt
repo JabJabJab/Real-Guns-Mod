@@ -4096,16 +4096,6 @@ module ORGM
     recipe Sawn-off
     {
         keep Saw,
-        Moss590,
-
-        Result:Moss590SO,
-        Time:200.0,
-        Category:ORGM,
-    }
-
-    recipe Sawn-off
-    {
-        keep Saw,
         Rem870,
 
         Result:Rem870SO,
