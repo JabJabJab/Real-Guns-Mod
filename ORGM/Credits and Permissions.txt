@@ -6,7 +6,7 @@ ORGM Rechambered was created by ORMntMan and Fenris_Wolf.
 If you wish to modify and reupload this mod to the workshop, you must seek
 the permission of BOTH ORMntMan and Fenris_Wolf.
 ORMntMan can be reached through the steam workshop page, Fenris_Wolf through
-theindiestone.com forums.
+theindiestone.com forums, or through the ORGM discord.
 
 There are very few reasons why you would need to do so. 98% of ORGM can be
 overwritten with the use of extra patch mods without having to reupload the
@@ -23,6 +23,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=514618604
 https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
 
 Failure to comply with these simple terms will result in your mod getting flagged.
+
+If you wish to use the models in your own mod, you should seek the permission of
+Filibuster Rhymes as most of them were created by him.
 
 
 ************************************************************************

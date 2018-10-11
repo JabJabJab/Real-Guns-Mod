@@ -16,6 +16,8 @@ or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/OR
 
 * Full html API documentation.
 
+* Many new models Handcrafted by the excellent Filibuster Rhymes!
+
 * Due to new mechanics in effect (see below), the Damage Multiplier setting now
 defaults to 0.6 instead of 0.5.
 Users of previous ORGM versions will have to manually adjust the setting in the PZ
@@ -56,15 +58,15 @@ options screen ORGM tab.
 
 * Added partial CN and CH translations by Cleave
 
-* New models Handcrafted by the excellent Filibuster Rhymes!
-AKM, AR-10, AR-15, M-16, M4, SR-25 and R-25, and all revolvers.
-
-
 * Added total rounds fired to the Inspection Window.
 
 * Changed Glock22 magazine capacity to 15 (was 10)
 
 * Changed cylinder capacity of the Raging Bull to 5 (was 6)
+
+* Changed capacity of Mossberg 590 to 8+1 and 7+1
+
+* Renamed Mossberg 590 sawnoff version to 590A1 and removed recipe
 
 * Changed Display Name of '.45 Colt' ammo to its proper name '.45 Long Colt'
 
