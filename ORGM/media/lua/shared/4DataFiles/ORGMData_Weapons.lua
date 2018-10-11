@@ -1408,7 +1408,7 @@ register("Mosin", {
     description = "IGUI_Firearm_Desc_Mosin",
 })
 register("R25", {
-    lastChanged = 24,
+    lastChanged = 27,
     category = ORGM.RIFLE,
     actionType = ORGM.AUTO,
     autoType = ORGM.DIRECTGAS,
@@ -1724,10 +1724,10 @@ register("M1216", {
     description = "IGUI_Firearm_Desc_M1216",
 })
 register("Moss590", {
-    lastChanged = 24,
+    lastChanged = 27,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
-    barrelLength = 26,
+    barrelLength = 20,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
@@ -1739,10 +1739,10 @@ register("Moss590", {
     description = "IGUI_Firearm_Desc_Moss590",
 })
 register("Moss590SO", {
-    lastChanged = 24,
+    lastChanged = 27,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
-    barrelLength = 18,
+    barrelLength = 18.5,
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",

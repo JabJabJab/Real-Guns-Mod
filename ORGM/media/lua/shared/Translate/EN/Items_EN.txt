@@ -366,8 +366,8 @@ Items_EN = {
     DisplayName_ORGM_SkeletalStock      = "Skeletal Stock",
     DisplayName_ORGM_CollapsingStock    = "Collapsing Stock",
 
-    
-    
+
+
     -- Pistols.txt
     DisplayName_ORGM_AutomagV       = "AMT Automag V",
     DisplayName_ORGM_BBPistol       = "Daisy Powerline Model 201",
@@ -399,15 +399,15 @@ Items_EN = {
     DisplayName_ORGM_WaltherPPK     = "Walther PPK",
     DisplayName_ORGM_XD40           = "Springfield XD-40",
 
-    
+
 
     -- Repair.txt
     DisplayName_ORGM_WD40           = "WD-40",
     DisplayName_ORGM_Brushkit       = "Gun Brush Kit",
     DisplayName_ORGM_Maintkit       = "Gun Maintenance Kit",
 
-    
-    
+
+
     -- Revolvers.txt
     DisplayName_ORGM_ColtAnac       = "Colt Anaconda",
     DisplayName_ORGM_ColtPyth       = "Colt Python",
@@ -426,7 +426,7 @@ Items_EN = {
     DisplayName_ORGM_Taurus454      = "Taurus Raging Bull 454",
 
 
-    
+
     -- Rifles.txt
     DisplayName_ORGM_AIAW308        = "AI-AW .308",
     DisplayName_ORGM_AKM            = "Norinco AKM (Semi-Auto)",
@@ -465,7 +465,7 @@ Items_EN = {
     DisplayName_ORGM_WinM70         = "Winchester Model 70",
     DisplayName_ORGM_WinM94         = "Winchester Model 1894",
 
-    
+
 
 
     -- Shotguns.txt
@@ -477,7 +477,7 @@ Items_EN = {
     DisplayName_ORGM_Ithaca37SO         = "Ithaca Model 37 Sawn-off",
     DisplayName_ORGM_M1216              = "SRM Arms Model 1216",
     DisplayName_ORGM_Moss590            = "Mossberg 590",
-    DisplayName_ORGM_Moss590SO          = "Mossberg 590 Sawn-off",
+    DisplayName_ORGM_Moss590SO          = "Mossberg 590A1",
     DisplayName_ORGM_Rem870             = "Remington 870",
     DisplayName_ORGM_Rem870SO           = "Remington 870 Sawn-off",
     DisplayName_ORGM_Silverhawk         = "Beretta Model 471 Silverhawk",
@@ -506,6 +506,5 @@ Items_EN = {
     DisplayName_ORGM_Mac11              = "Mac-11",
     DisplayName_ORGM_Skorpion           = "Skorpion vz. 61",
     DisplayName_ORGM_Uzi                = "Uzi",
-    
-}
 
+}
