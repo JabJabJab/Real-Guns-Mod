@@ -31,11 +31,6 @@ end
 ]]
 Client.loadModels = function()
 
-    Client.addModel('shotgun', 'shotgun', 'Shotgun')
-    Client.addModel('shotgunsawn', 'shotgunsawn', 'ShotgunSawn')
-    Client.addModel('shotgunblack', 'shotgunblack', 'Shotgun_Black')
-    --Client.addModel('shotgunsawnblack', 'shotgunsawnblack', 'ShotgunSawn_Black')
-
     -- revolvers
     Client.addModel("coltanaconda", "coltanaconda", "coltpython") -- 3.09, credits to Filibuster Rhymes
     Client.addModel('coltpython') -- 3.09, credits to Filibuster Rhymes
@@ -55,20 +50,26 @@ Client.loadModels = function()
     Client.addModel('taurusraging') -- 3.09, credits to Filibuster Rhymes
 
     -- pistols
+    Client.addModel("automagv") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('beretta92') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('browninghp') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("colt38s", "colt38s", "m1911") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("coltdelta") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("cz75") -- 3.09.2, credits to Filibuster Rhymes
+
     Client.addModel('glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock20', 'glock20', 'glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock21', 'glock21', 'glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock22', 'glock17', 'glock17') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('coltcommander') -- new
-    Client.addModel('deltaelite') -- new
+    Client.addModel("kahrct40") -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("kahrp380", "kahrp380", "kahrct40") -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m1911') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("spr19119", "coltdelta", "m1911") -- 3.09.2, credits to Filibuster Rhymes
+
     Client.addModel('deagle44') -- new
     Client.addModel('deaglexix') -- new
     Client.addModel('fn57') -- new
     Client.addModel('glock') -- new,
-    Client.addModel('m1911') -- new
-    Client.addModel('sfield19119') -- new
     Client.addModel('ppk') -- new
     Client.addModel('sfieldxd') -- new
     Client.addModel('rugermkii')
@@ -76,14 +77,17 @@ Client.loadModels = function()
     -- smgs
     Client.addModel('beretta93r') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock18c', 'glock17', 'glock18c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("m1a1") -- 3.09.2, credits to Filibuster Rhymes
+	Client.addModel("hkmp5") -- 3.09.2, credits to Filibuster Rhymes
+	Client.addModel("hkump") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("ktplr", "ktplr", "m16") -- 3.09.2, credits to Filibuster Rhymes
+
     Client.addModel('kriss')
     Client.addModel('krissciv')
-    Client.addModel('mp5') -- updated
     Client.addModel('mac10') -- new
     Client.addModel('mac11') -- new
     Client.addModel('p90')
     Client.addModel('skorpion') -- new
-    Client.addModel('ump') -- updated
     Client.addModel('uzi') -- updated
 
     -- rifles
@@ -98,10 +102,16 @@ Client.loadModels = function()
 
     Client.addModel('enfield') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('fnfal') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("henrybb") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('lsr') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('m1903') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('mini14') -- 3.09, credits to Filibuster Rhymes
 
+    Client.addModel("sa80") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("sig550") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("sig551", "sig551", "sig550") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('sks') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("winm94") -- 3.09.2, credits to Filibuster Rhymes
 
     Client.addModel('henry')
     Client.addModel('hk91') -- new, replaces g3
@@ -109,13 +119,8 @@ Client.loadModels = function()
     Client.addModel('m249') -- new
     Client.addModel('m14') -- updated
     Client.addModel('mosin') -- new
-    Client.addModel('sks') -- updated
     Client.addModel('r700') -- new
-    Client.addModel('sa80') -- updated
-    Client.addModel('sig551') -- new
-
     Client.addModel('l96') -- new
-    Client.addModel('kalash') -- updated
     Client.addModel('garand') -- new
     Client.addModel('svd') -- updated
 
@@ -123,18 +128,23 @@ Client.loadModels = function()
     Client.addModel('benellim3') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('benellim3so', 'benellim3so', 'benellim3') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('benellixm1014', 'benellixm1014', 'benellim3') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('hawk982') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('ithaca37') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('ithaca37so', 'ithaca37so', 'ithaca37') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('moss590') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('moss590a1', 'moss590a1', 'moss590') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('rem870') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('rem870so', 'rem870so', 'rem870') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('silverhawk') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('silverhawkso', 'silverhawkso', 'silverhawk') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('win1887') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('win1887so', 'win1887so', 'win1887') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('stevens320', 'stevens320', 'hawk982') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('vepr12') -- 3.09.2, credits to Filibuster Rhymes
 
 
     Client.addModel('m1216') -- new
-    Client.addModel('silver') -- new
     Client.addModel('striker') -- new
-    Client.addModel('stevens') -- new
     Client.addModel('spas12')
 
     ORGM.log(ORGM.INFO, "All 3d models loaded.")

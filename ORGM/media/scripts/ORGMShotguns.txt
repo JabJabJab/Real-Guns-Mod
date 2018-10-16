@@ -206,7 +206,7 @@ module ORGM
     {
         DisplayName                 = ORGM_Hawk982,
         Icon                        = Hawk982,
-        WeaponSprite                = shotgunblack,
+        WeaponSprite                = hawk982,
         Weight                      = 3.17,
         WeaponWeight                = 3.17,
 
@@ -735,7 +735,7 @@ module ORGM
     {
         DisplayName                 = ORGM_Silverhawk,
         Icon                        = Silverhawk,
-        WeaponSprite                = silver,
+        WeaponSprite                = silverhawk,
         Weight                      = 3,
         WeaponWeight                = 3,
 
@@ -801,7 +801,7 @@ module ORGM
     {
         DisplayName                 = ORGM_SilverHawkSO,
         Icon                        = SilverhawkSO,
-        WeaponSprite                = silver,
+        WeaponSprite                = silverhawkso,
         Weight                      = 2.5,
         WeaponWeight                = 2.8,
 
@@ -933,12 +933,12 @@ module ORGM
     {
         DisplayName                 = ORGM_Stevens320,
         Icon                        = Stevens320,
-        WeaponSprite                = stevens,
+        WeaponSprite                = stevens320,
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
         AmmoType                    = Ammo_12g,
-        ClipSize                    = 8,
+        ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
         MinDamage                   = 1.0,
@@ -1065,7 +1065,7 @@ module ORGM
     {
         DisplayName                 = ORGM_VEPR12,
         Icon                        = VEPR12,
-        WeaponSprite                = kalash,
+        WeaponSprite                = vepr12,
         Weight                      = 4.2,
         WeaponWeight                = 4.2,
 
@@ -1131,7 +1131,7 @@ module ORGM
     {
         DisplayName                 = ORGM_Win1887,
         Icon                        = Win1887,
-        WeaponSprite                = shotgun,
+        WeaponSprite                = win1887,
         Weight                      = 3.6,
         WeaponWeight                = 3.6,
 
@@ -1197,7 +1197,7 @@ module ORGM
     {
         DisplayName                 = ORGM_Win1887SO,
         Icon                        = Win1887SO,
-        WeaponSprite                = shotgunsawn,
+        WeaponSprite                = win1887so,
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
