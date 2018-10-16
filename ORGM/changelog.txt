@@ -6,7 +6,13 @@ To get the latest stable version, visit [theindiestone forums](https://theindies
 or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip).
 
 
+---------------------------------------------------------------------------------------
 
+## version 3.09.2
+
+* Added tons of new models by Filibuster Rhymes
+
+* Decreased capacity on Stevens 320 to 5 (was 8)
 
 ---------------------------------------------------------------------------------------
 
