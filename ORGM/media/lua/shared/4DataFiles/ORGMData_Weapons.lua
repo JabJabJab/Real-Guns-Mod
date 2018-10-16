@@ -1836,7 +1836,7 @@ register("Spas12", {
     description = "IGUI_Firearm_Desc_Spas12",
 })
 register("Stevens320", {
-    lastChanged = 24,
+    lastChanged = 28,
     category = ORGM.SHOTGUN,
     actionType = ORGM.PUMP,
     barrelLength = 18.5,
