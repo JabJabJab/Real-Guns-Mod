@@ -17,7 +17,7 @@ UI_RU = {
     UI_optionscreen_orgm_usecases = "Оставлять стреляные гильзы",
     UI_optionscreen_orgm_usecases_tooltip = "Оружие выбрасывает стреляные гильзы при стрельбе",
 	UI_optionscreen_orgm_usebarrellen = "Использовать модификаторы длины ствола",
-    UI_optionscreen_orgm_usebarrellen_tooltip = "Длина ствола влияет на урон, дольность и отдачу",
+    UI_optionscreen_orgm_usebarrellen_tooltip = "Длина ствола влияет на урон, дальность и отдачу",
 	UI_optionscreen_orgm_disablefullauto = "Отключить автоматический режим ведения огня",
     UI_optionscreen_orgm_disablefullauto_tooltip = "Оружие в автоматическом режиме ведёт себя так, словно оно в полуавтоматическом",
 	
@@ -40,7 +40,7 @@ UI_RU = {
     UI_optionscreen_orgm_aiminghitmod = "Модификатор шанса попадания от навыка Точность",
     UI_optionscreen_orgm_aiminghitmod_tooltip = "Модификатор применяется к шансу попадания за каждый уровень навыка Точность (по умолчанию 7)",
     UI_optionscreen_orgm_critical = "Шанс критического попадания",
-    UI_optionscreen_orgm_critical_tooltip = "Шанс попасть в голову/критического удара, до применения навыка Точность и других модификаторов (по умолчанию 20)",
+    UI_optionscreen_orgm_critical_tooltip = "Шанс попасть в голову / критического удара, до применения навыка Точность и других модификаторов (по умолчанию 20)",
     UI_optionscreen_orgm_aimingcritmod = "Модификатор шанса критического попадания от навыка Точность",
     UI_optionscreen_orgm_aimingcritmod_tooltip = "Модификатор применяется к шансу критического попадания за каждые 2 уровня навыка Точность (по умолчанию 10)",
 	
@@ -81,10 +81,10 @@ UI_RU = {
     UI_optionscreen_orgm_huntingspawnmulti_tooltip = "Мультипликатор шанса спавна добычи в охотничьих хижинах",
 
     UI_optionscreen_orgm_silencerspatch = "Использовать Silencers патч",
-    UI_optionscreen_orgm_silencerspatch_tooltip = "Использовать встроеный патч для Nolan's ORGM Silencers Mod",
+    UI_optionscreen_orgm_silencerspatch_tooltip = "Использовать встроенный патч для мода ORGM Silencers",
     UI_optionscreen_orgm_necroforgepatch = "Использовать Necroforge патч",
-    UI_optionscreen_orgm_necroforgepatch_tooltip = "Использовать встроеный патч для NecroForge",
+    UI_optionscreen_orgm_necroforgepatch_tooltip = "Использовать встроеный патч для мода NecroForge",
     UI_optionscreen_orgm_survivorspatch = "Использовать Survivors патч",
-    UI_optionscreen_orgm_survivorspatch_tooltip = "Использовать встроеный патч для Nolan's Survivors mod",
+    UI_optionscreen_orgm_survivorspatch_tooltip = "Использовать встроенный патч для мода Survivors",
     
 }
