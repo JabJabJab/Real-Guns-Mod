@@ -5,6 +5,13 @@ UI_EN = {
     UI_optionscreen_binding_Reload Any Magazine = "Reload Any Magazine",
     UI_optionscreen_binding_Select Fire Toggle = "Select Fire Toggle",
     UI_optionscreen_binding_Firearm Inspection Window = "Firearm Inspection Window",
+
+    UI_optionscreen_orgm_section_balance = "Balance",
+    UI_optionscreen_orgm_section_spawn = "Spawning",
+    UI_optionscreen_orgm_section_general = "General",
+    UI_optionscreen_orgm_section_compatibility = "Compatibility",
+    UI_optionscreen_orgm_section_advanced = "Advanced",
+
     UI_optionscreen_orgm_loglevel = "Logging Level",
     UI_optionscreen_orgm_loglevel_error = "Errors Only",
     UI_optionscreen_orgm_loglevel_warn = "Errors and Warnings",
@@ -27,7 +34,8 @@ UI_EN = {
     UI_optionscreen_orgm_usebarrellen_tooltip = "Barrel length effects damage, range and recoil",
     UI_optionscreen_orgm_disablefullauto = "Disable Full-Auto Fire",
     UI_optionscreen_orgm_disablefullauto_tooltip = "Weapons in full-auto mode behave like they were in semi-auto",
-
+    UI_optionscreen_orgm_hitfullauto = "Full-Auto Hit Penalty",
+    UI_optionscreen_orgm_hitfullauto_tooltip = "Weapons in full-auto mode have hit chances reduced by this much + recoil",
 
     UI_optionscreen_orgm_removebase = "Remove Base Game Firearms",
     UI_optionscreen_orgm_removebase_tooltip = "Attempts to remove all vanilla firearms from containers (special stashes are not properly handled at this time)",
