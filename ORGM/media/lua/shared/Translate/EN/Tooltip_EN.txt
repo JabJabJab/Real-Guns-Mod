@@ -17,8 +17,28 @@ Tooltip_EN = {
     Tooltip_Rifsling = "A strap that makes carrying a weapon less of a burden",
     Tooltip_SkeletalStock = "A skeletal carbon fiber stock to lighten the gun",
     Tooltip_CollapsingStock = "A stock that collapses to give the gun a smaller profile making it easier to carry",
-    
+
+    -- new tooltip stuff
+    Tooltip_Firearm_Type = "Type:",
+    Tooltip_Firearm_Mode = "Mode:",
+    Tooltip_Firearm_Barrel = "Barrel Length:",
+    Tooltip_Firearm_Inches = "Inches",
+    Tooltip_Firearm_SetAmmo = "SetAmmo:",
+    Tooltip_Firearm_Loaded = "Loaded:",
+    Tooltip_Firearm_MinDamage = "Min Damage:",
+    Tooltip_Firearm_MaxDamage = "Max Damage:",
+    Tooltip_Firearm_Range = "Range:",
+    Tooltip_Firearm_Recoil = "Recoil:",
+    Tooltip_Firearm_Noise = "Noise:",
+    Tooltip_Firearm_Dirt = "Dirt:",
+
+    Tooltip_Firearm_Critical = "Critical:",
+    Tooltip_Firearm_HitChance = "Accuracy:",
+    Tooltip_Firearm_AimTime = "Movement:",
+    Tooltip_Firearm_SwingTime = "Acquisition:",
+
     -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
+    -- for the old "classic" tooltips
     Tooltip_loaded_SA = "Fire Mode:   Semi-Auto",
     Tooltip_loaded_FA = "Fire Mode:   Full-Auto",
     Tooltip_loaded_mixed = "Loaded Ammo:  Mixed Load",
@@ -28,7 +48,7 @@ Tooltip_EN = {
     Tooltip_loaded_Ammo_117BB = "Loaded Ammo:  .117 BBs",
     Tooltip_loaded_Ammo_117BB_SA = "Loaded Ammo:  .117 BBs (Semi-Auto)",
     Tooltip_loaded_Ammo_117BB_FA = "Loaded Ammo:  .117 BBs (Full-Auto)",
-    
+
     ----------------------------------
     Tooltip_loaded_Ammo_22LR_FMJ = "Loaded Ammo:  .22LR FMJ",
     Tooltip_loaded_Ammo_22LR_FMJ_SA = "Loaded Ammo:  .22LR FMJ (Semi-Auto)",
