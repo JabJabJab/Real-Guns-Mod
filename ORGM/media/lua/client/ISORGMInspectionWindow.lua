@@ -256,8 +256,8 @@ function StatPanel:updateFirearm(item)
     local lastRound = data.lastRound
     if lastRound then
         local ammoData = Ammo.getData(lastRound)
-        if ammoData then lastRound = (ammoData.DisplayName or lastRound) .." " .. (ammoData.RoundType or "Round") end
-        --text = text .. " Last Round: " .. tostring(lastRound) .. " <LINE> "
+        if ammoData then lastRound = (ammoData.instance:getDisplayName() or lastRound) end
+        --if ammoData then lastRound = (ammoData.DisplayName or lastRound) .." " .. (ammoData.RoundType or "Round") end
     else
         lastRound = getText("IGUI_Firearm_None") --"None"
     end
@@ -268,17 +268,18 @@ function StatPanel:updateFirearm(item)
         loadedAmmo = getText("IGUI_Firearm_AmmoMixed")
     else
         local ammoData = Ammo.getData(loadedAmmo)
-        if ammoData then  loadedAmmo = (ammoData.DisplayName or loadedAmmo) .." " ..(ammoData.RoundType or "Round") .."s" end
+        if ammoData then loadedAmmo = (ammoData.instance:getDisplayName() or loadedAmmo) end
+        --if ammoData then  loadedAmmo = (ammoData.DisplayName or loadedAmmo) .." " ..(ammoData.RoundType or "Round") .."s" end
     end
 
-    preferredAmmoType = data.preferredAmmoType
+    local preferredAmmoType = data.preferredAmmoType
     if not preferredAmmoType or preferredAmmoType == 'any' then
        preferredAmmoType = getText("IGUI_Firearm_None")
-    elseif tempText == 'mixed' then
+    elseif preferredAmmoType == 'mixed' then
         preferredAmmoType = getText("IGUI_Firearm_AmmoMixed")
     else
         local ammoData = Ammo.getData(preferredAmmoType)
-        if ammoData then preferredAmmoType = (ammoData.DisplayName or preferredAmmoType) .." " ..(ammoData.RoundType or "Round").."s" end
+        if ammoData then preferredAmmoType = (ammoData.instance:getDisplayName() or preferredAmmoType) end -- .." " ..(ammoData.RoundType or "Round").."s" end
     end
     text = text ..getText("IGUI_Firearm_StatAmmo", capacity, lastRound, loadedAmmo, preferredAmmoType)
     text = text .." <LINE> "
