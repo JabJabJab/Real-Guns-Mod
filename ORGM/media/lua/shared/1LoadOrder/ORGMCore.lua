@@ -199,6 +199,24 @@ ORGM.SEMIAUTOMODE = 0
 --- integer 1
 ORGM.FULLAUTOMODE = 1
 
+--- Item type Constants
+-- @section ItemTypes
+
+ORGM.FIREARM = 1
+ORGM.MAGAZINE = 2
+ORGM.MAGAZINEGROUP = 3
+ORGM.AMMO = 4
+ORGM.AMMOGROUP = 5
+ORGM.COMPONENT = 6
+ORGM.MAINTANCE = 7
+
+--- tooltip Constants
+-- @section ToolTipStyle
+ORGM.TIPFULL = 1
+ORGM.TIPDYNAMIC = 2
+ORGM.TIPCLASSIC = 3
+ORGM.TIPNUMERIC = 4
+
 --- Rarity Constants
 -- @section Rarity
 
@@ -384,6 +402,7 @@ ORGM.SettingsValidator = {
     -- valid options are true or false (default: true)
     UseSurvivorsPatch = {type='boolean', default=true},
 
+    ToolTipStyle = {type='integer', min=1, max=4, default=1},
 
     ----------------------------------
     -- WARNING DEBUG AND ADVANCED Settings. Touch at own risk.
