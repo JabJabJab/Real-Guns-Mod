@@ -160,7 +160,7 @@ ORGM['5.7mm'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',1,4))]
 
 ]]
 function ISORGMWeapon:getReloadTime()
-    return self.reloadTime
+    return Settings.DefaultReloadTime
 end
 
 
@@ -325,7 +325,7 @@ end
 
 ]]
 function ISORGMWeapon:getRackTime()
-    return self.rackTime
+    return Settings.DefaultRackTime
 end
 
 

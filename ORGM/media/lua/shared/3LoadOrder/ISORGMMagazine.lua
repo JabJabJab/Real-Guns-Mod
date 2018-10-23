@@ -15,6 +15,7 @@ and should be removed at a later date.
 require "ISBaseObject"
 
 local Ammo = ORGM.Ammo
+local Settings = ORGM.Settings
 
 ISORGMMagazine = ISBaseObject:derive("ISORGMMagazine")
 
@@ -92,7 +93,7 @@ function ISORGMMagazine:getReloadText()
 end
 
 function ISORGMMagazine:getReloadTime()
-    return self.reloadTime
+    return Settings.DefaultMagazineReoadTime -- self.reloadTime
 end
 
 
