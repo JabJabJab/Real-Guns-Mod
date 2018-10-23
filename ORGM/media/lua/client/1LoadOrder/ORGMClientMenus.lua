@@ -334,7 +334,7 @@ Menu.onShootSelf = function(item, player, modData, reloadable)
     end
 end
 
-Menu.onSetPreferredAmmo = function(item, player, modData, reloadable, value)
+Menu.onSetPreferredAmmo = function(item, player, modData, value)
     modData.preferredAmmoType = value
     --reloadable.preferredAmmoType = value
     --reloadable:syncReloadableToItem(item)
