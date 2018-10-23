@@ -211,6 +211,26 @@ function MainOptions:create()
     end
 	self.gameOptions:add(gameOption)
 
+    -- ToolTip Style
+    local opt = self:addCombo(splitpoint, y, comboWidth, 20, getText("UI_optionscreen_orgm_tiplevel"), {
+            getText("UI_optionscreen_orgm_tiplevel1"),
+            getText("UI_optionscreen_orgm_tiplevel2"),
+            getText("UI_optionscreen_orgm_tiplevel3"),
+            getText("UI_optionscreen_orgm_tiplevel4")
+        }, 2)
+    opt:setToolTipMap({defaultTooltip = getText("UI_optionscreen_orgm_tiplevel_tooltip")})
+	local gameOption = GameOption:new('orgm_tiplevel', opt)
+	function gameOption.toUI(self)
+		self.control.selected = ORGM.Settings.ToolTipStyle
+	end
+	function gameOption.apply(self)
+        ORGM.Settings.ToolTipStyle = self.control.selected
+        ORGM.validateSettingKey('ToolTipStyle')
+        ORGM.writeSettingsFile()
+    end
+	self.gameOptions:add(gameOption)
+
+
     addBoolOption(self, splitpoint, comboWidth, "orgm_jamming", "JammingEnabled")
     addBoolOption(self, splitpoint, comboWidth, "orgm_usecases", "CasesEnabled")
     addBoolOption(self, splitpoint, comboWidth, "orgm_usebarrellen", "UseBarrelLengthModifiers")
