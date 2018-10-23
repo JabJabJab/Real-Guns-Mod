@@ -410,7 +410,7 @@ ORGM.SettingsValidator = {
     -- be read from the file if the keys/values exist.
 
     -- HitChance penalty in full auto, recoil delay is applied to this
-    FullAutoHitChanceAdjustment = {type='integer', default=-10, show=false},
+    FullAutoHitChanceAdjustment = {type='integer', default=-10,},
 
     -- RecoilDelay is reduced by this much in full auto, after HitChance has been modified
     FullAutoRecoilDelayAdjustment = {type='integer', default=-20, show=false},
