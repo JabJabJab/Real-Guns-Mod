@@ -4,11 +4,18 @@ local ORGM = ORGM
 
 -- import these ones locally for performance
 local Settings = ORGM.Settings
+local Firearm = ORGM.Firearm
+local Ammo = ORGM.Ammo
+local Component = ORGM.Component
+local Magazine = ORGM.Magazine
+local Maintance = ORGM.Maintance
+
 local print = print
 local pairs = pairs
 local instanceof = instanceof
 local tostring = tostring
 local math = math
+
 --[[- Utility functions.
 
 These are important core functions, utility functions, and functions for
@@ -276,6 +283,16 @@ ORGM.getFirearm = function(playerObj)
     return item
 end
 
+ORGM.getType = function(item)
+    if Firearm.isFirearm(item) then return ORGM.FIREARM end
+    if Magazine.isMagazine(item) then return ORGM.MAGAZINE end
+    -- TODO: check for magazine group
+    if Ammo.isAmmo(item) then return ORGM.AMMO end
+    -- TODO: check for ammo group
+    if Component.isComponent(item) then return ORGM.COMPONENT end
+    if Maintance.getData(item) then return ORGM.MAINTANCE end
+    return 0
+end
 
 ORGM['.440'] = _G
 --- @section end
