@@ -56,18 +56,23 @@ Client.loadModels = function()
     Client.addModel("colt38s", "colt38s", "m1911") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("coltdelta") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("cz75") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("deagle") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("deaglexix") -- 3.09.2, credits to Filibuster Rhymes
 
     Client.addModel('glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock20', 'glock20', 'glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock21', 'glock21', 'glock17') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('glock22', 'glock17', 'glock17') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("hkmk23") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("kahrct40") -- 3.09, credits to Filibuster Rhymes
     Client.addModel("kahrp380", "kahrp380", "kahrct40") -- 3.09, credits to Filibuster Rhymes
     Client.addModel('m1911') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("spr19119", "coltdelta", "m1911") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('sigp226') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('taurus38', 'sigp226', 'taurus38') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("taurusp132", "taurusp132", "kahrct40") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('waltherp22') -- 3.09.2, credits to Filibuster Rhymes
 
-    Client.addModel('deagle44') -- new
-    Client.addModel('deaglexix') -- new
     Client.addModel('fn57') -- new
     Client.addModel('glock') -- new,
     Client.addModel('ppk') -- new
@@ -75,7 +80,9 @@ Client.loadModels = function()
     Client.addModel('rugermkii')
 
     -- smgs
+    Client.addModel('am180') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('beretta93r') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("fnp90") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('glock18c', 'glock17', 'glock18c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel("m1a1") -- 3.09.2, credits to Filibuster Rhymes
 	Client.addModel("hkmp5") -- 3.09.2, credits to Filibuster Rhymes
@@ -86,7 +93,7 @@ Client.loadModels = function()
     Client.addModel('krissciv')
     Client.addModel('mac10') -- new
     Client.addModel('mac11') -- new
-    Client.addModel('p90')
+    --Client.addModel('p90')
     Client.addModel('skorpion') -- new
     Client.addModel('uzi') -- updated
 
@@ -95,31 +102,34 @@ Client.loadModels = function()
     Client.addModel('akmn') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('ar10') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('ar15', 'ar15', 'm16') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('m16') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('m4c') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('sr25') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('r25', 'r25', 'sr25') -- 3.09, credits to Filibuster Rhymes
-
-    Client.addModel('enfield') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("blr") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('lsr') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('fnfal') -- 3.09, credits to Filibuster Rhymes
     Client.addModel("henrybb") -- 3.09.2, credits to Filibuster Rhymes
-    Client.addModel('lsr') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("hk91", "hk91", "hkg3") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("hkg3") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("hksl8") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('enfield') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('m16') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('m1903') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("m249") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('m4c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("marlin60") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('mini14') -- 3.09, credits to Filibuster Rhymes
-
+    Client.addModel('mosin') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('r25') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("rem700") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("rem788", "rem700", "rem788") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("sa80") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("sig550") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("sig551", "sig551", "sig550") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('sks') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('sr25') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel("winm70", "rem700", "winm70") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("winm94") -- 3.09.2, credits to Filibuster Rhymes
 
     Client.addModel('henry')
-    Client.addModel('hk91') -- new, replaces g3
-    Client.addModel('sl8') -- new
-    Client.addModel('m249') -- new
     Client.addModel('m14') -- updated
-    Client.addModel('mosin') -- new
-    Client.addModel('r700') -- new
     Client.addModel('l96') -- new
     Client.addModel('garand') -- new
     Client.addModel('svd') -- updated
@@ -139,13 +149,12 @@ Client.loadModels = function()
     Client.addModel('silverhawkso', 'silverhawkso', 'silverhawk') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('win1887') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('win1887so', 'win1887so', 'win1887') -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel('spas12') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('stevens320', 'stevens320', 'hawk982') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('vepr12') -- 3.09.2, credits to Filibuster Rhymes
 
-
     Client.addModel('m1216') -- new
     Client.addModel('striker') -- new
-    Client.addModel('spas12')
 
     ORGM.log(ORGM.INFO, "All 3d models loaded.")
 end
