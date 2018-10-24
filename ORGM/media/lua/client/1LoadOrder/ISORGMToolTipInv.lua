@@ -35,27 +35,29 @@ local function colorScale(value, default)
     --if value > 1 then value = 1 end
     local c = {["r"] = 1.0, ["g"] = 1.0, ["b"] = 8.0}
     if default then return c end
-    if value > 0.85 then
-        c.r, c.g, c.b = 0.0, 1.0, 0.0
-    elseif value > 0.70 then
-        c.r, c.g, c.b = 0.0, 1.0, 0.0 --
-    elseif value > 0.55 then
-        c.r, c.g, c.b = 0.8, 1.0, 0.0 --
-    elseif value > 0.45 then
-        c.r, c.g, c.b = 1.0, 1.0, 0.8 --
-    elseif value > 0.30 then
-        c.r, c.g, c.b = 1.0, 0.8, 0.0
-    elseif value > 0.15 then
-        c.r, c.g, c.b = 1.0, 0.4, 0.0
-    else
-        c.r, c.g, c.b = 1.0, 0.0, 0.0
-    end
+
+    c.r = 1-value
+    c.g = value
+    c.b = 0
     return c
 end
 
 local function round(value, places)
     return string.format("%." .. (places or 0) .. "f", value)
 end
+
+local function setLayoutItem(layout, label, value, color, asProgress)
+    if not color then color = {["r"] = 1.0, ["g"] = 1.0, ["b"] = 1.0} end
+    layoutItem = layout:addItem()
+    layoutItem:setLabel(label, 1.0, 1.0, 0.8, 1.0)
+    if asProgress then
+        layoutItem:setProgress(value, color.r, color.g, color.b, 1)
+    else
+        layoutItem:setValue(value, color.r, color.g, color.b, 1.0)
+        --layoutItem:setValue(round(damage, roundPrecision), color.r, color.g, color.b, 1)
+    end
+end
+
 
 TipHandler[ORGM.COMPONENT] = function(self)
     local item = self.item
@@ -67,7 +69,7 @@ TipHandler[ORGM.COMPONENT] = function(self)
     local toolTipStyle = Settings.ToolTipStyle
 
     local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
-    local showNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
+    local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
 
     -- translated from the java when executing self.item:DoTooltip(self.tooltip)
     self.tooltip:render()
@@ -81,63 +83,68 @@ TipHandler[ORGM.COMPONENT] = function(self)
     layout:setMinLabelWidth(80)
     ----------------------------------------------------------
     -- show weight
-    layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_item_Weight").. ":", 1, 1, 0.8, 1)
     local weight = item:getUnequippedWeight()
     if item:isEquipped() then weight = item:getEquippedWeight() end
-    layoutItem:setValue(round(weight, 3), 1, 1, 0.8, 1)
+    setLayoutItem(layout, getText("Tooltip_item_Weight").. ":", round(weight, 3))
+
     if compData.HitChance then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_HitChance"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.HitChance), 1, 1, 0.8, 1)
+        local color = colorScale((compData.HitChance+30)/60, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_HitChance"),
+            isNumeric and tostring(compData.HitChance) or (compData.HitChance+30)/60,
+            color, not isNumeric)
     end
     if compData.CriticalChance then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_Critical"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.CriticalChance), 1, 1, 0.8, 1)
+        local color = colorScale((compData.CriticalChance+40)/80, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Critical"),
+            isNumeric and tostring(compData.CriticalChance) or (compData.CriticalChance+40)/80,
+            color, not isNumeric)
     end
 
     if compData.MaxRange then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_Range"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.MaxRange), 1, 1, 0.8, 1)
+        local color = colorScale((compData.MaxRange+40)/80, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Range"),
+            isNumeric and tostring(compData.MaxRange) or (compData.MaxRange+40)/80,
+            color, not isNumeric)
     end
 
     if compData.AimingTime then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_AimTime"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.AimingTime), 1, 1, 0.8, 1)
+        local color = colorScale((compData.AimingTime+40)/80, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_AimTime"),
+            isNumeric and tostring(compData.AimingTime) or (compData.AimingTime+40)/80,
+            color, not isNumeric)
     end
 
     if compData.SwingTime then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_SwingTime"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.SwingTime), 1, 1, 0.8, 1)
+        local color = colorScale(1-((compData.SwingTime+1.5)/3), noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_SwingTime"),
+            isNumeric and tostring(compData.SwingTime) or (compData.SwingTime+1.5)/3,
+            color, not isNumeric)
     end
 
     if compData.RecoilDelay then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_Recoil"), 1, 1, 0.8, 1)
-        layoutItem:setValue(tostring(compData.RecoilDelay), 1, 1, 0.8, 1)
+        local color = colorScale(1-((compData.RecoilDelay+15)/30), noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Recoil"),
+            isNumeric and tostring(compData.RecoilDelay) or (compData.RecoilDelay+15)/30,
+            color, not isNumeric)
     end
 
     ----------------------------------------------------------
     y = layout:render(5, y, self.tooltip)
     self.tooltip:endLayout(layout)
     if item:getTooltip() then
+        y = y + i + 5
         local text = getText(item:getTooltip())
         self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
         self.tooltip:adjustWidth(5, text)
-        y = y + i + 5
     end
-    y = y+ i-- j = j+ self.tooltip.padBottom; -- ??
+    y = y+ i + 5-- j = j+ self.tooltip.padBottom; -- ??
     self.tooltip:setHeight(y)
     if self.tooltip:getWidth() < 150 then
         self.tooltip:setWidth(150)
     end
 
 end
---
+
 TipHandler[ORGM.FIREARM] = function(self)
     local item = self.item
     local gunData = Firearm.getData(item)
@@ -148,7 +155,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     local toolTipStyle = Settings.ToolTipStyle
 
     local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
-    local showNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
+    local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
     local roundPrecision = (toolTipStyle == ORGM.TIPDYNAMIC and 6-(10-aimingPerk)*2 or 6)
 
     -- translated from the java when executing self.item:DoTooltip(self.tooltip)
@@ -164,38 +171,24 @@ TipHandler[ORGM.FIREARM] = function(self)
     ----------------------------------------------------------
 
     -- show classification
-    local layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_Firearm_Type"), 1, 1, 0.8, 1)
-    layoutItem:setValue(getText(gunData.classification), 1, 1, 0.8, 1)
+    setLayoutItem(layout, getText("Tooltip_Firearm_Type"), getText(gunData.classification))
 
     --
-    --
     if Firearm.isSelectFire(item, gunData) then
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_Mode"), 1, 1, 0.8, 1)
         local mode = "IGUI_Firearm_DetailSemi"
         if Firearm.isFullAuto(item, gunData) then mode = "IGUI_Firearm_DetailFull" end
-        layoutItem:setValue(getText(mode), 1, 1, 0.8, 1)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Mode"), getText(mode))
     end
 
     -- show weight
-    layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_item_Weight").. ":", 1, 1, 0.8, 1)
     local weight = item:getUnequippedWeight()
     if item:isEquipped() then weight = item:getEquippedWeight() end
-    layoutItem:setValue(round(weight, 3), 1, 1, 0.8, 1)
-
+    setLayoutItem(layout, getText("Tooltip_item_Weight").. ":", round(weight, 3))
 
     -- show barrel length
-    layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_Firearm_Barrel"), 1, 1, 0.8, 1)
-    layoutItem:setValue(tostring(Firearm.Barrel.getLength(item, gunData)).." ".. getText("Tooltip_Firearm_Inches"), 1, 1, 0.8, 1)
-
+    setLayoutItem(layout, getText("Tooltip_Firearm_Barrel"), tostring(Firearm.Barrel.getLength(item, gunData)).." ".. getText("Tooltip_Firearm_Inches"))
 
     ----------------------------------------------------------
-    -- Ammo Type
-    --layoutItem = layout:addItem()
-    --layoutItem:setLabel("Ammo", 1.0, 1.0, 0.8, 1.0)
 
     local ammoType = item:getAmmoType()
     --local ammoType = modData.defaultAmmo
@@ -203,9 +196,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     if not ammoItem then
         ammoItem = getScriptManager():FindItem(item:getModule() .. ".".. ammoType)
     end
-    layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_weapon_Ammo") .. ":", 1.0, 1.0, 0.8, 1.0)
-    layoutItem:setValue(ammoItem:getDisplayName(), 1.0, 1.0, 1.0, 1.0)
+    setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoItem:getDisplayName())
 
     ----------------------------------------------------------
     -- preferredAmmoType
@@ -217,15 +208,12 @@ TipHandler[ORGM.FIREARM] = function(self)
             local ammoData = Ammo.getData(preferredAmmoType)
             if ammoData then preferredAmmoType = (ammoData.instance:getDisplayName() or preferredAmmoType) end
         end
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_Firearm_SetAmmo"), 1.0, 1.0, 0.8, 1.0)
-        layoutItem:setValue(preferredAmmoType, 1.0, 1.0, 1.0, 1.0)
+        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), preferredAmmoType)
     end
 
     ----------------------------------------------------------
     -- loadedAmmo
     local loadedAmmo = modData.loadedAmmo
-
     if not loadedAmmo then
          loadedAmmo = getText("IGUI_Firearm_Empty")
     elseif loadedAmmo == 'mixed' then
@@ -234,9 +222,7 @@ TipHandler[ORGM.FIREARM] = function(self)
         local ammoData = Ammo.getData(loadedAmmo)
         if ammoData then loadedAmmo = (ammoData.instance:getDisplayName() or loadedAmmo) end
     end
-    layoutItem = layout:addItem()
-    layoutItem:setLabel(getText("Tooltip_Firearm_Loaded"), 1.0, 1.0, 0.8, 1.0)
-    layoutItem:setValue(loadedAmmo, 1.0, 1.0, 1.0, 1.0)
+    setLayoutItem(layout, getText("Tooltip_Firearm_Loaded"), loadedAmmo)
 
     ----------------------------------------------------------
     -- Capacity
@@ -248,103 +234,71 @@ TipHandler[ORGM.FIREARM] = function(self)
             rounds = rounds .. "+X"
         end
         local color = colorScale(modData.currentCapacity / modData.maxCapacity, noColor)
-        layoutItem = layout:addItem()
-        layoutItem:setLabel(getText("Tooltip_weapon_AmmoCount") .. ":", 1.0, 1.0, 0.8, 1.0)
-        layoutItem:setValue(rounds, color.r, color.g, color.b, 1.0)
+        setLayoutItem(layout, getText("Tooltip_weapon_AmmoCount") .. ":", rounds, color)
     end
 
     if isSet then -- Only show when a round has been set.
         ----------------------------------------------------------
         -- Damage
-        layoutItem = layout:addItem()
         local damage = self.item:getMinDamage()
         local color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
-        layoutItem:setLabel(getText("Tooltip_Firearm_MinDamage"), 1, 1, 0.8, 1)
-        if showNumeric then
-            layoutItem:setValue(round(damage, roundPrecision), color.r, color.g, color.b, 1)
-        else
-            layoutItem:setProgress(damage/(3.0*Settings.DamageMultiplier), color.r, color.g, color.b, 1)
-        end
-        --layoutItem:setValueRightNoPlus(tonumber(self.item:getMinDamage()))
+        setLayoutItem(layout, getText("Tooltip_Firearm_MinDamage"),
+            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+            color, not isNumeric)
 
-        layoutItem = layout:addItem()
         damage = self.item:getMaxDamage()
         color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
-        layoutItem:setLabel(getText("Tooltip_Firearm_MaxDamage"), 1, 1, 0.8, 1)
-        if showNumeric then
-            layoutItem:setValue(round(damage, roundPrecision), color.r, color.g, color.b, 1)
-        else
-            layoutItem:setProgress(damage/(3.0*Settings.DamageMultiplier), color.r, color.g, color.b, 1)
-        end
+        setLayoutItem(layout, getText("Tooltip_Firearm_MaxDamage"),
+            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+            color, not isNumeric)
 
         ----------------------------------------------------------
         -- Range
-        layoutItem = layout:addItem()
         local range = item:getMaxRange(player)
         color = colorScale(range/50, noColor)
-        layoutItem:setLabel(getText("Tooltip_Firearm_Range"), 1, 1, 0.8, 1)
-
-        if showNumeric then
-            layoutItem:setValue(round(range, roundPrecision), color.r, color.g, color.b, 1)
-        else
-            layoutItem:setProgress(range/50, color.r, color.g, color.b, 1)
-        end
+        setLayoutItem(layout, getText("Tooltip_Firearm_Range"),
+            isNumeric and round(range, roundPrecision) or range/50,
+            color, not isNumeric)
 
         ----------------------------------------------------------
         -- Recoil
-        layoutItem = layout:addItem()
         local recoil = item:getRecoilDelay()
         color = colorScale(1-recoil/50, noColor)
-        layoutItem:setLabel(getText("Tooltip_Firearm_Recoil"), 1, 1, 0.8, 1)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Recoil"),
+            isNumeric and tostring(recoil) or recoil/50,
+            color, not isNumeric)
 
-        if showNumeric then
-            layoutItem:setValue(tostring(recoil), color.r, color.g, color.b, 1)
-        else
-            layoutItem:setProgress(recoil/50, color.r, color.g, color.b, 1)
-        end
     end
 
     ----------------------------------------------------------
     -- Noise
-    layoutItem = layout:addItem()
     local range = item:getSoundRadius()
     color = colorScale(1-range/250, noColor)
-    layoutItem:setLabel(getText("Tooltip_Firearm_Noise"), 1, 1, 0.8, 1)
-
-    if showNumeric then
-        layoutItem:setValue(tostring(range), color.r, color.g, color.b, 1)
-    else
-        layoutItem:setProgress(range/250, color.r, color.g, color.b, 1)
-    end
+    setLayoutItem(layout, getText("Tooltip_Firearm_Noise"),
+        isNumeric and tostring(range) or range/250,
+        color, not isNumeric)
 
     ----------------------------------------------------------
     -- Condition
-    layoutItem = layout:addItem()
     local condition = item:getCondition() / item:getConditionMax()
     color = colorScale(condition, noColor)
-    layoutItem:setLabel("Condition:", 1, 1, 0.8, 1) -- TODO: translation
-
-    if showNumeric then
-        layoutItem:setValue(tostring(item:getCondition()).."/"..tostring(item:getConditionMax()), color.r, color.g, color.b, 1)
-    else
-        layoutItem:setProgress(condition, color.r, color.g, color.b, 1)
-    end
+    -- TODO: translation
+    setLayoutItem(layout, "Condition:",
+        isNumeric and tostring(item:getCondition()).."/"..tostring(item:getConditionMax()) or condition,
+        color, not isNumeric)
 
     ----------------------------------------------------------
     -- roundsSinceCleaned
     local roundsSinceCleaned = modData.roundsSinceCleaned
     if (aimingPerk > 3 or toolTipStyle ~= ORGM.TIPDYNAMIC) and roundsSinceCleaned then
         -- roundsSinceCleaned tracker
-        layoutItem = layout:addItem()
         if roundsSinceCleaned > 500 then roundsSinceCleaned = 500 end
         color = colorScale(1-roundsSinceCleaned/500)
-        layoutItem:setLabel(getText("Tooltip_Firearm_Dirt"), 1, 1, 0.8, 1)
-        if showNumeric then
-            -- use untouched modData value for roundsSinceCleaned
-            layoutItem:setValue(tostring(modData.roundsSinceCleaned), color.r, color.g, color.b, 1)
-        else
-            layoutItem:setProgress(roundsSinceCleaned/500, color.r, color.g, color.b, 1)
-        end
+
+        setLayoutItem(layout, getText("Tooltip_Firearm_Dirt"),
+            isNumeric and tostring(modData.roundsSinceCleaned) or roundsSinceCleaned/500,
+            color, not isNumeric)
+
     end
     ----------------------------------------------------------
     -- Components
@@ -360,12 +314,11 @@ TipHandler[ORGM.FIREARM] = function(self)
     ----------------------------------------------------------
     y = layout:render(5, y, self.tooltip)
     self.tooltip:endLayout(layout)
-
     if item:getTooltip() then
+        y = y + i + 5
         local text = getText(item:getTooltip())
         self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
         self.tooltip:adjustWidth(5, text)
-        y = y + i + 5
     end
 
     y = y+ i-- j = j+ self.tooltip.padBottom; -- ??
