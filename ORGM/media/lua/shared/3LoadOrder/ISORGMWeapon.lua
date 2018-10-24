@@ -13,7 +13,7 @@ and should be removed at a later date.
 ]]
 local ORGM = ORGM
 local Reloadable = ORGM.ReloadableWeapon
-
+local Settings = ORGM.Settings
 ISORGMWeapon = ISReloadableWeapon:derive("ISORGMWeapon")
 
 function ISORGMWeapon:initialise()
