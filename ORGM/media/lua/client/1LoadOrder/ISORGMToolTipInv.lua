@@ -370,7 +370,7 @@ end
 for a function to design the ORGM tooltips,
 
 ]]
-function ISToolTipInv:render()
+function ISToolTipInv:renderORGM()
     if Settings.ToolTipStyle == ORGM.TIPCLASSIC then
         self:renderClassic()
         return
@@ -440,3 +440,4 @@ function ISToolTipInv:render()
     -- call our handler function
     tipHandler(self) -- self.item:DoTooltip(self.tooltip);
 end
+ISToolTipInv.render = ISToolTipInv.renderORGM
