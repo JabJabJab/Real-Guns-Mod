@@ -3,7 +3,7 @@ IG_UI_EN = {
     IGUI_Firearm_InspectTitle = "Firearm Inspection",
     IGUI_Firearm_InfoTitle = "Information",
     IGUI_Firearm_DetailTitle = "Details",
-    IGUI_Firearm_StatTitle = "Stats"
+    IGUI_Firearm_StatTitle = "Stats",
     IGUI_Firearm_DebugTitle = "Debug",
     IGUI_Firearm_YearUnknown = "Unknown",
 
@@ -99,7 +99,7 @@ IG_UI_EN = {
 
     -------------------------------------------------------------------------------------------------
     IGUI_Firearm_StatDetail = " <RED> Details <LINE> <TEXT> Weight: %1 <LINE> ",
-    IGUI_Firearm_StatDetail2 = "Action Type: %1 <LINE> Trigger Type: %2 <LINE> "
+    IGUI_Firearm_StatDetail2 = "Action Type: %1 <LINE> Trigger Type: %2 <LINE> ",
     IGUI_Firearm_StatAmmo = " <RED> Ammo <LINE> <TEXT> Capacity: %1 <LINE> <TEXT> Last Round: %2 <LINE> Loaded Ammo: %3 <LINE> Preferred Ammo: %4 <LINE>",
     IGUI_Firearm_StatMisc = " <RED> My Stats <LINE> <TEXT> Accuracy: %1 <LINE> Critical: %2 <LINE> Rate of Fire: %3 <LINE> Recoil Effect on RoF: %4 <LINE> ",
     IGUI_Firearm_StatMisc2 = " Damage: %1 <LINE> ",
