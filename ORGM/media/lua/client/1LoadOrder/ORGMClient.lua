@@ -85,6 +85,7 @@ Client.loadModels = function()
     Client.addModel("fnp90") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('glock18c', 'glock17', 'glock18c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel("m1a1") -- 3.09.2, credits to Filibuster Rhymes
+    Client.addModel("m1a1_gold", "m1a1", "m1a1_gold") -- 3.09.2, credits to Filibuster Rhymes
 	Client.addModel("hkmp5") -- 3.09.2, credits to Filibuster Rhymes
 	Client.addModel("hkump") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("ktplr", "ktplr", "m16") -- 3.09.2, credits to Filibuster Rhymes

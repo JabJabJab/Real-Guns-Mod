@@ -200,6 +200,19 @@ Menu.firearm = function()
                 subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", l), thisItem, Menu.onBarrelEdit, playerObj, modData, l)
             end
         end
+
+        -- skins support
+        local skins = Firearm.getData(thisItem).skins
+        if skins then
+            local skinMenu = subMenuDebug:addOption("Skins", thisItem, nil)
+            local subMenuSkins = subMenuDebug:getNew(subMenuDebug)
+            thisContext:addSubMenu(skinMenu, subMenuSkins)
+            subMenuSkins:addOption("Default", thisItem, Menu.onSkinEdit, playerObj, modData, nil)
+            for _, skin in ipairs(skins) do
+                subMenuSkins:addOption(skin, thisItem, Menu.onSkinEdit, playerObj, modData, skin)
+            end
+        end
+
     end
     -- add debug/development submenu.
     if Settings.Debug == true then
@@ -394,5 +407,10 @@ end
 
 Menu.onBarrelEdit = function(item, player, modData, length)
     modData.barrelLength = length
+    Firearm.Stats.set(item)
+end
+
+Menu.onSkinEdit = function(item, player, modData, skin)
+    modData.skin = skin
     Firearm.Stats.set(item)
 end

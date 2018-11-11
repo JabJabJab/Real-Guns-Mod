@@ -923,6 +923,8 @@ register("M1A1", {
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_AOC",
     description = "IGUI_Firearm_Desc_M1A1",
+
+    skins = {'gold'},
 })
 register("Mac10", {
     lastChanged = 24,
