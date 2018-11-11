@@ -213,4 +213,17 @@ Component.toggleLight = function(player)
     return true
 end
 
+
+Component.isFlawed = function(item)
+    return item:getModData().flawed
+end
+
+Component.getFlawText = function(item)
+    return nil
+end
+
+Component.getUniqueStats = function(item)
+    return item:getModData().Unique
+end
+
 ORGM[17] = "\109\098\101\114"

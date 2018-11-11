@@ -34,6 +34,18 @@ local RarityTable = {
     Military = {[ORGM.COMMON] = {}, [ORGM.RARE] = {}, [ORGM.VERYRARE] = {} },
 }
 
+-- Fire modes
+-- Firearm.NORMAL = 0
+-- Firearm.BURST2 = 1
+-- Firearm.BURST3 = 2
+-- Firearm.FULL = 4
+-- Firearm.SAFETY = 8
+-- Firearm.LOCKS = 16
+
+--Firearm.HASSAFETY
+--Firearm.SLIDELOCKS
+--Firearm.OPENBOLT
+
 --[[ Constants
 
 This are primarily used when setting up a firearms stats.
@@ -648,6 +660,7 @@ Firearm.replace = function(weaponItem, container)
     end
     newData.roundsFired = data.roundsFired or 0
     newData.roundsSinceCleaned = data.roundsSinceCleaned or 0
+    newData.skin = data.skin
     newData.serialnumber = data.serialnumber -- copy the guns serial number
 
     -- empty the magazine, return all rounds to the container.
@@ -957,6 +970,17 @@ Stats.set = function(weaponItem)
     ORGM.log(ORGM.DEBUG, "Setting "..weaponItem:getType() .. " ammo to "..tostring(ammoType))
     local ammoData = Ammo.getData(ammoType) or {}
     local compTable = Component.getAttached(weaponItem)
+    --
+    if gunData.skins then
+        local current = weaponItem:getWeaponSprite()
+        -- get default sprite
+        local expected = gunData.instance:getWeaponSprite()
+        if modData.skin then -- this gun uses a skin
+            expected = expected.."_"..modData.skin
+        end
+        if current ~= expected then weaponItem:setWeaponSprite(eSprite) end
+    end
+
 
     -- set inital values from defaults
     local statsTable = Stats.initial(gunData, ammoData)
@@ -964,6 +988,7 @@ Stats.set = function(weaponItem)
     statsTable.ActualWeight = statsTable.ActualWeight + Barrel.getWeight(weaponItem, gunData)
     statsTable.Weight = statsTable.Weight + Barrel.getWeight(weaponItem, gunData)
     for _, mod in pairs(compTable) do
+        -- TODO: WeightModifier should be in the compData, and add Unique value for InventoryItem.ModData
         statsTable.ActualWeight = statsTable.ActualWeight + mod:getWeightModifier()
         statsTable.Weight = statsTable.Weight + mod:getWeightModifier()
     end
@@ -1094,20 +1119,21 @@ This function is called by `Stats.set`
 ]]
 Stats.adjustByComponents = function(compTable, statsTable)
     for _, mod in pairs(compTable) do
-      local compData = Component.getData(mod) or { }
-      statsTable.CriticalChance = statsTable.CriticalChance + (compData.CriticalChance or 0)
-      statsTable.HitChance = statsTable.HitChance + (compData.HitChance or 0)
+        local compData = Component.getData(mod) or { }
+        local unique = mod:getModData().Unique  or { }
+        statsTable.CriticalChance = statsTable.CriticalChance + (compData.CriticalChance or 0) + (unique.CriticalChance or 0)
+        statsTable.HitChance = statsTable.HitChance + (compData.HitChance or 0) + (unique.HitChance or 0)
 
-      statsTable.SwingTime = statsTable.SwingTime + (compData.SwingTime or 0)
-      statsTable.AimingTime = statsTable.AimingTime + (compData.AimingTime or 0)
-      statsTable.ReloadTime = statsTable.ReloadTime + (compData.ReloadTime or 0)
-      statsTable.RecoilDelay = statsTable.RecoilDelay + (compData.RecoilDelay or 0)
+        statsTable.SwingTime = statsTable.SwingTime + (compData.SwingTime or 0) + (unique.SwingTime or 0)
+        statsTable.AimingTime = statsTable.AimingTime + (compData.AimingTime or 0) + (unique.AimingTime or 0)
+        statsTable.ReloadTime = statsTable.ReloadTime + (compData.ReloadTime or 0) + (unique.ReloadTime or 0)
+        statsTable.RecoilDelay = statsTable.RecoilDelay + (compData.RecoilDelay or 0) + (unique.RecoilDelay or 0)
 
-      statsTable.MinDamage = statsTable.MinDamage + (compData.MinDamage or 0)
-      statsTable.MaxDamage = statsTable.MaxDamage + (compData.MaxDamage or 0)
-      statsTable.MinAngle = statsTable.MinAngle + (compData.MinAngle or 0)
-      statsTable.MinRange = statsTable.MinRange + (compData.MinRange or 0)
-      statsTable.MaxRange = statsTable.MaxRange + (compData.MaxRange or 0)
+        statsTable.MinDamage = statsTable.MinDamage + (compData.MinDamage or 0) + (unique.MinDamage or 0)
+        statsTable.MaxDamage = statsTable.MaxDamage + (compData.MaxDamage or 0) + (unique.MaxDamage or 0)
+        statsTable.MinAngle = statsTable.MinAngle + (compData.MinAngle or 0) + (unique.MinAngle or 0)
+        statsTable.MinRange = statsTable.MinRange + (compData.MinRange or 0) + (unique.MinRange or 0)
+        statsTable.MaxRange = statsTable.MaxRange + (compData.MaxRange or 0) + (unique.MaxRange or 0)
     end
 end
 
