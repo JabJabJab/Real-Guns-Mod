@@ -112,6 +112,7 @@ ORGM.Client.loadCompatibilityPatches = function()
     if ORGM.isModLoaded("ORGMSilencer") and ORGM.Settings.UseSilencersPatch then
         -- first remove the old hook
         Events.OnWeaponSwing.Remove(Silencer.onAttack)
+        if SilencerOnGameStart then Events.OnGameStart.Remove(SilencerOnGameStart) end
         -- add new event hooks
         Events.OnEquipPrimary.Add(silencerCheck)
         Events.OnGameStart.Add(function() -- make sure our player is setup on game start
