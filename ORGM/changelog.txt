@@ -10,9 +10,29 @@ or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/OR
 
 ## version 3.09.2
 
-* Added tons of new models by Filibuster Rhymes
+* New Tooltips for firearms and attachments! In 4 (yes, 4) optional styles:
+Classic: The old style. Please note Classic will be replaced in the future by "Minimal"
+
+Full: The new default style. Bars are displayed for a number of various stats, with
+bar color changing from red to green depending on that stats value (bad/good)
+
+Numeric: Identical to "Full", but shows colored numeric values instead of bars.
+
+Dynamic: swings from 'Minimal' to 'Full' to 'Numeric' depending on a players skill level.
+
+Important Notes: The info displayed, and the specifics of the dynamic-style are not finalized.
+This is a preview. Also damage and range will NOT show on a firearm until it has had a round
+in the chamber.
+
+* Added tons of new models by Filibuster Rhymes. All models have now been updated!
 
 * Decreased capacity on Stevens 320 to 5 (was 8)
+
+* Sorted options screen into groups
+
+* Added full auto hit chance penalty to options screen
+
+* Fixed bug in "Use Only" context menu
 
 ---------------------------------------------------------------------------------------
 
