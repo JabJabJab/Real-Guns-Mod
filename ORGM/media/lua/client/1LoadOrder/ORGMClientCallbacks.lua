@@ -131,7 +131,7 @@ Callbacks.requestSettings = function(ticks)
         ORGM.log(ORGM.INFO, "Requesting Settings from server")
         sendClientCommand(getPlayer(), 'orgm', 'requestSettings', ORGM.Settings)
     end
-    Events.OnTick.Remove(Client.requestServerSettings)
+    Events.OnTick.Remove(Callbacks.requestSettings)
 end
 
 
