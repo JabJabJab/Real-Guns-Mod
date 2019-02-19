@@ -16,6 +16,7 @@ local ORGM = ORGM
 local Firearm = ORGM.Firearm
 local Component = ORGM.Component
 local Ammo = ORGM.Ammo
+local Magazine = ORGM.Magazine
 local Settings = ORGM.Settings
 
 local getMouseX = getMouseX
@@ -142,7 +143,91 @@ TipHandler[ORGM.COMPONENT] = function(self)
     if self.tooltip:getWidth() < 150 then
         self.tooltip:setWidth(150)
     end
+end
 
+TipHandler[ORGM.MAGAZINE] = function(self)
+    local item = self.item
+    local magData = Magazine.getData(item)
+    local modData = item:getModData()
+    local player = getPlayer()
+    local aimingPerk = player:getPerkLevel(Perks.Aiming)
+    local toolTipStyle = Settings.ToolTipStyle
+    local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
+
+    -- translated from the java when executing self.item:DoTooltip(self.tooltip)
+    self.tooltip:render()
+    local UIFont = self.tooltip:getFont()
+    local i = self.tooltip:getLineSpacing()
+    local y = 5
+    self.tooltip:DrawText(UIFont, item:getName(), 5, y, 1, 1, 0.8, 1)
+    self.tooltip:adjustWidth(5, item:getName())
+    y = y + i + 5
+    local layout = self.tooltip:beginLayout()
+    layout:setMinLabelWidth(80)
+    ----------------------------------------------------------
+    -- show weight
+    local weight = item:getUnequippedWeight()
+    if item:isEquipped() then weight = item:getEquippedWeight() end
+    setLayoutItem(layout, getText("Tooltip_item_Weight").. ":", round(weight, 3))
+
+    ----------------------------------------------------------
+
+    local ammoType = Ammo.itemGroup(item) --item:getAmmoType()
+    --local ammoType = modData.defaultAmmo
+    local ammoItem = getScriptManager():FindItem(ammoType)
+    if not ammoItem then
+        ammoItem = getScriptManager():FindItem(item:getModule() .. ".".. ammoType)
+    end
+    setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoItem:getDisplayName())
+
+    ----------------------------------------------------------
+    -- preferredAmmoType
+    local preferredAmmoType = modData.preferredAmmoType
+    if preferredAmmoType and preferredAmmoType ~= 'any' then
+        if preferredAmmoType == 'mixed' then
+            preferredAmmoType = getText("IGUI_Firearm_AmmoMixed")
+        else
+            local ammoData = Ammo.getData(preferredAmmoType)
+            if ammoData then preferredAmmoType = (ammoData.instance:getDisplayName() or preferredAmmoType) end
+        end
+        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), preferredAmmoType)
+    end
+
+    ----------------------------------------------------------
+    -- loadedAmmo
+    local loadedAmmo = modData.loadedAmmo
+    if not loadedAmmo then
+         loadedAmmo = getText("IGUI_Firearm_Empty")
+    elseif loadedAmmo == 'mixed' then
+        loadedAmmo = getText("IGUI_Firearm_AmmoMixed")
+    else
+        local ammoData = Ammo.getData(loadedAmmo)
+        if ammoData then loadedAmmo = (ammoData.instance:getDisplayName() or loadedAmmo) end
+    end
+    setLayoutItem(layout, getText("Tooltip_Firearm_Loaded"), loadedAmmo)
+
+    ----------------------------------------------------------
+    -- Capacity
+    if modData.currentCapacity then
+        local rounds = modData.currentCapacity .. "/" .. modData.maxCapacity
+        local color = colorScale(modData.currentCapacity / modData.maxCapacity, noColor)
+        setLayoutItem(layout, getText("Tooltip_weapon_AmmoCount") .. ":", rounds, color)
+    end
+
+    ----------------------------------------------------------
+    y = layout:render(5, y, self.tooltip)
+    self.tooltip:endLayout(layout)
+    if item:getTooltip() then
+        y = y + i + 5
+        local text = getText(item:getTooltip())
+        self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
+        self.tooltip:adjustWidth(5, text)
+    end
+    y = y+ i + 5-- j = j+ self.tooltip.padBottom; -- ??
+    self.tooltip:setHeight(y)
+    if self.tooltip:getWidth() < 150 then
+        self.tooltip:setWidth(150)
+    end
 end
 
 TipHandler[ORGM.FIREARM] = function(self)
