@@ -34,6 +34,8 @@ in the chamber.
 
 * Fixed bug in "Use Only" context menu
 
+* Fixed bug in requesting server settings, not removing request event.
+
 ---------------------------------------------------------------------------------------
 
 ## version 3.09
