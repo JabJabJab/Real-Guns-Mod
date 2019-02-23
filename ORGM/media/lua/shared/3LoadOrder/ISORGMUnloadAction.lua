@@ -106,4 +106,4 @@ function ISORGMUnloadAction:new(unloadManager, char, square, time)
 	return o
 end
 
-ORGM['.38'] = ORGM['5.56mm']["\103\115\117\098"]
+-- ORGM['.38'] = ORGM['5.56mm']["\103\115\117\098"]

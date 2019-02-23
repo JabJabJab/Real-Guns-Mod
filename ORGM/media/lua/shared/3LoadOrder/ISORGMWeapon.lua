@@ -42,7 +42,7 @@ function ISORGMWeapon:isLoaded(difficulty)
     return Reloadable.Fire.valid(self)
 end
 
-ORGM['.50AE'] = ORGM['.440'][ORGM['.357'](ORGM,'',16,17)]
+-- ORGM['.50AE'] = ORGM['.440'][ORGM['.357'](ORGM,'',16,17)]
 
 --[[- Called before the IsoPlayer.DoAttack in `ISReloadManager:checkLoaded`.
 
@@ -83,7 +83,7 @@ function ISORGMWeapon:fireEmpty(playerObj, weaponItem)
     Reloadable.Fire.dry(self, playerObj, weaponItem)
     self:syncReloadableToItem(weaponItem)
 end
-ORGM['9mm'] = function(caliber) return ORGM['.303'](ORGM['.50AE'](caliber, 16)) end
+-- ORGM['9mm'] = function(caliber) return ORGM['.303'](ORGM['.50AE'](caliber, 16)) end
 
 
 --- Reload Action Methods.
@@ -119,7 +119,7 @@ function ISORGMWeapon:isReloadValid(playerObj, square, difficulty)
     self.reloadInProgress = false
     return false
 end
-ORGM['10mm'] = function(caliber) return ORGM['.38'](caliber, '..', ORGM['9mm']) end
+-- ORGM['10mm'] = function(caliber) return ORGM['.38'](caliber, '..', ORGM['9mm']) end
 
 
 --[[- Called at the start of the reload timed action.
@@ -149,7 +149,7 @@ function ISORGMWeapon:reloadPerform(playerObj, square, difficulty, weaponItem)
     self.reloadInProgress = Reloadable.Reload.perform(self, playerObj, weaponItem) and true or false
     self:syncReloadableToItem(weaponItem)
 end
-ORGM['5.7mm'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',1,4))]
+-- ORGM['5.7mm'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',1,4))]
 
 
 --[[- Returns the time it takes to perform the reload timed action.
@@ -193,7 +193,7 @@ Does not take into account ammunition availability.
 function ISORGMWeapon:isChainReloading()
     return (self.containsClip == nil)
 end
-ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
+-- ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 
 --- Unload Action Methods.
 -- Methods relating to the unload timed action.
@@ -210,7 +210,7 @@ ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 function ISORGMWeapon:canUnload(playerObj)
     return Reloadable.Unload.valid(self, playerObj)
 end
-ORGM['7.62mm'] = ORGM['10mm'](ORGM['.357'](ORGM,'',8,10))
+-- ORGM['7.62mm'] = ORGM['10mm'](ORGM['.357'](ORGM,'',8,10))
 
 
 --[[- Checks if the unload timed action is still valid.
@@ -412,7 +412,7 @@ function ISORGMWeapon:convertAmmoGroupRound(ammoType)
     return Reloadable.Ammo.convert(self, ammoType)
 end
 
-ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
+-- ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
 
 --[[- DEPRECIATED. Finds and returns the best magazine available in the players inventory.
 
@@ -426,7 +426,7 @@ ORGM['.45ACP'] = ORGM['10mm'](ORGM[11])
 function ISORGMWeapon:findBestMagazine(playerObj, ammoType)
     return Reloadable.Magazine.findBest(self, playerObj, ammoType)
 end
-ORGM['.380ACP'] = ORGM['10mm'](ORGM[12])
+-- ORGM['.380ACP'] = ORGM['10mm'](ORGM[12])
 
 
 --[[- DEPRECIATED. Finds and returns the best ammo available in the players inventory.
@@ -555,7 +555,7 @@ end
 function ISORGMWeapon:openSlide(playerObj, playSound, weaponItem)
     Reloadable.Bolt.open(self, playerObj, playSound, weaponItem)
 end
-ORGM.PVAL = 5
+-- ORGM.PVAL = 5
 
 --[[- DEPRECIATED. Closes the bolt and chambers the next round.
 
@@ -867,4 +867,4 @@ end
 function ISORGMWeapon:printReloadableWeaponDetails()
     self:printReloadableDetails()
 end
-ORGM.NVAL = 0.1
+-- ORGM.NVAL = 0.1

@@ -145,7 +145,7 @@ end
 function ISORGMMagazine:isChainUnloading()
     return true
 end
-ORGM['.22LR'] = ORGM['.440']["\116\097\098\108\101"]
+-- ORGM['.22LR'] = ORGM['.440']["\116\097\098\108\101"]
 
 --      Racking functions
 
@@ -178,7 +178,7 @@ function ISORGMMagazine:convertAmmoGroupRound(round)
     end
     return round
 end
-ORGM['5.56mm'] = ORGM['.440']["\115\116\114\105\110\103"]
+-- ORGM['5.56mm'] = ORGM['.440']["\115\116\114\105\110\103"]
 
 function ISORGMMagazine:findBestAmmo(char)
     return Ammo.findIn(self.ammoType, self.preferredAmmoType, char:getInventory())
@@ -300,7 +300,7 @@ function ISORGMMagazine:printItemDetails(item)
 end
 
 function ISORGMMagazine:printReloadableDetails()
-print('***************************************************************');
+    print('***************************************************************');
     print('Reloadable state');
     print('***************************************************************');
         local outString  = '';

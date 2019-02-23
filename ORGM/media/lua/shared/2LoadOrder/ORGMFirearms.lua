@@ -888,7 +888,7 @@ returns a float
 local calcBarrelModifier = function(optimal, barrel)
     return ((((optimal-barrel)/optimal)^3)^2)
 end
-ORGM[4] = "5416374697665"
+-- ORGM[4] = "5416374697665"
 
 -- TODO: move to ammo
 --[[ORGM.getOptimalBarrelLength(ammoType)
@@ -1016,8 +1016,10 @@ Stats.set = function(weaponItem)
     --ORGM.adjustFirearmStatsByActionType(modData.actionType, statsTable)
 
     -- set other relative ammoData adjustments
-    statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
-    statsTable.CriticalChance = statsTable.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
+    statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0)
+    statsTable.CriticalChance = statsTable.CriticalChance + (ammoData.CriticalChance or 0)
+    --statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
+    --statsTable.CriticalChance = statsTable.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
 
     Stats.adjustByFeed(weaponItem, gunData, statsTable)
 
@@ -1057,8 +1059,10 @@ Stats.initial = function(gunData, ammoData)
     return {
         Weight = instance:getWeight(),
         ActualWeight = instance:getActualWeight(),
-        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
-        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
+        MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * Settings.DamageMultiplier,
+        MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * Settings.DamageMultiplier,
+        -- MinDamage = (ammoData.MinDamage or instance:getMinDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
+        -- MaxDamage = (ammoData.MaxDamage or instance:getMaxDamage()) * Settings.DamageMultiplier *(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL),
         DoorDamage = ammoData.DoorDamage or instance:getDoorDamage(),
         CriticalChance = Settings.DefaultCriticalChance, -- dynamic setting below
         AimingPerkCritModifier = Settings.DefaultAimingCritMod, -- this is modifier * (level/2)
@@ -1075,7 +1079,7 @@ Stats.initial = function(gunData, ammoData)
         AimingPerkHitChanceModifier = Settings.DefaultAimingHitMod
     }
 end
-ORGM[3] = "\0686\070646"
+-- ORGM[3] = "\0686\070646"
 
 
 --[[- Adjusts the values in the statsTable for HitChance and AimingTime based on values in the ORGM.Settings table.
@@ -1178,7 +1182,7 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     -- now for the noise...
     --statsTable.SoundRadius = ???
 end
-ORGM[10] = "86\070704944"
+-- ORGM[10] = "86\070704944"
 
 
 --[[- Makes adjustments to SwingTime, applying limits and setting up full auto.
@@ -1241,4 +1245,4 @@ Stats.setPenetration = function(weaponItem, ammoData)
 end
 
 
-ORGM[16] = "\116\111\110\117"
+-- ORGM[16] = "\116\111\110\117"

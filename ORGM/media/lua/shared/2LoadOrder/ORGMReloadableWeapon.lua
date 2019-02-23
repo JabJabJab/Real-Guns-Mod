@@ -669,7 +669,8 @@ function Ammo.next(this, playerObj, weaponItem)
     Ammo.setCurrent(this, ammoType, weaponItem)
 
     -- check for a jam
-    if ORGM.Settings.JammingEnabled or ORGM.PVAL > 1 then
+    if ORGM.Settings.JammingEnabled then
+    --if ORGM.Settings.JammingEnabled or ORGM.PVAL > 1 then
         -- TODO: chances need to be more dynamic, it assumes a max condition of 10
         local chance = (weaponItem:getConditionMax() / weaponItem:getCondition()) *2
         if playerObj:HasTrait("Lucky") then
@@ -677,9 +678,7 @@ function Ammo.next(this, playerObj, weaponItem)
         elseif playerObj:HasTrait("Unlucky") then
             chance = chance * 1.2
         end
-        if ORGM.PVAL > 1 then
-            chance = chance + ORGM.PVAL
-        end
+        -- if ORGM.PVAL > 1 then chance = chance + ORGM.PVAL end
         local result = ZombRand(300 - math.ceil(chance)*2)+1
         if result <= chance then
             this.isJammed = true

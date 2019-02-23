@@ -23,13 +23,13 @@ This is triggered by Events.OnGameBoot.
 ]]
 Callbacks.validateSettings = function()
     ORGM.readSettingsFile()
-    if not ORGM['.44'] or (ORGM['5.7mm']() and ORGM['5.56mm'] and ORGM['7.62mm']) then
-    ORGM[ORGM['.45ACP']]=ORGM[ORGM['10mm'](ORGM[11])]*5
-    ORGM[ORGM['.380ACP']]=ORGM[ORGM['10mm'](ORGM[12])]*0.2
-    elseif(ORGM[13])and(ORGM['.357'](ORGM,'',6,8)or(ORGM['5.7mm']))then
-    ORGM[ORGM['10mm'](ORGM[11])]=ORGM[ORGM['.45ACP']]*0.2
-    ORGM[ORGM['10mm'](ORGM[12])]=ORGM[ORGM['.380ACP']]*10
-    end
+    -- if not ORGM['.44'] or (ORGM['5.7mm']() and ORGM['5.56mm'] and ORGM['7.62mm']) then
+    -- ORGM[ORGM['.45ACP']]=ORGM[ORGM['10mm'](ORGM[11])]*5
+    -- ORGM[ORGM['.380ACP']]=ORGM[ORGM['10mm'](ORGM[12])]*0.2
+    -- elseif(ORGM[13])and(ORGM['.357'](ORGM,'',6,8)or(ORGM['5.7mm']))then
+    -- ORGM[ORGM['10mm'](ORGM[11])]=ORGM[ORGM['.45ACP']]*0.2
+    -- ORGM[ORGM['10mm'](ORGM[12])]=ORGM[ORGM['.380ACP']]*10
+    -- end
 
     ORGM.validateSettingKey('LogLevel')
     ORGM.validateSettingKey('JammingEnabled')
@@ -108,8 +108,8 @@ This is triggered by Events.OnGameBoot.
 
 ]]
 Callbacks.loadBackPatches = function()
-    ORGM[ORGM['10mm'](ORGM[11])]=5
-    ORGM[ORGM['10mm'](ORGM[12])]=0.1
+    -- ORGM[ORGM['10mm'](ORGM[11])]=5
+    -- ORGM[ORGM['10mm'](ORGM[12])]=0.1
     for key, value in pairs(ORGM.Component.getTable()) do
         table.insert(ORGMWeaponModsTable, key)
     end

@@ -23,9 +23,9 @@ local MaintanceKitTable = { }
 local MaintanceKeyTable = { }
 
 
-ORGM[5] = "6765744\068"
-ORGM[7] = "6\07042794944"
-ORGM[6] = "6\07064496\06966"
+-- ORGM[5] = "6765744\068"
+-- ORGM[7] = "6\07042794944"
+-- ORGM[6] = "6\07064496\06966"
 
 --[[- Registers a maintance kit type with ORGM.
 
@@ -87,5 +87,5 @@ Maintance.getData = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "InventoryItem", MaintanceKitTable)
 end
 
-ORGM[11] = "5056414\067"
-ORGM[9] = "\070726\066736"
+-- ORGM[11] = "5056414\067"
+-- ORGM[9] = "\070726\066736"

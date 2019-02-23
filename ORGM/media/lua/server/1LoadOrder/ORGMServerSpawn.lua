@@ -127,7 +127,8 @@ Spawn.reloadable = function(container, itemType, ammoType, chance, max, isLoaded
     --if Rnd(100) > math.ceil(chance) then return false end
     ORGM.log(ORGM.DEBUG, "Spawn.reloadable for " .. itemType .. ": " ..roll.. " roll vs ".. chance .. "% chance.")
 
-    if roll > chance*(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL) then return false end
+    if roll > chance then return false end
+    --if roll > chance*(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL) then return false end
     local count = Rnd(max)
 
     local itemOrgmData = nil
@@ -251,7 +252,8 @@ Spawn.item = function(container, itemType, chance, max)
     local roll = ZombRandFloat(0,100)
     ORGM.log(ORGM.DEBUG, "Spawn.item for " .. itemType .. ": " ..roll.. " roll vs ".. chance .. "% chance.")
     local result = {}
-    if roll > chance*(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL) then return result end
+    if roll > chance then return result end
+    -- if roll > chance*(ORGM.NVAL/ORGM.PVAL/ORGM.NVAL) then return result end
     local count = Rnd(max)
     for i=1, count do
         local item = ItemPicker.tryAddItemToContainer(container, itemType)

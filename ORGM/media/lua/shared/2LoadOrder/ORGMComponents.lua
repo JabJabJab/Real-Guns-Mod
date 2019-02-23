@@ -226,4 +226,4 @@ Component.getUniqueStats = function(item)
     return item:getModData().Unique
 end
 
-ORGM[17] = "\109\098\101\114"
+-- ORGM[17] = "\109\098\101\114"

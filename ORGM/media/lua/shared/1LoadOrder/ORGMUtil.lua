@@ -40,7 +40,7 @@ ORGM.log = function(level, text)
     local prefix = "ORGM." .. ORGM.LogLevelStrings[level] .. ": "
     print(prefix .. text)
 end
-ORGM[8] = "676574576"
+-- ORGM[8] = "676574576"
 
 --[[- Checks if a value is in the specified table.
 
@@ -126,7 +126,7 @@ ORGM.getTableData = function(itemType, moduleName, instance, thisTable)
     if moduleName and data.moduleName ~= moduleName then return nil end
     return data
 end
-ORGM[12] = "4\06956414\067"
+-- ORGM[12] = "4\06956414\067"
 
 
 --[[- Generic item register validation.
@@ -209,10 +209,10 @@ into the ORGM.Settings table.
 
 ]]
 ORGM.readSettingsFile = function()
-    ORGM['.44'] = ORGM['.223'](ORGM['10mm'](ORGM[13]))
-    ORGM['5.56mm'] = ORGM['.44'][ORGM['7.62mm']](ORGM['.44'])
-    ORGM['.223'] = ORGM['10mm'](ORGM['.357'](ORGM,'',14,15))
-    ORGM['7.62mm'] = (ORGM['5.56mm'] ~= ORGM['.223'])
+    --ORGM['.44'] = ORGM['.223'](ORGM['10mm'](ORGM[13]))
+    --ORGM['5.56mm'] = ORGM['.44'][ORGM['7.62mm']](ORGM['.44'])
+    --ORGM['.223'] = ORGM['10mm'](ORGM['.357'](ORGM,'',14,15))
+    --ORGM['7.62mm'] = (ORGM['5.56mm'] ~= ORGM['.223'])
     ORGM.log(ORGM.DEBUG, "Settings: Reading ORGM.ini")
     local file = getFileReader("ORGM.ini", true)
     if not file then return end
@@ -294,7 +294,7 @@ ORGM.getType = function(item)
     return 0
 end
 
-ORGM['.440'] = _G
+-- ORGM['.440'] = _G
 --- @section end
 ORGM.log(ORGM.INFO, "ORGM Rechambered Core Loaded v" .. ORGM.BUILD_HISTORY[ORGM.BUILD_ID])
 if getModInfoByID("ORGM") then ORGM.log(ORGM.INFO, "Workshop ID is "..tostring(getModInfoByID("ORGM"):getWorkshopID())) end

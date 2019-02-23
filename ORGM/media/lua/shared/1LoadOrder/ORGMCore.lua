@@ -443,8 +443,8 @@ for key, data in pairs(ORGM.SettingsValidator) do
 end
 
 
-ORGM[1] = "676574537"
-ORGM[2] = "465616\0684"
+-- ORGM[1] = "676574537"
+-- ORGM[2] = "465616\0684"
 
 ORGM.BUILD_ID = #ORGM.BUILD_HISTORY
 --- @section end

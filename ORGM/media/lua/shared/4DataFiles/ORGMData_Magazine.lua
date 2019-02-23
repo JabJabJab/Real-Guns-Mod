@@ -237,5 +237,5 @@ register("XD40Mag",
     { ammoType = 'Ammo_40SW', maxCapacity = 9, }
 )
 
-ORGM[14] = "353134363"
+-- ORGM[14] = "353134363"
 ORGM.log(ORGM.INFO, "All default magazines registered.")
