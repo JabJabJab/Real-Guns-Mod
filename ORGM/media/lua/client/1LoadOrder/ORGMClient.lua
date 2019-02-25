@@ -45,7 +45,7 @@ Client.loadModels = function()
     Client.addModel('swm19') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('swm252', 'swm29', 'swm19') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('swm29', 'swm29', 'swm19') -- 3.09, credits to Filibuster Rhymes
-    Client.addModel('swm36', 'swm36', 'sw10c') -- 3.09, credits to Filibuster Rhymes
+    Client.addModel('swm36', 'swm36', 'swm10c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('swm610', 'swm610', 'swm19c') -- 3.09, credits to Filibuster Rhymes
     Client.addModel('taurusraging') -- 3.09, credits to Filibuster Rhymes
 
@@ -92,7 +92,7 @@ Client.loadModels = function()
     Client.addModel("kriss") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("krissciv", "krissciv", 'kriss') -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("m1a1") -- 3.09.2, credits to Filibuster Rhymes
-    Client.addModel("m1a1_gold", "m1a1", "m1a1_gold") -- 3.09.2, credits to Filibuster Rhymes
+    --Client.addModel("m1a1_gold", "m1a1", "m1a1_gold") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("mac10") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel("mac11", "mac11", "mac10") -- 3.09.2, credits to Filibuster Rhymes
     Client.addModel('skorpion') -- 3.09.2, credits to Filibuster Rhymes
