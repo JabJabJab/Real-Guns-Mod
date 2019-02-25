@@ -12,11 +12,15 @@
     OnGameBoot and OnEquipPrimary.
 
 ]]
+
+local Firearm = ORGM.Firearm
+local Settings = ORGM.Settings
+
 -- function for silencer handling
 local silencerCheck = function(player, item)
     if item == nil then return end
     --local itemType = item:getType()
-    if not ORGM.Firearm.isFirearm(item) then return end
+    if not Firearm.isFirearm(item) then return end
     -- get the scriptItem
     local scriptItem = item:getScriptItem()
 
@@ -109,7 +113,7 @@ end
 ]]
 ORGM.Client.loadCompatibilityPatches = function()
     -- ORGMSilencers
-    if ORGM.isModLoaded("ORGMSilencer") and ORGM.Settings.UseSilencersPatch then
+    if ORGM.isModLoaded("ORGMSilencer") and Settings.UseSilencersPatch then
         -- first remove the old hook
         Events.OnWeaponSwing.Remove(Silencer.onAttack)
         if SilencerOnGameStart then Events.OnGameStart.Remove(SilencerOnGameStart) end
@@ -124,7 +128,7 @@ ORGM.Client.loadCompatibilityPatches = function()
 
 
     -- Necroforge
-    if ORGM.isModLoaded("NecroForge") and ORGM.Settings.UseNecroforgePatch then
+    if ORGM.isModLoaded("NecroForge") and Settings.UseNecroforgePatch then
         Events.OnGameStart.Add(necroforgePatch)
     end
 
