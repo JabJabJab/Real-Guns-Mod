@@ -201,6 +201,8 @@ Menu.firearm = function()
             end
         end
 
+        --[[
+
         -- skins support
         local skins = Firearm.getData(thisItem).skins
         if skins then
@@ -212,6 +214,7 @@ Menu.firearm = function()
                 subMenuSkins:addOption(skin, thisItem, Menu.onSkinEdit, playerObj, modData, skin)
             end
         end
+        ]]
 
     end
     -- add debug/development submenu.

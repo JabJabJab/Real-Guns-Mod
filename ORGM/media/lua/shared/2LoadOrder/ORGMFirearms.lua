@@ -970,7 +970,8 @@ Stats.set = function(weaponItem)
     ORGM.log(ORGM.DEBUG, "Setting "..weaponItem:getType() .. " ammo to "..tostring(ammoType))
     local ammoData = Ammo.getData(ammoType) or {}
     local compTable = Component.getAttached(weaponItem)
-    --
+    --[[
+
     if gunData.skins then
         local current = weaponItem:getWeaponSprite()
         -- get default sprite
@@ -980,6 +981,7 @@ Stats.set = function(weaponItem)
         end
         if current ~= expected then weaponItem:setWeaponSprite(eSprite) end
     end
+    ]]
 
 
     -- set inital values from defaults

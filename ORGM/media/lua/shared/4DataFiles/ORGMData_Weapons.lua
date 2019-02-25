@@ -924,7 +924,7 @@ register("M1A1", {
     manufacturer = "IGUI_Firearm_Manuf_AOC",
     description = "IGUI_Firearm_Desc_M1A1",
 
-    skins = {'gold'},
+    --skins = {'gold'},
 })
 register("Mac10", {
     lastChanged = 24,
