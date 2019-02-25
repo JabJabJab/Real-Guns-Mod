@@ -1579,7 +1579,7 @@ module ORGM
         AmmoType    =   XD40Mag,
         ImpactSound =   null,
         MaxRange    =   10,
-        WeaponSprite    =   sfieldxd,
+        WeaponSprite    =   xd40,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
