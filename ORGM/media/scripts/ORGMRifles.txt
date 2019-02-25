@@ -1631,7 +1631,7 @@ module ORGM
         AmmoType    =   Rug1022Mag,
         ImpactSound =   null,
         MaxRange    =   20,
-        WeaponSprite    =   ruger1022,
+        WeaponSprite    =   rug1022,
         SoundVolume =   75,
         MinAngle    =   0.95,
         Type    =   Weapon,
