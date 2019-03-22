@@ -1,10 +1,11 @@
-﻿// CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
+// CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
 // 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+// QQ896061101 邮件Cleavejiang@hotmail.com
 *****************************************
 Items_CN = {
+    -- Ammo.txt
     DisplayName_ORGM_Ammo_117BB                 = ".117 BB子弹",
     DisplayName_ORGM_Ammo_117BB_Box             = ".117 250发罐装BB子弹",
-
     DisplayName_ORGM_Case_22LR                  = ".22LR子弹弹壳",
     DisplayName_ORGM_Case_22LR_Box              = ".22LR 100发盒装弹壳",
     DisplayName_ORGM_Case_22LR_Can              = ".22LR 1000发箱装弹壳",
@@ -287,7 +288,7 @@ Items_CN = {
     DisplayName_ORGM_CZ75Mag            = "CZ75弹匣(9x19毫米)",
     DisplayName_ORGM_DEagleMag          = "沙漠之鹰弹匣(.44)",
     DisplayName_ORGM_DEagleXIXMag       = "沙漠之鹰XIX弹匣(.50AE)",
-    DisplayName_ORGM_FN57Mag            = "FN57弹匣(5.7x28mm)",
+    DisplayName_ORGM_FN57Mag            = "FN57弹匣(5.7x28毫米)",
     DisplayName_ORGM_FNFALMag           = "FNFALA弹匣(.308或7.62x51)",
     DisplayName_ORGM_FNFALAMag          = "FNFAL弹匣(7.62x51或.308)",
     DisplayName_ORGM_FNP90Mag           = "FNP90弹匣(5.7x28毫米)",

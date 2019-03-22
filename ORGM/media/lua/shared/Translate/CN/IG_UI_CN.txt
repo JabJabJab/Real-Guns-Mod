@@ -1,5 +1,6 @@
 // CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
 // 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+// QQ896061101 邮件Cleavejiang@hotmail.com
 *****************************************
 IG_UI_CN = {
     IGUI_Firearm_SuicideConfirm = "结束你的生命?",
@@ -26,6 +27,13 @@ IG_UI_CN = {
     IGUI_Firearm_ActionType4 = "压动式",
     IGUI_Firearm_ActionType5 = "开膛式",
     IGUI_Firearm_ActionType6 = "旋转弹筒",
+	IGUI_Firearm_BarrelLength = "枪管长度",
+    IGUI_Firearm_AutoBlowback = "后坐力",
+    IGUI_Firearm_AutoDelayedBlowback = "延迟后坐力",
+    IGUI_Firearm_AutoShortRecoil = "短后座力",
+    IGUI_Firearm_AutoShortPiston = "短行程气体活塞",
+    IGUI_Firearm_AutoLongPiston = "长行程气体活塞",
+    IGUI_Firearm_AutoDirectGas = "直接冲击",
 
     IGUI_Firearm_TriggerType1 = "单动击发",
     IGUI_Firearm_TriggerType2 = "双动击发",
@@ -53,6 +61,7 @@ IG_UI_CN = {
     IGUI_Firearm_DetailSemi = "半自动",
     IGUI_Firearm_DetailFull = "全自动",
     IGUI_Firearm_DetailMode = "当前设置为 %1 模式. <LINE> ",
+	IGUI_Firearm_DetailBarrelLength = "枪管长度为 %1 英寸. <LINE> ",
     IGUI_Firearm_DetailOpen = "这个 %1 当前已经打开. <LINE> ",
     IGUI_Firearm_DetailClosed = "这个 %1 当前已经关闭. <LINE> ",
     IGUI_Firearm_DetailInserted = "弹夹已经插入. <LINE> ",
@@ -86,8 +95,11 @@ IG_UI_CN = {
     IGUI_Firearm_DetailAttach3 = "%1 被装入. <LINE> ",
     IGUI_Firearm_DetailAttach4 = "一个 %1 <LINE> ",
     
-    IGUI_Firearm_DetailSerial = "编号是 %1 <LINE> ",
-    IGUI_Firearm_DetailNoSerial = "编号似乎已被归档. <LINE> ",
+    IGUI_Firearm_DetailSerial = "枪支编号是 %1 <LINE> ",
+    IGUI_Firearm_DetailNoSerial = "枪支编号似乎已被归档. <LINE> ",
+	
+	IGUI_Firearm_DetailRoundsFired = "已击发的弹药总数为 %1 发. <LINE> ",
+    IGUI_Firearm_DetailRoundsSinceCleaned = "截止至上次清理该枪支,已击发的弹药总数为 %1 发. <LINE> ",
 
     -------------------------------------------------------------------------------------------------
     IGUI_Firearm_StatDetail = " <RED> 详情 <LINE> <TEXT> 重量: %1 <LINE> ",

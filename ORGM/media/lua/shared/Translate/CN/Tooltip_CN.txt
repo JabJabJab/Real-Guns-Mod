@@ -1,5 +1,6 @@
 // CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
 // 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+// QQ896061101 邮件Cleavejiang@hotmail.com
 *****************************************
 Tooltip_CN = {
 	-- Item tooltip

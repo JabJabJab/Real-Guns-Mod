@@ -1,5 +1,6 @@
 // CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
 // 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+// QQ896061101 邮件Cleavejiang@hotmail.com
 *****************************************
 UI_CN = {
 	UI_optionscreen_binding_Equip/Unequip Pistol = "装备/卸下 手枪",
@@ -13,16 +14,41 @@ UI_CN = {
     UI_optionscreen_orgm_loglevel_warn = "错误与警告",
     UI_optionscreen_orgm_loglevel_info = "信息(默认)",
     UI_optionscreen_orgm_loglevel_debug = "调试中",
+	UI_optionscreen_orgm_loglevel_verbose = "详细信息",
     UI_optionscreen_orgm_loglevel_tooltip = "设置显示到控制台的信息数量.txt文件",
     UI_optionscreen_orgm_jamming = "卡壳开启",
     UI_optionscreen_orgm_jamming_tooltip = "枪械状态差时射击会导致卡壳",
     UI_optionscreen_orgm_usecases = "弹壳喷射而出",
     UI_optionscreen_orgm_usecases_tooltip = 射击中弹壳喷射而出",
+	UI_optionscreen_orgm_usebarrellen = "启用枪管长度修正",
+    UI_optionscreen_orgm_usebarrellen_tooltip = "枪管长度影响伤害、射程和后坐力",
+    UI_optionscreen_orgm_disablefullauto = "禁用全自动开火",
+    UI_optionscreen_orgm_disablefullauto_tooltip = "武器在全自动模式下的表现与半自动模式下保持一致",
+	
     UI_optionscreen_orgm_removebase = "删除游戏原版枪械",
     UI_optionscreen_orgm_removebase_tooltip = "试图从容器中删除全部枪械(已经存放的枪械并不会处理)",
     
     UI_optionscreen_orgm_damagemulti = "伤害倍率",
     UI_optionscreen_orgm_damagemulti_tooltip = "全部枪械伤害倍率(默认 0.5)",
+	
+	UI_optionscreen_orgm_hitpistol = "命中率 - 手枪",
+    UI_optionscreen_orgm_hitpistol_tooltip = "瞄准技能和其他数据修改之前手枪默认的命中率(默认值40)",
+    UI_optionscreen_orgm_hitsmg = "命中率 - 冲锋枪",
+    UI_optionscreen_orgm_hitsmg_tooltip = "瞄准技能和其他数据修改之前冲锋枪默认的命中率(默认值30)",
+    UI_optionscreen_orgm_hitrifle = "命中率 - 步枪",
+    UI_optionscreen_orgm_hitrifle_tooltip = "瞄准技能和其他数据修改之前步枪默认的命中率(默认值40)",
+    UI_optionscreen_orgm_hitshotgun = "命中率 - 猎枪/霰弹枪",
+    UI_optionscreen_orgm_hitshotgun_tooltip = "瞄准技能和其他数据修改之前猎枪/霰弹枪默认的命中率(默认值60)",
+    UI_optionscreen_orgm_hitother = "命中率 - 其他枪支",
+    UI_optionscreen_orgm_hitother_tooltip = "瞄准技能和其他数据修改之前其他枪支默认的命中率(默认值40)",
+    UI_optionscreen_orgm_aiminghitmod = "瞄准技能对枪械命中率的修正值",
+    UI_optionscreen_orgm_aiminghitmod_tooltip = "每级瞄准技能对命中率的额外修正值(默认值 7)",
+    UI_optionscreen_orgm_critical = "致命一击概率",
+    UI_optionscreen_orgm_critical_tooltip = "其他数据修改之前爆头概率/致命一击的默认命中率(默认值20)",
+    UI_optionscreen_orgm_aimingcritmod = "致命一击技能修正值",
+    UI_optionscreen_orgm_aimingcritmod_tooltip = "每2级瞄准技能对致命一击概率额外的加成(默认值 10)",
+
+	
     UI_optionscreen_orgm_magreloadtime = "弹夹重新插入耗时",
     UI_optionscreen_orgm_magreloadtime_tooltip = "将子弹压入弹夹或弹仓花费的时间",
     UI_optionscreen_orgm_reloadtime = "枪械重新装填时间",

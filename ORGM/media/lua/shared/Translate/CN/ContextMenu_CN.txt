@@ -1,5 +1,6 @@
 // CleaveJiang/水月湘寒/战场蒲公英(百度贴吧ID) 翻译
 // 未经作者许可，禁止编辑/转载/拷贝/传播/以下内容！
+// QQ896061101 邮件Cleavejiang@hotmail.com
 *****************************************
 ContextMenu_CN = {
 	ContextMenu_ORGM_Unload = "卸载弹药",
@@ -32,5 +33,10 @@ ContextMenu_CN = {
     ContextMenu_ORGM_UseOnly = "仅用于...",
     ContextMenu_ORGM_Any = "任意弹药",
     ContextMenu_ORGM_Mixed = "混装弹药",
-    ContextMenu_ORGM_AdminLoad = "管理 - 满装载弹",
+	ContextMenu_ORGM_Admin = "管理",
+	ContextMenu_ORGM_AdminDebug = "输出调试信息",
+    ContextMenu_ORGM_AdminReset = "重置默认",
+    ContextMenu_ORGM_AdminLoad = "满装载弹",
+	ContextMenu_ORGM_AdminBarrelLen = "枪管长度",
+    ContextMenu_ORGM_AdminBarrelLenInches = "%1 英寸",
 }
