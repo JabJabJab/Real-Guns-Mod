@@ -285,6 +285,7 @@ function MainOptions:create()
     self.addY = self.addY + 10
     addSectionLabel(self, splitpoint, comboWidth, "orgm_section_compatibility")
     addBoolOption(self, splitpoint, comboWidth, "orgm_silencerspatch", "UseSilencersPatch")
+    addNumericOption(self, splitpoint, comboWidth, "orgm_silencerspatcheffect", "SilencerPatchEffect", true)
     addBoolOption(self, splitpoint, comboWidth, "orgm_necroforgepatch", "UseNecroforgePatch")
     addBoolOption(self, splitpoint, comboWidth, "orgm_survivorspatch", "UseSurvivorsPatch")
 

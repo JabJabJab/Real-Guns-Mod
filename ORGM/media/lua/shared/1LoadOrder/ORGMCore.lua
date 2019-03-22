@@ -394,6 +394,9 @@ ORGM.SettingsValidator = {
     -- valid options are true or false (default: true)
     UseSilencersPatch = {type='boolean', default=true},
 
+    -- SilencerPatchEffect: Sound reduction for Nolan's Silencer mod
+    SilencerPatchEffect = {type='float', min=0.01, default=0.2},
+
     -- UseNecroforgePatch: Patch Svarog's NecroForge mod
     -- valid options are true or false (default: true)
     UseNecroforgePatch = {type='boolean', default=true},

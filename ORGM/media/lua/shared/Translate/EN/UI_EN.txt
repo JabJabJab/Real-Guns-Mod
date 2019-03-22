@@ -98,6 +98,8 @@ UI_EN = {
 
     UI_optionscreen_orgm_silencerspatch = "Use Silencers Patch",
     UI_optionscreen_orgm_silencerspatch_tooltip = "Use built-in patch for Nolan's ORGM Silencers Mod",
+    UI_optionscreen_orgm_silencerspatcheffect = "Silencers Patch Multiplier",
+    UI_optionscreen_orgm_silencerspatcheffect_tooltip = "Silencers Mod multiplier (lower = quieter, default 0.2)",
     UI_optionscreen_orgm_necroforgepatch = "Use Necroforge Patch",
     UI_optionscreen_orgm_necroforgepatch_tooltip = "Use built-in patch for NecroForge",
     UI_optionscreen_orgm_survivorspatch = "Use Survivors Patch",
