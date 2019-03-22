@@ -1,5 +1,6 @@
 // CleaveJiang/水月湘寒/戰場蒲公英(百度貼吧ID) 翻譯
 // 未經作者許可，禁止編輯/轉載/拷貝/傳播/以下內容！
+// QQ896061101 郵件Cleavejiang@hotmail.com
 *****************************************
 ContextMenu_CH = {
 	ContextMenu_ORGM_Unload = "卸載彈藥",
@@ -24,7 +25,7 @@ ContextMenu_CH = {
     ContextMenu_ORGM_FullAuto = "全自動",
     ContextMenu_ORGM_Auto = "半自動",
     ContextMenu_ORGM_Bolt = "拉栓式",
-    ContextMenu_ORGM_Lever = "杠杆式",
+    ContextMenu_ORGM_Lever = "杠桿式",
     ContextMenu_ORGM_Pump = "泵動式",
     ContextMenu_ORGM_Break = "開膛式",
     ContextMenu_ORGM_Rotary = "旋轉彈筒",
@@ -32,5 +33,10 @@ ContextMenu_CH = {
     ContextMenu_ORGM_UseOnly = "僅用於...",
     ContextMenu_ORGM_Any = "任意彈藥",
     ContextMenu_ORGM_Mixed = "混裝彈藥",
-    ContextMenu_ORGM_AdminLoad = "管理 - 滿裝載彈",
+	ContextMenu_ORGM_Admin = "管理",
+	ContextMenu_ORGM_AdminDebug = "輸出調試信息",
+    ContextMenu_ORGM_AdminReset = "重置默認",
+    ContextMenu_ORGM_AdminLoad = "滿裝載彈",
+	ContextMenu_ORGM_AdminBarrelLen = "槍管長度",
+    ContextMenu_ORGM_AdminBarrelLenInches = "%1 英寸",
 }

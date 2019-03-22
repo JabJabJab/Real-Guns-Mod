@@ -1,21 +1,22 @@
 // CleaveJiang/水月湘寒/戰場蒲公英(百度貼吧ID) 翻譯
 // 未經作者許可，禁止編輯/轉載/拷貝/傳播/以下內容！
+// QQ896061101 郵件Cleavejiang@hotmail.com
 *****************************************
 Tooltip_CH = {
 	-- Item tooltip
     Tooltip_2xScope = "讓視野範圍擴大兩倍以獲得更精確的射擊",
     Tooltip_4xScope = "在進行戰鬥任務或突襲行動時讓視野範圍擴大四倍",
-    Tooltip_8xScope = "在進行遠端狩獵或狙擊任務時讓視野範圍擴大八倍",
+    Tooltip_8xScope = "在進行遠程狩獵或狙擊任務時讓視野範圍擴大八倍",
     Tooltip_FibSig = "在黑暗的視野中容易看到發光的位置從而提高射擊的準確性",
     Tooltip_Foregrip = "在持續射擊中增加槍口穩定性並減少後坐力的垂直握把",
     Tooltip_FullCh = "可安裝在獵槍槍管上以降低射擊目標時彈藥的延展",
     Tooltip_HalfCh = "可安裝在霰彈槍口上以減少射擊目標時彈藥的擴散",
-    Tooltip_PistolLas = "手槍上可安裝的鐳射瞄準鏡增加目標獲取與精准度",
+    Tooltip_PistolLas = "手槍上可安裝的激光瞄準鏡增加目標獲取與精準度",
     Tooltip_PistolTL = "可安裝在手槍上的戰術手電筒",
     Tooltip_RDS = "可以提供微縮放大與容易確定目標的紅點式瞄準系統",
     Tooltip_Recoil = "軟化的步槍後靠墊，以減少後坐力的影響",
     Tooltip_Reflex = "可安裝的反射瞄準鏡增加目標獲取讓持續射擊命中變得更加容易",
-    Tooltip_RifleLas = "步槍上可安裝的鐳射瞄準鏡增加目標獲取與精准度",
+    Tooltip_RifleLas = "步槍上可安裝的激光瞄準鏡增加目標獲取與精準度",
     Tooltip_RifleTL = "步槍上可安裝的戰術手電筒",
     Tooltip_Rifsling = "槍帶減輕槍械攜行重量的煩惱",
     Tooltip_SkeletalStock = "折疊式槍托讓槍械的體積有效控制",
