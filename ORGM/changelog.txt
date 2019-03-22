@@ -26,6 +26,8 @@ in the chamber.
 
 * Added tons of new models by Filibuster Rhymes. All models have now been updated!
 
+* Added multiplier option for Nolan's Silencer mod to control effectiveness
+
 * Decreased capacity on Stevens 320 to 5 (was 8)
 
 * Sorted options screen into groups

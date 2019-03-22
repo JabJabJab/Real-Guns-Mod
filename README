@@ -2,16 +2,16 @@ ORMtnMan's Real Guns Mod for Project Zomboid
 
 Original mod by ORMtnMan, Rechambered version by Fenris_Wolf
 
-Adds over 100 real world firearms to Project Zomboid, and attempts to simulate firearm behavior in a 
+Adds over 100 real world firearms to Project Zomboid, and attempts to simulate firearm behavior in a
 realistic fashion.
 
-This is the development repository, and files maybe different then the stable version listed in 
-theindiestone forum thread.  You may run into issues trying to connect to servers that expect players 
-to have the stable version, and servers should not run this version as it is constantly changing and 
+This is the development repository, and files maybe different then the stable version listed in
+theindiestone forum thread.  You may run into issues trying to connect to servers that expect players
+to have the stable version, and servers should not run this version as it is constantly changing and
 may have bugs.
 
-To get the latest stable version, visit theindiestone forums: 
-https://theindiestone.com/forums/index.php?/topic/23237-orgm-rechambered/
+To get the latest stable version, visit ORGM homepage:
+https://zomboid.tekagis.ca/mods/orgm.php
 
 or use this direct download link:
 https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
@@ -19,5 +19,6 @@ https://downloads.tekagis.ca/ProjectZomboidMods/ORGM.zip
 See the changelog at https://github.com/FWolfe/RealGunsMod/blob/master/ORGM/changelog.txt
 
 For examples on how to customize ORGM, see the examples folder.
+HTML documentation for ORGM's lua API is at https://zomboid.tekagis.ca/api/index.html
 
 A dedicated support channel for ORGM has been setup on discord https://discord.gg/uPPKS87
