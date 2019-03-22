@@ -35,7 +35,7 @@ Tooltip_EN = {
     Tooltip_Firearm_Critical = "Critical:",
     Tooltip_Firearm_HitChance = "Accuracy:",
     Tooltip_Firearm_AimTime = "Movement:",
-    Tooltip_Firearm_SwingTime = "Acquisition:",
+    Tooltip_Firearm_SwingTime = "Awkwardness:",
 
     -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
     -- for the old "classic" tooltips

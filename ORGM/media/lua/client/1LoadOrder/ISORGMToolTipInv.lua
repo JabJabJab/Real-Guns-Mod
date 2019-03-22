@@ -1,7 +1,11 @@
 --[[- Override for ISToolTipInv.
 
     Some modifications need to be done to the tooltip rendering process to handle our custom
-    tooltips.
+    tooltips. Weapon tooltips have their size and position coded in LUA ISToolTipInv:render(), but
+    the data contained is hardcoded in java, and drawn with the item:DoTooltip() method.
+
+    ORGM overwrites ISToolTipInv:render() and bypasses the call to item:DoTooltip() allowing for
+    completely moddable tooltips. Our new
 
     File: client/1LoadOrder/ISORGMToolTipInv.lua
     @classmod ISToolTipInv
@@ -59,29 +63,111 @@ local function setLayoutItem(layout, label, value, color, asProgress)
     end
 end
 
+local function initializeStyle(style, aimingPerk)
+    local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
+    local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
+    local roundPrecision = (toolTipStyle == ORGM.TIPDYNAMIC and 6-(10-aimingPerk)*2 or 6)
+    return noColor, isNumeric, roundPrecision
+end
+
+local function initializeTip(self)
+    -- translated from the java when executing self.item:DoTooltip(self.tooltip)
+    self.tooltip:render()
+    local i = self.tooltip:getLineSpacing()
+    local y = 5
+    self.tooltip:DrawText(self.tooltip:getFont(), self.item:getName(), 5, y, 1, 1, 0.8, 1)
+    self.tooltip:adjustWidth(5, self.item:getName())
+    y = y + i + 5
+    local layout = self.tooltip:beginLayout()
+    layout:setMinLabelWidth(80)
+    return layout, y, i
+end
+
+local function finalizeTip(self, layout, y, i)
+    ----------------------------------------------------------
+    y = layout:render(5, y, self.tooltip)
+    self.tooltip:endLayout(layout)
+    if self.item:getTooltip() then
+        y = y + i + 5
+        local text = getText(self.item:getTooltip())
+        self.tooltip:DrawText(self.tooltip:getFont(), text, 5, y, 1, 1, 0.8, 1)
+        self.tooltip:adjustWidth(5, text)
+    end
+
+    y = y+ i-- j = j+ self.tooltip.padBottom; -- ??
+    self.tooltip:setHeight(y)
+    if self.tooltip:getWidth() < 150 then
+        self.tooltip:setWidth(150)
+    end
+
+end
+
+TipHandler[ORGM.AMMO] = function(self)
+    local item = self.item
+    local ammoData = Ammo.getData(item)
+    local player = getPlayer()
+    local aimingPerk = player:getPerkLevel(Perks.Aiming)
+    local toolTipStyle = Settings.ToolTipStyle
+    local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
+    local layout, y, i = initializeTip(self)
+
+    ----------------------------------------------------------
+    -- show weight
+    local weight = item:getUnequippedWeight()
+    if item:isEquipped() then weight = item:getEquippedWeight() end
+    setLayoutItem(layout, getText("Tooltip_item_Weight").. ":", round(weight, 3))
+
+    ----------------------------------------------------------
+    -- Damage
+    if (aimingPerk > 0 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+        local damage = ammoData.MinDamage*Settings.DamageMultiplier or 0
+        local color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_MinDamage"),
+            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+            color, not isNumeric)
+
+        damage = ammoData.MaxDamage*Settings.DamageMultiplier or 0
+        color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_MaxDamage"),
+            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+            color, not isNumeric)
+    end
+
+    ----------------------------------------------------------
+    -- Range
+    if (aimingPerk > 1 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+        local range = ammoData.Range or 0
+        local color = colorScale(range/50, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Range"),
+            isNumeric and round(range, roundPrecision) or range/50,
+            color, not isNumeric)
+    end
+
+    ----------------------------------------------------------
+    -- Recoil
+    if (aimingPerk > 0 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+        local recoil = ammoData.Recoil or 0
+        local color = colorScale(1-recoil/50, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Recoil"),
+            isNumeric and tostring(recoil) or recoil/50,
+            color, not isNumeric)
+    end
+
+    ----------------------------------------------------------
+    -- TODO: add FMJ/HP text, suspicious looking ammo hints
+    finalizeTip(self, layout, y, i)
+end
 
 TipHandler[ORGM.COMPONENT] = function(self)
     local item = self.item
     local compData = Component.getData(item)
     local modData = item:getModData()
     local player = getPlayer()
-    --local isSet = (modData.lastRound ~= nil)
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
     local toolTipStyle = Settings.ToolTipStyle
+    local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
+    local layout, y, i = initializeTip(self)
 
-    local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
-    local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
-
-    -- translated from the java when executing self.item:DoTooltip(self.tooltip)
-    self.tooltip:render()
-    local UIFont = self.tooltip:getFont()
-    local i = self.tooltip:getLineSpacing()
-    local y = 5
-    self.tooltip:DrawText(UIFont, item:getName(), 5, y, 1, 1, 0.8, 1)
-    self.tooltip:adjustWidth(5, item:getName())
-    y = y + i + 5
-    local layout = self.tooltip:beginLayout()
-    layout:setMinLabelWidth(80)
     ----------------------------------------------------------
     -- show weight
     local weight = item:getUnequippedWeight()
@@ -130,19 +216,7 @@ TipHandler[ORGM.COMPONENT] = function(self)
     end
 
     ----------------------------------------------------------
-    y = layout:render(5, y, self.tooltip)
-    self.tooltip:endLayout(layout)
-    if item:getTooltip() then
-        y = y + i + 5
-        local text = getText(item:getTooltip())
-        self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
-        self.tooltip:adjustWidth(5, text)
-    end
-    y = y+ i + 5-- j = j+ self.tooltip.padBottom; -- ??
-    self.tooltip:setHeight(y)
-    if self.tooltip:getWidth() < 150 then
-        self.tooltip:setWidth(150)
-    end
+    finalizeTip(self, layout, y, i)
 end
 
 TipHandler[ORGM.MAGAZINE] = function(self)
@@ -152,18 +226,8 @@ TipHandler[ORGM.MAGAZINE] = function(self)
     local player = getPlayer()
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
     local toolTipStyle = Settings.ToolTipStyle
-    local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
-
-    -- translated from the java when executing self.item:DoTooltip(self.tooltip)
-    self.tooltip:render()
-    local UIFont = self.tooltip:getFont()
-    local i = self.tooltip:getLineSpacing()
-    local y = 5
-    self.tooltip:DrawText(UIFont, item:getName(), 5, y, 1, 1, 0.8, 1)
-    self.tooltip:adjustWidth(5, item:getName())
-    y = y + i + 5
-    local layout = self.tooltip:beginLayout()
-    layout:setMinLabelWidth(80)
+    local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
+    local layout, y, i = initializeTip(self)
     ----------------------------------------------------------
     -- show weight
     local weight = item:getUnequippedWeight()
@@ -215,19 +279,7 @@ TipHandler[ORGM.MAGAZINE] = function(self)
     end
 
     ----------------------------------------------------------
-    y = layout:render(5, y, self.tooltip)
-    self.tooltip:endLayout(layout)
-    if item:getTooltip() then
-        y = y + i + 5
-        local text = getText(item:getTooltip())
-        self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
-        self.tooltip:adjustWidth(5, text)
-    end
-    y = y+ i + 5-- j = j+ self.tooltip.padBottom; -- ??
-    self.tooltip:setHeight(y)
-    if self.tooltip:getWidth() < 150 then
-        self.tooltip:setWidth(150)
-    end
+    finalizeTip(self, layout, y, i)
 end
 
 TipHandler[ORGM.FIREARM] = function(self)
@@ -238,21 +290,9 @@ TipHandler[ORGM.FIREARM] = function(self)
     local isSet = (modData.lastRound ~= nil)
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
     local toolTipStyle = Settings.ToolTipStyle
-
-    local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
-    local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
-    local roundPrecision = (toolTipStyle == ORGM.TIPDYNAMIC and 6-(10-aimingPerk)*2 or 6)
-
-    -- translated from the java when executing self.item:DoTooltip(self.tooltip)
-    self.tooltip:render()
-    local UIFont = self.tooltip:getFont()
-    local i = self.tooltip:getLineSpacing()
-    local y = 5
-    self.tooltip:DrawText(UIFont, item:getName(), 5, y, 1, 1, 0.8, 1)
-    self.tooltip:adjustWidth(5, item:getName())
-    y = y + i + 5
-    local layout = self.tooltip:beginLayout()
-    layout:setMinLabelWidth(80)
+    local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
+    local layout, y, i = initializeTip(self)
+    local fullauto = Firearm.isFullAuto(item, gunData)
     ----------------------------------------------------------
 
     -- show classification
@@ -261,7 +301,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     --
     if Firearm.isSelectFire(item, gunData) then
         local mode = "IGUI_Firearm_DetailSemi"
-        if Firearm.isFullAuto(item, gunData) then mode = "IGUI_Firearm_DetailFull" end
+        if fullauto then mode = "IGUI_Firearm_DetailFull" end
         setLayoutItem(layout, getText("Tooltip_Firearm_Mode"), getText(mode))
     end
 
@@ -325,48 +365,75 @@ TipHandler[ORGM.FIREARM] = function(self)
     if isSet then -- Only show when a round has been set.
         ----------------------------------------------------------
         -- Damage
-        local damage = self.item:getMinDamage()
-        local color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
-        setLayoutItem(layout, getText("Tooltip_Firearm_MinDamage"),
-            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
-            color, not isNumeric)
+        if (aimingPerk > 0 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+            local damage = self.item:getMinDamage()
+            local color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
+            setLayoutItem(layout, getText("Tooltip_Firearm_MinDamage"),
+                isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+                color, not isNumeric)
 
-        damage = self.item:getMaxDamage()
-        color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
-        setLayoutItem(layout, getText("Tooltip_Firearm_MaxDamage"),
-            isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
-            color, not isNumeric)
+            damage = self.item:getMaxDamage()
+            color = colorScale(damage/(3.0*Settings.DamageMultiplier), noColor)
+            setLayoutItem(layout, getText("Tooltip_Firearm_MaxDamage"),
+                isNumeric and round(damage, roundPrecision) or damage/(3.0*Settings.DamageMultiplier),
+                color, not isNumeric)
+        end
 
         ----------------------------------------------------------
         -- Range
-        local range = item:getMaxRange(player)
-        color = colorScale(range/50, noColor)
-        setLayoutItem(layout, getText("Tooltip_Firearm_Range"),
-            isNumeric and round(range, roundPrecision) or range/50,
-            color, not isNumeric)
+        if (aimingPerk > 1 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+            local range = item:getMaxRange(player)
+            local color = colorScale(range/50, noColor)
+            setLayoutItem(layout, getText("Tooltip_Firearm_Range"),
+                isNumeric and round(range, roundPrecision) or range/50,
+                color, not isNumeric)
+        end
+
+        ----------------------------------------------------------
+        -- accuracy
+        if (aimingPerk > 2 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+            local chance = item:getHitChance()
+            local color = colorScale(chance/80, noColor)
+            setLayoutItem(layout, getText("Tooltip_Firearm_HitChance"),
+                isNumeric and tostring(chance) or chance/80,
+                color, not isNumeric)
+        end
 
         ----------------------------------------------------------
         -- Recoil
-        local recoil = item:getRecoilDelay()
-        color = colorScale(1-recoil/50, noColor)
-        setLayoutItem(layout, getText("Tooltip_Firearm_Recoil"),
-            isNumeric and tostring(recoil) or recoil/50,
-            color, not isNumeric)
+        if not fullauto and (aimingPerk > 0 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+            local recoil = item:getRecoilDelay()
+            local color = colorScale(1-recoil/50, noColor)
+            setLayoutItem(layout, getText("Tooltip_Firearm_Recoil"),
+                isNumeric and tostring(recoil) or recoil/50,
+                color, not isNumeric)
+        end
+    end
 
+    ----------------------------------------------------------
+    -- Swingtime/Awkwardness, confusing for full autos.
+    if not fullauto and (aimingPerk > 2 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+        local swing = item:getSwingTime()
+        local color = colorScale(1-swing/5, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_SwingTime"),
+            isNumeric and tostring(swing) or swing/5,
+            color, not isNumeric)
     end
 
     ----------------------------------------------------------
     -- Noise
-    local range = item:getSoundRadius()
-    color = colorScale(1-range/250, noColor)
-    setLayoutItem(layout, getText("Tooltip_Firearm_Noise"),
-        isNumeric and tostring(range) or range/250,
-        color, not isNumeric)
+    if (aimingPerk > 1 or toolTipStyle ~= ORGM.TIPDYNAMIC) then
+        local range = item:getSoundRadius()
+        local color = colorScale(1-range/250, noColor)
+        setLayoutItem(layout, getText("Tooltip_Firearm_Noise"),
+            isNumeric and tostring(range) or range/250,
+            color, not isNumeric)
+    end
 
     ----------------------------------------------------------
     -- Condition
     local condition = item:getCondition() / item:getConditionMax()
-    color = colorScale(condition, noColor)
+    local color = colorScale(condition, noColor)
     -- TODO: translation
     setLayoutItem(layout, "Condition:",
         isNumeric and tostring(item:getCondition()).."/"..tostring(item:getConditionMax()) or condition,
@@ -378,7 +445,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     if (aimingPerk > 3 or toolTipStyle ~= ORGM.TIPDYNAMIC) and roundsSinceCleaned then
         -- roundsSinceCleaned tracker
         if roundsSinceCleaned > 500 then roundsSinceCleaned = 500 end
-        color = colorScale(1-roundsSinceCleaned/500)
+        local color = colorScale(1-roundsSinceCleaned/500)
 
         setLayoutItem(layout, getText("Tooltip_Firearm_Dirt"),
             isNumeric and tostring(modData.roundsSinceCleaned) or roundsSinceCleaned/500,
@@ -391,26 +458,13 @@ TipHandler[ORGM.FIREARM] = function(self)
     local compTable = Component.getAttached(item)
     for pos, compItem in pairs(compTable) do
         if compItem then
-            layoutItem = layout:addItem()
+            local layoutItem = layout:addItem()
             layoutItem:setLabel(compItem:getDisplayName(), 1, 1, 0.8, 1)
         end
     end
 
     ----------------------------------------------------------
-    y = layout:render(5, y, self.tooltip)
-    self.tooltip:endLayout(layout)
-    if item:getTooltip() then
-        y = y + i + 5
-        local text = getText(item:getTooltip())
-        self.tooltip:DrawText(UIFont, text, 5, y, 1, 1, 0.8, 1)
-        self.tooltip:adjustWidth(5, text)
-    end
-
-    y = y+ i-- j = j+ self.tooltip.padBottom; -- ??
-    self.tooltip:setHeight(y)
-    if self.tooltip:getWidth() < 150 then
-        self.tooltip:setWidth(150)
-    end
+    finalizeTip(self, layout, y, i)
 end
 
 
