@@ -63,7 +63,7 @@ local function setLayoutItem(layout, label, value, color, asProgress)
     end
 end
 
-local function initializeStyle(style, aimingPerk)
+local function initializeStyle(toolTipStyle, aimingPerk)
     local noColor = (aimingPerk <= 3 and toolTipStyle ~= ORGM.TIPFULL)
     local isNumeric = (aimingPerk > 7 and toolTipStyle == ORGM.TIPDYNAMIC) or toolTipStyle == ORGM.TIPNUMERIC
     local roundPrecision = (toolTipStyle == ORGM.TIPDYNAMIC and 6-(10-aimingPerk)*2 or 6)
