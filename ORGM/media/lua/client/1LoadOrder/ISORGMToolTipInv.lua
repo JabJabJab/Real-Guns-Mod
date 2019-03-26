@@ -435,7 +435,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     local condition = item:getCondition() / item:getConditionMax()
     local color = colorScale(condition, noColor)
     -- TODO: translation
-    setLayoutItem(layout, "Condition:",
+    setLayoutItem(layout, getText("Tooltip_weapon_Condition")..":",
         isNumeric and tostring(item:getCondition()).."/"..tostring(item:getConditionMax()) or condition,
         color, not isNumeric)
 
