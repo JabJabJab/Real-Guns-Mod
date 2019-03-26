@@ -21,6 +21,25 @@ Tooltip_CN = {
     Tooltip_Rifsling = "枪带减轻枪械携行重量的烦恼",
     Tooltip_SkeletalStock = "折叠式枪托让枪械的体积有效控制",
     Tooltip_CollapsingStock = "伸缩式枪托让枪械更加便于携带",
+	
+	-- new tooltip stuff
+    Tooltip_Firearm_Type = "类别:",
+    Tooltip_Firearm_Mode = "模式:",
+    Tooltip_Firearm_Barrel = "枪管长度:",
+    Tooltip_Firearm_Inches = "英寸",
+    Tooltip_Firearm_SetAmmo = "设定弹药:",
+    Tooltip_Firearm_Loaded = "装载:",
+    Tooltip_Firearm_MinDamage = "最低伤害:",
+    Tooltip_Firearm_MaxDamage = "最高伤害:",
+    Tooltip_Firearm_Range = "射程:",
+    Tooltip_Firearm_Recoil = "后坐力:",
+    Tooltip_Firearm_Noise = "噪音:",
+    Tooltip_Firearm_Dirt = "污垢:",
+	
+	Tooltip_Firearm_Critical = "致命几率:",
+    Tooltip_Firearm_HitChance = "精确度:",
+    Tooltip_Firearm_AimTime = "瞄准耗时:",
+    Tooltip_Firearm_SwingTime = "灵活度:",
     
     -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
     Tooltip_loaded_SA = "射击模式:  半自动",
@@ -42,12 +61,12 @@ Tooltip_CN = {
     Tooltip_loaded_Ammo_22LR_HP_FA = "装填弹药:  .22LR 高爆弹 (全自动)",
 
     ----------------------------------
-    Tooltip_loaded_Ammo_32ACP_FMJ = "装填弹药:  .32 ACP 全金属被甲弹",
-    Tooltip_loaded_Ammo_32ACP_FMJ_SA = "装填弹药:  .32 ACP 全金属被甲弹 (半自动)",
-    Tooltip_loaded_Ammo_32ACP_FMJ_FA = "装填弹药:  .32 ACP 全金属被甲弹 (全自动)",
-    Tooltip_loaded_Ammo_32ACP_HP = "装填弹药:  .32 ACP 高爆弹",
-    Tooltip_loaded_Ammo_32ACP_HP_SA = "装填弹药:  .32 ACP 高爆弹 (半自动)",
-    Tooltip_loaded_Ammo_32ACP_HP_FA = "装填弹药:  .32 ACP 高爆弹 (全自动)",
+    Tooltip_loaded_Ammo_32ACP_FMJ = "装填弹药:  .32 柯尔特自动手枪 全金属被甲弹",
+    Tooltip_loaded_Ammo_32ACP_FMJ_SA = "装填弹药:  .32 柯尔特自动手枪 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_32ACP_FMJ_FA = "装填弹药:  .32 柯尔特自动手枪 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_32ACP_HP = "装填弹药:  .32 柯尔特自动手枪 高爆弹",
+    Tooltip_loaded_Ammo_32ACP_HP_SA = "装填弹药:  .32 柯尔特自动手枪 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_32ACP_HP_FA = "装填弹药:  .32 柯尔特自动手枪 高爆弹 (全自动)",
 
     ----------------------------------
     Tooltip_loaded_Ammo_357Magnum_FMJ = "装填弹药:  .357 马格南 全金属被甲弹",
@@ -74,20 +93,20 @@ Tooltip_CN = {
     Tooltip_loaded_Ammo_38Super_HP_FA = "装填弹药:  .38 特级 高爆弹 (全自动)",
 
     ----------------------------------
-    Tooltip_loaded_Ammo_380ACP_FMJ = "装填弹药:  .380 ACP 全金属被甲弹",
-    Tooltip_loaded_Ammo_380ACP_FMJ_SA = "装填弹药:  .380 ACP 全金属被甲弹 (半自动)",
-    Tooltip_loaded_Ammo_380ACP_FMJ_FA = "装填弹药:  .380 ACP 全金属被甲弹 (全自动)",
-    Tooltip_loaded_Ammo_380ACP_HP = "装填弹药:  .380 ACP 高爆弹",
-    Tooltip_loaded_Ammo_380ACP_HP_SA = "装填弹药:  .380 ACP 高爆弹 (半自动)",
-    Tooltip_loaded_Ammo_380ACP_HP_FA = "装填弹药:  .380 ACP 高爆弹 (全自动)",
+    Tooltip_loaded_Ammo_380ACP_FMJ = "装填弹药:  .380 柯尔特自动手枪 全金属被甲弹",
+    Tooltip_loaded_Ammo_380ACP_FMJ_SA = "装填弹药:  .380 柯尔特自动手枪 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_380ACP_FMJ_FA = "装填弹药:  .380 柯尔特自动手枪 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_380ACP_HP = "装填弹药:  .380 柯尔特自动手枪 高爆弹",
+    Tooltip_loaded_Ammo_380ACP_HP_SA = "装填弹药:  .380 柯尔特自动手枪 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_380ACP_HP_FA = "装填弹药:  .380 柯尔特自动手枪 高爆弹 (全自动)",
 
     ----------------------------------
-    Tooltip_loaded_Ammo_40SW_FMJ = "装填弹药:  .40 S&W 全金属被甲弹",
-    Tooltip_loaded_Ammo_40SW_FMJ_SA = "装填弹药:  .40 S&W 全金属被甲弹 (半自动)",
-    Tooltip_loaded_Ammo_40SW_FMJ_FA = "装填弹药:  .40 S&W 全金属被甲弹 (全自动)",
-    Tooltip_loaded_Ammo_40SW_HP = "装填弹药:  .40 S&W 高爆弹",
-    Tooltip_loaded_Ammo_40SW_HP_SA = "装填弹药:  .40 S&W 高爆弹 (半自动)",
-    Tooltip_loaded_Ammo_40SW_HP_FA = "装填弹药:  .40 S&W 高爆弹 (全自动)",
+    Tooltip_loaded_Ammo_40SW_FMJ = "装填弹药:  .40 史密斯韦森 全金属被甲弹",
+    Tooltip_loaded_Ammo_40SW_FMJ_SA = "装填弹药:  .40 史密斯韦森 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_40SW_FMJ_FA = "装填弹药:  .40 史密斯韦森 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_40SW_HP = "装填弹药:  .40 史密斯韦森 高爆弹",
+    Tooltip_loaded_Ammo_40SW_HP_SA = "装填弹药:  .40 史密斯韦森 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_40SW_HP_FA = "装填弹药:  .40 史密斯韦森 高爆弹 (全自动)",
 
     ----------------------------------
     Tooltip_loaded_Ammo_44Magnum_FMJ = "装填弹药:  .44 马格南 全金属被甲弹",
@@ -98,12 +117,12 @@ Tooltip_CN = {
     Tooltip_loaded_Ammo_44Magnum_HP_FA = "装填弹药:  .44 马格南 高爆弹 (全自动)",
 
     ----------------------------------
-    Tooltip_loaded_Ammo_45ACP_FMJ = "装填弹药:  .45 ACP 全金属被甲弹",
-    Tooltip_loaded_Ammo_45ACP_FMJ_SA = "装填弹药:  .45 ACP 全金属被甲弹 (半自动)",
-    Tooltip_loaded_Ammo_45ACP_FMJ_FA = "装填弹药:  .45 ACP 全金属被甲弹 (全自动)",
-    Tooltip_loaded_Ammo_45ACP_HP = "装填弹药:  .45 ACP 高爆弹",
-    Tooltip_loaded_Ammo_45ACP_HP_SA = "装填弹药:  .45 ACP 高爆弹 (半自动)",
-    Tooltip_loaded_Ammo_45ACP_HP_FA = "装填弹药:  .45 ACP 高爆弹 (全自动)",
+    Tooltip_loaded_Ammo_45ACP_FMJ = "装填弹药:  .45 柯尔特自动手枪 全金属被甲弹",
+    Tooltip_loaded_Ammo_45ACP_FMJ_SA = "装填弹药:  .45 柯尔特自动手枪 全金属被甲弹 (半自动)",
+    Tooltip_loaded_Ammo_45ACP_FMJ_FA = "装填弹药:  .45 柯尔特自动手枪 全金属被甲弹 (全自动)",
+    Tooltip_loaded_Ammo_45ACP_HP = "装填弹药:  .45 柯尔特自动手枪 高爆弹",
+    Tooltip_loaded_Ammo_45ACP_HP_SA = "装填弹药:  .45 柯尔特自动手枪 高爆弹 (半自动)",
+    Tooltip_loaded_Ammo_45ACP_HP_FA = "装填弹药:  .45 柯尔特自动手枪 高爆弹 (全自动)",
 
     ----------------------------------
     Tooltip_loaded_Ammo_45Colt_FMJ = "装填弹药:  .45 柯尔特 全金属被甲弹",
