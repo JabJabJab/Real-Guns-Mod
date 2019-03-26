@@ -1,8 +1,8 @@
 Tooltip_RU = {
 	-- Item tooltip
-    Tooltip_2xScope = "2X увеличение для более точной стрельбы",
-    Tooltip_4xScope = "4X увеличение для выполнения боевых задач",
-    Tooltip_8xScope = "8X увеличение для охоты или снайперской стрельбы",
+    Tooltip_2xScope = "Добавляет увеличение 2X для более точной стрельбы",
+    Tooltip_4xScope = "Добавляет увеличение 4X для выполнения боевых задач",
+    Tooltip_8xScope = "Добавляет увеличение 8X для охоты или снайперской стрельбы",
     Tooltip_FibSig = "Свечение на целике и мушке повышает меткость при стрельбе",
     Tooltip_Foregrip = "Вертикальная передняя рукоятка сохраняет наведение для повторных выстрелов",
     Tooltip_FullCh = "Вставка в ружьё для уменьшения разлёта заряда",
@@ -18,12 +18,31 @@ Tooltip_RU = {
     Tooltip_SkeletalStock = "Скелетный приклад из углеродного волокна уменьшает вес оружия",
     Tooltip_CollapsingStock = "Складной приклад делает оружие короче и облегчает перенос",
     
+	-- new tooltip stuff
+    Tooltip_Firearm_Type = "Тип:",
+    Tooltip_Firearm_Mode = "Режим:",
+    Tooltip_Firearm_Barrel = "Длина ствола:",
+    Tooltip_Firearm_Inches = "дюймов",
+    Tooltip_Firearm_SetAmmo = "Назначенные боеприпасы:",
+    Tooltip_Firearm_Loaded = "Заряжены:",
+    Tooltip_Firearm_MinDamage = "мин Урон:",
+    Tooltip_Firearm_MaxDamage = "макс Урон:",
+    Tooltip_Firearm_Range = "Дальность:",
+    Tooltip_Firearm_Recoil = "Отдача:",
+    Tooltip_Firearm_Noise = "Шум:",
+    Tooltip_Firearm_Dirt = "Грязь:",
+
+    Tooltip_Firearm_Critical = "Критичность:",
+    Tooltip_Firearm_HitChance = "Точность:",
+    Tooltip_Firearm_AimTime = "Движение:",
+    Tooltip_Firearm_SwingTime = "Неловкость:",
+	
     -- this is a pain, need to add 3 entries for each ammo because this tooltip shit is hardcoded in java...
     Tooltip_loaded_SA = "Режим ведения огня:   Полуавтоматический",
     Tooltip_loaded_FA = "Режим ведения огня:   Автоматический",
-    Tooltip_loaded_mixed = "Заряженные боеприпасы:  Смешанные боеприпасы",
-    Tooltip_loaded_mixed_SA = "Заряженные боеприпасы:  Смешанные боеприпасы (Полуавтомат)",
-    Tooltip_loaded_mixed_FA = "Заряженные боеприпасы:  Смешанные боеприпасы (Автомат)",
+    Tooltip_loaded_mixed = "Заряженные боеприпасы:  смешанный заряд",
+    Tooltip_loaded_mixed_SA = "Заряженные боеприпасы:  смешанный заряд (Полуавтомат)",
+    Tooltip_loaded_mixed_FA = "Заряженные боеприпасы:  смешанный заряд (Автомат)",
 
     Tooltip_loaded_Ammo_117BB = "Заряженные боеприпасы:  .117 BBs",
     Tooltip_loaded_Ammo_117BB_SA = "Заряженные боеприпасы:  .117 BBs (Полуавтомат)",

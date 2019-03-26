@@ -26,8 +26,8 @@ ContextMenu_RU = {
     ContextMenu_ORGM_Break = "Перелом ствола",
     ContextMenu_ORGM_Rotary = "Вращающийся барабан",
     
-    ContextMenu_ORGM_UseOnly = "Использовать только...",
-    ContextMenu_ORGM_Any = "любой",
+    ContextMenu_ORGM_UseOnly = "Использовать...",
+    ContextMenu_ORGM_Any = "любой заряд",
     ContextMenu_ORGM_Mixed = "смешанный заряд",
     ContextMenu_ORGM_Admin = "Админ",
 	ContextMenu_ORGM_AdminDebug = "Отображать информацию отладки",
