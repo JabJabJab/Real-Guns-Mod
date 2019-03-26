@@ -9,6 +9,13 @@ UI_CH = {
     UI_optionscreen_binding_Reload Any Magazine = "重新裝填任意彈夾",
     UI_optionscreen_binding_Select Fire Toggle = "選擇射擊模式開關",
     UI_optionscreen_binding_Firearm Inspection Window = "武器檢視窗口",
+
+	UI_optionscreen_orgm_section_balance = "平衡設置",
+    UI_optionscreen_orgm_section_spawn = "刷新設置",
+    UI_optionscreen_orgm_section_general = "總體設置",
+    UI_optionscreen_orgm_section_compatibility = "兼容設置",
+    UI_optionscreen_orgm_section_advanced = "高級設置",
+
     UI_optionscreen_orgm_loglevel = "日誌級別",
     UI_optionscreen_orgm_loglevel_error = "僅僅是錯誤",
     UI_optionscreen_orgm_loglevel_warn = "錯誤與警告",
@@ -16,6 +23,13 @@ UI_CH = {
     UI_optionscreen_orgm_loglevel_debug = "調試中",
 	UI_optionscreen_orgm_loglevel_verbose = "詳細信息",
     UI_optionscreen_orgm_loglevel_tooltip = "設置顯示到控制臺的信息數量.txt文件",
+    UI_optionscreen_orgm_tiplevel = "提示信息類別",
+    UI_optionscreen_orgm_tiplevel_tooltip = "設置物品提示信息中繪制的信息類型",
+    UI_optionscreen_orgm_tiplevel1 = "全部內容",
+    UI_optionscreen_orgm_tiplevel2 = "動態模式",
+    UI_optionscreen_orgm_tiplevel3 = "傳統模式",
+    UI_optionscreen_orgm_tiplevel4 = "數值模式",
+
     UI_optionscreen_orgm_jamming = "卡殼開啟",
     UI_optionscreen_orgm_jamming_tooltip = "槍械狀態差時射擊會導致卡殼",
     UI_optionscreen_orgm_usecases = "彈殼噴射而出",
@@ -24,9 +38,11 @@ UI_CH = {
     UI_optionscreen_orgm_usebarrellen_tooltip = "槍管長度影響傷害、射程和後坐力",
     UI_optionscreen_orgm_disablefullauto = "禁用全自動開火",
     UI_optionscreen_orgm_disablefullauto_tooltip = "武器在全自動模式下的表現與半自動模式下保持壹致",
+	UI_optionscreen_orgm_hitfullauto = "全自動射擊時威力削弱",
+    UI_optionscreen_orgm_hitfullauto_tooltip = "槍械在全自動模式下的命中率更低並且會擁有更強的後坐力表現",
 
-    UI_optionscreen_orgm_removebase = "刪除遊戲原版槍械",
-    UI_optionscreen_orgm_removebase_tooltip = "試圖從容器中刪除全部槍械(已經存放的槍械並不會處理)",
+    UI_optionscreen_orgm_removebase = "刪除PZ原版槍械",
+    UI_optionscreen_orgm_removebase_tooltip = "模組嘗試從容器中刪除PZ全部原版槍械(已經存放的槍械並不會處理)",
 
     UI_optionscreen_orgm_damagemulti = "傷害倍率",
     UI_optionscreen_orgm_damagemulti_tooltip = "全部槍械傷害倍率(默認 0.5)",
@@ -50,13 +66,13 @@ UI_CH = {
 
 
     UI_optionscreen_orgm_magreloadtime = "彈夾重新插入耗時",
-    UI_optionscreen_orgm_magreloadtime_tooltip = "將子彈壓入彈夾或彈倉花費的時間",
+    UI_optionscreen_orgm_magreloadtime_tooltip = "將子彈壓入彈夾或彈倉花費耗時",
     UI_optionscreen_orgm_reloadtime = "槍械重新裝填時間",
-    UI_optionscreen_orgm_reloadtime_tooltip = "將子彈或彈夾重新裝入槍械的時間",
-    UI_optionscreen_orgm_racktime = "槍械準備時間",
-    UI_optionscreen_orgm_racktime_tooltip = "重新準備槍械的時間",
+    UI_optionscreen_orgm_reloadtime_tooltip = "將子彈或彈夾重新裝入槍械耗時",
+    UI_optionscreen_orgm_racktime = "支架槍械耗時",
+    UI_optionscreen_orgm_racktime_tooltip = "重新準備支架槍械耗時",
     UI_optionscreen_orgm_limityear = "槍械出產年份限制",
-    UI_optionscreen_orgm_limityear_tooltip = "移除指定年份後出產的槍械在世界中刷新 (0可禁用 - 無限制)",
+    UI_optionscreen_orgm_limityear_tooltip = "移除指定年份後出產的槍械在世界中刷新 (0為默認禁用該項 - 可手動輸入年份)",
     UI_optionscreen_orgm_firearmspawnmulti = "槍械刷新倍率",
     UI_optionscreen_orgm_firearmspawnmulti_tooltip = "調整槍械刷新倍率",
 
@@ -86,7 +102,9 @@ UI_CH = {
 
     UI_optionscreen_orgm_silencerspatch = "使用消音器補丁",
     UI_optionscreen_orgm_silencerspatch_tooltip = "為諾蘭的 ORGM 消音器 模組 使用嵌入消音器補丁",
-    UI_optionscreen_orgm_necroforgepatch = "使用 死亡名冊 補丁",
+	UI_optionscreen_orgm_silencerspatcheffect = "消音靜音倍率",
+    UI_optionscreen_orgm_silencerspatcheffect_tooltip = "消音器靜音倍率 (低數值 = 更安靜的, 默認 0.2)",
+    UI_optionscreen_orgm_necroforgepatch = "使用死亡名冊補丁",
     UI_optionscreen_orgm_necroforgepatch_tooltip = "為死亡名冊使用嵌入補丁",
     UI_optionscreen_orgm_survivorspatch = "使用超級幸存者補丁",
     UI_optionscreen_orgm_survivorspatch_tooltip = "為諾蘭的 超級幸存者 模組 使用嵌入補丁",
