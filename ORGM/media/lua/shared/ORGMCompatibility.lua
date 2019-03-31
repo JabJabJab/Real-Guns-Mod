@@ -61,7 +61,7 @@ ORGM.adjustFirearmStatsByCategory = ORGM.Firearm.adjustByCategory
 ORGM.adjustFirearmStatsByBarrel = ORGM.Firearm.adjustByBarrel
 ORGM.adjustFirearmStatsByComponents = ORGM.Firearm.adjustByComponents
 ORGM.adjustFirearmStatsByFeedSystem = ORGM.Firearm.adjustByFeed
-ORGM.setFirearmPiercingBullets = ORGM.Firearm.setPenetration
+ORGM.setFirearmPiercingBullets = ORGM.Firearm.setPenetration_DEPRECIATED
 
 ORGM.registerMagazine = ORGM.Magazine.register
 ORGM.getMagazineData = ORGM.Magazine.getData

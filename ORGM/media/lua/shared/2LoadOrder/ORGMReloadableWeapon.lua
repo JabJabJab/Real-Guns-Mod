@@ -57,16 +57,16 @@ function Fire.valid(this)
     if this.actionType == ORGM.ROTARY then
         local ammoType = nil
         if this.hammerCocked == 1 then -- hammer is cocked, check this position
-            ammoType = this.magazineData[this.cylinderPosition]
+            ammoType = Ammo.get(this, this.cylinderPosition)
         else -- uncocked doubleaction, the chamber will rotate when the player pulls
             ammoType = Ammo.peek(this, true)
         end
-        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
+        if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
 
     elseif this.actionType == ORGM.BREAK then
-        local ammoType = this.magazineData[this.cylinderPosition]
-        if ammoType == nil or ammoType:sub(1, 5) == "Case_" then return false end
+        local ammoType = Ammo.get(this, this.cylinderPosition)
+        if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
     end
 
@@ -87,7 +87,10 @@ function Fire.pre(this, playerObj, weaponItem)
     -- check mechanical failures and malfunctions
     -- check squib
     -- check for dud, note dud should probably behave as fire empty
+
     -- set piercing bullets here.
+    local ammoData = _Ammo.getData(this.lastRound)
+    _Stats.setPenetration(weaponItem, ammoData.Penetration or ammoData.PiercingBullets)
     return true
 end
 
@@ -603,7 +606,7 @@ function Ammo.ejectAll(this, playerObj, playSound)
     for index = 1, this.maxCapacity do
         local ammoType = this.magazineData[index]
         local ammoItem = nil
-        if ammoType and ammoType:sub(1, 5) == 'Case_' then -- eject shell
+        if ammoType and _Ammo.isCase(ammoType) then -- eject shell
             if Settings.CasesEnabled then
                 -- TODO: cases need proper module checking
                 ammoItem = InventoryItemFactory.CreateItem('ORGM.' .. ammoType)
@@ -636,7 +639,7 @@ function Ammo.hasCases(this)
     for index = 1, this.maxCapacity do
         local ammoType = this.magazineData[index]
 
-        if ammoType and ammoType:sub(1, 5) == "Case_" then
+        if ammoType and _Ammo.isCase(ammoType) then
             count = count + 1
         end
     end
@@ -697,12 +700,12 @@ end
 
 ]]
 function Ammo.setCurrent(this, ammoType, weaponItem)
-    if ammoType == nil or ammoType:sub(1, 5) == 'Case_' then return end
+    if ammoType == nil or _Ammo.isCase(ammoType) then return end
     ammoType = Ammo.convert(this, ammoType)
     local roundData = _Ammo.getData(ammoType)
     if roundData == nil then
         this.lastRound = nil
-        weaponItem:getModData().lastRound = nil
+        weaponItem:getModData().lastRound = nil -- NOTE: this seems redundant..left over junk?
         return
     end
     if ammoType ~= this.lastRound then
@@ -710,7 +713,8 @@ function Ammo.setCurrent(this, ammoType, weaponItem)
         weaponItem:getModData().lastRound = ammoType
         _Stats.set(weaponItem)
     end
-    _Stats.setPenetration(weaponItem, roundData)
+    -- NOTE: moved to Fire.pre
+    -- _Stats.setPenetration_DEPRECIATED(weaponItem, roundData)
 end
 
 

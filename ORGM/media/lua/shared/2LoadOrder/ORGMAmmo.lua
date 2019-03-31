@@ -248,6 +248,18 @@ Ammo.isAmmo = function(itemType, moduleName)
     return false
 end
 
+--[[- Checks if a item is ORGM spent casing.
+
+@tparam string|InventoryItem itemType
+
+@treturn bool
+
+]]
+Ammo.isCase = function(itemType)
+    if itemType:sub(1, 5) == "Case_" then return true end
+    return false
+end
+
 
 --[[- Gets the table of ammo groups.
 

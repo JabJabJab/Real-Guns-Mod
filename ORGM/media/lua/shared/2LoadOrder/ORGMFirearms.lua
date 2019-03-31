@@ -1232,7 +1232,32 @@ This is called when loading a new round into the chamber.
 @treturn bool true if the flag is set
 
 ]]
-Stats.setPenetration = function(weaponItem, ammoData)
+Stats.setPenetration = function(weaponItem, value)
+    local result = false
+    if value == nil or value == false then
+        result = false
+    elseif value == true then
+        result = true
+    else
+        -- TODO: factor in barrel length!!!
+        result = ZombRand(100) + 1 <= value
+    end
+    weaponItem:setPiercingBullets(result)
+    return result
+end
+
+
+--[[- Sets the PiercingBullets flag on a gun, dependent on the round.
+
+This is called when loading a new round into the chamber.
+
+@tparam HandWeapon weaponItem
+@tparam table ammoData return value of `ORGM.Ammo.getData`
+
+@treturn bool true if the flag is set
+
+]]
+Stats.setPenetration_DEPRECIATED = function(weaponItem, ammoData)
     local result = false
     if ammoData.PiercingBullets == true or ammoData.PiercingBullets == false then
         result = ammoData.PiercingBullets
