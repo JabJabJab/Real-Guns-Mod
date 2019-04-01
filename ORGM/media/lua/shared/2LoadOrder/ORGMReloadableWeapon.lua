@@ -90,6 +90,7 @@ function Fire.pre(this, playerObj, weaponItem)
 
     -- set piercing bullets here.
     local ammoData = _Ammo.getData(this.lastRound)
+    if not ammoData then return true end -- loaded but no lastRound? 
     _Stats.setPenetration(weaponItem, ammoData.Penetration or ammoData.PiercingBullets)
     return true
 end
