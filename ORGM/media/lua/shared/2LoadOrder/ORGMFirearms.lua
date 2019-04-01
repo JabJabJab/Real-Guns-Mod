@@ -1224,7 +1224,7 @@ end
 
 --[[- Sets the PiercingBullets flag on a gun, dependent on the round.
 
-This is called when loading a new round into the chamber.
+This is called when pulling the trigger.
 
 @tparam HandWeapon weaponItem
 @tparam table ammoData return value of `ORGM.Ammo.getData`
