@@ -103,7 +103,7 @@ register("RugGP100", {
     barrelLength = 4.2,
     barrelLengthOpt = { 3, 4.2, 6 },
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
 
@@ -155,6 +155,7 @@ register("SWM10", {
     barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
+    isPolice = ORGM.VERYRARE, -- old armory stock
     speedLoader = 'SpeedLoader386',
     soundProfile = "Revolver",
 
@@ -205,7 +206,7 @@ register("SWM29", {
     barrelLength = 6, -- 4, 6, 6.5, 8.425, 10.63
     barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
 
@@ -256,7 +257,7 @@ register("Taurus454", {
     barrelLength = 6.5, -- 2.25, 3, 4, 5, 6, 6.5, 8.425, 10
     barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.COMMON,
+    isCivilian = ORGM.RARE,
     --speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
 
@@ -389,7 +390,7 @@ register("CZ75", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.7,
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
     classification = "IGUI_Firearm_SemiPistol",
@@ -441,8 +442,7 @@ register("FN57", {
     autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 4.8,
     triggerType = ORGM.DOUBLEACTIONONLY, -- depending on model, this can be SA (FN57 Tactical)
-    isCivilian = ORGM.RARE,
-    isPolice = ORGM.RARE,
+    isCivilian = ORGM.VERYRARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -523,7 +523,8 @@ register("HKMK23", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 5.87,
     triggerType = ORGM.DOUBLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.VERYRARE,
+    isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
     classification = "IGUI_Firearm_SemiPistol",
@@ -637,6 +638,7 @@ register("SIGP226", {
     barrelLength = 4.4,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -776,6 +778,7 @@ register("Ber93R", {
     barrelLength = 4.9,
     triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.VERYRARE,
+    isMilitary = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Pistol-Small",
 
@@ -792,8 +795,7 @@ register("FNP90", {
     autoType = ORGM.BLOWBACK,
     barrelLength = 10.4,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE,
-    isMilitary = ORGM.RARE,
+    isMilitary = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "SMG",
 
@@ -828,7 +830,7 @@ register("HKMP5", {
     barrelLength = 8.9,
     barrelLengthOpt = { 4.5, 5.5, 5.7, 5.8, 8.9 },
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE,
+    isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "SMG",
@@ -846,7 +848,7 @@ register("HKUMP", {
     autoType = ORGM.SHORTRECOIL,
     barrelLength = 8,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE,
+    isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "SMG",
@@ -914,7 +916,7 @@ register("M1A1", {
     autoType = ORGM.BLOWBACK,
     barrelLength = 10.52,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
     alwaysFullAuto = true,
 
@@ -1056,7 +1058,7 @@ register("AR10", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 20.8,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE,
+    isCivilian = ORGM.VERYRARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
 
@@ -1075,6 +1077,7 @@ register("AR15", {
     barrelLengthOpt = { 16, 20, 24 },
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
+    isPolice = ORGM.COMMON,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_SemiRifle",
@@ -1253,7 +1256,7 @@ register("LENo4", {
     actionType = ORGM.BOLT,
     barrelLength = 25.2,
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     speedLoader = "LENo4StripperClip",
     soundProfile = "Rifle-Bolt",
 
@@ -1270,7 +1273,7 @@ register("M16", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 20,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice = ORGM.RARE,
+    isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
     selectFire = ORGM.FULLAUTOMODE,
@@ -1343,7 +1346,7 @@ register("M4C", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 14.5,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isPolice= ORGM.RARE,
+    isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     selectFire = 1,
     soundProfile = "Rifle-AR",
@@ -1449,7 +1452,7 @@ register("Rem788", {
     barrelLength = 24, -- 18.5, 22, 24
     barrelLengthOpt = { 18.5, 22, 24 },
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Bolt",
 
     classification = "IGUI_Firearm_BoltRifle",
@@ -1551,6 +1554,7 @@ register("SR25", {
     autoType = ORGM.DIRECTGAS,
     barrelLength = 24,
     triggerType = ORGM.DOUBLEACTIONONLY,
+    isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
 
@@ -1583,7 +1587,7 @@ register("WinM70", {
     barrelLength = 24, -- 22, 24, 26
     barrelLengthOpt = { 22, 24, 26 },
     triggerType = ORGM.SINGLEACTION,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
 
@@ -1599,7 +1603,7 @@ register("WinM94", {
     actionType = ORGM.LEVER,
     barrelLength = 20,
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.RARE,
+    isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Lever",
 
     classification = "IGUI_Firearm_LeverRifle",
@@ -1859,8 +1863,7 @@ register("Striker", {
     barrelLength = 18.5, -- 7.5, 12, 14, 18.5
     barrelLengthOpt = { 7.5, 12, 14, 18.5 },
     triggerType = ORGM.DOUBLEACTIONONLY,
-    isCivilian = ORGM.RARE,
-    isPolice = ORGM.RARE,
+    isCivilian = ORGM.VERYRARE,
     soundProfile = "Shotgun",
     rackSound = 'ORGMARRack',
 
