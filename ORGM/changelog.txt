@@ -26,17 +26,22 @@ in the chamber.
 
 * Added tons of new models by Filibuster Rhymes. All models have now been updated!
 
-* Added multiplier option for Nolan's Silencer mod to control effectiveness
-
 * Decreased capacity on Stevens 320 to 5 (was 8)
 
 * Sorted options screen into groups
 
 * Added full auto hit chance penalty to options screen
 
+* Added sound multiplier option for Nolan's Silencer mod to control effectiveness of suppressors.
+
+* Adjusted firearm rarity tables to fit better with the year. Less select fire variants spawning
+in police stations.
+
 * Fixed bug in "Use Only" context menu
 
 * Fixed bug in requesting server settings, not removing request event.
+
+* Renamed PiercingBullets key to Penetration in ORGMData_Ammo.lua
 
 ---------------------------------------------------------------------------------------
 
