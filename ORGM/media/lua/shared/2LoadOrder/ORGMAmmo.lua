@@ -42,7 +42,9 @@ Valid table keys/value pairs for the ammoData are:
 
 * MaxDamage = float, (>= MinDamage) the max damage of the bullet. This overrides the firearm item MaxDamage
 
-* PiercingBullets = bool|int, (% chance) This overrides the firearm item PiercingBullets
+* Penetration = bool|int, (% chance) This overrides the firearm item PiercingBullets
+
+* PiercingBullets = bool|int, (% chance) This overrides the firearm item PiercingBullets (DEPRECIATED, use Penetration)
 
 * MaxHitCount = nil|int, This overrides the firearm item MaxHitCount. Only valid for firearms with multiple projectiles (ie: shotguns)
 
@@ -87,6 +89,25 @@ Ammo.register = function(name, ammoData)
         ammoData.MaxDamage = ammoData.MinDamage
     end
 
+    if ammoData.Penetration == nil then
+        ammoData.Penetration = false
+    elseif type(ammoData.Penetration) == 'boolean' then
+        -- do nothing
+    elseif type(ammoData.Penetration) ~= 'number' then
+        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is type ".. type(ammoData.Penetration)..", expected boolean or integer, setting to false")
+        ammoData.Penetration = false
+    elseif ammoData.Penetration < 0 then
+        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is < 0, setting to false")
+        ammoData.Penetration = false
+    elseif ammoData.Penetration > 100 then
+        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is > 100, setting to true")
+        ammoData.Penetration = true
+    end
+
+
+    if ammoData.PiercingBullets then -- NOTE: depreciated warning
+        ORGM.log(ORGM.WARN, "Ammo: PiercingBullets for " .. fullName .. " is depreciated. Please use 'Penetration' instead.")
+    end
     if ammoData.PiercingBullets == nil then
         ammoData.PiercingBullets = false
     elseif type(ammoData.PiercingBullets) == 'boolean' then
@@ -256,6 +277,7 @@ end
 
 ]]
 Ammo.isCase = function(itemType)
+    -- TODO: this needs a far more robust system....
     if itemType:sub(1, 5) == "Case_" then return true end
     return false
 end
