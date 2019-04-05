@@ -189,6 +189,21 @@ Firearm.randomRarity = function(civilian, police, military)
     return thisTable[rarity]
 end
 
+--[[- Returns the specified RarityTable.
+
+@tparam string name the name of the table
+@tparam int `ORGM.COMMON` | `ORGM.RARE` | `ORGM.VERYRARE`
+
+@treturn table
+
+]]
+Firearm.getRarityTable = function(name, rarity)
+    local thisTable = RarityTable[name]
+    if not thisTable then return {} end
+    return thisTable[rarity] or {}
+end
+
+
 --[[- Registers a firearm type with ORGM.
 
 @tparam string name name of the firearm without module prefix
