@@ -59,7 +59,7 @@ In short, I need to move these bloody things....
 
 -- Adjustment Constants
 --local ADJ_FULLAUTOHITCHANCE = -10  -- full auto only
-local ADJ_FULLAUTOAIMINGTIME = 20 -- full auto only
+local ADJ_FULLAUTOAIMINGTIME = 10 -- full auto only
 
 local ADJ_AUTOSWINGTIME = 0 -- -0.3 -- for automatics
 --local ADJ_AUTORECOILDELAY = -4 -- for automatics, obsolete
@@ -655,7 +655,7 @@ Firearm.replace = function(weaponItem, container)
         local new = Component.copy(mod)
         newItem:attachWeaponPart(new)
     end
-    if data.barrelLength then -- copy barrel lengh if the gun has one
+    if data.barrelLength then -- copy barrel length if the gun has one
         newData.barrelLength = data.barrelLength
     end
     newData.roundsFired = data.roundsFired or 0
@@ -1096,19 +1096,19 @@ This function is called by `Stats.set`
 Stats.adjustByCategory = function(category, statsTable, effectiveWgt)
     if category == ORGM.PISTOL or category == ORGM.REVOLVER then
         statsTable.HitChance = Settings.DefaultHitChancePistol
-        statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.RIFLE then
         statsTable.HitChance = Settings.DefaultHitChanceRifle
-        statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        --statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.SMG then
         statsTable.HitChance = Settings.DefaultHitChanceSMG
-        statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     elseif category == ORGM.SHOTGUN then
         statsTable.HitChance = Settings.DefaultHitChanceShotgun
-        statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     else
         statsTable.HitChance = Settings.DefaultHitChanceOther
-        statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
+        --statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
     end
 end
 
@@ -1158,7 +1158,7 @@ This function is called by `Stats.set`
 ]]
 Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
     -- adjust recoil relative to ammo, weight, barrel
-    if not Settings.UseBarrelLengthModifiers then return end
+    --if not Settings.UseBarrelLengthModifiers then return end
     local length = Barrel.getLength(weaponItem) or 10 -- set to a default for safety
     local optimal = ammoData.OptimalBarrel or 30 --weaponItem:getModData().OptimalBarrel or 30
     local isAuto = weaponItem:getModData().actionType == ORGM.AUTO
@@ -1183,6 +1183,9 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
 
     -- now for the noise...
     --statsTable.SoundRadius = ???
+
+    statsTable.AimingTime = 50 - (effectiveWgt *MOD_WEIGHTAIMINGTIME) - length
+    if gunData.isBulpup then statsTable.AimingTime = statsTable.AimingTime + 6 end
 end
 -- ORGM[10] = "86\070704944"
 
