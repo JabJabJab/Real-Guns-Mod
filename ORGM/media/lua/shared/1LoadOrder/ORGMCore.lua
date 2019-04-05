@@ -220,14 +220,12 @@ ORGM.TIPNUMERIC = 4
 --- Rarity Constants
 -- @section Rarity
 
--- TODO: replace string with int
-
 --- Common
-ORGM.COMMON = "Common"
+ORGM.COMMON = 1
 --- Rare
-ORGM.RARE = "Rare"
+ORGM.RARE = 2
 --- VeryRare
-ORGM.VERYRARE = "VeryRare"
+ORGM.VERYRARE = 3
 
 --- String Tables
 -- @section StringTable
@@ -297,7 +295,7 @@ ORGM.SettingsValidator = {
     -- RemoveBaseFirearms:  Stops spawning of the base game firearms.
     -- valid options are true or false (default true)
     RemoveBaseFirearms = {type='boolean', default=true},
-    UseBarrelLengthModifiers = {type='boolean', default=true},
+    --UseBarrelLengthModifiers = {type='boolean', default=true},
     DamageMultiplier = {type='float', min=0.1, default=0.6},
     DefaultHitChancePistol = {type='integer', min=0, max=100, default=40},
     DefaultHitChanceSMG = {type='integer', min=0, max=100, default=30},
