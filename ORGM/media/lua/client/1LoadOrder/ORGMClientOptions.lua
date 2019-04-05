@@ -245,7 +245,7 @@ function MainOptions:create()
 
     addBoolOption(self, splitpoint, comboWidth, "orgm_jamming", "JammingEnabled")
     addBoolOption(self, splitpoint, comboWidth, "orgm_usecases", "CasesEnabled")
-    addBoolOption(self, splitpoint, comboWidth, "orgm_usebarrellen", "UseBarrelLengthModifiers")
+    --addBoolOption(self, splitpoint, comboWidth, "orgm_usebarrellen", "UseBarrelLengthModifiers")
     addBoolOption(self, splitpoint, comboWidth, "orgm_removebase", "RemoveBaseFirearms")
 
     self.addY = self.addY + 10
