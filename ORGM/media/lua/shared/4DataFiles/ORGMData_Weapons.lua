@@ -1488,6 +1488,7 @@ register("SA80", {
     isMilitary = ORGM.RARE,
     selectFire = 1,
     soundProfile = "Rifle-AR",
+    isBulpup = true,
 
     classification = "IGUI_Firearm_AssaultRifle",
     year = 1985,
