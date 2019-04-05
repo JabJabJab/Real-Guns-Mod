@@ -37,6 +37,10 @@ in the chamber.
 * Adjusted firearm rarity tables to fit better with the year. Less select fire variants spawning
 in police stations.
 
+* Adjusted Movement Bonus (AimTime) vs weight. Heavier weapons are now correctly harder to aim
+while moving. Barrel length is now a highly important factor, with every inch subtracting 1 from
+the bonus.
+
 * Fixed bug in "Use Only" context menu
 
 * Fixed bug in requesting server settings, not removing request event.
