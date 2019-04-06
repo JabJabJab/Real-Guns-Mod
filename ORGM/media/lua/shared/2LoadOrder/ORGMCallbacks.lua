@@ -13,7 +13,7 @@ It is unlikely that you will need to call any of these functions manually.
 
 local ORGM = ORGM
 local Callbacks = ORGM.Callbacks
-
+local Firearm = ORGM.Firearm
 --[[- Checks the values in the ORGM.Settings table and ensures they conform to expected values.
 
 For invalid values it will set to defaults and logs errors.
@@ -72,11 +72,12 @@ Callbacks.limitFirearmYear = function()
     local limit = ORGM.Settings.LimitYear
     if limit == nil or limit == 0 then return end
     ORGM.log(ORGM.INFO, "Event: Removing spawning of firearms manufactured later after "..limit)
-    for name, definition in pairs(ORGM.Firearm.getTable()) do
-        if definition.year ~= nil and definition.year > limit then
-            definition.isCivilian = nil
-            definition.isPolice = nil
-            definition.isMilitary = nil
+    for gunType, gunData in pairs(Firearm.getTable()) do
+        if gunData.year ~= nil and gunData.year > limit then
+            gunData.isCivilian = nil
+            gunData.isPolice = nil
+            gunData.isMilitary = nil
+            Firearm.applyRarity(gunType, gunData, true)
         end
     end
 end

@@ -47,6 +47,8 @@ the bonus.
 
 * Fixed bug in requesting server settings, not removing request event.
 
+* Fixed bug in "Limit Manufacture Year" option not properly applying.
+
 * Renamed PiercingBullets key to Penetration in ORGMData_Ammo.lua
 
 ---------------------------------------------------------------------------------------
