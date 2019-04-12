@@ -49,6 +49,8 @@ the bonus.
 
 * Fixed bug in "Limit Manufacture Year" option not properly applying.
 
+* Fixed missing manufacture year for SPAS-12
+
 * Renamed PiercingBullets key to Penetration in ORGMData_Ammo.lua
 
 ---------------------------------------------------------------------------------------

@@ -1837,7 +1837,7 @@ register("Spas12", {
     soundProfile = "Shotgun",
 
     classification = "IGUI_Firearm_DualShotgun",
-    year = nil,
+    year = 1979,
     country = "IGUI_Firearm_Country_IT",
     manufacturer = "IGUI_Firearm_Manuf_Luigi",
     description = "IGUI_Firearm_Desc_Spas12",
