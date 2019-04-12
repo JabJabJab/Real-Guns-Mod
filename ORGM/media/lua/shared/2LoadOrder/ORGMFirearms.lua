@@ -192,7 +192,7 @@ end
 --[[- Returns the specified RarityTable.
 
 @tparam string name the name of the table
-@tparam int `ORGM.COMMON` | `ORGM.RARE` | `ORGM.VERYRARE`
+@tparam int rarity `ORGM.COMMON` | `ORGM.RARE` | `ORGM.VERYRARE`
 
 @treturn table
 
@@ -1245,7 +1245,7 @@ end
 This is called when pulling the trigger.
 
 @tparam HandWeapon weaponItem
-@tparam table ammoData return value of `ORGM.Ammo.getData`
+@tparam int value percentge chance of penetration
 
 @treturn bool true if the flag is set
 

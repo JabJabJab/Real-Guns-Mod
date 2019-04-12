@@ -2,6 +2,7 @@
 
 _Methods inherited from ISBaseTimedAction are not listed._
 
+This file is a work in progress, and not currently enabled.
 
 @classmod ISORGCleanFirarmAction
 @author Fenris_Wolf
@@ -70,9 +71,10 @@ end
 
 --[[- Creates a new unload timed action.
 
-@tparam ISReloadManager unloadManager
 @tparam IsoPlayer char
 @tparam IsoGridSquare square
+@tparam HandWeapon weaponItem
+@tparam InventoryItem maintanceItem
 @tparam int time time til completion
 
 ]]
