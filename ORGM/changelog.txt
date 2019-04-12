@@ -51,6 +51,8 @@ the bonus.
 
 * Fixed missing manufacture year for SPAS-12
 
+* Fixed Skorpion to have a select-fire switch (was full-auto only)
+
 * Renamed PiercingBullets key to Penetration in ORGMData_Ammo.lua
 
 ---------------------------------------------------------------------------------------

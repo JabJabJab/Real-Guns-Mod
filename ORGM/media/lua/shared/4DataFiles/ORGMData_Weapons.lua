@@ -971,7 +971,7 @@ register("Skorpion", {
     triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Pistol-Small",
-    alwaysFullAuto = true,
+    selectFire = 1,
 
     classification = "IGUI_Firearm_MachinePistol",
     year = 1961,
