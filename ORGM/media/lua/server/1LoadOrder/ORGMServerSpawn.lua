@@ -2,7 +2,7 @@
 
 @module ORGM.Server.Spawn
 @author Fenris_Wolf
-@release v3.09
+@release v3.10
 @copyright 2018 **File:** server/1LoadOrder/ORGMServerSpawn.lua
 
 ]]
@@ -16,6 +16,8 @@ local Component = ORGM.Component
 local Maintance = ORGM.Maintance
 local Firearm = ORGM.Firearm
 local Magazine = ORGM.Magazine
+local Reloadable = ORGM.ReloadableWeapon
+local Status = Reloadable.Status
 
 -- more namespace pullins for performance
 local ZombRand = ZombRand
@@ -172,7 +174,10 @@ Spawn.reloadable = function(container, itemType, ammoType, chance, max, isLoaded
                 data.roundChambered = 1
                 data.lastRound = ammoType
                 fill = fill - 1
-                if itemOrgmData.triggerType ~= ORGM.DOUBLEACTIONONLY then data.hammerCocked = 1 end
+
+                if not Firearm.Trigger.isDAO(additem, itemOrgmData) then
+                    data.status = data.status + Status.COCKED
+                end
             end
 
             for i=1, fill do

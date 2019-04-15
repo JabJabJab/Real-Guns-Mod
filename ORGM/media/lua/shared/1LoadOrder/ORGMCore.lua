@@ -32,7 +32,7 @@ into the local namespace.
     end
 
 @module ORGM
-@release 3.09
+@release 3.10
 @author Fenris_Wolf.
 @copyright 2018 **File:** shared/1LoadOrder/ORGMCore.lua
 
@@ -71,12 +71,17 @@ ORGM.ReloadableWeapon.Reload = { }
 ORGM.ReloadableWeapon.Unload = { }
 ORGM.ReloadableWeapon.Rack = { }
 ORGM.ReloadableWeapon.Hammer = { }
+ORGM.ReloadableWeapon.Status = { }
 
 --- Contains all firearm functions, see: `ORGM.Firearm`.
 ORGM.Firearm = { }
 ORGM.Firearm.Stats = { }
 ORGM.Firearm.Barrel = { }
 ORGM.Firearm.Hammer = { }
+ORGM.Firearm.Trigger = { }
+
+-- Contains all firearm constants.
+ORGM.Firearm.Flags = { }
 
 --- Contains all ammo functions, see: `ORGM.Ammo`.
 ORGM.Ammo = { }
@@ -97,6 +102,12 @@ ORGM.Callbacks = { }
 ORGM.Sounds = { }
 ORGM.Sounds.Profiles = { }
 
+--- Contains all malfunction handlers.
+ORGM.Malfunctions = { }
+ORGM.Malfunctions.Ammo = { }
+ORGM.Malfunctions.Mechanical = { }
+ORGM.Malfunctions.Failure = { }
+
 --- Constants
 -- @section Constants
 
@@ -112,7 +123,8 @@ ORGM.BUILD_HISTORY = {
     "2.00-stable", "2.01-stable", "2.02-stable", "2.03-stable", -- 11
     "3.00-alpha", "3.00-beta-rc1", "3.00-beta-rc2", "3.00-stable", "3.01-stable", "3.02-stable", "3.03-stable","3.04-stable","3.05-stable",-- 20
     "3.06-stable", "3.07-beta", "3.07-stable", "3.08-stable", -- 24
-    "3.09-beta-rc1", "3.09-stable", "3.09.1-stable", "3.09.2-stable" -- 28
+    "3.09-beta-rc1", "3.09-stable", "3.09.1-stable", "3.09.2-stable", -- 28
+    "3.10-alpha", -- 29
 }
 --- Set automatically. The current version number.
 ORGM.BUILD_ID = nil
@@ -136,46 +148,11 @@ ORGM.VERBOSE = 4
 --- Trigger Constants
 -- @section Trigger
 
---- integer 1
-ORGM.SINGLEACTION = 1
---- integer 2
-ORGM.DOUBLEACTION = 2
---- integer 3
-ORGM.DOUBLEACTIONONLY = 3
-
 --- Feed System Constants
 -- @section FeedSystem
 
---- integer 1
-ORGM.AUTO = 1
---- integer 2
-ORGM.BOLT = 2
---- integer 3
-ORGM.LEVER = 3
---- integer 4
-ORGM.PUMP = 4
---- integer 5
-ORGM.BREAK = 5
---- integer 6
-ORGM.ROTARY = 6
-
 --- Auto Feed Constants
 -- @section AutoFeed
-
---- integer 1
-ORGM.BLOWBACK = 1
---- integer 2
-ORGM.DELAYEDBLOWBACK = 2
---- integer 3
-ORGM.SHORTGAS = 3
---- integer 4
-ORGM.LONGGAS = 4
---- integer 5
-ORGM.DIRECTGAS = 5
---- integer 6
-ORGM.LONGRECOIL = 6
---- integer 7
-ORGM.SHORTRECOIL = 7
 
 --- Category Constants
 -- @section Category
@@ -193,11 +170,6 @@ ORGM.SHOTGUN = 5
 
 --- Select Fire Constants
 -- @section SelectFire
-
---- integer 0
-ORGM.SEMIAUTOMODE = 0
---- integer 1
-ORGM.FULLAUTOMODE = 1
 
 --- Item type Constants
 -- @section ItemTypes

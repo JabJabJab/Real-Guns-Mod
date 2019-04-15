@@ -4,19 +4,21 @@ All calls made by this script are to `ORGM.Firearm.register`. See the documentio
 
 @script ORGMData_Weapons.lua
 @author Fenris_Wolf
-@release 3.09
+@release 3.10
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Weapons.lua
 
 ]]
 local register = ORGM.Firearm.register
+local Flags = ORGM.Firearm.Flags
 
 register("ColtAnac", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6,
     barrelLengthOpt =  {4, 6, 8},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
@@ -26,15 +28,15 @@ register("ColtAnac", {
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_Colt",
     description = "IGUI_Firearm_Desc_ColtAnac",
-    serialnumber = "MM#####",
 })
 register("ColtPyth", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6,
     barrelLengthOpt = { 2.5, 3, 4, 6, 8},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
@@ -44,16 +46,15 @@ register("ColtPyth", {
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_Colt",
     description = "IGUI_Firearm_Desc_ColtPyth",
-    -- serial pattern varies by year
-    serialnumber = "######"
 })
 register("ColtSAA", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 5.5,
     barrelLengthOpt = {5.5, 7.5 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
 
@@ -64,12 +65,13 @@ register("ColtSAA", {
     description = "IGUI_Firearm_Desc_ColtSAA",
 })
 register("RugAlas", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 2.5,
     barrelLengthOpt = { 2.5, 7.5, 9.5 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
@@ -81,12 +83,13 @@ register("RugAlas", {
     description = "IGUI_Firearm_Desc_RugAlas",
 })
 register("RugBH", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 4.65,
     barrelLengthOpt = { 4.65, 6.5, 7.5 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Revolver",
 
@@ -97,12 +100,13 @@ register("RugBH", {
     description = "IGUI_Firearm_Desc_RugBH",
 })
 register("RugGP100", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 4.2,
     barrelLengthOpt = { 3, 4.2, 6 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
@@ -114,12 +118,13 @@ register("RugGP100", {
     description = "IGUI_Firearm_Desc_RugGP100",
 })
 register("RugRH", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 5.5,
     barrelLengthOpt = { 4, 5.5, 7.5 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
@@ -131,12 +136,13 @@ register("RugRH", {
     description = "IGUI_Firearm_Desc_RugRH",
 })
 register("RugSec6", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 4,
     barrelLengthOpt = {2.74, 3, 4, 6},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader386',
     soundProfile = "Revolver",
@@ -148,12 +154,13 @@ register("RugSec6", {
     description = "IGUI_Firearm_Desc_RugSec6",
 })
 register("SWM10", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 4,
     barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.VERYRARE, -- old armory stock
     speedLoader = 'SpeedLoader386',
@@ -166,12 +173,13 @@ register("SWM10", {
     description = "IGUI_Firearm_Desc_SWM10",
 })
 register("SWM19", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 4,
     barrelLengthOpt = {2.5, 3, 4, 6},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader3576',
     soundProfile = "Revolver",
@@ -183,12 +191,13 @@ register("SWM19", {
     description = "IGUI_Firearm_Desc_SWM19",
 })
 register("SWM252", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6, -- 4, 5 (very rare!), 6, 6.5, 8.4
     barrelLengthOpt = {4, 5, 6, 6.5, 8.4},
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader456',
     soundProfile = "Revolver",
@@ -200,12 +209,13 @@ register("SWM252", {
     description = "IGUI_Firearm_Desc_SWM252",
 })
 register("SWM29", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6, -- 4, 6, 6.5, 8.425, 10.63
     barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader446',
     soundProfile = "Revolver",
@@ -217,12 +227,13 @@ register("SWM29", {
     description = "IGUI_Firearm_Desc_SWM29",
 })
 register("SWM36", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 1.875,
     barrelLengthOpt = { 1.875, 2, 3 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SpeedLoader385',
     soundProfile = "Revolver",
@@ -234,12 +245,13 @@ register("SWM36", {
     description = "IGUI_Firearm_Desc_SWM36",
 })
 register("SWM610", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6.5, -- 3.875, 6.5
     barrelLengthOpt = { 3.875, 6.5 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'SpeedLoader10mm6',
     soundProfile = "Revolver",
@@ -251,12 +263,13 @@ register("SWM610", {
     description = "IGUI_Firearm_Desc_SWM610",
 })
 register("Taurus454", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 25,
     category = ORGM.REVOLVER,
-    actionType = ORGM.ROTARY,
     barrelLength = 6.5, -- 2.25, 3, 4, 5, 6, 6.5, 8.425, 10
     barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     --speedLoader = 'SpeedLoader4546',
     soundProfile = "Revolver",
@@ -271,12 +284,12 @@ register("Taurus454", {
     -- semi pistols
     --************************************************************************--
 register("AutomagV", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 6.5, -- no aditional lengths
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
 
@@ -287,11 +300,12 @@ register("AutomagV", {
     description = "IGUI_Firearm_Desc_AutomagV"
 })
 register("BBPistol", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    -- TODO: autoType and barrelLength
-    triggerType = ORGM.DOUBLEACTION,
+    barrelLength = 8,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -302,12 +316,12 @@ register("BBPistol", {
     description = "IGUI_Firearm_Desc_BBPistol",
 })
 register("Ber92", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.9, -- 4.7 an 4.3 for other variants (not FS)
-    triggerType = ORGM.DOUBLEACTION, -- this can be DAO, depending on model
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
     isMilitary = ORGM.COMMON,
@@ -320,12 +334,12 @@ register("Ber92", {
     description = "IGUI_Firearm_Desc_Ber92",
 })
 register("BrenTen", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 5,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -336,12 +350,12 @@ register("BrenTen", {
     description = "IGUI_Firearm_Desc_BrenTen",
 })
 register("BrownHP", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.7,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -352,12 +366,12 @@ register("BrownHP", {
     description = "IGUI_Firearm_Desc_BrownHP",
 })
 register("Colt38S", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.5,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -368,12 +382,12 @@ register("Colt38S", {
     description = "IGUI_Firearm_Desc_Colt38S",
 })
 register("ColtDelta", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 5.03,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -384,31 +398,29 @@ register("ColtDelta", {
     description = "IGUI_Firearm_Desc_ColtDelta",
 })
 register("CZ75", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.7,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
     classification = "IGUI_Firearm_SemiPistol",
     year = 1975,
     country = "IGUI_Firearm_Country_CZ",
-    --manufacturer = "Česká zbrojovka Uherský Brod",
     manufacturer = "IGUI_Firearm_Manuf_CZUB",
-    --description = "The CZ 75 is a pistol made by Česká zbrojovka Uherský Brod (CZUB) in the Czech Republic. First introduced in 1975, it is one of the original 'wonder nines' featuring a staggered-column magazine, all-steel construction, and a hammer forged barrel. It is widely distributed throughout the world. It is the most common handgun in the Czech Republic.\n"..
     description = "IGUI_Firearm_Desc_CZ75",
 })
 register("DEagle", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
-    barrelLength = 10, -- 6, 10 or 14
+    barrelLength = 10,
     barrelLengthOpt = { 6, 10, 14 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
 
@@ -419,13 +431,13 @@ register("DEagle", {
     description = "IGUI_Firearm_Desc_DEagle",
 })
 register("DEagleXIX", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
-    barrelLength = 10, -- 6, or 10
+    barrelLength = 10,
     barrelLengthOpt = { 6, 10 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Large",
 
@@ -436,12 +448,13 @@ register("DEagleXIX", {
     description = "IGUI_Firearm_Desc_DEagleXIX",
 })
 register("FN57", {
+    -- depending on model, this can be SA (FN57 Tactical)
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 4.8,
-    triggerType = ORGM.DOUBLEACTIONONLY, -- depending on model, this can be SA (FN57 Tactical)
     isCivilian = ORGM.VERYRARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
@@ -453,12 +466,13 @@ register("FN57", {
     description = "IGUI_Firearm_Desc_FN57",
 })
 register("Glock17", {
+    -- technically not quite DAO, but as close as its going to get
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.48,
-    triggerType = ORGM.DOUBLEACTIONONLY, -- this is technically not quite true, but as close as its going to get
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -469,12 +483,12 @@ register("Glock17", {
     description = "IGUI_Firearm_Desc_Glock17",
 })
 register("Glock20", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.48,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -485,12 +499,12 @@ register("Glock20", {
     description = "IGUI_Firearm_Desc_Glock20",
 })
 register("Glock21", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.48,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -501,12 +515,12 @@ register("Glock21", {
     description = "IGUI_Firearm_Desc_Glock21",
 })
 register("Glock22", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 25,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.48,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -517,12 +531,12 @@ register("Glock22", {
     description = "IGUI_Firearm_Desc_Glock22",
 })
 register("HKMK23", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 5.87,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.VERYRARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Pistol-Small",
@@ -534,12 +548,12 @@ register("HKMK23", {
     description = "IGUI_Firearm_Desc_HKMK23",
 })
 register("KahrCT40", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -550,12 +564,12 @@ register("KahrCT40", {
     description = "IGUI_Firearm_Desc_KahrCT40",
 })
 register("KahrP380", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 2.53,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -566,12 +580,12 @@ register("KahrP380", {
     description = "IGUI_Firearm_Desc_KahrP380",
 })
 register("KTP32", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 2.68,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -582,12 +596,12 @@ register("KTP32", {
     description = "IGUI_Firearm_Desc_KTP32",
 })
 register("M1911", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 5.03,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     isMilitary = ORGM.COMMON,
     soundProfile = "Pistol-Small",
@@ -599,12 +613,12 @@ register("M1911", {
     description = "IGUI_Firearm_Desc_M1911",
 })
 register("RugerMKII", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 6.875,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -615,12 +629,12 @@ register("RugerMKII", {
     description = "IGUI_Firearm_Desc_RugerMKII",
 })
 register("RugerSR9", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.14,
-    triggerType = ORGM.DOUBLEACTIONONLY, -- like the glock, this isnt really a DAO
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -631,12 +645,12 @@ register("RugerSR9", {
     description = "IGUI_Firearm_Desc_RugerSR9",
 })
 register("SIGP226", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.4,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
@@ -649,12 +663,12 @@ register("SIGP226", {
     description = "IGUI_Firearm_Desc_SIGP226",
 })
 register("Spr19119", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 5,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -665,12 +679,12 @@ register("Spr19119", {
     description = "IGUI_Firearm_Desc_Spr19119",
 })
 register("Taurus38", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.25,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Pistol-Small",
 
@@ -681,12 +695,12 @@ register("Taurus38", {
     description = "IGUI_Firearm_Desc_Taurus38",
 })
 register("TaurusP132", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 3.25,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -697,13 +711,13 @@ register("TaurusP132", {
     description = "IGUI_Firearm_Desc_TaurusP132",
 })
 register("WaltherP22", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 3.42, -- 5" target barrel
     barrelLengthOpt = {3.42, 5 },
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -714,12 +728,12 @@ register("WaltherP22", {
     description = "IGUI_Firearm_Desc_WaltherP22",
 })
 register("WaltherPPK", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 3.3,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -730,13 +744,14 @@ register("WaltherPPK", {
     description = "IGUI_Firearm_Desc_WaltherPPK",
 })
 register("XD40", {
+    -- striker trigger mechanism, DAO is close enough
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.PISTOL,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
     barrelLengthOpt = { 3, 4, 5 },
-    triggerType = ORGM.DOUBLEACTIONONLY, -- striker trigger mechanism, DAO is close enough
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -751,13 +766,14 @@ register("XD40", {
     --************************************************************************--
 
 register("AM180", {
+    -- not really DAO, its closer to SA, but doesnt allow for manual decocking
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 9, -- 9 or 18.5
     barrelLengthOpt = { 9, 18.5 },
-    triggerType = ORGM.DOUBLEACTIONONLY, -- again, not really, its closer to SA, but doesnt allow for manual decocking
     isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
     alwaysFullAuto = true,
@@ -771,15 +787,14 @@ register("AM180", {
     description = "IGUI_Firearm_Desc_AM180",
 })
 register("Ber93R", {
+    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.9,
-    triggerType = ORGM.DOUBLEACTION,
     isCivilian = ORGM.VERYRARE,
     isMilitary = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Pistol-Small",
 
     classification = "IGUI_Firearm_MachinePistol",
@@ -789,14 +804,13 @@ register("Ber93R", {
     description = "IGUI_Firearm_Desc_Ber93R",
 })
 register("FNP90", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BULLPUP,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 10.4,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "SMG",
 
     classification = "IGUI_Firearm_SMG",
@@ -806,14 +820,13 @@ register("FNP90", {
     description = "IGUI_Firearm_Desc_FNP90",
 })
 register("Glock18", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 4.48,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "SMG",
 
     classification = "IGUI_Firearm_MachinePistol",
@@ -823,16 +836,15 @@ register("Glock18", {
     description = "IGUI_Firearm_Desc_Glock18",
 })
 register("HKMP5", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.FREEFLOAT,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 8.9,
     barrelLengthOpt = { 4.5, 5.5, 5.7, 5.8, 8.9 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
-    selectFire = 1,
     soundProfile = "SMG",
 
     classification = "IGUI_Firearm_SMG",
@@ -842,15 +854,14 @@ register("HKMP5", {
     description = "IGUI_Firearm_Desc_HKMP5",
 })
 register("HKUMP", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2 + Flags.FREEFLOAT,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTRECOIL,
     barrelLength = 8,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
-    selectFire = 1,
     soundProfile = "SMG",
 
     classification = "IGUI_Firearm_SMG",
@@ -860,12 +871,12 @@ register("HKUMP", {
     description = "IGUI_Firearm_Desc_HKUMP",
 })
 register("Kriss", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 16,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
 
@@ -876,15 +887,14 @@ register("Kriss", {
     description = "IGUI_Firearm_Desc_Kriss",
 })
 register("KrissA", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 5.5, -- 5.5 or 6.5
     barrelLengthOpt = { 5.5, 6.5 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "SMG",
 
     classification = "IGUI_Firearm_SMG",
@@ -894,12 +904,12 @@ register("KrissA", {
     description = "IGUI_Firearm_Desc_KrissA",
 })
 register("KTPLR", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 9.25,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -910,15 +920,14 @@ register("KTPLR", {
     description = "IGUI_Firearm_Desc_KTPLR",
 })
 register("M1A1", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 10.52,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "SMG",
-    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_SMG",
     year = 1921,
@@ -929,15 +938,14 @@ register("M1A1", {
     --skins = {'gold'},
 })
 register("Mac10", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 4.49,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_SMG",
     year = 1970,
@@ -946,15 +954,14 @@ register("Mac10", {
     description = "IGUI_Firearm_Desc_Mac10",
 })
 register("Mac11", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 5.08,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
-    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_MachinePistol",
     year = 1972,
@@ -963,12 +970,12 @@ register("Mac11", {
     description = "IGUI_Firearm_Desc_Mac11",
 })
 register("Skorpion", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 4.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Pistol-Small",
     selectFire = 1,
@@ -981,12 +988,12 @@ register("Skorpion", {
     description = "IGUI_Firearm_Desc_Skorpion",
 })
 register("Uzi", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SUBMACHINEGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 10.2,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "SMG",
     alwaysFullAuto = true,
@@ -1001,11 +1008,12 @@ register("Uzi", {
     -- rifles
     --************************************************************************--
 register("AIAW308", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.FREEFLOAT,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 26,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
@@ -1018,12 +1026,12 @@ register("AIAW308", {
     description = "IGUI_Firearm_Desc_AIAW308",
 })
 register("AKM", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 16.3,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1035,14 +1043,13 @@ register("AKM", {
 
 })
 register("AKMA", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 16.3,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_AssaultRifle",
@@ -1052,14 +1059,13 @@ register("AKMA", {
     description = "IGUI_Firearm_Desc_AKMA",
 })
 register("AR10", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 20.8,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_BattleRifle",
@@ -1069,13 +1075,13 @@ register("AR10", {
     description = "IGUI_Firearm_Desc_AR10",
 })
 register("AR15", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 20, -- 16 (carbine), 20 (standard), 24 (target)
     barrelLengthOpt = { 16, 20, 24 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
     soundProfile = "Rifle-AR",
@@ -1087,12 +1093,14 @@ register("AR15", {
     description = "IGUI_Firearm_Desc_AR15",
 })
 register("BBGun", {
+    features = Flags.DOUBLEACTION,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.LEVER,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     -- TODO: Barrel Length
+    barrelLength = 11,
     rackTime = 3,
     soundProfile = "Rifle-Lever",
     rackSound = 'ORGMBBLever',
@@ -1106,12 +1114,13 @@ register("BBGun", {
     description = "IGUI_Firearm_Desc_BBGun",
 })
 register("BLR", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.LEVER,
     barrelLength = 22, -- 16, 18, 18.5, 20, 22, 24
     barrelLengthOpt = { 16, 18, 18.5, 20, 22, 24 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Lever",
 
@@ -1122,12 +1131,12 @@ register("BLR", {
     description = "IGUI_Firearm_Desc_BLR",
 })
 register("FNFAL", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 21,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1138,15 +1147,14 @@ register("FNFAL", {
     description = "IGUI_Firearm_Desc_FNFAL",
 })
 register("FNFALA", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 21, -- 17.2, 18, 21
     barrelLengthOpt = { 17.2, 18, 21 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_BattleRifle",
@@ -1156,12 +1164,12 @@ register("FNFALA", {
     description = "IGUI_Firearm_Desc_FNFALA",
 })
 register("Garand", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 24,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto",
 
@@ -1172,11 +1180,12 @@ register("Garand", {
     description = "IGUI_Firearm_Desc_Garand",
 })
 register("HenryBB", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.LEVER,
     barrelLength = 20,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Lever",
 
@@ -1187,12 +1196,12 @@ register("HenryBB", {
     description = "IGUI_Firearm_Desc_HenryBB",
 })
 register("HK91", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 19.7,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1203,14 +1212,13 @@ register("HK91", {
     description = "IGUI_Firearm_Desc_HK91",
 })
 register("HKG3", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 17.7,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_BattleRifle",
@@ -1220,12 +1228,12 @@ register("HKG3", {
     description = "IGUI_Firearm_Desc_HKG3",
 })
 register("HKSL8", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.FREEFLOAT,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 20.08,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1236,11 +1244,12 @@ register("HKSL8", {
     description = "IGUI_Firearm_Desc_HKSL8",
 })
 register("L96", {
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.FREEFLOAT,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 26,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Bolt",
 
@@ -1251,11 +1260,12 @@ register("L96", {
     description = "IGUI_Firearm_Desc_L96",
 })
 register("LENo4", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 25.2,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = "LENo4StripperClip",
     soundProfile = "Rifle-Bolt",
@@ -1267,16 +1277,15 @@ register("LENo4", {
     description = "IGUI_Firearm_Desc_LENo4",
 })
 register("M16", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 20,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
-    selectFire = ORGM.FULLAUTOMODE,
 
     classification = "IGUI_Firearm_AssaultRifle",
     year = 1964,
@@ -1285,11 +1294,12 @@ register("M16", {
     description = "IGUI_Firearm_Desc_M16",
 })
 register("M1903", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 24,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.RARE,
     speedLoader = 'M1903StripperClip',
     soundProfile = "Rifle-Auto-IM",
@@ -1301,12 +1311,12 @@ register("M1903", {
     description = "IGUI_Firearm_Desc_M1903",
 })
 register("M21", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 22,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
@@ -1318,20 +1328,19 @@ register("M21", {
     description = "IGUI_Firearm_Desc_M21",
 })
 register("M249", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.FULLAUTO + Flags.OPENBOLT,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 21, -- 18 or 21
     barrelLengthOpt = { 18, 21 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Auto",
     clickSound = 'ORGMRifleEmpty',
     ejectSound = 'ORGMLMGOut',
     insertSound = 'ORGMLMGIn',
     rackSound = 'ORGMLMGRack',
-    alwaysFullAuto = true,
 
     classification = "IGUI_Firearm_LMG",
     year = 1979,
@@ -1340,15 +1349,14 @@ register("M249", {
     description = "IGUI_Firearm_Desc_M249",
 })
 register("M4C", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 14.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_AssaultCarbine",
@@ -1358,13 +1366,13 @@ register("M4C", {
     description = "IGUI_Firearm_Desc_M4C",
 })
 register("Marlin60", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 19, -- 19 or 22 (pre-1985)
     barrelLengthOpt = { 19, 22 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Auto-IM",
     rackSound = 'ORGMRifleRack',
@@ -1378,13 +1386,13 @@ register("Marlin60", {
     description = "IGUI_Firearm_Desc_Marlin60",
 })
 register("Mini14", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 18.5, -- 16.12 (tactical), 18.5, 22 (target)
     barrelLengthOpt = { 16.12, 18.5, 22 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
     soundProfile = "Rifle-AR",
@@ -1396,12 +1404,13 @@ register("Mini14", {
     description = "IGUI_Firearm_Desc_Mini14",
 })
 register("Mosin", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 29, -- 22.2 carbine, 26.2, 29
     barrelLengthOpt = { 22.2, 26.2, 29 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     speedLoader = 'MosinStripperClip',
     soundProfile = "Rifle-Bolt-IM",
@@ -1413,12 +1422,12 @@ register("Mosin", {
     description = "IGUI_Firearm_Desc_Mosin",
 })
 register("R25", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.FREEFLOAT + Flags.NOSIGHTS,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 27,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 20,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1429,12 +1438,13 @@ register("R25", {
     description = "IGUI_Firearm_Desc_R25",
 })
 register("Rem700", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 24, -- varies widely from 16.5 to 26 depending on model and caliber. the .30-06's seem mostly in 24"
     barrelLengthOpt = {16.5, 18, 20, 22, 24, 26 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
@@ -1446,12 +1456,13 @@ register("Rem700", {
     description = "IGUI_Firearm_Desc_Rem700",
 })
 register("Rem788", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 24, -- 18.5, 22, 24
     barrelLengthOpt = { 18.5, 22, 24 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Bolt",
 
@@ -1462,12 +1473,12 @@ register("Rem788", {
     description = "IGUI_Firearm_Desc_Rem788",
 })
 register("Rug1022", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.BLOWBACK,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.BLOWBACK,
     barrelLength = 18.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Pistol-Small",
 
@@ -1478,15 +1489,14 @@ register("Rug1022", {
     description = "IGUI_Firearm_Desc_Rug1022",
 })
 register("SA80", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BULLPUP,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 20.4, -- 11.2, 20.4, 25.4
     barrelLengthOpt = { 11.2, 20.4, 25.4 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.RARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
     isBulpup = true,
 
@@ -1497,14 +1507,13 @@ register("SA80", {
     description = "IGUI_Firearm_Desc_SA80",
 })
 register("SIG550", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 20.8,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_AssaultRifle",
@@ -1514,14 +1523,13 @@ register("SIG550", {
     description = "IGUI_Firearm_Desc_SIG550",
 })
 register("SIG551", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.LONGGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGGAS,
     barrelLength = 20.8,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
-    selectFire = 1,
     soundProfile = "Rifle-AR",
 
     classification = "IGUI_Firearm_AssaultCarbine",
@@ -1531,13 +1539,13 @@ register("SIG551", {
     description = "IGUI_Firearm_Desc_SIG551",
 })
 register("SKS", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 20, -- 20 or 22
     barrelLengthOpt = { 20, 22 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     speedLoader = 'SKSStripperClip',
     soundProfile = "Rifle-Auto-IM",
@@ -1549,12 +1557,12 @@ register("SKS", {
     description = "IGUI_Firearm_Desc_SKS",
 })
 register("SR25", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.FREEFLOAT + Flags.NOSIGHTS,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DIRECTGAS,
     barrelLength = 24,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
@@ -1566,12 +1574,12 @@ register("SR25", {
     description = "IGUI_Firearm_Desc_SR25",
 })
 register("SVD", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 24.4,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-Auto",
 
@@ -1582,12 +1590,13 @@ register("SVD", {
     description = "IGUI_Firearm_Desc_SVD",
 })
 register("WinM70", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BOLT,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.BOLT,
     barrelLength = 24, -- 22, 24, 26
     barrelLengthOpt = { 22, 24, 26 },
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     isMilitary = ORGM.RARE,
     soundProfile = "Rifle-Bolt-IM",
@@ -1599,11 +1608,12 @@ register("WinM70", {
     description = "IGUI_Firearm_Desc_WinM70",
 })
 register("WinM94", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.RIFLE,
-    actionType = ORGM.LEVER,
     barrelLength = 20,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Rifle-Lever",
 
@@ -1618,14 +1628,13 @@ register("WinM94", {
     --************************************************************************--
 
 register("BenelliM3", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.PUMP + Flags.AUTO + Flags.LONGRECOIL,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGRECOIL, -- actually Inertia
     barrelLength = 22, -- 20 22, 24
     barrelLengthOpt = { 20, 22, 24 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
-    altActionType = ORGM.PUMP,
     isPolice = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1636,13 +1645,12 @@ register("BenelliM3", {
     description = "IGUI_Firearm_Desc_BenelliM3",
 })
 register("BenelliM3SO", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.PUMP + Flags.AUTO + Flags.LONGRECOIL,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGRECOIL,
     barrelLength = 18, -- cant saw off much with that magazine tube, the connecting brace is very forward
-    triggerType = ORGM.DOUBLEACTIONONLY,
-    altActionType = ORGM.PUMP,
     soundProfile = "Shotgun",
 
     classification = ORGM.Firearm.getData("BenelliM3").classification,
@@ -1652,12 +1660,12 @@ register("BenelliM3SO", {
     description = ORGM.Firearm.getData("BenelliM3").description,
 })
 register("BenelliXM1014", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.LONGRECOIL,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.LONGRECOIL,
     barrelLength = 18.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isMilitary = ORGM.COMMON,
     soundProfile = "Shotgun",
     rackSound = 'ORGMARRack',
@@ -1669,11 +1677,12 @@ register("BenelliXM1014", {
     description = "IGUI_Firearm_Desc_BenelliXM1014"
 })
 register("Hawk982", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 18.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1684,12 +1693,13 @@ register("Hawk982", {
     description = "IGUI_Firearm_Desc_Hawk982",
 })
 register("Ithaca37", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLAMFIRE,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 20, -- 18.5, 20, -- all the way up to 30
     barrelLengthOpt = { 18.5, 20, 22, 24, 26, 28, 30 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1700,11 +1710,12 @@ register("Ithaca37", {
     description = "IGUI_Firearm_Desc_Ithaca37",
 })
 register("Ithaca37SO", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLAMFIRE,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 14, -- sawn off
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1715,12 +1726,12 @@ register("Ithaca37SO", {
     description = ORGM.Firearm.getData("Ithaca37").description,
 })
 register("M1216", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.DELAYEDBLOWBACK,
     barrelLength = 18,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
 
@@ -1731,11 +1742,12 @@ register("M1216", {
     description = "IGUI_Firearm_Desc_M1216",
 })
 register("Moss590", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 27,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 20,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1746,11 +1758,12 @@ register("Moss590", {
     description = "IGUI_Firearm_Desc_Moss590",
 })
 register("Moss590SO", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 27,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 18.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1761,12 +1774,13 @@ register("Moss590SO", {
     description = ORGM.Firearm.getData("Moss590").description,
 })
 register("Rem870", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 26,
     barrelLengthOpt = {20, 22, 24, 26 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     isPolice = ORGM.COMMON,
     soundProfile = "Shotgun",
@@ -1778,11 +1792,12 @@ register("Rem870", {
     description = "IGUI_Firearm_Desc_Rem870"
 })
 register("Rem870SO", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 14,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1793,11 +1808,12 @@ register("Rem870SO", {
     description = ORGM.Firearm.getData("Rem870").description,
 })
 register("Silverhawk", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BREAK,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.BREAK,
     barrelLength = 28,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
 
@@ -1808,11 +1824,12 @@ register("Silverhawk", {
     description = "IGUI_Firearm_Desc_Silverhawk",
 })
 register("SilverHawkSO", {
+    features = Flags.SINGLEACTION + Flags.SAFETY,
+    feedSystem = Flags.BREAK,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.BREAK,
     barrelLength = 10,
-    triggerType = ORGM.SINGLEACTION,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
 
@@ -1823,14 +1840,13 @@ register("SilverHawkSO", {
     description = ORGM.Firearm.getData("Silverhawk").description
 })
 register("Spas12", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.PUMP + Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
-    autoType = ORGM.SHORTGAS,
     barrelLength = 21.5, -- 18, 19-7/8,21.5, 24 -- 21.5 is the shortest we can go with our mag tube
     barrelLengthOpt = { 21.5, 24 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
-    altActionType = ORGM.PUMP,
     isCivilian = ORGM.RARE,
     isPolice = ORGM.RARE,
     isMilitary = ORGM.RARE,
@@ -1843,11 +1859,12 @@ register("Spas12", {
     description = "IGUI_Firearm_Desc_Spas12",
 })
 register("Stevens320", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.PUMP,
+
     lastChanged = 28,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.PUMP,
     barrelLength = 18.5,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
@@ -1858,12 +1875,13 @@ register("Stevens320", {
     description = "IGUI_Firearm_Desc_Stevens320"
 })
 register("Striker", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.ROTARY,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.ROTARY,
     barrelLength = 18.5, -- 7.5, 12, 14, 18.5
     barrelLengthOpt = { 7.5, 12, 14, 18.5 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Shotgun",
     rackSound = 'ORGMARRack',
@@ -1875,12 +1893,13 @@ register("Striker", {
     description = "IGUI_Firearm_Desc_Striker",
 })
 register("VEPR12", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+    feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.AUTO,
     barrelLength = 22.44, -- 19, 22.44, 26.5
     barrelLengthOpt = { 19, 22.44, 26.5 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.RARE,
     soundProfile = "Rifle-AR",
     clickSound = 'ORGMShotgunEmpty',
@@ -1892,12 +1911,13 @@ register("VEPR12", {
     description = "IGUI_Firearm_Desc_VEPR12",
 })
 register("Win1887", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.LEVER,
     barrelLength = 30, -- 18, 20, 30
     barrelLengthOpt = { 18, 20, 30 },
-    triggerType = ORGM.DOUBLEACTIONONLY,
     isCivilian = ORGM.VERYRARE,
     soundProfile = "Shotgun-Lever",
 
@@ -1908,11 +1928,12 @@ register("Win1887", {
     description = "IGUI_Firearm_Desc_Win1887"
 })
 register("Win1887SO", {
+    features = Flags.DOUBLEACTION + Flags.SAFETY,
+    feedSystem = Flags.LEVER,
+
     lastChanged = 24,
     category = ORGM.SHOTGUN,
-    actionType = ORGM.LEVER,
     barrelLength = 14,
-    triggerType = ORGM.DOUBLEACTIONONLY,
     soundProfile = "Shotgun-Lever",
 
     classification = ORGM.Firearm.getData("Win1887").classification,

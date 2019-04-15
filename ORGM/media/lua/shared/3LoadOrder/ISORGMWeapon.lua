@@ -7,13 +7,16 @@ and should be removed at a later date.
 
     @classmod ISORGMWeapon
     @author Fenris_Wolf
-    @release 3.09
+    @release 3.10
     @copyright 2018 **File:** shared/3LoadOrder/ISORGMWeapon.lua
 
 ]]
 local ORGM = ORGM
 local Reloadable = ORGM.ReloadableWeapon
 local Settings = ORGM.Settings
+local Bit = BitNumber.bit32
+local Flags = ORGM.Firearm.Flags
+
 ISORGMWeapon = ISReloadableWeapon:derive("ISORGMWeapon")
 
 function ISORGMWeapon:initialise()
@@ -266,7 +269,8 @@ end
 
 ]]
 function ISORGMWeapon:isChainUnloading()
-    if self.actionType == ORGM.ROTARY or self.actionType == ORGM.BREAK then return false end
+
+    if Bit.band(self.feedSystem, Flags.ROTARY + Flags.BREAK) ~= 0 then return false end
     return true
 end
 
@@ -367,8 +371,6 @@ end
 ]]
 function ISORGMWeapon:setupMagazine(magItem)
     Reloadable.Magazine.setup(self, magItem, self.playerObj)
-    --local magData = ORGM.Magazine.getData(magItem)
-    --ReloadUtil:setupMagazine(magItem, magData, self.playerObj)
 end
 
 
@@ -677,15 +679,12 @@ function ISORGMWeapon:syncItemToReloadable(weaponItem)
     self.emptyShellChambered = modData.emptyShellChambered
     self.containsClip = modData.containsClip
     self.speedLoader = modData.speedLoader
-    self.altActionType = modData.altActionType
+
+    self.status = modData.status
+    self.feedSystem = modData.feedSystem
 
     self.clipName = modData.clipName
     self.clipIcon = modData.clipIcon
-    self.triggerType = modData.triggerType
-    self.actionType = modData.actionType
-    self.selectFire = modData.selectFire
-    self.isOpen = modData.isOpen
-    self.hammerCocked = modData.hammerCocked
     self.cylinderPosition = modData.cylinderPosition
     self.magazineData = modData.magazineData
     self.preferredAmmoType = modData.preferredAmmoType
@@ -716,14 +715,13 @@ function ISORGMWeapon:syncReloadableToItem(weaponItem)
     --ISReloadable.syncReloadableToItem(self, weaponItem)
     modData.type = self.type
     modData.currentCapacity = self.currentCapacity
+    modData.feedSystem = self.feedSystem
+    modData.status = self.status
 
     modData.speedLoader = self.speedLoader
     modData.roundChambered = self.roundChambered
     modData.emptyShellChambered = self.emptyShellChambered
-    modData.isOpen = self.isOpen
-    modData.hammerCocked = self.hammerCocked
-    modData.actionType = self.actionType -- this one needs to be synced for guns that have altActionType
-    modData.selectFire = self.selectFire
+
     modData.containsClip = self.containsClip
     modData.cylinderPosition = self.cylinderPosition
     modData.magazineData = self.magazineData
