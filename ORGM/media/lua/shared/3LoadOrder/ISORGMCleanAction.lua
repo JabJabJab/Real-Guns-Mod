@@ -4,7 +4,7 @@ _Methods inherited from ISBaseTimedAction are not listed._
 
 This file is a work in progress, and not currently enabled.
 
-@classmod ISORGCleanFirarmAction
+@classmod ISORGMCleanFirearmAction
 @author Fenris_Wolf
 @release v3.09
 @copyright 2018 **File:** shared/3LoadOrder/ISORGMUnloadAction.lua
