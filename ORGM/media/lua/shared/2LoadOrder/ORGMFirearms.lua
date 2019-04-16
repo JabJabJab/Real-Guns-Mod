@@ -624,18 +624,18 @@ end
 --- Feature Functions
 -- @section FirearmData
 
-Firearm.modeState2Flag = function(state)
-    if state == State.SEMIAUTO then return Flag.SEMIAUTO end
-    if state == State.FULLAUTO then return Flag.FULLAUTO end
-    if state == State.BURST2 then return Flag.BURST2 end
-    if state == State.BURST3 then return Flag.BURST3 end
+Firearm.modeStatus2Flag = function(status)
+    if status == Status.SINGLESHOT then return Flag.SEMIAUTO end
+    if status == Status.FULLAUTO then return Flag.FULLAUTO end
+    if status == Status.BURST2 then return Flag.BURST2 end
+    if status == Status.BURST3 then return Flag.BURST3 end
 end
 
-Firearm.modeFlag2State = function(flag)
-    if flag == Flag.SEMIAUTO then return State.SEMIAUTO end
-    if flag == Flag.FULLAUTO then return State.FULLAUTO end
-    if flag == Flag.BURST2 then return State.BURST2 end
-    if flag == Flag.BURST3 then return State.BURST3 end
+Firearm.modeFlag2Status = function(flag)
+    if flag == Flag.SEMIAUTO then return Status.SINGLESHOT end
+    if flag == Flag.FULLAUTO then return Status.FULLAUTO end
+    if flag == Flag.BURST2 then return Status.BURST2 end
+    if flag == Flag.BURST3 then return Status.BURST3 end
 end
 
 Firearm.isFeature = function(item, itemData, flags)
@@ -882,17 +882,20 @@ Firearm.setup = function(gunData, weaponItem)
 
     local status = 0
     -- set the current firemode to first available position.
-    if Firearm.isSelectFire(weaponItem, gunData) then
+
+    --if Firearm.isSelectFire(weaponItem, gunData) then
         if Bit.band(gunData.features, Flags.SEMIAUTO) then
-            status = status + Status.SEMIAUTO
+            status = status + Status.SINGLESHOT
         elseif Bit.band(gunData.features, Flags.FULLAUTO) then
             status = status + Status.FULLAUTO
         elseif Bit.band(gunData.features, Flags.BURST2) then
             status = status + Status.BURST2
         elseif Bit.band(gunData.features, Flags.BURST3) then
             status = status + Status.BURST3
+        else
+            status = status + Status.SINGLESHOT
         end
-    end
+    --end
     modData.status = status
 
     modData.magazineData = {} -- current rounds, LIFO list
@@ -963,9 +966,9 @@ Firearm.toggleFireMode = function(item, mode, playerObj)
     if not itemData then return end
     if not Firearm.isSelectFire(item, itemData) then return end -- not select fire
     if Reloadable.isStatus(item:getModData(), mode) then -- already in this mode
-        mode = Status.SEMIAUTO
+        mode = Status.SINGLESHOT
     end
-    if not Firearm.isFeature(itemData, Firearm.modeState2Flag(mode)) then return end -- invalid mode
+    if not Firearm.isFeature(itemData, Firearm.modeStatus2Flag(mode)) then return end -- invalid mode
     Firearm.setFireMode(item, mode, playerObj)
 end
 

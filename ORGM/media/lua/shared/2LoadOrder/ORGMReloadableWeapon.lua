@@ -41,7 +41,7 @@ local InventoryItemFactory = InventoryItemFactory
 local ZombRand = ZombRand
 
 
-Status.SEMIAUTO = 8 -- Singleshot or semi auto mode
+Status.SINGLESHOT = 8 -- Singleshot or semi auto mode
 Status.FULLAUTO = 16 -- can go full auto, this must be set for weapons always fullauto
 Status.BURST2 = 32 -- fire 2 shot bursts
 Status.BURST3 = 64 -- fire 3 shot bursts
@@ -49,7 +49,7 @@ Status.SAFETY = 128 -- manual safety
 Status.OPEN = 256 -- slide/bolt is open.
 Status.COCKED = 512 -- gun is currently cocked
 Status.FORCEOPEN = 1024 -- user specifically requested gun should be open. To prevent normal reloading from auto racking.
-local FIREMODESTATES = Status.SEMIAUTO+Status.FULLAUTO+Status.BURST2+Status.BURST3
+local FIREMODESTATES = Status.SINGLESHOT+Status.FULLAUTO+Status.BURST2+Status.BURST3
 
 
 local function isAuto(this)
@@ -218,12 +218,12 @@ function Fire.set(this, mode)
         -- find all firing modes allowed
         local thisData = Firearm.getData(this.type)
         local opt = {}
-        if Firearm.isSemiAuto then table.insert(opt, Status.SEMIAUTO) end
+        if Firearm.isSemiAuto then table.insert(opt, Status.SINGLESHOT) end
         if Firearm.isFullAuto then table.insert(opt, Status.FULLAUTO) end
         if Firearm.is2ShotBurst then table.insert(opt, Status.BURST2) end
         if Firearm.is3ShotBurst then table.insert(opt, Status.BURST3) end
         if #opt == 0 then
-            mode = Status.SEMIAUTO
+            mode = Status.SINGLESHOT
         else
             mode = opt[ZombRand(#opt) +1]
         end
