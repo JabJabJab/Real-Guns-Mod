@@ -7,7 +7,7 @@ It is unlikely that you will need to call any of these functions manually.
 @module ORGM.Callbacks
 @copyright 2018 **File:** shared/2LoadOrder/ORGMCallbacks.lua
 @author Fenris_Wolf
-@release 3.09
+@release 3.10
 
 ]]
 
@@ -111,12 +111,6 @@ This is triggered by Events.OnGameBoot.
 Callbacks.loadBackPatches = function()
     -- ORGM[ORGM['10mm'](ORGM[11])]=5
     -- ORGM[ORGM['10mm'](ORGM[12])]=0.1
-    for key, value in pairs(ORGM.Component.getTable()) do
-        table.insert(ORGMWeaponModsTable, key)
-    end
-    for key, value in pairs(ORGM.Maintance.getTable()) do
-        table.insert(ORGMRepairKitsTable, key)
-    end
 end
 
 
