@@ -1,7 +1,7 @@
 Items_EN = {
     -- Ammo.txt
-    DisplayName_ORGM_Ammo_117BB                 = ".117 BBs",
-    DisplayName_ORGM_Ammo_117BB_Box             = ".117 BBs - 250 Count Can",
+    DisplayName_ORGM_Ammo_177BB                 = ".177 BBs",
+    DisplayName_ORGM_Ammo_177BB_Box             = ".177 BBs - 250 Count Can",
     DisplayName_ORGM_Case_22LR                  = ".22 LR cases",
     DisplayName_ORGM_Case_22LR_Box              = ".22LR - 100 Cases Box",
     DisplayName_ORGM_Case_22LR_Can              = ".22LR - 1000 Cases Canister",
