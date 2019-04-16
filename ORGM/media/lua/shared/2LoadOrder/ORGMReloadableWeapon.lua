@@ -4,7 +4,7 @@ It allows for the data its operating on be either a ISReloadableWeapon class obj
 or a HandWeapon/InventoryItem's modData.
 
 @module ORGM.ReloadableWeapon
-@release v3.09
+@release v3.10
 @author Fenris_Wolf
 @copyright 2018 **File:** shared/2LoadOrder/ORGMReloadableWeapon.lua
 
@@ -13,32 +13,78 @@ or a HandWeapon/InventoryItem's modData.
 local ORGM = ORGM
 local Settings = ORGM.Settings
 -- pull subtables of reloadable class functions into the global namespace.
-local Fire = ORGM.ReloadableWeapon.Fire
-local Ammo = ORGM.ReloadableWeapon.Ammo
-local Magazine = ORGM.ReloadableWeapon.Magazine
-local Cylinder = ORGM.ReloadableWeapon.Cylinder
-local Bolt = ORGM.ReloadableWeapon.Bolt
-local Break = ORGM.ReloadableWeapon.Break
-local Reload = ORGM.ReloadableWeapon.Reload
-local Unload = ORGM.ReloadableWeapon.Unload
-local Rack = ORGM.ReloadableWeapon.Rack
-local Hammer = ORGM.ReloadableWeapon.Hammer
+local Reloadable = ORGM.ReloadableWeapon
+local Fire = Reloadable.Fire
+local Ammo = Reloadable.Ammo
+local Magazine = Reloadable.Magazine
+local Cylinder = Reloadable.Cylinder
+local Bolt = Reloadable.Bolt
+local Break = Reloadable.Break
+local Reload = Reloadable.Reload
+local Unload = Reloadable.Unload
+local Rack = Reloadable.Rack
+local Hammer = Reloadable.Hammer
+local Status = Reloadable.Status
 
 -- pull in some more locals as functions, avoiding conflicting namespaces.
 local _Ammo = ORGM.Ammo
 local _Magazine = ORGM.Magazine
+local Firearm = ORGM.Firearm
 local _Stats = ORGM.Firearm.Stats
+local Flags = ORGM.Firearm.Flags
+
+local Bit = BitNumber.bit32
 
 local getSoundManager = getSoundManager
 --local ISInventoryPage = ISInventoryPage
 local InventoryItemFactory = InventoryItemFactory
 local ZombRand = ZombRand
+
+
+Status.SEMIAUTO = 8 -- Singleshot or semi auto mode
+Status.FULLAUTO = 16 -- can go full auto, this must be set for weapons always fullauto
+Status.BURST2 = 32 -- fire 2 shot bursts
+Status.BURST3 = 64 -- fire 3 shot bursts
+Status.SAFETY = 128 -- manual safety
+Status.OPEN = 256 -- slide/bolt is open.
+Status.COCKED = 512 -- gun is currently cocked
+Status.FORCEOPEN = 1024 -- user specifically requested gun should be open. To prevent normal reloading from auto racking.
+local FIREMODESTATES = Status.SEMIAUTO+Status.FULLAUTO+Status.BURST2+Status.BURST3
+
+
+local function isAuto(this)
+    return Bit.band(this.feedSystem, Flags.AUTO) ~= 0
+end
+local function isRotary(this)
+    return Bit.band(this.feedSystem, Flags.ROTARY) ~= 0
+end
+local function isBreak(this)
+    return Bit.band(this.feedSystem, Flags.BREAK) ~= 0
+end
+
+local function isForceOpen(this)
+    return Bit.band(this.status, Status.FORCEOPEN) ~= 0
+end
+
+Reloadable.isFeature = function(this, thisData, feature)
+    return Firearm.isFeature(this.type, thisData, feature)
+end
+
+Reloadable.isFeed = function(this, feedType)
+    return Bit.band(this.feedSystem, feedType) ~= 0
+end
+
+Reloadable.isStatus = function(this, status)
+    return Bit.band(this.status, status) ~= 0
+end
+
+
 --- Firing Functions
 -- @section Fire
 
 --[[- Called when checking if a shot will attempt to fire when the trigger is pulled.
 
-@usage ORGM.Reloadable.Fire.valid(weaponItem:getModData())
+@usage ORGM.ReloadableWeapon.Fire.valid(weaponItem:getModData())
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 
 @treturn bool true if pulling the trigger 'should' fire the gun.
@@ -46,17 +92,18 @@ local ZombRand = ZombRand
 ]]
 function Fire.valid(this)
     -- cant fire with a open slide
-    if this.isOpen == 1 then
-        return false
-    end
+    if Bolt.isOpen(this) then return false end
+
     -- single action with hammer at rest cant fire
-    if (this.hammerCocked == 0 and this.triggerType == ORGM.SINGLEACTION) then
+    --
+    if Firearm.Trigger.isSAO(this.type) and not Hammer.isCocked(this) then
         return false
     end
 
-    if this.actionType == ORGM.ROTARY then
+
+    if isRotary(this) then
         local ammoType = nil
-        if this.hammerCocked == 1 then -- hammer is cocked, check this position
+        if Hammer.isCocked(this) then -- hammer is cocked, check this position
             ammoType = Ammo.get(this, this.cylinderPosition)
         else -- uncocked doubleaction, the chamber will rotate when the player pulls
             ammoType = Ammo.peek(this, true)
@@ -64,7 +111,7 @@ function Fire.valid(this)
         if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
 
-    elseif this.actionType == ORGM.BREAK then
+    elseif isBreak(this) then
         local ammoType = Ammo.get(this, this.cylinderPosition)
         if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
@@ -76,7 +123,7 @@ end
 
 --[[- Called as just as the trigger is pulled.
 
-@usage ORGM.Reloadable.Fire.pre(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Fire.pre(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -90,7 +137,7 @@ function Fire.pre(this, playerObj, weaponItem)
 
     -- set piercing bullets here.
     local ammoData = _Ammo.getData(this.lastRound)
-    if not ammoData then return true end -- loaded but no lastRound? 
+    if not ammoData then return true end -- loaded but no lastRound?
     _Stats.setPenetration(weaponItem, ammoData.Penetration or ammoData.PiercingBullets)
     return true
 end
@@ -98,34 +145,34 @@ end
 
 --[[- Called after the trigger is pulled.
 
-@usage ORGM.Reloadable.Fire.post(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Fire.post(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
 
 ]]
 function Fire.post(this, playerObj, weaponItem)
-    if this.hammerCocked == 0 then -- SA already has hammer cocked by this point,
-        Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
-    end
+    -- SA already has hammer cocked by this point, but we dont need to check here.
+    Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
     Hammer.release(this, playerObj, false)
 
     --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
     this.roundsFired = this.roundsFired + 1
-    if this.actionType == ORGM.AUTO then
+    if isAuto(this) then
         --fire shot
         this.roundChambered = 0
         this.emptyShellChambered = 1
         Bolt.open(this, playerObj, false, weaponItem)
-        Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
-
-    elseif this.actionType == ORGM.ROTARY then
+        if this.currentCapacity ~= 0 or not Bit.band(Firearm.getData(weaponItem).features, Flags.SLIDELOCK) then
+            Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
+        end
+    elseif isRotary(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
         this.magazineData[this.cylinderPosition] = ammoData and ammoData.Case or nil
         this.currentCapacity = this.currentCapacity - 1
 
-    elseif this.actionType == ORGM.BREAK then
+    elseif isBreak(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
         this.magazineData[this.cylinderPosition] = ammoData and ammoData.Case or nil
@@ -145,28 +192,56 @@ end
 
 --[[- Called when the trigger is pulled on a empty chamber.
 
-@usage ORGM.Reloadable.Fire.dry(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Fire.dry(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
 
 ]]
 function Fire.dry(this, playerObj, weaponItem)
-    if this.hammerCocked == 1 then
+    if Hammer.isCocked(this) then
         Hammer.release(this, playerObj, false)
-    elseif this.triggerType ~= ORGM.SINGLEACTION then
+    elseif not Firearm.Trigger.isSAO(this.type) then
         Hammer.cock(this, playerObj, false, weaponItem)
         Hammer.release(this, playerObj, false)
     end
 end
 
+--[[- Sets the position of the Select Fire switch.
+
+@tparam ISReloadableWeapon|HandWeapon:getModData() this
+@tparam[opt] nil|int mode If nil, a random valid fire mode is selected.
+
+]]
+function Fire.set(this, mode)
+    if not mode then
+        -- find all firing modes allowed
+        local thisData = Firearm.getData(this.type)
+        local opt = {}
+        if Firearm.isSemiAuto then table.insert(opt, Status.SEMIAUTO) end
+        if Firearm.isFullAuto then table.insert(opt, Status.FULLAUTO) end
+        if Firearm.is2ShotBurst then table.insert(opt, Status.BURST2) end
+        if Firearm.is3ShotBurst then table.insert(opt, Status.BURST3) end
+        if #opt == 0 then
+            mode = Status.SEMIAUTO
+        else
+            mode = opt[ZombRand(#opt) +1]
+        end
+    end
+    this.states = this.states - Bit.band(this.states, FIREMODESTATES) + mode
+    return mode
+end
+
+function Fire.isFullAuto(this)
+    return Bit.band(this.status, Flags.FULLAUTO) ~= 0
+end
 --- Reloading Functions
 -- @section Reload
 
 
 --[[- Checks if a reload action can be performed.
 
-@usage ORGM.Reloadable.Reload.valid(weaponItem:getModData(), playerObj)
+@usage ORGM.ReloadableWeapon.Reload.valid(weaponItem:getModData(), playerObj)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 
@@ -183,7 +258,7 @@ function Reload.valid(this, playerObj)
             speed = speed:getModData()
             if speed.currentCapacity > 0 then
                 -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
-                if this.actionType == ORGM.ROTARY and this.maxCapacity ~= this.currentCapacity then
+                if isRotary(this) and this.maxCapacity ~= this.currentCapacity then
                     return true
                 -- rifles however, do
                 elseif speed.maxCapacity <= this.maxCapacity - this.currentCapacity then
@@ -213,7 +288,7 @@ end
 This mostly just plays sounds, and opens the break barrel (for shotguns)
 or revolver cylinder.
 
-@usage ORGM.Reloadable.Reload.start(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Reload.start(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -222,18 +297,20 @@ or revolver cylinder.
 function Reload.start(this, playerObj, weaponItem)
     -- NOTE: weaponItem is nil! not passed from ISORGMWeapon:reloadStart
     if this.containsClip == 1 then
-        getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        --getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        playerObj:playSound(this.ejectSound, false)
     elseif this.containsClip == 0 then
-        getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        playerObj:playSound(this.insertSound, false)
     else
-        if this.actionType == ORGM.ROTARY then
+        if isRotary(this) then
             -- TODO: this needs to sync, causes issues,
             Cylinder.open(this, playerObj, true, weaponItem) -- play the open sound
             -- if rotary and contains spent shells, we need to empty the cylinder. this is all or nothing
             if Ammo.hasCases(this) > 0 then
                 Ammo.ejectAll(this, playerObj, true)
             end
-        elseif this.actionType == ORGM.BREAK then
+        elseif isBreak(this) then
             Break.open(this, playerObj, true, weaponItem)
         end
     end
@@ -242,7 +319,7 @@ end
 
 --[[- Called at successful completion of the reload action.
 
-@usage ORGM.Reloadable.Reload.perform(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Reload.perform(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -258,7 +335,8 @@ function Reload.perform(this, playerObj, weaponItem)
         if speed and this.containsClip ~= 0 then
             speed = speed:getModData()
             if speed.currentCapacity > 0 and speed.maxCapacity <= this.maxCapacity - this.currentCapacity then
-                getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
+                playerObj:playSound(this.insertSound, false)
+                --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
                 for i=1, speed.maxCapacity do repeat
                     if speed.magazineData[i] == nil then break end
                     Ammo.load(this, speed.magazineData[i], weaponItem)
@@ -266,10 +344,8 @@ function Reload.perform(this, playerObj, weaponItem)
                     speed.currentCapacity = speed.currentCapacity - 1
                 until true end
                 speed.loadedAmmo = nil
-                -- self.reloadInProgress = false
-                -- self:syncReloadableToItem(weaponItem)
                 playerObj:getXp():AddXP(Perks.Reloading, 1)
-                return false -- return reloadInProgress
+                return false
             end
         end
     end
@@ -280,33 +356,29 @@ function Reload.perform(this, playerObj, weaponItem)
         else
             Magazine.insert(this, playerObj, false)
         end
-        -- self.reloadInProgress = false
-        -- self:syncReloadableToItem(weaponItem)
-        return false -- return reloadInProgress
+        return false
 
     else -- internal mag, rotary or break barrel
         local ammoItem = Ammo.findBest(this, playerObj)
         if not ammoItem then return end
         local ammoType = ammoItem:getType()
-        if this.actionType == ORGM.ROTARY then
+        if isRotary(this) then
             Cylinder.rotate(this, 1, playerObj, true, weaponItem)
             if this.magazineData[this.cylinderPosition] ~= nil then -- something is in this spot, return now
-                -- self:syncReloadableToItem(weaponItem)
                 return true
             end
         end
-        getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        playerObj:playSound(this.insertSound, false)
 
         Ammo.load(this, ammoType, weaponItem, this.cylinderPosition) -- cylinderPosition will be nil for non-rotary
-        if this.actionType == ORGM.BREAK then
+        if isBreak(this) then
             this.cylinderPosition = this.cylinderPosition + 1 -- increment to load the next chamber, it resets on close
         end
         -- remove the necessary ammo
         playerObj:getInventory():RemoveOneOf(ammoType)
-        -- self.reloadInProgress = false
-        -- self:syncReloadableToItem(weaponItem)
         playerObj:getXp():AddXP(Perks.Reloading, 1)
-        return false -- return reloadInProgress
+        return false
         --if self.currentCapacity == self.maxCapacity then
         --    return false
         --end
@@ -320,7 +392,7 @@ end
 
 --[[- Checks if a unload action can be performed.
 
-@usage ORGM.Reloadable.Unload.valid(weaponItem:getModData(), playerObj)
+@usage ORGM.ReloadableWeapon.Unload.valid(weaponItem:getModData(), playerObj)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 
@@ -340,7 +412,7 @@ end
 This mostly just plays sounds, and opens the break barrel (for shotguns)
 or revolver cylinder.
 
-@usage ORGM.Reloadable.Unload.start(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Unload.start(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -353,7 +425,7 @@ end
 
 --[[- Called at successful completion of the unload action.
 
-@usage ORGM.Reloadable.Unload.perform(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Unload.perform(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -362,13 +434,12 @@ end
 
 ]]
 function Unload.perform(this, playerObj, weaponItem)
-    if this.actionType == ORGM.ROTARY then
+    if isRotary(this) then
         Cylinder.open(this, playerObj, true)
         -- revolvers drop them all at once
         Ammo.ejectAll(this, playerObj, false)
         return false
-    end
-    if this.actionType == ORGM.BREAK then
+    elseif isBreak(this) then
         Break.open(this, playerObj, false, weaponItem)
         return false
     end
@@ -382,7 +453,7 @@ end
 
 --[[- Ejects the current magazine and adds it to the players inventory.
 
-@usage ORGM.Reloadable.Magazine.eject(weaponItem:getModData(), playerObj, true)
+@usage ORGM.ReloadableWeapon.Magazine.eject(weaponItem:getModData(), playerObj, true)
 
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
@@ -403,7 +474,7 @@ end
 
 --[[- Inserts the best magazine from the players inventory into the firearm.
 
-@usage ORGM.Reloadable.Magazine.insert(weaponItem:getModData(), playerObj, true)
+@usage ORGM.ReloadableWeapon.Magazine.insert(weaponItem:getModData(), playerObj, true)
 
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
@@ -440,9 +511,9 @@ end
 
 --[[- Creates a new magazine InventoryItem with modData.
 
-This is called on Reloadable.Magazine.eject()
+This is called on ReloadableWeapon.Magazine.eject()
 Copies some data from the firearm into the magazines modData, setting up the ammo count.
-@usage local magItem = ORGM.Reloadable.Magazine.create(weaponItem:getModData(), playerObj)
+@usage local magItem = ORGM.ReloadableWeapon.Magazine.create(weaponItem:getModData(), playerObj)
 
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
@@ -465,7 +536,7 @@ end
 
 --[[- Sets up the ISReloadableMagazine on the InventoryItem
 
-@usage ORGM.Reloadable.Magazine.setup(weaponItem:getModData(), magItem, playerObj)
+@usage ORGM.ReloadableWeapon.Magazine.setup(weaponItem:getModData(), magItem, playerObj)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam InventoryItem magItem the magazine to setup
 @tparam IsoPlayer playerObj
@@ -478,7 +549,7 @@ end
 
 --[[- Finds and returns the best magazine available in the players inventory.
 
-@usage local magItem = ORGM.Reloadable.Magazine.findBest(weaponItem:getModData(), playerObj, nil)
+@usage local magItem = ORGM.ReloadableWeapon.Magazine.findBest(weaponItem:getModData(), playerObj, nil)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|string ammoType name of a registered ORGM magazine, auto detected if nil
@@ -497,7 +568,7 @@ end
 
 --[[- Loads a round into the firearm (internal magazine or cylinder).
 
-@usage ORGM.Reloadable.Ammo.load(weaponItem:getModData(), "Ammo_9x19mm_FMJ", weaponItem, nil)
+@usage ORGM.ReloadableWeapon.Ammo.load(weaponItem:getModData(), "Ammo_9x19mm_FMJ", weaponItem, nil)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam string ammoType name of a registered ORGM ammo
 @tparam HandWeapon weaponItem
@@ -524,7 +595,7 @@ end
 
 This is a safety check performed to ensure we can properly get the ammo stats.
 
-@usage local ammoType = ORGM.Reloadable.Ammo.convert(weaponItem:getModData(), "Ammo_9x19mm",)
+@usage local ammoType = ORGM.ReloadableWeapon.Ammo.convert(weaponItem:getModData(), "Ammo_9x19mm",)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam string ammoType name of a AmmoGroup or a registered ammo.
 
@@ -546,7 +617,7 @@ end
 
 --[[- Finds and returns the best ammo available in the players inventory.
 
-@usage ORGM.Reloadable.Ammo.findBest(weaponItem:getModData(), playerObj)
+@usage ORGM.ReloadableWeapon.Ammo.findBest(weaponItem:getModData(), playerObj)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 
@@ -560,7 +631,7 @@ end
 
 --[[- Gets the ammo at specified position.
 
-@usage local ammoType = ORGM.Reloadable.Ammo.get(weaponItem:getModData(), position)
+@usage local ammoType = ORGM.ReloadableWeapon.Ammo.get(weaponItem:getModData(), position)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam int position the index position to get
 
@@ -574,7 +645,7 @@ end
 
 --[[- Gets the ammo at the next position.
 
-@usage local ammoType = ORGM.Reloadable.Ammo.peek(weaponItem:getModData(), true)
+@usage local ammoType = ORGM.ReloadableWeapon.Ammo.peek(weaponItem:getModData(), true)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam[opt] bool wrap if true wraps around the end of the list to the begining past maxCapacity. true for rotary actions.
 
@@ -593,7 +664,7 @@ end
 
 Used primarly with revolvers and break barrels on opening.
 
-@usage ORGM.Reloadable.Ammo.ejectAll(weaponItem:getModData(), playerObj, true)
+@usage ORGM.ReloadableWeapon.Ammo.ejectAll(weaponItem:getModData(), playerObj, true)
 
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
@@ -629,7 +700,7 @@ end
 
 --[[- Gets the number of empty cases in the magazine/cylinder.
 
-@usage local count = ORGM.Reloadable.Ammo.hasCases(weaponItem:getModData())
+@usage local count = ORGM.ReloadableWeapon.Ammo.hasCases(weaponItem:getModData())
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 
 @treturn int number of spent cases
@@ -649,7 +720,7 @@ end
 
 --[[- Loads the next round into the chamber
 
-@usage ORGM.Reloadable.Ammo.next(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Ammo.next(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
@@ -694,7 +765,7 @@ end
 
 --[[- Triggers a recalcuation of firearm stats on ammo changes.
 
-@usage ORGM.Reloadable.Ammo.setCurrent(weaponItem:getModData(), ammoType, weaponItem)
+@usage ORGM.ReloadableWeapon.Ammo.setCurrent(weaponItem:getModData(), ammoType, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam string ammoType name of the ammo in use
 @tparam HandWeapon weaponItem
@@ -725,7 +796,7 @@ end
 --[[- Checks if the weapon can be racked.
 
 On Easy/Normal reloading, this returns false if there is already a round chambered.
-@usage local result = ORGM.Reloadable.rack.setCurrent(weaponItem:getModData(), playerObj)
+@usage local result = ORGM.ReloadableWeapon.rack.setCurrent(weaponItem:getModData(), playerObj)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 
@@ -733,16 +804,20 @@ On Easy/Normal reloading, this returns false if there is already a round chamber
 
 ]]
 function Rack.valid(this, playerObj)
-    if (this.triggerType == ORGM.SINGLEACTION and this.hammerCocked == 0) then
+    if not Hammer.isCocked(this) and Firearm.Trigger.isSAO(this.type) then
         return true
     end
-    if (this.actionType == ORGM.BREAK or this.actionType == ORGM.ROTARY) then
-        if this.isOpen == 1 then return true end
+    if isBreak(this) or isRotary(this) then
+        if Cylinder.isOpen(this) then return true end
         return false
     end
     if this.emptyShellChambered == 1 then return true end
     if ReloadManager[1]:getDifficulty() < 3 or playerObj:getJoypadBind() ~= -1 then
+        -- TODO: proper jamming checks
         if this.isJammed then return true end
+        if Bolt.isOpen(this) and isForceOpen(this) then
+            return true
+        end
         return this.roundChambered == 0 and this.currentCapacity > 0
     end
 
@@ -754,43 +829,40 @@ end
 
 This mostly just plays sounds.
 
-@usage ORGM.Reloadable.Rack.start(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Rack.start(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
 
 ]]
 function Rack.start(this, playerObj, weaponItem)
-    if (this.actionType == ORGM.BREAK or this.actionType == ORGM.ROTARY) then
-        return
-    end
-    if this.rackSound then
-        getSoundManager():PlayWorldSound(this.rackSound, playerObj:getSquare(), 0, 10, 1.0, false)
-    end
+    return
 end
 
 
 --[[- Called at successful completion of a rack action.
 
-@usage ORGM.Reloadable.Rack.perform(weaponItem:getModData(), playerObj, weaponItem)
+@usage ORGM.ReloadableWeapon.Rack.perform(weaponItem:getModData(), playerObj, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam HandWeapon weaponItem
 
 ]]
 function Rack.perform(this, playerObj, weaponItem)
-    if this.actionType == ORGM.BREAK then
-        if this.isOpen then Break.close(this, playerObj, true, weaponItem) end
+    if isBreak(this) then
+        Break.close(this, playerObj, true, weaponItem)
 
-    elseif this.actionType == ORGM.ROTARY then
-        if this.isOpen == 1 then Cylinder.close(this, playerObj, true, weaponItem) end
+    elseif isRotary(this) then
+        Cylinder.close(this, playerObj, true, weaponItem)
 
     else
+        --getSoundManager():PlayWorldSound(this.rackSound, playerObj:getSquare(), 0, 10, 1.0, false)
+        playerObj:playSound(this.rackSound, false)
         Bolt.open(this, playerObj, false, weaponItem)
         Bolt.close(this, playerObj, false, weaponItem)
     end
 
-    if (this.triggerType == ORGM.SINGLEACTION and this.hammerCocked == 0) then
+    if not Hammer.isCocked(this) and Firearm.Trigger.isSAO(this.type) then
         Hammer.cock(this, playerObj, true, weaponItem) -- play the cock sound
     end
 end
@@ -802,7 +874,7 @@ end
 
 --[[- Cocks the hammer and rotates the cylinder for Rotary actionType.
 
-@usage ORGM.Reloadable.Hammer.cock(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Hammer.cock(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the cockSound
@@ -811,32 +883,48 @@ end
 ]]
 function Hammer.cock(this, playerObj, playSound, weaponItem)
     -- rotary cylinders rotate the chamber when the hammer is cocked
-    if this.actionType == ORGM.ROTARY and this.isOpen == 0 then
+    if Hammer.isCocked(this) then return end
+    if isRotary(this) and not Bolt.isOpen(this) then
         Cylinder.rotate(this, 1, playerObj, false, weaponItem)
     end
     if (playSound and this.cockSound) then playerObj:playSound(this.cockSound, false) end
-    this.hammerCocked = 1
+    this.status = this.status + Status.COCKED
 end
 
 --[[- Releases a cocked hammer.
 
-@usage ORGM.Reloadable.Hammer.release(weaponItem:getModData(), playerObj, true)
+@usage ORGM.ReloadableWeapon.Hammer.release(weaponItem:getModData(), playerObj, true)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound not used atm
 
 ]]
 function Hammer.release(this, playerObj, playSound)
-    this.hammerCocked = 0
+    if not Hammer.isCocked(this) then return end
+    this.status = this.status - Status.COCKED
 end
 
-
+function Hammer.isCocked(this)
+    return Bit.band(this.status, Status.COCKED) ~= 0
+end
 --- Bolt Functions
 -- @section Bolt
 
+--[[- tests if the bolt is open.
+
+@usage ORGM.ReloadableWeapon.Bolt.isOpen(weaponItem:getModData())
+@tparam ISReloadableWeapon|HandWeapon:getModData() this
+@treturn bool true if the bolt is currently open.
+
+]]
+
+function Bolt.isOpen(this)
+    return Bit.band(this.status, Status.OPEN) ~= 0
+end
+
 --[[- Opens the bolt, ejecting whatever is currently in the chamber onto the ground.
 
-@usage ORGM.Reloadable.Bolt.open(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Bolt.open(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the openSound
@@ -844,16 +932,14 @@ end
 
 ]]
 function Bolt.open(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 1 then -- already opened!
-        return
-    end
+    if Bolt.isOpen(this) then return end -- already opened!
     -- first open the slide...
-    this.isOpen = 1
-    this.isJammed = nil
+    this.status = this.status + Status.OPEN
     if (playSound and this.openSound) then playerObj:playSound(this.openSound, false) end
     local square = playerObj:getCurrentSquare()
     local ammoType = this.lastRound
     local ammoItem = nil
+
     -- eject whatever is in the chamber
     if this.roundChambered == 1 then
         if ammoType == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
@@ -869,8 +955,13 @@ function Bolt.open(this, playerObj, playSound, weaponItem)
     else -- nothing actually chambered?
         return
     end
+
+    -- TODO: check failure to extract
+    this.isJammed = nil
     this.roundChambered = 0
     this.emptyShellChambered = 0
+    -- TODO: check failure to eject
+
     if (ammoItem and square) then
         square:AddWorldInventoryItem(ammoItem, 0, 0, 0)
         ISInventoryPage.dirtyUI()
@@ -881,7 +972,7 @@ end
 
 Single and Double actions this also cocks the hammer.
 
-@usage ORGM.Reloadable.Bolt.close(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Bolt.close(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the closeSound
@@ -889,17 +980,17 @@ Single and Double actions this also cocks the hammer.
 
 ]]
 function Bolt.close(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 0 then -- already closed!
-        return
-    end
-    if this.triggerType ~= ORGM.DOUBLEACTIONONLY then
+    if not Bolt.isOpen(this) then return end -- already closed!
+    if not Firearm.Trigger.isDAO(this.type) then
         Hammer.cock(this, playerObj, false, weaponItem)
     end
-    this.isOpen = 0
+    if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
+    this.status = this.status - Status.OPEN
     if (playSound and this.closeSound) then playerObj:playSound(this.closeSound, false) end
-    -- load next shot, this isn't always true though:
+    -- TODO: load next shot, this isn't always true though:
     -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
-    -- a mag inserted while slide open will chamber when closed
+    -- open bolt designs dont chamber at all until firing.
+
     Ammo.next(this, playerObj, weaponItem)
 end
 
@@ -907,9 +998,22 @@ end
 --- Cylinder Functions
 -- @section Cylinder
 
+--[[- tests if the cylinder is open.
+
+@usage ORGM.ReloadableWeapon.Cylinder.isOpen(weaponItem:getModData())
+@tparam ISReloadableWeapon|HandWeapon:getModData() this
+@treturn bool true if the cylinder is currently open.
+
+]]
+
+function Cylinder.isOpen(this)
+    return Bit.band(this.status, Status.OPEN) ~= 0
+end
+
+
 --[[- Rotates the cylinder by the specified amount.
 
-@usage ORGM.Reloadable.Cylinder.rotate(weaponItem:getModData(), 1, playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Cylinder.rotate(weaponItem:getModData(), 1, playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam int count Number of positions to rotate. If nil or 0, randomly selects (chamber spin)
 @tparam IsoPlayer playerObj
@@ -929,7 +1033,7 @@ end
 
 --[[- Opens the cylinder.
 
-@usage ORGM.Reloadable.Cylinder.open(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Cylinder.open(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the openSound
@@ -937,14 +1041,14 @@ end
 
 ]]
 function Cylinder.open(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 1 then return end
-    this.isOpen = 1
+    if Cylinder.isOpen(this) then return end
+    this.status = this.status + Status.OPEN
     if (playSound and this.openSound) then playerObj:playSound(this.openSound, false) end
 end
 
 --[[- Closes the cylinder and sets the current round.
 
-@usage ORGM.Reloadable.Cylinder.close(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Cylinder.close(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the closeSound
@@ -952,8 +1056,9 @@ end
 
 ]]
 function Cylinder.close(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 0 then return end
-    this.isOpen = 0
+    if not Cylinder.isOpen(this) then return end
+    if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
+    this.status = this.status - Status.OPEN
     Ammo.setCurrent(this, this.magazineData[this.cylinderPosition], weaponItem)
     if (playSound and this.closeSound) then playerObj:playSound(this.closeSound, false) end
 end
@@ -961,10 +1066,21 @@ end
 --- Break Barrel Functions
 -- @section Break
 
+--[[- tests if the breach is open.
+
+@usage ORGM.ReloadableWeapon.Break.isOpen(weaponItem:getModData())
+@tparam ISReloadableWeapon|HandWeapon:getModData() this
+@treturn bool true if the breach is currently open.
+
+]]
+
+function Break.isOpen(this)
+    return Bit.band(this.status, Status.OPEN) ~= 0
+end
 
 --[[- Opens the breech and ejects any shells.
 
-@usage ORGM.Reloadable.Break.open(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Break.open(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the openSound
@@ -972,8 +1088,8 @@ end
 
 ]]
 function Break.open(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 1 then return end
-    this.isOpen = 1
+    if Break.isOpen(this) then return end
+    this.status = this.status + Status.OPEN
     this.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire, set to 1 for reloading
     if (playSound and this.openSound) then playerObj:playSound(this.openSound, false) end
     Ammo.ejectAll(this, playerObj, false)
@@ -982,7 +1098,7 @@ end
 
 --[[- Closes the breech and sets the current round.
 
-@usage ORGM.Reloadable.Break.close(weaponItem:getModData(), playerObj, true, weaponItem)
+@usage ORGM.ReloadableWeapon.Break.close(weaponItem:getModData(), playerObj, true, weaponItem)
 @tparam ISReloadableWeapon|HandWeapon:getModData() this
 @tparam IsoPlayer playerObj
 @tparam nil|bool playSound if true plays the closeSound
@@ -990,8 +1106,9 @@ end
 
 ]]
 function Break.close(this, playerObj, playSound, weaponItem)
-    if this.isOpen == 0 then return end
-    this.isOpen = 0
+    if not Break.isOpen(this) then return end
+    if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
+    this.status = this.status - Status.OPEN
     this.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire
     Ammo.setCurrent(this, this.magazineData[1], weaponItem)
     if (playSound and this.closeSound) then playerObj:playSound(this.closeSound, false) end
