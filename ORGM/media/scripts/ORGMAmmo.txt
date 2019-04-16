@@ -8,31 +8,40 @@
 
 module ORGM
 {
-    /** .117 BB **/
-    item Ammo_117BB
+    /** .177 BB **/
+    item AmmoGroup_177BB
     {
         Count = 1,
         Weight = 0.001,
         Type = Normal,
-        DisplayName = ORGM_Ammo_117BB,
+        DisplayName = ORGM_Ammo_177BB,
         DisplayCategory = Ammo,
         Icon = AmBBs,
     }
-    /** This box only exist for spawning purposes, it is identical to Ammo_117BB_Can **/
-    item Ammo_117BB_Box
+    item Ammo_177BB
+    {
+        Count = 1,
+        Weight = 0.001,
+        Type = Normal,
+        DisplayName = ORGM_Ammo_177BB,
+        DisplayCategory = Ammo,
+        Icon = AmBBs,
+    }
+    /** This box only exist for spawning purposes, it is identical to Ammo_177BB_Can **/
+    item Ammo_177BB_Box
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = ORGM_Ammo_117BB_Box,
+        DisplayName = ORGM_Ammo_177BB_Box,
         DisplayCategory = Ammo,
         Icon = AmBBCan,
     }
 
-    item Ammo_117BB_Can
+    item Ammo_177BB_Can
     {
         Weight = 0.25,
         Type = Normal,
-        DisplayName = ORGM_Ammo_117BB_Box,
+        DisplayName = ORGM_Ammo_177BB_Box,
         DisplayCategory = Ammo,
         Icon = AmBBCan,
     }
@@ -67,7 +76,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_22LR
+    item AmmoGroup_22LR
     {
         Count = 1,
         Weight = 0.003,
@@ -163,7 +172,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_32ACP
+    item AmmoGroup_32ACP
     {
         Count = 1,
         Weight = 0.01,
@@ -259,7 +268,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_357Magnum
+    item AmmoGroup_357Magnum
     {
         Count = 1,
         Weight = 0.01,
@@ -355,7 +364,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_38Special
+    item AmmoGroup_38Special
     {
         Count = 1,
         Weight = 0.01,
@@ -451,7 +460,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_38Super
+    item AmmoGroup_38Super
     {
         Count = 1,
         Weight = 0.01,
@@ -547,7 +556,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_380ACP
+    item AmmoGroup_380ACP
     {
         Count = 1,
         Weight = 0.01,
@@ -643,7 +652,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_40SW
+    item AmmoGroup_40SW
     {
         Count = 1,
         Weight = 0.01,
@@ -739,7 +748,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_44Magnum
+    item AmmoGroup_44Magnum
     {
         Count = 1,
         Weight = 0.012,
@@ -835,7 +844,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_45ACP
+    item AmmoGroup_45ACP
     {
         Count = 1,
         Weight = 0.01,
@@ -931,7 +940,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_45Colt
+    item AmmoGroup_45Colt
     {
         Count = 1,
         Weight = 0.01,
@@ -1027,7 +1036,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_454Casull
+    item AmmoGroup_454Casull
     {
         Count = 1,
         Weight = 0.012,
@@ -1123,7 +1132,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_50AE
+    item AmmoGroup_50AE
     {
         Count = 1,
         Weight = 0.012,
@@ -1219,7 +1228,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_223Remington
+    item AmmoGroup_223Remington
     {
         Count = 1,
         Weight = 0.015,
@@ -1315,7 +1324,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_3006Springfield
+    item AmmoGroup_3006Springfield
     {
         Count = 1,
         Weight = 0.02,
@@ -1411,7 +1420,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_3030Winchester
+    item AmmoGroup_3030Winchester
     {
         Count = 1,
         Weight = 0.02,
@@ -1507,7 +1516,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_308Winchester
+    item AmmoGroup_308Winchester
     {
         Count = 1,
         Weight = 0.02,
@@ -1603,7 +1612,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_57x28mm
+    item AmmoGroup_57x28mm
     {
         Count = 1,
         Weight = 0.01,
@@ -1699,7 +1708,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_9x19mm
+    item AmmoGroup_9x19mm
     {
         Count = 1,
         Weight = 0.01,
@@ -1795,7 +1804,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_10x25mm
+    item AmmoGroup_10x25mm
     {
         Count = 1,
         Weight = 0.01,
@@ -1890,7 +1899,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_556x45mm
+    item AmmoGroup_556x45mm
     {
         Count = 1,
         Weight = 0.015,
@@ -1986,7 +1995,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_762x39mm
+    item AmmoGroup_762x39mm
     {
         Count = 1,
         Weight = 0.02,
@@ -2082,7 +2091,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_762x51mm
+    item AmmoGroup_762x51mm
     {
         Count = 1,
         Weight = 0.02,
@@ -2178,7 +2187,7 @@ module ORGM
         Icon = AmmoBox,
     }
 
-    item Ammo_762x54mm
+    item AmmoGroup_762x54mm
     {
         Count = 1,
         Weight = 0.025,
@@ -2275,7 +2284,7 @@ module ORGM
     }
 
 
-    item Ammo_12g
+    item AmmoGroup_12g
     {
         Count = 1,
         Weight = 0.04,

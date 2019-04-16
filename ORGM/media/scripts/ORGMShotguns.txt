@@ -10,7 +10,7 @@ module ORGM
         Weight                      = 3.3,
         WeaponWeight                = 3.3,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 7,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -76,7 +76,7 @@ module ORGM
         Weight                      = 3.0,
         WeaponWeight                = 3.0,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 7,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -144,7 +144,7 @@ module ORGM
         Weight                      = 3.8,
         WeaponWeight                = 3.8,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 7,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -210,7 +210,7 @@ module ORGM
         Weight                      = 3.17,
         WeaponWeight                = 3.17,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
 
         MinRange                    = 0.6,
@@ -277,7 +277,7 @@ module ORGM
         Weight                      = 3.6,
         WeaponWeight                = 3.6,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -343,7 +343,7 @@ module ORGM
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -475,7 +475,7 @@ module ORGM
         Weight                      = 3.6,
         WeaponWeight                = 3.6,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 8,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -541,7 +541,7 @@ module ORGM
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 6,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -607,7 +607,7 @@ module ORGM
         Weight                      = 3.3,
         WeaponWeight                = 3.3,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -673,7 +673,7 @@ module ORGM
         Weight                      = 2.8,
         WeaponWeight                = 2.8,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -739,7 +739,7 @@ module ORGM
         Weight                      = 3,
         WeaponWeight                = 3,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 2,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -805,7 +805,7 @@ module ORGM
         Weight                      = 2.5,
         WeaponWeight                = 2.8,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 2,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -871,7 +871,7 @@ module ORGM
         Weight                      = 4.4,
         WeaponWeight                = 4.4,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 8,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -937,7 +937,7 @@ module ORGM
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -1003,7 +1003,7 @@ module ORGM
         Weight                      = 4.2,
         WeaponWeight                = 4.2,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 12,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -1135,7 +1135,7 @@ module ORGM
         Weight                      = 3.6,
         WeaponWeight                = 3.6,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,
@@ -1201,7 +1201,7 @@ module ORGM
         Weight                      = 3.1,
         WeaponWeight                = 3.1,
 
-        AmmoType                    = Ammo_12g,
+        AmmoType                    = AmmoGroup_12g,
         ClipSize                    = 5,
         MinRange                    = 0.6,
         MaxRange                    = 7,

@@ -4,7 +4,7 @@ module ORGM
 {
     item ColtAnac
     {
-        AmmoType    =   Ammo_44Magnum,
+        AmmoType    =   AmmoGroup_44Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   coltanaconda,
@@ -60,7 +60,7 @@ module ORGM
 
     item ColtPyth
     {
-        AmmoType    =   Ammo_357Magnum,
+        AmmoType    =   AmmoGroup_357Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   coltpython,
@@ -116,7 +116,7 @@ module ORGM
 
     item ColtSAA
     {
-        AmmoType    =   Ammo_45Colt,
+        AmmoType    =   AmmoGroup_45Colt,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   coltsaa,
@@ -172,7 +172,7 @@ module ORGM
 
     item RugAlas
     {
-        AmmoType    =   Ammo_454Casull,
+        AmmoType    =   AmmoGroup_454Casull,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   rugalaskan,
@@ -228,7 +228,7 @@ module ORGM
 
     item RugBH
     {
-        AmmoType    =   Ammo_357Magnum,
+        AmmoType    =   AmmoGroup_357Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   rugblackhawk,
@@ -284,7 +284,7 @@ module ORGM
 
     item RugGP100
     {
-        AmmoType    =   Ammo_357Magnum,
+        AmmoType    =   AmmoGroup_357Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   ruggp100,
@@ -340,7 +340,7 @@ module ORGM
 
     item RugRH
     {
-        AmmoType    =   Ammo_44Magnum,
+        AmmoType    =   AmmoGroup_44Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   rugredhawk,
@@ -396,7 +396,7 @@ module ORGM
 
     item RugSec6
     {
-        AmmoType    =   Ammo_38Special,
+        AmmoType    =   AmmoGroup_38Special,
         ImpactSound =   null,
         MaxRange    =   10,
         WeaponSprite    =   rugsecsix,
@@ -452,7 +452,7 @@ module ORGM
 
     item SWM10
     {
-        AmmoType    =   Ammo_38Special,
+        AmmoType    =   AmmoGroup_38Special,
         ImpactSound =   null,
         MaxRange    =   10,
         WeaponSprite    =   swm10,
@@ -508,7 +508,7 @@ module ORGM
 
     item SWM19
     {
-        AmmoType    =   Ammo_357Magnum,
+        AmmoType    =   AmmoGroup_357Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   swm19,
@@ -564,7 +564,7 @@ module ORGM
 
     item SWM252
     {
-        AmmoType    =   Ammo_45ACP,
+        AmmoType    =   AmmoGroup_45ACP,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   swm252,
@@ -620,7 +620,7 @@ module ORGM
 
     item SWM29
     {
-        AmmoType    =   Ammo_44Magnum,
+        AmmoType    =   AmmoGroup_44Magnum,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   swm29,
@@ -676,7 +676,7 @@ module ORGM
 
     item SWM36
     {
-        AmmoType    =   Ammo_38Special,
+        AmmoType    =   AmmoGroup_38Special,
         ImpactSound =   null,
         MaxRange    =   10,
         WeaponSprite    =   swm36,
@@ -732,7 +732,7 @@ module ORGM
 
     item SWM610
     {
-        AmmoType    =   Ammo_10x25mm,
+        AmmoType    =   AmmoGroup_10x25mm,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   swm610,
@@ -788,7 +788,7 @@ module ORGM
 
     item Taurus454
     {
-        AmmoType    =   Ammo_454Casull,
+        AmmoType    =   AmmoGroup_454Casull,
         ImpactSound =   null,
         MaxRange    =   15,
         WeaponSprite    =   taurusraging,

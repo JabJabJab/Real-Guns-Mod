@@ -305,7 +305,7 @@ module ORGM
 
     item BBGun
     {
-        AmmoType    =   Ammo_117BB,
+        AmmoType    =   AmmoGroup_177BB,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   bbgun,
@@ -607,7 +607,7 @@ module ORGM
 
     item HenryBB
     {
-        AmmoType    =   Ammo_45Colt,
+        AmmoType    =   AmmoGroup_45Colt,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   henrybb,
@@ -1028,7 +1028,7 @@ module ORGM
 
     item M1903
     {
-        AmmoType    =   Ammo_3006Springfield,
+        AmmoType    =   AmmoGroup_3006Springfield,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   m1903,
@@ -1268,7 +1268,7 @@ module ORGM
 
     item Marlin60
     {
-        AmmoType    =   Ammo_22LR,
+        AmmoType    =   AmmoGroup_22LR,
         ImpactSound =   null,
         MaxRange    =   22,
         WeaponSprite    =   marlin60,
@@ -1388,7 +1388,7 @@ module ORGM
 
     item Mosin
     {
-        AmmoType    =   Ammo_762x54mm,
+        AmmoType    =   AmmoGroup_762x54mm,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   mosin,
@@ -1508,7 +1508,7 @@ module ORGM
 
     item Rem700
     {
-        AmmoType    =   Ammo_3006Springfield,
+        AmmoType    =   AmmoGroup_3006Springfield,
         ImpactSound =   null,
         MaxRange    =   30,
         WeaponSprite    =   rem700,
@@ -1868,7 +1868,7 @@ module ORGM
 
     item SKS
     {
-        AmmoType    =   Ammo_762x39mm,
+        AmmoType    =   AmmoGroup_762x39mm,
         ImpactSound =   null,
         MaxRange    =   24,
         WeaponSprite    =   sks,
@@ -2048,7 +2048,7 @@ module ORGM
 
     item WinM70
     {
-        AmmoType    =   Ammo_3006Springfield,
+        AmmoType    =   AmmoGroup_3006Springfield,
         ImpactSound =   null,
         MaxRange    =   26,
         WeaponSprite    =   winm70,
@@ -2108,7 +2108,7 @@ module ORGM
 
     item WinM94
     {
-        AmmoType    =   Ammo_3030Winchester,
+        AmmoType    =   AmmoGroup_3030Winchester,
         ImpactSound =   null,
         MaxRange    =   23,
         WeaponSprite    =   winm94,
