@@ -50,7 +50,7 @@ Valid table keys/value pairs for the ammoData are:
 
 * Case = nil|string, the empty case to eject
 
-* UseWith = nil|table, the AmmoGroup names this ammo can be used for. if nil, the name parameter is used
+* Groups = nil|table, the AmmoGroup names this ammo can be used for. if nil, the name parameter is used
 
 * BoxCount = int, the number of rounds that come in a box.
 
@@ -137,17 +137,17 @@ Ammo.register = function(name, ammoData)
         ammoData.MaxHitCount = 1
     end
 
-    if ammoData.UseWith == nil then
-        ammoData.UseWith = { name }
-    elseif type(ammoData.UseWith) == "string" then
-        ammoData.UseWith = { ammoData.UseWith }
-        ORGM.log(ORGM.WARN, "Ammo: UseWith for " .. fullName .. " is a string, converting to table")
-    elseif type(ammoData.UseWith) ~= "table" then
-        ORGM.log(ORGM.ERROR, "Ammo: Invalid UseWith for " .. fullName .. " is type: "..type(ammoData.UseWith) .." (expected string, table or nil)")
+    if ammoData.Groups == nil then
+        ammoData.Groups = { name }
+    elseif type(ammoData.Groups) == "string" then
+        ammoData.Groups = { ammoData.Groups }
+        ORGM.log(ORGM.WARN, "Ammo: Groups for " .. fullName .. " is a string, converting to table")
+    elseif type(ammoData.Groups) ~= "table" then
+        ORGM.log(ORGM.ERROR, "Ammo: Invalid Groups for " .. fullName .. " is type: "..type(ammoData.Groups) .." (expected string, table or nil)")
         return false
     end
 
-    for _, ammo in ipairs(ammoData.UseWith) do
+    for _, ammo in ipairs(ammoData.Groups) do
         if AmmoGroupTable[ammo] == nil then
             AmmoGroupTable[ammo] = { name }
         else
