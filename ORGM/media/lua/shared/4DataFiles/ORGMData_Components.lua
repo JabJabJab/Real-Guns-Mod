@@ -4,7 +4,7 @@ All calls made by this script are to `ORGM.Component.register`. See the document
 
 @script ORGMData_Components.lua
 @author Fenris_Wolf
-@release 3.09
+@release 3.10
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Components.lua
 
 ]]
@@ -19,12 +19,12 @@ register('Foregrip', { lastChanged = 22, RecoilDelay = -5 } )
 register('FullCh', { lastChanged = 22, MaxRange = 5, MaxDamage = 0.2, MinAngle = 0.05 } )
 register('HalfCh', { lastChanged = 22, MaxRange = 3, MaxDamage = 0.10, MinAngle = 0.025 } )
 register('PistolLas', { lastChanged = 22, CriticalChance = 10, SwingTime = -0.1, HitChance = 10, AimingTime = 10 } )
-register('PistolTL', { lastChanged = 22,} )
+register('PistolTL', { lastChanged = 22, LightDistance = 15, LightStrength = 0.6 } )
 register('RDS', { lastChanged = 22, CriticalChance = 10, SwingTime = 0.1, HitChance = 8, MaxRange = 2 } )
 register('Recoil', { lastChanged = 22, RecoilDelay = -3 } )
 register('Reflex', { lastChanged = 22, AimingTime = 10, HitChance = 5 } )
 register('RifleLas', { lastChanged = 22, CriticalChance = 10, SwingTime = -0.1, HitChance = 10, AimingTime = 10 } )
-register('RifleTL', { lastChanged = 22,} )
+register('RifleTL', { lastChanged = 22, LightDistance = 18, LightStrength = 0.7 } )
 register('Rifsling', { lastChanged = 22,} )
 register('SkeletalStock', { lastChanged = 22,} )
 register('CollapsingStock', { lastChanged = 22,} )

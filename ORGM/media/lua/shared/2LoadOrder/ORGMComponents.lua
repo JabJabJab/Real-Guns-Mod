@@ -6,7 +6,7 @@ This file handles functions dealing with components and attachments.
 @module ORGM.Component
 @copyright 2018 **File:** shared/2LoadOrder/ORGMComponents.lua
 @author Fenris_Wolf
-@release 3.09
+@release 3.10
 
 ]]
 local ORGM = ORGM
@@ -188,21 +188,12 @@ Component.toggleLight = function(player)
     if not item then return end
     if not ORGM.Firearm.isFirearm(item) then return end
     if item:getCondition() == 0 then return end
-    local cannon = item:getClip()
-    if not cannon then return end
-
-    local strength = 0
-    local distance = 0
-    if item:isActivated() then
-        -- pass
-    elseif cannon:getType() == "PistolTL" then
-        -- todo, move this to registerComponent
-        strength = 0.6
-        distance = 15
-    elseif cannon:getType() == "RifleTL" then
-        strength = 0.7
-        distance = 18
-    else
+    local lightsource = item:getClip()
+    if not lightsource then return end
+    local data = Component.getData(lightsource)
+    local strength = data.LightStrength or 0
+    local distance = data.LightDistance or 0
+    if strength == 0 or distance == 0 then
         return
     end
 
