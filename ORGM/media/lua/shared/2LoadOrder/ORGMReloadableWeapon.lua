@@ -42,7 +42,7 @@ local ZombRand = ZombRand
 
 
 Status.SINGLESHOT = 8 -- Singleshot or semi auto mode
-Status.FULLAUTO = 16 -- can go full auto, this must be set for weapons always fullauto
+Status.FULLAUTO = 16 -- full-atuo mode.
 Status.BURST2 = 32 -- fire 2 shot bursts
 Status.BURST3 = 64 -- fire 3 shot bursts
 Status.SAFETY = 128 -- manual safety
@@ -50,17 +50,6 @@ Status.OPEN = 256 -- slide/bolt is open.
 Status.COCKED = 512 -- gun is currently cocked
 Status.FORCEOPEN = 1024 -- user specifically requested gun should be open. To prevent normal reloading from auto racking.
 local FIREMODESTATES = Status.SINGLESHOT+Status.FULLAUTO+Status.BURST2+Status.BURST3
-
-
-local function isAuto(this)
-    return Bit.band(this.feedSystem, Flags.AUTO) ~= 0
-end
-local function isRotary(this)
-    return Bit.band(this.feedSystem, Flags.ROTARY) ~= 0
-end
-local function isBreak(this)
-    return Bit.band(this.feedSystem, Flags.BREAK) ~= 0
-end
 
 local function isForceOpen(this)
     return Bit.band(this.status, Status.FORCEOPEN) ~= 0
@@ -73,6 +62,22 @@ end
 Reloadable.isFeed = function(this, feedType)
     return Bit.band(this.feedSystem, feedType) ~= 0
 end
+Reloadable.isRotary = function(this)
+    return Bit.band(this.feedSystem, Flags.ROTARY) ~= 0
+end
+Reloadable.isBreak = function(this)
+    return Bit.band(this.feedSystem, Flags.BREAK) ~= 0
+end
+Reloadable.isAuto = function(this)
+    return Bit.band(this.feedSystem, Flags.AUTO) ~= 0
+end
+Reloadable.isPump = function(this)
+    return Bit.band(this.feedSystem, Flags.PUMP) ~= 0
+end
+Reloadable.isLever = function(this)
+    return Bit.band(this.feedSystem, Flags.LEVER) ~= 0
+end
+
 
 Reloadable.isStatus = function(this, status)
     return Bit.band(this.status, status) ~= 0
@@ -93,7 +98,7 @@ end
 function Fire.valid(this)
     -- cant fire with a open slide
     if Bolt.isOpen(this) then return false end
-
+    if Reloadable.isStatus(this, Status.SAFETY) then return false end
     -- single action with hammer at rest cant fire
     --
     if Firearm.Trigger.isSAO(this.type) and not Hammer.isCocked(this) then
@@ -101,7 +106,7 @@ function Fire.valid(this)
     end
 
 
-    if isRotary(this) then
+    if Reloadable.isRotary(this) then
         local ammoType = nil
         if Hammer.isCocked(this) then -- hammer is cocked, check this position
             ammoType = Ammo.get(this, this.cylinderPosition)
@@ -111,7 +116,7 @@ function Fire.valid(this)
         if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
 
-    elseif isBreak(this) then
+    elseif Reloadable.isBreak(this) then
         local ammoType = Ammo.get(this, this.cylinderPosition)
         if ammoType == nil or _Ammo.isCase(ammoType) then return false end
         return true
@@ -158,7 +163,7 @@ function Fire.post(this, playerObj, weaponItem)
 
     --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
     this.roundsFired = this.roundsFired + 1
-    if isAuto(this) then
+    if Reloadable.isAuto(this) then
         --fire shot
         this.roundChambered = 0
         this.emptyShellChambered = 1
@@ -166,13 +171,13 @@ function Fire.post(this, playerObj, weaponItem)
         if this.currentCapacity ~= 0 or not Bit.band(Firearm.getData(weaponItem).features, Flags.SLIDELOCK) then
             Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
         end
-    elseif isRotary(this) then
+    elseif Reloadable.isRotary(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
         this.magazineData[this.cylinderPosition] = ammoData and ammoData.Case or nil
         this.currentCapacity = this.currentCapacity - 1
 
-    elseif isBreak(this) then
+    elseif Reloadable.isBreak(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
         this.magazineData[this.cylinderPosition] = ammoData and ammoData.Case or nil
@@ -258,7 +263,7 @@ function Reload.valid(this, playerObj)
             speed = speed:getModData()
             if speed.currentCapacity > 0 then
                 -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
-                if isRotary(this) and this.maxCapacity ~= this.currentCapacity then
+                if Reloadable.isRotary(this) and this.maxCapacity ~= this.currentCapacity then
                     return true
                 -- rifles however, do
                 elseif speed.maxCapacity <= this.maxCapacity - this.currentCapacity then
@@ -303,14 +308,14 @@ function Reload.start(this, playerObj, weaponItem)
         --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(this.insertSound, false)
     else
-        if isRotary(this) then
+        if Reloadable.isRotary(this) then
             -- TODO: this needs to sync, causes issues,
             Cylinder.open(this, playerObj, true, weaponItem) -- play the open sound
             -- if rotary and contains spent shells, we need to empty the cylinder. this is all or nothing
             if Ammo.hasCases(this) > 0 then
                 Ammo.ejectAll(this, playerObj, true)
             end
-        elseif isBreak(this) then
+        elseif Reloadable.isBreak(this) then
             Break.open(this, playerObj, true, weaponItem)
         end
     end
@@ -362,7 +367,7 @@ function Reload.perform(this, playerObj, weaponItem)
         local ammoItem = Ammo.findBest(this, playerObj)
         if not ammoItem then return end
         local ammoType = ammoItem:getType()
-        if isRotary(this) then
+        if Reloadable.isRotary(this) then
             Cylinder.rotate(this, 1, playerObj, true, weaponItem)
             if this.magazineData[this.cylinderPosition] ~= nil then -- something is in this spot, return now
                 return true
@@ -372,7 +377,7 @@ function Reload.perform(this, playerObj, weaponItem)
         playerObj:playSound(this.insertSound, false)
 
         Ammo.load(this, ammoType, weaponItem, this.cylinderPosition) -- cylinderPosition will be nil for non-rotary
-        if isBreak(this) then
+        if Reloadable.isBreak(this) then
             this.cylinderPosition = this.cylinderPosition + 1 -- increment to load the next chamber, it resets on close
         end
         -- remove the necessary ammo
@@ -434,12 +439,12 @@ end
 
 ]]
 function Unload.perform(this, playerObj, weaponItem)
-    if isRotary(this) then
+    if Reloadable.isRotary(this) then
         Cylinder.open(this, playerObj, true)
         -- revolvers drop them all at once
         Ammo.ejectAll(this, playerObj, false)
         return false
-    elseif isBreak(this) then
+    elseif Reloadable.isBreak(this) then
         Break.open(this, playerObj, false, weaponItem)
         return false
     end
@@ -807,7 +812,7 @@ function Rack.valid(this, playerObj)
     if not Hammer.isCocked(this) and Firearm.Trigger.isSAO(this.type) then
         return true
     end
-    if isBreak(this) or isRotary(this) then
+    if Reloadable.isBreak(this) or Reloadable.isRotary(this) then
         if Cylinder.isOpen(this) then return true end
         return false
     end
@@ -849,10 +854,10 @@ end
 
 ]]
 function Rack.perform(this, playerObj, weaponItem)
-    if isBreak(this) then
+    if Reloadable.isBreak(this) then
         Break.close(this, playerObj, true, weaponItem)
 
-    elseif isRotary(this) then
+    elseif Reloadable.isRotary(this) then
         Cylinder.close(this, playerObj, true, weaponItem)
 
     else
@@ -884,7 +889,7 @@ end
 function Hammer.cock(this, playerObj, playSound, weaponItem)
     -- rotary cylinders rotate the chamber when the hammer is cocked
     if Hammer.isCocked(this) then return end
-    if isRotary(this) and not Bolt.isOpen(this) then
+    if Reloadable.isRotary(this) and not Bolt.isOpen(this) then
         Cylinder.rotate(this, 1, playerObj, false, weaponItem)
     end
     if (playSound and this.cockSound) then playerObj:playSound(this.cockSound, false) end
