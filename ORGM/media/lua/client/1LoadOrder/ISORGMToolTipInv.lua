@@ -10,7 +10,7 @@
     File: client/1LoadOrder/ISORGMToolTipInv.lua
     @classmod ISToolTipInv
     @author Fenris_Wolf
-    @release 3.09
+    @release 3.10
 
 ]]
 
@@ -22,6 +22,9 @@ local Component = ORGM.Component
 local Ammo = ORGM.Ammo
 local Magazine = ORGM.Magazine
 local Settings = ORGM.Settings
+local Reloadable = ORGM.ReloadableWeapon
+local Flags = Firearm.Flags
+local Status = Firearm.Status
 
 local getMouseX = getMouseX
 local getMouseY = getMouseY
@@ -292,7 +295,7 @@ TipHandler[ORGM.FIREARM] = function(self)
     local toolTipStyle = Settings.ToolTipStyle
     local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
     local layout, y, i = initializeTip(self)
-    local fullauto = Firearm.isFullAuto(item, gunData)
+    local fullauto = Reloadable.Fire.isFullAuto(modData)
     ----------------------------------------------------------
 
     -- show classification
@@ -487,9 +490,10 @@ function ISToolTipInv:renderClassic()
         text = text .. "_"..modData.loadedAmmo
     end
 
+    -- TODO: fix
     -- set the text to show the current fire mode
-    if modData.selectFire ~= nil then
-        if modData.selectFire == 1 then
+    if Firearm.isSelectFire(self.item) then
+        if Reloadable.Fire.isFullAuto(modData) then
             text = text .. "_FA"
         else
             text = text .. "_SA"
