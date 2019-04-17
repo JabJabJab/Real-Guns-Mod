@@ -240,6 +240,20 @@ end
 function Fire.isFullAuto(this)
     return Bit.band(this.status, Flags.FULLAUTO) ~= 0
 end
+
+function Fire.isSingle(this)
+    return Bit.band(this.status, Flags.SINGLESHOT) ~= 0
+end
+
+function Fire.is2ShotBurst(this)
+    return Bit.band(this.status, Flags.BURST2) ~= 0
+end
+
+function Fire.is3ShotBurst(this)
+    return Bit.band(this.status, Flags.BURST3) ~= 0
+end
+
+
 --- Reloading Functions
 -- @section Reload
 
