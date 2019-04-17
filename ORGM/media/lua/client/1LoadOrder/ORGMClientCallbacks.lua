@@ -4,7 +4,7 @@ All of these are triggered by various events, defined in `ORGMClientEvents.lua`
 
 @module ORGM.Client.Callbacks
 @author Fenris_Wolf
-@release v3.09
+@release v3.10
 @copyright 2018 **File:** server/1LoadOrder/ORGMClientCallbacks.lua
 
 ]]
@@ -14,7 +14,7 @@ local ORGM = ORGM
 local Firearm = ORGM.Firearm
 local Client = ORGM.Client
 local Callbacks = ORGM.Client.Callbacks
-
+local Status = ORGM.ReloadableWeapon.Status
 
 local getSpecificPlayer = getSpecificPlayer
 local getCore = getCore
@@ -92,7 +92,7 @@ Callbacks.keyPress = function(key)
         end
     elseif key == getCore():getKey("Select Fire Toggle") then
         local item = player:getPrimaryHandItem()
-        Firearm.toggleFireMode(item, nil, player)
+        Firearm.toggleFireMode(item, Status.FULLAUTO, player)
     elseif key == getCore():getKey("Firearm Inspection Window") then
         Client.InspectionWindow:setVisible(not Client.InspectionWindow:isVisible())
     end
