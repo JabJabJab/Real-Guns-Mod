@@ -8,6 +8,23 @@ or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/OR
 
 ---------------------------------------------------------------------------------------
 
+## version 3.10
+
+* Added manual safety for many firearms.
+
+* Added slide locking on last shot for some automatics.
+
+* Fixed BB's to proper caliber of .177
+
+* Removed all previous backwards compatibility. Previous saves are not compatible.
+Any 3rd party mods using depreciated functions and tables in ORGM's API will need 
+to be updated.
+
+* Switched to bitwise flags for tracking firearm design features and item status,
+reducing the number of variables in a weapons ModData.
+
+---------------------------------------------------------------------------------------
+
 ## version 3.09.2
 
 * New Tooltips for firearms and attachments! In 4 (yes, 4) optional styles:
