@@ -2,7 +2,7 @@
     This file handles all ORGM item context menus.
 
     @module ORGM.Client.Menu
-    @release v3.09
+    @release v3.10
     @author Fenris_Wolf
     @copyright 2018 **File:** client/1LoadOrder/ORGMClientMenus.lua
 ]]
@@ -16,6 +16,7 @@ local Firearm = ORGM.Firearm
 local Ammo = ORGM.Ammo
 local Magazine = ORGM.Magazine
 local Reloadable = ORGM.ReloadableWeapon
+local Flags = Firearm.Flags
 
 local getSpecificPlayer = getSpecificPlayer
 local isAdmin = isAdmin
@@ -53,7 +54,7 @@ Menu.inventory = function(player, context, items)
     end
 
     if playerObj:getInventory():contains(thisItem) == false then return end
-    local modData = thisItem:getModData()
+    local itemData = thisItem:getModData()
 
     -- build menus
     if Firearm.isFirearm(thisItem) then
@@ -73,14 +74,14 @@ Menu.inventory = function(player, context, items)
         local preferredAmmoMenu = context:addOption(getText("ContextMenu_ORGM_UseOnly"), thisItem, nil)
         local subMenuAmmo = context:getNew(context)
         context:addSubMenu(preferredAmmoMenu, subMenuAmmo)
-        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Any"), thisItem, Menu.onSetPreferredAmmo, player, modData, "any")
+        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Any"), thisItem, Menu.onSetPreferredAmmo, player, itemData, "any")
         -- add menu for the default ammo type
-        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Mixed"), thisItem, Menu.onSetPreferredAmmo, player, modData, "mixed")
+        subMenuAmmo:addOption(getText("ContextMenu_ORGM_Mixed"), thisItem, Menu.onSetPreferredAmmo, player, itemData, "mixed")
         -- find all ammo types:
         for _, value in ipairs(groupTable) do
             local ammoData = Ammo.getData(value)
             local name = ammoData.instance:getDisplayName()
-            subMenuAmmo:addOption(name, thisItem, Menu.onSetPreferredAmmo, player, modData, value)
+            subMenuAmmo:addOption(name, thisItem, Menu.onSetPreferredAmmo, player, itemData, value)
         end
     end
 end
@@ -95,101 +96,143 @@ unless the item is in hand.
 Menu.firearm = function()
     if playerObj:getPrimaryHandItem() ~= thisItem then return end
 
-    local modData = thisItem:getModData()
+    local thisData = thisItem:getModData()
+    local gunData = Firearm.getData(thisItem)
+
     local reloadable = ReloadUtil:getReloadableWeapon(thisItem, playerID)
     reloadable.playerObj = player -- not sure where this is actually set in the code, but apparently sometimes its not...
 
 
     thisContext:addOption(getText("ContextMenu_ORGM_Inspect"), thisItem, Menu.onInspect, playerObj)
 
-    -- hammer actions
-    if not Firearm.Hammer.isDAO(thisItem) then -- cant cock/release DAO
-        local text = "ContextMenu_ORGM_Cock"
-        if Firearm.Hammer.isCocked(thisItem) then
-            text = "ContextMenu_ORGM_Release"
+
+    ----------------------------------------------------------------------------
+    -- Controls Submenu
+    do
+        local controlMenu = thisContext:addOption("Controls"), thisItem, nil)
+        local subMenuControl = thisContext:getNew(thisContext)
+        thisContext:addSubMenu(controlMenu, subMenuControl)
+
+        -- hammer actions
+        if not Firearm.Trigger.isDAO(thisItem) then -- cant cock/release DAO
+            local text = "ContextMenu_ORGM_Cock"
+            if Reloadable.Hammer.isCocked(thisItem) then
+                text = "ContextMenu_ORGM_Release"
+            end
+            subMenuControl:addOption(getText(text), thisItem, Menu.onHammerToggle, playerObj, thisData)
         end
-        thisContext:addOption(getText(text), thisItem, Menu.onHammerToggle, playerObj, modData, reloadable)
-    end
 
+        -- add open/close bolt, cylinder etc
+        local text = "ContextMenu_ORGM_PartSlide"
+        local callback = Menu.onBoltToggle
+        if Firearm.isRotary(thisItem, gunData) then
+            text = "ContextMenu_ORGM_Cylinder"
+            callback = Menu.onCylinderToggle
+        elseif Firearm.isBreak(thisItem, gunData) then
+            text = "ContextMenu_ORGM_PartBarrel"
+            callback = Menu.onBarrelToggle
+        elseif Firearm.isBolt(thisItem, gunData) then
+            text = "ContextMenu_ORGM_PartBolt"
+        end
 
-    -- add open/close bolt, cylinder etc
-    local text = "ContextMenu_ORGM_PartSlide"
-    local callback = Menu.onBoltToggle
-    if modData.actionType == ORGM.ROTARY then
-        text = "ContextMenu_ORGM_Cylinder"
-        callback = Menu.onCylinderToggle
-    elseif modData.actionType == ORGM.BREAK then
-        text = "ContextMenu_ORGM_PartBarrel"
-        callback = Menu.onBarrelToggle
-    elseif modData.actionType == ORGM.BOLT then
-        text = "ContextMenu_ORGM_PartBolt"
-    end
-    if modData.isOpen == 1 then
-        thisContext:addOption(getText("ContextMenu_ORGM_Close", getText(text)), thisItem, callback, playerObj, modData, reloadable)
-    elseif modData.isOpen == 0 then
-        thisContext:addOption(getText("ContextMenu_ORGM_Open", getText(text)), thisItem, callback, playerObj, modData, reloadable)
-    end
+        if Reloadable.Bolt.isOpen(thisData) then
+            subMenuControl:addOption(getText("ContextMenu_ORGM_Close", getText(text)), thisItem, callback, playerObj, thisData)
+        else
+            subMenuControl:addOption(getText("ContextMenu_ORGM_Open", getText(text)), thisItem, callback, playerObj, thisData)
+        end
 
-
-    -- add actionType switching if weapon allows for item (ie: Pump to Semi-Auto)
-    if modData.altActionType then
-        for _, atype in ipairs(modData.altActionType) do
-            if atype ~= modData.actionType then
-                local text = getText("ContextMenu_ORGM_Switch", getText("ContextMenu_ORGM_"..ORGM.ActionTypeStrings[atype]))
-                thisContext:addOption(text, thisItem, Menu.onActionTypeToggle, playerObj, modData, reloadable, atype)
+        --[[
+        -- TODO: use v3.10 bit flags
+        -- add actionType switching if weapon allows for item (ie: Pump to Semi-Auto)
+        if thisData.altActionType then
+            for _, atype in ipairs(thisData.altActionType) do
+                if atype ~= thisData.actionType then
+                    local text = getText("ContextMenu_ORGM_Switch", getText("ContextMenu_ORGM_"..ORGM.ActionTypeStrings[atype]))
+                    thisContext:addOption(text, thisItem, Menu.onActionTypeToggle, playerObj, thisData, atype)
+                end
             end
         end
-    end
+        ]]
 
-    -- switch fire mode option (semi to full auto)
-    if Firearm.isSelectFire(thisItem) then
-        local text = getText("ContextMenu_ORGM_FullAuto")
-        local mode = 1
-        if Firearm.isFullAuto(thisItem) then
-            text = getText("ContextMenu_ORGM_Auto")
-            mode = 0
+        -- Select fire switch
+        if Firearm.isSelectFire(thisItem) then
+            if Firearm.isSemiAuto(thisItem) and not Reloadable.Fire.isSingle(thisData) then
+                subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "ContextMenu_ORGM_Auto"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.SINGLESHOT)
+            end
+
+            if Firearm.isFullAuto(thisItem) and not Reloadable.Fire.isFullAuto(thisData) then
+                subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "ContextMenu_ORGM_FullAuto"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.FULLAUTO)
+            end
+
+            if Firearm.is2ShotBurst(thisItem) and not Reloadable.Fire.is2ShotBurst(thisData) then
+                subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "2 Shot Burst"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.BURST2)
+            end
+
+            if Firearm.is3ShotBurst(thisItem) and not Reloadable.Fire.is3ShotBurst(thisData) then
+                subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "3 Shot Burst"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.BURST3)
+            end
         end
-        thisContext:addOption(getText("ContextMenu_ORGM_Switch", text), thisItem, Menu.onFireModeToggle, playerObj, modData, reloadable, mode)
+
+
     end
 
-    if modData.actionType == ORGM.ROTARY then
-        thisContext:addOption(getText("ContextMenu_ORGM_Spin"), thisItem, Menu.onSpinCylinder, playerObj, modData, reloadable)
+    ----------------------------------------------------------------------------
+    -- Actions Submenu
+    do
+        local actionMenu = thisContext:addOption("Actions"), thisItem, nil)
+        local subMenuAction = thisContext:getNew(thisContext)
+        thisContext:addSubMenu(actionMenu, subMenuAction)
+
+        -- TODO: if open and has bullets insert round into chamber option
+
+        if Reloadable.isRotary(thisData) then
+            subMenuControl:addOption(getText("ContextMenu_ORGM_Spin"), thisItem, Menu.onSpinCylinder, playerObj, thisData)
+        end
+        thisContext:addOption(getText("ContextMenu_ORGM_Suicide"), thisItem, Menu.onShootSelf, playerObj, thisData)
+
     end
+
+    ----------------------------------------------------------------------------
+    -- Options Submenu
+    do
+        local optionMenu = thisContext:addOption("Options"), thisItem, nil)
+        local subMenuOption = thisContext:getNew(thisContext)
+        thisContext:addSubMenu(optionMenu, subMenuOption)
+    end
+
 
     if Firearm.isLoaded(thisItem) then
         thisContext:addOption(getText("ContextMenu_ORGM_Unload"), thisItem, Menu.onUnload, playerObj)
     end
 
-    thisContext:addOption(getText("ContextMenu_ORGM_Suicide"), thisItem, Menu.onShootSelf, playerObj, modData, reloadable)
-    -- TODO: if open and has bullets insert round into chamber option
 
     if isAdmin() or Settings.Debug then
         local groupTable = Ammo.itemGroup(thisItem, true)
         local debugMenu = thisContext:addOption(getText("ContextMenu_ORGM_Admin"), thisItem, nil)
         local subMenuDebug = thisContext:getNew(thisContext)
         thisContext:addSubMenu(debugMenu, subMenuDebug)
-        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), thisItem, Menu.onAdminFillAmmo, playerObj, modData, groupTable[1])
-        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminDebug"), thisItem, Menu.onDebugWeapon, playerObj, modData, reloadable)
-        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminReset"), thisItem, Menu.onResetWeapon, playerObj, modData, reloadable)
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), thisItem, Menu.onAdminFillAmmo, playerObj, thisData, groupTable[1])
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminDebug"), thisItem, Menu.onDebugWeapon, playerObj, thisData, reloadable)
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminReset"), thisItem, Menu.onResetWeapon, playerObj, thisData)
 
         -- barrel length editor
         local barrelMenu = subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminBarrelLen"), thisItem, nil)
         local subMenuBarrel = subMenuDebug:getNew(subMenuDebug)
         local text = "ContextMenu_ORGM_AdminBarrelLenInches"
         thisContext:addSubMenu(barrelMenu, subMenuBarrel)
-        subMenuBarrel:addOption(getText(text, 2), thisItem, Menu.onBarrelEdit, playerObj, modData, 2)
-        subMenuBarrel:addOption(getText(text, 4), thisItem, Menu.onBarrelEdit, playerObj, modData, 4)
-        subMenuBarrel:addOption(getText(text, 6), thisItem, Menu.onBarrelEdit, playerObj, modData, 6)
-        subMenuBarrel:addOption(getText(text, 8), thisItem, Menu.onBarrelEdit, playerObj, modData, 8)
-        subMenuBarrel:addOption(getText(text, 10), thisItem, Menu.onBarrelEdit, playerObj, modData, 10)
-        subMenuBarrel:addOption(getText(text, 12), thisItem, Menu.onBarrelEdit, playerObj, modData, 12)
-        subMenuBarrel:addOption(getText(text, 14), thisItem, Menu.onBarrelEdit, playerObj, modData, 14)
-        subMenuBarrel:addOption(getText(text, 16), thisItem, Menu.onBarrelEdit, playerObj, modData, 16)
-        subMenuBarrel:addOption(getText(text, 18), thisItem, Menu.onBarrelEdit, playerObj, modData, 18)
-        subMenuBarrel:addOption(getText(text, 20), thisItem, Menu.onBarrelEdit, playerObj, modData, 20)
-        subMenuBarrel:addOption(getText(text, 22), thisItem, Menu.onBarrelEdit, playerObj, modData, 22)
-        subMenuBarrel:addOption(getText(text, 24), thisItem, Menu.onBarrelEdit, playerObj, modData, 24)
-        subMenuBarrel:addOption(getText(text, 26), thisItem, Menu.onBarrelEdit, playerObj, modData, 26)
+        subMenuBarrel:addOption(getText(text, 2), thisItem, Menu.onBarrelEdit, playerObj, thisData, 2)
+        subMenuBarrel:addOption(getText(text, 4), thisItem, Menu.onBarrelEdit, playerObj, thisData, 4)
+        subMenuBarrel:addOption(getText(text, 6), thisItem, Menu.onBarrelEdit, playerObj, thisData, 6)
+        subMenuBarrel:addOption(getText(text, 8), thisItem, Menu.onBarrelEdit, playerObj, thisData, 8)
+        subMenuBarrel:addOption(getText(text, 10), thisItem, Menu.onBarrelEdit, playerObj, thisData, 10)
+        subMenuBarrel:addOption(getText(text, 12), thisItem, Menu.onBarrelEdit, playerObj, thisData, 12)
+        subMenuBarrel:addOption(getText(text, 14), thisItem, Menu.onBarrelEdit, playerObj, thisData, 14)
+        subMenuBarrel:addOption(getText(text, 16), thisItem, Menu.onBarrelEdit, playerObj, thisData, 16)
+        subMenuBarrel:addOption(getText(text, 18), thisItem, Menu.onBarrelEdit, playerObj, thisData, 18)
+        subMenuBarrel:addOption(getText(text, 20), thisItem, Menu.onBarrelEdit, playerObj, thisData, 20)
+        subMenuBarrel:addOption(getText(text, 22), thisItem, Menu.onBarrelEdit, playerObj, thisData, 22)
+        subMenuBarrel:addOption(getText(text, 24), thisItem, Menu.onBarrelEdit, playerObj, thisData, 24)
+        subMenuBarrel:addOption(getText(text, 26), thisItem, Menu.onBarrelEdit, playerObj, thisData, 26)
 
         local bLengths = Firearm.getData(thisItem).barrelLengthOpt
         if bLengths then
@@ -197,7 +240,7 @@ Menu.firearm = function()
             local subMenuBarrel = subMenuDebug:getNew(subMenuDebug)
             thisContext:addSubMenu(barrelMenu, subMenuBarrel)
             for _, l in ipairs(bLengths) do
-                subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", l), thisItem, Menu.onBarrelEdit, playerObj, modData, l)
+                subMenuBarrel:addOption(getText("ContextMenu_ORGM_AdminBarrelLenInches", l), thisItem, Menu.onBarrelEdit, playerObj, thisData, l)
             end
         end
 
@@ -209,23 +252,25 @@ Menu.firearm = function()
             local skinMenu = subMenuDebug:addOption("Skins", thisItem, nil)
             local subMenuSkins = subMenuDebug:getNew(subMenuDebug)
             thisContext:addSubMenu(skinMenu, subMenuSkins)
-            subMenuSkins:addOption("Default", thisItem, Menu.onSkinEdit, playerObj, modData, nil)
+            subMenuSkins:addOption("Default", thisItem, Menu.onSkinEdit, playerObj, thisData, nil)
             for _, skin in ipairs(skins) do
-                subMenuSkins:addOption(skin, thisItem, Menu.onSkinEdit, playerObj, modData, skin)
+                subMenuSkins:addOption(skin, thisItem, Menu.onSkinEdit, playerObj, thisData, skin)
             end
         end
         ]]
 
     end
+    --[[
     -- add debug/development submenu.
     if Settings.Debug == true then
         local debugMenu = thisContext:addOption("DEBUG", thisItem, nil)
         local subMenuDebug = thisContext:getNew(thisContext)
         thisContext:addSubMenu(debugMenu, subMenuDebug)
 
-        subMenuDebug:addOption("* Backwards Compatibility Test", thisItem, Menu.onBackwardsTestFunction, playerObj, modData, reloadable)
-        subMenuDebug:addOption("* Magazine Overflow Test", thisItem, Menu.onMagOverflowTestFunction, playerObj, modData)
+        subMenuDebug:addOption("* Backwards Compatibility Test", thisItem, Menu.onBackwardsTestFunction, playerObj, thisData)
+        subMenuDebug:addOption("* Magazine Overflow Test", thisItem, Menu.onMagOverflowTestFunction, playerObj, thisData)
     end
+    ]]
 end
 
 --[[
@@ -234,8 +279,8 @@ menus specific to magazines
 
 ]]
 Menu.magazine = function()
-    local modData = thisItem:getModData()
-    if modData.currentCapacity ~= nil and modData.currentCapacity > 0 then
+    local thisData = thisItem:getModData()
+    if thisData.currentCapacity ~= nil and thisData.currentCapacity > 0 then
         thisContext:addOption(getText("ContextMenu_ORGM_Unload"), thisItem, Menu.onUnload, playerObj)
     end
     if isAdmin() or Settings.Debug then
@@ -243,7 +288,7 @@ Menu.magazine = function()
         local debugMenu = thisContext:addOption(getText("ContextMenu_ORGM_Admin"), thisItem, nil)
         local subMenuDebug = thisContext:getNew(thisContext)
         thisContext:addSubMenu(debugMenu, subMenuDebug)
-        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), thisItem, Menu.onAdminFillAmmo, playerObj, modData, groupTable[1])
+        subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminLoad"), thisItem, Menu.onAdminFillAmmo, playerObj, thisData, groupTable[1])
     end
 end
 
@@ -252,59 +297,50 @@ end
 --[[
 
 ]]
-Menu.onHammerToggle = function(item, playerObj, modData, reloadable)
-    if modData.hammerCocked == 1 then
-        Reloadable.Hammer.release(modData, playerObj, true)
-        --reloadable:releaseHammer(player, true)
+Menu.onHammerToggle = function(item, playerObj, itemData)
+    if Reloadable.Hammer.isCocked(itemData) then
+        Reloadable.Hammer.release(itemData, playerObj, true)
     else
-        Reloadable.Hammer.cock(modData, playerObj, true, thisItem)
-        --reloadable:cockHammer(player, true, item)
+        Reloadable.Hammer.cock(itemData, playerObj, true, item)
     end
-    --reloadable:syncReloadableToItem(item)
 end
 
-Menu.onBoltToggle = function(item, player, modData, reloadable)
-    if reloadable.isOpen == 1 then
-        reloadable:closeSlide(player, true, item)
+Menu.onBoltToggle = function(item, player, itemData)
+    if Reloadable.Bolt.isOpen(itemData) then
+        Reloadable.Bolt.close(itemData, player, true, item)
     else
-        reloadable:openSlide(player, true, item)
+        Reloadable.Bolt.open(itemData, player, true, item)
     end
-    reloadable:syncReloadableToItem(item)
 end
 
-Menu.onCylinderToggle = function(item, player, modData, reloadable)
-    if reloadable.isOpen == 1 then
-        reloadable:closeCylinder(player, true, item)
+Menu.onCylinderToggle = function(item, player, itemData)
+    if Reloadable.Cylinder.isOpen(itemData) then
+        Reloadable.Cylinder.close(itemData, player, true, item)
     else
-        reloadable:openCylinder(player, true, item)
+        Reloadable.Cylinder.open(itemData, player, true, item)
     end
-    reloadable:syncReloadableToItem(item)
 end
 
-Menu.onBarrelToggle = function(item, player, modData, reloadable)
-    if modData.isOpen == 1 then
-        Reloadable.Break.open(modData, playerObj, true, item)
-        --reloadable:openBreak(player, true, item)
+Menu.onBarrelToggle = function(item, player, itemData)
+    if Reloadable.Break.isOpen(itemData) then
+        Reloadable.Break.close(itemData, player, true, item)
     else
-        Reloadable.Break.close(modData, playerObj, true, item)
-        --reloadable:closeBreak(player, true, item)
+        Reloadable.Break.open(itemData, player, true, item)
     end
-    --reloadable:syncReloadableToItem(item)
 end
 
-Menu.onActionTypeToggle = function(item, player, modData, reloadable, newtype)
+Menu.onActionTypeToggle = function(item, player, itemData, newtype)
     player:playSound("ORGMRndLoad", false)
-    modData.actionType = newtype
+    itemData.actionType = newtype
     Firearm.Stats.set(item)
 end
 
-Menu.onFireModeToggle = function(item, player, modData, reloadable, newmode)
+Menu.onFireModeToggle = function(item, player, itemData, newmode)
     Firearm.toggleFireMode(item, newmode, player)
 end
 
-Menu.onSpinCylinder = function(item, player, modData, reloadable)
-    reloadable:rotateCylinder(0, player, false, item)
-    reloadable:syncReloadableToItem(item)
+Menu.onSpinCylinder = function(item, player, itemData)
+    Reloadable.Cylinder.rotate(itemData, 0, player, false, item)
 end
 
 Menu.onUnload = function(item, player)
@@ -325,12 +361,12 @@ Menu.onShootSelfConfirm = function(this, button, player, item)
         player:getBodyDamage():RestoreToFullHealth() -- cheap trick so the corpse doesn't rise
         player:setHealth(0)
     else
-        if reloadable.actionType == ORGM.SINGLEACTION and reloadable.hammerCocked == 0 then
+        if Firearm.Trigger.isSAO(item) and Reloadable.Hammer.isCocked(reloadable) then
             return -- cant shoot with a SA if its not cocked
         end
         reloadable:fireEmpty(player, item)
         player:playSound(reloadable.clickSound, false)
-        if reloadable.actionType == ORGM.ROTARY and reloadable.currentCapacity > 0 then
+        if Reloadable.isFeed(reloadable, Flags.ROTARY) and reloadable.currentCapacity > 0 then
             if player:HasTrait("Desensitized") ~= true then player:getStats():setPanic(95) end
             local boredom = player:getBodyDamage():getBoredomLevel()
             boredom = boredom - 20
@@ -341,7 +377,7 @@ Menu.onShootSelfConfirm = function(this, button, player, item)
     end
 end
 
-Menu.onShootSelf = function(item, player, modData, reloadable)
+Menu.onShootSelf = function(item, player, itemData)
     local modal = ISModalDialog:new(0,0, 250, 150, getText("IGUI_Firearm_SuicideConfirm"), true, nil, Menu.onShootSelfConfirm, player:getPlayerNum(), player, item);
     modal:initialise()
     modal:addToUIManager()
@@ -350,11 +386,8 @@ Menu.onShootSelf = function(item, player, modData, reloadable)
     end
 end
 
-Menu.onSetPreferredAmmo = function(item, player, modData, value)
-    modData.preferredAmmoType = value
-    --reloadable.preferredAmmoType = value
-    --reloadable:syncReloadableToItem(item)
-
+Menu.onSetPreferredAmmo = function(item, player, itemData, value)
+    itemData.preferredAmmoType = value
 end
 
 Menu.onInspect = function(item, playerObj)
@@ -363,14 +396,14 @@ Menu.onInspect = function(item, playerObj)
 end
 
 
-Menu.onDebugWeapon = function(item, player, modData, reloadable)
+Menu.onDebugWeapon = function(item, player, itemData, reloadable)
     reloadable:printWeaponDetails(item)
-    reloadable:printReloadableWeaponDetails() -- debug modData
+    reloadable:printReloadableWeaponDetails() -- debug itemData
 end
 
 -- test for backwards  compatibility function: item update
-Menu.onBackwardsTestFunction = function(item, player, modData, reloadable)
-    modData.BUILD_ID = 1
+Menu.onBackwardsTestFunction = function(item, player, itemData)
+    itemData.BUILD_ID = 1
 
     if not Firearm.getData(item).lastChanged then
         player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
@@ -380,40 +413,40 @@ Menu.onBackwardsTestFunction = function(item, player, modData, reloadable)
 end
 
 -- test to validate magazine overflow checking works (mag has more ammo then it should)
-Menu.onMagOverflowTestFunction = function(item, player, modData)
-    local ammoType = modData.ammoType
-    if modData.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
+Menu.onMagOverflowTestFunction = function(item, player, itemData)
+    local ammoType = itemData.ammoType
+    if itemData.containsClip ~= nil then -- uses a clip, so get the ammoType from the clip
         ammoType = ReloadUtil:getClipData(ammoType).ammoType
     end
     ammoType = Ammo.getGroup(ammoType)[1]
-    modData.currentCapacity = modData.maxCapacity + 10
-    for i=1, modData.currentCapacity do
-        modData.magazineData[i] = ammoType
+    itemData.currentCapacity = itemData.maxCapacity + 10
+    for i=1, itemData.currentCapacity do
+        itemData.magazineData[i] = ammoType
     end
-    modData.loadedAmmo = ammoType
+    itemData.loadedAmmo = ammoType
 end
 
 -- reset weapon to defaults
-Menu.onResetWeapon = function(item, player, modData, reloadable)
+Menu.onResetWeapon = function(item, player, itemData)
     Firearm.setup(Firearm.getData(item), item)
     player:Say("weapon reset")
 end
 
 -- fill the gun/magazine to max ammo
-Menu.onAdminFillAmmo = function(item, player, modData, ammoType)
-    modData.currentCapacity = modData.maxCapacity
-    for i=1, modData.maxCapacity do
-        modData.magazineData[i] = ammoType
+Menu.onAdminFillAmmo = function(item, player, itemData, ammoType)
+    itemData.currentCapacity = itemData.maxCapacity
+    for i=1, itemData.maxCapacity do
+        itemData.magazineData[i] = ammoType
     end
-    modData.loadedAmmo = ammoType
+    itemData.loadedAmmo = ammoType
 end
 
-Menu.onBarrelEdit = function(item, player, modData, length)
-    modData.barrelLength = length
+Menu.onBarrelEdit = function(item, player, itemData, length)
+    itemData.barrelLength = length
     Firearm.Stats.set(item)
 end
 
-Menu.onSkinEdit = function(item, player, modData, skin)
-    modData.skin = skin
+Menu.onSkinEdit = function(item, player, itemData, skin)
+    itemData.skin = skin
     Firearm.Stats.set(item)
 end
