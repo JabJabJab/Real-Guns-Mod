@@ -269,8 +269,7 @@ end
 
 ]]
 function ISORGMWeapon:isChainUnloading()
-
-    if Bit.band(self.feedSystem, Flags.ROTARY + Flags.BREAK) ~= 0 then return false end
+    if Reloadable.isFeed(self, Flags.ROTARY + Flags.BREAK) then return false end
     return true
 end
 
