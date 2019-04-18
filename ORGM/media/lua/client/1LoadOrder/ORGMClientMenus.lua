@@ -16,7 +16,10 @@ local Firearm = ORGM.Firearm
 local Ammo = ORGM.Ammo
 local Magazine = ORGM.Magazine
 local Reloadable = ORGM.ReloadableWeapon
+local Fire = Reloadable.Fire
+
 local Flags = Firearm.Flags
+local Status = Reloadable.Status
 
 local getSpecificPlayer = getSpecificPlayer
 local isAdmin = isAdmin
@@ -103,9 +106,6 @@ Menu.firearm = function()
     reloadable.playerObj = player -- not sure where this is actually set in the code, but apparently sometimes its not...
 
 
-    thisContext:addOption(getText("ContextMenu_ORGM_Inspect"), thisItem, Menu.onInspect, playerObj)
-
-
     ----------------------------------------------------------------------------
     -- Controls Submenu
     do
@@ -156,23 +156,30 @@ Menu.firearm = function()
 
         -- Select fire switch
         if Firearm.isSelectFire(thisItem) then
-            if Firearm.isSemiAuto(thisItem) and not Reloadable.Fire.isSingle(thisData) then
+            if Firearm.isSemiAuto(thisItem) and not Fire.isSingle(thisData) then
                 subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "ContextMenu_ORGM_Auto"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.SINGLESHOT)
             end
 
-            if Firearm.isFullAuto(thisItem) and not Reloadable.Fire.isFullAuto(thisData) then
+            if Firearm.isFullAuto(thisItem) and not Fire.isFullAuto(thisData) then
                 subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "ContextMenu_ORGM_FullAuto"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.FULLAUTO)
             end
 
-            if Firearm.is2ShotBurst(thisItem) and not Reloadable.Fire.is2ShotBurst(thisData) then
+            if Firearm.is2ShotBurst(thisItem) and not Fire.is2ShotBurst(thisData) then
                 subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "2 Shot Burst"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.BURST2)
             end
 
-            if Firearm.is3ShotBurst(thisItem) and not Reloadable.Fire.is3ShotBurst(thisData) then
+            if Firearm.is3ShotBurst(thisItem) and not Fire.is3ShotBurst(thisData) then
                 subMenuControl:addOption(getText("ContextMenu_ORGM_Switch", "3 Shot Burst"), thisItem, Menu.onFireModeToggle, playerObj, thisData, Status.BURST3)
             end
         end
 
+        if Firearm.hasSafety(thisItem) then
+            if Fire.isSafe(thisData) then
+                subMenuControl:addOption("Disengage Safety"), thisItem, Menu.onFireModeToggle, playerObj, thisData, false)
+            else
+                subMenuControl:addOption("Engage Safety"), thisItem, Menu.onFireModeToggle, playerObj, thisData, true)
+            end
+        end
 
     end
 
@@ -182,6 +189,8 @@ Menu.firearm = function()
         local actionMenu = thisContext:addOption("Actions"), thisItem, nil)
         local subMenuAction = thisContext:getNew(thisContext)
         thisContext:addSubMenu(actionMenu, subMenuAction)
+
+        thisContext:addOption(getText("ContextMenu_ORGM_Inspect"), thisItem, Menu.onInspect, playerObj)
 
         -- TODO: if open and has bullets insert round into chamber option
 
@@ -336,8 +345,13 @@ Menu.onActionTypeToggle = function(item, player, itemData, newtype)
 end
 
 Menu.onFireModeToggle = function(item, player, itemData, newmode)
-    Firearm.toggleFireMode(item, newmode, player)
+    Firearm.setFireMode(item, newmode, player)
 end
+
+Menu.onSafetyToggle = function(item, player, itemData, newmode)
+    Firearm.setSafety(item, newmode, player)
+end
+
 
 Menu.onSpinCylinder = function(item, player, itemData)
     Reloadable.Cylinder.rotate(itemData, 0, player, false, item)

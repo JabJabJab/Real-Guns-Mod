@@ -973,6 +973,15 @@ Firearm.toggleFireMode = function(item, mode, playerObj)
 end
 
 
+Firearm.toggleSafety = function(item, engage, playerObj)
+    local itemData = Firearm.getData(item)
+    if not itemData then return end
+    if not Firearm.hasSafety(item, itemData) then return end -- not select fire
+
+end
+
+
+
 --[[- Checks if a firearm is loaded.
 
 @tparam HandWeapon item
@@ -1498,18 +1507,19 @@ Stats.setPenetration_DEPRECIATED = function(weaponItem, ammoData)
 end
 
 --[[
-free recoil calcuation.
-https://en.wikipedia.org/wiki/Free_recoil
+    free recoil calcuation.
+    https://en.wikipedia.org/wiki/Free_recoil
 
-mgu is the weight of the small arm expressed in kilograms (kg).
-mp is the weight of the projectile expressed in grams (g).
-mc is the weight of the powder charge expressed in grams (g).
-vgu is the velocity of the small arm expressed in meters per second (m/s).
-vp is the velocity of the projectile expressed in meters per second (m/s).
-vc is the velocity of the powder charge expressed in meters per second (m/s).
-function freerecoil(mgu, mp, mc, vgu, vp, vc)
-    return 0.5 * ((mp*vp)+(mc*vc)) / 1000 )^2 /mgu
+    mgu is the weight of the small arm expressed in kilograms (kg).
+    mp is the weight of the projectile expressed in grams (g).
+    mc is the weight of the powder charge expressed in grams (g).
+    vp is the velocity of the projectile expressed in meters per second (m/s).
+    vc is the velocity of the powder charge expressed in meters per second (m/s).
+
+function freerecoil(mgu, mp, mc, vp, vc)
+    return 0.5 * ((((mp*vp)+(mc*vc)) / 1000 )^2) /mgu
 end
+
 ]]
 
 -- ORGM[16] = "\116\111\110\117"
