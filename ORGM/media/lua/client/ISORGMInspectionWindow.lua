@@ -11,6 +11,10 @@ local ORGM = ORGM
 local Ammo = ORGM.Ammo
 local Firearm = ORGM.Firearm
 local Settings = ORGM.Settings
+local Reloadable = ORGM.ReloadableWeapon
+local Flags = Firearm.Flags
+local Fire = Reloadable.Fire
+local Status = Reloadable.Status
 
 local getText = getText
 local getPlayer = getPlayer
@@ -86,17 +90,17 @@ function DetailsPanel:updateFirearm(item)
     local modData = item:getModData()
     local text = " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT> <LINE> "
 
-    if modData.selectFire then
+    if Firearm.isSelectFire(item) then
         local mode = "IGUI_Firearm_DetailSemi"
-        if modData.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
+        if Fire.isFullAuto(modData) then mode = "IGUI_Firearm_DetailFull" end
         text = text .. getText("IGUI_Firearm_DetailMode", getText(mode))
     end
     text = text .. getText("IGUI_Firearm_DetailBarrelLength", (modData.barrelLength or gunData.barrelLength))
     local feed = "slide"
-    if modData.actionType == ORGM.ROTARY then feed = "cylinder" end
-    if modData.actionType == ORGM.BOLT then feed = "bolt" end
-    if modData.actionType == ORGM.BREAK then feed = "breech" end
-    if modData.isOpen == 1 then
+    if Reloadable.isRotary(modData) then feed = "cylinder" end
+    if Reloadable.isBolt(modData) then feed = "bolt" end
+    if Reloadable.isBreak(modData) then feed = "breech" end
+    if Reloadable.Bolt.isOpen(modData) then
         text = text .. getText("IGUI_Firearm_DetailOpen", getText("IGUI_Firearm_"..feed))
     else
         text = text .. getText("IGUI_Firearm_DetailClosed", getText("IGUI_Firearm_"..feed))
@@ -107,7 +111,7 @@ function DetailsPanel:updateFirearm(item)
     elseif modData.containsClip == 0 then
         text = text .. getText("IGUI_Firearm_DetailEjected")
     end
-    if modData.actionType ~= ORGM.DOUBLEACTIONONLY then
+    if not Firearm.Trigger.isDAO(item) then
         if modData.hammerCocked == 1 then
             text = text .. getText("IGUI_Firearm_DetailCocked")
         else
@@ -116,11 +120,11 @@ function DetailsPanel:updateFirearm(item)
     end
 
     local loaded = "IGUI_Firearm_DetailEmpty"
-    if modData.actionType == ORGM.ROTARY then
+    if Reloadable.isRotary(modData) then
         if modData.currentCapacity > 0 then
             loaded = "IGUI_Firearm_DetailLoadedCylinder"
         end
-    elseif modData.actionType == ORGM.BREAK then
+    elseif Reloadable.isBreak(modData) then
         if modData.currentCapacity > 1 then
             loaded = "IGUI_Firearm_DetailLoaded2"
         elseif modData.currentCapacity == 1 then
@@ -236,9 +240,9 @@ function StatPanel:updateFirearm(item)
 
     text = text .. getText("IGUI_Firearm_StatDetail", string.format("%.3f", item:getActualWeight()))
 
-    if data.selectFire then
+    if Firearm.isSelectFire(item) then
         local mode = "IGUI_Firearm_DetailSemi"
-        if data.selectFire == ORGM.FULLAUTOMODE then mode = "IGUI_Firearm_DetailFull" end
+        if Fire.isFullAuto(data) then mode = "IGUI_Firearm_DetailFull" end
         text = text .. getText("IGUI_Firearm_DebugMode", getText(mode))
     end
     text = text .. getText("IGUI_Firearm_StatDetail2", getText("IGUI_Firearm_ActionType" .. data.actionType), getText("IGUI_Firearm_TriggerType".. data.triggerType))
