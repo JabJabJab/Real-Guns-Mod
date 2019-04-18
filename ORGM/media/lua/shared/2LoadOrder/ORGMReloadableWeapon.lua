@@ -98,7 +98,7 @@ end
 function Fire.valid(this)
     -- cant fire with a open slide
     if Bolt.isOpen(this) then return false end
-    if Reloadable.isStatus(this, Status.SAFETY) then return false end
+    if Fire.isSafe(this) then return false end
     -- single action with hammer at rest cant fire
     --
     if Firearm.Trigger.isSAO(this.type) and not Hammer.isCocked(this) then
@@ -238,21 +238,32 @@ function Fire.set(this, mode)
 end
 
 function Fire.isFullAuto(this)
-    return Bit.band(this.status, Flags.FULLAUTO) ~= 0
+    return Bit.band(this.status, Status.FULLAUTO) ~= 0
 end
 
 function Fire.isSingle(this)
-    return Bit.band(this.status, Flags.SINGLESHOT) ~= 0
+    return Bit.band(this.status, Status.SINGLESHOT) ~= 0
 end
 
 function Fire.is2ShotBurst(this)
-    return Bit.band(this.status, Flags.BURST2) ~= 0
+    return Bit.band(this.status, Status.BURST2) ~= 0
 end
 
 function Fire.is3ShotBurst(this)
-    return Bit.band(this.status, Flags.BURST3) ~= 0
+    return Bit.band(this.status, Status.BURST3) ~= 0
 end
 
+function Fire.isSafe(this)
+    return Bit.band(this.status, Status.SAFETY) ~= 0
+end
+function Fire.safe(this, engage)
+    local isSafe = Fire.isSafe(this)
+    if not isSafe and engage then
+        this.status = this.status + Status.SAFETY
+    elseif isSafe and not engage then
+        this.status = this.status - Status.SAFETY
+    end
+end
 
 --- Reloading Functions
 -- @section Reload
