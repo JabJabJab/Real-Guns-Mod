@@ -34,6 +34,7 @@ local ipairs = ipairs
 local tostring = tostring
 local FirearmTable = { }
 local FirearmKeyTable = { }
+local FirearmGroupTable = { }
 local RarityTable = {
     Civilian = {[ORGM.COMMON] = {}, [ORGM.RARE] = {}, [ORGM.VERYRARE] = {} },
     Police = {[ORGM.COMMON] = {}, [ORGM.RARE] = {}, [ORGM.VERYRARE] = {} },
@@ -148,6 +149,29 @@ local ADJ_AUTOTYPERECOILDELAY ={
     -2, -- SHORTRECOIL = 7,
 }
 
+local PropertiesTable = {
+    Weight = {type='float', min=0, max=100, default=1, required=true},
+    WeaponSprite = {type='string', default="", required=true},
+    SwingSound = {type='string', default="", required=true},
+    Icon = {type='string', default="", required=true},
+    ammoType = {type='string', default="", required=true},
+
+    classification = {type='string', default="Unknown"},
+    country = {type='string', default="Unknown"},
+    manufacturer = {type='string', default="Unknown"},
+    description = {type='string', default="No description available"},
+    category = {type='integer', min=0, max=100, default=1, required=true},
+
+    features = {type='integer', min=0, default=0, required=true},
+
+    rackTime = {type='integer', min=0, default=10},
+    reloadTime = {type='integer', min=0, default=10},
+    barrelLength = {type='float', min=0, default=10, required=true},
+    feedSystem = {type='integer', min=0, default=Flags.AUTO+Flags.BLOWBACK, required=true},
+
+
+    lastChanged = {type='integer', min=0, defaullt=nil},
+}
 
 --- Rarity Functions
 -- @section FirearmRarity
@@ -288,6 +312,12 @@ end
 --- Data Functions
 -- @section FirearmData
 
+Firearm.registerGroup = function(name, groupData)
+    --ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. name)
+    FirearmGroupTable[name] = { }
+end
+
+
 --[[- Registers a firearm type with ORGM.
 
 @tparam string name name of the firearm without module prefix
@@ -355,125 +385,170 @@ _Firearm details, these string fill out the 'Inspection' window._
 @treturn bool true on success.
 ]]
 Firearm.register = function(name, gunData)
-    --ORGM.log(ORGM.DEBUG, "Attempting to register firearm ".. name)
+    ORGM.log(ORGM.DEBUG, "Attempting to register firearm ".. name)
 
-    if not ORGM.validateRegister(name, gunData, FirearmTable) then
-        return false
-    end
+    --if not ORGM.validateRegister(name, gunData, FirearmTable) then
+    --    return false
+    --end
+
     gunData.moduleName = gunData.moduleName or 'ORGM'
-    local fullName = gunData.moduleName .. "." .. name
-    local scriptItem = getScriptManager():FindItem(fullName)
-
-    -- setup defaults
-    gunData.type = name
-    --gunData.moduleName = "ORGM"
-    gunData.reloadClass = gunData.reloadClass or 'ISORGMWeapon'
-    gunData.ammoType = scriptItem:getAmmoType() -- get the ammoType from the script item
-    gunData.rackTime = gunData.rackTime or ORGM.Settings.DefaultRackTime
-    gunData.reloadTime = gunData.reloadTime or ORGM.Settings.DefaultReloadTime
-
     gunData.classification = gunData.classification or "Unknown"
     gunData.country = gunData.country or "Unknown"
     gunData.manufacturer = gunData.manufacturer or "Unknown"
     gunData.description = gunData.description or "No description available."
+    gunData.rackTime = gunData.rackTime or Settings.DefaultRackTime
+    gunData.reloadTime = gunData.reloadTime or Settings.DefaultReloadTime
 
-    --ORGM.log(ORGM.DEBUG, "Set ammoType to ".. tostring(gunData.ammoType))
+    local scriptItems = {}
 
-    ---------------------------------------------------------------------------------------------------
-    -- NOTE: new bitwise flag validation
+    for variant, variantData in pairs(gunData.variants) do repeat
+        local variantName = name .. "_" .. variant
 
-    if not gunData.features then
-        ORGM.log(ORGM.ERROR, "Missing 'features' flags in data for  " .. fullName)
-        return
-    end
-    if not gunData.feedSystem then
-        ORGM.log(ORGM.ERROR, "Missing 'feedSystem' flags in data for  " .. fullName)
-        return
-    end
-
-    if Bit.band(gunData.features, Flags.SINGLEACTION + Flags.DOUBLEACTION) == 0 then
-        ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. fullName .. " (SINGLEACTION|DOUBLEACTION)")
-        return
-    end
-
-    if Bit.band(gunData.feedSystem, FEEDTYPES) == 0 then
-        ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. fullName .. " (AUTO|BOLT|LEVER|PUMP|BREAK|ROTARY)")
-        return
-    end
-    if Bit.band(gunData.feedSystem, Flags.AUTO) ~= 0 and Bit.band(gunData.feedSystem, Flags.BLOWBACK + Flags.DELAYEDBLOWBACK + Flags.SHORTGAS + Flags.LONGGAS + Flags.DIRECTGAS + Flags.LONGRECOIL + Flags.SHORTRECOIL) == 0 then
-        ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. fullName .. " (BLOWBACK|DELAYEDBLOWBACK|SHORTGAS|LONGGAS|DIRECTGAS|LONGRECOIL|SHORTRECOIL)")
-        return
-    end
-
-
-    ---------------------------------------------------------------------------------------------------
-
-    -- some basic error checking
-    if gunData.lastChanged then
-        if type(gunData.lastChanged) ~= 'number' then
-            ORGM.log(ORGM.WARN, "lastChanged for " .. fullName .. " is not a number. Setting to nil")
-            gunData.lastChanged = nil
-        elseif gunData.lastChanged ~= math.floor(gunData.lastChanged) then
-            gunData.lastChanged = math.floor(gunData.lastChanged)
-            ORGM.log(ORGM.WARN, "lastChanged for " .. fullName .. " is a float. (integer expected). Setting to "..gunData.lastChanged)
+        -- setup specific properties and error checks
+        if not ORGM.copyPropertiesTable("Ammo: ".. variantName, PropertiesTable, gunData, variantData) then
+            break
         end
-        if gunData.lastChanged and (gunData.lastChanged < 1 or gunData.lastChanged > ORGM.BUILD_ID) then
-            ORGM.log(ORGM.ERROR, "Invalid lastChanged for " .. fullName .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
+
+        variantData.moduleName = gunData.moduleName
+        variantData.type = variantName
+        variantData.reloadClass = 'ISORGMWeapon'
+
+
+        ---------------------------------------------------------------------------------------------------
+        -- NOTE: new bitwise flag validation
+
+
+        if Bit.band(variantData.features, Flags.SINGLEACTION + Flags.DOUBLEACTION) == 0 then
+            ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. variantName .. " (SINGLEACTION|DOUBLEACTION)")
             return
         end
-    end
-    if gunData.category == nil then
-        ORGM.log(ORGM.WARN, "category for " .. fullName .. " is set to nil")
-    elseif gunData.category ~= ORGM.REVOLVER and gunData.category ~= ORGM.PISTOL and gunData.category ~= ORGM.SUBMACHINEGUN and gunData.category ~= ORGM.RIFLE and gunData.category ~= ORGM.SHOTGUN then
-        ORGM.log(ORGM.WARN, "category for " .. fullName .. " is set to "..gunData.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
-    end
-    if gunData.ammoType == nil then
-        ORGM.log(ORGM.ERROR, "Missing AmmoType for " .. fullName .. " (scripts/*.txt)")
-        return
-    elseif not ORGM.Ammo.getGroup(gunData.ammoType) and not ORGM.Magazine.isMagazine(gunData.ammoType) then
-        ORGM.log(ORGM.ERROR, "Invalid AmmoType for " .. fullName .. " (Ammo or Magazine not registered: "..gunData.ammoType ..")")
-        return
-    end
+
+        if Bit.band(variantData.feedSystem, FEEDTYPES) == 0 then
+            ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. variantName .. " (AUTO|BOLT|LEVER|PUMP|BREAK|ROTARY)")
+            return
+        end
+        if Bit.band(variantData.feedSystem, Flags.AUTO) ~= 0 and Bit.band(variantData.feedSystem, Flags.BLOWBACK + Flags.DELAYEDBLOWBACK + Flags.SHORTGAS + Flags.LONGGAS + Flags.DIRECTGAS + Flags.LONGRECOIL + Flags.SHORTRECOIL) == 0 then
+            ORGM.log(ORGM.ERROR, "Missing required feature flag for " .. variantName .. " (BLOWBACK|DELAYEDBLOWBACK|SHORTGAS|LONGGAS|DIRECTGAS|LONGRECOIL|SHORTRECOIL)")
+            return
+        end
+
+
+        ---------------------------------------------------------------------------------------------------
+
+        -- some basic error checking
+        if variantData.lastChanged and variantData.lastChanged > ORGM.BUILD_ID then
+            ORGM.log(ORGM.ERROR, "Invalid lastChanged for " .. variantName .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
+            variantData.lastChanged = ORGM.BUILD_ID
+        end
+
+        if variantData.category ~= ORGM.REVOLVER and variantData.category ~= ORGM.PISTOL and variantData.category ~= ORGM.SUBMACHINEGUN and variantData.category ~= ORGM.RIFLE and variantData.category ~= ORGM.SHOTGUN then
+            ORGM.log(ORGM.WARN, "category for " .. variantName .. " is set to "..variantData.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
+        end
+        if not ORGM.Ammo.isGroup(variantData.ammoType) and not ORGM.Magazine.isGroup(variantData.ammoType) then
+            ORGM.log(ORGM.ERROR, "Invalid AmmoType for " .. variantName .. " (Ammo or Magazine not registered: "..variantData.ammoType ..")")
+            break
+        end
+
+        -- apply any defaults from the ORGM.Sounds.Profiles table
+        if (gunData.soundProfile and ORGM.Sounds.Profiles[gunData.soundProfile]) then
+            for key, value in pairs(ORGM.Sounds.Profiles[gunData.soundProfile]) do
+                variantData[key] = gunData[key] or value
+            end
+        else
+            ORGM.log(ORGM.WARN, "Invalid soundProfile for " .. variantName .. " ("..tostring(gunData.soundProfile)..")")
+        end
+
+        for _, key in ipairs(ORGM.Sounds.KeyTable) do
+            if variantData[key] then ORGM.Sounds.add(variantData[key]) end
+        end
+
+        -- check if gun uses a mag, and link clipData
+        if ORGM.Magazine.isMagazine(variantData.ammoType) then
+            variantData.containsClip = 1
+            variantData.clipData = ORGM.Magazine.getData(variantData.ammoType)
+        end
+
+        table.insert(scriptItems, {
+            "\titem " .. variantName,
+            "\t{",
+            "\t\tDisplayName = "..variantName .. ",",
+            "\t\tType = Weapon,",
+            "\t\tIsAimedHandWeapon = TRUE,",
+            "\t\tIsAimedFirearm = TRUE,",
+            "\t\tSubCategory =   Firearm,",
+
+            "\t\tAmmoType = "..variantData.ammoType .. ",",
+            "\t\tClipSize = 30,",
+            "\t\tReloadTime = 10,",
+
+            "\t\tWeight = "..variantData.Weight .. ",",
+            "\t\tWeaponWeight = " ..variantData.Weight .. ",",
+
+            "\t\tIcon = "..variantData.Icon .. ",",
+
+            "\t\tWeaponSprite = " .. variantData.WeaponSprite .. ',',
+            "\t\tRunAnim     =   Run_Weapon2,",
+            "\t\tIdleAnim    =   Idle_Weapon2,",
+            "\t\tSwingAnim   =   Rifle,",
+
+            "\t\tSwingSound  = " .. variantData.SwingSound .. ',',
+            "\t\tSoundGain =     2,",
+            "\t\tSoundRadius =   170,",
+            "\t\tImpactSound =   null,",
+            "\t\tSoundVolume =   75,",
+            "\t\tBreakSound  =   PZ_MetalSnap,",
+            "\t\tNPCSoundBoost   =   1.5,",
+
+            "\t\tMinDamage   =   1.4,",
+            "\t\tMaxDamage   =   2,",
+            "\t\tDoorDamage  =   4,",
+            "\t\tTreeDamage  =   1,",
+            "\t\tShareDamage =   FALSE,",
+
+            "\t\tMaxRange =         1,",
+            "\t\tMinRange =         0.6,",
+            "\t\tSwingTime =        1.0,",
+            "\t\tMinimumSwingTime = 0.2,",
+            "\t\tRecoilDelay =      10,",
+            "\t\tRanged  =      TRUE,",
+            "\t\tSwingAmountBeforeImpact =   0,",
+            "\t\tMinAngle    =   0.95,",
+
+            "\t\tAimingPerkCritModifier = 10,",
+            "\t\tAimingPerkHitChanceModifier = 15,",
+            "\t\tAimingPerkMinAngleModifier = 0.01,",
+            "\t\tAimingPerkRangeModifier = 2,",
+
+            "\t\tCriticalChance = 20,",
+            "\t\tHitChance = 50,",
+            "\t\tAimingTime = 25,",
+            "\t\tToHitModifier   =   1.5,",
+
+            "\t\tProjectileCount =   1,",
+            "\t\tMaxHitCount =   1,",
+            "\t\tConditionMax    =   10,",
+            "\t\tConditionLowerChanceOneIn   =   200,",
+            "\t\tPiercingBullets = FALSE,",
+            "\t\tRequiresEquippedBothHands = TRUE,",
+
+            "\t\tUseEndurance    =   FALSE,",
+            "\t\tMultipleHitConditionAffected    =   FALSE,",
+
+            "\t\tSplatNumber =   3,",
+            "\t\tSplatSize   =   3,",
+            "\t\tKnockdownMod    =   1.5,",
+            "\t\tSplatBloodOnNoDeath =   TRUE,",
+            "\t\tPushBackMod =   0.4,",
+            "\t\tKnockBackOnNoDeath  =   TRUE,",
+
+
+            "\t}"
+        })
+
+    until true end
+
 
     --[[
-    if not gunData.triggerType or ORGM.TriggerTypeStrings[gunData.triggerType] == nil then
-        ORGM.log(ORGM.ERROR, "Invalid triggerType for " .. fullName .. " ("..tostring(gunData.triggerType)..")")
-        return
-    end
-    if not gunData.actionType or ORGM.ActionTypeStrings[gunData.actionType] == nil then
-        ORGM.log(ORGM.ERROR, "Invalid actionType for " .. fullName .. " ("..tostring(gunData.actionType)..")")
-        return
-    end
-    if gunData.altActionType then -- this gun has alternating action types (pump and auto, etc)
-        if ORGM.ActionTypeStrings[gunData.altActionType] == nil then
-            ORGM.log(ORGM.ERROR, "Invalid altActionType for " .. fullName .. " ("..tostring(gunData.altActionType)..")")
-            return
-        end
-        gunData.altActionType = {gunData.actionType, gunData.altActionType}
-    end
-    ]]
-
-    if not gunData.barrelLength then
-        ORGM.log(ORGM.WARN, "barrelLength for " .. fullName .. " is set to nil, setting to 10")
-        gunData.barrelLength = 10
-    elseif type(gunData.barrelLength) ~= "number" then
-        ORGM.log(ORGM.WARN, "barrelLength for " .. fullName .. " is not a number. Setting to 10")
-        gunData.barrelLength = 10
-    end
-
-    -- apply any defaults from the ORGM.Sounds.Profiles table
-    if (gunData.soundProfile and ORGM.Sounds.Profiles[gunData.soundProfile]) then
-        for key, value in pairs(ORGM.Sounds.Profiles[gunData.soundProfile]) do
-            gunData[key] = gunData[key] or value
-        end
-    else
-        ORGM.log(ORGM.WARN, "Invalid soundProfile for " .. fullName .. " ("..tostring(gunData.soundProfile)..")")
-    end
-
-    for _, key in ipairs(ORGM.Sounds.KeyTable) do
-        if gunData[key] then ORGM.Sounds.add(gunData[key]) end
-    end
-
     -- load SwingSound into SoundBanksSetupTable
     local swingSound = scriptItem:getSwingSound()
     if not swingSound then
@@ -481,20 +556,21 @@ Firearm.register = function(name, gunData)
         return
     end
     ORGM.Sounds.add(swingSound, {gain = 2,  maxrange = 1000, maxreverbrange = 1000, priority = 9 })
+    ]]
 
 
-    -- check if gun uses a mag, and link clipData
-    if ORGM.Magazine.isMagazine(gunData.ammoType) then
-        gunData.containsClip = 1
-        gunData.clipData = ORGM.Magazine.getData(gunData.ammoType)
+    ORGM.createScriptItems('ORGM', scriptItems)
+
+    for variant, variantData in pairs(gunData.variants) do
+        local variantName = name .. "_" .. variant
+        FirearmTable[variantName] = variantData
+        ReloadUtil:addWeaponType(variantData)
+        table.insert(FirearmKeyTable, variantName)
+        variantData.instance = InventoryItemFactory.CreateItem(variantData.moduleName..'.' .. variantName)
+        Firearm.applyRarity(variantName, variantData, false)
+        ORGM.log(ORGM.DEBUG, "Registered firearm " .. variantName)
     end
 
-    -- build up the weapons table for spawning, moved to server files
-    --ORGM.insertIntoRarityTables(name, gunData)
-
-    FirearmTable[name] = gunData
-    ReloadUtil:addWeaponType(gunData)
-    table.insert(FirearmKeyTable, name)
     --[[
     -- make adjustments to scriptItem .. these should cut down on the amount of crap needed to be added to entries in
     -- the scripts.txt file, and unify some stats
@@ -532,9 +608,6 @@ Firearm.register = function(name, gunData)
     --setToHitModifier(float default 1.5
     --setUseEndurance(boolean default true
     ]]
-    gunData.instance = InventoryItemFactory.CreateItem(gunData.moduleName..'.' .. name)
-    Firearm.applyRarity(name, gunData, false)
-    ORGM.log(ORGM.DEBUG, "Registered firearm " .. fullName)
     return true
 end
 
