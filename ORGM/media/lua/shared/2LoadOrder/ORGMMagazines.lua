@@ -22,6 +22,15 @@ local MagazineTable = { }
 local MagazineKeyTable = { }
 local MagazineGroupTable = { }
 
+Flags.BOX = 1
+Flags.TUBE = 2
+Flags.DRUM = 4
+Flags.CASKET = 8
+Flags.STEEL = 16
+Flags.POLYMER = 32
+Flags.PEEKSTRIP = 64
+Flags.BULK = 128
+Flags.MATCHGRADE = 256
 
 Magazine.registerGroup = function(name, groupData)
     ORGM.log(ORGM.DEBUG, "Magazine: Attempting to register ".. name)
@@ -38,6 +47,9 @@ Magazine.registerGroup = function(name, groupData)
         "}",
     }
     getScriptManager():ParseScript(table.concat(script, "\r\n"))
+end
+Magazine.isGroup = function(groupName)
+    return MagazineGroupTable[groupName] ~= nil
 end
 
 
@@ -79,11 +91,13 @@ Magazine.register = function(magazineName, magazineData)
         return
     end
 
+    local scriptItems = { }
     for variant, variantData in pairs(magazineData.variants) do
         local variantName = magazineName .. "_" .. variant
         variantData.moduleName = magazineData.moduleName
 
         variantData.Icon = variantData.Icon or magazineData.Icon
+        variantData.features = variantData.features or magazineData.features
 
         variantData.type = variantName
         variantData.clipType = variantName
@@ -119,6 +133,8 @@ Magazine.register = function(magazineName, magazineData)
         table.insert(MagazineKeyTable, variantName)
 
         ORGM.log(ORGM.DEBUG, "Registered magazine " .. variantData.moduleName .. "." .. magazineName)
+    end
+    for variant, variantData in pairs(magazineData.variants) do
 
     end
     return true
