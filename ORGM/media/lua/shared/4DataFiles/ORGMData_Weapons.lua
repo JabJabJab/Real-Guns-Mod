@@ -8,25 +8,55 @@ All calls made by this script are to `ORGM.Firearm.register`. See the documentio
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Weapons.lua
 
 ]]
-local register = ORGM.Firearm.register
+local Firearm = ORGM.Firearm
 local Flags = ORGM.Firearm.Flags
 
-register("M16", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
-    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+Firearm.registerGroup("Military")
+Firearm.registerGroup("SelectFire")
+Firearm.registerGroup("Rifle")
+Firearm.registerGroup("Automatic")
 
+Firearm.registerGroup("M16")
+
+Firearm.register("M16", {
     lastChanged = 24,
     category = ORGM.RIFLE,
     barrelLength = 20,
     isPolice = ORGM.VERYRARE,
     isMilitary = ORGM.COMMON,
     soundProfile = "Rifle-AR",
+    Weight = 3.3,
+    SwingSound = "ORGMAR15",
+    Icon = "M16",
+    WeaponSprite = "m16",
 
+    -- year = 1964, --
     classification = "IGUI_Firearm_AssaultRifle",
-    year = 1964,
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_Colt",
     description = "IGUI_Firearm_Desc_M16",
+
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
+    ammoType = "MagGroup_STANAG",
+    variants = {
+        A1 = {
+            year = 1967,
+            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+         },
+        A2 = {
+            year = 1982,
+            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+        },
+        A3 = {
+            year = 1982,
+            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+        },
+        A4 = {
+            year = 1982,
+            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+        },
+    }
 })
 
 --[[
