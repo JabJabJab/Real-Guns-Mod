@@ -10,7 +10,9 @@ This file contains functions for dealing with magazines and their data.
 ]]
 
 local ORGM = ORGM
+local Settings = ORGM.Settings
 local Magazine = ORGM.Magazine
+local Flags = Magazine.Flags
 local getTableData = ORGM.getTableData
 
 local ZombRand = ZombRand
@@ -18,6 +20,26 @@ local ZombRand = ZombRand
 
 local MagazineTable = { }
 local MagazineKeyTable = { }
+local MagazineGroupTable = { }
+
+
+Magazine.registerGroup = function(name, groupData)
+    ORGM.log(ORGM.DEBUG, "Magazine: Attempting to register ".. name)
+    MagazineGroupTable[name] = {}
+    -- autogeneration of script items
+    local script = {
+        "module ORGM {",
+        "\titem " .. name,
+        "\t{",
+        "\t\tCount = 1,",
+        "\t\tType = Normal,",
+        "\t\tDisplayName = ".. name .. ",",
+        "\t}",
+        "}",
+    }
+    getScriptManager():ParseScript(table.concat(script, "\r\n"))
+end
+
 
 --[[- Registers a magazine type with ORGM.
 
@@ -43,32 +65,62 @@ This must be called before any firearm registers that plan to use that magazine.
 @treturn bool true on success.
 
 ]]
-Magazine.register = function(name, magazineData)
-    --ORGM.log(ORGM.DEBUG, "Attempting to register magazine ".. name)
+Magazine.register = function(magazineName, magazineData)
+    ORGM.log(ORGM.DEBUG, "Attempting to register magazine ".. magazineName)
 
-    if ORGM.validateRegister(name, magazineData, MagazineTable) == false then
-        return false
-    end
+    --if ORGM.validateRegister(magazineName, magazineData, MagazineTable) == false then
+    --    return false
+    --end
 
     magazineData.moduleName = magazineData.moduleName or 'ORGM'
-    magazineData.type = name
-    magazineData.clipType = name
-    magazineData.reloadClass = "ISORGMMagazine"
-    magazineData.shootSound = 'none'
-    magazineData.clickSound = nil
-    magazineData.ejectSound = magazineData.ejectSound or 'ORGMMagLoad'
-    magazineData.insertSound = magazineData.insertSound or 'ORGMMagLoad'
-    magazineData.rackSound = magazineData.rackSound or 'ORGMMagLoad' -- TODO: can probably remove this one, cant rack anyways
-    ORGM.Sounds.add(magazineData.ejectSound)
-    ORGM.Sounds.add(magazineData.insertSound)
-    ORGM.Sounds.add(magazineData.rackSound) -- TODO: can probably remove this one
-    magazineData.reloadTime =  magazineData.reloadTime or ORGM.Settings.DefaultMagazineReoadTime
 
-    MagazineTable[name] = magazineData
-    ReloadUtil:addMagazineType(magazineData)
-    table.insert(MagazineKeyTable, name)
+    if type(magazineData.Groups) ~= "table" then
+        ORGM.log(ORGM.ERROR, "Magazine: Invalid Groups for " .. magazineName .. " is type: "..type(ammoData.Groups) .." (expected table)")
+        return
+    end
 
-    ORGM.log(ORGM.DEBUG, "Registered magazine " .. magazineData.moduleName .. "." .. name)
+    for variant, variantData in pairs(magazineData.variants) do
+        local variantName = magazineName .. "_" .. variant
+        variantData.moduleName = magazineData.moduleName
+
+        variantData.Icon = variantData.Icon or magazineData.Icon
+
+        variantData.type = variantName
+        variantData.clipType = variantName
+        variantData.reloadClass = "ISORGMMagazine"
+        variantData.shootSound = 'none'
+        variantData.clickSound = nil
+        variantData.ejectSound = magazineData.ejectSound or 'ORGMMagLoad'
+        variantData.insertSound = magazineData.insertSound or 'ORGMMagLoad'
+        variantData.rackSound = magazineData.rackSound or 'ORGMMagLoad' -- TODO: can probably remove this one, cant rack anyways
+        ORGM.Sounds.add(variantData.ejectSound)
+        ORGM.Sounds.add(variantData.insertSound)
+        ORGM.Sounds.add(variantData.rackSound) -- TODO: can probably remove this one
+        variantData.reloadTime =  variantData.reloadTime or Settings.DefaultMagazineReoadTime
+
+        -- autogeneration of script items
+        -- TODO: this should be outside of the variations loop
+        local script = {
+            "module " .. variantData.moduleName .. " {",
+            "\titem " .. variantName,
+            "\t{",
+            "\t\tCanStack    =   FALSE,",
+            "\t\tType = Normal,",
+            "\t\tDisplayCategory = Ammo,",
+            "\t\tDisplayName = "..variantName .. ",",
+            "\t\tIcon = "..variantData.Icon .. ",",
+            "\t\tWeight = "..variantData.Weight,
+            "\t}",
+            "}",
+        }
+        getScriptManager():ParseScript(table.concat(script, "\r\n"))
+        MagazineTable[variantName] = variantData
+        ReloadUtil:addMagazineType(variantData)
+        table.insert(MagazineKeyTable, variantName)
+
+        ORGM.log(ORGM.DEBUG, "Registered magazine " .. variantData.moduleName .. "." .. magazineName)
+
+    end
     return true
 end
 

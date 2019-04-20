@@ -4,7 +4,7 @@
     @module ORGM.Ammo
     @copyright 2018 **File:** shared/2LoadOrder/ORGMAmmo.lua
     @author Fenris_Wolf
-    @release 3.09
+    @release 3.10
 ]]
 local ORGM = ORGM
 local Ammo = ORGM.Ammo
@@ -24,6 +24,52 @@ local AmmoKeyTable = { }
 
 local AmmoGroupTable = { }
 
+Ammo.Flags.RIMFIRE = 1 -- rimfire cartridge
+Ammo.Flags.PISTOL = 2 -- 'pistol' calibers
+Ammo.Flags.RIFLE = 4 -- 'rifle' calibers
+Ammo.Flags.SHOTGUN = 8 -- shotgun shells
+-- variant specific
+Ammo.Flags.HOLLOWPOINT = 16 -- hollow point
+Ammo.Flags.JACKETED = 32 -- jacketed, partial or full
+Ammo.Flags.SOFTPOINT = 64 -- lead tipped bullet
+Ammo.Flags.FLATPOINT = 128 -- flat tipped bullet
+Ammo.Flags.MATCHGRADE = 256 -- high quality
+Ammo.Flags.BULK = 512 -- cheap low quality
+Ammo.Flags.SURPLUS = 1024 -- military, domestic or foreign
+Ammo.Flags.SUBSONIC = 2048 -- subsonic ammo. cheap hack. this often depends on barrel length
+Ammo.Flags.STEELCORE = 4096 -- solid steelcore
+
+local PropertiesTable = {
+    MinDamage = {type='float', min=0, max=100, default=0.2},
+    MaxDamage = {type='float', min=0, max=100, default=1},
+    Range = {type='integer', min=0, max=100, default=20},
+    Weight = {type='float', min=0, max=100, default=0.01},
+    Recoil = {type='float', min=0, max=100, default=20},
+    Penetration = {type='integer', min=0, max=100, default=0},
+    MaxHitCount = {type='integer', min=1, max=100, default=1},
+    BoxCount = {type='integer', min=0, default=20},
+    CanCount = {type='integer', min=0, default=200},
+    Icon = {type='string', default=""},
+    SpawnWeight = {type='float', min=0, default=1}
+}
+
+Ammo.registerGroup = function(name, groupData)
+    ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. name)
+    AmmoGroupTable[name] = {}
+    -- autogeneration of script items
+    local script = {
+        "module ORGM {",
+        "\titem " .. name,
+        "\t{",
+        "\t\tCount = 1,",
+        "\t\tType = Normal,",
+        "\t\tDisplayCategory = Ammo,",
+        "\t\tDisplayName = ".. name .. ",",
+        "\t}",
+        "}",
+    }
+    getScriptManager():ParseScript(table.concat(script, "\r\n"))
+end
 
 --[[- Registers a ammo type with ORGM.
 
@@ -65,136 +111,99 @@ Valid table keys/value pairs for the ammoData are:
 @treturn bool true on success.
 
 ]]
-Ammo.register = function(name, ammoData)
-    ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. name)
-    if ORGM.validateRegister(name, ammoData, AmmoTable) == false then
-        return false
-    end
+Ammo.register = function(ammoType, ammoData)
+    ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. ammoType)
+    --if ORGM.validateRegister(ammoType, ammoData, AmmoTable) == false then
+    --    return false
+    --end
+
     ammoData.moduleName = ammoData.moduleName or 'ORGM'
-    local fullName = ammoData.moduleName .. "." .. name
 
-    if type(ammoData.MinDamage) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MinDamage for " .. fullName .. " is type ".. type(ammoData.MinDamage)..", setting to 0")
-        ammoData.MinDamage = 0
-    elseif ammoData.MinDamage < 0 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MinDamage for " .. fullName .. " is < 0, setting to 0")
-        ammoData.MinDamage = 0
-    end
-
-    if type(ammoData.MaxDamage) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MaxDamage for " .. fullName .. " is type ".. type(ammoData.MaxDamage)..", setting to MinDamage value ".. ammoData.MinDamage)
-        ammoData.MaxDamage = ammoData.MinDamage
-    elseif ammoData.MaxDamage < ammoData.MinDamage then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MaxDamage for " .. fullName .. " is < MinDamage, setting to MinDamage value ".. ammoData.MinDamage)
-        ammoData.MaxDamage = ammoData.MinDamage
-    end
-
-    if ammoData.Penetration == nil then
-        ammoData.Penetration = false
-    elseif type(ammoData.Penetration) == 'boolean' then
-        -- do nothing
-    elseif type(ammoData.Penetration) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is type ".. type(ammoData.Penetration)..", expected boolean or integer, setting to false")
-        ammoData.Penetration = false
-    elseif ammoData.Penetration < 0 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is < 0, setting to false")
-        ammoData.Penetration = false
-    elseif ammoData.Penetration > 100 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid Penetration for " .. fullName .. " is > 100, setting to true")
-        ammoData.Penetration = true
+    if type(ammoData.Groups) ~= "table" then
+        ORGM.log(ORGM.ERROR, "Ammo: Invalid Groups for " .. ammoType .. " is type: "..type(ammoData.Groups) .." (expected table)")
+        return
     end
 
 
-    if ammoData.PiercingBullets then -- NOTE: depreciated warning
-        ORGM.log(ORGM.WARN, "Ammo: PiercingBullets for " .. fullName .. " is depreciated. Please use 'Penetration' instead.")
-    end
-    if ammoData.PiercingBullets == nil then
-        ammoData.PiercingBullets = false
-    elseif type(ammoData.PiercingBullets) == 'boolean' then
-        -- do nothing
-    elseif type(ammoData.PiercingBullets) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid PiercingBullets for " .. fullName .. " is type ".. type(ammoData.PiercingBullets)..", expected boolean or integer, setting to false")
-        ammoData.PiercingBullets = false
-    elseif ammoData.PiercingBullets < 0 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid PiercingBullets for " .. fullName .. " is < 0, setting to false")
-        ammoData.PiercingBullets = false
-    elseif ammoData.PiercingBullets > 100 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid PiercingBullets for " .. fullName .. " is > 100, setting to true")
-        ammoData.PiercingBullets = true
-    end
+    for variant, variantData in pairs(ammoData.variants) do
+        local variantName = ammoType .. "_" .. variant
+        variantData.moduleName = ammoData.moduleName
+        local fullName = ammoData.moduleName .. "." .. variantName
+        variantData.category = ammoData.category
 
-    if ammoData.MaxHitCount == nil then
-        ammoData.MaxHitCount = 1
-    elseif type(ammoData.MaxHitCount) ~= 'number' then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MaxHitCount for " .. fullName .. " is type ".. type(ammoData.MaxHitCount)..", expected integer, setting to 1")
-        ammoData.MaxHitCount = 1
-    elseif ammoData.MaxHitCount ~= math.floor(ammoData.MaxHitCount) then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MaxHitCount for " .. fullName .. " is float, expected integer, setting to "..math.floor(ammoData.MaxHitCount))
-        ammoData.MaxHitCount = math.floor(ammoData.MaxHitCount)
-    end
-    if ammoData.MaxHitCount < 1 then
-        ORGM.log(ORGM.WARN, "Ammo: Invalid MaxHitCount for " .. fullName .. " is < 1, setting to 1")
-        ammoData.MaxHitCount = 1
-    end
+        -- setup specific properties and error checks
+        for propName, options in pairs(PropertiesTable) do
+            local validType = options.type
+            local value = variantData[propName] or ammoData[propName]
+            variantData[propName] = value
+            if validType == 'integer' or validType == 'float' then validType = 'number' end
 
-    if ammoData.Groups == nil then
-        ammoData.Groups = { name }
-    elseif type(ammoData.Groups) == "string" then
-        ammoData.Groups = { ammoData.Groups }
-        ORGM.log(ORGM.WARN, "Ammo: Groups for " .. fullName .. " is a string, converting to table")
-    elseif type(ammoData.Groups) ~= "table" then
-        ORGM.log(ORGM.ERROR, "Ammo: Invalid Groups for " .. fullName .. " is type: "..type(ammoData.Groups) .." (expected string, table or nil)")
-        return false
-    end
+            if type(value) ~= validType then -- wrong type
+                ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
+                value = options.default
+            end
 
-    for _, ammo in ipairs(ammoData.Groups) do
-        if AmmoGroupTable[ammo] == nil then
-            AmmoGroupTable[ammo] = { name }
-        else
-            table.insert(AmmoGroupTable[ammo], name)
+            if options.type == 'integer' and value ~= math.floor(value) then
+                ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be integer not float). Setting to default "..tostring(math.floor(value)))
+                value = options.default
+            end
+
+            if validType == 'number' then
+                if (options.min and value < options.min) or (options.max and value > options.max) then
+                    ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid range (value "..tostring(value).." should be between min:"..(options.min or '')..", max:" ..(options.max or '').."). Setting to default "..tostring(options.default))
+                    value = options.default
+                end
+            end
+            variantData[propName] = value
         end
+
+        -- autogeneration of script items
+        -- TODO: this should be outside of the variations loop
+        local script = {
+            "module " .. variantData.moduleName .. " {",
+            "\titem " .. variantName,
+            "\t{",
+            "\t\tCount = 1,",
+            "\t\tType = Normal,",
+            "\t\tDisplayCategory = Ammo,",
+            "\t\tDisplayName = "..variantName .. ",",
+            "\t\tIcon = "..variantData.Icon .. ",",
+            "\t\tWeight = "..variantData.Weight,
+            "\t}",
+
+            "\titem " .. variantName .. "_Box",
+            "\t{",
+            "\t\tCount = 1,",
+            "\t\tType = Normal,",
+            "\t\tDisplayCategory = Ammo,",
+            "\t\tDisplayName = "..variantName.. "_Box,",
+            "\t\tIcon = "..variantData.Icon .. "_Box,",
+            "\t\tWeight = "..variantData.Weight * variantData.BoxCount,
+            "\t}",
+
+            "\titem " .. variantName .. "_Can",
+            "\t{",
+            "\t\tCount = 1,",
+            "\t\tType = Normal,",
+            "\t\tDisplayCategory = Ammo,",
+            "\t\tDisplayName = "..variantName.. "_Can,",
+            "\t\tIcon = AmmoBox,",
+            "\t\tWeight = "..variantData.Weight * variantData.CanCount,
+            "\t}",
+
+            "}",
+        }
+        getScriptManager():ParseScript(table.concat(script, "\r\n"))
+        variantData.instance = InventoryItemFactory.CreateItem(fullName)
+        AmmoTable[variantName] = variantData
+
+        for _, group in ipairs(ammoData.Groups) do
+            table.insert(AmmoGroupTable[group], variantName)
+        end
+
+        table.insert(AmmoKeyTable, variantName)
+        ORGM.log(ORGM.DEBUG, "Ammo: Registered variant " .. fullName)
     end
-
-    --[[
-    -- autogeneration
-    -- for some stupid reason, i can autogenerate the items, but not the matching recipes. Without the recipes working, this
-    -- whole thing is damn near worthless....
-    -- suppose this code could be used to auto build the script .txt files or something
-
-    local rtype = ammoData.RoundType or "Round"
-    local text = "module ORGM {\r\n"
-    -- build ammo script item
-    text = text .. "item "..name.."\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = "..name..",\r\nDisplayName = "..ammoData.DisplayName.." "..rtype.. "s,\r\nWeight = "..ammoData.Weight.."\r\n}\r\n"
-    -- build box script item
-    text = text .. "item "..name.."_Box\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = "..name.."_Box,\r\nDisplayName = "..ammoData.DisplayName.." - "..ammoData.BoxCount.. " " .. rtype.." Box,\r\nWeight = "..ammoData.Weight * ammoData.BoxCount.."\r\n}\r\n"
-    -- build can scipt item
-    text = text .. "item "..name.."_Can\r\n{\r\nCount = 1,\r\nType = Normal,\r\nDisplayCategory = Ammo,\r\nIcon = AmmoBox,\r\nDisplayName = "..ammoData.DisplayName.." - "..ammoData.CanCount.. " " .. rtype.." Can,\r\nWeight = "..ammoData.Weight * ammoData.CanCount.."\r\n}\r\n"
-    -- box to rounds
-    text = text.."\r\n}"
-    getScriptManager():ParseScript(text)
-
-    -- recipes dont seem to properly register using this method :\
-    text = "module ORGM {\r\n"
-    text = text .. "recipe Unbox "..ammoData.DisplayName.." "..rtype.."s\r\n{\r\n" .. name.."_Box,\r\n\r\nResult:"..name.."="..ammoData.BoxCount..",\r\nTime:5.0,\r\n}\r\n"
-    -- rounds to box
-    text = text .. "recipe Put in a box\r\n{\r\n" .. name.."="..ammoData.BoxCount .. ",\r\n\r\nResult:"..name.."_Box,\r\nTime:5.0,\r\n}\r\n"
-    -- rounds to can
-    text = text .. "recipe Put in a canister\r\n{\r\n" .. name.."="..ammoData.CanCount .. ",\r\n\r\nResult:"..name.."_Can,\r\nTime:10.0,\r\n}\r\n"
-    -- boxes to can
-    text = text .. "recipe Put in a canister\r\n{\r\n" .. name.."_Box="..ammoData.CanCount/ammoData.BoxCount .. ",\r\n\r\nResult:"..name.."_Can,\r\nTime:10.0,\r\n}\r\n"
-    -- can to boxes
-    text = text .. "recipe into boxes\r\n{\r\n" .. name.."_Can,\r\n\r\nResult:"..name.. "_Box="..ammoData.CanCount/ammoData.BoxCount..",\r\nTime:10.0,\r\n}\r\n"
-    -- can to rounds
-    text = text .. "recipe Empty out canister\r\n{\r\n" .. name.."_Can,\r\n\r\nResult:"..name.. "="..ammoData.CanCount..",\r\nTime:10.0,\r\n}\r\n"
-    -- end the module
-    text = text.."\r\n}"
-    print(text)
-    getScriptManager():ParseScript(text)
-    ]]
-    ammoData.instance = InventoryItemFactory.CreateItem(fullName)
-    AmmoTable[name] = ammoData
-    table.insert(AmmoKeyTable, name)
-    ORGM.log(ORGM.DEBUG, "Ammo: Registered " .. fullName)
     return true
 end
 
