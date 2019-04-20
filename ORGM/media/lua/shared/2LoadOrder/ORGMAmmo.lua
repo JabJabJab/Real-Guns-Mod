@@ -54,8 +54,6 @@ local PropertiesTable = {
 }
 
 Ammo.registerGroup = function(name, groupData)
-    ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. name)
-    AmmoGroupTable[name] = {}
     -- autogeneration of script items
     local script = {
         "module ORGM {",
@@ -69,7 +67,20 @@ Ammo.registerGroup = function(name, groupData)
         "}",
     }
     getScriptManager():ParseScript(table.concat(script, "\r\n"))
+    local instance = InventoryItemFactory.CreateItem("ORGM." .. name)
+    if instance then
+        AmmoGroupTable[name] = {}
+        ORGM.log(ORGM.DEBUG, "AmmoGroup: Registered " .. name .. " (".. instance:getDisplayName()..")")
+    else
+        ORGM.log(ORGM.ERROR, "AmmoGroup: Could not create instance of " .. name .. " (Registration Failed)")
+    end
 end
+
+Ammo.isGroup = function(groupName)
+    return AmmoGroupTable[groupName] ~= nil
+end
+
+
 
 --[[- Registers a ammo type with ORGM.
 
@@ -112,7 +123,7 @@ Valid table keys/value pairs for the ammoData are:
 
 ]]
 Ammo.register = function(ammoType, ammoData)
-    ORGM.log(ORGM.DEBUG, "Ammo: Attempting to register ".. ammoType)
+    ORGM.log(ORGM.VERBOSE, "Ammo: Starting register ".. ammoType)
     --if ORGM.validateRegister(ammoType, ammoData, AmmoTable) == false then
     --    return false
     --end
@@ -124,43 +135,22 @@ Ammo.register = function(ammoType, ammoData)
         return
     end
 
+    local scriptItems = { }
 
-    for variant, variantData in pairs(ammoData.variants) do
+    for variant, variantData in pairs(ammoData.variants) do repeat
+        ORGM.log(ORGM.VERBOSE, "Ammo: Starting variant register ".. ammoType)
         local variantName = ammoType .. "_" .. variant
         variantData.moduleName = ammoData.moduleName
         local fullName = ammoData.moduleName .. "." .. variantName
         variantData.category = ammoData.category
 
         -- setup specific properties and error checks
-        for propName, options in pairs(PropertiesTable) do
-            local validType = options.type
-            local value = variantData[propName] or ammoData[propName]
-            variantData[propName] = value
-            if validType == 'integer' or validType == 'float' then validType = 'number' end
-
-            if type(value) ~= validType then -- wrong type
-                ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
-                value = options.default
-            end
-
-            if options.type == 'integer' and value ~= math.floor(value) then
-                ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be integer not float). Setting to default "..tostring(math.floor(value)))
-                value = options.default
-            end
-
-            if validType == 'number' then
-                if (options.min and value < options.min) or (options.max and value > options.max) then
-                    ORGM.log(ORGM.ERROR, "Ammo: " .. fullName .. " property " .. propName .. " is invalid range (value "..tostring(value).." should be between min:"..(options.min or '')..", max:" ..(options.max or '').."). Setting to default "..tostring(options.default))
-                    value = options.default
-                end
-            end
-            variantData[propName] = value
+        if not ORGM.copyPropertiesTable("Ammo: ".. variantName, PropertiesTable, ammoData, variantData) then
+            break
         end
 
         -- autogeneration of script items
-        -- TODO: this should be outside of the variations loop
-        local script = {
-            "module " .. variantData.moduleName .. " {",
+        table.insert(scriptItems, {
             "\titem " .. variantName,
             "\t{",
             "\t\tCount = 1,",
@@ -169,8 +159,9 @@ Ammo.register = function(ammoType, ammoData)
             "\t\tDisplayName = "..variantName .. ",",
             "\t\tIcon = "..variantData.Icon .. ",",
             "\t\tWeight = "..variantData.Weight,
-            "\t}",
-
+            "\t}"
+        })
+        table.insert(scriptItems, {
             "\titem " .. variantName .. "_Box",
             "\t{",
             "\t\tCount = 1,",
@@ -180,7 +171,8 @@ Ammo.register = function(ammoType, ammoData)
             "\t\tIcon = "..variantData.Icon .. "_Box,",
             "\t\tWeight = "..variantData.Weight * variantData.BoxCount,
             "\t}",
-
+        })
+        table.insert(scriptItems, {
             "\titem " .. variantName .. "_Can",
             "\t{",
             "\t\tCount = 1,",
@@ -191,18 +183,23 @@ Ammo.register = function(ammoType, ammoData)
             "\t\tWeight = "..variantData.Weight * variantData.CanCount,
             "\t}",
 
-            "}",
-        }
-        getScriptManager():ParseScript(table.concat(script, "\r\n"))
-        variantData.instance = InventoryItemFactory.CreateItem(fullName)
-        AmmoTable[variantName] = variantData
+        })
+    until true end
 
-        for _, group in ipairs(ammoData.Groups) do
-            table.insert(AmmoGroupTable[group], variantName)
+    ORGM.createScriptItems('ORGM', scriptItems)
+    for variantName, variantData in pairs(ammoData.variants) do
+        variantName = ammoType .. "_" .. variantName
+        variantData.instance = InventoryItemFactory.CreateItem(variantData.moduleName .. "." .. variantName)
+        if variantData.instance then
+            AmmoTable[variantName] = variantData
+            for _, group in ipairs(ammoData.Groups) do
+                table.insert(AmmoGroupTable[group], variantName)
+            end
+            table.insert(AmmoKeyTable, variantName)
+            ORGM.log(ORGM.DEBUG, "Ammo: Registered variant " .. variantName .. " (".. variantData.instance:getDisplayName()..")")
+        else
+            ORGM.log(ORGM.ERROR, "Ammo: Could not create instance of " .. variantName .. " (Registration Failed)")
         end
-
-        table.insert(AmmoKeyTable, variantName)
-        ORGM.log(ORGM.DEBUG, "Ammo: Registered variant " .. fullName)
     end
     return true
 end
