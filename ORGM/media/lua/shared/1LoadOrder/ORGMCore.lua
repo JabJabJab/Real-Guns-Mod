@@ -85,12 +85,14 @@ ORGM.Firearm.Flags = { }
 
 --- Contains all ammo functions, see: `ORGM.Ammo`.
 ORGM.Ammo = { }
+ORGM.Ammo.Flags = { }
 
 --- Contains all component functions, see: `ORGM.Component`.
 ORGM.Component = { }
 
 --- Contains all magazine functions, see: `ORGM.Magazine`.
 ORGM.Magazine = { }
+ORGM.Magazine.Flags = { }
 
 --- Contains all maintance functions, see: `ORGM.Maintance`.
 ORGM.Maintance = { }
