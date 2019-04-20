@@ -95,7 +95,7 @@ end
 @treturn bool true if pulling the trigger 'should' fire the gun.
 
 ]]
-function Fire.valid(this)
+Fire.valid = function(this)
     -- cant fire with a open slide
     if Bolt.isOpen(this) then return false end
     if Fire.isSafe(this) then return false end
@@ -134,7 +134,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Fire.pre(this, playerObj, weaponItem)
+Fire.pre = function(this, playerObj, weaponItem)
     -- check for dud round, hangfire and other malfunctions
     -- check mechanical failures and malfunctions
     -- check squib
@@ -156,7 +156,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Fire.post(this, playerObj, weaponItem)
+Fire.post = function(this, playerObj, weaponItem)
     -- SA already has hammer cocked by this point, but we dont need to check here.
     Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
     Hammer.release(this, playerObj, false)
@@ -168,9 +168,10 @@ function Fire.post(this, playerObj, weaponItem)
         this.roundChambered = 0
         this.emptyShellChambered = 1
         Bolt.open(this, playerObj, false, weaponItem)
-        if this.currentCapacity ~= 0 or not Bit.band(Firearm.getData(weaponItem).features, Flags.SLIDELOCK) then
+        if this.currentCapacity ~= 0 or not Firearm.hasSlideLock(weaponItem) then
             Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
         end
+        
     elseif Reloadable.isRotary(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
@@ -203,7 +204,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Fire.dry(this, playerObj, weaponItem)
+Fire.dry = function(this, playerObj, weaponItem)
     if Hammer.isCocked(this) then
         Hammer.release(this, playerObj, false)
     elseif not Firearm.Trigger.isSAO(this.type) then
@@ -218,7 +219,7 @@ end
 @tparam[opt] nil|int mode If nil, a random valid fire mode is selected.
 
 ]]
-function Fire.set(this, mode)
+Fire.set = function(this, mode)
     if not mode then
         -- find all firing modes allowed
         local thisData = Firearm.getData(this.type)
@@ -237,26 +238,27 @@ function Fire.set(this, mode)
     return mode
 end
 
-function Fire.isFullAuto(this)
+Fire.isFullAuto = function(this)
     return Bit.band(this.status, Status.FULLAUTO) ~= 0
 end
 
-function Fire.isSingle(this)
+Fire.isSingle = function(this)
     return Bit.band(this.status, Status.SINGLESHOT) ~= 0
 end
 
-function Fire.is2ShotBurst(this)
+Fire.is2ShotBurst = function(this)
     return Bit.band(this.status, Status.BURST2) ~= 0
 end
 
-function Fire.is3ShotBurst(this)
+Fire.is3ShotBurst = function(this)
     return Bit.band(this.status, Status.BURST3) ~= 0
 end
 
-function Fire.isSafe(this)
+Fire.isSafe = function(this)
     return Bit.band(this.status, Status.SAFETY) ~= 0
 end
-function Fire.safe(this, engage)
+
+Fire.safe = function(this, engage)
     local isSafe = Fire.isSafe(this)
     if not isSafe and engage then
         this.status = this.status + Status.SAFETY
@@ -278,7 +280,7 @@ end
 @return boolean, true if a reload action can be performed, otherwise false.
 
 ]]
-function Reload.valid(this, playerObj)
+Reload.valid = function(this, playerObj)
     local result = false
     if this.speedLoader ~= nil then
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
@@ -324,7 +326,7 @@ or revolver cylinder.
 @tparam HandWeapon weaponItem
 
 ]]
-function Reload.start(this, playerObj, weaponItem)
+Reload.start = function(this, playerObj, weaponItem)
     -- NOTE: weaponItem is nil! not passed from ISORGMWeapon:reloadStart
     if this.containsClip == 1 then
         --getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
@@ -357,7 +359,7 @@ end
 @treturn bool false if the reloading should stop
 
 ]]
-function Reload.perform(this, playerObj, weaponItem)
+Reload.perform = function(this, playerObj, weaponItem)
     if this.speedLoader ~= nil then
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
         -- we have a speedLoader, check if its .max is less then .max - .current
@@ -429,7 +431,7 @@ end
 @treturn bool true if a unload action can be performed
 
 ]]
-function Unload.valid(this, playerObj)
+Unload.valid = function(this, playerObj)
     if this.currentCapacity > 0 then return true end
     if (this.roundChambered ~= nil and this.roundChambered > 0) then
         return true
@@ -448,7 +450,7 @@ or revolver cylinder.
 @tparam HandWeapon weaponItem
 
 ]]
-function Unload.start(this, playerObj, weaponItem)
+Unload.start = function(this, playerObj, weaponItem)
     -- we dont actually need to do anything here
     return
 end
@@ -463,7 +465,7 @@ end
 @treturn bool false if the unloading should stop
 
 ]]
-function Unload.perform(this, playerObj, weaponItem)
+Unload.perform = function(this, playerObj, weaponItem)
     if Reloadable.isRotary(this) then
         Cylinder.open(this, playerObj, true)
         -- revolvers drop them all at once
@@ -490,7 +492,7 @@ end
 @tparam[opt] bool playSound if true plays the ejectSound
 
 ]]
-function Magazine.eject(this, playerObj, playSound)
+Magazine.eject = function(this, playerObj, playSound)
     local clip = Magazine.create(this, playerObj)
     this.currentCapacity = 0
     this.magazineData = {}
@@ -511,7 +513,7 @@ end
 @tparam[opt] bool playSound if true plays the insertSound
 
 ]]
-function Magazine.insert(this, playerObj, playSound)
+Magazine.insert = function(this, playerObj, playSound)
     local magItem = Magazine.findBest(this, playerObj, this.ammoType)
     if magItem == nil then return end
     modData = magItem:getModData()
@@ -551,7 +553,7 @@ Copies some data from the firearm into the magazines modData, setting up the amm
 @treturn InventoryItem the magazine with setup modData.
 
 ]]
-function Magazine.create(this, playerObj)
+Magazine.create = function(this, playerObj)
     local magData = _Magazine.getData(this.ammoType)
     local magItem = InventoryItemFactory.CreateItem(magData.moduleName .. '.' .. this.ammoType)
     ReloadUtil:setupMagazine(magItem, magData, playerObj)
@@ -572,7 +574,7 @@ end
 @tparam IsoPlayer playerObj
 
 ]]
-function Magazine.setup(this, magItem, playerObj)
+Magazine.setup = function(this, magItem, playerObj)
     local magData = _Magazine.getData(magItem)
     ReloadUtil:setupMagazine(magItem, magData, playerObj)
 end
@@ -588,7 +590,7 @@ end
 @see ORGM.Magazine.findIn
 
 ]]
-function Magazine.findBest(this, playerObj, ammoType)
+Magazine.findBest = function(this, playerObj, ammoType)
     if ammoType == nil then ammoType = this.ammoType end
     return _Magazine.findIn(ammoType, this.preferredAmmoType, playerObj:getInventory())
 end
@@ -605,7 +607,7 @@ end
 @tparam[opt] int position to insert the round at. If nil it is appended to the list.
 
 ]]
-function Ammo.load(this, ammoType, weaponItem, position)
+Ammo.load = function(this, ammoType, weaponItem, position)
     -- TODO: ammoType should allow for InventoryItems, so we can check for modData
     -- and flag any faulty ammo
     if this.currentCapacity == this.maxCapacity then return end
@@ -632,7 +634,7 @@ This is a safety check performed to ensure we can properly get the ammo stats.
 @treturn string name of the first ammo in the group or ammoType if a real ammo was already passed in.
 
 ]]
-function Ammo.convert(this, ammoType)
+Ammo.convert = function(this, ammoType)
     local groupName = this.ammoType
     if this.containsClip ~= nil then -- get the mag's ammo type
         groupName = _Magazine.getData(this.ammoType).ammoType
@@ -655,7 +657,7 @@ end
 @see ORGM.Ammo.findIn
 
 ]]
-function Ammo.findBest(this, playerObj)
+Ammo.findBest = function(this, playerObj)
     return _Ammo.findIn(this.ammoType, this.preferredAmmoType, playerObj:getInventory())
 end
 
@@ -668,7 +670,7 @@ end
 @treturn nil|string the ammo (or case) name at the position
 
 ]]
-function Ammo.get(this, position)
+Ammo.get = function(this, position)
     return this.magazineData[position] -- arrays start at 1
 end
 
@@ -682,7 +684,7 @@ end
 @treturn nil|string ammo (or case) name at the next position
 
 ]]
-function Ammo.peek(this, wrap)
+Ammo.peek = function(this, wrap)
     if wrap then
         return this.magazineData[(this.cylinderPosition % this.maxCapacity) +1]
     end
@@ -701,7 +703,7 @@ Used primarly with revolvers and break barrels on opening.
 @tparam[opt] bool playSound if true plays the ejectSound
 
 ]]
-function Ammo.ejectAll(this, playerObj, playSound)
+Ammo.ejectAll = function(this, playerObj, playSound)
     if this.isOpen == 0 then return end
     local square = playerObj:getCurrentSquare()
 
@@ -736,7 +738,7 @@ end
 @treturn int number of spent cases
 
 ]]
-function Ammo.hasCases(this)
+Ammo.hasCases = function(this)
     local count = 0
     for index = 1, this.maxCapacity do
         local ammoType = this.magazineData[index]
@@ -756,7 +758,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Ammo.next(this, playerObj, weaponItem)
+Ammo.next = function(this, playerObj, weaponItem)
     if this.currentCapacity == 0 or this.currentCapacity == nil then
         this.loadedAmmo = nil
         return
@@ -801,7 +803,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Ammo.setCurrent(this, ammoType, weaponItem)
+Ammo.setCurrent = function(this, ammoType, weaponItem)
     if ammoType == nil or _Ammo.isCase(ammoType) then return end
     ammoType = Ammo.convert(this, ammoType)
     local roundData = _Ammo.getData(ammoType)
@@ -833,7 +835,7 @@ On Easy/Normal reloading, this returns false if there is already a round chamber
 @treturn bool true if the gun can be racked.
 
 ]]
-function Rack.valid(this, playerObj)
+Rack.valid = function(this, playerObj)
     if not Hammer.isCocked(this) and Firearm.Trigger.isSAO(this.type) then
         return true
     end
@@ -865,7 +867,7 @@ This mostly just plays sounds.
 @tparam HandWeapon weaponItem
 
 ]]
-function Rack.start(this, playerObj, weaponItem)
+Rack.start = function(this, playerObj, weaponItem)
     return
 end
 
@@ -878,7 +880,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Rack.perform(this, playerObj, weaponItem)
+Rack.perform = function(this, playerObj, weaponItem)
     if Reloadable.isBreak(this) then
         Break.close(this, playerObj, true, weaponItem)
 
@@ -911,7 +913,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Hammer.cock(this, playerObj, playSound, weaponItem)
+Hammer.cock = function(this, playerObj, playSound, weaponItem)
     -- rotary cylinders rotate the chamber when the hammer is cocked
     if Hammer.isCocked(this) then return end
     if Reloadable.isRotary(this) and not Bolt.isOpen(this) then
@@ -929,12 +931,12 @@ end
 @tparam nil|bool playSound not used atm
 
 ]]
-function Hammer.release(this, playerObj, playSound)
+Hammer.release = function(this, playerObj, playSound)
     if not Hammer.isCocked(this) then return end
     this.status = this.status - Status.COCKED
 end
 
-function Hammer.isCocked(this)
+Hammer.isCocked = function(this)
     return Bit.band(this.status, Status.COCKED) ~= 0
 end
 --- Bolt Functions
@@ -948,7 +950,7 @@ end
 
 ]]
 
-function Bolt.isOpen(this)
+Bolt.isOpen = function(this)
     return Bit.band(this.status, Status.OPEN) ~= 0
 end
 
@@ -961,7 +963,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Bolt.open(this, playerObj, playSound, weaponItem)
+Bolt.open = function(this, playerObj, playSound, weaponItem)
     if Bolt.isOpen(this) then return end -- already opened!
     -- first open the slide...
     this.status = this.status + Status.OPEN
@@ -1009,7 +1011,7 @@ Single and Double actions this also cocks the hammer.
 @tparam HandWeapon weaponItem
 
 ]]
-function Bolt.close(this, playerObj, playSound, weaponItem)
+Bolt.close = function(this, playerObj, playSound, weaponItem)
     if not Bolt.isOpen(this) then return end -- already closed!
     if not Firearm.Trigger.isDAO(this.type) then
         Hammer.cock(this, playerObj, false, weaponItem)
@@ -1036,7 +1038,7 @@ end
 
 ]]
 
-function Cylinder.isOpen(this)
+Cylinder.isOpen = function(this)
     return Bit.band(this.status, Status.OPEN) ~= 0
 end
 
@@ -1051,7 +1053,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Cylinder.rotate(this, count, playerObj, playSound, weaponItem)
+Cylinder.rotate = function(this, count, playerObj, playSound, weaponItem)
     local position = this.cylinderPosition
     if (count == nil or count == 0) then -- random count
         count = ZombRand(this.maxCapacity)+1
@@ -1070,7 +1072,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Cylinder.open(this, playerObj, playSound, weaponItem)
+Cylinder.open = function(this, playerObj, playSound, weaponItem)
     if Cylinder.isOpen(this) then return end
     this.status = this.status + Status.OPEN
     if (playSound and this.openSound) then playerObj:playSound(this.openSound, false) end
@@ -1085,7 +1087,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Cylinder.close(this, playerObj, playSound, weaponItem)
+Cylinder.close = function(this, playerObj, playSound, weaponItem)
     if not Cylinder.isOpen(this) then return end
     if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
     this.status = this.status - Status.OPEN
@@ -1104,7 +1106,7 @@ end
 
 ]]
 
-function Break.isOpen(this)
+Break.isOpen = function(this)
     return Bit.band(this.status, Status.OPEN) ~= 0
 end
 
@@ -1117,7 +1119,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Break.open(this, playerObj, playSound, weaponItem)
+Break.open = function(this, playerObj, playSound, weaponItem)
     if Break.isOpen(this) then return end
     this.status = this.status + Status.OPEN
     this.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire, set to 1 for reloading
@@ -1135,7 +1137,7 @@ end
 @tparam HandWeapon weaponItem
 
 ]]
-function Break.close(this, playerObj, playSound, weaponItem)
+Break.close = function(this, playerObj, playSound, weaponItem)
     if not Break.isOpen(this) then return end
     if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
     this.status = this.status - Status.OPEN
