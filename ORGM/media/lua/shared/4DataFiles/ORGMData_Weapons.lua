@@ -11,6 +11,25 @@ All calls made by this script are to `ORGM.Firearm.register`. See the documentio
 local register = ORGM.Firearm.register
 local Flags = ORGM.Firearm.Flags
 
+register("M16", {
+    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+
+    lastChanged = 24,
+    category = ORGM.RIFLE,
+    barrelLength = 20,
+    isPolice = ORGM.VERYRARE,
+    isMilitary = ORGM.COMMON,
+    soundProfile = "Rifle-AR",
+
+    classification = "IGUI_Firearm_AssaultRifle",
+    year = 1964,
+    country = "IGUI_Firearm_Country_US",
+    manufacturer = "IGUI_Firearm_Manuf_Colt",
+    description = "IGUI_Firearm_Desc_M16",
+})
+
+--[[
 register("ColtAnac", {
     features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
     feedSystem = Flags.ROTARY,
@@ -1942,6 +1961,6 @@ register("Win1887SO", {
     manufacturer = ORGM.Firearm.getData("Win1887").manufacturer,
     description = ORGM.Firearm.getData("Win1887").description,
 })
-
+]]
 -- ORGM[15] = "138363034"
 ORGM.log(ORGM.INFO, "All default firearms registered.")

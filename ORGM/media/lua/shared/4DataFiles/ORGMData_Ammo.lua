@@ -4,11 +4,63 @@ All calls made by this script are to `ORGM.Ammo.register`. See the documention t
 
 @script ORGMData_Ammo.lua
 @author Fenris_Wolf
-@release 3.09
+@release 3.10
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Ammo.lua
 
 ]]
-local register = ORGM.Ammo.register
+
+local Ammo = ORGM.Ammo
+local Flags = Ammo.Flags
+
+
+Ammo.registerGroup("AmmoGroup_177mm")
+Ammo.registerGroup("AmmoGroup_22LR")
+Ammo.registerGroup("AmmoGroup_32ACP")
+Ammo.registerGroup("AmmoGroup_357Magnum")
+Ammo.registerGroup("AmmoGroup_38Special")
+Ammo.registerGroup("AmmoGroup_38Super")
+Ammo.registerGroup("AmmoGroup_380ACP")
+Ammo.registerGroup("AmmoGroup_40SW")
+Ammo.registerGroup("AmmoGroup_44Magnum")
+Ammo.registerGroup("AmmoGroup_45ACP")
+Ammo.registerGroup("AmmoGroup_45Colt")
+Ammo.registerGroup("AmmoGroup_454Casull")
+Ammo.registerGroup("AmmoGroup_50AE")
+Ammo.registerGroup("AmmoGroup_223Remington")
+Ammo.registerGroup("AmmoGroup_3006Springfield")
+Ammo.registerGroup("AmmoGroup_3030Winchester")
+Ammo.registerGroup("AmmoGroup_308Winchester")
+Ammo.registerGroup("AmmoGroup_57x28mm")
+Ammo.registerGroup("AmmoGroup_9x19mm")
+Ammo.registerGroup("AmmoGroup_10x25mm")
+Ammo.registerGroup("AmmoGroup_556x45mm")
+Ammo.registerGroup("AmmoGroup_762x39mm")
+Ammo.registerGroup("AmmoGroup_762x51mm")
+Ammo.registerGroup("AmmoGroup_762x54mm")
+
+Ammo.register("Ammo_556x45mm",
+    {
+        Groups = { "AmmoGroup_223Remington", "AmmoGroup_556x45mm" },
+        Case = "Case_556x45mm",
+        Icon = "Am556x45Rounds",
+        category = Flags.RIFLE,
+        Range = 30, Recoil = 20, MinDamage = 1.4, MaxDamage = 2.4, Weight = 0.015,
+        Penetration = 75, BoxCount = 20, CanCount = 200,
+        variants = {
+            M193 = {
+                --M193: 5.56×45mm 55-grain [3.56 g] ball cartridge. This was type-standardized and designated by the US Army in September, 1963.
+                features = Flags.JACKETED + Flags.SURPLUS + Flags.BULK,
+                DisplayName = "Ammo_556x45mm_M193", -- probably not needed. can assume its translation string Ammo_<caliber>_<variant>
+            },
+            M855 = {
+                -- standardized on October 28, 1980
+                features = Flags.JACKETED + Flags.SURPLUS,
+            }
+        }
+    }
+)
+--[[
+
 
 register("Ammo_177BB",
     { OptimalBarrel = 12, Range = 15, Recoil = 2, MinDamage = 0.1, MaxDamage = 0.1, Penetration = false, Groups = {"AmmoGroup_177BB"}, BoxCount = 250, CanCount = 1000, DisplayName = ".177", RoundType = "BB", Weight = 0.001 }
@@ -157,4 +209,5 @@ register("Ammo_12g_00Buck",
 register("Ammo_12g_Slug",
     { OptimalBarrel = 60, Range = 12, Recoil = 50, MinDamage = 2.0, MaxDamage = 2.8, MaxHitCount = 1, Penetration = 95, Case = "Case_12g", Groups = {"AmmoGroup_12g"}, BoxCount = 25, CanCount = 250, DisplayName = "12 Gauge Slug", Weight = 0.04, RoundType = "Shell" }
 )
+]]
 ORGM.log(ORGM.INFO, "All default ammo registered.")

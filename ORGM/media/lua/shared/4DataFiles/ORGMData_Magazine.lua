@@ -8,8 +8,54 @@ All calls made by this script are to `ORGM.Magazine.register`. See the documenti
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Magazine.lua
 
 ]]
+local Magazine = ORGM.Magazine
 
-local register = ORGM.Magazine.register
+Magazine.registerGroup("MagGroup_STANAG")
+
+Magazine.register("Mag_STANAG",
+    {
+        ammoType = 'AmmoGroup_556x45mm',
+        Groups = {"MagGroup_STANAG"},
+        Icon = "STANAGMag",
+        variants = {
+            x5 = {
+                maxCapacity = 5,
+                Weight = 0.2,
+            },
+            x10 = {
+                maxCapacity = 10,
+                Weight = 0.2,
+            },
+            x20 = {
+                maxCapacity = 20,
+                Weight = 0.2,
+            },
+            x30 = {
+                maxCapacity = 30,
+                Weight = 0.2,
+            },
+            x40 = {
+                maxCapacity = 40,
+                Weight = 0.2,
+            },
+            x50 = {
+                maxCapacity = 50,
+                Weight = 0.2,
+            },
+            x60 = {
+                maxCapacity = 60,
+                Weight = 0.2,
+            },
+            x100 = {
+                maxCapacity = 100,
+                Weight = 0.2,
+            },
+        }
+    }
+)
+
+--[[
+
 
 register("AIAW308Mag",
     { ammoType = 'AmmoGroup_308Winchester', maxCapacity = 5, }
@@ -236,6 +282,6 @@ register("WaltherPPKMag",
 register("XD40Mag",
     { ammoType = 'AmmoGroup_40SW', maxCapacity = 9, }
 )
-
+]]
 -- ORGM[14] = "353134363"
 ORGM.log(ORGM.INFO, "All default magazines registered.")
