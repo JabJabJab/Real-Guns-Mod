@@ -75,6 +75,10 @@ ORGM.ReloadableWeapon.Status = { }
 
 --- Contains all firearm functions, see: `ORGM.Firearm`.
 ORGM.Firearm = { }
+
+ORGM.Firearm.FirearmType = { }
+ORGM.Firearm.FirearmGroup = { }
+
 ORGM.Firearm.Stats = { }
 ORGM.Firearm.Barrel = { }
 ORGM.Firearm.Hammer = { }
@@ -86,6 +90,8 @@ ORGM.Firearm.Flags = { }
 --- Contains all ammo functions, see: `ORGM.Ammo`.
 ORGM.Ammo = { }
 ORGM.Ammo.Flags = { }
+ORGM.Ammo.AmmoType = { }
+ORGM.Ammo.AmmoGroup = { }
 
 --- Contains all component functions, see: `ORGM.Component`.
 ORGM.Component = { }
@@ -93,6 +99,8 @@ ORGM.Component = { }
 --- Contains all magazine functions, see: `ORGM.Magazine`.
 ORGM.Magazine = { }
 ORGM.Magazine.Flags = { }
+ORGM.Magazine.MagazineGroup = { }
+ORGM.Magazine.MagazineType = { }
 
 --- Contains all maintance functions, see: `ORGM.Maintance`.
 ORGM.Maintance = { }
@@ -256,7 +264,7 @@ ORGM.SettingsValidator = {
 
     -- LogLevel: This controls how much text ORGM prints to the console and log file.
     -- valid options are ORGM.ERROR, ORGM.WARN, ORGM.INFO, ORGM.DEBUG, ORGM.VERBOSE (default ORGM.INFO)
-    LogLevel = {type='integer', min=0, max=4, default=ORGM.INFO},
+    LogLevel = {type='integer', min=0, max=4, default=ORGM.DEBUG},
 
     -- JammingEnabled: Turns firearm jamming on or off.
     -- valid options are true or false. (default true)
@@ -271,21 +279,17 @@ ORGM.SettingsValidator = {
     RemoveBaseFirearms = {type='boolean', default=true},
     --UseBarrelLengthModifiers = {type='boolean', default=true},
     DamageMultiplier = {type='float', min=0.1, default=0.6},
-    DefaultHitChancePistol = {type='integer', min=0, max=100, default=40},
-    DefaultHitChanceSMG = {type='integer', min=0, max=100, default=30},
-    DefaultHitChanceRifle = {type='integer', min=0, max=100, default=40},
-    DefaultHitChanceShotgun = {type='integer', min=0, max=100, default=60},
-    DefaultHitChanceOther = {type='integer', min=0, max=100, default=40},
+    DefaultHitChance = {type='integer', min=0, max=100, default=40},
     DefaultAimingHitMod = {type='integer', min=0, max=100, default=7},
     DefaultCriticalChance = {type='integer', min=0, max=100, default=20},
     DefaultAimingCritMod = {type='integer', min=0, max=100, default=10},
 
 
-    -- DefaultMagazineReoadTime:  The base time it takes to load a round into a magazine
+    -- DefaultMagazineReloadTime:  The base time it takes to load a round into a magazine
     -- before modifiers for panic levels and reloading skill are applied. Note specific
     -- magazines may override this value.
     -- valid options are any integer number greater then 0 (default: 30)
-    DefaultMagazineReoadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.Magazine.getTable()) do data.reloadTime = value end end },
+    DefaultMagazineReloadTime = {type='integer', min=1, default=30, onUpdate=function(value) for _,data in pairs(ORGM.Magazine.getTable()) do data.reloadTime = value end end },
 
     -- DefaultReloadTime:  The base time it takes to load a magazine or round into a firearm
     -- before modifiers for panic levels and reloading skill are applied. Note specific
