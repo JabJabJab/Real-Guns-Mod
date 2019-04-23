@@ -1,208 +1,399 @@
 --[[- This file contains all default ammo data.
 
-All calls made by this script are to `ORGM.Ammo.register`. See the documention there.
+All calls made by this script are to `ORGM.Ammo.AmmoGroup.new` and `ORGM.Ammo.AmmoType.newCollction`
+See the documention there.
 
 @script ORGMData_Ammo.lua
 @author Fenris_Wolf
-@release 3.10
+@release 4.0
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Ammo.lua
 
 ]]
 
 local Ammo = ORGM.Ammo
+local AmmoGroup = Ammo.AmmoGroup
+local AmmoType = Ammo.AmmoType
 local Flags = Ammo.Flags
 
+AmmoGroup:new("AmmoGroup_Pistols")
+AmmoGroup:new("AmmoGroup_Rifles")
+AmmoGroup:new("AmmoGroup_Shotguns")
+AmmoGroup:new("AmmoGroup_Rimfires")
 
-Ammo.registerGroup("AmmoGroup_177mm")
-Ammo.registerGroup("AmmoGroup_22LR")
-Ammo.registerGroup("AmmoGroup_32ACP")
-Ammo.registerGroup("AmmoGroup_357Magnum")
-Ammo.registerGroup("AmmoGroup_38Special")
-Ammo.registerGroup("AmmoGroup_38Super")
-Ammo.registerGroup("AmmoGroup_380ACP")
-Ammo.registerGroup("AmmoGroup_40SW")
-Ammo.registerGroup("AmmoGroup_44Magnum")
-Ammo.registerGroup("AmmoGroup_45ACP")
-Ammo.registerGroup("AmmoGroup_45Colt")
-Ammo.registerGroup("AmmoGroup_454Casull")
-Ammo.registerGroup("AmmoGroup_50AE")
-Ammo.registerGroup("AmmoGroup_223Remington")
-Ammo.registerGroup("AmmoGroup_3006Springfield")
-Ammo.registerGroup("AmmoGroup_3030Winchester")
-Ammo.registerGroup("AmmoGroup_308Winchester")
-Ammo.registerGroup("AmmoGroup_57x28mm")
-Ammo.registerGroup("AmmoGroup_9x19mm")
-Ammo.registerGroup("AmmoGroup_10x25mm")
-Ammo.registerGroup("AmmoGroup_556x45mm")
-Ammo.registerGroup("AmmoGroup_762x39mm")
-Ammo.registerGroup("AmmoGroup_762x51mm")
-Ammo.registerGroup("AmmoGroup_762x54mm")
 
-Ammo.register("Ammo_556x45mm",
-    {
-        Groups = { "AmmoGroup_223Remington", "AmmoGroup_556x45mm" },
-        Case = "Case_556x45mm",
-        Icon = "Am556x45Rounds",
-        category = Flags.RIFLE,
+AmmoGroup:new("AmmoGroup_177mm")
+AmmoGroup:new("AmmoGroup_22LR", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_32ACP",  { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_357Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_38Special", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_38Super", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_380ACP", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_40SW", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_44Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_45ACP", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_45Colt", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_454Casull", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_50AE", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_57x28mm", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_9x19mm", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_10x25mm", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_223Remington", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_3006Springfield", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_3030Winchester", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_308Winchester", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_556x45mm", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_762x39mm", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_762x51mm", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_762x54mm", { Groups = { AmmoGroup_Rifles = 1 }})
+AmmoGroup:new("AmmoGroup_12g", { Groups = { AmmoGroup_Shotguns = 1 }})
+
+AmmoGroup:new("AmmoGroup_NATO")
+
+
+AmmoType:newCollection("Ammo_22LR", {
+        Case = "Case_22LR",    category = Flags.PISTOL,
+        Range = 18, Recoil = 5, MinDamage = 0.4, MaxDamage = 0.8, Weight = 0.003,
+        Penetration = 10, BoxCount = 100, CanCount = 1000,
+        Groups = { AmmoGroup_22LR = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.RIMFIRE,
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT + Flags.RIMFIRE,
+        }
+})
+AmmoType:newCollection("Ammo_32ACP", {
+        Case = "Case_32ACP",    category = Flags.PISTOL,
+        Range = 15, Recoil = 6, MinDamage = 0.7, MaxDamage = 1.3, Weight = 0.01,
+        Penetration = 15, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_32ACP = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_357Magnum", {
+        Case = "Case_357Magnum",    category = Flags.PISTOL,
+        Range = 25, Recoil = 13, MinDamage = 0.9, MaxDamage = 1.9, Weight = 0.010,
+        Penetration = 50, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_357Magnum = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_38Special", {
+        Case = "Case_38Special",    category = Flags.PISTOL,
+        Range = 15, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.6, Weight = 0.010,
+        Penetration = 30, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_38Special = 1, AmmoGroup_357Magnum = 0.7, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_38Super", {
+        Case = "Case_38Super",    category = Flags.PISTOL,
+        Range = 20, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.7, Weight = 0.010,
+        Penetration = 30, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_38Super = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_380ACP", {
+        Case = "Case_380ACP",    category = Flags.PISTOL,
+        Range = 18, Recoil = 8, MinDamage = 0.7, MaxDamage = 1.5, Weight = 0.010,
+        Penetration = 25, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_380ACP = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_40SW", {
+        Case = "Case_40SW",    category = Flags.PISTOL,
+        Range = 20, Recoil = 11, MinDamage = 0.8, MaxDamage = 1.7, Weight = 0.010,
+        Penetration = 50, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_40SW = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_44Magnum", {
+        Case = "Case_44Magnum",     category = Flags.PISTOL,
+        Range = 25, Recoil = 15, MinDamage = 1.2, MaxDamage = 2.2, Weight = 0.012,
+        Penetration = 65, BoxCount = 50, CanCount = 400,
+        Groups = { AmmoGroup_44Magnum = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_45ACP", {
+        Case = "Case_45ACP",    category = Flags.PISTOL,
+        Range = 17, Recoil = 13, MinDamage = 1.0, MaxDamage = 1.8, Weight = 0.010,
+        Penetration = 45, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_45ACP = 1, },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_45Colt", {
+        Case = "Case_45Colt",    category = Flags.PISTOL,
+        Range = 25, Recoil = 15, MinDamage = 1.1, MaxDamage = 2.1, Weight = 0.010,
+        Penetration = 60, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_45Colt = 1, AmmoGroup_454Casull = 0.7 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_454Casull", {
+        Case = "Case_454Casull",    category = Flags.PISTOL,
+        Range = 25, Recoil = 15, MinDamage = 1.3, MaxDamage = 2.3, Weight = 0.012,
+        Penetration = 67, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_45Colt = 0.7, AmmoGroup_454Casull = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_50AE", {
+        Case = "Case_50AE",    category = Flags.PISTOL,
+        Range = 25, Recoil = 15, MinDamage = 1.3, MaxDamage = 2.3, Weight = 0.012,
+        Penetration = 67, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_50AE = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_57x28mm", {
+        Case = "Case_57x28mm",    category = Flags.PISTOL,
+        Range = 25, Recoil = 7, MinDamage = 0.6, MaxDamage = 1.4, Weight = 0.010,
+        Penetration = 90, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_57x28mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_9x19mm", {
+        Case = "Case_57x28mm",    category = Flags.PISTOL,
+        Range = 20, Recoil = 10, MinDamage = 0.7, MaxDamage = 1.6, Weight = 0.010,
+        Penetration = 50, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_9x19mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_10x25mm", {
+        Case = "Case_10x25mm",    category = Flags.PISTOL,
+        Range = 20, Recoil = 12, MinDamage = 0.9, MaxDamage = 1.9, Weight = 0.010,
+        Penetration = 55, BoxCount = 50, CanCount = 500,
+        Groups = { AmmoGroup_10x25mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+
+AmmoType:newCollection("Ammo_223Remington", {
+        Case = "Case_223Remington",     category = Flags.RIFLE,
         Range = 30, Recoil = 20, MinDamage = 1.4, MaxDamage = 2.4, Weight = 0.015,
         Penetration = 75, BoxCount = 20, CanCount = 200,
-        variants = {
-            M193 = {
-                --M193: 5.56×45mm 55-grain [3.56 g] ball cartridge. This was type-standardized and designated by the US Army in September, 1963.
-                features = Flags.JACKETED + Flags.SURPLUS + Flags.BULK,
-                DisplayName = "Ammo_556x45mm_M193", -- probably not needed. can assume its translation string Ammo_<caliber>_<variant>
-            },
-            M855 = {
-                -- standardized on October 28, 1980
-                features = Flags.JACKETED + Flags.SURPLUS,
-            }
+
+        Groups = { AmmoGroup_223Remington = 1, AmmoGroup_556x45mm = 0.7 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT,
         }
-    }
-)
+})
+AmmoType:newCollection("Ammo_3006Springfield", {
+        Case = "Case_3006Springfield",     category = Flags.RIFLE,
+        Range = 35, Recoil = 28, MinDamage = 1.4, MaxDamage = 2.7, Weight = 0.020,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_3006Springfield = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_3030Winchester", {
+        Case = "Case_3030Winchester",     category = Flags.RIFLE,
+        Range = 30, Recoil = 20, MinDamage = 0.8, MaxDamage = 1.9, Weight = 0.020,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_3030Winchester = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_308Winchester", {
+        Case = "Case_308Winchester",     category = Flags.RIFLE,
+        Range = 33, Recoil = 25, MinDamage = 1.4, MaxDamage = 2.6, Weight = 0.020,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_308Winchester = 1, AmmoGroup_762x51mm = 0.7 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_556x45mm", {
+        Case = "Case_556x45mm",     category = Flags.RIFLE,
+        Range = 30, Recoil = 20, MinDamage = 1.4, MaxDamage = 2.4, Weight = 0.015,
+        Penetration = 75, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_223Remington = 0.8, AmmoGroup_556x45mm = 1 },
+    }, {
+        M193 = {
+            --M193: 5.56×45mm 55-grain [3.56 g] ball cartridge. This was type-standardized and designated by the US Army in September, 1963.
+            features = Flags.JACKETED + Flags.SURPLUS + Flags.BULK,
+            addGroups = { NATO = 1, },
+        },
+        M855 = {
+            -- standardized on October 28, 1980
+            features = Flags.JACKETED + Flags.SURPLUS,
+            addGroups = { NATO = 1, },
+        },
+
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_762x39mm", {
+        Case = "Case_762x39mm",     category = Flags.RIFLE,
+        Range = 28, Recoil = 20, MinDamage = 1.2, MaxDamage = 2.5, Weight = 0.020,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_762x39mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_762x51mm", {
+        Case = "Case_762x51mm",     category = Flags.RIFLE,
+        Range = 33, Recoil = 25, MinDamage = 1.4, MaxDamage = 2.6, Weight = 0.020,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_308Winchester = 0.7, AmmoGroup_762x51mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_762x54mm", {
+        Case = "Case_762x54mm",     category = Flags.RIFLE,
+        Range = 35, Recoil = 25, MinDamage = 1.6, MaxDamage = 2.8, Weight = 0.025,
+        Penetration = 80, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_762x39mm = 1 },
+    }, {
+        FMJ = {
+            features = Flags.JACKETED + Flags.FLATPOINT
+        },
+        HP = {
+            features = Flags.JACKETED + Flags.HOLLOWPOINT + Flags.FLATPOINT,
+        }
+})
+AmmoType:newCollection("Ammo_12g", {
+        Case = "Case_12g",     category = Flags.SHOTGUN,
+        Range = 35, Recoil = 50, MinDamage = 1.0, MaxDamage = 2.2, Weight = 0.04,
+        Penetration = 0, MaxHitCount = 4, BoxCount = 20, CanCount = 200,
+
+        Groups = { AmmoGroup_12g = 1 },
+    }, {
+        Buck00 = {
+            features = Flags.BUCKSHOT,
+        },
+        Slug = {
+            features = Flags.SLUG,
+            MinDamage = 2.0, MaxDamage = 2.8, MaxHitCount = 1, Penetration = 95,
+        }
+})
+
+
 --[[
 
 
 register("Ammo_177BB",
     { OptimalBarrel = 12, Range = 15, Recoil = 2, MinDamage = 0.1, MaxDamage = 0.1, Penetration = false, Groups = {"AmmoGroup_177BB"}, BoxCount = 250, CanCount = 1000, DisplayName = ".177", RoundType = "BB", Weight = 0.001 }
 )
-register("Ammo_22LR_FMJ",
-    { OptimalBarrel = 30, Range = 18, Recoil = 5, MinDamage = 0.4, MaxDamage = 0.8, Penetration = 10, Case = "Case_22LR", Groups = {"AmmoGroup_22LR"}, BoxCount = 100, CanCount = 1000, DisplayName = ".22LR FMJ", Weight = 0.003 }
-)
-register("Ammo_22LR_HP",
-    { OptimalBarrel = 30, Range = 18, Recoil = 5, MinDamage = 0.5, MaxDamage = 0.9, Penetration = 2,  Case = "Case_22LR", Groups = {"AmmoGroup_22LR"}, BoxCount = 100, CanCount = 1000, DisplayName = ".22LR HP", Weight = 0.003}
-)
-register("Ammo_32ACP_FMJ",
-    { OptimalBarrel = 30, Range = 15, Recoil = 6, MinDamage = 0.7, MaxDamage = 1.3, Penetration = 15, Case = "Case_32ACP", Groups = {"AmmoGroup_32ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".32ACP FMJ", Weight = 0.01}
-)
-register("Ammo_32ACP_HP",
-    { OptimalBarrel = 30, Range = 15, Recoil = 6, MinDamage = 0.9, MaxDamage = 1.3, Penetration = 3,  Case = "Case_32ACP", Groups = {"AmmoGroup_32ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".32ACP HP", Weight = 0.01}
-)
-register("Ammo_357Magnum_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 13, MinDamage = 0.9, MaxDamage = 1.9, Penetration = 50, Case = "Case_357Magnum", Groups = {"AmmoGroup_357Magnum"}, BoxCount = 50, CanCount = 500, DisplayName = ".357 Magnum FMJ", Weight = 0.01}
-)
-register("Ammo_357Magnum_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 13, MinDamage = 1.2, MaxDamage = 1.9, Penetration = 10, Case = "Case_357Magnum", Groups = {"AmmoGroup_357Magnum"}, BoxCount = 50, CanCount = 500, DisplayName = ".357 Magnum HP", Weight = 0.01 }
-)
-register("Ammo_38Special_FMJ",
-    { OptimalBarrel = 30, Range = 15, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.6, Penetration = 30, Case = "Case_38Special", Groups = {"AmmoGroup_357Magnum", "AmmoGroup_38Special"}, BoxCount = 50, CanCount = 500, DisplayName = ".38 Special FMJ", Weight = 0.01 }
-)
-register("Ammo_38Special_HP",
-    { OptimalBarrel = 30, Range = 15, Recoil = 7, MinDamage = 1.0, MaxDamage = 1.6, Penetration = 8,  Case = "Case_38Special", Groups = {"AmmoGroup_357Magnum", "AmmoGroup_38Special"}, BoxCount = 50, CanCount = 500, DisplayName = ".38 Special HP", Weight = 0.01 }
-)
-register("Ammo_38Super_FMJ",
-    { OptimalBarrel = 30, Range = 20, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.7, Penetration = 30, Case = "Case_38Super", Groups = {"AmmoGroup_38Super"}, BoxCount = 50, CanCount = 500, DisplayName = ".38 Super FMJ", Weight = 0.01 }
-)
-register("Ammo_38Super_HP",
-    { OptimalBarrel = 30, Range = 20, Recoil = 7, MinDamage = 1.0, MaxDamage = 1.7, Penetration = 8,  Case = "Case_38Super", Groups = {"AmmoGroup_38Super"}, BoxCount = 50, CanCount = 500, DisplayName = ".38 Super HP", Weight = 0.01 }
-)
-register("Ammo_380ACP_FMJ",
-    { OptimalBarrel = 30, Range = 18, Recoil = 8, MinDamage = 0.7, MaxDamage = 1.5, Penetration = 25, Case = "Case_380ACP", Groups = {"AmmoGroup_380ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".380ACP FMJ", Weight = 0.01 }
-)
-register("Ammo_380ACP_HP",
-    { OptimalBarrel = 30, Range = 18, Recoil = 8, MinDamage = 1.0, MaxDamage = 1.5, Penetration = 7,  Case = "Case_380ACP", Groups = {"AmmoGroup_380ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".380ACP HP", Weight = 0.01 }
-)
-register("Ammo_40SW_FMJ",
-    { OptimalBarrel = 30, Range = 20, Recoil = 11, MinDamage = 0.8, MaxDamage = 1.7, Penetration = 50, Case = "Case_40SW", Groups = {"AmmoGroup_40SW"}, BoxCount = 50, CanCount = 500, DisplayName = ".40S&W FMJ", Weight = 0.01 }
-)
-register("Ammo_40SW_HP",
-    { OptimalBarrel = 30, Range = 20, Recoil = 11, MinDamage = 1.1, MaxDamage = 1.7, Penetration = 10, Case = "Case_40SW", Groups = {"AmmoGroup_40SW"}, BoxCount = 50, CanCount = 500, DisplayName = ".40S&W HP", Weight = 0.01 }
-)
-register("Ammo_44Magnum_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.2, MaxDamage = 2.2, Penetration = 65, Case = "Case_44Magnum", Groups = {"AmmoGroup_44Magnum"}, BoxCount = 50, CanCount = 500, DisplayName = ".44 Magnum FMJ", Weight = 0.012 }
-)
-register("Ammo_44Magnum_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.6, MaxDamage = 2.2, Penetration = 13, Case = "Case_44Magnum", Groups = {"AmmoGroup_44Magnum"}, BoxCount = 50, CanCount = 500, DisplayName = ".44 Magnum HP", Weight = 0.012 }
-)
-register("Ammo_45ACP_FMJ",
-    { OptimalBarrel = 30, Range = 17, Recoil = 13, MinDamage = 1.0, MaxDamage = 1.8, Penetration = 45, Case = "Case_45ACP", Groups = {"AmmoGroup_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP FMJ", Weight = 0.01 }
-)
-register("Ammo_45ACP_HP",
-    { OptimalBarrel = 30, Range = 17, Recoil = 13, MinDamage = 1.3, MaxDamage = 1.8, Penetration = 10, Case = "Case_45ACP", Groups = {"AmmoGroup_45ACP"}, BoxCount = 50, CanCount = 500, DisplayName = ".45ACP HP", Weight = 0.01 }
-)
-register("Ammo_45Colt_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.1, MaxDamage = 2.1, Penetration = 60, Case = "Case_45Colt", Groups = {"AmmoGroup_45Colt", "AmmoGroup_454Casull"}, BoxCount = 50, CanCount = 500, DisplayName = ".45 Colt FMJ", Weight = 0.01 }
-)
-register("Ammo_45Colt_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.5, MaxDamage = 2.1, Penetration = 12, Case = "Case_45Colt", Groups = {"AmmoGroup_45Colt", "AmmoGroup_454Casull"}, BoxCount = 50, CanCount = 500, DisplayName = ".45 Colt HP", Weight = 0.01 }
-)
-register("Ammo_454Casull_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.3, MaxDamage = 2.3, Penetration = 67, Case = "Case_454Casull", Groups = {"AmmoGroup_454Casull"}, BoxCount = 50, CanCount = 500, DisplayName = ".454 Casull FMJ", Weight = 0.012 }
-)
-register("Ammo_454Casull_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.7, MaxDamage = 2.3, Penetration = 14, Case = "Case_454Casull", Groups = {"AmmoGroup_454Casull"}, BoxCount = 50, CanCount = 500, DisplayName = ".454 Casull", Weight = 0.012 }
-)
-register("Ammo_50AE_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.3, MaxDamage = 2.3, Penetration = 67, Case = "Case_50AE", Groups = {"AmmoGroup_50AE"}, BoxCount = 50, CanCount = 500, DisplayName = ".50AE FMJ", Weight = 0.012 }
-)
-register("Ammo_50AE_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 15, MinDamage = 1.7, MaxDamage = 2.3, Penetration = 14, Case = "Case_50AE", Groups = {"AmmoGroup_50AE"}, BoxCount = 50, CanCount = 500, DisplayName = ".50AE HP", Weight = 0.012 }
-)
-register("Ammo_223Remington_FMJ",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 1.4, MaxDamage = 2.4, Penetration = 75, Case = "Case_223Remington", Groups = {"AmmoGroup_223Remington", "AmmoGroup_556x45mm"}, BoxCount = 25, CanCount = 250, DisplayName = ".223 Remington FMJ", Weight = 0.015 }
-)
-register("Ammo_223Remington_HP",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 1.8, MaxDamage = 2.4, Penetration = 15, Case = "Case_223Remington", Groups = {"AmmoGroup_223Remington", "AmmoGroup_556x45mm"}, BoxCount = 25, CanCount = 250, DisplayName = ".223 Remington HP", Weight = 0.015 }
-)
-register("Ammo_3006Springfield_FMJ",
-    { OptimalBarrel = 80, Range = 35, Recoil = 28, MinDamage = 1.4, MaxDamage = 2.7, Penetration = 75, Case = "Case_3006Springfield", Groups = {"AmmoGroup_3006Springfield"}, BoxCount = 20, CanCount = 200, DisplayName = ".30-06 Springfield FMJ", Weight = 0.02 }
-)
-register("Ammo_3006Springfield_HP",
-    { OptimalBarrel = 80, Range = 35, Recoil = 28, MinDamage = 1.7, MaxDamage = 2.7, Penetration = 15, Case = "Case_3006Springfield", Groups = {"AmmoGroup_3006Springfield"}, BoxCount = 20, CanCount = 200, DisplayName = ".30-06 Springfield HP", Weight = 0.02 }
-)
-register("Ammo_3030Winchester_FMJ",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 0.8, MaxDamage = 1.9, Penetration = 30, Case = "Case_3030Winchester", Groups = {"AmmoGroup_3030Winchester"}, BoxCount = 20, CanCount = 200, DisplayName = ".30-30 Winchester FMJ", Weight = 0.02 }
-)
-register("Ammo_3030Winchester_HP",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 1.0, MaxDamage = 1.9, Penetration = 8,  Case = "Case_3030Winchester", Groups = {"AmmoGroup_3030Winchester"}, BoxCount = 20, CanCount = 200, DisplayName = ".30-30 Winchester HP", Weight = 0.02 }
-)
-register("Ammo_308Winchester_FMJ",
-    { OptimalBarrel = 80, Range = 33, Recoil = 25, MinDamage = 1.4, MaxDamage = 2.6, Penetration = 80, Case = "Case_308Winchester", Groups = {"AmmoGroup_308Winchester", "AmmoGroup_762x51mm"}, BoxCount = 20, CanCount = 200, DisplayName = ".308 Winchester FMJ", Weight = 0.02 }
-)
-register("Ammo_308Winchester_HP",
-    { OptimalBarrel = 80, Range = 33, Recoil = 25, MinDamage = 1.8, MaxDamage = 2.6, Penetration = 20, Case = "Case_308Winchester", Groups = {"AmmoGroup_308Winchester", "AmmoGroup_762x51mm"}, BoxCount = 20, CanCount = 200, DisplayName = ".308 Winchester HP", Weight = 0.02 }
-)
-register("Ammo_57x28mm_FMJ",
-    { OptimalBarrel = 30, Range = 25, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.6, Penetration = 90, Case = "Case_57x28mm", Groups = {"AmmoGroup_57x28mm"}, BoxCount = 50, CanCount = 500, DisplayName = "5.7x28mm HP", Weight = 0.01 }
-)
-register("Ammo_57x28mm_HP",
-    { OptimalBarrel = 30, Range = 25, Recoil = 7, MinDamage = 1.0, MaxDamage = 1.6, Penetration = 40, Case = "Case_57x28mm", Groups = {"AmmoGroup_57x28mm"}, BoxCount = 50, CanCount = 500, DisplayName = "5.7x28mm HP", Weight = 0.01 }
-)
-register("Ammo_9x19mm_FMJ",
-    { OptimalBarrel = 30, Range = 20, Recoil = 10, MinDamage = 0.7, MaxDamage = 1.6, Penetration = 50, Case = "Case_9x19mm", Groups = {"AmmoGroup_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum FMJ", Weight = 0.01 }
-)
-register("Ammo_9x19mm_HP",
-    { OptimalBarrel = 30, Range = 20, Recoil = 10, MinDamage = 1.0, MaxDamage = 1.6, Penetration = 10, Case = "Case_9x19mm", Groups = {"AmmoGroup_9x19mm"}, BoxCount = 50, CanCount = 500, DisplayName = "9x19mm Parabellum HP", Weight = 0.01 }
-)
-register("Ammo_10x25mm_FMJ",
-    { OptimalBarrel = 30, Range = 20, Recoil = 12, MinDamage = 0.9, MaxDamage = 1.9, Penetration = 55, Case = "Case_10x25mm", Groups = {"AmmoGroup_10x25mm"}, BoxCount = 50, CanCount = 500, DisplayName = "10x25mm FMJ", Weight = 0.01 }
-)
-register("Ammo_10x25mm_HP",
-    { OptimalBarrel = 30, Range = 20, Recoil = 12, MinDamage = 1.2, MaxDamage = 1.9, Penetration = 12, Case = "Case_10x25mm", Groups = {"AmmoGroup_10x25mm"}, BoxCount = 50, CanCount = 500, DisplayName = "10x25mm HP", Weight = 0.01 }
-)
-register("Ammo_556x45mm_FMJ",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 1.4, MaxDamage = 2.4, Penetration = 75, Case = "Case_556x45mm", Groups = {"AmmoGroup_223Remington", "AmmoGroup_556x45mm"}, BoxCount = 25, CanCount = 250, DisplayName = "5.56x45mm FMJ", Weight = 0.015 }
-)
-register("Ammo_556x45mm_HP",
-    { OptimalBarrel = 80, Range = 30, Recoil = 20, MinDamage = 1.8, MaxDamage = 2.4, Penetration = 15, Case = "Case_556x45mm", Groups = {"AmmoGroup_223Remington", "AmmoGroup_556x45mm"}, BoxCount = 25, CanCount = 250, DisplayName = "5.56x45mm HP", Weight = 0.015 }
-)
-register("Ammo_762x39mm_FMJ",
-    { OptimalBarrel = 80, Range = 28, Recoil = 20, MinDamage = 1.2, MaxDamage = 2.5, Penetration = 65, Case = "Case_762x39mm", Groups = {"AmmoGroup_762x39mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x39mm FMJ", Weight = 0.02 }
-)
-register("Ammo_762x39mm_HP",
-    { OptimalBarrel = 80, Range = 28, Recoil = 20, MinDamage = 1.6, MaxDamage = 2.5, Penetration = 13, Case = "Case_762x39mm", Groups = {"AmmoGroup_762x39mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x39mm HP", Weight = 0.02 }
-)
-register("Ammo_762x51mm_FMJ",
-    { OptimalBarrel = 80, Range = 33, Recoil = 25, MinDamage = 1.4, MaxDamage = 2.6, Penetration = 80, Case = "Case_762x51mm", Groups = {"AmmoGroup_308Winchester", "AmmoGroup_762x51mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x51mm FMJ", Weight = 0.02 }
-)
-register("Ammo_762x51mm_HP",
-    { OptimalBarrel = 80, Range = 33, Recoil = 25, MinDamage = 1.8, MaxDamage = 2.6, Penetration = 20, Case = "Case_762x51mm", Groups = {"AmmoGroup_308Winchester", "AmmoGroup_762x51mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x51mm HP", Weight = 0.02 }
-)
-register("Ammo_762x54mm_FMJ",
-    { OptimalBarrel = 80, Range = 35, Recoil = 25, MinDamage = 1.6, MaxDamage = 2.8, Penetration = 80, Case = "Case_762x54mm", Groups = {"AmmoGroup_762x54mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x54mm FMJ", Weight = 0.025 }
-)
-register("Ammo_762x54mm_HP",
-    { OptimalBarrel = 80, Range = 35, Recoil = 25, MinDamage = 2.0, MaxDamage = 2.8, Penetration = 20, Case = "Case_762x54mm", Groups = {"AmmoGroup_762x54mm"}, BoxCount = 20, CanCount = 200, DisplayName = "7.62x54mm FMJ", Weight = 0.025 }
-)
+
+
 register("Ammo_12g_00Buck",
     { OptimalBarrel = 60, Range = 10, Recoil = 50, MinDamage = 1.0, MaxDamage = 2.2, MaxHitCount = 4, Penetration = false, Case = "Case_12g", Groups = {"AmmoGroup_12g"}, BoxCount = 25, CanCount = 250, DisplayName = "12 Gauge 00 Buck", Weight = 0.04, RoundType = "Shell" }
 )
