@@ -93,7 +93,7 @@ function ISORGMMagazine:getReloadText()
 end
 
 function ISORGMMagazine:getReloadTime()
-    return Settings.DefaultMagazineReoadTime -- self.reloadTime
+    return Settings.DefaultMagazineReloadTime -- self.reloadTime
 end
 
 
