@@ -653,42 +653,39 @@ end
 function ISORGMWeapon:syncItemToReloadable(weaponItem)
     local modData = weaponItem:getModData()
     --ISReloadableWeapon.syncItemToReloadable(self, weaponItem)
-    self.defaultAmmo = weaponItem:getAmmoType()
+    --self.defaultAmmo = weaponItem:getAmmoType()
 
     --ISReloadable.syncItemToReloadable(self, weaponItem)
     self.type = modData.type or weaponItem:getType()
     self.moduleName = modData.moduleName
     self.reloadClass = modData.reloadClass
     self.ammoType = modData.ammoType
-    self.loadStyle = modData.reloadStyle
-    self.ejectSound = modData.ejectSound
-    self.clickSound = modData.clickSound
-    self.insertSound = modData.insertSound
-    self.rackSound = modData.rackSound
-    self.maxCapacity = modData.maxCapacity or weaponItem:getClipSize()
-    self.reloadTime = modData.reloadTime or weaponItem:getReloadTime()
+    --self.loadStyle = modData.reloadStyle
+    --self.ejectSound = modData.ejectSound
+    --self.clickSound = modData.clickSound
+    --self.insertSound = modData.insertSound
+    --self.rackSound = modData.rackSound
+    self.maxCapacity = modData.maxCapacity
+    self.reloadTime = modData.reloadTime
     self.rackTime = modData.rackTime
     self.currentCapacity = modData.currentCapacity
 
-    self.openSound = modData.openSound
-    self.closeSound = modData.closeSound
-    self.cockSound = modData.cockSound
+    --self.openSound = modData.openSound
+    --self.closeSound = modData.closeSound
+    --self.cockSound = modData.cockSound
 
-    self.roundChambered = modData.roundChambered
-    self.emptyShellChambered = modData.emptyShellChambered
-    self.containsClip = modData.containsClip
+    self.chambered = modData.chambered
+    self.magazineType = modData.magazineType
     self.speedLoader = modData.speedLoader
 
     self.status = modData.status
     self.feedSystem = modData.feedSystem
 
-    self.clipName = modData.clipName
-    self.clipIcon = modData.clipIcon
     self.cylinderPosition = modData.cylinderPosition
     self.magazineData = modData.magazineData
-    self.preferredAmmoType = modData.preferredAmmoType
-    self.lastRound = modData.lastRound
-    self.loadedAmmo = modData.loadedAmmo
+    self.strictAmmoType = modData.strictAmmoType
+    self.setAmmoType = modData.setAmmoType
+    self.loadedAmmoType = modData.loadedAmmoType
     self.isJammed = modData.isJammed
     self.roundsFired = modData.roundsFired or 0
     self.roundsSinceCleaned = modData.roundsSinceCleaned or 0
@@ -714,19 +711,19 @@ function ISORGMWeapon:syncReloadableToItem(weaponItem)
     --ISReloadable.syncReloadableToItem(self, weaponItem)
     modData.type = self.type
     modData.currentCapacity = self.currentCapacity
+    modData.maxCapacity = self.maxCapacity
     modData.feedSystem = self.feedSystem
     modData.status = self.status
 
     modData.speedLoader = self.speedLoader
-    modData.roundChambered = self.roundChambered
-    modData.emptyShellChambered = self.emptyShellChambered
+    modData.chambered = self.chambered
 
-    modData.containsClip = self.containsClip
+    modData.magazineType = self.magazineType
     modData.cylinderPosition = self.cylinderPosition
     modData.magazineData = self.magazineData
-    modData.preferredAmmoType = self.preferredAmmoType
-    modData.lastRound = self.lastRound
-    modData.loadedAmmo  = self.loadedAmmo
+    modData.strictAmmoType = self.strictAmmoType
+    modData.setAmmoType = self.setAmmoType
+    modData.loadedAmmoType  = self.loadedAmmoType
     modData.isJammed = self.isJammed
     modData.roundsFired = self.roundsFired or 0
     modData.roundsSinceCleaned = self.roundsSinceCleaned or 0
