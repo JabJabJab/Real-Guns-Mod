@@ -113,17 +113,19 @@ Fire.valid = function(this)
         else -- uncocked doubleaction, the chamber will rotate when the player pulls
             ammoType = Ammo.peek(this, true)
         end
-        if ammoType == nil or _Ammo.isCase(ammoType) then return false end
-        return true
+        return ammoType and _Ammo.isAmmo(ammoType) or false
+        --if ammoType == nil or _Ammo.isCase(ammoType) then return false end
+        --return true
 
     elseif Reloadable.isBreak(this) then
         local ammoType = Ammo.get(this, this.cylinderPosition)
-        if ammoType == nil or _Ammo.isCase(ammoType) then return false end
-        return true
+        return ammoType and _Ammo.isAmmo(ammoType) or false
+        --if ammoType == nil or _Ammo.isCase(ammoType) then return false end
+        --return true
     end
 
     -- anything else needs a live round chambered
-    return this.roundChambered > 0
+    return this.chambered and _Ammo.isAmmo(this.chambered) or false
 end
 
 --[[- Called as just as the trigger is pulled.
@@ -141,9 +143,9 @@ Fire.pre = function(this, playerObj, weaponItem)
     -- check for dud, note dud should probably behave as fire empty
 
     -- set piercing bullets here.
-    local ammoData = _Ammo.getData(this.lastRound)
-    if not ammoData then return true end -- loaded but no lastRound?
-    _Stats.setPenetration(weaponItem, ammoData.Penetration or ammoData.PiercingBullets)
+    local ammoData = _Ammo.getData(this.setAmmoType)
+    if not ammoData then return true end -- loaded but no setAmmoType?
+    _Stats.setPenetration(weaponItem, ammoData.Penetration)
     return true
 end
 
@@ -161,17 +163,18 @@ Fire.post = function(this, playerObj, weaponItem)
     Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
     Hammer.release(this, playerObj, false)
 
+    local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
     --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
-    this.roundsFired = this.roundsFired + 1
+    this.roundsFired = 1 + this.roundsFired
     if Reloadable.isAuto(this) then
         --fire shot
-        this.roundChambered = 0
-        this.emptyShellChambered = 1
+
+        this.chambered = ammoData and ammoData.Case or nil
         Bolt.open(this, playerObj, false, weaponItem)
         if this.currentCapacity ~= 0 or not Firearm.hasSlideLock(weaponItem) then
             Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
         end
-        
+
     elseif Reloadable.isRotary(this) then
         -- fire shot
         local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
@@ -191,8 +194,7 @@ Fire.post = function(this, playerObj, weaponItem)
 
     else -- bolt, lever,and pump actions
         -- fire shot
-        this.roundChambered = this.roundChambered - 1
-        this.emptyShellChambered = this.emptyShellChambered + 1
+        this.chambered = ammoData and ammoData.Case or nil
     end
 end
 
@@ -224,17 +226,17 @@ Fire.set = function(this, mode)
         -- find all firing modes allowed
         local thisData = Firearm.getData(this.type)
         local opt = {}
-        if Firearm.isSemiAuto then table.insert(opt, Status.SINGLESHOT) end
-        if Firearm.isFullAuto then table.insert(opt, Status.FULLAUTO) end
-        if Firearm.is2ShotBurst then table.insert(opt, Status.BURST2) end
-        if Firearm.is3ShotBurst then table.insert(opt, Status.BURST3) end
+        if thisData:isSemiAuto() then table.insert(opt, Status.SINGLESHOT) end
+        if thisData:isFullAuto() then table.insert(opt, Status.FULLAUTO) end
+        if thisData:is2ShotBurst() then table.insert(opt, Status.BURST2) end
+        if thisData:is3ShotBurst() then table.insert(opt, Status.BURST3) end
         if #opt == 0 then
             mode = Status.SINGLESHOT
         else
             mode = opt[ZombRand(#opt) +1]
         end
     end
-    this.states = this.states - Bit.band(this.states, FIREMODESTATES) + mode
+    this.status = this.status - Bit.band(this.status, FIREMODESTATES) + mode
     return mode
 end
 
@@ -286,7 +288,7 @@ Reload.valid = function(this, playerObj)
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
         -- we have a speedLoader, check if its .max is less then .max - .current
         -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
-        if speed and this.containsClip ~= 0 then
+        if speed and (this.magazineType or not Firearm.hasMagazine(this.type)) then
             speed = speed:getModData()
             if speed.currentCapacity > 0 then
                 -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
@@ -300,12 +302,11 @@ Reload.valid = function(this, playerObj)
         end
     end
 
-    if this.containsClip == 1 then -- a magazine is currently in place, we can unload
+    if this.magazineType then -- a magazine is currently in place, we can unload
         result = true
-    elseif this.containsClip == 0 then -- gun uses magazines, but none loaded. check if player has some
+    elseif Firearm.hasMagazine(this.type) then -- gun uses magazines, but none loaded. check if player has some
         result = Magazine.findBest(this, playerObj, this.ammoType) ~= nil
-
-    elseif this.containsClip == nil then -- doesn't use a clip, check for speedloaders or bullets
+    else -- doesn't use a clip, check for speedloaders or bullets
         if this.currentCapacity == this.maxCapacity then -- gun already at full
             result = false
         elseif this.currentCapacity < this.maxCapacity then -- check for bullets
@@ -328,10 +329,10 @@ or revolver cylinder.
 ]]
 Reload.start = function(this, playerObj, weaponItem)
     -- NOTE: weaponItem is nil! not passed from ISORGMWeapon:reloadStart
-    if this.containsClip == 1 then
+    if this.magazineType then
         --getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(this.ejectSound, false)
-    elseif this.containsClip == 0 then
+    elseif Firearm.hasMagazine(this.type) then
         --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(this.insertSound, false)
     else
@@ -375,15 +376,15 @@ Reload.perform = function(this, playerObj, weaponItem)
                     speed.magazineData[i] = nil
                     speed.currentCapacity = speed.currentCapacity - 1
                 until true end
-                speed.loadedAmmo = nil
+                speed.loadedAmmoType = nil
                 playerObj:getXp():AddXP(Perks.Reloading, 1)
                 return false
             end
         end
     end
 
-    if this.containsClip ~= nil then
-        if this.containsClip == 1 then -- eject the current clip
+    if Firearm.hasMagazine(this.type) then
+        if this.magazineType then -- eject the current clip
             Magazine.eject(this, playerObj, false)
         else
             Magazine.insert(this, playerObj, false)
@@ -495,11 +496,12 @@ end
 Magazine.eject = function(this, playerObj, playSound)
     local clip = Magazine.create(this, playerObj)
     this.currentCapacity = 0
+    this.maxCapacity = 0
     this.magazineData = {}
     playerObj:getInventory():AddItem(clip)
     ISInventoryPage.dirtyUI()
-    this.containsClip = 0
-    this.loadedAmmo = nil -- might still have a round in chamber, but this is only required for magazine setup anyways
+    this.magazineType = nil
+    this.loadedAmmoType = nil -- might still have a round in chamber, but this is only required for magazine setup anyways
     if (playSound and this.ejectSound) then playerObj:playSound(this.ejectSound, false) end
 end
 
@@ -515,6 +517,7 @@ end
 ]]
 Magazine.insert = function(this, playerObj, playSound)
     local magItem = Magazine.findBest(this, playerObj, this.ammoType)
+
     if magItem == nil then return end
     modData = magItem:getModData()
     local magData = _Magazine.getData(magItem)
@@ -532,11 +535,12 @@ Magazine.insert = function(this, playerObj, playSound)
     end
     -- TODO: flag more of the magazines mod data, faulty ammo and its positions
     this.currentCapacity = modData.currentCapacity
+    this.maxCapacity = modData.maxCapacity
     this.magazineData = modData.magazineData
+    this.magazineType = modData.type
     playerObj:getInventory():Remove(magItem)
     ISInventoryPage.dirtyUI()
-    this.containsClip = 1
-    this.loadedAmmo = modData.loadedAmmo
+    this.loadedAmmoType = modData.loadedAmmoType
     playerObj:getXp():AddXP(Perks.Reloading, 1)
     if (playSound and this.insertSound) then playerObj:playSound(this.insertSound, false) end
 end
@@ -554,16 +558,17 @@ Copies some data from the firearm into the magazines modData, setting up the amm
 
 ]]
 Magazine.create = function(this, playerObj)
-    local magData = _Magazine.getData(this.ammoType)
-    local magItem = InventoryItemFactory.CreateItem(magData.moduleName .. '.' .. this.ammoType)
-    ReloadUtil:setupMagazine(magItem, magData, playerObj)
-    modData = magItem:getModData()
-    -- TODO: transfer fault ammo back to the magazine.
+    local magData = _Magazine.getData(this.magazineType)
+    local item = InventoryItemFactory.CreateItem(magData.moduleName .. '.' .. magData.type)
+    magData:setup(item)
+    --ReloadUtil:setupMagazine(magItem, magData, playerObj)
+    modData = item:getModData()
+    -- TODO: transfer faulty ammo back to the magazine.
     modData.currentCapacity = this.currentCapacity
     modData.magazineData = this.magazineData
-    modData.preferredAmmoType = this.preferredAmmoType
-    modData.loadedAmmo = this.loadedAmmo
-    return magItem
+    modData.strictAmmoType = this.stictAmmoType
+    modData.loadedAmmoType = this.loadedAmmoType
+    return item
 end
 
 --[[- Sets up the ISReloadableMagazine on the InventoryItem
@@ -592,7 +597,8 @@ end
 ]]
 Magazine.findBest = function(this, playerObj, ammoType)
     if ammoType == nil then ammoType = this.ammoType end
-    return _Magazine.findIn(ammoType, this.preferredAmmoType, playerObj:getInventory())
+    return _Magazine.getGroup(ammoType):find(this.strictAmmoType, playerObj:getInventory())
+    --return _Magazine.findIn(ammoType, this.strictAmmoType, playerObj:getInventory())
 end
 
 --- Ammo Functions
@@ -615,10 +621,10 @@ Ammo.load = function(this, ammoType, weaponItem, position)
     if position == nil then position = this.currentCapacity end
     this.magazineData[position] = Ammo.convert(this, ammoType)
 
-    if this.loadedAmmo == nil then
-        this.loadedAmmo = ammoType
-    elseif this.loadedAmmo ~= ammoType then
-        this.loadedAmmo = 'mixed'
+    if this.loadedAmmoType == nil then
+        this.loadedAmmoType = ammoType
+    elseif this.loadedAmmoType ~= ammoType then
+        this.loadedAmmoType = 'mixed'
     end
 end
 
@@ -658,7 +664,7 @@ end
 
 ]]
 Ammo.findBest = function(this, playerObj)
-    return _Ammo.findIn(this.ammoType, this.preferredAmmoType, playerObj:getInventory())
+    return _Ammo.findIn(this.ammoType, this.strictAmmoType, playerObj:getInventory())
 end
 
 --[[- Gets the ammo at specified position.
@@ -725,7 +731,7 @@ Ammo.ejectAll = function(this, playerObj, playSound)
         end
         this.magazineData[index] = nil
     end
-    this.loadedAmmo = nil
+    this.loadedAmmoType = nil
     this.currentCapacity = 0
 end
 
@@ -760,7 +766,7 @@ end
 ]]
 Ammo.next = function(this, playerObj, weaponItem)
     if this.currentCapacity == 0 or this.currentCapacity == nil then
-        this.loadedAmmo = nil
+        this.loadedAmmoType = nil
         return
     end
     local ammoType = this.magazineData[this.currentCapacity]
@@ -769,9 +775,9 @@ Ammo.next = function(this, playerObj, weaponItem)
     end
     -- remove last entry from data table (Note: using #table to find the length is slow)
     -- TODO: check failure to feed jams here
+    this.chambered = ammoType
     this.magazineData[this.currentCapacity] = nil
     this.currentCapacity = this.currentCapacity - 1
-    this.roundChambered = 1
     -- a different round has been chambered, change the stats
     Ammo.setCurrent(this, ammoType, weaponItem)
 
@@ -805,16 +811,16 @@ end
 ]]
 Ammo.setCurrent = function(this, ammoType, weaponItem)
     if ammoType == nil or _Ammo.isCase(ammoType) then return end
-    ammoType = Ammo.convert(this, ammoType)
+    --ammoType = Ammo.convert(this, ammoType)
     local roundData = _Ammo.getData(ammoType)
     if roundData == nil then
-        this.lastRound = nil
-        weaponItem:getModData().lastRound = nil -- NOTE: this seems redundant..left over junk?
+        this.setAmmoType = nil
+        weaponItem:getModData().setAmmoType = nil -- NOTE: this seems redundant..left over junk?
         return
     end
-    if ammoType ~= this.lastRound then
-        this.lastRound = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
-        weaponItem:getModData().lastRound = ammoType
+    if ammoType ~= this.setAmmoType then
+        this.setAmmoType = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
+        weaponItem:getModData().setAmmoType = ammoType
         _Stats.set(weaponItem)
     end
     -- NOTE: moved to Fire.pre
@@ -843,14 +849,16 @@ Rack.valid = function(this, playerObj)
         if Cylinder.isOpen(this) then return true end
         return false
     end
-    if this.emptyShellChambered == 1 then return true end
+    if this.chambered and _Ammo.isCase(this.chambered) then return true end
     if ReloadManager[1]:getDifficulty() < 3 or playerObj:getJoypadBind() ~= -1 then
         -- TODO: proper jamming checks
         if this.isJammed then return true end
         if Bolt.isOpen(this) and isForceOpen(this) then
             return true
         end
-        return this.roundChambered == 0 and this.currentCapacity > 0
+        -- TODO: check for rotary/break...just checking this.currentCapacity fails for them
+        return (not this.chambered and not _Ammo.isAmmo(this.chambered)) and this.currentCapacity > 0
+        --return this.roundChambered == 0 and this.currentCapacity > 0
     end
 
     return true
@@ -967,34 +975,20 @@ Bolt.open = function(this, playerObj, playSound, weaponItem)
     if Bolt.isOpen(this) then return end -- already opened!
     -- first open the slide...
     this.status = this.status + Status.OPEN
+    -- TODO: fix sound
     if (playSound and this.openSound) then playerObj:playSound(this.openSound, false) end
     local square = playerObj:getCurrentSquare()
-    local ammoType = this.lastRound
-    local ammoItem = nil
-
-    -- eject whatever is in the chamber
-    if this.roundChambered == 1 then
-        if ammoType == nil then -- some other mod (aka survivors) was using this gun, lastRound isn't set!
-            this.lastRound = Ammo.convert(this, this.ammoType)
-        end
-        ammoItem = InventoryItemFactory.CreateItem(_Ammo.getData(this.lastRound).moduleName ..'.'.. this.lastRound)
-    elseif this.emptyShellChambered == 1 then
-        local ammoData = _Ammo.getData(ammoType)
-        if ammoData and ammoData.Case and Settings.CasesEnabled then
-            -- TODO: cases need proper module checking
-            ammoItem = InventoryItemFactory.CreateItem('ORGM.' .. ammoData.Case)
-        end
-    else -- nothing actually chambered?
-        return
-    end
+    local ammoType = this.chambered
+    this.chambered = nil
+    local ammoItem = InventoryItemFactory.CreateItem('ORGM.'.. this.ammoType)
+    -- TODO: check if its a case and Settings.CasesEnabled
 
     -- TODO: check failure to extract
     this.isJammed = nil
-    this.roundChambered = 0
-    this.emptyShellChambered = 0
     -- TODO: check failure to eject
 
     if (ammoItem and square) then
+        -- TODO: fall out sound
         square:AddWorldInventoryItem(ammoItem, 0, 0, 0)
         ISInventoryPage.dirtyUI()
     end
@@ -1018,6 +1012,7 @@ Bolt.close = function(this, playerObj, playSound, weaponItem)
     end
     if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
     this.status = this.status - Status.OPEN
+    -- TODO: fix sound
     if (playSound and this.closeSound) then playerObj:playSound(this.closeSound, false) end
     -- TODO: load next shot, this isn't always true though:
     -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
