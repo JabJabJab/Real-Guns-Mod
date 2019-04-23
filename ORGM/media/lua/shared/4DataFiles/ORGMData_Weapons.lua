@@ -4,98 +4,404 @@ All calls made by this script are to `ORGM.Firearm.register`. See the documentio
 
 @script ORGMData_Weapons.lua
 @author Fenris_Wolf
-@release 3.10
+@release 4.0
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Weapons.lua
 
 ]]
 local Firearm = ORGM.Firearm
-local Flags = ORGM.Firearm.Flags
+local FirearmGroup = Firearm.FirearmGroup
+local FirearmType = Firearm.FirearmType
+local Flags = Firearm.Flags
 
-Firearm.registerGroup("Military")
-Firearm.registerGroup("SelectFire")
-Firearm.registerGroup("Rifle")
-Firearm.registerGroup("Automatic")
+-- Top level groups
+FirearmGroup:new("Group_Main")
+FirearmGroup:new("Group_RareCollectables")
 
-Firearm.registerGroup("M16")
 
-Firearm.register("M16", {
-    lastChanged = 24,
-    category = ORGM.RIFLE,
-    barrelLength = 20,
-    isPolice = ORGM.VERYRARE,
-    isMilitary = ORGM.COMMON,
-    soundProfile = "Rifle-AR",
-    Weight = 3.3,
-    SwingSound = "ORGMAR15",
-    Icon = "M16",
-    WeaponSprite = "m16",
+FirearmGroup:new("Group_Classifications", { Groups = { Group_Main = 1, } })
+FirearmGroup:new("Group_Pistols", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_Revolvers", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_Rifles", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_Shotguns", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_SubMachineGuns", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_LightMachineGuns", { Groups = { Group_Classifications = 1, } })
 
-    -- year = 1964, --
-    classification = "IGUI_Firearm_AssaultRifle",
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Colt",
-    description = "IGUI_Firearm_Desc_M16",
+FirearmGroup:new("Group_Manufacturers", { Groups = { Group_Main = 1, } })
+FirearmGroup:new("Group_Colt", { Groups = { Group_Manufacturers = 1, } })
 
-    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+-- Mid level Groups - groups that are members of multiple groups
+FirearmGroup:new("Group_Colt_Revolvers", { Groups = { Group_Colt = 1, Group_Revolvers = 1 } })
+FirearmGroup:new("Group_Colt_Pistols", { Groups = { Group_Colt = 1, Group_Rifles = 1 } })
+FirearmGroup:new("Group_Colt_Rifles", { Groups = { Group_Colt = 1, Group_Rifles = 1 } })
 
-    ammoType = "MagGroup_STANAG",
-    variants = {
-        A1 = {
+-- Bottom level groups
+FirearmGroup:new("Group_Colt_Anaconda", { Groups = { Group_Colt_Revolvers = 1, } })
+FirearmGroup:new("Group_Colt_CAR15", { Groups = { Group_Colt_Rifles = 1, } })
+
+
+
+FirearmType:newCollection("Colt_M16", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/M16_rifle
+        -- https://en.wikipedia.org/wiki/List_of_Colt_AR-15_%26_M16_rifle_variants
+        -- https://en.wikipedia.org/wiki/CAR-15
+        -- https://en.wikipedia.org/wiki/M4_carbine
+        -- https://en.wikipedia.org/wiki/ArmaLite_AR-15
+        -- https://en.wikipedia.org/wiki/Colt_AR-15
+        Groups = { Group_Colt_CAR15 = 1 },
+        lastChanged = 24,               category = ORGM.RIFLE,
+        soundProfile = "Rifle-AR",      SwingSound = "ORGMAR15",
+        ammoType = "MagGroup_STANAG",
+        Weight = 3.3,                   barrelLength = 20,
+        WeaponSprite = "m16",           Icon = "M16",
+
+        classification = "IGUI_Firearm_AssaultRifle",
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_M16",
+        feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO,
+    }, {
+        M601 = { -- Colt AR-15 Model 601
+            year = 1959,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+
+        M604 = { -- Colt M16 Model 604
+            year = 1964,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M603 = { -- Colt M16A1 Model 603
             year = 1967,
-            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
-         },
-        A2 = {
-            year = 1982,
-            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
         },
-        A3 = {
-            year = 1982,
-            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+        M605A = { -- Colt CAR-15 Carbine Model 605A
+            year = 1962,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            barrelLength = 15,
+            addFeatures = Flags.FULLAUTO,
         },
-        A4 = {
+        M605B = { -- Colt CAR-15 Carbine Model 605B
+            year = 1966,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            barrelLength = 15,
+            addFeatures = Flags.FULLAUTO + Flags.BURST3,
+        },
+        M607 = { -- Colt CAR-15 SMG Model 607
+            year = 1966,
+            barrelLength = 10,
+            addFeatures = Flags.FULLAUTO,
+            addGroups = { Group_Colt_CAR15 = 1, Group_RareCollectables = 50, }, -- 50 manufactured
+        },
+        M645 = { -- M16A2 Colt Model 645
             year = 1982,
-            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+        M646 = { -- M16A3 Colt Model 646
+            year = 1982,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M945 = { -- M16A4 Colt Model 945
+            year = 1998,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+        M920 = { -- M4 Model 920
+            barrelLength = 14.5,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+            --classification = "IGUI_Firearm_AssaultCarbine",
+            year = 1984,
+            --country = "IGUI_Firearm_Country_US",
+            --manufacturer = "IGUI_Firearm_Manuf_Colt",
+            --description = "IGUI_Firearm_Desc_M4C",
+        },
+        M921 = { -- M4A1 Model 921
+            barrelLength = 14.5,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M933 = { -- M4 Commando Model 933
+            barrelLength = 11.5,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M935 = { -- M4 Commando Model 935
+            barrelLength = 11.5,
+            addGroups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+})
+FirearmType:newCollection("Colt_Anaconda", {
+        -- sources:
+        -- http://www.coltfever.com/Anaconda.html
+        -- https://en.wikipedia.org/wiki/Colt_Anaconda
+        -- https://www.coltforum.com/forums/colt-revolvers/73849-anaconda-bsts-3-print.html
+        -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
+        Groups = { Group_Revolvers = 1, Group_Colt_Anaconda = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMColtAnac",
+
+        ammoType = "AmmoGroup_44Magnum", speedLoader = 'SpeedLoader446',
+        Weight = 1.5,                   barrelLength = 6,
+        WeaponSprite = "coltanaconda",  Icon = "ColtAnac",
+        maxCapacity = 6,
+
+        classification = "IGUI_Firearm_Revolver",
+        year = 1990,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_ColtAnac",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+    },{
+        MM3040 = { --  Anaconda Revolver 44 Magnum 4" SS
+            barrelLength = 4,       Weight = 1.3,
+        },
+        MM3040DT = {  --  Anaconda Revolver 44 Magnum 4" SS (Drilled & Tapped)
+            barrelLength = 4,       Weight = 1.3,
+        },
+        MM3040MP = {  --  Anaconda Revolver 44 Magnum 4" SS Mag-Na-Ported
+            barrelLength = 4,       Weight = 1.3,
+        },
+        MM3040KD = { -- Kodiak Revolver 44 Magnum 4" SS Mag-Na-Ported
+            barrelLength = 4,       Weight = 1.3,
+            year = 1993,
+            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
+        },
+        MM3050 = { -- Anaconda Revolver 44 Magnum 5" ONLY 150 MANUFACTURERED
+            barrelLength = 5,       Weight = 1.4,
+            addGroups = {Group_RareCollectables = 150,}, -- 150 manufactured
+        },
+        MM3060 = { -- Anaconda Revolver 44 Magnum 6" SS
+        },
+        MM3060DT = { -- Anaconda Revolver 44 Magnum 6" SS (Drilled & Tapped)
+        },
+        MM3060MP = { -- Anaconda Revolver 44 Magnum 6" SS Mag-Na-Ported
+        },
+        MM3060KD = { -- Kodiak Revolver 44 Magnum 6" SS Mag-Na-Ported
+            year = 1993,
+            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
+        },
+        MM3061FE = { -- Anaconda First Edition Revolver 44 magnum 6" Bright SS
+            year = 1990,
+            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
+        },
+        MM3080 = { -- Anaconda Revolver 44 Magnum 8" SS
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM3080L = { -- Colt Limited Edition Anaconda Legacy Model MM3080
+            -- 24K Gold embellishments and Black Pearl Titanium finish.
+            -- This model number is probably wrong, but i need some sort of model prefix.
+            -- The model number on the factory box simply reads MM3080
+            year = 1993,
+            barrelLength = 8,       Weight = 1.7,
+            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
+        },
+        MM3080DT = { -- Anaconda Revolver 44 Magnum 8" SS (Drilled & Tapped)
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM3080MP = { -- Anaconda Revolver 44 Magnum 8" SS Mag-Na-Ported
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM3080HT = { -- Anaconda Revolver 44 Magnum 8" SS (Hunter)
+            year = 1991,
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM3080PDT = { -- Anaconda Revolver 44 Magnum 8" Ported SS ProPorting
+            year = 1991,
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM3080RT = { -- Anaconda Realtree Revolver 44 Magnum 8" Camo
+            year = 1996,
+            addFeatures = Flags.NOSIGHTS,
+            barrelLength = 8,       Weight = 1.7,
+        },
+        MM4540 = { -- Anaconda Revolver 45 Colt 4" SS VERY RARE
+            year = 1993,
+            barrelLength = 4,       Weight = 1.3,
+            ammoType = "AmmoGroup_45Colt",
+            speedLoader = nil,
+            addGroups = {Group_RareCollectables = 100,},
+        },
+        MM4560 = { -- Anaconda Revolver 45 Colt 6" SS
+            year = 1993,
+            ammoType = "AmmoGroup_45Colt",
+            speedLoader = nil,
+        },
+        MM4580 = { -- Anaconda Revolver 45 Colt 8" SS
+            year = 1993,
+            ammoType = "AmmoGroup_45Colt",
+            barrelLength = 8,       Weight = 1.7,
+            speedLoader = nil,
         },
     }
-})
+)
+FirearmType:newCollection("Colt_Python", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Colt_Python
+        -- http://www.coltfever.com/Python.html
+        -- https://www.handgunsmag.com/editorial/colt_python_complete_history/138916
+        -- https://www.coltforum.com/forums/python/71904-3-python-question-5.html
+        -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
+        Groups = { Group_Revolvers = 1, Group_Colt_Python = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMColtPyth",
 
---[[
-register("ColtAnac", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+        ammoType = "AmmoGroup_357Magnum", speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,                   barrelLength = 6,
+        WeaponSprite = "coltpython",    Icon = "ColtAnac",
+        maxCapacity = 6,
+        --38 ounces (1.1 kg) to 48 ounces (1.4 kg)
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 6,
-    barrelLengthOpt =  {4, 6, 8},
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader446',
-    soundProfile = "Revolver",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1955,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_ColtPyth",
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1990,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Colt",
-    description = "IGUI_Firearm_Desc_ColtAnac",
-})
-register("ColtPyth", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 2.5, 3, 4, 6, 8},
+    },{
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 6,
-    barrelLengthOpt = { 2.5, 3, 4, 6, 8},
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader3576',
-    soundProfile = "Revolver",
+        I1986 = { -- Double Diamond Python Model I1986
+            -- 6" Bright SS
+            --A stainless steel Ultimate polish six inch Python and an Officer's Model ACP .45, smooth rosewood grips, presentation cased.
+            year = 1986,
+        },
+        -- I3020 Python Revolver 357 Magnum 2-1/2" SS
+        I3020 = {
+        },
+        -- I3021 Python Revolver 357 Magnum 2-1/2" Bright SS
+        I3021 = {
+        },
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1955,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Colt",
-    description = "IGUI_Firearm_Desc_ColtPyth",
-})
+        I3030 = { -- Colt Combat Python Model I3030
+            -- 3" SS
+            --2003 a handful? of 3" Stainless guns were produced by Colt for Carol Wilkerson.
+            -- given colt reporting a total of 1100 3" inchers, 500 of which are "combat pythons"
+            -- (I3630 and I3631) and 300 for the I3630CP, maybe 300 produced for this one as well?
+            year = 2003,
+        },
+        -- I3040 Python Revolver 357 Magnum 4" SS
+        I3040 = {
+        },
+
+        I3040CS = { -- Colt Python Elite Model I3040CS
+            -- 4" SS
+            year = 1997,
+        },
+        -- I3041 Python Revolver 357 Magnum 4" Bright SS
+        I3041 = {
+        },
+        -- I3060 Python Revolver 357 Magnum 6" SS
+        I3060 = {
+        },
+
+        I3060CS = { -- Colt Python Elite Model I3060CS
+            -- 6" SS
+            year = 1997,
+        },
+        I3060ESS = { -- Colt Python Silver Snake Model I3060ESS
+            --   6" SS -- 250 produced
+            year = 1983,
+        },
+        -- I3061 Python Revolver 357 Magnum 6" Bright SS
+        I3061 = {
+        },
+        -- I3080 Python Revolver 357 Magnum 8" SS (1980?)
+        I3080 = {
+        },
+        -- I3081 Python Revolver 357 Magnum 8" Bright SS (1980?)
+        I3081 = {
+        },
+
+        -- I3620 Python Revolver 357 Magnum 2-1/2" Blue
+        I3620 = {
+        },
+
+
+        I3620SE = { -- Colt Python Snake Eyes Model I3620SE
+            -- 2-1/2" Blue
+            year = 1989, -- 500 produced
+        },
+        I3621SE = { -- Colt Python Snake Eyes Model I3621SE
+            -- 2-1/2" Bright SS
+            year = 1989, -- 500 produced
+        },
+        I3630 = { -- Colt Combat Python Model I3630
+            -- 3" Blue
+            -- 200 produced by Pacific International. 8" Target model cut and rechambered
+            -- 1983 colt used this model number themselves, 500 produced by colt (K serial number)
+            year = 1980,
+        },
+        I3630CP = { -- Colt Combat Python Model I3630CP
+            -- 3" Blue
+            -- 1987-88 Colt produces 300 3" Combat Pythons for Lew Horton
+            year = 1987,
+        },
+        I3631 = { -- Colt Combat Python Model I3631
+            -- 3" Nickel
+            -- 50 produced by Pacific International. 8" Target model cut and rechambered
+            -- 1983 colt used this model number themselves, 23 produced by colt (K serial number)
+            year = 1980,
+        },
+        -- I3640 Python Revolver 357 Magnum 4" Blue
+        I3640 = {
+        },
+        I3640CS = { -- Colt Python Elite Model I3640CS
+            -- 4" Blued
+            year = 1997,
+        },
+
+        -- I3660 Python Revolver 357 Magnum 6" Blue (1979?)
+        I3660 = {
+        },
+        I3660CS = { -- Colt Python Elite Model I3660CS
+            -- 6" Blue
+            year = 1997,
+        },
+        I3660H = { -- Colt Custom Python Model I3660H
+            -- 6" Blue - Custom Tuned with Elliason Sights
+            year = 1980,
+        },
+        -- I3661 Python Revolver 357 Magnum 6" Nickel
+        I3661 = {
+        },
+
+        I3680 = { -- Colt Python Hunter Model I3680
+            --  8" Blue (note: this might not be the  hunter, info is sketchy)
+            year = 1981,
+            barrelLength = 8,
+        },
+        I3681 = { -- Colt Python Silhouette Model I3681
+            --  8" Blue (note: pure assumption here, i'm guesing the model number)
+            year = 1983,
+            barrelLength = 8,
+        },
+        I3682 = { -- Colt Python Target Model I3682
+            -- 38 Special 8" Blue -- 3,489 produced
+            year = 1980,
+            barrelLength = 8,
+        },
+        I3683 = { -- Colt Python Target Model I3683
+            -- 38 Special 8" Nickel -- 251 produced
+            year = 1980,
+            barrelLength = 8,
+        },
+        -- I3840 Python Revolver 357 Magnum 4" Electroless Nickel
+        I3840 = {
+        },
+
+    }
+)--[[
 register("ColtSAA", {
     features = Flags.SINGLEACTION + Flags.SAFETY,
     feedSystem = Flags.ROTARY,
