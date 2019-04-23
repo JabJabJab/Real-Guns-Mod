@@ -9,58 +9,64 @@ All calls made by this script are to `ORGM.Magazine.register`. See the documenti
 
 ]]
 local Magazine = ORGM.Magazine
+local MagazineGroup = Magazine.MagazineGroup
+local MagazineType = Magazine.MagazineType
 local Flags = Magazine.Flags
 
-Magazine.registerGroup("MagGroup_STANAG")
+MagazineGroup:new("MagGroup_STANAG", {ammoType = 'AmmoGroup_556x45mm'})
 
-Magazine.register("Mag_STANAG",
-    {
+MagazineType:newCollection("Mag_STANAG", {
         ammoType = 'AmmoGroup_556x45mm',
-        Groups = {"MagGroup_STANAG"},
         Icon = "STANAGMag",
-
-        variants = {
-            x5 = {
-                features = Flags.BOX,
-                maxCapacity = 5,
-                Weight = 0.2,
-            },
-            x10 = {
-                features = Flags.BOX,
-                maxCapacity = 10,
-                Weight = 0.2,
-            },
-            x20 = {
-                features = Flags.BOX,
-                maxCapacity = 20,
-                Weight = 0.2,
-            },
-            x30 = {
-                features = Flags.BOX,
-                maxCapacity = 30,
-                Weight = 0.2,
-            },
-            x40 = {
-                features = Flags.BOX,
-                maxCapacity = 40,
-                Weight = 0.2,
-            },
-            x50 = {
-                features = Flags.BOX,
-                maxCapacity = 50,
-                Weight = 0.2,
-            },
-            x60 = {
-                features = Flags.CASKET,
-                maxCapacity = 60,
-                Weight = 0.2,
-            },
-            x100 = {
-                features = Flags.CASKET,
-                maxCapacity = 100,
-                Weight = 0.2,
-            },
-        }
+    },{
+        x5 = {
+            features = Flags.BOX,
+            maxCapacity = 5,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 10 },
+        },
+        x10 = {
+            features = Flags.BOX,
+            maxCapacity = 10,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 15 },
+        },
+        x20 = {
+            features = Flags.BOX,
+            maxCapacity = 20,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 20 },
+        },
+        x30 = {
+            features = Flags.BOX,
+            maxCapacity = 30,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 40 },
+        },
+        x40 = {
+            features = Flags.BOX,
+            maxCapacity = 40,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 10 },
+        },
+        x50 = {
+            features = Flags.BOX,
+            maxCapacity = 50,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 4 },
+        },
+        x60 = {
+            features = Flags.CASKET,
+            maxCapacity = 60,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 2 },
+        },
+        x100 = {
+            features = Flags.CASKET,
+            maxCapacity = 100,
+            Weight = 0.2,
+            Groups = { MagGroup_STANAG = 1 },
+        },
     }
 )
 
