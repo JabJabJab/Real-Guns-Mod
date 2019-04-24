@@ -11,7 +11,6 @@ This file contains no functions. See `ORGM.Server.Callbacks`
 local Callbacks = ORGM.Server.Callbacks
 Events.OnPostDistributionMerge.Add(Callbacks.removeBaseFirearms)
 
---Events.OnPostDistributionMerge.Add(ORGM.Server.buildRarityTables)
 Events.OnFillContainer.Add(Callbacks.onFillContainer)
 
 Events.OnDistributionMerge.Add(Callbacks.loadPatches)
