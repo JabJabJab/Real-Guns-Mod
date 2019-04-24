@@ -109,7 +109,7 @@ Menu.firearm = function()
     ----------------------------------------------------------------------------
     -- Controls Submenu
     do
-        local controlMenu = thisContext:addOption("Controls"), thisItem, nil)
+        local controlMenu = thisContext:addOption("Controls", thisItem, nil)
         local subMenuControl = thisContext:getNew(thisContext)
         thisContext:addSubMenu(controlMenu, subMenuControl)
 
@@ -175,9 +175,9 @@ Menu.firearm = function()
 
         if Firearm.hasSafety(thisItem) then
             if Fire.isSafe(thisData) then
-                subMenuControl:addOption("Disengage Safety"), thisItem, Menu.onFireModeToggle, playerObj, thisData, false)
+                subMenuControl:addOption("Disengage Safety", thisItem, Menu.onFireModeToggle, playerObj, thisData, false)
             else
-                subMenuControl:addOption("Engage Safety"), thisItem, Menu.onFireModeToggle, playerObj, thisData, true)
+                subMenuControl:addOption("Engage Safety", thisItem, Menu.onFireModeToggle, playerObj, thisData, true)
             end
         end
 
@@ -186,7 +186,7 @@ Menu.firearm = function()
     ----------------------------------------------------------------------------
     -- Actions Submenu
     do
-        local actionMenu = thisContext:addOption("Actions"), thisItem, nil)
+        local actionMenu = thisContext:addOption("Actions", thisItem, nil)
         local subMenuAction = thisContext:getNew(thisContext)
         thisContext:addSubMenu(actionMenu, subMenuAction)
 
@@ -204,7 +204,7 @@ Menu.firearm = function()
     ----------------------------------------------------------------------------
     -- Options Submenu
     do
-        local optionMenu = thisContext:addOption("Options"), thisItem, nil)
+        local optionMenu = thisContext:addOption("Options", thisItem, nil)
         local subMenuOption = thisContext:getNew(thisContext)
         thisContext:addSubMenu(optionMenu, subMenuOption)
     end
