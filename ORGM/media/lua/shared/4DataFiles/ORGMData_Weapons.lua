@@ -318,10 +318,12 @@ FirearmType:newCollection("Colt_Anaconda", {
         },
         MM3040MP = {  --  Anaconda Revolver 44 Magnum 4" SS Mag-Na-Ported
             barrelLength = 4,       Weight = 1.3,
+            addFeatures = Flags.PORTED,
         },
         MM3040KD = { -- Kodiak Revolver 44 Magnum 4" SS Mag-Na-Ported
             barrelLength = 4,       Weight = 1.3,
             year = 1993,
+            addFeatures = Flags.PORTED,
             addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3050 = { -- Anaconda Revolver 44 Magnum 5" ONLY 150 MANUFACTURERED
@@ -333,9 +335,11 @@ FirearmType:newCollection("Colt_Anaconda", {
         MM3060DT = { -- Anaconda Revolver 44 Magnum 6" SS (Drilled & Tapped)
         },
         MM3060MP = { -- Anaconda Revolver 44 Magnum 6" SS Mag-Na-Ported
+            addFeatures = Flags.PORTED,
         },
         MM3060KD = { -- Kodiak Revolver 44 Magnum 6" SS Mag-Na-Ported
             year = 1993,
+            addFeatures = Flags.PORTED,
             addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3061FE = { -- Anaconda First Edition Revolver 44 magnum 6" Bright SS
@@ -358,6 +362,7 @@ FirearmType:newCollection("Colt_Anaconda", {
         },
         MM3080MP = { -- Anaconda Revolver 44 Magnum 8" SS Mag-Na-Ported
             barrelLength = 8,       Weight = 1.7,
+            addFeatures = Flags.PORTED,
         },
         MM3080HT = { -- Anaconda Revolver 44 Magnum 8" SS (Hunter)
             year = 1991,
@@ -366,6 +371,7 @@ FirearmType:newCollection("Colt_Anaconda", {
         MM3080PDT = { -- Anaconda Revolver 44 Magnum 8" Ported SS ProPorting
             year = 1991,
             barrelLength = 8,       Weight = 1.7,
+            addFeatures = Flags.PORTED,
         },
         MM3080RT = { -- Anaconda Realtree Revolver 44 Magnum 8" Camo
             year = 1996,
@@ -553,6 +559,8 @@ FirearmType:newCollection("Colt_Python", {
 )
 FirearmType:newCollection("Colt_SSA", {
         -- sources:
+        -- https://en.wikipedia.org/wiki/Colt_SAA
+        -- http://www.coltfever.com/Colt_Single_Action_Army.html
         Groups = { Group_Colt_Revolvers = 1, Group_Colt_SSA = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtSAA",
@@ -572,28 +580,39 @@ FirearmType:newCollection("Colt_SSA", {
         feedSystem = Flags.ROTARY,
         --barrelLengthOpt = {5.5, 7.5 }
     },{
-})
-FirearmType:newCollection("Ruger_Alaskan", {
-        -- sources:
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Alaskan = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
+        -- Colt SAA 3rd Gen .44 Special Model P-1770.... 997 Model P-1770’s produced in 1981 with a total production of 3917
 
-        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.2,                   barrelLength = 2.5,
-        WeaponSprite = "rugalaskan",    Icon = "RugAlas",
-        maxCapacity = 6,
+        -- P1540 Model P (SAA) Revolver 32-20 4-3/4" Colored Case / Blue
+        -- P1541 Model P (SAA) Revolver 32-20 4-3/4" Nickel
+        -- P1550 Model P (SAA) Revolver 32-20 5-1/2" Colored Case / Blue
+        -- P1551 Model P (SAA) Revolver 32-20 5-1/2" Nickel
+        -- P1570 Model P (SAA) Revolver 32-20 7-1/2" Colored Case / Blue
+        -- P1571 Model P (SAA) Revolver 32-20 7-1/2" Nickel
 
-        classification = "IGUI_Firearm_Revolver",
-        year = 2005,
-        country = "IGUI_Firearm_Country_US",
-        manufacturer = "IGUI_Firearm_Manuf_Ruger",
-        description = "IGUI_Firearm_Desc_RugAlas",
+        -- P1640 Model P (SAA) Revolver .357 4-3/4" Colored Case / Blue
 
-        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-        feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 2.5, 7.5, 9.5 },
-    },{
+        P1840 = { -- Colt PeackMaker SAA Model P1840 --  45 Colt 4-3/4" Blue / Color Case
+            barrelLength = 4.75,
+        },
+        P1841 = { -- Colt PeackMaker SAA Model P1841 --  45 Colt 4-3/4" Nickel
+            barrelLength = 4.75,
+        },
+        P1850 = { -- Colt PeackMaker SAA Model P1850 --  45 Colt 5-1/2" Blue / Color Case
+        },
+        P1856 = { -- Colt PeackMaker SAA Model P1856 --  45 Colt 5-1/2" Nickel
+        },
+        P1870 = { -- Colt PeackMaker SAA Model P1870 --  45 Colt 7-1/2" Blue / Color Case
+            barrelLength = 7.5,
+        },
+
+        -- P1841 Model P (SAA) Revolver
+        -- P1850 Model P (SAA) Revolver
+        -- P1856 Model P (SAA) Revolver
+        -- P1870 Model P (SAA) Revolver
+        -- P1940 Model P (SAA) Revolver 44-40 4-3/4" Blue / Color Case
+        -- P1941 Model P (SAA) Revolver 44-40 4-3/4" Nickel
+        -- P1950 Model P (SAA) Revolver 44-40 5-1/2" Blue / Color Case
+        -- P1956 Model P (SAA) Revolver 44-40 5-1/2" Nickel
 })
 FirearmType:newCollection("Ruger_Blackhawk", {
         -- sources:
@@ -663,6 +682,81 @@ FirearmType:newCollection("Ruger_Redhawk", {
         feedSystem = Flags.ROTARY,
         --barrelLengthOpt = { 4, 5.5, 7.5 }
     },{
+})
+FirearmType:newCollection("Ruger_SuperRedhawk", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_Super_Redhawk
+        -- https://www.ruger.com/products/superRedhawkStandard/models.html
+        --
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Alaskan = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
+
+        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,                   barrelLength = 7.5,
+        WeaponSprite = "rugalaskan",    Icon = "RugAlas",
+        maxCapacity = 6,
+
+        classification = "IGUI_Firearm_Revolver",
+        year = 1987,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugAlas",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 2.5, 7.5, 9.5 },
+    },{
+
+        M5501 = { -- Ruger Super Redhawk Model 5501 -- .44 mag. 7.5" SS
+            ammoType = "AmmoGroup_44Magnum",
+        },
+
+        M5502 = { -- Ruger Super Redhawk Model 5502 .44 mag. 9.5" SS
+            ammoType = "AmmoGroup_44Magnum",
+        },
+        -- Ruger Super Redhawk Model 5505 .454 7.5" SS
+        M5505 = {
+            ammoType = "AmmoGroup_454Casull",
+        },
+        -- Ruger Super Redhawk Model 5507 .480 ruger 7.5" SS
+        M5507 = {
+            ammoType = "AmmoGroup_480Ruger",
+        },
+        -- Ruger Super Redhawk Model 5525 10mm auto 6.5" SS
+        M5525 = {
+            ammoType = "AmmoGroup_10x25mm",
+        },
+        -- Ruger Super Redhawk Model 5517 .454 5" SS TALO
+        M5517 = {
+            ammoType = "AmmoGroup_454Casull",
+        },
+        -- Ruger Super Redhawk Model 5520 .44 Mag 7.5" SS TALO
+        M5520 = {
+            ammoType = "AmmoGroup_44Magnum",
+        },
+        -- Ruger Super Redhawk Model 5521 .41 Mag 7.5" SS DAVIDSONS
+        M5521 = {
+            ammoType = "AmmoGroup_41Magnum",
+        },
+        -- Ruger Super Redhawk Model 5522 10mm auto 7.5" SS TALO
+        M5522 = {
+            ammoType = "AmmoGroup_10x25mm",
+        },
+
+        -- Alaskans are 2005
+        -- 5301 Alaskan .454 2.5" SS
+        M5301 = {
+            ammoType = "AmmoGroup_454Casull",
+        },
+        -- 5302 Alaskan .480 Ruger 2.5" SS
+        M5302 = {
+            ammoType = "AmmoGroup_480Ruger",
+        },
+        -- 5303 Alaskan .44 Mag 2.5" SS
+        M5303 = {
+            ammoType = "AmmoGroup_44Magnum",
+        },
 })
 FirearmType:newCollection("Ruger_SecuritySix", {
         -- sources:
@@ -869,7 +963,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
         },
         M444B8 = { -- Taurus Raging Bull Model 444B8
             ammoType = "AmmoGroup_44Magnum",
-            maxCapacity = 6, barrelLength = 8.425, weight = 1.786
+            maxCapacity = 6, barrelLength = 8.425, weight = 1.786,
             addFeatures = Flags.PORTED,
         },
         M444Mulit = { -- Taurus Raging Bull Ultralight Model 444 Multi
@@ -883,7 +977,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
         },
         M444SS8 = { -- Taurus Raging Bull Model 444SS8
             ammoType = "AmmoGroup_44Magnum",
-            maxCapacity = 6, barrelLength = 8.425, weight = 1.786
+            maxCapacity = 6, barrelLength = 8.425, weight = 1.786,
             addFeatures = Flags.PORTED,
         },
         M454B6 = { -- Taurus Raging Bull Model 454B6
@@ -891,7 +985,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
             addFeatures = Flags.PORTED,
         },
         M454B8 = { -- Taurus Raging Bull Model 454B8
-            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786,
             addFeatures = Flags.PORTED,
         },
         M454SS5M = { -- Taurus Raging Bull Model 454SS5M
@@ -903,7 +997,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
             addFeatures = Flags.PORTED,
         },
         M454SS8M = { -- Taurus Raging Bull Model 454SS8M
-            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786,
             addFeatures = Flags.PORTED,
         },
         M480SS5M = { -- Taurus Raging Bull Model 480SS5M
@@ -918,66 +1012,112 @@ FirearmType:newCollection("Taurus_RagingBull", {
         },
         M480SS8M = { -- Taurus Raging Bull Model 480SS8M
             ammoType = "AmmoGroup_480Ruger",
-            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786,
             addFeatures = Flags.PORTED,
         },
+})
 
+--************************************************************************--
+-- semi pistols
+--************************************************************************--
+FirearmType:newCollection("AMT_Automag", {
+        -- sources:
+        Groups = { Group_AMT_Pistols = 1, Group_AMT_Automag = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Large",      SwingSound = "ORGMAutomag",
+
+        ammoType = "AutomagVMag",
+        Weight = 1.3,                   barrelLength = 6.5,
+        WeaponSprite = "automagv",      Icon = "AutomagV",
+        maxCapacity = 5,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1993,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_AutomagV",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+    },{
+})
+FirearmType:newCollection("Beretta_92", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Beretta_92
+        -- https://en.wikipedia.org/wiki/Beretta_M9
+        Groups = { Group_AMT_Pistols = 1, Group_AMT_Automag = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMBeretta",
+
+        ammoType = "MagGroup_Beretta_92",
+        Weight = 0.8,                   barrelLength = 4.9,
+        WeaponSprite = "Ber92Mag",      Icon = "Ber92",
+        maxCapacity = 15,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1975,
+        country = "IGUI_Firearm_Country_IT",
+        manufacturer = "IGUI_Firearm_Manuf_Beretta",
+        description = "IGUI_Firearm_Desc_Ber92",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        M92 = { -- original. different mag group
+            ammoType = "MagGroup_Beretta_92_early",
+        },
+        M92S = { -- different mag group
+            year = 1978,
+            ammoType = "MagGroup_Beretta_92_early",
+        },
+        M92SB = {
+        },
+        M92SBCompact = {
+            year = 1981,
+        },
+        M92F = {
+        },
+        M92FS = {
+        },
+        M9 = {
+            year = 1985,
+        },
+        M9A1 = {
+            year = 2006,
+        },
+        M9A3 = {
+            year = 2015,
+        },
+        M9_22 = { -- .22LR, year unknown
+            year = 2006,
+        },
 
 })
+
+
+--[[
+    register("BBPistol", {
+        features = Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.AUTO + Flags.SHORTGAS,
+
+        lastChanged = 24,
+        category = ORGM.PISTOL,
+        barrelLength = 8,
+        isCivilian = ORGM.COMMON,
+        soundProfile = "Pistol-Small",
+
+        classification = "IGUI_Firearm_AirPistol",
+        year = 2007, -- unknown, earliest reference i can find for this model dates to 2008
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Daisy",
+        description = "IGUI_Firearm_Desc_BBPistol",
+    })
+]]
+
 --[[
     --************************************************************************--
     -- semi pistols
     --************************************************************************--
-register("AutomagV", {
-    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 6.5, -- no aditional lengths
-    isCivilian = ORGM.RARE,
-    soundProfile = "Pistol-Large",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1993,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_AMT",
-    description = "IGUI_Firearm_Desc_AutomagV"
-})
-register("BBPistol", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.AUTO + Flags.SHORTGAS,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 8,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_AirPistol",
-    year = 2007, -- unknown, earliest reference i can find for this model dates to 2008
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Daisy",
-    description = "IGUI_Firearm_Desc_BBPistol",
-})
-register("Ber92", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4.9, -- 4.7 an 4.3 for other variants (not FS)
-    isCivilian = ORGM.COMMON,
-    isPolice = ORGM.COMMON,
-    isMilitary = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1975,
-    country = "IGUI_Firearm_Country_IT",
-    manufacturer = "IGUI_Firearm_Manuf_Beretta",
-    description = "IGUI_Firearm_Desc_Ber92",
-})
 register("BrenTen", {
     features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
     feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
