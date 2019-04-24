@@ -348,3 +348,25 @@ but called without needing a player or reloadable object.
 Magazine.setup = function(magData, magItem)
     magData:setup(magItem)
 end
+
+--[[- Finds the best matching magazine in a container.
+
+Search is based on the given magazine name and preferred load
+(can be specific round name, nil/any, or mixed), and the currentCapacity.
+
+This is called when reloading some guns and all magazines.
+
+Note magType and ammoType should NOT have the "ORGM." prefix.
+
+@tparam string magType name of a magazine
+@tparam nil|string ammoType 'any', 'mixed' or a specific ammo name
+@tparam ItemContainer containerItem
+
+@treturn nil|InventoryItem
+
+]]
+Magazine.findIn = function(magType, ammoType, containerItem)
+    local group = MagazineGroupTable[magType]
+    if not group then return end
+    return group:find(ammoType, container, mode)
+end
