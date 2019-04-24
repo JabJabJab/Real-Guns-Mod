@@ -48,6 +48,7 @@ ORGM = { }
 --- Contains all ORGM server-side functions, see: `ORGM.Server`
 ORGM.Server = { }
 ORGM.Server.Spawn = { }
+ORGM.Server.Spawn.RoomHandlers = { }
 ORGM.Server.CommandHandler = { }
 ORGM.Server.Callbacks = { }
 
