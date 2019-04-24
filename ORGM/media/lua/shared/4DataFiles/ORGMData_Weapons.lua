@@ -18,29 +18,178 @@ FirearmGroup:new("Group_Main")
 FirearmGroup:new("Group_RareCollectables")
 
 
-FirearmGroup:new("Group_Classifications", { Groups = { Group_Main = 1, } })
-FirearmGroup:new("Group_Pistols", { Groups = { Group_Classifications = 1, } })
-FirearmGroup:new("Group_Revolvers", { Groups = { Group_Classifications = 1, } })
-FirearmGroup:new("Group_Rifles", { Groups = { Group_Classifications = 1, } })
-FirearmGroup:new("Group_Shotguns", { Groups = { Group_Classifications = 1, } })
-FirearmGroup:new("Group_SubMachineGuns", { Groups = { Group_Classifications = 1, } })
-FirearmGroup:new("Group_LightMachineGuns", { Groups = { Group_Classifications = 1, } })
+FirearmGroup:new("Group_Classifications",   { Groups = { Group_Main = 1, } })
+FirearmGroup:new("Group_Pistols",           { Groups = { Group_Classifications = 20, } })
+FirearmGroup:new("Group_Revolvers",         { Groups = { Group_Classifications = 20, } })
+FirearmGroup:new("Group_Rifles",            { Groups = { Group_Classifications = 20, } })
+FirearmGroup:new("Group_Shotguns",          { Groups = { Group_Classifications = 20, } })
+FirearmGroup:new("Group_MachinePistols",    { Groups = { Group_Classifications = 5, } })
+FirearmGroup:new("Group_SubMachineGuns",    { Groups = { Group_Classifications = 14, } })
+FirearmGroup:new("Group_LightMachineGuns",  { Groups = { Group_Classifications = 1, } })
 
-FirearmGroup:new("Group_Manufacturers", { Groups = { Group_Main = 1, } })
-FirearmGroup:new("Group_Colt", { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Manufacturers",     { Groups = { Group_Main = 1, } })
+FirearmGroup:new("Group_Colt",              { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Ruger",             { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_SmithWesson",       { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Taurus",            { Groups = { Group_Manufacturers = 1, } })
 
--- Mid level Groups - groups that are members of multiple groups
-FirearmGroup:new("Group_Colt_Revolvers", { Groups = { Group_Colt = 1, Group_Revolvers = 1 } })
-FirearmGroup:new("Group_Colt_Pistols", { Groups = { Group_Colt = 1, Group_Rifles = 1 } })
-FirearmGroup:new("Group_Colt_Rifles", { Groups = { Group_Colt = 1, Group_Rifles = 1 } })
+FirearmGroup:new("Group_AMT",               { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Beretta",           { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_DornausDixon",      { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_FNHerstal",         { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_CZUB",              { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_IMI",               { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Glock",             { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_HecklerKoch",       { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Kahr",              { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_KalTec",            { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_SigSauer",          { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Springfield",       { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Walther",           { Groups = { Group_Manufacturers = 1, } })
+--FirearmGroup:new("Group_HSProdukt",               { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_AmericanArms",      { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Kriss",             { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_AutoOrdnance",      { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_MAC",               { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_AccuracyIntl",      { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Norinco",           { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Kalashnikov",       { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Armalite",          { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Browning",          { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_FMAP",              { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Henry",             { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_LongBranch",        { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_RockIsland",        { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Marlin",            { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Remington",         { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_RoyalSAF",          { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_KnightsAC",         { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Winchester",        { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Benelli",           { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Ithaca",            { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_SRMArms",           { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Mossberg",          { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_LuigiFranchi",      { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_SavageArms",        { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Armsel",            { Groups = { Group_Manufacturers = 1, } })
+FirearmGroup:new("Group_Molot",             { Groups = { Group_Manufacturers = 1, } })
 
--- Bottom level groups
-FirearmGroup:new("Group_Colt_Anaconda", { Groups = { Group_Colt_Revolvers = 1, } })
+-- Mid level Groups - groups that are grandchildren of both Group_Classifications and Group_Manufacturers
+-- revolvers
+FirearmGroup:new("Group_Colt_Revolvers",        { Groups = { Group_Revolvers = 1, Group_Colt = 1 } })
+FirearmGroup:new("Group_Ruger_Revolvers",       { Groups = { Group_Revolvers = 1, Group_Ruger = 1 } })
+FirearmGroup:new("Group_SmithWesson_Revolvers", { Groups = { Group_Revolvers = 1, Group_SmithWesson = 1 } })
+FirearmGroup:new("Group_Taurus_Revolvers",      { Groups = { Group_Revolvers = 1, Group_Taurus = 1 } })
+
+-- pistols
+FirearmGroup:new("Group_AMT_Pistols",           { Groups = { Group_Pistols = 1, Group_AMT = 1 } })
+FirearmGroup:new("Group_Beretta_Pistols",       { Groups = { Group_Pistols = 1, Group_Beretta = 1 } })
+FirearmGroup:new("Group_Browning_Pistols",      { Groups = { Group_Pistols = 1, Group_Browning = 1 } })
+FirearmGroup:new("Group_DornausDixon_Pistols",  { Groups = { Group_Pistols = 1, Group_DornausDixon = 1 } })
+FirearmGroup:new("Group_FNHerstal_Pistols",     { Groups = { Group_Pistols = 1, Group_FNHerstal = 1 } })
+FirearmGroup:new("Group_CZUB_Pistols",          { Groups = { Group_Pistols = 1, Group_CZUB = 1 } })
+FirearmGroup:new("Group_Colt_Pistols",          { Groups = { Group_Pistols = 1, Group_Colt = 1 } })
+FirearmGroup:new("Group_IMI_Pistols",           { Groups = { Group_Pistols = 1, Group_IMI = 1 } })
+FirearmGroup:new("Group_Glock_Pistols",         { Groups = { Group_Pistols = 1, Group_Glock = 1 } })
+FirearmGroup:new("Group_HecklerKoch_Pistols",   { Groups = { Group_Pistols = 1, Group_HecklerKoch = 1 } })
+FirearmGroup:new("Group_Kahr_Pistols",          { Groups = { Group_Pistols = 1, Group_Kahr = 1 } })
+FirearmGroup:new("Group_KalTec_Pistols",        { Groups = { Group_Pistols = 1, Group_KalTec = 1 } })
+FirearmGroup:new("Group_Ruger_Pistols",         { Groups = { Group_Pistols = 1, Group_Ruger = 1 } })
+FirearmGroup:new("Group_SigSauer_Pistols",      { Groups = { Group_Pistols = 1, Group_SigSauer = 1 } })
+FirearmGroup:new("Group_Springfield_Pistols",   { Groups = { Group_Pistols = 1, Group_Springfield = 1 } })
+FirearmGroup:new("Group_Taurus_Pistols",        { Groups = { Group_Pistols = 1, Group_Taurus = 1 } })
+FirearmGroup:new("Group_Walther_Pistols",       { Groups = { Group_Pistols = 1, Group_Walther = 1 } })
+--FirearmGroup:new("Group_HSProdukt_Pistols",     { Groups = { Group_Pistols = 1, Group_HSProdukt = 1 } })
+
+-- Machine Pistols
+FirearmGroup:new("Group_Beretta_MachinePistols",{ Groups = { Group_MachinePistols = 1, Group_Beretta = 1 } })
+FirearmGroup:new("Group_Glock_MachinePistols",  { Groups = { Group_MachinePistols = 1, Group_Glock = 1 } })
+FirearmGroup:new("Group_CZUB_MachinePistols",   { Groups = { Group_MachinePistols = 1, Group_CZUB = 1 } })
+
+-- SubMachineguns
+FirearmGroup:new("Group_AmericanArms_SubMachineGuns",   { Groups = { Group_SubMachineGuns = 1, Group_Walther = 1 } })
+FirearmGroup:new("Group_FNHerstal_SubMachineGuns",      { Groups = { Group_SubMachineGuns = 1, Group_FNHerstal = 1 } })
+FirearmGroup:new("Group_HecklerKoch_SubMachineGuns",    { Groups = { Group_SubMachineGuns = 1, Group_HecklerKoch = 1 } })
+FirearmGroup:new("Group_AutoOrdnance_SubMachineGuns",   { Groups = { Group_SubMachineGuns = 1, Group_AutoOrdnance = 1 } })
+FirearmGroup:new("Group_MAC_SubMachineGuns",            { Groups = { Group_SubMachineGuns = 1, Group_MAC = 1 } })
+FirearmGroup:new("Group_IMI_SubMachineGuns",            { Groups = { Group_SubMachineGuns = 1, Group_IMI = 1 } })
+
+-- Rifles
+FirearmGroup:new("Group_AccuracyIntl_Rifles",   { Groups = { Group_Rifles = 1, Group_AccuracyIntl = 1 } })
+FirearmGroup:new("Group_Norinco_Rifles",        { Groups = { Group_Rifles = 1, Group_Norinco = 1 } })
+FirearmGroup:new("Group_Armalite_Rifles",       { Groups = { Group_Rifles = 1, Group_Armalite = 1 } })
+FirearmGroup:new("Group_Colt_Rifles",           { Groups = { Group_Rifles = 1, Group_Colt = 1 } })
+FirearmGroup:new("Group_Browning_Rifles",       { Groups = { Group_Rifles = 1, Group_Browning = 1 } })
+FirearmGroup:new("Group_FMAP_Rifles",           { Groups = { Group_Rifles = 1, Group_FMAP = 1 } })
+FirearmGroup:new("Group_FNHerstal_Rifles",      { Groups = { Group_Rifles = 1, Group_FNHerstal = 1 } })
+FirearmGroup:new("Group_Springfield_Rifles",    { Groups = { Group_Rifles = 1, Group_Springfield = 1 } })
+FirearmGroup:new("Group_Henry_Rifles",          { Groups = { Group_Rifles = 1, Group_Henry = 1 } })
+FirearmGroup:new("Group_HecklerKoch_Rifles",    { Groups = { Group_Rifles = 1, Group_HecklerKoch = 1 } })
+FirearmGroup:new("Group_LongBranch_Rifles",     { Groups = { Group_Rifles = 1, Group_LongBranch = 1 } })
+FirearmGroup:new("Group_RockIsland_Rifles",     { Groups = { Group_Rifles = 1, Group_RockIsland = 1 } })
+FirearmGroup:new("Group_Marlin_Rifles",         { Groups = { Group_Rifles = 1, Group_Marlin = 1 } })
+FirearmGroup:new("Group_Ruger_Rifles",          { Groups = { Group_Rifles = 1, Group_Ruger = 1 } })
+-- TODO: mosin missing.
+FirearmGroup:new("Group_Remington_Rifles",      { Groups = { Group_Rifles = 1, Group_Remington = 1 } })
+FirearmGroup:new("Group_RoyalSAF_Rifles",       { Groups = { Group_Rifles = 1, Group_RoyalSAF = 1 } })
+FirearmGroup:new("Group_SigSauer_Rifles",       { Groups = { Group_Rifles = 1, Group_SigSauer = 1 } })
+-- TODO: sks missing
+FirearmGroup:new("Group_KnightsAC_Rifles",      { Groups = { Group_Rifles = 1, Group_KnightsAC = 1 } })
+-- TODO: svd missing
+FirearmGroup:new("Group_Winchester_Rifles",     { Groups = { Group_Rifles = 1, Group_Winchester = 1 } })
+
+-- Light MachineGuns
+FirearmGroup:new("Group_FNHerstal_LMGs",        { Groups = { Group_LightMachineGuns = 1, Group_FNHerstal = 1 } })
+
+-- Shotguns
+FirearmGroup:new("Group_Benelli_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Benelli = 1 } })
+FirearmGroup:new("Group_Norinco_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Norinco = 1 } })
+FirearmGroup:new("Group_Ithaca_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Ithaca = 1 } })
+FirearmGroup:new("Group_SRMArms_Shotguns",      { Groups = { Group_Shotguns = 1, Group_SRMArms = 1 } })
+FirearmGroup:new("Group_Mossberg_Shotguns",     { Groups = { Group_Shotguns = 1, Group_Mossberg = 1 } })
+FirearmGroup:new("Group_Remington_Shotguns",    { Groups = { Group_Shotguns = 1, Group_Remington = 1 } })
+FirearmGroup:new("Group_Beretta_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Beretta = 1 } })
+FirearmGroup:new("Group_LuigiFranchi_Shotguns", { Groups = { Group_Shotguns = 1, Group_LuigiFranchi = 1 } })
+FirearmGroup:new("Group_SavageArms_Shotguns",   { Groups = { Group_Shotguns = 1, Group_SavageArms = 1 } })
+FirearmGroup:new("Group_Armsel_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Armsel = 1 } })
+FirearmGroup:new("Group_Molot_Shotguns",        { Groups = { Group_Shotguns = 1, Group_Molot = 1 } })
+FirearmGroup:new("Group_Winchester_Shotguns",   { Groups = { Group_Shotguns = 1, Group_Winchester = 1 } })
+
+
+-- Bottom level groups, Firearm Model Types
+-- Revolvers
+FirearmGroup:new("Group_Colt_Anaconda",     { Groups = { Group_Colt_Revolvers = 1, } })
+FirearmGroup:new("Group_Colt_Python",       { Groups = { Group_Colt_Revolvers = 1, } })
+FirearmGroup:new("Group_Colt_SSA",          { Groups = { Group_Colt_Revolvers = 1, } })
+
+FirearmGroup:new("Group_Ruger_Alaskan",     { Groups = { Group_Ruger_Revolvers = 1, } })
+FirearmGroup:new("Group_Ruger_Blackhawk",   { Groups = { Group_Ruger_Revolvers = 1, } })
+FirearmGroup:new("Group_Ruger_GP100",       { Groups = { Group_Ruger_Revolvers = 1, } })
+FirearmGroup:new("Group_Ruger_Redhawk",     { Groups = { Group_Ruger_Revolvers = 1, } })
+
+FirearmGroup:new("Group_SmithWesson_Model_10",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_19",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_22",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_29",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_36",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_610",    { Groups = { Group_SmithWesson_Revolvers = 1, } })
+
+FirearmGroup:new("Group_Taurus_RagingBull",        { Groups = { Group_Taurus_Revolvers = 1, } })
+
+-- Pistols
+FirearmGroup:new("Group_AMT_Automag",           { Groups = { Group_AMT_Pistols = 1, } })
+FirearmGroup:new("Group_Beretta_92",            { Groups = { Group_Beretta_Pistols = 1, } })
+FirearmGroup:new("Group_DornausDixon_BrenTen",  { Groups = { Group_DornausDixon_Pistols = 1, } })
+FirearmGroup:new("Group_Colt_1911",             { Groups = { Group_Colt_Pistols = 1, } })
+
+FirearmGroup:new("Group_Browning_HiPower",      { Groups = { Group_Browning_Pistols = 1, } })
+
+
 FirearmGroup:new("Group_Colt_CAR15", { Groups = { Group_Colt_Rifles = 1, } })
 
 
 
-FirearmType:newCollection("Colt_M16", {
+FirearmType:newCollection("Colt_CAR15", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M16_rifle
         -- https://en.wikipedia.org/wiki/List_of_Colt_AR-15_%26_M16_rifle_variants
@@ -143,7 +292,7 @@ FirearmType:newCollection("Colt_Anaconda", {
         -- https://en.wikipedia.org/wiki/Colt_Anaconda
         -- https://www.coltforum.com/forums/colt-revolvers/73849-anaconda-bsts-3-print.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        Groups = { Group_Revolvers = 1, Group_Colt_Anaconda = 1, },
+        Groups = { Group_Colt_Revolvers = 1, Group_Colt_Anaconda = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtAnac",
 
@@ -250,7 +399,7 @@ FirearmType:newCollection("Colt_Python", {
         -- https://www.handgunsmag.com/editorial/colt_python_complete_history/138916
         -- https://www.coltforum.com/forums/python/71904-3-python-question-5.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        Groups = { Group_Revolvers = 1, Group_Colt_Python = 1, },
+        Groups = { Group_Colt_Revolvers = 1, Group_Colt_Python = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtPyth",
 
@@ -401,240 +550,306 @@ FirearmType:newCollection("Colt_Python", {
         },
 
     }
-)--[[
-register("ColtSAA", {
-    features = Flags.SINGLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+)
+FirearmType:newCollection("Colt_SSA", {
+        -- sources:
+        Groups = { Group_Colt_Revolvers = 1, Group_Colt_SSA = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMColtSAA",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 5.5,
-    barrelLengthOpt = {5.5, 7.5 },
-    isCivilian = ORGM.RARE,
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_45Colt",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,                   barrelLength = 5.5,
+        WeaponSprite = "coltsaa",    Icon = "ColtSAA",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1873,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Colt",
-    description = "IGUI_Firearm_Desc_ColtSAA",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1873,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_ColtSAA",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = {5.5, 7.5 }
+    },{
 })
-register("RugAlas", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Ruger_Alaskan", {
+        -- sources:
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Alaskan = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 2.5,
-    barrelLengthOpt = { 2.5, 7.5, 9.5 },
-    isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader4546',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,                   barrelLength = 2.5,
+        WeaponSprite = "rugalaskan",    Icon = "RugAlas",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 2005,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugAlas",
+        classification = "IGUI_Firearm_Revolver",
+        year = 2005,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugAlas",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 2.5, 7.5, 9.5 },
+    },{
 })
-register("RugBH", {
-    features = Flags.SINGLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Ruger_Blackhawk", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_Blackhawk
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Blackhawk = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugBH",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 4.65,
-    barrelLengthOpt = { 4.65, 6.5, 7.5 },
-    isCivilian = ORGM.RARE,
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.0,                   barrelLength = 4.65,
+        WeaponSprite = "rugblackhawk",    Icon = "RugBH",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1955,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugBH",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1955,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugBH",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 4.65, 6.5, 7.5 },
+    },{
 })
-register("RugGP100", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Ruger_GP100", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_GP100
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_GP100 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugGP100",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 4.2,
-    barrelLengthOpt = { 3, 4.2, 6 },
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader3576',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,                   barrelLength = 4.2,
+        WeaponSprite = "ruggp100",    Icon = "RugGP100",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1985,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugGP100",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1985,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugGP100",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 3, 4.2, 6 },
+    },{
 })
-register("RugRH", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Ruger_Redhawk", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_Redhawk
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Redhawk = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugRH",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 5.5,
-    barrelLengthOpt = { 4, 5.5, 7.5 },
-    isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader446',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_44Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.4,                   barrelLength = 5.5,
+        WeaponSprite = "rugredhawk",    Icon = "RugRH",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1979,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugRH",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1979,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugRH",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = { 4, 5.5, 7.5 }
+    },{
 })
-register("RugSec6", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Ruger_SecuritySix", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_Security_Six
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_SecuritySix = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRugSec6",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 4,
-    barrelLengthOpt = {2.74, 3, 4, 6},
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader386',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.9,                   barrelLength = 4,
+        WeaponSprite = "rugsecsix",    Icon = "RugSec6",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1972,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugSec6",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1972,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugSec6",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        --barrelLengthOpt = {2.74, 3, 4, 6}
+    },{
 })
-register("SWM10", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_10", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/S%26W_Model_10
+        -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_1905
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_10 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM10",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 4,
-    barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
-    isCivilian = ORGM.COMMON,
-    isPolice = ORGM.VERYRARE, -- old armory stock
-    speedLoader = 'SpeedLoader386',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_38Special",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.9,                   barrelLength = 4,
+        WeaponSprite = "swm10",    Icon = "swm10",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1899,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM10",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1899,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM10",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
+    },{
 })
-register("SWM19", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_19", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/S%26W_Model_19
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_19 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM19",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 4,
-    barrelLengthOpt = {2.5, 3, 4, 6},
-    isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader3576',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.0,                   barrelLength = 4,
+        WeaponSprite = "swm19",    Icon = "SWM19",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1957,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM19",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1957,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM19",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = {2.5, 3, 4, 6},
+    },{
 })
-register("SWM252", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_22", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_22
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_22 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM252",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 6, -- 4, 5 (very rare!), 6, 6.5, 8.4
-    barrelLengthOpt = {4, 5, 6, 6.5, 8.4},
-    isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader456',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_45ACP",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.0,                   barrelLength = 5.5,
+        WeaponSprite = "swm252",    Icon = "SWM252",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1955,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM252",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1950, -- 1955 for model 25 target?
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM252",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = {4, 5 (very rare!), 6, 6.5, 8.4},
+    },{
 })
-register("SWM29", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_29", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_29
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_29 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM29",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 6, -- 4, 6, 6.5, 8.425, 10.63
-    barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader446',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_44Magnum",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,                   barrelLength = 6,
+        WeaponSprite = "swm29",    Icon = "SWM29",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1955,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM29",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1955,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM29",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
+    },{
 })
-register("SWM36", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_36", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_36
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_36 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM36",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 1.875,
-    barrelLengthOpt = { 1.875, 2, 3 },
-    isCivilian = ORGM.COMMON,
-    speedLoader = 'SpeedLoader385',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_38Special",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.5,                   barrelLength = 1.875,
+        WeaponSprite = "swm36",    Icon = "SWM36",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1950,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM36",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1950,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM36",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = { 1.875, 2, 3 },
+    },{
 })
-register("SWM610", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("SmithWesson_Model_610", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_610
+        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_610 = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMSWM610",
 
-    lastChanged = 24,
-    category = ORGM.REVOLVER,
-    barrelLength = 6.5, -- 3.875, 6.5
-    barrelLengthOpt = { 3.875, 6.5 },
-    isCivilian = ORGM.RARE,
-    speedLoader = 'SpeedLoader10mm6',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_10x25mm",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,                   barrelLength = 6.5,
+        WeaponSprite = "swm610",    Icon = "SWM610",
+        maxCapacity = 6,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1990,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_SW",
-    description = "IGUI_Firearm_Desc_SWM610",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1990,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_SW",
+        description = "IGUI_Firearm_Desc_SWM610",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = { 3.875, 6.5 },
+    },{
 })
-register("Taurus454", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
-    feedSystem = Flags.ROTARY,
+FirearmType:newCollection("Taurus_RagingBull", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Taurus_Raging_Bull
+        Groups = { Group_Taurus_Revolvers = 1, Group_Taurus_RagingBull = 1, },
+        lastChanged = 24,               category = ORGM.REVOLVER,
+        soundProfile = "Revolver",      SwingSound = "ORGMRagingBull",
 
-    lastChanged = 25,
-    category = ORGM.REVOLVER,
-    barrelLength = 6.5, -- 2.25, 3, 4, 5, 6, 6.5, 8.425, 10
-    barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
-    isCivilian = ORGM.RARE,
-    --speedLoader = 'SpeedLoader4546',
-    soundProfile = "Revolver",
+        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.5,                   barrelLength = 6.5,
+        WeaponSprite = "taurusraging",    Icon = "Taurus454",
+        maxCapacity = 5,
 
-    classification = "IGUI_Firearm_Revolver",
-    year = 1997,
-    country = "IGUI_Firearm_Country_BR",
-    manufacturer = "IGUI_Firearm_Manuf_Taurus",
-    description = "IGUI_Firearm_Desc_Taurus454",
+        classification = "IGUI_Firearm_Revolver",
+        year = 1997,
+        country = "IGUI_Firearm_Country_BR",
+        manufacturer = "IGUI_Firearm_Manuf_Taurus",
+        description = "IGUI_Firearm_Desc_Taurus454",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
+        feedSystem = Flags.ROTARY,
+        -- barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
+    },{
 })
+--[[
     --************************************************************************--
     -- semi pistols
     --************************************************************************--
