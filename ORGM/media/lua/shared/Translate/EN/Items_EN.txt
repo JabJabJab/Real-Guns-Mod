@@ -53,6 +53,26 @@ Items_EN = {
     DisplayName_Colt_Python_I3683               = "Colt Python Target Model I3683",
 
 
+    -- Taurus Raging Bull
+    DisplayName_Taurus_RagingBull_M22H          = "Taurus Raging Hornet Model 22H",
+    DisplayName_Taurus_RagingBull_M30CSS10      = "Taurus Raging Thirty Model 30CSS10",
+    DisplayName_Taurus_RagingBull_M416SS6       = "Taurus Raging Bull Model 416SS6",
+    DisplayName_Taurus_RagingBull_M444B6        = "Taurus Raging Bull Model 444B6",
+    DisplayName_Taurus_RagingBull_M444B8        = "Taurus Raging Bull Model 444B8",
+    DisplayName_Taurus_RagingBull_M444Mulit     = "Taurus Raging Bull Model 444Mulit",
+    DisplayName_Taurus_RagingBull_M444SS6       = "Taurus Raging Bull Model 444SS6",
+    DisplayName_Taurus_RagingBull_M444SS8       = "Taurus Raging Bull Model 444SS8",
+    DisplayName_Taurus_RagingBull_M454B6        = "Taurus Raging Bull Model 454B6",
+    DisplayName_Taurus_RagingBull_M454B8        = "Taurus Raging Bull Model 454B8",
+    DisplayName_Taurus_RagingBull_M454SS5M      = "Taurus Raging Bull Model 454SS5M",
+    DisplayName_Taurus_RagingBull_M454SS6M      = "Taurus Raging Bull Model 454SS6M",
+    DisplayName_Taurus_RagingBull_M454SS8M      = "Taurus Raging Bull Model 454SS8M",
+    DisplayName_Taurus_RagingBull_M454SS6M      = "Taurus Raging Bull Model 454SS6M",
+    DisplayName_Taurus_RagingBull_M480SS5M      = "Taurus Raging Bull Model 480SS5M",
+    DisplayName_Taurus_RagingBull_M480SS6M      = "Taurus Raging Bull Model 480SS6M",
+    DisplayName_Taurus_RagingBull_M480SS8M      = "Taurus Raging Bull Model 480SS8M",
+
+
     -- CAR15/M16 family, Military variants
     DisplayName_Armalite_AR15                   = "Armalite AR-15",
     DisplayName_Colt_M16_M601                   = "Colt AR-15 Model 01",

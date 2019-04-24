@@ -829,6 +829,7 @@ FirearmType:newCollection("SmithWesson_Model_610", {
 FirearmType:newCollection("Taurus_RagingBull", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Taurus_Raging_Bull
+        -- https://web.archive.org/web/20041228132350/http://www.taurususa.com/products/gunselector-results.cfm?series=RB2
         Groups = { Group_Taurus_Revolvers = 1, Group_Taurus_RagingBull = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRagingBull",
@@ -848,6 +849,80 @@ FirearmType:newCollection("Taurus_RagingBull", {
         feedSystem = Flags.ROTARY,
         -- barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
     },{
+        M22H = { -- Taurus Raging Hornet Model 22H
+            ammoType = "AmmoGroup_22Hornet", barrelLength = 10, weight = 1.42,
+            maxCapacity = 8,
+        },
+        M30CSS10 = { -- Taurus Raging Thirty Model 30CSS10
+            ammoType = "AmmoGroup_30Carbine", barrelLength = 10, weight = 2.2,
+            maxCapacity = 8,
+        },
+        M416SS6 = { -- Taurus Raging Bull Model 416SS6
+            ammoType = "AmmoGroup_41Magnum",
+            maxCapacity = 6,
+            addFeatures = Flags.PORTED,
+        },
+        M444B6 = { -- Taurus Raging Bull Model 444B6
+            ammoType = "AmmoGroup_44Magnum",
+            maxCapacity = 6,
+            addFeatures = Flags.PORTED,
+        },
+        M444B8 = { -- Taurus Raging Bull Model 444B8
+            ammoType = "AmmoGroup_44Magnum",
+            maxCapacity = 6, barrelLength = 8.425, weight = 1.786
+            addFeatures = Flags.PORTED,
+        },
+        M444Mulit = { -- Taurus Raging Bull Ultralight Model 444 Multi
+            ammoType = "AmmoGroup_44Magnum",
+            maxCapacity = 6, barrelLength = 4, weight = 0.8
+        },
+        M444SS6 = { -- Taurus Raging Bull Model 444SS6
+            ammoType = "AmmoGroup_44Magnum",
+            maxCapacity = 6,
+            addFeatures = Flags.PORTED,
+        },
+        M444SS8 = { -- Taurus Raging Bull Model 444SS8
+            ammoType = "AmmoGroup_44Magnum",
+            maxCapacity = 6, barrelLength = 8.425, weight = 1.786
+            addFeatures = Flags.PORTED,
+        },
+        M454B6 = { -- Taurus Raging Bull Model 454B6
+            maxCapacity = 5,
+            addFeatures = Flags.PORTED,
+        },
+        M454B8 = { -- Taurus Raging Bull Model 454B8
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            addFeatures = Flags.PORTED,
+        },
+        M454SS5M = { -- Taurus Raging Bull Model 454SS5M
+            maxCapacity = 5, barrelLength = 5, weight = 1.445,
+            addFeatures = Flags.PORTED,
+        },
+        M454SS6M = { -- Taurus Raging Bull Model 454SS6M
+            maxCapacity = 5,
+            addFeatures = Flags.PORTED,
+        },
+        M454SS8M = { -- Taurus Raging Bull Model 454SS8M
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            addFeatures = Flags.PORTED,
+        },
+        M480SS5M = { -- Taurus Raging Bull Model 480SS5M
+            ammoType = "AmmoGroup_480Ruger",
+            maxCapacity = 5, barrelLength = 5, weight = 1.445,
+            addFeatures = Flags.PORTED,
+        },
+        M480SS6M = { -- Taurus Raging Bull Model 480SS6M
+            ammoType = "AmmoGroup_480Ruger",
+            maxCapacity = 5,
+            addFeatures = Flags.PORTED,
+        },
+        M480SS8M = { -- Taurus Raging Bull Model 480SS8M
+            ammoType = "AmmoGroup_480Ruger",
+            maxCapacity = 5, barrelLength = 8.425, weight = 1.786
+            addFeatures = Flags.PORTED,
+        },
+
+
 })
 --[[
     --************************************************************************--
