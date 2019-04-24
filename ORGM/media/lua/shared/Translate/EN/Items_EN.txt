@@ -1,4 +1,110 @@
 Items_EN = {
+
+    -- Firearm Groups
+    DisplayName_Main                            = "All Firearms",
+    DisplayName_Group_Colt                      = "Colt Firearms",
+    DisplayName_Group_Colt_Rifles               = "Colt Rifles",
+    DisplayName_Group_Colt_CAR15                     = "Colt CAR15/M16 Rifles",
+
+
+    -- Colt Anaconda
+    DisplayName_Colt_Anaconda_MM3040            = "Colt Anaconda Model MM3040",
+    DisplayName_Colt_Anaconda_MM3040DT          = "Colt Anaconda Model MM3040DT",
+    DisplayName_Colt_Anaconda_MM3040MP          = "Colt Anaconda Model MM3040MP",
+    DisplayName_Colt_Anaconda_MM3040KD          = "Colt Kodiak Model MM3040KD",
+    DisplayName_Colt_Anaconda_MM3050            = "Colt Anaconda Model MM3050",
+    DisplayName_Colt_Anaconda_MM3060            = "Colt Anaconda Model MM3060",
+    DisplayName_Colt_Anaconda_MM3060DT          = "Colt Anaconda Model MM3060DT",
+    DisplayName_Colt_Anaconda_MM3060MP          = "Colt Anaconda Model MM3060MP",
+    DisplayName_Colt_Anaconda_MM3060KD          = "Colt Kodiak Model MM3060KD",
+    DisplayName_Colt_Anaconda_MM3061FE          = "Colt Anaconda First Edition Model MM3061FE",
+    DisplayName_Colt_Anaconda_MM3080            = "Colt Anaconda Model MM3080",
+    DisplayName_Colt_Anaconda_MM3080L           = "Colt Limited Edition Anaconda Legacy Model MM3080",
+    DisplayName_Colt_Anaconda_MM3080DT          = "Colt Anaconda Model MM3080DT",
+    DisplayName_Colt_Anaconda_MM3080MP          = "Colt Anaconda Model MM3080MP",
+    DisplayName_Colt_Anaconda_MM3080HT          = "Colt Anaconda Hunter Model MM3080HT",
+    DisplayName_Colt_Anaconda_MM3080PDT         = "Colt Anaconda Custom Ported Model MM3080PDT",
+    DisplayName_Colt_Anaconda_MM3080RT          = "Colt Anaconda Realtree Model MM3080RT",
+    DisplayName_Colt_Anaconda_MM4540            = "Colt Anaconda Model MM4540",
+    DisplayName_Colt_Anaconda_MM4560            = "Colt Anaconda Model MM4560",
+    DisplayName_Colt_Anaconda_MM4580            = "Colt Anaconda Model MM4580",
+
+
+    -- Colt Python
+    DisplayName_Colt_Python_I1986               = "Colt Double Diamond Python Model I1986",
+
+    DisplayName_Colt_Python_I3630               = "Colt Combat Python Model I3630",
+    DisplayName_Colt_Python_I3060ESS            = "Colt Python Silver Snake Model I3060ESS",
+    DisplayName_Colt_Python_I3620SE             = "Colt Python Snake Eyes Model I3620SE",
+    DisplayName_Colt_Python_I3621SE             = "Colt Python Snake Eyes Model I3621SE",
+    DisplayName_Colt_Python_I3630               = "Colt Combat Python Model I3630",
+    DisplayName_Colt_Python_I3630CP             = "Colt Combat Python Model I3630CP",
+    DisplayName_Colt_Python_I3631               = "Colt Combat Python Model I3631",
+
+    DisplayName_Colt_Python_I3040CS             = "Colt Python Elite Model I3040CS",
+    DisplayName_Colt_Python_I3060CS             = "Colt Python Elite Model I3060CS",
+    DisplayName_Colt_Python_I3640CS             = "Colt Python Elite Model I3640CS",
+    DisplayName_Colt_Python_I3660CS             = "Colt Python Elite Model I3660CS",
+
+    DisplayName_Colt_Python_I3660H              = "Colt Custom Python Model I3660H",
+    DisplayName_Colt_Python_I3680               = "Colt Python Hunter Model I3680",
+    DisplayName_Colt_Python_I3681               = "Colt Python Silhouette Model I3681",
+    DisplayName_Colt_Python_I3682               = "Colt Python Target Model I3682",
+    DisplayName_Colt_Python_I3683               = "Colt Python Target Model I3683",
+
+
+    -- CAR15/M16 family, Military variants
+    DisplayName_Armalite_AR15                   = "Armalite AR-15",
+    DisplayName_Colt_M16_M601                   = "Colt AR-15 Model 01",
+    DisplayName_Colt_M16_M604                   = "Colt M16 Model 604",
+    DisplayName_Colt_M16_M603                   = "Colt M16A1 Model 603",
+    DisplayName_Colt_M16_M605A                  = "Colt CAR-15 Carbine Model 605A",
+    DisplayName_Colt_M16_M605B                  = "Colt CAR-15 Carbine Model 605B",
+    DisplayName_Colt_M16_M607                   = "Colt CAR-15 SMG Model 607",
+    DisplayName_Colt_M16_M645                   = "Colt M16A2 Model 645",
+    DisplayName_Colt_M16_M646                   = "Colt M16A3 Model 646",
+    DisplayName_Colt_M16_M653                   = "Colt M16A2 Carbine Model 653",
+    DisplayName_Colt_M16_M695                   = "Colt M16A4 Model 695",
+    DisplayName_Colt_M16_M920                   = "Colt M4 Carbine Model 920",
+    DisplayName_Colt_M16_M921                   = "Colt M4A1 Carbine Model 921",
+    DisplayName_Colt_M16_M933                   = "Colt M4 Commando Model 933",
+    DisplayName_Colt_M16_M935                   = "Colt M4 Commando Model 935",
+
+    -- Civilian
+    DisplayName_Colt_AR15                       = "",
+
+
+    -- Magazine Groups
+    DisplayName_MagGroup_STANAG                 = "STANAG Magazine (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x5                    = "STANAG Magazine x5 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x10                   = "STANAG Magazine x10 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x20                   = "STANAG Magazine x20 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x30                   = "STANAG Magazine x30 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x40                   = "STANAG Magazine x40 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x50                   = "STANAG Magazine x50 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x60                   = "STANAG Casket Magazine x60 (5.56x45mm NATO)",
+    DisplayName_Mag_STANAG_x100                  = "STANAG Casket Magazine x100 (5.56x45mm NATO)",
+
+    -- Ammo Groups
+    DisplayName_AmmoGroup_556x45mm              = "5.56x45mm NATO",
+    DisplayName_AmmoGroup_223Remington          = ".223 Remington",
+
+
+    -- 5.56x45mm
+    DisplayName_Ammo_556x45mm_M193             = "5.56x45mm NATO M193 Rounds",
+    DisplayName_Ammo_556x45mm_M855             = "5.56x45mm NATO M855 Rounds",
+
+
+
+
+
+
+
+
+
+
+
+
     -- Ammo.txt
     DisplayName_ORGM_Ammo_177BB                 = ".177 BBs",
     DisplayName_ORGM_Ammo_177BB_Box             = ".177 BBs - 250 Count Can",
