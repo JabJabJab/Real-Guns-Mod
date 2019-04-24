@@ -264,9 +264,9 @@ function FirearmGroup:contains(firearmType)
     return self.members[firearmType] ~= nil
 end
 
-function FirearmGroup:spawn(typeModifiers, flagModifiers, container, loaded)
+function FirearmGroup:spawn(container, loaded, typeModifiers, flagModifiers, chance, mustFit)
     local firearm = self:random(typeModifiers, flagModifiers)
-    return firearm:spawn(container, loaded)
+    return firearm:spawn(container, loaded, chance, mustFit)
 end
 function FirearmGroup:test()
     -- pick a random gun manufactured by colt
@@ -457,15 +457,28 @@ function FirearmType:newCollection(ammoType, template, variants)
     end
 end
 
-function FirearmType:spawn(container, loaded)
+function FirearmType:spawn(container, loaded, chance, mustFit)
+    if chance and ZombRand(100)+1 <= chance * ZomboidGlobals.WeaponLootModifier * Settings.FirearmSpawnModifier then
+        return nil
+    end
     local item = InventoryItemFactory.CreateItem("ORGM.".. self.type)
+    if mustFit and not container:hasRoomFor(nil, item:getActualWeight()) then
+		return nil
+	end
+
     self:setup(item)
-    -- TODO: set the serial number
+
+    -- set the serial number
+    local sn = {}
+    for i=1, 6 do sn[i] = tostring(ZombRand(10)) end
+    item:getModData().serialnumber = table.concat(sn, '')
+
     if loaded then
         local count = self.maxCapacity
         if ZombRand(100) < 50 then count = ZombRand(self.maxCapacity)+1 end
     end
     Firearm.refill(item, count)
+    Firearm.Stats.set(item)
     if container then
         container:AddItem(item)
     end
@@ -1002,7 +1015,7 @@ Firearm.setFireMode = function(item, mode, playerObj)
     Firearm.Stats.set(item)
 end
 
---[[- Toggles the position of the Select Fire switchon a firearm.
+--[[- Toggles the position of the Select Fire switch on a firearm.
 
 @tparam InventoryItem item
 @tparam[opt] nil|int mode If nil, toggles. Otherwise sets to `ORGM.SEMIAUTOMODE` or `ORGM.FULLAUTOMODE`
@@ -1543,29 +1556,6 @@ Stats.setPenetration = function(weaponItem, value)
 end
 
 
---[[- Sets the PiercingBullets flag on a gun, dependent on the round.
-
-This is called when loading a new round into the chamber.
-
-@tparam HandWeapon weaponItem
-@tparam table ammoData return value of `ORGM.Ammo.getData`
-
-@treturn bool true if the flag is set
-
-]]
-Stats.setPenetration_DEPRECIATED = function(weaponItem, ammoData)
-    local result = false
-    if ammoData.PiercingBullets == true or ammoData.PiercingBullets == false then
-        result = ammoData.PiercingBullets
-    elseif ammoData.PiercingBullets == nil then
-        result = false
-    else
-        -- TODO: factor in barrel length!!!
-        result = ZombRand(100) + 1 <= ammoData.PiercingBullets
-    end
-    weaponItem:setPiercingBullets(result)
-    return result
-end
 
 --[[
     free recoil calcuation.
