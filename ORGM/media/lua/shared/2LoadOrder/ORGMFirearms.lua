@@ -237,9 +237,12 @@ function FirearmGroup:remove(firearmType)
     self.members[firearmType] = nil
 end
 
-function FirearmGroup:random(typeModifiers, flagModifiers)
+function FirearmGroup:random(typeModifiers, flagModifiers, depth)
     local members = self.members
     members = self:normalize(typeModifiers, flagModifiers)
+    if depth == nil then depth = 0 end
+    if depth > 20 then return nil end
+    depth = 1+depth
     local sum = 0
     local roll = ZombRandFloat(0,1)
     local result = nil
@@ -255,9 +258,10 @@ function FirearmGroup:random(typeModifiers, flagModifiers)
     local group = FirearmGroupTable[result]
     if group then
         ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
-        return group:random(typeModifiers, flagModifiers)
+        return group:random(typeModifiers, flagModifiers, depth)
     end
-    ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..FirearmTable[result].instance:getDisplayName() .."'")
+    local result =FirearmTable[result]
+    ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..(result and result.instance:getDisplayName() or "nil").."'")
     return FirearmTable[result]
 end
 
@@ -288,6 +292,7 @@ end
 
 function FirearmType:new(firearmType, firearmData, template)
     local o = { }
+    template = template or { }
     for key, value in pairs(firearmData) do o[key] = value end
     setmetatable(o, { __index = self })
     ORGM.log(ORGM.VERBOSE, "FirearmType: Initializing ".. firearmType)

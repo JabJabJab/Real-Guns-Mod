@@ -195,6 +195,7 @@ end
 
 function MagazineType:new(magazineType, magazineData, template)
     local o = { }
+    template = template or {}
     for key, value in pairs(magazineData) do o[key] = value end
     setmetatable(o, { __index = self })
     ORGM.log(ORGM.VERBOSE, "MagazineType: Initializing ".. magazineType)
@@ -204,6 +205,7 @@ function MagazineType:new(magazineType, magazineData, template)
     if not ORGM.copyPropertiesTable("MagazineType: ".. magazineType, PropertiesTable, template, o) then
         return nil
     end
+    if not o.Icon then o.Icon = ammoType end
     local scriptItems = { }
     table.insert(scriptItems,{
         "\titem " .. o.type,

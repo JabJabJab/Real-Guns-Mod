@@ -270,6 +270,7 @@ end
 
 function AmmoType:new(ammoType, ammoData, template)
     local o = { }
+    template = template or {}
     for key, value in pairs(ammoData) do o[key] = value end
     setmetatable(o, { __index = self })
     ORGM.log(ORGM.VERBOSE, "AmmoType: Initializing ".. ammoType)
