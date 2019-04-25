@@ -63,26 +63,6 @@ Callbacks.validateSettings = function()
 end
 
 
---[[- Removes firearm spawning from guns manufactured later then the year specified in the ORGM.Settings table.
-
-This is triggered by Events.OnGameBoot.
-
-]]
-Callbacks.limitFirearmYear = function()
-    local limit = ORGM.Settings.LimitYear
-    if limit == nil or limit == 0 then return end
-    ORGM.log(ORGM.INFO, "Event: Removing spawning of firearms manufactured later after "..limit)
-    for gunType, gunData in pairs(Firearm.getTable()) do
-        if gunData.year ~= nil and gunData.year > limit then
-            gunData.isCivilian = nil
-            gunData.isPolice = nil
-            gunData.isMilitary = nil
-            Firearm.applyRarity(gunType, gunData, true)
-        end
-    end
-end
-
-
 
 --[[- Loads any shared compatibility patches for mods.
 
