@@ -11,6 +11,5 @@ This file contains no functions. See `ORGM.Callbacks`
 local Callbacks = ORGM.Callbacks
 Events.OnGameBoot.Add(Callbacks.loadBackPatches)
 Events.OnGameBoot.Add(Callbacks.validateSettings)
-Events.OnGameBoot.Add(Callbacks.limitFirearmYear)
 Events.OnGameBoot.Add(Callbacks.loadPatches)
 Events.OnLoadSoundBanks.Add(Callbacks.loadSoundBanks)
