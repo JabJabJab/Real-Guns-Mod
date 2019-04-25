@@ -64,6 +64,56 @@ Items_EN = {
     DisplayName_Colt_SSA_P1870                  = "Colt Peacemaker SAA Model P1870",
 
 
+    -- Colt Peacemaker
+    DisplayName_GroupSmithWesson_610            = "Smith&Wesson Model 610",
+    DisplayName_SmithWesson_610_M103571         = "Smith&Wesson Model 610-2 103571",
+    DisplayName_SmithWesson_610_M148120         = "Smith&Wesson Model 610-2 Lew Horton Edition 148120",
+    DisplayName_SmithWesson_610_M12462          = "Smith&Wesson Model 610-4 12462",
+    DisplayName_SmithWesson_610_M12463          = "Smith&Wesson Model 610-4 12463",
+    DisplayName_SmithWesson_610_M163426         = "Smith&Wesson Model 610-4 163426",
+
+
+    -- Ruger Blackhawk
+    DisplayName_GroupRuger_Blackhawk            = "Ruger Blackhawk",
+    DisplayName_Ruger_Blackhawk_M0306           = "Ruger Blackhawk Model 0306",
+    DisplayName_Ruger_Blackhawk_M0309           = "Ruger Blackhawk Model 0309",
+    DisplayName_Ruger_Blackhawk_M0316           = "Ruger Blackhawk Model 0316",
+    DisplayName_Ruger_Blackhawk_M0319           = "Ruger Blackhawk Model 0319",
+    DisplayName_Ruger_Blackhawk_M0405           = "Ruger Blackhawk Model 0405",
+    DisplayName_Ruger_Blackhawk_M0406           = "Ruger Blackhawk Model 0406",
+    DisplayName_Ruger_Blackhawk_M0445           = "Ruger Blackhawk Model 0445",
+    DisplayName_Ruger_Blackhawk_M0455           = "Ruger Blackhawk Model 0455",
+    DisplayName_Ruger_Blackhawk_M0460           = "Ruger Blackhawk Model 0460",
+    DisplayName_Ruger_Blackhawk_M0465           = "Ruger Blackhawk Model 0465",
+    DisplayName_Ruger_Blackhawk_M0505           = "Ruger Blackhawk Model 0505",
+
+
+
+    -- Ruger GP100
+    DisplayName_GroupRuger_GP100                = "Ruger GP100",
+    DisplayName_Ruger_GP100_M1702               = "Ruger GP100 Model 1702",
+    DisplayName_Ruger_GP100_M1704               = "Ruger GP100 Model 1704",
+    DisplayName_Ruger_GP100_M1705               = "Ruger GP100 Model 1705",
+    DisplayName_Ruger_GP100_M1707               = "Ruger GP100 Model 1707",
+    DisplayName_Ruger_GP100_M1715               = "Ruger GP100 Model 1715",
+
+
+    -- Ruger Redhawk
+    DisplayName_GroupRuger_Redhawk              = "Ruger Redhawk",
+    DisplayName_Ruger_Redhawk_M5041             = "Ruger Redhawk Model 5041",
+    DisplayName_Ruger_Redhawk_M5043             = "Ruger Redhawk Model 5043",
+    DisplayName_Ruger_Redhawk_M5044             = "Ruger Redhawk Model 5044",
+    DisplayName_Ruger_Redhawk_M5050             = "Ruger Redhawk Model 5050",
+    DisplayName_Ruger_Redhawk_M5051             = "Ruger Redhawk Model 5051",
+    DisplayName_Ruger_Redhawk_M5059             = "Ruger Redhawk Model 5059",
+    DisplayName_Ruger_Redhawk_M5060             = "Ruger Redhawk Model 5060",
+    DisplayName_Ruger_Redhawk_M5014             = "Ruger Redhawk Model 5014",
+    DisplayName_Ruger_Redhawk_M5028             = "Ruger Redhawk Model 5028",
+    DisplayName_Ruger_Redhawk_M5030             = "Ruger Redhawk Model 5030",
+    DisplayName_Ruger_Redhawk_M5031             = "Ruger Redhawk Model 5031",
+    DisplayName_Ruger_Redhawk_M5058             = "Ruger Redhawk Model 5058",
+
+
     -- Ruger Super Redhawk
     DisplayName_GroupRuger_SuperRedhawk         = "Ruger Super Redhawk",
     DisplayName_Ruger_SuperRedhawk_M5501        = "Ruger Super Redhawk Model 5501",
@@ -71,7 +121,7 @@ Items_EN = {
     DisplayName_Ruger_SuperRedhawk_M5507        = "Ruger Super Redhawk Model 5507",
     DisplayName_Ruger_SuperRedhawk_M5525        = "Ruger Super Redhawk Model 5525",
     DisplayName_Ruger_SuperRedhawk_M5517        = "Ruger Super Redhawk Model 5517",
-    DisplayName_Ruger_SuperRedhawk_M5520        = "Ruger Super Redhawk Model 5520",
+    DisplayName_Ruger_SuperRedhawk_M5520        = "Ruger Super Redhawk Hunter Model 5520",
     DisplayName_Ruger_SuperRedhawk_M5521        = "Ruger Super Redhawk Model 5521",
     DisplayName_Ruger_SuperRedhawk_M5522        = "Ruger Super Redhawk Model 5522",
     DisplayName_Ruger_SuperRedhawk_M5301        = "Ruger Super Redhawk Alaskan Model 5301",
@@ -151,6 +201,7 @@ Items_EN = {
     DisplayName_AmmoGroup_480Ruger              = ".480 Ruger",
     DisplayName_AmmoGroup_50AE                  = ".50 AE",
     DisplayName_AmmoGroup_223Remington          = ".223 Remington",
+    DisplayName_AmmoGroup_30Carbine             = ".30 Carbine",
     DisplayName_AmmoGroup_3006Springfield       = ".30-06 Springfield",
     DisplayName_AmmoGroup_3030Winchester        = ".30-30 Winchester",
     DisplayName_AmmoGroup_308Winchester         = ".308 Winchester",

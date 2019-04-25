@@ -13,6 +13,16 @@ local FirearmGroup = Firearm.FirearmGroup
 local FirearmType = Firearm.FirearmType
 local Flags = Firearm.Flags
 
+--[[
+    FirearmGroups are used to organize weapons. They are a branching tree structure
+    (groups can contain groups), where branches and leaves can belong to multiple trees
+    (groups may have multiple parents).
+
+    The advantage of this new group structure is each group has 'random' and 'spawn' methods
+    that recursively work through its members, and we can select mid level branches just as
+    easy as top or bottom level.
+
+]]
 -- Top level groups
 FirearmGroup:new("Group_Main")
 FirearmGroup:new("Group_RareCollectables")
@@ -162,10 +172,10 @@ FirearmGroup:new("Group_Colt_Anaconda",     { Groups = { Group_Colt_Revolvers = 
 FirearmGroup:new("Group_Colt_Python",       { Groups = { Group_Colt_Revolvers = 1, } })
 FirearmGroup:new("Group_Colt_SSA",          { Groups = { Group_Colt_Revolvers = 1, } })
 
-FirearmGroup:new("Group_Ruger_Alaskan",     { Groups = { Group_Ruger_Revolvers = 1, } })
 FirearmGroup:new("Group_Ruger_Blackhawk",   { Groups = { Group_Ruger_Revolvers = 1, } })
 FirearmGroup:new("Group_Ruger_GP100",       { Groups = { Group_Ruger_Revolvers = 1, } })
 FirearmGroup:new("Group_Ruger_Redhawk",     { Groups = { Group_Ruger_Revolvers = 1, } })
+FirearmGroup:new("Group_Ruger_SuperRedhawk",{ Groups = { Group_Ruger_Revolvers = 1, } })
 
 FirearmGroup:new("Group_SmithWesson_Model_10",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
 FirearmGroup:new("Group_SmithWesson_Model_19",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
@@ -617,12 +627,13 @@ FirearmType:newCollection("Colt_SSA", {
 FirearmType:newCollection("Ruger_Blackhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Blackhawk
+        -- https://www.ruger.com/products/newModelBlackhawk/overview.html
         Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Blackhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugBH",
 
         ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.0,                   barrelLength = 4.65,
+        Weight = 1.0,                   barrelLength = 4.62,
         WeaponSprite = "rugblackhawk",    Icon = "RugBH",
         maxCapacity = 6,
 
@@ -636,10 +647,54 @@ FirearmType:newCollection("Ruger_Blackhawk", {
         feedSystem = Flags.ROTARY,
         --barrelLengthOpt = { 4.65, 6.5, 7.5 },
     },{
+        -- New blackhawk models are 1973+
+        -- Ruger Blackhawk Model M0306 .357 mag 4.62" blue
+        M0306 = {
+        },
+        -- Ruger Blackhawk Model M0309 .357 mag 4.62" SS
+        M0306 = {
+        },
+        -- Ruger Blackhawk Model M0316 .357 mag 6.5" blue
+        M0306 = {
+            barrelLength = 6.5,
+        },
+        -- Ruger Blackhawk Model M0319 .357 mag 6.5" SS
+        M0306 = {
+            barrelLength = 6.5,
+        },
+        -- Ruger Blackhawk Model M0405 .41 mag 4.62" blue
+        M0306 = {
+            ammoType = "AmmoGroup_41Magnum",
+        },
+        -- Ruger Blackhawk Model M0406 .41 mag 6.5" blue
+        M0306 = {
+            ammoType = "AmmoGroup_41Magnum", barrelLength = 6.5,
+        },
+        -- Ruger Blackhawk Model M0445 .45 colt 4.62" blue
+        M0306 = {
+            ammoType = "AmmoGroup_45Colt",
+        },
+        -- Ruger Blackhawk Model M0455 .45 colt 7.5" blue
+        M0306 = {
+            ammoType = "AmmoGroup_45Colt", barrelLength = 7.5,
+        },
+        -- Ruger Blackhawk Model M0460 .45 colt 7.5" SS WILLIAMS
+        M0306 = {
+            ammoType = "AmmoGroup_45Colt", barrelLength = 7.5,
+        },
+        -- Ruger Blackhawk Model M0465 .45 colt 5.5" blue
+        M0306 = {
+            ammoType = "AmmoGroup_45Colt", barrelLength = 5.5,
+        },
+        -- Ruger Blackhawk Model M0505 .30 carbine 7.5" blue
+        M0505 = {
+            ammoType = "AmmoGroup_30Carbine", barrelLength = 7.5,
+        },
 })
 FirearmType:newCollection("Ruger_GP100", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_GP100
+        -- https://www.ruger.com/products/gp100/overview.html
         Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_GP100 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugGP100",
@@ -659,10 +714,52 @@ FirearmType:newCollection("Ruger_GP100", {
         feedSystem = Flags.ROTARY,
         --barrelLengthOpt = { 3, 4.2, 6 },
     },{
+        -- Ruger GP100 Model 1702 .357 4.2" blue rubber
+        M1702 = {},
+        -- Ruger GP100 Model 1704 .357 6" blue rubber
+        M1704 = {
+            barrelLength = 6,
+        },
+        -- Ruger GP100 Model 1705 .357 4.2" SS rubber
+        M1705 = {},
+        -- Ruger GP100 Model 1707 .357 6" SS rubber
+        M1707 = {
+            barrelLength = 6,
+        },
+        -- Ruger GP100 Model 1715 .357 3" SS rubber
+        M1715 = {
+            barrelLength = 3,
+        },
+        -- Ruger GP100 Model 1740 .357 5" SS rubber DAVIDSONS
+        -- Ruger GP100 Model 1748 .327 Fed Mag 4.2" SS rubber 7 rounds
+        -- Ruger GP100 Model 1752 .357 3" SS rubber TALO
+        -- Ruger GP100 Model 1753 .357 3" blue rubber TALO
+        -- Ruger GP100 Model 1754 .357 4.2" SS Matchgrade
+        -- Ruger GP100 Model 1755 .357 4.2" SS Matchgrade
+        -- Ruger GP100 Model 1757 .22LR Fed Mag 5.5" SS rubber 10 rounds
+        -- Ruger GP100 Model 1759 .357 6" SS TALO
+        -- Ruger GP100 Model 1761 .44 special 3" SS rubber
+        -- Ruger GP100 Model 1762 .357 4.2" SS rubber LISPEY'S
+        -- Ruger GP100 Model 1763 .357 2.5" SS rubber TALO
+        -- Ruger GP100 Model 1764 .327 Fed Mag 6" SS rubber 7 rounds
+
+        -- Ruger GP100 Model 1767 .44 special 3" SS TALO
+        -- Ruger GP100 Model 1768 .357 5" blue LISPEY'S
+        -- Ruger GP100 Model 1769 .327 fed mag 5" blue LISPEY'S
+        -- Ruger GP100 Model 1770 .44 special 5" blue LISPEY'S
+        -- Ruger GP100 Model 1771 .357 4.2" SS rubber 7 rounds
+        -- Ruger GP100 Model 1772 .357 4.2" blue rubber 7 rounds TALO
+        -- Ruger GP100 Model 1773 .357 4.2" SS rubber 7 rounds
+        -- Ruger GP100 Model 1774 .357 2.5" SS rubber 7 rounds
+        -- Ruger GP100 Model 1775 10mm 4.2" SS Matchgrade
+        -- Ruger GP100 Model 1776 .357 4.2" blue rubber 7 rounds TALO
+        -- Ruger GP100 Model 1777 .357 4.2" SS 7 rounds TALO
+        -- Ruger GP100 Model 1780 10mm 3" SS TALO
 })
 FirearmType:newCollection("Ruger_Redhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Redhawk
+        -- https://ruger.com/products/redhawk/models.html
         Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Redhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugRH",
@@ -682,13 +779,67 @@ FirearmType:newCollection("Ruger_Redhawk", {
         feedSystem = Flags.ROTARY,
         --barrelLengthOpt = { 4, 5.5, 7.5 }
     },{
+        -- Ruger Redhawk model 5041 .44 Mag SS 7.5"
+        M5041 = {
+            barrelLength = 7.5,
+        },
+        -- Ruger Redhawk model 5043 .44 Mag SS 5.5"
+        M5043 = {
+            barrelLength = 5.5,
+        },
+        -- Ruger Redhawk model 5044 .44 Mag SS 4.2" Rubber grips
+        M5044 = {
+            barrelLength = 4.2,
+        },
+        -- Ruger Redhawk model 5050 .45ACP SS 4.2"
+        M5050 = {
+            barrelLength = 4.2,
+            ammoType = "AmmoGroup_45ACP",
+        },
+        -- Ruger Redhawk model 5051 .357 Mag SS 2.75" 8 rounds
+        M5051 = {
+            barrelLength = 2.75,
+            ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
+        },
+        -- Ruger Redhawk model 5059 .357 Mag SS 4.2" 8 rounds
+        M5059 = {
+            barrelLength = 4.2,
+            ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
+        },
+        -- Ruger Redhawk model 5060 .357 Mag SS 5.5" 8 rounds
+        M5060 = {
+            barrelLength = 5.5,
+            ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
+        },
+        -- Ruger Redhawk model 5014 .44 Mag SS 5.5" LEW HORTON
+        M5014 = {
+            barrelLength = 5.5,
+        },
+        -- Ruger Redhawk model 5028 .44 Mag SS 2.75" TALO
+        M5028 = {
+            barrelLength = 2.5,
+        },
+        -- Ruger Redhawk model 5030 .44 Mag SS 5.5" TALO
+        M5030 = {
+            barrelLength = 5.5,
+        },
+        -- Ruger Redhawk model 5031 .41 Mag SS 4.2" DAVIDSONS
+        M5031 = {
+            barrelLength = 7.5,
+            ammoType = "AmmoGroup_41Magnum",
+        },
+        -- Ruger Redhawk model 5058 .44 Mag SS 4.2" TALO
+        M5058 = {
+            barrelLength = 7.5,
+        },
 })
 FirearmType:newCollection("Ruger_SuperRedhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Super_Redhawk
         -- https://www.ruger.com/products/superRedhawkStandard/models.html
+        -- https://www.taloinc.com/ruger-firearms
         --
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Alaskan = 1, },
+        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_SuperRedhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
 
@@ -714,6 +865,7 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
 
         M5502 = { -- Ruger Super Redhawk Model 5502 .44 mag. 9.5" SS
             ammoType = "AmmoGroup_44Magnum",
+            barrelLength = 9.5,
         },
         -- Ruger Super Redhawk Model 5505 .454 7.5" SS
         M5505 = {
@@ -726,12 +878,14 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
         -- Ruger Super Redhawk Model 5525 10mm auto 6.5" SS
         M5525 = {
             ammoType = "AmmoGroup_10x25mm",
+            barrelLength = 6.5,
         },
         -- Ruger Super Redhawk Model 5517 .454 5" SS TALO
         M5517 = {
             ammoType = "AmmoGroup_454Casull",
+            barrelLength = 5,
         },
-        -- Ruger Super Redhawk Model 5520 .44 Mag 7.5" SS TALO
+        -- Ruger Super Redhawk Hunter Model 5520 .44 Mag 7.5" SS TALO
         M5520 = {
             ammoType = "AmmoGroup_44Magnum",
         },
@@ -748,14 +902,17 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
         -- 5301 Alaskan .454 2.5" SS
         M5301 = {
             ammoType = "AmmoGroup_454Casull",
+            barrelLength = 2.5,
         },
         -- 5302 Alaskan .480 Ruger 2.5" SS
         M5302 = {
             ammoType = "AmmoGroup_480Ruger",
+            barrelLength = 2.5,
         },
         -- 5303 Alaskan .44 Mag 2.5" SS
         M5303 = {
             ammoType = "AmmoGroup_44Magnum",
+            barrelLength = 2.5,
         },
 })
 FirearmType:newCollection("Ruger_SecuritySix", {
@@ -900,12 +1057,14 @@ FirearmType:newCollection("SmithWesson_Model_36", {
 FirearmType:newCollection("SmithWesson_Model_610", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_610
+        -- https://www.thetruthaboutguns.com/2017/04/daniel-zimmerman/gun-review-smith-wesson-model-610-10mm-content-contest/
+        -- https://www.smith-wesson.com/dealer-resources/sw-product-spec-sheets
         Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_610 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM610",
 
         ammoType = "AmmoGroup_10x25mm",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.2,                   barrelLength = 6.5,
+        Weight = 1.4,                   barrelLength = 6.5,
         WeaponSprite = "swm610",    Icon = "SWM610",
         maxCapacity = 6,
 
@@ -917,8 +1076,23 @@ FirearmType:newCollection("SmithWesson_Model_610", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = { 3.875, 6.5 },
     },{
+        M103571 = { --610-2, drilled and tapped
+            barrelLength = 4, Weight = 1.2,
+            year = 1998,
+        },
+        M148120 = { -- 610-2 Lew Horton Edition Model 148120 3" 300 produced
+            barrelLength = 3,
+        },
+        M12462  = { -- rubber
+        },
+        M12463 = { -- rubber
+            barrelLength = 4, Weight = 1.2,
+        },
+        M163426 = { -- 310 nightguard, 50oz rubber
+            barrelLength = 2.75, Weight = 1.2,
+
+        }
 })
 FirearmType:newCollection("Taurus_RagingBull", {
         -- sources:
@@ -1040,6 +1214,9 @@ FirearmType:newCollection("AMT_Automag", {
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
     },{
+        V = { -- https://en.wikipedia.org/wiki/AMT_AutoMag_V
+
+        },
 })
 FirearmType:newCollection("Beretta_92", {
         -- sources:
