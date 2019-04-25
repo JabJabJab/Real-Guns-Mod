@@ -74,6 +74,8 @@ Flags.FREEFLOAT = 8192
 Flags.NOSIGHTS = 16384
 --- gun can slamfire intentionally
 Flags.SLAMFIRE = 32768
+--- gun has a ported barrel
+Flags.PORTED = 65536
 
 --- Feed System Flags
 -- @section FeedSystemFlags
