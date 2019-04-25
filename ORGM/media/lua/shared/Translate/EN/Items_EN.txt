@@ -64,15 +64,6 @@ Items_EN = {
     DisplayName_Colt_SSA_P1870                  = "Colt Peacemaker SAA Model P1870",
 
 
-    -- Colt Peacemaker
-    DisplayName_GroupSmithWesson_610            = "Smith&Wesson Model 610",
-    DisplayName_SmithWesson_610_M103571         = "Smith&Wesson Model 610-2 103571",
-    DisplayName_SmithWesson_610_M148120         = "Smith&Wesson Model 610-2 Lew Horton Edition 148120",
-    DisplayName_SmithWesson_610_M12462          = "Smith&Wesson Model 610-4 12462",
-    DisplayName_SmithWesson_610_M12463          = "Smith&Wesson Model 610-4 12463",
-    DisplayName_SmithWesson_610_M163426         = "Smith&Wesson Model 610-4 163426",
-
-
     -- Ruger Blackhawk
     DisplayName_GroupRuger_Blackhawk            = "Ruger Blackhawk",
     DisplayName_Ruger_Blackhawk_M0306           = "Ruger Blackhawk Model 0306",
@@ -130,6 +121,15 @@ Items_EN = {
 
 
 
+    -- SmithWesson 610
+    DisplayName_GroupSmithWesson_610            = "Smith&Wesson Model 610",
+    DisplayName_SmithWesson_610_M103571         = "Smith&Wesson Model 610-2 103571",
+    DisplayName_SmithWesson_610_M148120         = "Smith&Wesson Model 610-2 Lew Horton Edition 148120",
+    DisplayName_SmithWesson_610_M12462          = "Smith&Wesson Model 610-4 12462",
+    DisplayName_SmithWesson_610_M12463          = "Smith&Wesson Model 610-4 12463",
+    DisplayName_SmithWesson_610_M163426         = "Smith&Wesson Model 310-4 Nightguard 163426",
+
+
     -- Taurus Raging Bull
     DisplayName_Taurus_RagingBull_M22H          = "Taurus Raging Hornet Model 22H",
     DisplayName_Taurus_RagingBull_M30CSS10      = "Taurus Raging Thirty Model 30CSS10",
@@ -152,26 +152,53 @@ Items_EN = {
 
     -- CAR15/M16 family, Military variants
     DisplayName_Armalite_AR15                   = "Armalite AR-15",
-    DisplayName_Colt_M16_M601                   = "Colt AR-15 Model 01",
-    DisplayName_Colt_M16_M604                   = "Colt M16 Model 604",
-    DisplayName_Colt_M16_M603                   = "Colt M16A1 Model 603",
-    DisplayName_Colt_M16_M605A                  = "Colt CAR-15 Carbine Model 605A",
-    DisplayName_Colt_M16_M605B                  = "Colt CAR-15 Carbine Model 605B",
-    DisplayName_Colt_M16_M607                   = "Colt CAR-15 SMG Model 607",
-    DisplayName_Colt_M16_M645                   = "Colt M16A2 Model 645",
-    DisplayName_Colt_M16_M646                   = "Colt M16A3 Model 646",
-    DisplayName_Colt_M16_M653                   = "Colt M16A2 Carbine Model 653",
-    DisplayName_Colt_M16_M695                   = "Colt M16A4 Model 695",
-    DisplayName_Colt_M16_M920                   = "Colt M4 Carbine Model 920",
-    DisplayName_Colt_M16_M921                   = "Colt M4A1 Carbine Model 921",
-    DisplayName_Colt_M16_M933                   = "Colt M4 Commando Model 933",
-    DisplayName_Colt_M16_M935                   = "Colt M4 Commando Model 935",
+    DisplayName_Colt_CAR15_M601                   = "Colt AR-15 Model 01",
+    DisplayName_Colt_CAR15_M604                   = "Colt M16 Model 604",
+    DisplayName_Colt_CAR15_M603                   = "Colt M16A1 Model 603",
+    DisplayName_Colt_CAR15_M605A                  = "Colt CAR-15 Carbine Model 605A",
+    DisplayName_Colt_CAR15_M605B                  = "Colt CAR-15 Carbine Model 605B",
+    DisplayName_Colt_CAR15_M607                   = "Colt CAR-15 SMG Model 607",
+    DisplayName_Colt_CAR15_M645                   = "Colt M16A2 Model 645",
+    DisplayName_Colt_CAR15_M646                   = "Colt M16A3 Model 646",
+    DisplayName_Colt_CAR15_M653                   = "Colt M16A2 Carbine Model 653",
+    DisplayName_Colt_CAR15_M695                   = "Colt M16A4 Model 695",
+    DisplayName_Colt_CAR15_M920                   = "Colt M4 Carbine Model 920",
+    DisplayName_Colt_CAR15_M921                   = "Colt M4A1 Carbine Model 921",
+    DisplayName_Colt_CAR15_M933                   = "Colt M4 Commando Model 933",
+    DisplayName_Colt_CAR15_M935                   = "Colt M4 Commando Model 935",
 
-    -- Civilian
-    DisplayName_Colt_AR15                       = "",
 
 
     -- Magazine Groups
+    DisplayName_MagGroup_AutomagV                = "AutomagV Magazine (.50AE)",
+    DisplayName_Mag_AutomagV_x5                  = "AutomagV Magazine x5 (.50AE)",
+
+    DisplayName_MagGroup_Beretta_92_early        = "Beretta 92 Magazine - early model (9x19mm)",
+    DisplayName_Mag_Beretta_92_early_x15         = "Beretta 92 Magazine x15 - early model (9x19mm)",
+
+    DisplayName_MagGroup_Beretta_92              = "Beretta 92 Magazine (9x19mm)",
+    DisplayName_Mag_Beretta_92_x15               = "Beretta 92 Magazine x15 (9x19mm)",
+    DisplayName_Mag_Beretta_92_x32               = "Beretta 92 Magazine x32 (9x19mm)",
+
+    DisplayName_MagGroup_BrenTen                 = "BrenTen Magazine (10x25mm)",
+    DisplayName_Mag_BrenTen_x12                  = "BrenTen Magazine x12 (10x25mm)",
+
+    DisplayName_MagGroup_Browning_HiPower        = "Browning HiPower Magazine (9x19mm)",
+    DisplayName_Mag_Browning_HiPower_x13         = "Browning HiPower Magazine x13 (9x19mm)",
+
+    DisplayName_MagGroup_1911                    = "1911 Magazine (.45ACP)",
+    DisplayName_Mag_1911_x7                      = "1911 Magazine x7 (.45ACP)",
+
+    DisplayName_MagGroup_1911_9x19mm             = "1911 Magazine (9x19mm)",
+    DisplayName_Mag_1911_9x19mm_x9               = "1911 Magazine x9 (9x19mm)",
+
+    DisplayName_MagGroup_1911_10x25mm            = "1911 Magazine (10x25mm)",
+    DisplayName_Mag_1911_10x25mm_x9              = "1911 Magazine x9 (10x25mm)",
+
+    DisplayName_MagGroup_1911_38Super            = "1911 Magazine (.38 Super)",
+    DisplayName_Mag_1911_38Super_x9              = "1911 Magazine x9 (.38 Super)",
+
+
     DisplayName_MagGroup_STANAG                  = "STANAG Magazine (5.56x45mm NATO)",
     DisplayName_Mag_STANAG_x5                    = "STANAG Magazine x5 (5.56x45mm NATO)",
     DisplayName_Mag_STANAG_x10                   = "STANAG Magazine x10 (5.56x45mm NATO)",

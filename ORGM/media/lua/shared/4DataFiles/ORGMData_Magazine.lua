@@ -13,7 +13,277 @@ local MagazineGroup = Magazine.MagazineGroup
 local MagazineType = Magazine.MagazineType
 local Flags = Magazine.Flags
 
-MagazineGroup:new("MagGroup_STANAG", {ammoType = 'AmmoGroup_556x45mm'})
+MagazineGroup:new("MagGroup_STANAG")
+
+MagazineGroup:new("MagGroup_AutomagV")
+MagazineType:new("Mag_AutomagV_x5", {
+    Groups = { MagGroup_AutoMagV = 1 },
+    ammoType = "AmmoGroup_50AE", maxCapacity = 5,
+    features = Flags.BOX, Weight = 0.2, Icon = "Mag_AutomagV",
+})
+MagazineGroup:new("MagGroup_Beretta_92_early")
+MagazineType:new("Mag_Beretta_92_early_x15", {
+    Groups = { MagGroup_Beretta_92_early = 1 },
+    ammoType = "AmmoGroup_9x19mm", maxCapacity = 15,
+    features = Flags.BOX, Weight = 0.2, Icon = "Mag_Beretta_92",
+})
+
+MagazineGroup:new("MagGroup_Beretta_92")
+MagazineType:newCollection("Mag_Beretta_92", {
+        ammoType = 'AmmoGroup_9x19mm',
+        Icon = "Mag_Beretta_92",
+    },{
+        x15 = {
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Beretta_92 = 1 },
+        },
+        x32 = {
+            features = Flags.BOX,
+            maxCapacity = 32,
+            Weight = 0.2,
+            Groups = { MagGroup_Beretta_92 = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_BrenTen")
+MagazineType:new("Mag_BrenTen_x12", {
+    Groups = { MagGroup_BrenTen = 1 },
+    ammoType = "AmmoGroup_10x25mm", maxCapacity = 12,
+    features = Flags.BOX, Weight = 0.2, Icon = "Mag_BrenTen",
+})
+MagazineGroup:new("MagGroup_Browning_HiPower")
+MagazineType:newCollection("Mag_Browning_HiPower", {
+    ammoType = 'AmmoGroup_9x19mm',
+    Icon = "Mag_Browning_HiPower",
+    },{
+        x13 = {
+            features = Flags.BOX,
+            maxCapacity = 13,
+            Weight = 0.2,
+            Groups = { MagGroup_Browning_HiPower = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_1911")
+MagazineType:newCollection("Mag_1911", {
+    ammoType = 'AmmoGroup_45ACP',
+    Icon = "Mag_1911",
+    },{
+        x7 = {
+            features = Flags.BOX,
+            maxCapacity = 7,
+            Weight = 0.2,
+            Groups = { MagGroup_1911 = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_1911_9x19mm")
+MagazineType:newCollection("Mag_1911_9x19mm", {
+    ammoType = 'AmmoGroup_9x19mm',
+    Icon = "Mag_1911_9x19mm",
+    },{
+        x9 = {
+            features = Flags.BOX,
+            maxCapacity = 9,
+            Weight = 0.2,
+            Groups = { MagGroup_1911 = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_1911_10x25mm")
+MagazineType:newCollection("Mag_1911_10x25mm", {
+    ammoType = 'AmmoGroup_10x25mm',
+    Icon = "Mag_1911_10x25mm",
+    },{
+        x9 = {
+            features = Flags.BOX,
+            maxCapacity = 9,
+            Weight = 0.2,
+            Groups = { MagGroup_1911_10x25mm = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_1911_38Super")
+MagazineType:newCollection("Mag_1911_38Super", {
+    ammoType = 'AmmoGroup_38Super',
+    Icon = "Mag_1911_38Super",
+    },{
+        x9 = {
+            features = Flags.BOX,
+            maxCapacity = 9,
+            Weight = 0.2,
+            Groups = { MagGroup_1911_38Super = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_CZ75_9x19mm")
+MagazineType:newCollection("Mag_CZ75_9x19mm", {
+    ammoType = 'AmmoGroup_9x19mm',
+    Icon = "Mag_CZ75",
+    },{
+        x15 = {
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_CZ75_9x19mm = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_DesertEagle_44Magnum")
+MagazineType:newCollection("Mag_DesertEagle_44Magnum", {
+    ammoType = 'AmmoGroup_44Magnum',
+    Icon = "Mag_DesertEagle_44Magnum",
+    },{
+        x8 = {
+            features = Flags.BOX,
+            maxCapacity = 8,
+            Weight = 0.2,
+            Groups = { MagGroup_DesertEagle_44Magnum = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_DesertEagle_50AE")
+MagazineType:newCollection("Mag_DesertEagle_50AE", {
+    ammoType = 'AmmoGroup_50AE',
+    Icon = "Mag_DesertEagle_50AE",
+    },{
+        x7 = {
+            features = Flags.BOX,
+            maxCapacity = 7,
+            Weight = 0.2,
+            Groups = { MagGroup_DesertEagle_50AE = 1 },
+        },
+    }
+)
+
+MagazineGroup:new("MagGroup_FN57")
+MagazineType:newCollection("Mag_FN57", {
+    ammoType = 'AmmoGroup_57x25mm',
+    Icon = "Mag_FN57",
+    },{
+        x20 = {
+            features = Flags.BOX,
+            maxCapacity = 20,
+            Weight = 0.2,
+            Groups = { MagGroup_FN57 = 1 },
+        },
+    }
+)
+
+MagazineGroup:new("MagGroup_Glock_9x19mm")
+MagazineType:newCollection("Mag_Glock_9x19mm", {
+    ammoType = 'AmmoGroup_9x19mm',
+    Icon = "Mag_Glock_9x19mm",
+    },{
+        x10 = {
+            features = Flags.BOX,
+            maxCapacity = 10,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_9x19mm = 1 },
+        },
+        x17 = {
+            features = Flags.BOX,
+            maxCapacity = 17,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_9x19mm = 1 },
+        },
+        Gen1_x17 = { -- tends to stick/buldge
+            features = Flags.BOX,
+            maxCapacity = 17,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_9x19mm = 1 },
+        },
+        x33 = {
+            features = Flags.BOX,
+            maxCapacity = 33,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_9x19mm = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_Glock_10x25mm")
+MagazineType:newCollection("Mag_Glock_10x25mm", {
+    ammoType = 'AmmoGroup_10x25mm',
+    Icon = "Mag_Glock_10x25mm",
+    },{
+        x10 = {
+            features = Flags.BOX,
+            maxCapacity = 10,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_10x25mm = 1 },
+        },
+        x15 = {
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_10x25mm = 1 },
+        },
+        Gen1_x15 = { -- tends to stick/buldge
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_10x25mm = 1 },
+        },
+    }
+)
+
+MagazineGroup:new("MagGroup_Glock_45ACP")
+MagazineType:newCollection("Mag_Glock_45ACP", {
+    ammoType = 'AmmoGroup_45ACP',
+    Icon = "Mag_Glock_45ACP",
+    },{
+        x10 = {
+            features = Flags.BOX,
+            maxCapacity = 10,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_45ACP = 1 },
+        },
+        x13 = {
+            features = Flags.BOX,
+            maxCapacity = 13,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_45ACP = 1 },
+        },
+        Gen1_x13 = { -- tends to stick/buldge
+            features = Flags.BOX,
+            maxCapacity = 13,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_45ACP = 1 },
+        },
+    }
+)
+MagazineGroup:new("MagGroup_Glock_40SW")
+MagazineType:newCollection("Mag_Glock_40SW", {
+    ammoType = 'AmmoGroup_40SW',
+    Icon = "Mag_Glock_40SW",
+    },{
+        x10 = {
+            features = Flags.BOX,
+            maxCapacity = 10,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_40SW = 1 },
+        },
+        x15 = {
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_40SW = 1 },
+        },
+        Gen1_x15 = { -- tends to stick/buldge
+            features = Flags.BOX,
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Glock_40SW = 1 },
+        },
+    }
+)
+
+
+
+MagazineGroup:new("MagGroup_AIAW_308", {ammoType = 'AmmoGroup_308Winchester'})
+MagazineGroup:new("MagGroup_AIAW_300", {ammoType = 'AmmoGroup_308Winchester'})
 
 MagazineType:newCollection("Mag_STANAG", {
         ammoType = 'AmmoGroup_556x45mm',
@@ -85,44 +355,11 @@ register("AM180Mag",
 register("AR10Mag",
     { ammoType = 'AmmoGroup_762x51mm', maxCapacity = 20, }
 )
-register("AutomagVMag",
-    { ammoType = 'AmmoGroup_50AE', maxCapacity = 5, }
-)
 register("BBPistolMag",
     { ammoType = 'AmmoGroup_177BB', maxCapacity = 35, }
 )
-register("Ber92Mag",
-    { ammoType = 'AmmoGroup_9x19mm', maxCapacity = 15, }
-)
-register("Ber93RMag",
-    { ammoType = 'AmmoGroup_9x19mm', maxCapacity = 32, }
-)
 register("BLRMag",
     { ammoType = 'AmmoGroup_308Winchester', maxCapacity = 4, }
-)
-register("BrenTenMag",
-    { ammoType = 'AmmoGroup_10x25mm', maxCapacity = 12, }
-)
-register("BrownHPMag",
-    { ammoType = 'AmmoGroup_9x19mm', maxCapacity = 13, }
-)
-register("Colt38SMag",
-    { ammoType = 'AmmoGroup_38Super', maxCapacity = 9, }
-)
-register("ColtDeltaMag",
-    { ammoType = 'AmmoGroup_10x25mm', maxCapacity = 8, }
-)
-register("CZ75Mag",
-    { ammoType = 'AmmoGroup_9x19mm', maxCapacity = 15, }
-)
-register("DEagleMag",
-    { ammoType = 'AmmoGroup_44Magnum', maxCapacity = 8, }
-)
-register("DEagleXIXMag",
-    { ammoType = 'AmmoGroup_50AE', maxCapacity = 7, }
-)
-register("FN57Mag",
-    { ammoType = 'AmmoGroup_57x28mm', maxCapacity = 20, }
 )
 register("FNFALAMag",
     { ammoType = 'AmmoGroup_762x51mm', maxCapacity = 20, }
@@ -135,18 +372,6 @@ register("FNP90Mag",
 )
 register("GarandClip",
     { ammoType = 'AmmoGroup_3006Springfield', maxCapacity = 8, }
-)
-register("Glock17Mag",
-    { ammoType = 'AmmoGroup_9x19mm', maxCapacity = 17, }
-)
-register("Glock20Mag",
-    { ammoType = 'AmmoGroup_10x25mm', maxCapacity = 15, }
-)
-register("Glock21Mag",
-    { ammoType = 'AmmoGroup_45ACP', maxCapacity = 13, }
-)
-register("Glock22Mag",
-    { ammoType = 'AmmoGroup_40SW', maxCapacity = 15, }
 )
 register("HK91Mag",
     { ammoType = 'AmmoGroup_308Winchester', maxCapacity = 20, }
