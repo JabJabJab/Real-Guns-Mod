@@ -101,7 +101,7 @@ AmmoType:newCollection("Ammo_38Special", {
         Case = "Case_38Special",    category = Flags.PISTOL,
         Range = 15, Recoil = 7, MinDamage = 0.7, MaxDamage = 1.6, Weight = 0.010,
         Penetration = 30, BoxCount = 50, CanCount = 500,
-        Groups = { AmmoGroup_38Special = 1, AmmoGroup_357Magnum = 0.7, },
+        Groups = { AmmoGroup_38Special = 1, AmmoGroup_357Magnum = 0.4, },
     }, {
         FMJ = {
             features = Flags.JACKETED
@@ -127,7 +127,7 @@ AmmoType:newCollection("Ammo_380ACP", {
         Case = "Case_380ACP",    category = Flags.PISTOL,
         Range = 18, Recoil = 8, MinDamage = 0.7, MaxDamage = 1.5, Weight = 0.010,
         Penetration = 25, BoxCount = 50, CanCount = 500,
-        Groups = { AmmoGroup_380ACP = 1, },
+        Groups = { AmmoGroup_380ACP = 1, AmmoGroup_9x19mm = 04, },
     }, {
         FMJ = {
             features = Flags.JACKETED
@@ -140,7 +140,7 @@ AmmoType:newCollection("Ammo_40SW", {
         Case = "Case_40SW",    category = Flags.PISTOL,
         Range = 20, Recoil = 11, MinDamage = 0.8, MaxDamage = 1.7, Weight = 0.010,
         Penetration = 50, BoxCount = 50, CanCount = 500,
-        Groups = { AmmoGroup_40SW = 1, },
+        Groups = { AmmoGroup_40SW = 1, AmmoGroup_10x25mm = 0.4 },
     }, {
         FMJ = {
             features = Flags.JACKETED
