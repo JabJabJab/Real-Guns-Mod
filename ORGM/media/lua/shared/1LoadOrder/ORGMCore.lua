@@ -169,15 +169,17 @@ ORGM.VERBOSE = 4
 -- @section Category
 
 --- integer 1
-ORGM.PISTOL = 1
+ORGM.REVOLVER = 1
 --- integer 2
-ORGM.REVOLVER = 2
---- integer 3
-ORGM.SUBMACHINEGUN = 3
+ORGM.PISTOL = 2
 --- integer 4
-ORGM.RIFLE = 4
---- integer 5
-ORGM.SHOTGUN = 5
+ORGM.MACHINEPISTOL = 4
+--- integer 8
+ORGM.SUBMACHINEGUN = 8
+--- integer 16
+ORGM.RIFLE = 16
+--- integer 32
+ORGM.SHOTGUN = 32
 
 --- Select Fire Constants
 -- @section SelectFire
