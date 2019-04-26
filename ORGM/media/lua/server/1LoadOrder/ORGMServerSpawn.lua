@@ -717,8 +717,8 @@ The bulk of the other functions in the spawning system are directly or indirectl
 ]]
 
 Spawn.fillContainer = function(roomName, containerType, container)
-    if Spawn.RoomHanlders[roomName] then
+    if Spawn.RoomHandlers[roomName] then
         ORGM.log(ORGM.DEBUG, "Spawn: Checking "..tostring(roomName) ..", ".. tostring(containerType))
-        Spawn.RoomHanlders[roomName](roomName, containerType, container)
+        Spawn.RoomHandlers[roomName](roomName, containerType, container)
     end
 end
