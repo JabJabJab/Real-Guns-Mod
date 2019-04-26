@@ -305,7 +305,7 @@ ORGM.SettingsValidator = {
 
     -- Set this to the year you want to limit firearms spawning to. ie: 1993 will not spawn any
     -- firearms manufactured after 1993, if nil then no year limits will be applied.
-    LimitYear = {type='integer', min=0, default=0, nilAllowed=true, onUpdate=function(value) ORGM.Callbacks.limitFirearmYear() end },
+    LimitYear = {type='integer', min=0, default=0, nilAllowed=true },
 
     -- Spawn Rate Multipliers
     -- These values tweak the various spawn rates, and stack with the sandbox weapon loot rarity
