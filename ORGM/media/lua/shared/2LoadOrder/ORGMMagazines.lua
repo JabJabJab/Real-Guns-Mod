@@ -122,6 +122,7 @@ function MagazineGroup:random(typeModifiers, flagModifiers)
         ORGM.log(ORGM.VERBOSE, "MagazineGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
         return group:random(typeModifiers, flagModifiers)
     end
+    -- TODO: sanity check
     ORGM.log(ORGM.VERBOSE, "MagazineGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..MagazineTable[result].instance:getDisplayName() .."'")
     return MagazineTable[result]
 end
@@ -166,6 +167,7 @@ function MagazineGroup:find(ammoType, containerItem)
         for i = 0, items:size()-1 do repeat
             local currentItem = items:get(i)
             local modData = currentItem:getModData()
+            local magData = Magazine.getData(currentItem:getType())
             if modData.currentCapacity == nil then -- magazine needs to be setup
                 Magazine.setup(magData, currentItem)
             end
@@ -224,6 +226,8 @@ function MagazineType:new(magazineType, magazineData, template)
         ORGM.log(ORGM.ERROR, "MagazineType: Could not create instance of " .. magazineType .. " (Registration Failed)")
         return nil
     end
+
+    o.clipType = o.type -- required by ISReloadUtil:getClipData and :setUpMagazine
 
     MagazineTable[magazineType] = o
     ReloadUtil:addMagazineType(o)

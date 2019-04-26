@@ -194,7 +194,7 @@ Does not take into account ammunition availability.
 
 ]]
 function ISORGMWeapon:isChainReloading()
-    return (self.containsClip == nil)
+    return (not Firearm.hasMagazine(self.type)) --(self.containsClip == nil)
 end
 -- ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 

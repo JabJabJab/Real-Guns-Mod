@@ -199,14 +199,14 @@ function ISORGMMagazine:syncItemToReloadable(item)
         self.clickSound = modData.clickSound
         self.insertSound = modData.insertSound
         self.rackSound = modData.rackSound
-        self.maxCapacity = modData.maxCapacity or item:getClipSize()
-        self.reloadTime = modData.reloadTime or item:getReloadTime()
+        self.maxCapacity = modData.maxCapacity
+        self.reloadTime = modData.reloadTime
         self.rackTime = modData.rackTime
         self.currentCapacity = modData.currentCapacity
         self.clipType = modData.clipType
         self.magazineData = modData.magazineData
-        self.preferredAmmoType = modData.preferredAmmoType
-        self.loadedAmmo = modData.loadedAmmo
+        self.strictAmmoType = modData.strictAmmoType
+        self.loadedAmmoType = modData.loadedAmmoType
 --      self.reloadText = modData.reloadText;
     end
 end
@@ -216,8 +216,8 @@ function ISORGMMagazine:syncReloadableToItem(item)
     modData.type = self.type
     modData.currentCapacity = self.currentCapacity
     modData.magazineData = self.magazineData
-    modData.preferredAmmoType = self.preferredAmmoType
-    modData.loadedAmmo = self.loadedAmmo
+    modData.strictAmmoType = self.strictAmmoType
+    modData.loadedAmmoType = self.loadedAmmoType
 end
 
 function ISORGMMagazine:setupReloadable(item, magazineData)
