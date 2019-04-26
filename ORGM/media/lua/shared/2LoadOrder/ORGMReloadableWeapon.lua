@@ -51,37 +51,40 @@ Status.COCKED = 512 -- gun is currently cocked
 Status.FORCEOPEN = 1024 -- user specifically requested gun should be open. To prevent normal reloading from auto racking.
 local FIREMODESTATES = Status.SINGLESHOT+Status.FULLAUTO+Status.BURST2+Status.BURST3
 
-local function isForceOpen(this)
-    return Bit.band(this.status, Status.FORCEOPEN) ~= 0
-end
 
 Reloadable.isFeature = function(this, thisData, feature)
     return Firearm.isFeature(this.type, thisData, feature)
 end
+Reloadable.isStatus = function(this, status)
+    if not this.status then return end
+    return Bit.band(this.status, status) ~= 0
+end
+local function isForceOpen(this)
+    return Reloadable.isStatus(this, Status.FORCEOPEN)
+end
+
 
 Reloadable.isFeed = function(this, feedType)
+    if not this.feedSystem then return end
     return Bit.band(this.feedSystem, feedType) ~= 0
 end
 Reloadable.isRotary = function(this)
-    return Bit.band(this.feedSystem, Flags.ROTARY) ~= 0
+    return Reloadable.isFeed(this, Flags.ROTARY)
 end
 Reloadable.isBreak = function(this)
-    return Bit.band(this.feedSystem, Flags.BREAK) ~= 0
+    return Reloadable.isFeed(this, Flags.BREAK)
 end
 Reloadable.isAuto = function(this)
-    return Bit.band(this.feedSystem, Flags.AUTO) ~= 0
+    return Reloadable.isFeed(this, Flags.AUTO)
 end
 Reloadable.isPump = function(this)
-    return Bit.band(this.feedSystem, Flags.PUMP) ~= 0
+    return Reloadable.isFeed(this, Flags.PUMP)
 end
 Reloadable.isLever = function(this)
-    return Bit.band(this.feedSystem, Flags.LEVER) ~= 0
+    return Reloadable.isFeed(this, Flags.LEVER)
 end
 
 
-Reloadable.isStatus = function(this, status)
-    return Bit.band(this.status, status) ~= 0
-end
 
 
 --- Firing Functions
@@ -241,23 +244,23 @@ Fire.set = function(this, mode)
 end
 
 Fire.isFullAuto = function(this)
-    return Bit.band(this.status, Status.FULLAUTO) ~= 0
+    return Reloadable.isStatus(this, Status.FULLAUTO)
 end
 
 Fire.isSingle = function(this)
-    return Bit.band(this.status, Status.SINGLESHOT) ~= 0
+    return Reloadable.isStatus(this, Status.SINGLESHOT)
 end
 
 Fire.is2ShotBurst = function(this)
-    return Bit.band(this.status, Status.BURST2) ~= 0
+    return Reloadable.isStatus(this, Status.BURST2)
 end
 
 Fire.is3ShotBurst = function(this)
-    return Bit.band(this.status, Status.BURST3) ~= 0
+    return Reloadable.isStatus(this, Status.BURST3)
 end
 
 Fire.isSafe = function(this)
-    return Bit.band(this.status, Status.SAFETY) ~= 0
+    return Reloadable.isStatus(this, Status.SAFETY)
 end
 
 Fire.safe = function(this, engage)
@@ -954,7 +957,7 @@ Hammer.release = function(this, playerObj, playSound)
 end
 
 Hammer.isCocked = function(this)
-    return Bit.band(this.status, Status.COCKED) ~= 0
+    return Reloadable.isStatus(this, Status.COCKED)
 end
 --- Bolt Functions
 -- @section Bolt
@@ -968,7 +971,7 @@ end
 ]]
 
 Bolt.isOpen = function(this)
-    return Bit.band(this.status, Status.OPEN) ~= 0
+    return Reloadable.isStatus(this, Status.OPEN)
 end
 
 --[[- Opens the bolt, ejecting whatever is currently in the chamber onto the ground.
@@ -1046,7 +1049,7 @@ end
 ]]
 
 Cylinder.isOpen = function(this)
-    return Bit.band(this.status, Status.OPEN) ~= 0
+    return Reloadable.isStatus(this, Status.OPEN)
 end
 
 
@@ -1116,7 +1119,7 @@ end
 ]]
 
 Break.isOpen = function(this)
-    return Bit.band(this.status, Status.OPEN) ~= 0
+    return Reloadable.isStatus(this, Status.OPEN)
 end
 
 --[[- Opens the breech and ejects any shells.
