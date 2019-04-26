@@ -64,21 +64,7 @@ Returns a value between 1 and maxValue (including lower and upper values)
 
 ]]
 local Rnd = function(maxValue)
-    return ZombRand(maxValue) + 1;
-end
-
-
---[[- Generates a serial number for the item.
-
-@tparam InventoryItem item
-
-]]
-Spawn.generateSerialNumber = function(item)
-    local sn = {}
-    for i=1, 6 do
-        sn[i] = tostring(ZombRand(10))
-    end
-    item:getModData().serialnumber = table.concat(sn, '')
+    return ZombRand(maxValue) + 1
 end
 
 
@@ -121,7 +107,8 @@ It called by `Spawn.firearm` and `Spawn.magazine`.
 @treturn bool true if the reloadable spawned
 
 ]]
-Spawn.reloadable = function(container, itemType, ammoType, chance, max, isLoaded)
+
+--[[ Spawn.reloadable = function(container, itemType, ammoType, chance, max, isLoaded)
     -- ZomboidGlobals.WeaponLootModifier
     -- 0.2 extremely rare, 0.6 rare, 1.0 normal, 2.0 common, 4 abundant
     --ORGM.log(ORGM.DEBUG, "Spawn.reloadable called for " .. itemType .. " with " .. chance .. "% chance.")
@@ -193,6 +180,7 @@ Spawn.reloadable = function(container, itemType, ammoType, chance, max, isLoaded
     end
     return true
 end
+]]
 
 
 --[[- A wrapper function for `Spawn.reloadable`.
@@ -207,10 +195,10 @@ end
 @treturn bool true if the reloadable spawned
 
 ]]
-Spawn.firearm = function(container, gunType, ammoType, chance, max, isLoaded)
-    chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.FirearmSpawnModifier
-    return Spawn.reloadable(container, gunType, ammoType, chance, max, isLoaded)
-end
+--Spawn.firearm = function(container, gunType, ammoType, chance, max, isLoaded)
+--    chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.FirearmSpawnModifier
+--    return Spawn.reloadable(container, gunType, ammoType, chance, max, isLoaded)
+--end
 
 
 --[[- A wrapper function for `Spawn.reloadable`
@@ -223,7 +211,8 @@ end
 @tparam bool isLoaded if true the gun/magazine is loaded with ammoType
 
 ]]
-Spawn.magazine = function(container, gunType, ammoType, chance, max, isLoaded)
+
+--[[Spawn.magazine = function(container, gunType, ammoType, chance, max, isLoaded)
     chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
     local weaponData = Firearm.getData(gunType)
     local magType = weaponData.ammoType
@@ -236,6 +225,14 @@ Spawn.magazine = function(container, gunType, ammoType, chance, max, isLoaded)
         Spawn.reloadable(container, magType, ammoType, chance, max, isLoaded)
     end
 end
+
+Spawn.magazine2 = function(container, group, chance, minCount, maxCount, isLoaded)
+    chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
+    group = Magazine.getGroup(group)
+    if not group then return end
+    return group:spawn(nil, nil, container, isLoaded)
+end
+]]
 
 
 --[[- Generic spawn function for non-reloadable items (ie: ammo or repair stuff).
@@ -253,7 +250,8 @@ one of the wrapper functions to spawn items.
 @treturn table list of spawned InventoryItem objects
 
 ]]
-Spawn.item = function(container, itemType, chance, max)
+
+--[[ Spawn.item = function(container, itemType, chance, max)
     local roll = ZombRandFloat(0,100)
     ORGM.log(ORGM.DEBUG, "Spawn.item for " .. itemType .. ": " ..roll.. " roll vs ".. chance .. "% chance.")
     local result = {}
@@ -267,6 +265,7 @@ Spawn.item = function(container, itemType, chance, max)
     end
     return result
 end
+]]
 
 
 --[[- Attempts to spawn loose ammo in the container.
@@ -384,6 +383,9 @@ end
 @see ORGM.Firearm.randomRarity
 
 ]]
+
+
+--[[
 Spawn.select = function(civilian, police, military)
     -- select the table
     civilian = civilian * Settings.CivilianFirearmSpawnModifier
@@ -413,7 +415,7 @@ Spawn.select = function(civilian, police, military)
 
     return {gun = gunType, ammo = ammoType}
 end
-
+]]
 
 --[[- Generic spawn function for corpses.
 
@@ -423,14 +425,30 @@ Attempts to spawn items on the corpse.
 
 ]]
 Spawn.addToCorpse = function(container)
-    local choice = Spawn.select(80, 14, 6)
-    if not choice then return end
-    Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CorpseSpawnModifier, 1, true) -- has gun
-    Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CorpseSpawnModifier, 3, true) -- has mags
-    Spawn.ammo(container, choice.ammo, 3*Settings.CorpseSpawnModifier, 15) -- loose shells
-    Spawn.ammoBox(container, choice.ammo, 1*Settings.CorpseSpawnModifier, 1) -- has box
+    -- local choice = Spawn.select(80, 14, 6)
+    -- if not choice then return end
+    -- Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CorpseSpawnModifier, 1, true) -- has gun
+    -- Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CorpseSpawnModifier, 3, true) -- has mags
+    -- Spawn.ammo(container, choice.ammo, 3*Settings.CorpseSpawnModifier, 15) -- loose shells
+    -- Spawn.ammoBox(container, choice.ammo, 1*Settings.CorpseSpawnModifier, 1) -- has box
+    return
 end
 
+--local rollChance = function(base, modifiers)
+--end
+
+Spawn.spawnWeapons = function(firearmGroup, container, loaded, chances, modifiers, counts)
+    local choice = Firearm.getGroup(firearmGroup):random()
+    if not choice then return false end
+    --ORGM.log(ORGM.DEBUG, "Spawn.reloadable for " .. itemType .. ": " ..roll.. " roll vs ".. chance .. "% chance.")
+    for i=1, counts[1] or 0 do
+        choice:spawn(container, loaded, (chances[1] and chances[1]*modifier or nil), true)
+    end
+    for i=1, counts[2] or 0 do
+        -- spawn magazines
+    end
+    -- spawn ammo, boxes and cans
+end
 
 --[[- Generic spawn function for Civilian rooms.
 
@@ -440,99 +458,75 @@ Attempts to spawn items in the room.
 
 ]]
 Spawn.addToCivRoom = function(container)
-    local choice = Spawn.select(80, 14, 6)
-    if choice then
-        Spawn.firearm(container, choice.gun, choice.ammo, 3*Settings.CivilianBuildingSpawnModifier, 1, true) -- has gun
-        Spawn.magazine(container, choice.gun, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1, true) -- has mags
-        Spawn.ammo(container, choice.ammo, 2*Settings.CivilianBuildingSpawnModifier, 29) -- loose shells
-        Spawn.ammoBox(container, choice.ammo, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has box
-    end
-    Spawn.component(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has a mod
-    Spawn.maintance(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has repair stuff
+    Spawn.spawnWeapons("Group_Main", container, true, { 3, 1, 2, 1 }, Settings.CivilianBuildingSpawnModifier, { 1, 2, 30, 2 })
+
+    --Spawn.component(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has a mod
+    --Spawn.maintance(container, 1*Settings.CivilianBuildingSpawnModifier, 1) -- has repair stuff
 end
 
-
---[[- Triggered by the OnFillContainer Event.
-
-The bulk of the other functions in the spawning system are directly or indirectly called from this.
-
-]]
-
-Spawn.fillContainer = function(roomName, containerType, container)
-    -- pull functions into local namespace
-    ORGM.log(ORGM.DEBUG, "Checking spawns for "..tostring(roomName) ..", ".. tostring(containerType))
-    local addToCorpse = Spawn.addToCorpse
-    local addToCivRoom = Spawn.addToCivRoom
-
-    -- room control
-    if roomName == "all" and containerType == "inventorymale" then
-        addToCorpse(container)
+Spawn.RoomHandlers.all = function(roomName, containterType, container)
+    if containerType == "inventorymale" then
+        Spawn.addToCorpse(container)
     elseif roomName == "all" and containerType == "inventoryfemale" then
-        addToCorpse(container)
-    elseif roomName == "bedroom" and containerType == "wardrobe" then
-        addToCivRoom(container)
-    elseif roomName == "zippeestore" and containerType == "counter" then
-        addToCivRoom(container)
-    elseif roomName == "fossoil" and containerType == "counter" then
-        addToCivRoom(container)
-    elseif roomName == "gasstore" and containerType == "counter" then
-        addToCivRoom(container)
-    elseif roomName == "bar" and containerType == "counter" then
-        addToCivRoom(container)
-    elseif roomName == "policestorage" then
-        local mod = Settings.PoliceStorageSpawnModifier
-        local count = Rnd(3)
-        while count ~= 0 do
-            local choice = Spawn.select(0, 70, 30)
-            if choice then
-                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-                Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+        Spawn.addToCorpse(container)
+    end
+end
+--[[
+Spawn.RoomHandlers.bedroom = function(roomName, containterType, container)
+    if containerType == "wardrobe" then addToCivRoom(container) end
+end
+Spawn.RoomHandlers.zippeestore = function(roomName, containterType, container)
+    if containerType == "counter" then addToCivRoom(container) end
+end
+Spawn.RoomHandlers.fossoil = function(roomName, containterType, container)
+    if containerType == "counter" then addToCivRoom(container) end
+end
+Spawn.RoomHandlers.gasstore = function(roomName, containterType, container)
+    if containerType == "counter" then addToCivRoom(container) end
+end
+Spawn.RoomHandlers.bar = function(roomName, containterType, container)
+    if containerType == "counter" then addToCivRoom(container) end
+end
+Spawn.RoomHandlers.policestorage = function(roomName, containterType, container)
+    local mod = Settings.PoliceStorageSpawnModifier
+    local count = Rnd(3)
+    while count ~= 0 do
+        local choice = Spawn.select(0, 70, 30)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
 
-                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
-            end
-            Spawn.component(container, 30*mod, 2)
-            Spawn.maintance(container, 40*mod, 2)
-            if Rnd(10) > 4 then count = count -1 end
+            Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+            Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
         end
-    elseif roomName == "gunstore" then
-        local mod = Settings.GunStoreSpawnModifier
-        if containerType == "locker" then
-            Spawn.ammoBox(container, nil, 70*mod, 1)
-            Spawn.ammoBox(container, nil, 60*mod, 1)
-            Spawn.ammoBox(container, nil, 50*mod, 1)
-            Spawn.ammoBox(container, nil, 40*mod, 1)
-            Spawn.ammoBox(container, nil, 30*mod, 1)
-            Spawn.ammoCan(container, nil, 10*mod, 1)
-            Spawn.ammoCan(container, nil, 5*mod, 1)
-            Spawn.maintance(container, 20*mod, 2)
+        Spawn.component(container, 30*mod, 2)
+        Spawn.maintance(container, 40*mod, 2)
+        if Rnd(10) > 4 then count = count -1 end
+    end
+end
+Spawn.RoomHandlers.gunstore = function(roomName, containterType, container)
+    local mod = Settings.GunStoreSpawnModifier
+    if containerType == "locker" then
+        Spawn.ammoBox(container, nil, 70*mod, 1)
+        Spawn.ammoBox(container, nil, 60*mod, 1)
+        Spawn.ammoBox(container, nil, 50*mod, 1)
+        Spawn.ammoBox(container, nil, 40*mod, 1)
+        Spawn.ammoBox(container, nil, 30*mod, 1)
+        Spawn.ammoCan(container, nil, 10*mod, 1)
+        Spawn.ammoCan(container, nil, 5*mod, 1)
+        Spawn.maintance(container, 20*mod, 2)
 
-        elseif containerType == "counter" then
-            Spawn.ammoBox(container, nil, 70*mod, 1)
-            Spawn.ammoBox(container, nil, 60*mod, 1)
-            Spawn.ammoBox(container, nil, 50*mod, 1)
-            Spawn.ammoBox(container, nil, 40*mod, 1)
-            Spawn.ammoBox(container, nil, 30*mod, 1)
-            Spawn.ammoCan(container, nil, 10*mod, 1)
-            Spawn.ammoCan(container, nil, 5*mod, 1)
-            Spawn.maintance(container, 20*mod, 2)
+    elseif containerType == "counter" then
+        Spawn.ammoBox(container, nil, 70*mod, 1)
+        Spawn.ammoBox(container, nil, 60*mod, 1)
+        Spawn.ammoBox(container, nil, 50*mod, 1)
+        Spawn.ammoBox(container, nil, 40*mod, 1)
+        Spawn.ammoBox(container, nil, 30*mod, 1)
+        Spawn.ammoCan(container, nil, 10*mod, 1)
+        Spawn.ammoCan(container, nil, 5*mod, 1)
+        Spawn.maintance(container, 20*mod, 2)
 
-        elseif containerType == "displaycase" or containerType == "metal_shelves" then
-            local choice = Spawn.select(85, 10, 5)
-            if choice then
-                Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-                Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
-            end
-            choice = Spawn.select(85, 10, 5)
-            if choice then
-                Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
-                Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
-            end
-            Spawn.component(container, 40*mod, 2)
-            Spawn.maintance(container, 30*mod, 2)
-        end
-    elseif roomName == "gunstorestorage" then --and containerType == "metal_shelves" then
-        local mod = Settings.GunStoreSpawnModifier
+    elseif containerType == "displaycase" or containerType == "metal_shelves" then
         local choice = Spawn.select(85, 10, 5)
         if choice then
             Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
@@ -545,17 +539,34 @@ Spawn.fillContainer = function(roomName, containerType, container)
         end
         Spawn.component(container, 40*mod, 2)
         Spawn.maintance(container, 30*mod, 2)
+    end
+end
+Spawn.RoomHandlers.gunstorestorage = function(roomName, containterType, container)
+    local mod = Settings.GunStoreSpawnModifier
+    local choice = Spawn.select(85, 10, 5)
+    if choice then
+        Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+        Spawn.magazine(container, choice.gun, choice.ammo, 40*mod, 2, false)
+    end
+    choice = Spawn.select(85, 10, 5)
+    if choice then
+        Spawn.firearm(container, choice.gun, choice.ammo, 40*mod, 1, false)
+        Spawn.magazine(container, choice.gun, choice.ammo, 30*mod, 2, false)
+    end
+    Spawn.component(container, 40*mod, 2)
+    Spawn.maintance(container, 30*mod, 2)
 
-        Spawn.ammoBox(container, nil, 70*mod, 1)
-        Spawn.ammoBox(container, nil, 60*mod, 1)
-        Spawn.ammoBox(container, nil, 50*mod, 1)
-        Spawn.ammoBox(container, nil, 40*mod, 1)
-        Spawn.ammoBox(container, nil, 30*mod, 1)
-        Spawn.ammoCan(container, nil, 10*mod, 1)
-        Spawn.ammoCan(container, nil, 5*mod, 1)
-        Spawn.maintance(container, 20*mod, 2)
-
-    elseif roomName == "storageunit" and containerType == "crate" then
+    Spawn.ammoBox(container, nil, 70*mod, 1)
+    Spawn.ammoBox(container, nil, 60*mod, 1)
+    Spawn.ammoBox(container, nil, 50*mod, 1)
+    Spawn.ammoBox(container, nil, 40*mod, 1)
+    Spawn.ammoBox(container, nil, 30*mod, 1)
+    Spawn.ammoCan(container, nil, 10*mod, 1)
+    Spawn.ammoCan(container, nil, 5*mod, 1)
+    Spawn.maintance(container, 20*mod, 2)
+end
+Spawn.RoomHandlers.storageunit = function(roomName, containterType, container)
+    if containerType == "crate" then
         local mod = Settings.StorageUnitSpawnModifier
         local choice = Spawn.select(85, 10, 5)
         if choice then
@@ -581,8 +592,10 @@ Spawn.fillContainer = function(roomName, containerType, container)
             Spawn.ammoCan(container, nil, 5*mod, 1)
             Spawn.maintance(container,20*mod, 2)
         end
-
-    elseif roomName == "garagestorage" and containerType == "smallbox" then
+    end
+end
+Spawn.RoomHandlers.garagestorage = function(roomName, containterType, container)
+    if containerType == "smallbox" then
         local mod = Settings.GarageSpawnModifier
         local choice = Spawn.select(85, 10, 5)
         if choice then
@@ -608,8 +621,10 @@ Spawn.fillContainer = function(roomName, containerType, container)
             Spawn.ammoCan(container, nil, 5*mod, 1)
             Spawn.maintance(container, 20*mod, 2)
         end
-
-    elseif roomName == "hunting" and (containerType == "metal_shelves" or containerType == "locker") then
+    end
+end
+Spawn.RoomHandlers.hunting = function(roomName, containterType, container)
+    if (containerType == "metal_shelves" or containerType == "locker") then
         local mod = Settings.HuntingSpawnModifier
         local choice = Spawn.select(85, 10, 5)
         if choice then
@@ -633,10 +648,38 @@ Spawn.fillContainer = function(roomName, containerType, container)
         Spawn.ammoCan(container, nil, 10*mod, 1)
         Spawn.ammoCan(container, nil, 5*mod, 1)
         Spawn.maintance(container, 20*mod, 2)
+    end
+end
 
-    -- patch for snake's military complex mod
-    elseif roomName == "mcgunstorestorage" or roomName == "ammomakerroom" then
-        local mod = Settings.PoliceStorageSpawnModifier
+-- patch for snake's military complex mod
+Spawn.RoomHandlers.mcgunstorestorage = function(roomName, containterType, container)
+
+    local type = Rnd(3)
+    if type == 1 then
+        Spawn.spawnWeapons("Group_NATO", container, false, { 50, 50 }, Settings.PoliceStorageSpawnModifier, { 5, 10 })
+    elseif type == 2 then
+    end
+    local mod = Settings.PoliceStorageSpawnModifier
+    local count = Rnd(3)
+    while count ~= 0 do
+        local choice = Spawn.select(0, 30, 70)
+        if choice then
+            Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
+            Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
+
+            Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+            Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
+        end
+        Spawn.component(container, 30*mod, 2)
+        Spawn.maintance(container, 40*mod, 2)
+        if Rnd(10) > 4 then count = count -1 end
+    end
+end
+Spawn.RoomHandlers.ammomakerroom = Spawn.RoomHandlers.mcgunstorestorage
+
+Spawn.RoomHandlers.trainingcamp = function(roomName, containterType, container)
+    local mod = Settings.PoliceStorageSpawnModifier
+    if containerType == "metal_shelves" or containerType == "crate" then
         local count = Rnd(3)
         while count ~= 0 do
             local choice = Spawn.select(0, 30, 70)
@@ -651,36 +694,31 @@ Spawn.fillContainer = function(roomName, containerType, container)
             Spawn.maintance(container, 40*mod, 2)
             if Rnd(10) > 4 then count = count -1 end
         end
-
-    elseif roomName == "trainingcamp" then
-        local mod = Settings.PoliceStorageSpawnModifier
-        if containerType == "metal_shelves" or containerType == "crate" then
-            local count = Rnd(3)
-            while count ~= 0 do
-                local choice = Spawn.select(0, 30, 70)
-                if choice then
-                    Spawn.firearm(container, choice.gun, choice.ammo, 60*mod, 1, false)
-                    Spawn.magazine(container, choice.gun, choice.ammo, 80*mod, 2, false)
-
-                    Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-                    Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
-                end
-                Spawn.component(container, 30*mod, 2)
-                Spawn.maintance(container, 40*mod, 2)
-                if Rnd(10) > 4 then count = count -1 end
+    else
+        local count = Rnd(3)
+        while count ~= 0 do
+            local choice = Spawn.select(0, 30, 70)
+            if choice then
+                Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
+                Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
             end
-        else
-            local count = Rnd(3)
-            while count ~= 0 do
-                local choice = Spawn.select(0, 30, 70)
-                if choice then
-                    Spawn.ammoBox(container, choice.ammo, 80*mod, 4)
-                    Spawn.ammoCan(container, choice.ammo, 20*mod, 1)
-                end
-                Spawn.component(container, 30*mod, 2)
-                Spawn.maintance(container, 40*mod, 2)
-                if Rnd(10) > 3 then count = count -1 end
-            end
+            Spawn.component(container, 30*mod, 2)
+            Spawn.maintance(container, 40*mod, 2)
+            if Rnd(10) > 3 then count = count -1 end
         end
+    end
+end
+]]
+
+--[[- Triggered by the OnFillContainer Event.
+
+The bulk of the other functions in the spawning system are directly or indirectly called from this.
+
+]]
+
+Spawn.fillContainer = function(roomName, containerType, container)
+    if Spawn.RoomHanlders[roomName] then
+        ORGM.log(ORGM.DEBUG, "Spawn: Checking "..tostring(roomName) ..", ".. tostring(containerType))
+        Spawn.RoomHanlders[roomName](roomName, containerType, container)
     end
 end
