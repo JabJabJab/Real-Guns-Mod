@@ -68,7 +68,7 @@ Menu.inventory = function(player, context, items)
         return
     end
 
-
+    --[[
     -- Check for alternate ammo types so player can set gun to use a specific type
     local groupTable = Ammo.itemGroup(thisItem, true)
     --local reloadable = ReloadUtil:getReloadableWeapon(thisItem, player)
@@ -87,6 +87,7 @@ Menu.inventory = function(player, context, items)
             subMenuAmmo:addOption(name, thisItem, Menu.onSetPreferredAmmo, player, itemData, value)
         end
     end
+    ]]
 end
 
 
