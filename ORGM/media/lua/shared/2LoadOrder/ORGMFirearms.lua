@@ -358,80 +358,92 @@ function FirearmType:new(firearmType, firearmData, template)
         o.containsClip = 1
         -- variantData.clipData = ORGM.Magazine.getData(variantData.ammoType)
     end
-
+    local isTwoHanded = true
+    if Bit.band(o.category, ORGM.REVOLVER + ORGM.PISTOL + ORGM.MACHINEPISTOL) ~= 0 then
+        isTwoHanded = false
+    end
     local scriptItems = { }
     table.insert(scriptItems, {
         "\titem " .. firearmType,
         "\t{",
-        "\t\tDisplayName = "..firearmType .. ",",
-        "\t\tType = Weapon,",
-        "\t\tIsAimedHandWeapon = TRUE,",
-        "\t\tIsAimedFirearm = TRUE,",
-        "\t\tSubCategory =   Firearm,",
+        "\t\tDisplayName            = "..firearmType .. ",",
+        "\t\tAmmoType               = "..o.ammoType .. ",",
+        "\t\tWeight                 = "..o.Weight .. ",",
+        "\t\tWeaponWeight           = " ..o.Weight .. ",",
 
-        "\t\tAmmoType = "..o.ammoType .. ",",
-        "\t\tClipSize = 30,",
-        "\t\tReloadTime = 10,",
+        --"/** Appearance **/",
+        "\t\tIcon                   = "..o.Icon .. ",",
+        "\t\tWeaponSprite           = " .. o.WeaponSprite .. ',',
+        "\t\tRunAnim                = Run_Weapon2,",
+        "\t\tIdleAnim               = "..(isTwoHanded and 'Idle_Weapon2' or 'Idle') ..",",
+        "\t\tSwingAnim              = "..(isTwoHanded and 'Rifle' or 'Handgun') ..",",
+        "\t\tSwingSound             = " .. o.SwingSound .. ',',
+        --"\t\tTwoHandedWeapon                = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
+        "\t\tRequiresEquippedBothHands      = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
 
-        "\t\tWeight = "..o.Weight .. ",",
-        "\t\tWeaponWeight = " ..o.Weight .. ",",
+        --"/** Set By ORGM Config Options **/",
+        "\t\tCriticalChance                 = 20,",
+        "\t\tHitChance                      = 50,",
+        "\t\tAimingPerkCritModifier         = 10,",
+        "\t\tAimingPerkHitChanceModifier    = 15,",
+        "\t\tAimingPerkRangeModifier        = 2,",
 
-        "\t\tIcon = "..o.Icon .. ",",
 
-        "\t\tWeaponSprite = " .. o.WeaponSprite .. ',',
-        "\t\tRunAnim     =   Run_Weapon2,",
-        "\t\tIdleAnim    =   Idle_Weapon2,",
-        "\t\tSwingAnim   =   Rifle,",
+        --"/** Dynamically Set Values **/",
+        "\t\tMinDamage                      = 1.4,",
+        "\t\tMaxDamage                      = 2,",
+        "\t\tDoorDamage                     = 4,",
+        "\t\tTreeDamage                     = 1,",
 
-        "\t\tSwingSound  = " .. o.SwingSound .. ',',
-        "\t\tSoundGain =     2,",
-        "\t\tSoundRadius =   170,",
-        "\t\tImpactSound =   null,",
-        "\t\tSoundVolume =   75,",
-        "\t\tBreakSound  =   PZ_MetalSnap,",
-        "\t\tNPCSoundBoost   =   1.5,",
+        "\t\tMaxRange                       = 1,",
+        "\t\tMinRange                       = 0.6,",
+        "\t\tSwingTime                      = 1.0,",
+        "\t\tMinimumSwingTime               = 0.2,",
+        "\t\tRecoilDelay                    = 10,",
 
-        "\t\tMinDamage   =   1.4,",
-        "\t\tMaxDamage   =   2,",
-        "\t\tDoorDamage  =   4,",
-        "\t\tTreeDamage  =   1,",
-        "\t\tShareDamage =   FALSE,",
+        "\t\tSplatNumber                    = 3,",
+        "\t\tSplatSize                      = 3,",
+        "\t\tKnockdownMod                   = 1.5,",
+        "\t\tPushBackMod                    = 0.4,",
 
-        "\t\tMaxRange =         1,",
-        "\t\tMinRange =         0.6,",
-        "\t\tSwingTime =        1.0,",
-        "\t\tMinimumSwingTime = 0.2,",
-        "\t\tRecoilDelay =      10,",
-        "\t\tRanged  =      TRUE,",
-        "\t\tSwingAmountBeforeImpact =   0,",
-        "\t\tMinAngle    =   0.95,",
+        "\t\tAimingTime                     = 25,",
+        "\t\tMaxHitCount                    = 1,",
+        "\t\tMinAngle                       = 0.95,",
+        "\t\tAimingPerkMinAngleModifier     = 0.01,",
 
-        "\t\tAimingPerkCritModifier = 10,",
-        "\t\tAimingPerkHitChanceModifier = 15,",
-        "\t\tAimingPerkMinAngleModifier = 0.01,",
-        "\t\tAimingPerkRangeModifier = 2,",
+        "\t\tSoundGain                      = 2,",
+        "\t\tSoundRadius                    = 170,",
+        "\t\tSoundVolume                    = 75,",
 
-        "\t\tCriticalChance = 20,",
-        "\t\tHitChance = 50,",
-        "\t\tAimingTime = 25,",
-        "\t\tToHitModifier   =   1.5,",
+        "\t\tClipSize                       ="..(o.maxCapacity or 6) .. ",",
+        "\t\tPiercingBullets                = FALSE,",
 
-        "\t\tProjectileCount =   1,",
-        "\t\tMaxHitCount =   1,",
-        "\t\tConditionMax    =   10,",
-        "\t\tConditionLowerChanceOneIn   =   200,",
-        "\t\tPiercingBullets = FALSE,",
-        "\t\tRequiresEquippedBothHands = TRUE,",
+        --"/** Static Values **/",
+        "\t\tType                   = Weapon,",
+        "\t\tSubCategory            = Firearm,",
+        "\t\tIsAimedHandWeapon      = TRUE,",
+        "\t\tIsAimedFirearm         = TRUE,",
 
-        "\t\tUseEndurance    =   FALSE,",
-        "\t\tMultipleHitConditionAffected    =   FALSE,",
+        "\t\tReloadTime             = 10,",
 
-        "\t\tSplatNumber =   3,",
-        "\t\tSplatSize   =   3,",
-        "\t\tKnockdownMod    =   1.5,",
-        "\t\tSplatBloodOnNoDeath =   TRUE,",
-        "\t\tPushBackMod =   0.4,",
-        "\t\tKnockBackOnNoDeath  =   TRUE,",
+        "\t\tImpactSound            = null,",
+        --ShellFallSound              =
+        "\t\tBreakSound             = PZ_MetalSnap,",
+        "\t\tNPCSoundBoost          = 1.5,",
+
+        "\t\tShareDamage            = FALSE,",
+        "\t\tRanged                         = TRUE,",
+        "\t\tSwingAmountBeforeImpact        = 0,",
+
+        --AngleFalloff                = TRUE,
+        "\t\tToHitModifier                  =   1.5,",
+        "\t\tProjectileCount                = 1,",
+        "\t\tConditionMax                   = 10,",
+        "\t\tConditionLowerChanceOneIn      = 200,",
+        "\t\tUseEndurance                   = FALSE,",
+        "\t\tMultipleHitConditionAffected   = FALSE,",
+        "\t\tSplatBloodOnNoDeath            = TRUE,",
+        "\t\tKnockBackOnNoDeath             = TRUE,",
         "\t}"
     })
     ORGM.createScriptItems('ORGM', scriptItems)
@@ -453,7 +465,7 @@ function FirearmType:new(firearmType, firearmData, template)
         if group then group:add(firearmType, weight) end
     end
     table.insert(FirearmKeyTable, firearmType)
-    ORGM.log(ORGM.DEBUG, "FirearmType: Registered " .. firearmType .. " (".. o.instance:getDisplayName()..")")
+    ORGM.log(ORGM.DEBUG, "FirearmType: Registered " .. o.instance:getDisplayName() .. "\t\t (ID: "..firearmType ..")")
     return o
 end
 
