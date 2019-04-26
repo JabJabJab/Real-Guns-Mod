@@ -289,6 +289,10 @@ TipHandler[ORGM.FIREARM] = function(self)
     local item = self.item
     local gunData = Firearm.getData(item)
     local modData = item:getModData()
+    if not modData.status then
+        gunData:setup(item)
+        modData = item:getModData()
+    end
     local player = getPlayer()
     local isSet = (modData.lastRound ~= nil)
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
