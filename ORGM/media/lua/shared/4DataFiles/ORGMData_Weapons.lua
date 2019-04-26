@@ -200,7 +200,9 @@ FirearmGroup:new("Group_Glock_20",          { Groups = { Group_Glock_Pistols = 1
 FirearmGroup:new("Group_Glock_21",          { Groups = { Group_Glock_Pistols = 1, } })
 FirearmGroup:new("Group_Glock_22",          { Groups = { Group_Glock_Pistols = 1, } })
 
-
+FirearmGroup:new("Group_HecklerKoch_Mark23",    { Groups = { Group_HecklerKoch_Pistols = 1, } })
+FirearmGroup:new("Group_Kahr_CT_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
+FirearmGroup:new("Group_Kahr_P_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
 
 FirearmGroup:new("Group_Colt_CAR15", { Groups = { Group_Colt_Rifles = 1, } })
 
@@ -1573,6 +1575,106 @@ FirearmType:newCollection("Glock_22", {
 
         },
 })
+FirearmType:newCollection("HecklerKoch_Mark23", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/HK_MK23
+        Groups = { Group_HecklerKoch_Pistols = 1, Group_HecklerKoch_Mark23 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock22",
+
+        ammoType = "MagGroup_Mark23",
+        Weight = 1.2,                         barrelLength = 5.87,
+        WeaponSprite = "hkmk23",             Icon = "HecklerKoch_Mark23",
+        maxCapacity = 12,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1996,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_HK",
+        description = "IGUI_Firearm_Desc_HKMK23",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        KG = {
+
+        },
+})
+FirearmType:newCollection("Kahr_CT_Series", {
+        -- sources:
+        --
+        Groups = { Group_Kahr_Pistols = 1, Group_Kahr_CT_Series = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrCT40",
+
+        ammoType = "MagGroup_Kahr_CT_Series",
+        Weight = 0.6,                         barrelLength = 4,
+        WeaponSprite = "kahrct40",             Icon = "Kahr_CT_Series",
+        maxCapacity = 7,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2014,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Kahr",
+        description = "IGUI_Firearm_Desc_KahrCT40",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        CT40 = {
+
+        },
+})
+FirearmType:newCollection("Kahr_P_Series", {
+        -- sources:
+        --
+        Groups = { Group_HecklerKoch_Pistols = 1, Group_HecklerKoch_Mark23 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrP380",
+
+        ammoType = "MagGroup_Kahr_P_Series",
+        Weight = 0.32,                         barrelLength = 2.53,
+        WeaponSprite = "kahrp380",             Icon = "Kahr_P_Series",
+        maxCapacity = 6,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1999,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Kahr",
+        description = "IGUI_Firearm_Desc_KahrP380",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        P380 = {
+
+        },
+})
+FirearmType:newCollection("KalTec_P32", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Kel-Tec_P-32
+        Groups = { Group_KalTec_Pistols = 1, KalTec_P32 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMKelTecP32",
+
+        ammoType = "MagGroup_KalTec_P32",
+        Weight = 0.186,                         barrelLength = 2.68,
+        WeaponSprite = "ktp32",             Icon = "KalTec_P32",
+        maxCapacity = 7, -- or 10
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1999,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_KelTec",
+        description = "IGUI_Firearm_Desc_KTP32",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        Gen1 = {
+
+        },
+})
 
 --[[
     register("BBPistol", {
@@ -1597,71 +1699,6 @@ FirearmType:newCollection("Glock_22", {
     --************************************************************************--
     -- semi pistols
     --************************************************************************--
-register("HKMK23", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 5.87,
-    isCivilian = ORGM.VERYRARE,
-    isMilitary = ORGM.RARE,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1991,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_HK",
-    description = "IGUI_Firearm_Desc_HKMK23",
-})
-register("KahrCT40", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 2014,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Kahr",
-    description = "IGUI_Firearm_Desc_KahrCT40",
-})
-register("KahrP380", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 2.53,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1999,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Kahr",
-    description = "IGUI_Firearm_Desc_KahrP380",
-})
-register("KTP32", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 2.68,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1999,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_KelTec",
-    description = "IGUI_Firearm_Desc_KTP32",
-})
 register("RugerMKII", {
     features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
     feedSystem = Flags.AUTO + Flags.BLOWBACK,

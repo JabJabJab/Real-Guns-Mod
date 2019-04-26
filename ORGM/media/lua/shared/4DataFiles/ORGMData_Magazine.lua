@@ -17,15 +17,21 @@ MagazineGroup:new("MagGroup_STANAG")
 
 MagazineGroup:new("MagGroup_AutomagV")
 MagazineType:new("Mag_AutomagV_x5", {
-    Groups = { MagGroup_AutoMagV = 1 },
-    ammoType = "AmmoGroup_50AE", maxCapacity = 5,
-    features = Flags.BOX, Weight = 0.2, Icon = "Mag_AutomagV",
+    Groups = { MagGroup_AutomagV = 1 },
+    ammoType = "AmmoGroup_50AE",
+    maxCapacity = 5,
+    features = Flags.BOX,
+    Weight = 0.2,
+    Icon = "Mag_AutomagV",
 })
 MagazineGroup:new("MagGroup_Beretta_92_early")
 MagazineType:new("Mag_Beretta_92_early_x15", {
     Groups = { MagGroup_Beretta_92_early = 1 },
-    ammoType = "AmmoGroup_9x19mm", maxCapacity = 15,
-    features = Flags.BOX, Weight = 0.2, Icon = "Mag_Beretta_92",
+    ammoType = "AmmoGroup_9x19mm",
+    maxCapacity = 15,
+    features = Flags.BOX,
+    Weight = 0.2,
+    Icon = "Mag_Beretta_92",
 })
 
 MagazineGroup:new("MagGroup_Beretta_92")
@@ -50,8 +56,11 @@ MagazineType:newCollection("Mag_Beretta_92", {
 MagazineGroup:new("MagGroup_BrenTen")
 MagazineType:new("Mag_BrenTen_x12", {
     Groups = { MagGroup_BrenTen = 1 },
-    ammoType = "AmmoGroup_10x25mm", maxCapacity = 12,
-    features = Flags.BOX, Weight = 0.2, Icon = "Mag_BrenTen",
+    ammoType = "AmmoGroup_10x25mm",
+    maxCapacity = 12,
+    features = Flags.BOX,
+    Weight = 0.2,
+    Icon = "Mag_BrenTen",
 })
 MagazineGroup:new("MagGroup_Browning_HiPower")
 MagazineType:newCollection("Mag_Browning_HiPower", {
@@ -279,6 +288,25 @@ MagazineType:newCollection("Mag_Glock_40SW", {
         },
     }
 )
+MagazineGroup:new("MagGroup_Mark23")
+MagazineType:newCollection("Mag_Mark23", {
+    ammoType = 'AmmoGroup_45ACP',
+    Icon = "Mag_Mark23",
+    },{
+        x12 = {
+            features = Flags.BOX,
+            maxCapacity = 12,
+            Weight = 0.2,
+            Groups = { MagGroup_Mark23 = 1 },
+        },
+    }
+)
+
+MagazineGroup:new("MagGroup_Kahr_CT_Series")
+MagazineGroup:new("MagGroup_Kahr_P_Series")
+
+MagazineGroup:new("MagGroup_Ruger_MarkII")
+MagazineGroup:new("MagGroup_Ruger_SR9")
 
 
 
@@ -354,9 +382,6 @@ register("AM180Mag",
 )
 register("AR10Mag",
     { ammoType = 'AmmoGroup_762x51mm', maxCapacity = 20, }
-)
-register("BBPistolMag",
-    { ammoType = 'AmmoGroup_177BB', maxCapacity = 35, }
 )
 register("BLRMag",
     { ammoType = 'AmmoGroup_308Winchester', maxCapacity = 4, }
