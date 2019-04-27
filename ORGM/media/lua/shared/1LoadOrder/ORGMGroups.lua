@@ -1,3 +1,14 @@
+local Group = ORGM.Group
+local ItemType = ORGM.ItemType
+
+-- setup empty tables for sanity. The sub-classes should override these.
+Group._GroupTable = {}
+Group._ItemTable = {}
+ItemType._PropertiesTable = {}
+ItemType._GroupTable = {}
+ItemType._ItemTable = {}
+
+
 --[[- The ORGM.Group class is a super-class for organizing items and sub-groups.
 
 It is not intended be used directly, but provides a common code base for various subclasses
@@ -12,15 +23,6 @@ types per gun. To be used in conjunction with the `ItemType` class
     @copyright 2018 **File:** shared/1LoadOrder/ORGMGroups.lua
 
 ]]
-local Group = ORGM.Group
-local ItemType = ORGM.ItemType
-
--- setup empty tables for sanity. The sub-classes should override these.
-Group._GroupTable = {}
-Group._ItemTable = {}
-ItemType._PropertiesTable = {}
-ItemType._GroupTable = {}
-ItemType._ItemTable = {}
 
 --[[- Creates a new group.
 
@@ -39,21 +41,23 @@ function Group:new(groupName, groupData)
     setmetatable(o, { __index = self })
     o.type = groupName
 
-    -- make script item, probably redundant, but helpful for ammo
-    local script = {
-        "module ORGM {",
-        "\titem " .. groupName,
-        "\t{",
-        "\t\tCount = 1,",
-        "\t\tType = Normal,",
-        "\t\tDisplayName = ".. groupName .. ",",
-        "\t}",
-        "}",
-    }
-    getScriptManager():ParseScript(table.concat(script, "\r\n"))
-    local instance = InventoryItemFactory.CreateItem("ORGM." .. groupName)
-    if not instance then
-        ORGM.log(ORGM.ERROR, "Group: Could not create instance of " .. groupName .. " (Registration Failed)")
+    if not o.noScript then
+        -- make script item, probably redundant, but helpful for ammo
+        local script = {
+            "module ORGM {",
+            "\titem " .. groupName,
+            "\t{",
+            "\t\tCount = 1,",
+            "\t\tType = Normal,",
+            "\t\tDisplayName = ".. groupName .. ",",
+            "\t}",
+            "}",
+        }
+        getScriptManager():ParseScript(table.concat(script, "\r\n"))
+        o.instance = InventoryItemFactory.CreateItem("ORGM." .. groupName)
+        if not o.instance then
+            ORGM.log(ORGM.ERROR, "Group: Could not create instance of " .. groupName .. " (Registration Failed)")
+        end
     end
 
     -- add as a subgroup of specified groups
@@ -63,9 +67,8 @@ function Group:new(groupName, groupData)
     end
     o._GroupTable[groupName] = o
 
-    o.instance = instance
     o.members = { }
-    ORGM.log(ORGM.VERBOSE, "Group: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
+    ORGM.log(ORGM.VERBOSE, "Group: Registered " .. groupName .. " (".. (o.instance and o.instance:getDisplayName() or "nil")..")")
     return o
 end
 
@@ -174,13 +177,14 @@ function Group:random(typeModifiers, filter, depth)
     -- check if our result is another Group object, and call recursively
     local group = self._GroupTable[result]
     if group then
-        ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
+        ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.type .. "' picked '"..group.type .."'")
         return group:random(typeModifiers, filter, depth)
     end
 
     -- not a Group, return a ItemType
     local result = self._ItemTable[result]
-    ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.instance:getDisplayName() .. "' picked '"..(result and result.instance:getDisplayName() or "nil").."'")
+
+    ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.type .. "' picked '" ..(result and result.type or "nil").. "'")
     return result --dataTable[result]
 end
 
@@ -215,6 +219,77 @@ accessing to item's data and creating any ScriptItems (replacing scripts/*txt fi
 ]]
 
 
+
+--[[ copies key/value pairs from a source table to a destination table, with validation.
+
+The properties argument contains the rules used for validation, as well as knowing which
+key/values to copy, and any default values for missing keys.
+
+A example properties table used by the AmmoType subclass:
+```
+local PropertiesTable = {
+    MinDamage = {type='float', min=0, max=100, default=0.2},
+    MaxDamage = {type='float', min=0, max=100, default=1},
+    Range = {type='integer', min=0, max=100, default=20},
+    Weight = {type='float', min=0, max=100, default=0.01},
+    Recoil = {type='float', min=0, max=100, default=20},
+    Penetration = {type='integer', min=0, max=100, default=0},
+    MaxHitCount = {type='integer', min=1, max=100, default=1},
+    BoxCount = {type='integer', min=0, default=20},
+    CanCount = {type='integer', min=0, default=200},
+    Icon = {type='string', default=nil},
+    category = {type='integer', min=Flags.PISTOL, max=Flags.SHOTGUN, default=Flags.PISTOL, required=true},
+    features = {type='integer', min=0, default=0, required=true},
+}
+```
+
+@tparam string logPrefix a string to prefix on log messages, usually containing the item's name
+@tparam table properties a table of validation rules and default values
+@tparam table source
+@tparam table destination
+
+@treturn bool true if the validation passes, false on failure.
+
+Note on failure not all properties maybe copied (early return)
+
+]]
+local copyPropertiesTable = function(logPrefix, properties, source, destination)
+    for propName, options in pairs(properties) do
+        local validType = options.type
+        local value = destination[propName] or source[propName]
+        destination[propName] = value
+        if validType == 'integer' or validType == 'float' then validType = 'number' end
+        local wasNil = value == nil
+        if type(value) ~= validType then -- wrong type
+            if wasNil and options.required then
+                ORGM.log(ORGM.ERROR, logPrefix .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be type "..options.type.."). Setting to default "..tostring(options.default))
+                if options.default == nil then return false end
+            end
+
+            value = options.default
+        end
+
+        if options.type == 'integer' and value ~= math.floor(value) then
+            if wasNil and options.required then
+                ORGM.log(ORGM.ERROR, logPrefix .. " property " .. propName .. " is invalid type (value "..tostring(value).." should be integer not float). Setting to default "..tostring(math.floor(value)))
+            end
+            value = math.floor(value)
+        end
+
+        if validType == 'number' then
+            if (options.min and value < options.min) or (options.max and value > options.max) then
+                if wasNil and options.required then
+                    ORGM.log(ORGM.ERROR, logPrefix .. " property " .. propName .. " is invalid range (value "..tostring(value).." should be between min:"..(options.min or '')..", max:" ..(options.max or '').."). Setting to default "..tostring(options.default))
+                end
+                value = options.default
+            end
+        end
+        destination[propName] = value
+    end
+    return true
+end
+
+
 --[[- Creates a new ItemType.
 
 @tparam string itemName the name of the new Item
@@ -235,7 +310,7 @@ function ItemType:new(itemName, itemData, template)
     o.type = itemName
     o.moduleName = 'ORGM'
     -- setup specific properties and error checks
-    if not ORGM.copyPropertiesTable("ItemType: ".. itemName, o._PropertiesTable, template, o) then
+    if not copyPropertiesTable("ItemType: ".. itemName, o._PropertiesTable, template, o) then
         return nil
     end
     if not o.Icon then o.Icon = itemName end
@@ -246,12 +321,23 @@ function ItemType:new(itemName, itemData, template)
     end
 
     local scriptItems = o:createScriptItems()
-    ORGM.createScriptItems('ORGM', scriptItems)
-    o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. itemName)
+    if scriptItems then -- if its nil, we dont want a o.instance
 
-    if not o.instance then
-        ORGM.log(ORGM.ERROR, "ItemType: Could not create instance of " .. itemName .. " (Registration Failed)")
-        return nil
+        -- create our table to concat into a string
+        local script = {"module " .. o.moduleName .. " {"}
+        for _, item in ipairs(scriptItems) do
+            -- every item is another table we need to concat
+            table.insert(script, table.concat(item,"\r\n").."\r\n")
+        end
+        table.insert(script, '}\r\n')
+        getScriptManager():ParseScript(table.concat(script, "\r\n"))
+
+        o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. itemName)
+
+        if not o.instance then
+            ORGM.log(ORGM.ERROR, "ItemType: Could not create instance of " .. itemName .. " (Registration Failed)")
+            return nil
+        end
     end
 
     o._ItemTable[itemName] = o
@@ -264,17 +350,18 @@ function ItemType:new(itemName, itemData, template)
         group = o._GroupTable[group]
         if group then group:add(itemName, weight) end
     end
-    ORGM.log(ORGM.DEBUG, "ItemType: Registered " .. itemName .. " (".. o.instance:getDisplayName()..")")
+
+    ORGM.log(ORGM.DEBUG, "ItemType: Registered " .. itemName .. " (".. (o.instance and o.instance:getDisplayName() or "nil")..")")
     return o
 end
 
 --[[- Dummy function to be overwritten by sub-classes.
 
-@treturn table
+@treturn nil|table
 
 ]]
 function ItemType:createScriptItems()
-    return { }
+    return nil
 end
 
 
