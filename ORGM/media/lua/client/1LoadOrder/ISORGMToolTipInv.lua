@@ -239,30 +239,32 @@ TipHandler[ORGM.MAGAZINE] = function(self)
 
     ----------------------------------------------------------
 
-    local ammoType = Ammo.itemGroup(item) --item:getAmmoType()
-    --local ammoType = modData.defaultAmmo
-    local ammoItem = getScriptManager():FindItem(ammoType)
-    if not ammoItem then
-        ammoItem = getScriptManager():FindItem(item:getModule() .. ".".. ammoType)
-    end
-    setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoItem:getDisplayName())
+    --TODO: fix
+    local ammoData = Ammo.getGroup(modData.ammoType)
+    setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoData.instance:getDisplayName())
+    --local ammoType = Ammo.itemGroup(item) --item:getAmmoType()
+    --local ammoItem = getScriptManager():FindItem(ammoType)
+    --if not ammoItem then
+    --    ammoItem = getScriptManager():FindItem(item:getModule() .. ".".. ammoType)
+    --end
+    --setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoItem:getDisplayName())
 
     ----------------------------------------------------------
-    -- preferredAmmoType
-    local preferredAmmoType = modData.preferredAmmoType
-    if preferredAmmoType and preferredAmmoType ~= 'any' then
-        if preferredAmmoType == 'mixed' then
-            preferredAmmoType = getText("IGUI_Firearm_AmmoMixed")
+    -- strictAmmoType
+    local strictAmmoType = modData.strictAmmoType
+    if strictAmmoType and strictAmmoType ~= 'any' then
+        if strictAmmoType == 'mixed' then
+            strictAmmoType = getText("IGUI_Firearm_AmmoMixed")
         else
-            local ammoData = Ammo.getData(preferredAmmoType)
-            if ammoData then preferredAmmoType = (ammoData.instance:getDisplayName() or preferredAmmoType) end
+            local ammoData = Ammo.getData(strictAmmoType)
+            if ammoData then strictAmmoType = (ammoData.instance:getDisplayName() or strictAmmoType) end
         end
-        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), preferredAmmoType)
+        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), strictAmmoType)
     end
 
     ----------------------------------------------------------
     -- loadedAmmo
-    local loadedAmmo = modData.loadedAmmo
+    local loadedAmmo = modData.loadedAmmoType
     if not loadedAmmo then
          loadedAmmo = getText("IGUI_Firearm_Empty")
     elseif loadedAmmo == 'mixed' then
@@ -289,12 +291,12 @@ TipHandler[ORGM.FIREARM] = function(self)
     local item = self.item
     local gunData = Firearm.getData(item)
     local modData = item:getModData()
-    if not modData.status then
-        gunData:setup(item)
-        modData = item:getModData()
-    end
+    --if not modData.status then
+    --    gunData:setup(item)
+    --    modData = item:getModData()
+    --end
     local player = getPlayer()
-    local isSet = (modData.lastRound ~= nil)
+    local isSet = (modData.setAmmoType ~= nil)
     local aimingPerk = player:getPerkLevel(Perks.Aiming)
     local toolTipStyle = Settings.ToolTipStyle
     local noColor, isNumeric, roundPrecision = initializeStyle(toolTipStyle, aimingPerk)
@@ -331,21 +333,21 @@ TipHandler[ORGM.FIREARM] = function(self)
     setLayoutItem(layout, getText("Tooltip_weapon_Ammo").. ":", ammoItem:getDisplayName())
 
     ----------------------------------------------------------
-    -- preferredAmmoType
-    local preferredAmmoType = modData.preferredAmmoType
-    if preferredAmmoType and preferredAmmoType ~= 'any' then
-        if preferredAmmoType == 'mixed' then
-            preferredAmmoType = getText("IGUI_Firearm_AmmoMixed")
+    -- strictAmmoType
+    local strictAmmoType = modData.strictAmmoType
+    if strictAmmoType and strictAmmoType ~= 'any' then
+        if strictAmmoType == 'mixed' then
+            strictAmmoType = getText("IGUI_Firearm_AmmoMixed")
         else
-            local ammoData = Ammo.getData(preferredAmmoType)
-            if ammoData then preferredAmmoType = (ammoData.instance:getDisplayName() or preferredAmmoType) end
+            local ammoData = Ammo.getData(strictAmmoType)
+            if ammoData then strictAmmoType = (ammoData.instance:getDisplayName() or strictAmmoType) end
         end
-        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), preferredAmmoType)
+        setLayoutItem(layout, getText("Tooltip_Firearm_SetAmmo"), strictAmmoType)
     end
 
     ----------------------------------------------------------
     -- loadedAmmo
-    local loadedAmmo = modData.loadedAmmo
+    local loadedAmmo = modData.loadedAmmoType
     if not loadedAmmo then
          loadedAmmo = getText("IGUI_Firearm_Empty")
     elseif loadedAmmo == 'mixed' then
@@ -360,9 +362,9 @@ TipHandler[ORGM.FIREARM] = function(self)
     -- Capacity
     if modData.currentCapacity then
         local rounds = modData.currentCapacity .. "/" .. modData.maxCapacity
-        if modData.roundChambered and modData.emptyShellChambered == 0 then
-            rounds = rounds .."+"..modData.roundChambered
-        elseif modData.emptyShellChambered then
+        if modData.chambered and not Ammo.isCase(modData.chambered) then
+            rounds = rounds .."+1"
+        elseif modData.chambered then
             rounds = rounds .. "+X"
         end
         local color = colorScale(modData.currentCapacity / modData.maxCapacity, noColor)
