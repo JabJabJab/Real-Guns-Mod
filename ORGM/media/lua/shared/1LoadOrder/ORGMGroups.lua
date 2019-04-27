@@ -1,3 +1,85 @@
+--[[ This file contains the Group and ItemType classes.
+
+These 2 classes are the heart of many of ORGM's features, including the spawn system,
+multi-capacity magazines, multiple ammo types per gun, and the creation of ScriptItems.
+
+Data for various item types (firearms, magazines, attachments, ammo) is organized using Group class
+object, while the actual data is contained within a ItemType class objects.
+
+Below is simplified example of how its used with magazines, creating everything the mod needs for
+mag data, spawn types and rates, and including creating the ScriptItem
+(scripts/*txt files not needed!)
+
+```
+-- these 2 store our items and groups
+local MagazineTable = { }
+local MagazineGroupTable = { }
+
+-- these 2 will be our sub-classes
+local MagazineGroup = {}
+local MagazineType = {}
+
+-- set the MagazineGroup and MagazineType metatables
+setmetatable(MagazineGroup, { __index = ORGM.Group })
+setmetatable(MagazineType, { __index = ORGM.ItemType })
+
+-- set some pointers to our storage tables
+MagazineGroup._GroupTable = MagazineGroupTable
+MagazineGroup._ItemTable = MagazineTable
+MagazineType._GroupTable = MagazineGroupTable
+MagazineType._ItemTable = MagazineTable
+
+-- set the PropertiesTable, used for setting ItemType default values and error checking
+MagazineType._PropertiesTable = {
+    features = {type='integer', min=0, default=0, required=true},
+    Icon = {type='string', default=""},
+    ammoType = {type='string', default="", required=true},
+    maxCapacity = {type='integer', min=1, default=10, required=true},
+    Weight = {type='float', min=0, max=100, default=0.2},
+
+    reloadClass = {type='string', default="ISORGMMagazine"},
+    reloadTime = {type='integer', min=0, default=10},
+    ejectSound = {type='string', default="ORGMMagLoad"},
+    insertSound = {type='string', default="ORGMMagLoad"},
+    rackSound = {type='string', default="ORGMMagLoad"},
+    shootSound = {type='string', default="none"},
+    clickSound = {type='string', default="none"},
+}
+-- create a group for all pistol rounds
+MagazineGroup:new("MagGroup_Pistols")
+
+-- Create a new group for beretta mags
+MagazineGroup:new("MagGroup_Beretta_92", Groups = { MagGroup_Pistols = 1 })
+
+-- create 2 beretta mags, one 15 round (80% spawn weight), and one 32 round (20% spawn weight)
+MagazineType:newCollection("Mag_Beretta_92", {
+        ammoType = 'AmmoGroup_9x19mm',
+        Icon = "Mag_Beretta_92",
+        features = Flags.BOX,
+    },{
+        x15 = {
+            maxCapacity = 15,
+            Weight = 0.2,
+            Groups = { MagGroup_Beretta_92 = 4 },
+        },
+        x32 = {
+            maxCapacity = 32,
+            Weight = 0.3,
+            Groups = { MagGroup_Beretta_92 = 1 },
+        },
+    }
+)
+
+-- add more MagazineGroup, and MagazineType calls here
+```
+
+
+
+    @author Fenris_Wolf
+    @release 4.00
+    @copyright 2018 **File:** shared/1LoadOrder/ORGMGroups.lua
+
+]]
 local Group = ORGM.Group
 local ItemType = ORGM.ItemType
 
