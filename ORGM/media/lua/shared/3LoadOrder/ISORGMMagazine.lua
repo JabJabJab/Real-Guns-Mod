@@ -66,11 +66,11 @@ function ISORGMMagazine:reloadPerform(char, square, difficulty, magazine)
     self.currentCapacity = self.currentCapacity + 1
     self.magazineData[self.currentCapacity] = self:convertAmmoGroupRound(round)
     -- check if this round matches other rounds player loaded
-    if self.loadedAmmo == nil then
-        self.loadedAmmo = round
+    if self.loadedAmmoType == nil then
+        self.loadedAmmoType = round
         --magazine:setAmmoType(round)
-    elseif self.loadedAmmo ~= round then
-        self.loadedAmmo = 'mixed'
+    elseif self.loadedAmmoType ~= round then
+        self.loadedAmmoType = 'mixed'
         --magazine:setAmmoType(magazine:getModData().defaultAmmo)
     end
     -- remove the necessary ammo
@@ -133,7 +133,7 @@ function ISORGMMagazine:unloadPerform(char, square, difficulty, magazine)
     self.unloadInProgress = false
     char:getXp():AddXP(Perks.Reloading, 1)
     if(self.currentCapacity == 0) then
-        self.loadedAmmo = nil
+        self.loadedAmmoType = nil
         --magazine:setAmmoType(magazine:getModData().defaultAmmo)
         self:syncReloadableToItem(magazine)
         return false
@@ -174,7 +174,7 @@ end
 function ISORGMMagazine:convertAmmoGroupRound(round)
     if round == self.ammoType and Ammo.getGroup(round) ~= nil then -- a AmmoGroup round is being used
         --print("CONVERTING AmmoGroup ROUND " .. round " > ".. ORGM.AlternateAmmoTable[round][1])
-        round = Ammo.getGroup(round)[1]
+        --round = Ammo.getGroup(round)[1]
     end
     return round
 end
@@ -231,11 +231,7 @@ function ISORGMMagazine:printItemDetails(item)
     print('***************************************************************');
     local modData = item:getModData();
     local outString  = '';
-        if(modData.type ~= nil) then
-            outString = outString..', type: '..modData.type;
-        else
-            outString = outString..', type == nil';
-        end
+    outString = outString..', type: '..tostring(modData.type)
         if(modData.reloadClass ~= nil) then
             outString = outString..', reloadClass: '..modData.reloadClass;
         else
