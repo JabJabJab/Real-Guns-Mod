@@ -181,93 +181,15 @@ local PropertiesTable = {
 -- @section FirearmGroup
 
 
+setmetatable(FirearmGroup, { __index = ORGM.Group })
+
 function FirearmGroup:new(groupName, groupData)
-    local o = { }
-    for key, value in pairs(groupData or {}) do o[key] = value end
+    local o = ORGM.Group.new(self, groupName, groupData, FirearmGroupTable)
     setmetatable(o, { __index = self })
-    o.type = groupName
-    local script = {
-        "module ORGM {",
-        "\titem " .. groupName,
-        "\t{",
-        "\t\tCount = 1,",
-        "\t\tType = Normal,",
-        "\t\tDisplayName = ".. groupName .. ",",
-        "\t}",
-        "}",
-    }
-    getScriptManager():ParseScript(table.concat(script, "\r\n"))
-    local instance = InventoryItemFactory.CreateItem("ORGM." .. groupName)
-    if not instance then
-        ORGM.log(ORGM.ERROR, "FirearmGroup: Could not create instance of " .. groupName .. " (Registration Failed)")
-    end
-
-    for group, weight in pairs(o.Groups or { }) do
-        group = FirearmGroupTable[group]
-        if group then group:add(groupName, weight) end
-    end
-    FirearmGroupTable[groupName] = o
-
-    o.instance = instance
-    o.members = { }
-    ORGM.log(ORGM.DEBUG, "FirearmGroup: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
     return o
 end
-
-
-function FirearmGroup:normalize(typeModifiers, flagModifiers)
-    local sum = 0
-    typeModifiers = typeModifiers or {}
-    for firearmType, weight in pairs(self.members) do
-        sum = sum + weight * (typeModifiers[firearmType] or 1)
-    end
-    local members = {}
-    for firearmType, weight in pairs(self.members) do
-        members[firearmType] = self.members[firearmType] * (typeModifiers[firearmType] or 1) / sum
-    end
-    return members
-end
-
-
-function FirearmGroup:add(firearmType, weight)
-    self.members[firearmType] = weight or 1
-end
-
-function FirearmGroup:remove(firearmType)
-    self.members[firearmType] = nil
-end
-
-function FirearmGroup:random(typeModifiers, flagModifiers, depth)
-    local members = self.members
-    members = self:normalize(typeModifiers, flagModifiers)
-    if depth == nil then depth = 0 end
-    if depth > 20 then return nil end
-    depth = 1+depth
-    local sum = 0
-    local roll = ZombRandFloat(0,1)
-    local result = nil
-    for firearmType, weight in pairs(members) do
-        sum = sum + weight
-        if roll <= sum then
-            result = firearmType
-            break
-        end
-    end
-    --ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for ".. self.type .. " picked "..result)
-
-    local group = FirearmGroupTable[result]
-    if group then
-        ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
-        return group:random(typeModifiers, flagModifiers, depth)
-    end
-    local result =FirearmTable[result]
-    ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..(result and result.instance:getDisplayName() or "nil").."'")
-    return FirearmTable[result]
-end
-
-function FirearmGroup:contains(firearmType)
-    firearmType = type(firearmType) == 'table' and firearmType.type or firearmType
-    return self.members[firearmType] ~= nil
+function FirearmGroup:random(typeModifiers, filter)
+    return ORGM.Group.random(self, typeModifiers, filter, FirearmGroupTable, FirearmTable)
 end
 
 function FirearmGroup:spawn(container, loaded, typeModifiers, flagModifiers, chance, mustFit)

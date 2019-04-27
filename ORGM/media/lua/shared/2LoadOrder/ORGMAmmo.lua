@@ -60,82 +60,14 @@ local PropertiesTable = {
     category = {type='integer', min=Flags.PISTOL, max=Flags.SHOTGUN, default=Flags.PISTOL, required=true},
     features = {type='integer', min=0, default=0, required=true},
 }
+setmetatable(AmmoGroup, { __index = ORGM.Group })
 function AmmoGroup:new(groupName, groupData)
-    local o = { }
-    for key, value in pairs(groupData or {}) do o[key] = value end
+    local o = ORGM.Group.new(self, groupName, groupData, AmmoGroupTable)
     setmetatable(o, { __index = self })
-    o.type = groupName
-    local script = {
-        "module ORGM {",
-        "\titem " .. groupName,
-        "\t{",
-        "\t\tCount = 1,",
-        "\t\tType = Normal,",
-        "\t\tDisplayCategory = Ammo,",
-        "\t\tDisplayName = ".. groupName .. ",",
-        "\t}",
-        "}",
-    }
-    getScriptManager():ParseScript(table.concat(script, "\r\n"))
-    local instance = InventoryItemFactory.CreateItem("ORGM." .. groupName)
-    if not instance then
-        ORGM.log(ORGM.ERROR, "AmmoGroup: Could not create instance of " .. groupName .. " (Registration Failed)")
-    end
-    AmmoGroupTable[groupName] = o
-    o.instance = instance
-    o.members = { }
-    ORGM.log(ORGM.DEBUG, "AmmoGroup: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
     return o
 end
-
-function AmmoGroup:normalize(typeModifiers, flagModifiers)
-    local sum = 0
-    typeModifiers = typeModifiers or {}
-    for ammoType, weight in pairs(self.members) do
-        sum = sum + weight * (typeModifiers[ammoType] or 1)
-    end
-    local members = {}
-    for ammoType, weight in pairs(self.members) do
-        members[ammoType] = self.members[ammoType] * (typeModifiers[ammoType] or 1) / sum
-    end
-    return members
-end
-
-function AmmoGroup:add(ammoType, weight)
-    self.members[ammoType] = weight or 1
-end
-
-function AmmoGroup:remove(ammoType)
-    self.members[ammoType] = nil
-end
-
 function AmmoGroup:random(typeModifiers, flagModifiers)
-    local members = self.members
-    members = self:normalize(typeModifers, flagModifiers)
-    local sum = 0
-    local roll = ZombRandFloat(0,1)
-    local result = nil
-    for ammoType, weight in pairs(members) do
-        sum = sum + weight
-        if roll <= sum then
-            result = ammoType
-            break
-        end
-    end
-    --ORGM.log(ORGM.VERBOSE, "AmmoGroup: random for ".. self.type .. " picked "..result)
-
-    local group = AmmoGroupTable[result]
-    if group then
-        ORGM.log(ORGM.VERBOSE, "AmmoGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
-        return group:random(typeModifiers, flagModifiers)
-    end
-    ORGM.log(ORGM.VERBOSE, "AmmoGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..AmmoTable[result].instance:getDisplayName() .."'")
-    return AmmoTable[result]
-end
-
-function AmmoGroup:contains(ammoType)
-    ammoType = type(ammoType) == 'table' and ammoType.type or ammoType
-    return self.members[ammoType] ~= nil
+    return ORGM.Group.random(self, typeModifiers, filter, AmmoGroupTable, AmmoTable)
 end
 
 --[[- Finds the best matching ammo (bullets only) in a container.

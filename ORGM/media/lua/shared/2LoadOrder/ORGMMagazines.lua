@@ -50,93 +50,21 @@ local PropertiesTable = {
     shootSound = {type='string', default="none"},
     clickSound = {type='string', default="none"},
 }
-
+setmetatable(MagazineGroup, { __index = ORGM.Group })
 
 function MagazineGroup:new(groupName, groupData)
-    local o = { }
-    for key, value in pairs(groupData or {}) do o[key] = value end
+    local o = ORGM.Group.new(self, groupName, groupData, MagazineGroupTable)
     setmetatable(o, { __index = self })
-    o.type = groupName
-    local script = {
-        "module ORGM {",
-        "\titem " .. groupName,
-        "\t{",
-        "\t\tCount = 1,",
-        "\t\tType = Normal,",
-        "\t\tDisplayName = ".. groupName .. ",",
-        "\t}",
-        "}",
-    }
-    getScriptManager():ParseScript(table.concat(script, "\r\n"))
-    local instance = InventoryItemFactory.CreateItem("ORGM." .. groupName)
-    if not instance then
-        ORGM.log(ORGM.ERROR, "MagazineGroup: Could not create instance of " .. groupName .. " (Registration Failed)")
-    end
-    MagazineGroupTable[groupName] = o
-    o.instance = instance
-    o.members = { }
-    ORGM.log(ORGM.DEBUG, "MagazineGroup: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
     return o
 end
-
-function MagazineGroup:normalize(typeModifiers, flagModifiers)
-    local sum = 0
-    typeModifiers = typeModifiers or {}
-    for ammoType, weight in pairs(self.members) do
-        sum = sum + weight * (typeModifiers[ammoType] or 1)
-    end
-    local members = {}
-    for ammoType, weight in pairs(self.members) do
-        members[ammoType] = self.members[ammoType] * (typeModifiers[ammoType] or 1) / sum
-    end
-    return members
+function MagazineGroup:random(typeModifiers, filter)
+    return ORGM.Group.random(self, typeModifiers, filter, MagazineGroupTable, MagazineTable)
 end
 
-function MagazineGroup:add(ammoType, weight)
-    self.members[ammoType] = weight or 1
-    --self:normalize()
-end
-
-function MagazineGroup:remove(ammoType)
-    self.members[ammoType] = nil
-    --self:normalize()
-end
-
-function MagazineGroup:random(typeModifiers, flagModifiers)
-    local members = self.members
-    members = self:normalize(typeModifers, flagModifiers)
-    local sum = 0
-    local roll = ZombRandFloat(0, 1)
-    local result = nil
-    for ammoType, weight in pairs(members) do
-        sum = sum + weight
-        if roll <= sum then
-            result = ammoType
-            break
-        end
-    end
-    --ORGM.log(ORGM.VERBOSE, "MagazineGroup: random for ".. self.type .. " picked "..result)
-
-    local group = MagazineGroupTable[result]
-    if group then
-        ORGM.log(ORGM.VERBOSE, "MagazineGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
-        return group:random(typeModifiers, flagModifiers)
-    end
-    -- TODO: sanity check
-    ORGM.log(ORGM.VERBOSE, "MagazineGroup: random for '".. self.instance:getDisplayName() .. "' picked '"..MagazineTable[result].instance:getDisplayName() .."'")
-    return MagazineTable[result]
-end
-
-function MagazineGroup:spawn(typeModifiers, flagModifiers, container, loaded)
-    local magazine = self:random(typeModifiers, flagModifiers)
+function MagazineGroup:spawn(typeModifiers, filter, container, loaded)
+    local magazine = self:random(typeModifiers, filter)
     return magazine:spawn(container, loaded)
 end
-
-function MagazineGroup:contains(ammoType)
-    ammoType = type(ammoType) == 'table' and ammoType.type or ammoType
-    return self.members[ammoType] ~= nil
-end
-
 
 --[[- Finds the best matching magazine in a container.
 
