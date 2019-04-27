@@ -174,23 +174,23 @@ local PropertiesTable = {
     feedSystem = {type='integer', min=0, default=Flags.AUTO+Flags.BLOWBACK, required=true},
     maxCapacity = {type='integer', min=0, default=10},
 
-
+    soundProfile = {type='string', default=nil},
     lastChanged = {type='integer', min=0, defaullt=nil},
 }
+setmetatable(FirearmGroup, { __index = ORGM.Group })
+setmetatable(FirearmType, { __index = ORGM.ItemType })
+
+FirearmGroup._GroupTable = FirearmGroupTable
+FirearmGroup._ItemTable = FirearmTable
+
+FirearmType._PropertiesTable = PropertiesTable
+FirearmType._GroupTable = FirearmGroupTable
+FirearmType._ItemTable = FirearmTable
+
+
 --- FirearmGroup Methods
 -- @section FirearmGroup
 
-
-setmetatable(FirearmGroup, { __index = ORGM.Group })
-
-function FirearmGroup:new(groupName, groupData)
-    local o = ORGM.Group.new(self, groupName, groupData, FirearmGroupTable)
-    setmetatable(o, { __index = self })
-    return o
-end
-function FirearmGroup:random(typeModifiers, filter)
-    return ORGM.Group.random(self, typeModifiers, filter, FirearmGroupTable, FirearmTable)
-end
 
 function FirearmGroup:spawn(container, loaded, typeModifiers, flagModifiers, chance, mustFit)
     local firearm = self:random(typeModifiers, flagModifiers)
@@ -211,36 +211,24 @@ end
 
 --- FirearmType Methods
 -- @section FirearmType
-
-function FirearmType:new(firearmType, firearmData, template)
-    local o = { }
-    template = template or { }
-    for key, value in pairs(firearmData) do o[key] = value end
-    setmetatable(o, { __index = self })
-    ORGM.log(ORGM.VERBOSE, "FirearmType: Initializing ".. firearmType)
-    o.type = firearmType
-    o.moduleName = 'ORGM'
-    -- setup specific properties and error checks
-    if not ORGM.copyPropertiesTable("FirearmType: ".. firearmType, PropertiesTable, template, o) then
-        return nil
-    end
-    o.features = o.features + (o.addFeatures or 0)
-    o.addFeatures = nil
+function FirearmType:validate()
+    self.features = self.features + (self.addFeatures or 0)
+    self.addFeatures = nil
 
     ---------------------------------------------------------------------------------------------------
     -- bitwise flag validation
 
-    if Bit.band(o.features, Flags.SINGLEACTION + Flags.DOUBLEACTION) == 0 then
-        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature for " .. firearmType .. " (SINGLEACTION|DOUBLEACTION)")
+    if Bit.band(self.features, Flags.SINGLEACTION + Flags.DOUBLEACTION) == 0 then
+        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature for " .. self.type .. " (SINGLEACTION|DOUBLEACTION)")
         return
     end
 
-    if Bit.band(o.feedSystem, FEEDTYPES) == 0 then
-        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature for " .. firearmType .. " (AUTO|BOLT|LEVER|PUMP|BREAK|ROTARY)")
+    if Bit.band(self.feedSystem, FEEDTYPES) == 0 then
+        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature for " .. self.type .. " (AUTO|BOLT|LEVER|PUMP|BREAK|ROTARY)")
         return
     end
-    if Bit.band(o.feedSystem, Flags.AUTO) ~= 0 and Bit.band(o.feedSystem, Flags.BLOWBACK + Flags.DELAYEDBLOWBACK + Flags.SHORTGAS + Flags.LONGGAS + Flags.DIRECTGAS + Flags.LONGRECOIL + Flags.SHORTRECOIL) == 0 then
-        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature flag for " .. firearmType .. " (BLOWBACK|DELAYEDBLOWBACK|SHORTGAS|LONGGAS|DIRECTGAS|LONGRECOIL|SHORTRECOIL)")
+    if Bit.band(self.feedSystem, Flags.AUTO) ~= 0 and Bit.band(self.feedSystem, Flags.BLOWBACK + Flags.DELAYEDBLOWBACK + Flags.SHORTGAS + Flags.LONGGAS + Flags.DIRECTGAS + Flags.LONGRECOIL + Flags.SHORTRECOIL) == 0 then
+        ORGM.log(ORGM.ERROR, "FirearmType: Missing required feature flag for " .. self.type .. " (BLOWBACK|DELAYEDBLOWBACK|SHORTGAS|LONGGAS|DIRECTGAS|LONGRECOIL|SHORTRECOIL)")
         return
     end
 
@@ -248,58 +236,61 @@ function FirearmType:new(firearmType, firearmData, template)
     ---------------------------------------------------------------------------------------------------
 
     -- some basic error checking
-    if o.lastChanged and o.lastChanged > ORGM.BUILD_ID then
-        ORGM.log(ORGM.ERROR, "FirearmType: Invalid lastChanged for " .. firearmType .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
-        o.lastChanged = ORGM.BUILD_ID
+    if self.lastChanged and self.lastChanged > ORGM.BUILD_ID then
+        ORGM.log(ORGM.ERROR, "FirearmType: Invalid lastChanged for " .. self.type .. " (must be 1 to "..ORGM.BUILD_ID .. ")")
+        self.lastChanged = ORGM.BUILD_ID
     end
     -- TODO: fix this nastiness
-    if o.category ~= ORGM.REVOLVER and o.category ~= ORGM.PISTOL and o.category ~= ORGM.SUBMACHINEGUN and o.category ~= ORGM.RIFLE and o.category ~= ORGM.SHOTGUN then
-        ORGM.log(ORGM.WARN, "FirearmType: category for " .. firearmType .. " is set to "..o.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
+    if self.category ~= ORGM.REVOLVER and self.category ~= ORGM.PISTOL and self.category ~= ORGM.SUBMACHINEGUN and self.category ~= ORGM.RIFLE and self.category ~= ORGM.SHOTGUN then
+        ORGM.log(ORGM.WARN, "FirearmType: category for " .. self.type .. " is set to "..self.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
     end
 
-    if not ORGM.Ammo.isGroup(o.ammoType) and not ORGM.Magazine.isGroup(o.ammoType) then
-        ORGM.log(ORGM.ERROR, "FirearmType: Invalid AmmoType for " .. firearmType .. " (Ammo or Magazine not registered: "..o.ammoType ..")")
+    if not ORGM.Ammo.isGroup(self.ammoType) and not ORGM.Magazine.isGroup(self.ammoType) then
+        ORGM.log(ORGM.ERROR, "FirearmType: Invalid AmmoType for " .. self.type .. " (Ammo or Magazine not registered: "..self.ammoType ..")")
         return
     end
 
     -- apply any defaults from the ORGM.Sounds.Profiles table
-    if (template.soundProfile and ORGM.Sounds.Profiles[template.soundProfile]) then
-        for key, value in pairs(ORGM.Sounds.Profiles[template.soundProfile]) do
-            o[key] = template[key] or value
+    if (self.soundProfile and ORGM.Sounds.Profiles[self.soundProfile]) then
+        for key, value in pairs(ORGM.Sounds.Profiles[self.soundProfile]) do
+            self[key] = self[key] or value
         end
     else
-        ORGM.log(ORGM.WARN, "Invalid soundProfile for " .. firearmType .. " ("..tostring(template.soundProfile)..")")
+        ORGM.log(ORGM.WARN, "Invalid soundProfile for " .. self.type .. " ("..tostring(self.soundProfile)..")")
     end
 
     for _, key in ipairs(ORGM.Sounds.KeyTable) do
-        if o[key] then ORGM.Sounds.add(o[key]) end
+        if self[key] then ORGM.Sounds.add(self[key]) end
     end
 
     -- check if gun uses a mag, and link clipData
-    if ORGM.Magazine.isMagazine(o.ammoType) then
-        o.containsClip = 1
-        -- variantData.clipData = ORGM.Magazine.getData(variantData.ammoType)
+    if ORGM.Magazine.isMagazine(self.ammoType) then
+        self.containsClip = 1
     end
+    return true
+end
+
+function FirearmType:createScriptItems()
     local isTwoHanded = true
-    if Bit.band(o.category, ORGM.REVOLVER + ORGM.PISTOL + ORGM.MACHINEPISTOL) ~= 0 then
+    if Bit.band(self.category, ORGM.REVOLVER + ORGM.PISTOL + ORGM.MACHINEPISTOL) ~= 0 then
         isTwoHanded = false
     end
     local scriptItems = { }
     table.insert(scriptItems, {
-        "\titem " .. firearmType,
+        "\titem " .. self.type,
         "\t{",
-        "\t\tDisplayName            = "..firearmType .. ",",
-        "\t\tAmmoType               = "..o.ammoType .. ",",
-        "\t\tWeight                 = "..o.Weight .. ",",
-        "\t\tWeaponWeight           = " ..o.Weight .. ",",
+        "\t\tDisplayName            = "..self.type .. ",",
+        "\t\tAmmoType               = "..self.ammoType .. ",",
+        "\t\tWeight                 = "..self.Weight .. ",",
+        "\t\tWeaponWeight           = " ..self.Weight .. ",",
 
         --"/** Appearance **/",
-        "\t\tIcon                   = "..o.Icon .. ",",
-        "\t\tWeaponSprite           = " .. o.WeaponSprite .. ',',
+        "\t\tIcon                   = "..self.Icon .. ",",
+        "\t\tWeaponSprite           = " .. self.WeaponSprite .. ',',
         "\t\tRunAnim                = Run_Weapon2,",
         "\t\tIdleAnim               = "..(isTwoHanded and 'Idle_Weapon2' or 'Idle') ..",",
         "\t\tSwingAnim              = "..(isTwoHanded and 'Rifle' or 'Handgun') ..",",
-        "\t\tSwingSound             = " .. o.SwingSound .. ',',
+        "\t\tSwingSound             = " .. self.SwingSound .. ',',
         --"\t\tTwoHandedWeapon                = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
         "\t\tRequiresEquippedBothHands      = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
 
@@ -337,7 +328,7 @@ function FirearmType:new(firearmType, firearmData, template)
         "\t\tSoundRadius                    = 170,",
         "\t\tSoundVolume                    = 75,",
 
-        "\t\tClipSize                       ="..(o.maxCapacity or 6) .. ",",
+        "\t\tClipSize                       ="..(self.maxCapacity or 6) .. ",",
         "\t\tPiercingBullets                = FALSE,",
 
         --"/** Static Values **/",
@@ -368,34 +359,13 @@ function FirearmType:new(firearmType, firearmData, template)
         "\t\tKnockBackOnNoDeath             = TRUE,",
         "\t}"
     })
-    ORGM.createScriptItems('ORGM', scriptItems)
-    o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. firearmType)
-
-    if not o.instance then
-        ORGM.log(ORGM.ERROR, "FirearmType: Could not create instance of " .. firearmType .. " (Registration Failed)")
-        return nil
-    end
-
-    FirearmTable[firearmType] = o
-    ReloadUtil:addWeaponType(o)
-    for group, weight in pairs(o.Groups or template.Groups) do
-        group = FirearmGroupTable[group]
-        if group then group:add(firearmType, weight) end
-    end
-    for group, weight in pairs(o.addGroups or {}) do
-        group = FirearmGroupTable[group]
-        if group then group:add(firearmType, weight) end
-    end
-    table.insert(FirearmKeyTable, firearmType)
-    ORGM.log(ORGM.DEBUG, "FirearmType: Registered " .. o.instance:getDisplayName() .. "\t\t (ID: "..firearmType ..")")
-    return o
+    return scriptItems
 end
 
-function FirearmType:newCollection(ammoType, template, variants)
-    ORGM.log(ORGM.VERBOSE, "FirearmType: Starting Collection ".. ammoType)
-    for variant, variantData in pairs(variants) do
-        FirearmType:new(ammoType .. "_" .. variant, variantData, template)
-    end
+function FirearmType:new(firearmType, firearmData, template)
+    local o = ORGM.ItemType.new(self, firearmType, firearmData, template)
+    ReloadUtil:addWeaponType(o)
+    return o
 end
 
 function FirearmType:spawn(container, loaded, chance, mustFit)

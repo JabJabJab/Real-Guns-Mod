@@ -23,9 +23,6 @@ local ipairs = ipairs
 local instanceof = instanceof
 
 local AmmoTable = { }
--- cache of names used for random selection
-local AmmoKeyTable = { }
-
 local AmmoGroupTable = { }
 
 Flags.RIMFIRE = 1 -- rimfire cartridge
@@ -61,14 +58,13 @@ local PropertiesTable = {
     features = {type='integer', min=0, default=0, required=true},
 }
 setmetatable(AmmoGroup, { __index = ORGM.Group })
-function AmmoGroup:new(groupName, groupData)
-    local o = ORGM.Group.new(self, groupName, groupData, AmmoGroupTable)
-    setmetatable(o, { __index = self })
-    return o
-end
-function AmmoGroup:random(typeModifiers, flagModifiers)
-    return ORGM.Group.random(self, typeModifiers, filter, AmmoGroupTable, AmmoTable)
-end
+setmetatable(AmmoType, { __index = ORGM.ItemType })
+
+AmmoGroup._GroupTable = AmmoGroupTable
+AmmoGroup._ItemTable = AmmoTable
+AmmoType._PropertiesTable = PropertiesTable
+AmmoType._GroupTable = AmmoGroupTable
+AmmoType._ItemTable = AmmoTable
 
 --[[- Finds the best matching ammo (bullets only) in a container.
 
@@ -130,7 +126,6 @@ function AmmoGroup:find(ammoType, container, mode)
         end
     end
     if round then
-        print("r5")
         return round
     end
     return nil
@@ -200,102 +195,45 @@ Ammo.itemGroup = function(item, asTable)
 end
 
 
-function AmmoType:new(ammoType, ammoData, template)
-    local o = { }
-    template = template or {}
-    for key, value in pairs(ammoData) do o[key] = value end
-    setmetatable(o, { __index = self })
-    ORGM.log(ORGM.VERBOSE, "AmmoType: Initializing ".. ammoType)
-    o.type = ammoType
-    o.moduleName = 'ORGM'
-    -- setup specific properties and error checks
-    if not ORGM.copyPropertiesTable("AmmoType: ".. ammoType, PropertiesTable, template, o) then
-        return nil
-    end
-    if not o.Icon then o.Icon = ammoType end
+function AmmoType:createScriptItems()
     local scriptItems = { }
     table.insert(scriptItems, {
-        "\titem " .. ammoType,
+        "\titem " .. self.type,
         "\t{",
         "\t\tCount = 1,",
         "\t\tType = Normal,",
         "\t\tDisplayCategory = Ammo,",
-        "\t\tDisplayName = "..ammoType .. ",",
-        "\t\tIcon = "..o.Icon .. ",",
-        "\t\tWeight = "..o.Weight,
+        "\t\tDisplayName = "..self.type .. ",",
+        "\t\tIcon = "..self.Icon .. ",",
+        "\t\tWeight = "..self.Weight,
         "\t}"
     })
     table.insert(scriptItems, {
-        "\titem " .. ammoType .. "_Box",
+        "\titem " .. self.type .. "_Box",
         "\t{",
         "\t\tCount = 1,",
         "\t\tType = Normal,",
         "\t\tDisplayCategory = Ammo,",
-        "\t\tDisplayName = "..ammoType.. "_Box,",
-        "\t\tIcon = "..o.Icon .. "_Box,",
-        "\t\tWeight = "..o.Weight * o.BoxCount,
+        "\t\tDisplayName = "..self.type.. "_Box,",
+        "\t\tIcon = "..self.Icon .. "_Box,",
+        "\t\tWeight = "..self.Weight * self.BoxCount,
         "\t}",
     })
     table.insert(scriptItems, {
-        "\titem " .. ammoType .. "_Can",
+        "\titem " .. self.type .. "_Can",
         "\t{",
         "\t\tCount = 1,",
         "\t\tType = Normal,",
         "\t\tDisplayCategory = Ammo,",
-        "\t\tDisplayName = "..ammoType.. "_Can,",
+        "\t\tDisplayName = "..self.type.. "_Can,",
         "\t\tIcon = AmmoBox,",
-        "\t\tWeight = "..o.Weight * o.CanCount,
+        "\t\tWeight = "..self.Weight * self.CanCount,
         "\t}",
     })
-
-    ORGM.createScriptItems('ORGM', scriptItems)
-    o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. ammoType)
-    --[[
-    if type(o.Groups) ~= "table" then
-        ORGM.log(ORGM.ERROR, "AmmoType: Invalid Groups for " .. ammoType .. " is type: "..type(o.Groups) .." (expected table)")
-        return
-    end
-    ]]
-    if not o.instance then
-        ORGM.log(ORGM.ERROR, "AmmoType: Could not create instance of " .. variantName .. " (Registration Failed)")
-        return nil
-    end
-
-    AmmoTable[ammoType] = o
-    for group, weight in pairs(o.Groups or template.Groups) do
-        group = AmmoGroupTable[group]
-        if group then group:add(ammoType, weight) end
-    end
-    for group, weight in pairs(o.addGroups or {}) do
-        group = AmmoGroupTable[group]
-        if group then group:add(ammoType, weight) end
-    end
-    table.insert(AmmoKeyTable, ammoType)
-    ORGM.log(ORGM.DEBUG, "AmmoType: Registered " .. ammoType .. " (".. o.instance:getDisplayName()..")")
-    return o
+    return scriptItems
 end
 
-function AmmoType:newCollection(ammoType, template, variants)
-    ORGM.log(ORGM.VERBOSE, "AmmoType: Starting Collection ".. ammoType)
-    for variant, variantData in pairs(variants) do
-        AmmoType:new(ammoType .. "_" .. variant, variantData, template)
-    end
-end
 
-function AmmoType:getGroups()
-    local results = {}
-    for name, obj in pairs(AmmoGroupTable) do
-        if obj:contains(self.type) then
-            results[name] = obj
-        end
-    end
-    return results
-end
-
-function AmmoType:isGroupMember(groupType)
-    groupType = type(ammoType) == 'table' and groupType or Ammo.getGroup(groupType)
-    if groupType then return groupType:contains(self.type) end
-end
 
 function AmmoType:isRimfire()
     return Bit.band(self.category, Flags.RIMFIRE) ~= 0

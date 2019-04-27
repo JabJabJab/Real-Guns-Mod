@@ -50,16 +50,17 @@ local PropertiesTable = {
     shootSound = {type='string', default="none"},
     clickSound = {type='string', default="none"},
 }
-setmetatable(MagazineGroup, { __index = ORGM.Group })
 
-function MagazineGroup:new(groupName, groupData)
-    local o = ORGM.Group.new(self, groupName, groupData, MagazineGroupTable)
-    setmetatable(o, { __index = self })
-    return o
-end
-function MagazineGroup:random(typeModifiers, filter)
-    return ORGM.Group.random(self, typeModifiers, filter, MagazineGroupTable, MagazineTable)
-end
+setmetatable(MagazineGroup, { __index = ORGM.Group })
+setmetatable(MagazineType, { __index = ORGM.ItemType })
+
+MagazineGroup._GroupTable = MagazineGroupTable
+MagazineGroup._ItemTable = MagazineTable
+
+MagazineType._PropertiesTable = PropertiesTable
+MagazineType._GroupTable = MagazineGroupTable
+MagazineType._ItemTable = MagazineTable
+
 
 function MagazineGroup:spawn(typeModifiers, filter, container, loaded)
     local magazine = self:random(typeModifiers, filter)
@@ -122,61 +123,27 @@ Magazine.getGroup = function(groupName)
     return MagazineGroupTable[groupName]
 end
 
-
 function MagazineType:new(magazineType, magazineData, template)
-    local o = { }
-    template = template or {}
-    for key, value in pairs(magazineData) do o[key] = value end
-    setmetatable(o, { __index = self })
-    ORGM.log(ORGM.VERBOSE, "MagazineType: Initializing ".. magazineType)
-    o.type = magazineType
-    o.moduleName = 'ORGM'
-    -- setup specific properties and error checks
-    if not ORGM.copyPropertiesTable("MagazineType: ".. magazineType, PropertiesTable, template, o) then
-        return nil
-    end
-    if not o.Icon then o.Icon = ammoType end
+    local o = ORGM.ItemType.new(self, magazineType, magazineData, template)
+    o.clipType = o.type -- required by ISReloadUtil:getClipData and :setUpMagazine
+    ReloadUtil:addMagazineType(o)
+    return o
+end
+
+function MagazineType:createScriptItems()
     local scriptItems = { }
     table.insert(scriptItems,{
-        "\titem " .. o.type,
+        "\titem " .. self.type,
         "\t{",
         "\t\tCanStack    =   FALSE,",
         "\t\tType = Normal,",
         "\t\tDisplayCategory = Ammo,",
-        "\t\tDisplayName = "..o.type .. ",",
-        "\t\tIcon = "..o.Icon .. ",",
-        "\t\tWeight = "..o.Weight,
+        "\t\tDisplayName = "..self.type .. ",",
+        "\t\tIcon = "..self.Icon .. ",",
+        "\t\tWeight = "..self.Weight,
         "\t}",
     })
-    ORGM.createScriptItems('ORGM', scriptItems)
-    o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. magazineType)
-    if not o.instance then
-        ORGM.log(ORGM.ERROR, "MagazineType: Could not create instance of " .. magazineType .. " (Registration Failed)")
-        return nil
-    end
-
-    o.clipType = o.type -- required by ISReloadUtil:getClipData and :setUpMagazine
-
-    MagazineTable[magazineType] = o
-    ReloadUtil:addMagazineType(o)
-    for group, weight in pairs(o.Groups or template.Groups) do
-        group = MagazineGroupTable[group]
-        if group then group:add(magazineType, weight) end
-    end
-    for group, weight in pairs(o.addGroups or {}) do
-        group = MagazineGroupTable[group]
-        if group then group:add(magazineType, weight) end
-    end
-    table.insert(MagazineKeyTable, magazineType)
-
-    ORGM.log(ORGM.DEBUG, "MagazineType: Registered " .. magazineType .. " (".. o.instance:getDisplayName()..")")
-    return o
-end
-function MagazineType:newCollection(magazineType, template, variants)
-    ORGM.log(ORGM.VERBOSE, "MagazineType: Starting Collection ".. magazineType)
-    for variant, variantData in pairs(variants) do
-        MagazineType:new(magazineType .. "_" .. variant, variantData, template)
-    end
+    return scriptItems
 end
 
 function MagazineType:setup(item)
