@@ -13,6 +13,7 @@ and should be removed at a later date.
 ]]
 local ORGM = ORGM
 local Reloadable = ORGM.ReloadableWeapon
+local Firearm = ORGM.Firearm
 local Settings = ORGM.Settings
 local Bit = BitNumber.bit32
 local Flags = ORGM.Firearm.Flags
