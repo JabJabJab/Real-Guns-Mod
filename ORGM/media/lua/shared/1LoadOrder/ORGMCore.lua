@@ -42,6 +42,9 @@ into the local namespace.
 
 ORGM = { }
 
+ORGM.Group = {}
+ORGM.ItemType = {}
+
 --- Modules
 -- @section Modules
 
@@ -96,6 +99,9 @@ ORGM.Ammo.AmmoGroup = { }
 
 --- Contains all component functions, see: `ORGM.Component`.
 ORGM.Component = { }
+ORGM.Component.CompGroup = { }
+ORGM.Component.CompType = { }
+ORGM.Component.Flags = { }
 
 --- Contains all magazine functions, see: `ORGM.Magazine`.
 ORGM.Magazine = { }

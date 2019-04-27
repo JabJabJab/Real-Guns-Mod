@@ -1,6 +1,7 @@
-local Group = { }
-ORGM.Group = Group
-function Group:new(groupName, groupData, groupTable)
+local Group = ORGM.Group
+local ItemType = ORGM.ItemType
+
+function Group:new(groupName, groupData)
     -- need message prefix, table to insert into
     local o = { }
     o._size = 0
@@ -24,14 +25,14 @@ function Group:new(groupName, groupData, groupTable)
     end
 
     for group, weight in pairs(o.Groups or { }) do
-        group = groupTable[group]
+        group = o._GroupTable[group]
         if group then group:add(groupName, weight) end
     end
-    groupTable[groupName] = o
+    o._GroupTable[groupName] = o
 
     o.instance = instance
     o.members = { }
-    ORGM.log(ORGM.DEBUG, "Group: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
+    ORGM.log(ORGM.VERBOSE, "Group: Registered " .. groupName .. " (".. instance:getDisplayName()..")")
     return o
 end
 
@@ -61,7 +62,7 @@ function Group:remove(itemType)
     self.members[itemType] = nil
 end
 
-function Group:random(typeModifiers, filter, groupTable, dataTable, depth)
+function Group:random(typeModifiers, filter, depth)
     local members = self.members
     members = self:normalize(typeModifiers, filter)
     if depth == nil then depth = 0 end
@@ -79,17 +80,92 @@ function Group:random(typeModifiers, filter, groupTable, dataTable, depth)
     end
     --ORGM.log(ORGM.VERBOSE, "FirearmGroup: random for ".. self.type .. " picked "..result)
 
-    local group = groupTable[result]
+    local group = self._GroupTable[result]
     if group then
         ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.instance:getDisplayName() .. "' picked '"..group.instance:getDisplayName() .."'")
         return group:random(typeModifiers, filter, depth)
     end
-    local result = dataTable[result]
+    local result = self._ItemTable[result]
     ORGM.log(ORGM.VERBOSE, "Group: random for '".. self.instance:getDisplayName() .. "' picked '"..(result and result.instance:getDisplayName() or "nil").."'")
-    return dataTable[result]
+    return result --dataTable[result]
 end
 
 function Group:contains(itemType)
     itemType = type(itemType) == 'table' and itemType.type or itemType
     return self.members[itemType] ~= nil
+end
+
+
+function ItemType:new(itemType, itemData, template)
+    local o = { }
+    template = template or {}
+    for key, value in pairs(itemData) do o[key] = value end
+    setmetatable(o, { __index = self })
+    ORGM.log(ORGM.VERBOSE, "ItemType: Initializing ".. itemType)
+    o.type = itemType
+    o.moduleName = 'ORGM'
+    -- setup specific properties and error checks
+    if not ORGM.copyPropertiesTable("ItemType: ".. itemType, o._PropertiesTable, template, o) then
+        return nil
+    end
+    if not o.Icon then o.Icon = itemType end
+
+    if not o:validate() then
+        ORGM.log(ORGM.ERROR, "ItemType: Validation checks failed for " .. itemType .. " (Registration Failed)")
+        return false
+    end
+
+    local scriptItems = o:createScriptItems()
+    ORGM.createScriptItems('ORGM', scriptItems)
+    o.instance = InventoryItemFactory.CreateItem(o.moduleName .. "." .. itemType)
+
+    if not o.instance then
+        ORGM.log(ORGM.ERROR, "ItemType: Could not create instance of " .. itemType .. " (Registration Failed)")
+        return nil
+    end
+
+    o._ItemTable[itemType] = o
+
+    for group, weight in pairs(o.Groups or template.Groups) do
+        group = o._GroupTable[group]
+        if group then group:add(itemType, weight) end
+    end
+    for group, weight in pairs(o.addGroups or {}) do
+        group = o._GroupTable[group]
+        if group then group:add(itemType, weight) end
+    end
+    ORGM.log(ORGM.DEBUG, "ItemType: Registered " .. itemType .. " (".. o.instance:getDisplayName()..")")
+    return o
+end
+
+function ItemType:createScriptItems()
+    return { }
+end
+
+function ItemType:validate()
+    return true
+end
+
+function ItemType:getGroups()
+    local results = {}
+    for name, obj in pairs(self._GroupTable) do
+        if obj:contains(self.type) then
+            results[name] = obj
+        end
+    end
+    return results
+end
+
+
+function ItemType:isGroupMember(groupType)
+    groupType = type(groupType) == 'table' and groupType or self._GroupTable[groupType]
+    if groupType then return groupType:contains(self.type) end
+end
+
+
+function ItemType:newCollection(itemType, template, variants)
+    ORGM.log(ORGM.VERBOSE, "ItemType: Starting Collection ".. itemType)
+    for variant, variantData in pairs(variants) do
+        self:new(itemType .. "_" .. variant, variantData, template)
+    end
 end
