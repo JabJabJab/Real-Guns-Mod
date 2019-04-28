@@ -49,7 +49,7 @@ MagazineType._PropertiesTable = {
 MagazineGroup:new("MagGroup_Pistols")
 
 -- Create a new group for beretta mags
-MagazineGroup:new("MagGroup_Beretta_92", Groups = { MagGroup_Pistols = 1 })
+MagazineGroup:new("MagGroup_Beretta_92", { Groups = { MagGroup_Pistols = 1 } })
 
 -- create 2 beretta mags, one 15 round (80% spawn weight), and one 32 round (20% spawn weight)
 MagazineType:newCollection("Mag_Beretta_92", {

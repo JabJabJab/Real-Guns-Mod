@@ -67,12 +67,12 @@ Items_EN = {
 
 
     -- Colt Peacemaker
-    DisplayName_GroupColt_SSA                   = "Colt Peacemaker SAA",
-    DisplayName_Colt_SSA_P1840                  = "Colt Peacemaker SAA Model P1840",
-    DisplayName_Colt_SSA_P1841                  = "Colt Peacemaker SAA Model P1841",
-    DisplayName_Colt_SSA_P1850                  = "Colt Peacemaker SAA Model P1850",
-    DisplayName_Colt_SSA_P1856                  = "Colt Peacemaker SAA Model P1856",
-    DisplayName_Colt_SSA_P1870                  = "Colt Peacemaker SAA Model P1870",
+    DisplayName_GroupColt_SAA                   = "Colt Peacemaker SAA",
+    DisplayName_Colt_SAA_P1840                  = "Colt Peacemaker SAA Model P1840",
+    DisplayName_Colt_SAA_P1841                  = "Colt Peacemaker SAA Model P1841",
+    DisplayName_Colt_SAA_P1850                  = "Colt Peacemaker SAA Model P1850",
+    DisplayName_Colt_SAA_P1856                  = "Colt Peacemaker SAA Model P1856",
+    DisplayName_Colt_SAA_P1870                  = "Colt Peacemaker SAA Model P1870",
 
 
     -- Ruger Blackhawk

@@ -22,7 +22,6 @@ local ZombRand = ZombRand
 
 
 local MagazineTable = { }
-local MagazineKeyTable = { }
 local MagazineGroupTable = { }
 
 Flags.BOX = 1
@@ -35,7 +34,16 @@ Flags.PEEKSTRIP = 64
 Flags.BULK = 128
 Flags.MATCHGRADE = 256
 
-local PropertiesTable = {
+
+setmetatable(MagazineGroup, { __index = ORGM.Group })
+MagazineGroup._GroupTable = MagazineGroupTable
+MagazineGroup._ItemTable = MagazineTable
+
+
+setmetatable(MagazineType, { __index = ORGM.ItemType })
+MagazineType._GroupTable = MagazineGroupTable
+MagazineType._ItemTable = MagazineTable
+MagazineType._PropertiesTable = {
     features = {type='integer', min=0, default=0, required=true},
     Icon = {type='string', default=""},
     ammoType = {type='string', default="", required=true},
@@ -50,16 +58,6 @@ local PropertiesTable = {
     shootSound = {type='string', default="none"},
     clickSound = {type='string', default="none"},
 }
-
-setmetatable(MagazineGroup, { __index = ORGM.Group })
-setmetatable(MagazineType, { __index = ORGM.ItemType })
-
-MagazineGroup._GroupTable = MagazineGroupTable
-MagazineGroup._ItemTable = MagazineTable
-
-MagazineType._PropertiesTable = PropertiesTable
-MagazineType._GroupTable = MagazineGroupTable
-MagazineType._ItemTable = MagazineTable
 
 
 function MagazineGroup:spawn(typeModifiers, filter, container, loaded)
@@ -89,7 +87,6 @@ function MagazineGroup:find(ammoType, containerItem)
     if ammoType == nil then ammoType = 'any' end
     local bestMagazine = nil
     local mostAmmo = -1
-    -- TODO: this needs a extra loop here, for possible alternate magazines
 
     for magazineType, weight in pairs(self.members) do
         local items = containerItem:getItemsFromType(magazineType)

@@ -43,7 +43,14 @@ Flags.BIRDSHOT = 8192 --
 Flags.BUCKSHOT = 16384 --
 Flags.SLUG = 32768 --
 
-local PropertiesTable = {
+setmetatable(AmmoGroup, { __index = ORGM.Group })
+setmetatable(AmmoType, { __index = ORGM.ItemType })
+
+AmmoGroup._GroupTable = AmmoGroupTable
+AmmoGroup._ItemTable = AmmoTable
+AmmoType._GroupTable = AmmoGroupTable
+AmmoType._ItemTable = AmmoTable
+AmmoType._PropertiesTable = {
     MinDamage = {type='float', min=0, max=100, default=0.2},
     MaxDamage = {type='float', min=0, max=100, default=1},
     Range = {type='integer', min=0, max=100, default=20},
@@ -57,14 +64,6 @@ local PropertiesTable = {
     category = {type='integer', min=Flags.PISTOL, max=Flags.SHOTGUN, default=Flags.PISTOL, required=true},
     features = {type='integer', min=0, default=0, required=true},
 }
-setmetatable(AmmoGroup, { __index = ORGM.Group })
-setmetatable(AmmoType, { __index = ORGM.ItemType })
-
-AmmoGroup._GroupTable = AmmoGroupTable
-AmmoGroup._ItemTable = AmmoTable
-AmmoType._PropertiesTable = PropertiesTable
-AmmoType._GroupTable = AmmoGroupTable
-AmmoType._ItemTable = AmmoTable
 
 --[[- Finds the best matching ammo (bullets only) in a container.
 

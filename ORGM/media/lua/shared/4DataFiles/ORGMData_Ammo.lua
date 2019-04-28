@@ -19,10 +19,13 @@ AmmoGroup:new("AmmoGroup_Pistols")
 AmmoGroup:new("AmmoGroup_Rifles")
 AmmoGroup:new("AmmoGroup_Shotguns")
 AmmoGroup:new("AmmoGroup_Rimfires")
+AmmoGroup:new("AmmoGroup_NATO")
+AmmoGroup:new("AmmoGroup_Surplus")
+AmmoGroup:new("AmmoGroup_MatchGrade")
 
 
 AmmoGroup:new("AmmoGroup_177mm")
-AmmoGroup:new("AmmoGroup_22LR", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_22LR", { Groups = { AmmoGroup_Pistols = 1, AmmoGroup_Rimfires = 1 }})
 AmmoGroup:new("AmmoGroup_22Hornet", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_32ACP",  { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_357Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
@@ -41,6 +44,7 @@ AmmoGroup:new("AmmoGroup_50AE", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_57x28mm", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_9x19mm", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_10x25mm", { Groups = { AmmoGroup_Pistols = 1 }})
+
 AmmoGroup:new("AmmoGroup_223Remington", { Groups = { AmmoGroup_Rifles = 1 }})
 AmmoGroup:new("AmmoGroup_30Carbine", { Groups = { AmmoGroup_Rifles = 1 }})
 AmmoGroup:new("AmmoGroup_3006Springfield", { Groups = { AmmoGroup_Rifles = 1 }})
@@ -50,12 +54,12 @@ AmmoGroup:new("AmmoGroup_556x45mm", { Groups = { AmmoGroup_Rifles = 1 }})
 AmmoGroup:new("AmmoGroup_762x39mm", { Groups = { AmmoGroup_Rifles = 1 }})
 AmmoGroup:new("AmmoGroup_762x51mm", { Groups = { AmmoGroup_Rifles = 1 }})
 AmmoGroup:new("AmmoGroup_762x54mm", { Groups = { AmmoGroup_Rifles = 1 }})
+
 AmmoGroup:new("AmmoGroup_10g", { Groups = { AmmoGroup_Shotguns = 1 }})
 AmmoGroup:new("AmmoGroup_12g", { Groups = { AmmoGroup_Shotguns = 1 }})
 AmmoGroup:new("AmmoGroup_20g", { Groups = { AmmoGroup_Shotguns = 1 }})
 AmmoGroup:new("AmmoGroup_410", { Groups = { AmmoGroup_Shotguns = 1 }})
 
-AmmoGroup:new("AmmoGroup_NATO")
 
 
 AmmoType:newCollection("Ammo_22LR", {

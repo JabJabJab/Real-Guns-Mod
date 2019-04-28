@@ -14,8 +14,10 @@ local MagazineType = Magazine.MagazineType
 local Flags = Magazine.Flags
 
 MagazineGroup:new("MagGroup_STANAG")
+MagazineGroup:new("MagGroup_Pistols")
 
-MagazineGroup:new("MagGroup_AutomagV")
+
+MagazineGroup:new("MagGroup_AutomagV", { Groups = { MagGroup_Pistols = 1 } })
 MagazineType:new("Mag_AutomagV_x5", {
     Groups = { MagGroup_AutomagV = 1 },
     ammoType = "AmmoGroup_50AE",
@@ -24,7 +26,7 @@ MagazineType:new("Mag_AutomagV_x5", {
     Weight = 0.2,
     Icon = "Mag_AutomagV",
 })
-MagazineGroup:new("MagGroup_Beretta_92_early")
+MagazineGroup:new("MagGroup_Beretta_92_early", { Groups = { MagGroup_Pistols = 1 } })
 MagazineType:new("Mag_Beretta_92_early_x15", {
     Groups = { MagGroup_Beretta_92_early = 1 },
     ammoType = "AmmoGroup_9x19mm",
@@ -34,21 +36,20 @@ MagazineType:new("Mag_Beretta_92_early_x15", {
     Icon = "Mag_Beretta_92",
 })
 
-MagazineGroup:new("MagGroup_Beretta_92")
+MagazineGroup:new("MagGroup_Beretta_92", { Groups = { MagGroup_Pistols = 1 } })
 MagazineType:newCollection("Mag_Beretta_92", {
         ammoType = 'AmmoGroup_9x19mm',
         Icon = "Mag_Beretta_92",
+        features = Flags.BOX,
     },{
         x15 = {
-            features = Flags.BOX,
             maxCapacity = 15,
             Weight = 0.2,
-            Groups = { MagGroup_Beretta_92 = 1 },
+            Groups = { MagGroup_Beretta_92 = 4 },
         },
         x32 = {
-            features = Flags.BOX,
             maxCapacity = 32,
-            Weight = 0.2,
+            Weight = 0.3,
             Groups = { MagGroup_Beretta_92 = 1 },
         },
     }
@@ -304,9 +305,10 @@ MagazineType:newCollection("Mag_Mark23", {
 
 MagazineGroup:new("MagGroup_Kahr_CT_Series")
 MagazineGroup:new("MagGroup_Kahr_P_Series")
+MagazineGroup:new("MagGroup_KalTec_P32")
 
 MagazineGroup:new("MagGroup_Ruger_MarkII")
-MagazineGroup:new("MagGroup_Ruger_SR9")
+MagazineGroup:new("MagGroup_Ruger_SR_Series")
 
 
 

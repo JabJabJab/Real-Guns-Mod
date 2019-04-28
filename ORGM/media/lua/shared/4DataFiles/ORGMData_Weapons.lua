@@ -93,15 +93,15 @@ FirearmGroup:new("Group_Taurus_Revolvers",      { Groups = { Group_Revolvers = 1
 
 -- pistols
 FirearmGroup:new("Group_AMT_Pistols",           { Groups = { Group_Pistols = 1, Group_AMT = 1 } }) -- only 1 pistol, rare
-FirearmGroup:new("Group_Beretta_Pistols",       { Groups = { Group_Pistols = 1, Group_Beretta = 1 } })
-FirearmGroup:new("Group_Browning_Pistols",      { Groups = { Group_Pistols = 5, Group_Browning = 1 } })
+FirearmGroup:new("Group_Beretta_Pistols",       { Groups = { Group_Pistols = 4, Group_Beretta = 1 } })
+FirearmGroup:new("Group_Browning_Pistols",      { Groups = { Group_Pistols = 4, Group_Browning = 1 } })
 FirearmGroup:new("Group_DornausDixon_Pistols",  { Groups = { Group_Pistols = 1, Group_DornausDixon = 1 } }) -- only 1 pistol, rare
 FirearmGroup:new("Group_FNHerstal_Pistols",     { Groups = { Group_Pistols = 2, Group_FNHerstal = 1 } })
 FirearmGroup:new("Group_CZUB_Pistols",          { Groups = { Group_Pistols = 3, Group_CZUB = 1 } })
 FirearmGroup:new("Group_Colt_Pistols",          { Groups = { Group_Pistols = 8, Group_Colt = 1 } }) -- only many common pistols
 FirearmGroup:new("Group_IMI_Pistols",           { Groups = { Group_Pistols = 2, Group_IMI = 1 } })
-FirearmGroup:new("Group_Glock_Pistols",         { Groups = { Group_Pistols = 8, Group_Glock = 1 } }) -- only many common pistols
-FirearmGroup:new("Group_HecklerKoch_Pistols",   { Groups = { Group_Pistols = 3, Group_HecklerKoch = 1 } })
+FirearmGroup:new("Group_Glock_Pistols",         { Groups = { Group_Pistols = 6, Group_Glock = 1 } }) -- only many common pistols
+FirearmGroup:new("Group_HecklerKoch_Pistols",   { Groups = { Group_Pistols = 2, Group_HecklerKoch = 1 } })
 FirearmGroup:new("Group_Kahr_Pistols",          { Groups = { Group_Pistols = 4, Group_Kahr = 1 } })
 FirearmGroup:new("Group_KalTec_Pistols",        { Groups = { Group_Pistols = 4, Group_KalTec = 1 } })
 FirearmGroup:new("Group_Ruger_Pistols",         { Groups = { Group_Pistols = 5, Group_Ruger = 1 } })
@@ -168,13 +168,13 @@ FirearmGroup:new("Group_Winchester_Shotguns",   { Groups = { Group_Shotguns = 1,
 
 -- Bottom level groups, Firearm Model Types
 -- Revolvers
-FirearmGroup:new("Group_Colt_Anaconda",     { Groups = { Group_Colt_Revolvers = 1, } })
-FirearmGroup:new("Group_Colt_Python",       { Groups = { Group_Colt_Revolvers = 1, } })
-FirearmGroup:new("Group_Colt_SSA",          { Groups = { Group_Colt_Revolvers = 1, } })
+FirearmGroup:new("Group_Colt_Anaconda",     { Groups = { Group_Colt_Revolvers = 2, } })
+FirearmGroup:new("Group_Colt_Python",       { Groups = { Group_Colt_Revolvers = 4, } })
+FirearmGroup:new("Group_Colt_SAA",          { Groups = { Group_Colt_Revolvers = 1, } })
 
-FirearmGroup:new("Group_Ruger_Blackhawk",   { Groups = { Group_Ruger_Revolvers = 1, } })
-FirearmGroup:new("Group_Ruger_GP100",       { Groups = { Group_Ruger_Revolvers = 1, } })
-FirearmGroup:new("Group_Ruger_Redhawk",     { Groups = { Group_Ruger_Revolvers = 1, } })
+FirearmGroup:new("Group_Ruger_Blackhawk",   { Groups = { Group_Ruger_Revolvers = 2, } })
+FirearmGroup:new("Group_Ruger_GP100",       { Groups = { Group_Ruger_Revolvers = 2, } })
+FirearmGroup:new("Group_Ruger_Redhawk",     { Groups = { Group_Ruger_Revolvers = 4, } })
 FirearmGroup:new("Group_Ruger_SuperRedhawk",{ Groups = { Group_Ruger_Revolvers = 1, } })
 
 FirearmGroup:new("Group_SmithWesson_Model_10",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
@@ -203,6 +203,9 @@ FirearmGroup:new("Group_Glock_22",          { Groups = { Group_Glock_Pistols = 1
 FirearmGroup:new("Group_HecklerKoch_Mark23",    { Groups = { Group_HecklerKoch_Pistols = 1, } })
 FirearmGroup:new("Group_Kahr_CT_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
 FirearmGroup:new("Group_Kahr_P_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
+FirearmGroup:new("Group_KalTec_P32",          { Groups = { Group_KalTec_Pistols = 1, } })
+FirearmGroup:new("Group_Ruger_MarkII",          { Groups = { Group_Ruger_Pistols = 1, } })
+FirearmGroup:new("Group_Ruger_SR_Series",          { Groups = { Group_Ruger_Pistols = 1, } })
 
 FirearmGroup:new("Group_Colt_CAR15", { Groups = { Group_Colt_Rifles = 1, } })
 
@@ -317,7 +320,6 @@ FirearmType:newCollection("Colt_Anaconda", {
         -- https://en.wikipedia.org/wiki/Colt_Anaconda
         -- https://www.coltforum.com/forums/colt-revolvers/73849-anaconda-bsts-3-print.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        Groups = { Group_Colt_Revolvers = 1, Group_Colt_Anaconda = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtAnac",
 
@@ -336,86 +338,100 @@ FirearmType:newCollection("Colt_Anaconda", {
         feedSystem = Flags.ROTARY,
     },{
         MM3040 = { --  Anaconda Revolver 44 Magnum 4" SS
+            Groups = { Group_Colt_Anaconda = 10, },
             barrelLength = 4,       Weight = 1.3,
         },
         MM3040DT = {  --  Anaconda Revolver 44 Magnum 4" SS (Drilled & Tapped)
+            Groups = { Group_Colt_Anaconda = 10, },
             barrelLength = 4,       Weight = 1.3,
         },
         MM3040MP = {  --  Anaconda Revolver 44 Magnum 4" SS Mag-Na-Ported
+            Groups = { Group_Colt_Anaconda = 10, },
             barrelLength = 4,       Weight = 1.3,
             addFeatures = Flags.PORTED,
         },
         MM3040KD = { -- Kodiak Revolver 44 Magnum 4" SS Mag-Na-Ported
+            Groups = {Group_Colt_Anaconda = 0.1, Group_RareCollectables = 1000,}, -- 1000 manufactured
             barrelLength = 4,       Weight = 1.3,
             year = 1993,
             addFeatures = Flags.PORTED,
-            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3050 = { -- Anaconda Revolver 44 Magnum 5" ONLY 150 MANUFACTURERED
+            Groups = {Group_Colt_Anaconda = 0.015, Group_RareCollectables = 150,}, -- 150 manufactured
             barrelLength = 5,       Weight = 1.4,
-            addGroups = {Group_RareCollectables = 150,}, -- 150 manufactured
         },
         MM3060 = { -- Anaconda Revolver 44 Magnum 6" SS
+            Groups = { Group_Colt_Anaconda = 15, },
         },
         MM3060DT = { -- Anaconda Revolver 44 Magnum 6" SS (Drilled & Tapped)
+            Groups = { Group_Colt_Anaconda = 15, },
         },
         MM3060MP = { -- Anaconda Revolver 44 Magnum 6" SS Mag-Na-Ported
+            Groups = { Group_Colt_Anaconda = 15, },
             addFeatures = Flags.PORTED,
         },
         MM3060KD = { -- Kodiak Revolver 44 Magnum 6" SS Mag-Na-Ported
+            Groups = {Group_Colt_Anaconda = 0.1, Group_RareCollectables = 1000,}, -- 1000 manufactured
             year = 1993,
             addFeatures = Flags.PORTED,
-            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3061FE = { -- Anaconda First Edition Revolver 44 magnum 6" Bright SS
+            Groups = {Group_Colt_Anaconda = 0.1, Group_RareCollectables = 1000,}, -- 1000 manufactured
             year = 1990,
-            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3080 = { -- Anaconda Revolver 44 Magnum 8" SS
+            Groups = { Group_Colt_Anaconda = 8, },
             barrelLength = 8,       Weight = 1.7,
         },
         MM3080L = { -- Colt Limited Edition Anaconda Legacy Model MM3080
             -- 24K Gold embellishments and Black Pearl Titanium finish.
             -- This model number is probably wrong, but i need some sort of model prefix.
             -- The model number on the factory box simply reads MM3080
+            Groups = {Group_Colt_Anaconda = 0.1, Group_RareCollectables = 1000,}, -- 1000 manufactured
             year = 1993,
             barrelLength = 8,       Weight = 1.7,
-            addGroups = {Group_RareCollectables = 1000,}, -- 1000 manufactured
         },
         MM3080DT = { -- Anaconda Revolver 44 Magnum 8" SS (Drilled & Tapped)
+            Groups = { Group_Colt_Anaconda = 8, },
             barrelLength = 8,       Weight = 1.7,
         },
         MM3080MP = { -- Anaconda Revolver 44 Magnum 8" SS Mag-Na-Ported
+            Groups = { Group_Colt_Anaconda = 8, },
             barrelLength = 8,       Weight = 1.7,
             addFeatures = Flags.PORTED,
         },
         MM3080HT = { -- Anaconda Revolver 44 Magnum 8" SS (Hunter)
+            Groups = { Group_Colt_Anaconda = 4, },
             year = 1991,
             barrelLength = 8,       Weight = 1.7,
         },
         MM3080PDT = { -- Anaconda Revolver 44 Magnum 8" Ported SS ProPorting
+            Groups = { Group_Colt_Anaconda = 3, },
             year = 1991,
             barrelLength = 8,       Weight = 1.7,
             addFeatures = Flags.PORTED,
         },
         MM3080RT = { -- Anaconda Realtree Revolver 44 Magnum 8" Camo
+            Groups = { Group_Colt_Anaconda = 4, },
             year = 1996,
             addFeatures = Flags.NOSIGHTS,
             barrelLength = 8,       Weight = 1.7,
         },
         MM4540 = { -- Anaconda Revolver 45 Colt 4" SS VERY RARE
+            Groups = { Group_Colt_Anaconda = 0.01, Group_RareCollectables = 100,},
             year = 1993,
             barrelLength = 4,       Weight = 1.3,
             ammoType = "AmmoGroup_45Colt",
             speedLoader = nil,
-            addGroups = {Group_RareCollectables = 100,},
         },
         MM4560 = { -- Anaconda Revolver 45 Colt 6" SS
+            Groups = { Group_Colt_Anaconda = 10, },
             year = 1993,
             ammoType = "AmmoGroup_45Colt",
             speedLoader = nil,
         },
         MM4580 = { -- Anaconda Revolver 45 Colt 8" SS
+            Groups = { Group_Colt_Anaconda = 6, },
             year = 1993,
             ammoType = "AmmoGroup_45Colt",
             barrelLength = 8,       Weight = 1.7,
@@ -430,7 +446,7 @@ FirearmType:newCollection("Colt_Python", {
         -- https://www.handgunsmag.com/editorial/colt_python_complete_history/138916
         -- https://www.coltforum.com/forums/python/71904-3-python-question-5.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        Groups = { Group_Colt_Revolvers = 1, Group_Colt_Python = 1, },
+        Groups = { Group_Colt_Python = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtPyth",
 
@@ -582,11 +598,11 @@ FirearmType:newCollection("Colt_Python", {
 
     }
 )
-FirearmType:newCollection("Colt_SSA", {
+FirearmType:newCollection("Colt_SAA", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_SAA
         -- http://www.coltfever.com/Colt_Single_Action_Army.html
-        Groups = { Group_Colt_Revolvers = 1, Group_Colt_SSA = 1, },
+        Groups = { Group_Colt_SAA = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtSAA",
 
@@ -643,7 +659,7 @@ FirearmType:newCollection("Ruger_Blackhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Blackhawk
         -- https://www.ruger.com/products/newModelBlackhawk/overview.html
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Blackhawk = 1, },
+        Groups = { Group_Ruger_Blackhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugBH",
 
@@ -710,7 +726,7 @@ FirearmType:newCollection("Ruger_GP100", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_GP100
         -- https://www.ruger.com/products/gp100/overview.html
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_GP100 = 1, },
+        Groups = { Group_Ruger_GP100 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugGP100",
 
@@ -775,7 +791,7 @@ FirearmType:newCollection("Ruger_Redhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Redhawk
         -- https://ruger.com/products/redhawk/models.html
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_Redhawk = 1, },
+        Groups = { Group_Ruger_Redhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugRH",
 
@@ -854,7 +870,7 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
         -- https://www.ruger.com/products/superRedhawkStandard/models.html
         -- https://www.taloinc.com/ruger-firearms
         --
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_SuperRedhawk = 1, },
+        Groups = { Group_Ruger_SuperRedhawk = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
 
@@ -933,7 +949,7 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
 FirearmType:newCollection("Ruger_SecuritySix", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Security_Six
-        Groups = { Group_Ruger_Revolvers = 1, Group_Ruger_SecuritySix = 1, },
+        Groups = { Group_Ruger_SecuritySix = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRugSec6",
 
@@ -957,7 +973,7 @@ FirearmType:newCollection("SmithWesson_Model_10", {
         -- sources:
         -- https://en.wikipedia.org/wiki/S%26W_Model_10
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_1905
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_10 = 1, },
+        Groups = { Group_SmithWesson_Model_10 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM10",
 
@@ -980,7 +996,7 @@ FirearmType:newCollection("SmithWesson_Model_10", {
 FirearmType:newCollection("SmithWesson_Model_19", {
         -- sources:
         -- https://en.wikipedia.org/wiki/S%26W_Model_19
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_19 = 1, },
+        Groups = { Group_SmithWesson_Model_19 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM19",
 
@@ -1003,7 +1019,7 @@ FirearmType:newCollection("SmithWesson_Model_19", {
 FirearmType:newCollection("SmithWesson_Model_22", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_22
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_22 = 1, },
+        Groups = { Group_SmithWesson_Model_22 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM252",
 
@@ -1026,7 +1042,7 @@ FirearmType:newCollection("SmithWesson_Model_22", {
 FirearmType:newCollection("SmithWesson_Model_29", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_29
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_29 = 1, },
+        Groups = { Group_SmithWesson_Model_29 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM29",
 
@@ -1049,7 +1065,7 @@ FirearmType:newCollection("SmithWesson_Model_29", {
 FirearmType:newCollection("SmithWesson_Model_36", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_36
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_36 = 1, },
+        Groups = { Group_SmithWesson_Model_36 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM36",
 
@@ -1074,7 +1090,7 @@ FirearmType:newCollection("SmithWesson_Model_610", {
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_610
         -- https://www.thetruthaboutguns.com/2017/04/daniel-zimmerman/gun-review-smith-wesson-model-610-10mm-content-contest/
         -- https://www.smith-wesson.com/dealer-resources/sw-product-spec-sheets
-        Groups = { Group_SmithWesson_Revolvers = 1, Group_SmithWesson_Model_610 = 1, },
+        Groups = { Group_SmithWesson_Model_610 = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMSWM610",
 
@@ -1112,7 +1128,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Taurus_Raging_Bull
         -- https://web.archive.org/web/20041228132350/http://www.taurususa.com/products/gunselector-results.cfm?series=RB2
-        Groups = { Group_Taurus_Revolvers = 1, Group_Taurus_RagingBull = 1, },
+        Groups = { Group_Taurus_RagingBull = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMRagingBull",
 
@@ -1211,7 +1227,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
 FirearmType:new("AMT_AutomagV", {
     -- sources:
     -- https://en.wikipedia.org/wiki/AMT_AutoMag_V
-    Groups = { Group_AMT_Pistols = 1, Group_AMT_Automag = 1, },
+    Groups = { Group_AMT_Automag = 1, },
     lastChanged = 24,                   category = ORGM.PISTOL,
     soundProfile = "Pistol-Large",      SwingSound = "ORGMAutomag",
 
@@ -1233,7 +1249,7 @@ FirearmType:newCollection("Beretta_92", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Beretta_92
         -- https://en.wikipedia.org/wiki/Beretta_M9
-        Groups = { Group_Beretta_Pistols = 1, Group_Beretta_92 = 1, },
+        Groups = { Group_Beretta_92 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMBeretta",
 
@@ -1282,7 +1298,7 @@ FirearmType:newCollection("Beretta_92", {
 })
 FirearmType:new("DornausDixon_BrenTen", {
     -- sources:
-    Groups = { Group_DornausDixon_Pistols = 1, Group_DornausDixon_BrenTen = 1, },
+    Groups = { Group_DornausDixon_BrenTen = 1, },
     lastChanged = 24,                   category = ORGM.PISTOL,
     soundProfile = "Pistol-Small",      SwingSound = "ORGMBrenTen",
 
@@ -1302,7 +1318,7 @@ FirearmType:new("DornausDixon_BrenTen", {
 })
 FirearmType:newCollection("Browning_HiPower", {
         -- sources:
-        Groups = { Group_Browning_Pistols = 1, Group_Browning_HiPower = 1, },
+        Groups = { Group_Browning_HiPower = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMBrowningHP",
 
@@ -1324,7 +1340,7 @@ FirearmType:newCollection("Browning_HiPower", {
 FirearmType:newCollection("Colt_1911", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M1911
-        Groups = { Group_Colt_Pistols = 1, Group_Colt_1911 = 1, },
+        Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMColtSuper38",
 
@@ -1346,7 +1362,7 @@ FirearmType:newCollection("Colt_1911", {
 FirearmType:newCollection("Colt_1911_Commander", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_Commander
-        Groups = { Group_Colt_Pistols = 1, Group_Colt_1911 = 1, },
+        Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMColtSuper38",
 
@@ -1368,7 +1384,7 @@ FirearmType:newCollection("Colt_1911_Commander", {
 FirearmType:newCollection("Colt_1911_DeltaElite", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_Delta_Elite
-        Groups = { Group_Colt_Pistols = 1, Group_Colt_1911 = 1, },
+        Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMColtDelta",
 
@@ -1390,7 +1406,7 @@ FirearmType:newCollection("Colt_1911_DeltaElite", {
 FirearmType:newCollection("CZUB_CZ75", {
         -- sources:
         -- https://en.wikipedia.org/wiki/CZ75
-        Groups = { Group_CZUB_Pistols = 1, Group_CZUB_CZ75 = 1, },
+        Groups = { Group_CZUB_CZ75 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMCZ75",
 
@@ -1412,7 +1428,7 @@ FirearmType:newCollection("CZUB_CZ75", {
 FirearmType:newCollection("IMI_DesertEagle", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Desert_eagle
-        Groups = { Group_IMI_Pistols = 1, Group_IMI_DesertEagle = 1, },
+        Groups = { Group_IMI_DesertEagle = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Large",      SwingSound = "ORGMDeagle44",
 
@@ -1451,7 +1467,7 @@ FirearmType:newCollection("IMI_DesertEagle", {
 FirearmType:newCollection("FNHerstal_FN57", {
         -- sources:
         --
-        Groups = { Group_FNHerstal_Pistols = 1, Group_FNHerstal_FN57 = 1, },
+        Groups = { Group_FNHerstal_FN57 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMFiveseven",
 
@@ -1474,7 +1490,7 @@ FirearmType:newCollection("FNHerstal_FN57", {
 FirearmType:newCollection("Glock_17", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_Pistols = 1, Group_Glock_17 = 1, },
+        Groups = { Group_Glock_17 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock17",
 
@@ -1500,7 +1516,7 @@ FirearmType:newCollection("Glock_17", {
 FirearmType:newCollection("Glock_20", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_Pistols = 1, Group_Glock_20 = 1, },
+        Groups = { Group_Glock_20 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock20",
 
@@ -1526,7 +1542,7 @@ FirearmType:newCollection("Glock_20", {
 FirearmType:newCollection("Glock_21", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_Pistols = 1, Group_Glock_21 = 1, },
+        Groups = { Group_Glock_21 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock21",
 
@@ -1552,7 +1568,7 @@ FirearmType:newCollection("Glock_21", {
 FirearmType:newCollection("Glock_22", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_Pistols = 1, Group_Glock_22 = 1, },
+        Groups = { Group_Glock_22 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock22",
 
@@ -1578,7 +1594,7 @@ FirearmType:newCollection("Glock_22", {
 FirearmType:newCollection("HecklerKoch_Mark23", {
         -- sources:
         -- https://en.wikipedia.org/wiki/HK_MK23
-        Groups = { Group_HecklerKoch_Pistols = 1, Group_HecklerKoch_Mark23 = 1, },
+        Groups = { Group_HecklerKoch_Mark23 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock22",
 
@@ -1603,7 +1619,7 @@ FirearmType:newCollection("HecklerKoch_Mark23", {
 FirearmType:newCollection("Kahr_CT_Series", {
         -- sources:
         --
-        Groups = { Group_Kahr_Pistols = 1, Group_Kahr_CT_Series = 1, },
+        Groups = { Group_Kahr_CT_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrCT40",
 
@@ -1628,7 +1644,7 @@ FirearmType:newCollection("Kahr_CT_Series", {
 FirearmType:newCollection("Kahr_P_Series", {
         -- sources:
         --
-        Groups = { Group_HecklerKoch_Pistols = 1, Group_HecklerKoch_Mark23 = 1, },
+        Groups = { Group_Kahr_P_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrP380",
 
@@ -1653,7 +1669,7 @@ FirearmType:newCollection("Kahr_P_Series", {
 FirearmType:newCollection("KalTec_P32", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Kel-Tec_P-32
-        Groups = { Group_KalTec_Pistols = 1, KalTec_P32 = 1, },
+        Groups = { Group_KalTec_P32 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
         soundProfile = "Pistol-Small",      SwingSound = "ORGMKelTecP32",
 
@@ -1672,6 +1688,53 @@ FirearmType:newCollection("KalTec_P32", {
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
     },{
         Gen1 = {
+
+        },
+})
+FirearmType:newCollection("Ruger_MarkII", {
+        -- sources:
+        --
+        Groups = { Group_Ruger_MarkII = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMRugerMKII",
+
+        ammoType = "MagGroup_Ruger_MarkII",
+        Weight = 1.3,                           barrelLength = 6.875,
+        WeaponSprite = "rugermkii",             Icon = "Ruger_MarkII",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1982,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugerMKII",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+    },{
+})
+FirearmType:newCollection("Ruger_SR_Series", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Ruger_SR-Series
+        Groups = { Group_Ruger_SR_Series = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMRugerSR9",
+
+        ammoType = "MagGroup_Ruger_SR_Series",
+        Weight = 0.75,                           barrelLength = 4.14,
+        WeaponSprite = "rugersr9",             Icon = "Ruger_SR_Series",
+        maxCapacity = 17,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2007,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Ruger",
+        description = "IGUI_Firearm_Desc_RugerSR9",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        SR9 = {
 
         },
 })
@@ -1699,38 +1762,6 @@ FirearmType:newCollection("KalTec_P32", {
     --************************************************************************--
     -- semi pistols
     --************************************************************************--
-register("RugerMKII", {
-    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 6.875,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1982,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugerMKII",
-})
-register("RugerSR9", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4.14,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 2007,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Ruger",
-    description = "IGUI_Firearm_Desc_RugerSR9",
-})
 register("SIGP226", {
     features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
     feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
