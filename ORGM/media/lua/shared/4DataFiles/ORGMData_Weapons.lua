@@ -42,7 +42,6 @@ FirearmGroup:new("Group_Colt",              { Groups = { Group_Manufacturers = 1
 FirearmGroup:new("Group_Ruger",             { Groups = { Group_Manufacturers = 1, } })
 FirearmGroup:new("Group_SmithWesson",       { Groups = { Group_Manufacturers = 1, } })
 FirearmGroup:new("Group_Taurus",            { Groups = { Group_Manufacturers = 1, } })
-
 FirearmGroup:new("Group_AMT",               { Groups = { Group_Manufacturers = 1, } })
 FirearmGroup:new("Group_Beretta",           { Groups = { Group_Manufacturers = 1, } })
 FirearmGroup:new("Group_DornausDixon",      { Groups = { Group_Manufacturers = 1, } })
@@ -125,92 +124,95 @@ FirearmGroup:new("Group_MAC_SubMachineGuns",            { Groups = { Group_SubMa
 FirearmGroup:new("Group_IMI_SubMachineGuns",            { Groups = { Group_SubMachineGuns = 5, Group_IMI = 1 } })
 
 -- Rifles
-FirearmGroup:new("Group_AccuracyIntl_Rifles",   { Groups = { Group_Rifles = 1, Group_AccuracyIntl = 1 } })
-FirearmGroup:new("Group_Norinco_Rifles",        { Groups = { Group_Rifles = 1, Group_Norinco = 1 } })
-FirearmGroup:new("Group_Armalite_Rifles",       { Groups = { Group_Rifles = 1, Group_Armalite = 1 } })
-FirearmGroup:new("Group_Colt_Rifles",           { Groups = { Group_Rifles = 1, Group_Colt = 1 } })
-FirearmGroup:new("Group_Browning_Rifles",       { Groups = { Group_Rifles = 1, Group_Browning = 1 } })
-FirearmGroup:new("Group_FMAP_Rifles",           { Groups = { Group_Rifles = 1, Group_FMAP = 1 } })
-FirearmGroup:new("Group_FNHerstal_Rifles",      { Groups = { Group_Rifles = 1, Group_FNHerstal = 1 } })
-FirearmGroup:new("Group_Springfield_Rifles",    { Groups = { Group_Rifles = 1, Group_Springfield = 1 } })
-FirearmGroup:new("Group_Henry_Rifles",          { Groups = { Group_Rifles = 1, Group_Henry = 1 } })
-FirearmGroup:new("Group_HecklerKoch_Rifles",    { Groups = { Group_Rifles = 1, Group_HecklerKoch = 1 } })
-FirearmGroup:new("Group_LongBranch_Rifles",     { Groups = { Group_Rifles = 1, Group_LongBranch = 1 } })
-FirearmGroup:new("Group_RockIsland_Rifles",     { Groups = { Group_Rifles = 1, Group_RockIsland = 1 } })
-FirearmGroup:new("Group_Marlin_Rifles",         { Groups = { Group_Rifles = 1, Group_Marlin = 1 } })
-FirearmGroup:new("Group_Ruger_Rifles",          { Groups = { Group_Rifles = 1, Group_Ruger = 1 } })
+FirearmGroup:new("Group_AccuracyIntl_Rifles",   { Groups = { Group_Rifles = 1, Group_AccuracyIntl   = 1 } })
+FirearmGroup:new("Group_Norinco_Rifles",        { Groups = { Group_Rifles = 1, Group_Norinco        = 1 } })
+FirearmGroup:new("Group_Armalite_Rifles",       { Groups = { Group_Rifles = 1, Group_Armalite       = 1 } })
+FirearmGroup:new("Group_Colt_Rifles",           { Groups = { Group_Rifles = 1, Group_Colt           = 1 } })
+FirearmGroup:new("Group_Browning_Rifles",       { Groups = { Group_Rifles = 1, Group_Browning       = 1 } })
+FirearmGroup:new("Group_FMAP_Rifles",           { Groups = { Group_Rifles = 1, Group_FMAP           = 1 } })
+FirearmGroup:new("Group_FNHerstal_Rifles",      { Groups = { Group_Rifles = 1, Group_FNHerstal      = 1 } })
+FirearmGroup:new("Group_Springfield_Rifles",    { Groups = { Group_Rifles = 1, Group_Springfield    = 1 } })
+FirearmGroup:new("Group_Henry_Rifles",          { Groups = { Group_Rifles = 1, Group_Henry          = 1 } })
+FirearmGroup:new("Group_HecklerKoch_Rifles",    { Groups = { Group_Rifles = 1, Group_HecklerKoch    = 1 } })
+FirearmGroup:new("Group_LongBranch_Rifles",     { Groups = { Group_Rifles = 1, Group_LongBranch     = 1 } })
+FirearmGroup:new("Group_RockIsland_Rifles",     { Groups = { Group_Rifles = 1, Group_RockIsland     = 1 } })
+FirearmGroup:new("Group_Marlin_Rifles",         { Groups = { Group_Rifles = 1, Group_Marlin         = 1 } })
+FirearmGroup:new("Group_Ruger_Rifles",          { Groups = { Group_Rifles = 1, Group_Ruger          = 1 } })
 -- TODO: mosin missing.
-FirearmGroup:new("Group_Remington_Rifles",      { Groups = { Group_Rifles = 1, Group_Remington = 1 } })
-FirearmGroup:new("Group_RoyalSAF_Rifles",       { Groups = { Group_Rifles = 1, Group_RoyalSAF = 1 } })
-FirearmGroup:new("Group_SigSauer_Rifles",       { Groups = { Group_Rifles = 1, Group_SigSauer = 1 } })
+FirearmGroup:new("Group_Remington_Rifles",      { Groups = { Group_Rifles = 1, Group_Remington      = 1 } })
+FirearmGroup:new("Group_RoyalSAF_Rifles",       { Groups = { Group_Rifles = 1, Group_RoyalSAF       = 1 } })
+FirearmGroup:new("Group_SigSauer_Rifles",       { Groups = { Group_Rifles = 1, Group_SigSauer       = 1 } })
 -- TODO: sks missing
-FirearmGroup:new("Group_KnightsAC_Rifles",      { Groups = { Group_Rifles = 1, Group_KnightsAC = 1 } })
+FirearmGroup:new("Group_KnightsAC_Rifles",      { Groups = { Group_Rifles = 1, Group_KnightsAC      = 1 } })
 -- TODO: svd missing
-FirearmGroup:new("Group_Winchester_Rifles",     { Groups = { Group_Rifles = 1, Group_Winchester = 1 } })
+FirearmGroup:new("Group_Winchester_Rifles",     { Groups = { Group_Rifles = 1, Group_Winchester     = 1 } })
 
 -- Light MachineGuns
 FirearmGroup:new("Group_FNHerstal_LMGs",        { Groups = { Group_LightMachineGuns = 1, Group_FNHerstal = 1 } })
 
 -- Shotguns
-FirearmGroup:new("Group_Benelli_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Benelli = 1 } })
-FirearmGroup:new("Group_Norinco_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Norinco = 1 } })
-FirearmGroup:new("Group_Ithaca_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Ithaca = 1 } })
-FirearmGroup:new("Group_SRMArms_Shotguns",      { Groups = { Group_Shotguns = 1, Group_SRMArms = 1 } })
-FirearmGroup:new("Group_Mossberg_Shotguns",     { Groups = { Group_Shotguns = 1, Group_Mossberg = 1 } })
-FirearmGroup:new("Group_Remington_Shotguns",    { Groups = { Group_Shotguns = 1, Group_Remington = 1 } })
-FirearmGroup:new("Group_Beretta_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Beretta = 1 } })
-FirearmGroup:new("Group_LuigiFranchi_Shotguns", { Groups = { Group_Shotguns = 1, Group_LuigiFranchi = 1 } })
-FirearmGroup:new("Group_SavageArms_Shotguns",   { Groups = { Group_Shotguns = 1, Group_SavageArms = 1 } })
-FirearmGroup:new("Group_Armsel_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Armsel = 1 } })
-FirearmGroup:new("Group_Molot_Shotguns",        { Groups = { Group_Shotguns = 1, Group_Molot = 1 } })
-FirearmGroup:new("Group_Winchester_Shotguns",   { Groups = { Group_Shotguns = 1, Group_Winchester = 1 } })
+FirearmGroup:new("Group_Benelli_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Benelli          = 1 } })
+FirearmGroup:new("Group_Norinco_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Norinco          = 1 } })
+FirearmGroup:new("Group_Ithaca_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Ithaca           = 1 } })
+FirearmGroup:new("Group_SRMArms_Shotguns",      { Groups = { Group_Shotguns = 1, Group_SRMArms          = 1 } })
+FirearmGroup:new("Group_Mossberg_Shotguns",     { Groups = { Group_Shotguns = 1, Group_Mossberg         = 1 } })
+FirearmGroup:new("Group_Remington_Shotguns",    { Groups = { Group_Shotguns = 1, Group_Remington        = 1 } })
+FirearmGroup:new("Group_Beretta_Shotguns",      { Groups = { Group_Shotguns = 1, Group_Beretta          = 1 } })
+FirearmGroup:new("Group_LuigiFranchi_Shotguns", { Groups = { Group_Shotguns = 1, Group_LuigiFranchi     = 1 } })
+FirearmGroup:new("Group_SavageArms_Shotguns",   { Groups = { Group_Shotguns = 1, Group_SavageArms       = 1 } })
+FirearmGroup:new("Group_Armsel_Shotguns",       { Groups = { Group_Shotguns = 1, Group_Armsel           = 1 } })
+FirearmGroup:new("Group_Molot_Shotguns",        { Groups = { Group_Shotguns = 1, Group_Molot            = 1 } })
+FirearmGroup:new("Group_Winchester_Shotguns",   { Groups = { Group_Shotguns = 1, Group_Winchester       = 1 } })
 
 
 -- Bottom level groups, Firearm Model Types
 -- Revolvers
-FirearmGroup:new("Group_Colt_Anaconda",     { Groups = { Group_Colt_Revolvers = 2, } })
-FirearmGroup:new("Group_Colt_Python",       { Groups = { Group_Colt_Revolvers = 4, } })
-FirearmGroup:new("Group_Colt_SAA",          { Groups = { Group_Colt_Revolvers = 1, } })
-
-FirearmGroup:new("Group_Ruger_Blackhawk",   { Groups = { Group_Ruger_Revolvers = 2, } })
-FirearmGroup:new("Group_Ruger_GP100",       { Groups = { Group_Ruger_Revolvers = 2, } })
-FirearmGroup:new("Group_Ruger_Redhawk",     { Groups = { Group_Ruger_Revolvers = 4, } })
-FirearmGroup:new("Group_Ruger_SuperRedhawk",{ Groups = { Group_Ruger_Revolvers = 1, } })
-
-FirearmGroup:new("Group_SmithWesson_Model_10",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
-FirearmGroup:new("Group_SmithWesson_Model_19",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
-FirearmGroup:new("Group_SmithWesson_Model_22",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
-FirearmGroup:new("Group_SmithWesson_Model_29",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
-FirearmGroup:new("Group_SmithWesson_Model_36",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
-FirearmGroup:new("Group_SmithWesson_Model_610",    { Groups = { Group_SmithWesson_Revolvers = 1, } })
-
-FirearmGroup:new("Group_Taurus_RagingBull",        { Groups = { Group_Taurus_Revolvers = 1, } })
+FirearmGroup:new("Group_Colt_Anaconda",             { Groups = { Group_Colt_Revolvers       = 2, } })
+FirearmGroup:new("Group_Colt_Python",               { Groups = { Group_Colt_Revolvers       = 4, } })
+FirearmGroup:new("Group_Colt_SAA",                  { Groups = { Group_Colt_Revolvers       = 1, } })
+FirearmGroup:new("Group_Ruger_Blackhawk",           { Groups = { Group_Ruger_Revolvers      = 2, } })
+FirearmGroup:new("Group_Ruger_GP100",               { Groups = { Group_Ruger_Revolvers      = 2, } })
+FirearmGroup:new("Group_Ruger_Redhawk",             { Groups = { Group_Ruger_Revolvers      = 4, } })
+FirearmGroup:new("Group_Ruger_SuperRedhawk",        { Groups = { Group_Ruger_Revolvers      = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_10",      { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_19",      { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_22",      { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_29",      { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_36",      { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_SmithWesson_Model_610",     { Groups = { Group_SmithWesson_Revolvers = 1, } })
+FirearmGroup:new("Group_Taurus_RagingBull",         { Groups = { Group_Taurus_Revolvers      = 1, } })
 
 -- Pistols
-FirearmGroup:new("Group_AMT_Automag",           { Groups = { Group_AMT_Pistols = 1, } })
-FirearmGroup:new("Group_Beretta_92",            { Groups = { Group_Beretta_Pistols = 1, } })
-FirearmGroup:new("Group_DornausDixon_BrenTen",  { Groups = { Group_DornausDixon_Pistols = 1, } })
-FirearmGroup:new("Group_Colt_1911",             { Groups = { Group_Colt_Pistols = 1, } })
-FirearmGroup:new("Group_Browning_HiPower",      { Groups = { Group_Browning_Pistols = 1, } })
-FirearmGroup:new("Group_CZUB_CZ75",         { Groups = { Group_CZUB_Pistols = 1, } })
-FirearmGroup:new("Group_IMI_DesertEagle",   { Groups = { Group_IMI_Pistols = 1, } })
-FirearmGroup:new("Group_FNHerstal_FN57",    { Groups = { Group_FNHerstal_Pistols = 1, } })
-FirearmGroup:new("Group_Glock_17",          { Groups = { Group_Glock_Pistols = 1, } })
-FirearmGroup:new("Group_Glock_20",          { Groups = { Group_Glock_Pistols = 1, } })
-FirearmGroup:new("Group_Glock_21",          { Groups = { Group_Glock_Pistols = 1, } })
-FirearmGroup:new("Group_Glock_22",          { Groups = { Group_Glock_Pistols = 1, } })
+FirearmGroup:new("Group_AMT_Automag",               { Groups = { Group_AMT_Pistols          = 1, } })
+FirearmGroup:new("Group_Beretta_92",                { Groups = { Group_Beretta_Pistols      = 1, } })
+FirearmGroup:new("Group_DornausDixon_BrenTen",      { Groups = { Group_DornausDixon_Pistols = 1, } })
+FirearmGroup:new("Group_Colt_1911",                 { Groups = { Group_Colt_Pistols         = 1, } })
+FirearmGroup:new("Group_Browning_HiPower",          { Groups = { Group_Browning_Pistols     = 1, } })
+FirearmGroup:new("Group_CZUB_CZ75",                 { Groups = { Group_CZUB_Pistols         = 1, } })
+FirearmGroup:new("Group_IMI_DesertEagle",           { Groups = { Group_IMI_Pistols          = 1, } })
+FirearmGroup:new("Group_FNHerstal_FN57",            { Groups = { Group_FNHerstal_Pistols    = 1, } })
+FirearmGroup:new("Group_Glock_17",                  { Groups = { Group_Glock_Pistols        = 1, } })
+FirearmGroup:new("Group_Glock_20",                  { Groups = { Group_Glock_Pistols        = 1, } })
+FirearmGroup:new("Group_Glock_21",                  { Groups = { Group_Glock_Pistols        = 1, } })
+FirearmGroup:new("Group_Glock_22",                  { Groups = { Group_Glock_Pistols        = 1, } })
+FirearmGroup:new("Group_HecklerKoch_Mark23",        { Groups = { Group_HecklerKoch_Pistols  = 1, } })
+FirearmGroup:new("Group_Kahr_CT_Series",            { Groups = { Group_Kahr_Pistols         = 1, } })
+FirearmGroup:new("Group_Kahr_P_Series",             { Groups = { Group_Kahr_Pistols         = 1, } })
+FirearmGroup:new("Group_KalTec_P32",                { Groups = { Group_KalTec_Pistols       = 1, } })
+FirearmGroup:new("Group_Ruger_MarkII",              { Groups = { Group_Ruger_Pistols        = 1, } })
+FirearmGroup:new("Group_Ruger_SR_Series",           { Groups = { Group_Ruger_Pistols        = 1, } })
+FirearmGroup:new("Group_SigSauer_P226",             { Groups = { Group_SigSauer_Pistols     = 1, } })
+FirearmGroup:new("Group_Taurus_PT38S",              { Groups = { Group_Taurus_Pistols       = 1, } })
+FirearmGroup:new("Group_Taurus_Millennium",         { Groups = { Group_Taurus_Pistols       = 1, } })
+FirearmGroup:new("Group_Walther_P22",               { Groups = { Group_Walther_Pistols      = 1, } })
+FirearmGroup:new("Group_Walther_PP_Series",         { Groups = { Group_Walther_Pistols      = 1, } })
 
-FirearmGroup:new("Group_HecklerKoch_Mark23",    { Groups = { Group_HecklerKoch_Pistols = 1, } })
-FirearmGroup:new("Group_Kahr_CT_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
-FirearmGroup:new("Group_Kahr_P_Series",          { Groups = { Group_Kahr_Pistols = 1, } })
-FirearmGroup:new("Group_KalTec_P32",          { Groups = { Group_KalTec_Pistols = 1, } })
-FirearmGroup:new("Group_Ruger_MarkII",          { Groups = { Group_Ruger_Pistols = 1, } })
-FirearmGroup:new("Group_Ruger_SR_Series",          { Groups = { Group_Ruger_Pistols = 1, } })
 
-FirearmGroup:new("Group_Colt_CAR15", { Groups = { Group_Colt_Rifles = 1, } })
+
+FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifles = 1, } })
 
 --************************************************************************--
--- semi pistols
+-- Revolvers
 --************************************************************************--
 
 FirearmType:newCollection("Colt_CAR15", {
@@ -1738,6 +1740,173 @@ FirearmType:newCollection("Ruger_SR_Series", {
 
         },
 })
+FirearmType:newCollection("SigSauer_P226", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Sig_226
+        Groups = { Group_SigSauer_P226 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMSIGP226",
+
+        ammoType = "MagGroup_SigSauer_P226",
+        Weight = 1,                           barrelLength = 4.4,
+        WeaponSprite = "sigp226",             Icon = "SigSauer_P226",
+        maxCapacity = 12,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1983,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_SIG",
+        description = "IGUI_Firearm_Desc_SIGP226",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+})
+FirearmType:newCollection("Taurus_PT38S", {
+        -- sources:
+        -- https://www.genitron.com/Handgun/Taurus/Pistol/PT-38S/38-Super/Variant-1
+        Groups = { Group_Taurus_PT38S = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMTaurus38S",
+
+        ammoType = "MagGroup_Taurus_PT38S",
+        Weight = 0.9,                           barrelLength = 4.25,
+        WeaponSprite = "taurus38",             Icon = "Taurus_PT38S",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2005,
+        country = "IGUI_Firearm_Country_BR",
+        manufacturer = "IGUI_Firearm_Manuf_Taurus",
+        description = "IGUI_Firearm_Desc_Taurus38",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+})
+FirearmType:newCollection("Taurus_Millennium", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Taurus_Millennium_series
+        -- http://www.imfdb.org/wiki/Taurus_Millennium_Pro
+        Groups = { Group_Taurus_Millennium = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMTaurusP132",
+
+        ammoType = "MagGroup_Taurus_Millennium_38Super",
+        Weight = 0.56,                           barrelLength = 3.25,
+        WeaponSprite = "taurusp132",             Icon = "Taurus_Millennium",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2005,
+        country = "IGUI_Firearm_Country_BR",
+        manufacturer = "IGUI_Firearm_Manuf_Taurus",
+        description = "IGUI_Firearm_Desc_TaurusP132",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        P132 = {
+
+        },
+})
+FirearmType:newCollection("Walther_P22", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Walther_P22
+        Groups = { Group_Walther_P22 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMWaltherP22",
+
+        ammoType = "MagGroup_P22",
+        Weight = 0.4,                           barrelLength = 3.42,
+        WeaponSprite = "waltherp22",             Icon = "Walther_P22",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2002,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_Walther",
+        description = "IGUI_Firearm_Desc_WaltherP22",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+    },{
+})
+FirearmType:newCollection("Walther_PP_Series", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Walther_PP
+        Groups = { Group_Walther_PP_Series = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMWaltherPPK",
+
+        ammoType = "MagGroup_P22",
+        Weight = 0.65,                           barrelLength = 3.3,
+        WeaponSprite = "waltherppk",             Icon = "Walther_PPK",
+        maxCapacity = 6,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1935,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_Walther",
+        description = "IGUI_Firearm_Desc_WaltherPPK",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+    },{
+        PPK = { },
+})
+FirearmType:newCollection("Springfield_XD", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/HS2000
+        -- https://en.wikipedia.org/wiki/Springfield_Armory_XDM
+        Groups = { Group_Springfield_XD = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMSprXD",
+
+        ammoType = "MagGroup_Springfield_XD",
+        Weight = 0.7,                           barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
+        WeaponSprite = "xd40",             Icon = "Springfield_XD",
+        maxCapacity = 12,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1999,
+        country = "IGUI_Firearm_Country_HR",
+        manufacturer = "IGUI_Firearm_Manuf_HS",
+        description = "IGUI_Firearm_Desc_XD40",
+
+        -- striker trigger mechanism, DAO is close enough
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        XD40 = { },
+})
+FirearmType:newCollection("Springfield_1911", {
+        -- sources:
+        -- https://www.springfield-armory.com/1911-series/
+        -- http://www.imfdb.org/wiki/Springfield_Armory_1911_Series
+        Groups = { Group_Springfield_1911 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMSpr19119",
+
+        ammoType = "MagGroup_1911",
+        Weight = 1.1,                           barrelLength = 5,
+        WeaponSprite = "spr19119",              Icon = "Springfield_1911",
+        maxCapacity = 7,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1985,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Springfield",
+        description = "IGUI_Firearm_Desc_Spr19119",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        PI9122L = {  -- 9mm SS match barrel
+            ammoType = "MagGroup_1911", maxCapacity = 9,
+        },
+})
+
 
 --[[
     register("BBPistol", {
@@ -1759,126 +1928,6 @@ FirearmType:newCollection("Ruger_SR_Series", {
 ]]
 
 --[[
-    --************************************************************************--
-    -- semi pistols
-    --************************************************************************--
-register("SIGP226", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4.4,
-    isCivilian = ORGM.COMMON,
-    isPolice = ORGM.RARE,
-    isMilitary = ORGM.RARE,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1983,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_SIG",
-    description = "IGUI_Firearm_Desc_SIGP226",
-})
-register("Spr19119", {
-    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 5,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1985,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Springfield",
-    description = "IGUI_Firearm_Desc_Spr19119",
-})
-register("Taurus38", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4.25,
-    isCivilian = ORGM.RARE,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 2005,
-    country = "IGUI_Firearm_Country_BR",
-    manufacturer = "IGUI_Firearm_Manuf_Taurus",
-    description = "IGUI_Firearm_Desc_Taurus38",
-})
-register("TaurusP132", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 3.25,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 2005,
-    country = "IGUI_Firearm_Country_BR",
-    manufacturer = "IGUI_Firearm_Manuf_Taurus",
-    description = "IGUI_Firearm_Desc_TaurusP132",
-})
-register("WaltherP22", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 3.42, -- 5" target barrel
-    barrelLengthOpt = {3.42, 5 },
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 2002,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_Walther",
-    description = "IGUI_Firearm_Desc_WaltherP22",
-})
-register("WaltherPPK", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 3.3,
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1935,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_Walther",
-    description = "IGUI_Firearm_Desc_WaltherPPK",
-})
-register("XD40", {
-    -- striker trigger mechanism, DAO is close enough
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.PISTOL,
-    barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
-    barrelLengthOpt = { 3, 4, 5 },
-    isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
-
-    classification = "IGUI_Firearm_SemiPistol",
-    year = 1999,
-    country = "IGUI_Firearm_Country_HR",
-    manufacturer = "IGUI_Firearm_Manuf_HS",
-    description = "IGUI_Firearm_Desc_XD40",
-})
     --************************************************************************--
     -- smg/machine pistols
     --************************************************************************--
