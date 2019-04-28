@@ -6,76 +6,59 @@ This file handles functions dealing with components and attachments.
 @module ORGM.Component
 @copyright 2018 **File:** shared/2LoadOrder/ORGMComponents.lua
 @author Fenris_Wolf
-@release 3.10
+@release 4.00
 
 ]]
 local ORGM = ORGM
 local Component = ORGM.Component
+local CompGroup = ORGM.Component.CompGroup
+local CompType = ORGM.Component.CompType
 local Firearm = ORGM.Firearm
 local getTableData = ORGM.getTableData
+
+
 
 local table = table
 local pairs = pairs
 local ZombRand = ZombRand
 
 
+local Flags = ORGM.Component.Flags
+Flags.FIXED = 1
+
 -- pull this one into local namespace due to high volume of access
 local ComponentTable = { }
 -- cache of names used for random selection
 local ComponentKeyTable = { }
+local ComponentGroupTable = {}
 
---[[- Registers a component/attachment type with ORGM.
+setmetatable(CompGroup, { __index = ORGM.Group })
+setmetatable(CompType, { __index = ORGM.ItemType })
 
-@tparam string name name without module prefix.
-@tparam table compData
-
-Valid table keys/value pairs are:
-* moduleName = nil|string, module name this item is from. If nil, ORGM is used
-
-@treturn bool true on success.
-
-]]
-Component.register = function(name, compData)
-    if not ORGM.validateRegister(name, compData, ComponentTable) then
-        return false
-    end
-    compData.moduleName = compData.moduleName or 'ORGM'
-    ComponentTable[name] = compData
-    table.insert(ComponentKeyTable, name)
-    compData.instance = InventoryItemFactory.CreateItem(compData.moduleName..'.' .. name)
-    ORGM.log(ORGM.DEBUG, "Component: Registered " .. compData.moduleName .. "." .. name)
-    return true
-end
+CompGroup._GroupTable = ComponentGroupTable
+CompGroup._ItemTable = ComponentTable
+CompType._GroupTable = ComponentGroupTable
+CompType._ItemTable = ComponentTable
+CompType._PropertiesTable = {
+    Weight = {type='float', min=0, max=100, default=0.01},
+    Icon = {type='string', default=nil},
+    features = {type='integer', min=0, default=0, required=false},
+}
 
 
---[[- Deregisters a component with ORGM.
 
-@tparam string name name of the component.
-
-@treturn bool true on success
-
-]]
-Component.deregister = function(name)
-    if ComponentTable[name] == nil then
-        ORGM.log(ORGM.WARN, "Component: Failed to deregister " .. name .. " (Item not previously registered)")
-        return false
-    end
-    -- TODO: remove from any upgrade tables
-    ComponentTable[name] = nil
-    ORGM.tableRemove(ComponentKeyTable, name)
-    return true
-end
-
-
---[[- Returns the name of a random component item.
-
-@tparam[opt] table thisTable table to select from.
-@treturn string the random component name.
-
-]]
-Component.random = function(thisTable)
-    if not thisTable then thisTable = ComponentKeyTable end
-    return thisTable[ZombRand(#thisTable) +1]
+function CompType:createScriptItems()
+    local scriptItems = { }
+    table.insert(scriptItems,{
+        "\titem " .. self.type,
+        "\t{",
+        "\t\tType = WeaponPart,",
+        "\t\tDisplayName = "..self.type .. ",",
+        "\t\tIcon = "..self.Icon .. ",",
+        "\t\tWeight = "..self.Weight,
+        "\t}",
+    })
+    return scriptItems
 end
 
 --[[- Gets the table of registered componennts.

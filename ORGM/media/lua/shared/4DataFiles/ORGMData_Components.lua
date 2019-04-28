@@ -8,8 +8,34 @@ All calls made by this script are to `ORGM.Component.register`. See the document
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Components.lua
 
 ]]
+local CompGroup = ORGM.Component.CompGroup
+local CompType = ORGM.Component.CompType
 
-local register = ORGM.Component.register
+
+CompGroup:new("CompGroup_Stocks")
+CompGroup:new("CompGroup_Sights")
+CompGroup:new("CompGroup_Grips")
+CompGroup:new("CompGroup_Scopes")
+CompGroup:new("CompGroup_Slings")
+CompGroup:new("CompGroup_Chokes")
+CompGroup:new("CompGroup_Barrels")
+
+CompGroup:new("CompGroup_Suppressors")
+
+
+CompGroup:new("CompGroup_Colt_Anaconda")
+CompGroup:new("CompGroup_Colt_Anaconda_Grips")
+
+CompType:newCollection('Comp_Scope', {
+    Weight = 0.2, Groups = { },
+    }, {
+        x2 = { },
+        x4 = { },
+        x8 = { },
+    }
+)
+
+--[[
 
 register('2xScope', { lastChanged = 22, CriticalChance = 10, SwingTime = 0.2, HitChance = 6, MaxRange = 4, MinRange = 2, AimingTime = -4 } )
 register('4xScope', { lastChanged = 22, CriticalChance = 15, SwingTime = 0.4, HitChance = 12, MaxRange = 8, MinRange = 4, AimingTime = -8 } )
@@ -29,4 +55,5 @@ register('Rifsling', { lastChanged = 22,} )
 register('SkeletalStock', { lastChanged = 22,} )
 register('CollapsingStock', { lastChanged = 22,} )
 
+]]
 ORGM.log(ORGM.INFO, "All default components/upgrades registered.")
