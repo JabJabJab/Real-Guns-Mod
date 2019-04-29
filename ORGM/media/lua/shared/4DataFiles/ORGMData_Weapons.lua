@@ -206,6 +206,8 @@ FirearmGroup:new("Group_Taurus_PT38S",              { Groups = { Group_Taurus_Pi
 FirearmGroup:new("Group_Taurus_Millennium",         { Groups = { Group_Taurus_Pistols       = 1, } })
 FirearmGroup:new("Group_Walther_P22",               { Groups = { Group_Walther_Pistols      = 1, } })
 FirearmGroup:new("Group_Walther_PP_Series",         { Groups = { Group_Walther_Pistols      = 1, } })
+FirearmGroup:new("Group_Springfield_XD",            { Groups = { Group_Springfield_Pistols  = 1, } })
+FirearmGroup:new("Group_Springfield_1911",          { Groups = { Group_Springfield_Pistols  = 1, } })
 
 
 
@@ -1283,7 +1285,7 @@ FirearmType:newCollection("Beretta_92", {
         -- https://en.wikipedia.org/wiki/Beretta_M9
         Groups = { Group_Beretta_92 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMBeretta",
+        soundProfile = "Pistol",      SwingSound = "ORGMBeretta",
 
         ammoType = "MagGroup_Beretta_92",
         Weight = 0.8,                   barrelLength = 4.9,
@@ -1332,7 +1334,7 @@ FirearmType:new("DornausDixon_BrenTen", {
     -- sources:
     Groups = { Group_DornausDixon_BrenTen = 1, Group_RareCollectables = 1000 },
     lastChanged = 24,                   category = ORGM.PISTOL,
-    soundProfile = "Pistol-Small",      SwingSound = "ORGMBrenTen",
+    soundProfile = "Pistol",      SwingSound = "ORGMBrenTen",
 
     ammoType = "MagGroup_BrenTen",
     Weight = 1.1,                   barrelLength = 5,
@@ -1352,7 +1354,7 @@ FirearmType:newCollection("Browning_HiPower", {
         -- sources:
         Groups = { Group_Browning_HiPower = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMBrowningHP",
+        soundProfile = "Pistol",      SwingSound = "ORGMBrowningHP",
 
         ammoType = "MagGroup_Browning_HiPower",
         Weight = 1,                   barrelLength = 4.7,
@@ -1376,7 +1378,7 @@ FirearmType:newCollection("Colt_1911", {
         -- https://en.wikipedia.org/wiki/M1911
         Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMM1911",
+        soundProfile = "Pistol",      SwingSound = "ORGMM1911",
 
         ammoType = "MagGroup_1911", -- 9mm, .45acp
         Weight = 1.1,                         barrelLength = 5.03,
@@ -1405,7 +1407,7 @@ FirearmType:newCollection("Colt_1911_Officers", {
         -- https://en.wikipedia.org/wiki/Colt_Officer%27s_ACP
         Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMM1911",
+        soundProfile = "Pistol",            SwingSound = "ORGMM1911",
 
         ammoType = "MagGroup_1911",
         Weight = 0.96,                         barrelLength = 3.5,
@@ -1424,14 +1426,13 @@ FirearmType:newCollection("Colt_1911_Officers", {
         M01986 = { -- Double diamond!
 
     },
-
 })
 FirearmType:newCollection("Colt_1911_Commander", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_Commander
         Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMColtSuper38",
+        soundProfile = "Pistol",      SwingSound = "ORGMColtSuper38",
 
         ammoType = "MagGroup_1911_38Super", -- 9mm, .45acp
         Weight = 1,                         barrelLength = 4.25,
@@ -1453,7 +1454,7 @@ FirearmType:newCollection("Colt_1911_DeltaElite", {
         -- https://en.wikipedia.org/wiki/Colt_Delta_Elite
         Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMColtDelta",
+        soundProfile = "Pistol",      SwingSound = "ORGMColtDelta",
 
         ammoType = "MagGroup_1911_10x25mm", -- 9mm, .45acp
         Weight = 1.1,                         barrelLength = 5.03,
@@ -1475,7 +1476,7 @@ FirearmType:newCollection("CZUB_CZ75", {
         -- https://en.wikipedia.org/wiki/CZ75
         Groups = { Group_CZUB_CZ75 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMCZ75",
+        soundProfile = "Pistol",      SwingSound = "ORGMCZ75",
 
         ammoType = "Mag_CZ75_9x19mm",
         Weight = 1.1,                         barrelLength = 4.7,
@@ -1536,7 +1537,7 @@ FirearmType:newCollection("FNHerstal_FN57", {
         --
         Groups = { Group_FNHerstal_FN57 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMFiveseven",
+        soundProfile = "Pistol",      SwingSound = "ORGMFiveseven",
 
         ammoType = "MagGroup_FN57",
         Weight = 0.6,                         barrelLength = 4.8,
@@ -1559,7 +1560,7 @@ FirearmType:newCollection("Glock_17", {
         -- https://en.wikipedia.org/wiki/Glock
         Groups = { Group_Glock_17 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock17",
+        soundProfile = "Pistol",      SwingSound = "ORGMGlock17",
 
         ammoType = "MagGroup_Glock_9x19mm",
         Weight = 0.7,                         barrelLength = 4.48,
@@ -1585,7 +1586,7 @@ FirearmType:newCollection("Glock_20", {
         -- https://en.wikipedia.org/wiki/Glock
         Groups = { Group_Glock_20 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock20",
+        soundProfile = "Pistol",      SwingSound = "ORGMGlock20",
 
         ammoType = "MagGroup_Glock_10x25mm",
         Weight = 0.9,                         barrelLength = 4.48,
@@ -1611,7 +1612,7 @@ FirearmType:newCollection("Glock_21", {
         -- https://en.wikipedia.org/wiki/Glock
         Groups = { Group_Glock_21 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock21",
+        soundProfile = "Pistol",      SwingSound = "ORGMGlock21",
 
         ammoType = "MagGroup_Glock_45ACP",
         Weight = 0.8,                         barrelLength = 4.48,
@@ -1637,7 +1638,7 @@ FirearmType:newCollection("Glock_22", {
         -- https://en.wikipedia.org/wiki/Glock
         Groups = { Group_Glock_22 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock22",
+        soundProfile = "Pistol",      SwingSound = "ORGMGlock22",
 
         ammoType = "MagGroup_Glock_40SW",
         Weight = 0.7,                         barrelLength = 4.48,
@@ -1663,7 +1664,7 @@ FirearmType:newCollection("HecklerKoch_Mark23", {
         -- https://en.wikipedia.org/wiki/HK_MK23
         Groups = { Group_HecklerKoch_Mark23 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMGlock22",
+        soundProfile = "Pistol",      SwingSound = "ORGMGlock22",
 
         ammoType = "MagGroup_Mark23",
         Weight = 1.2,                         barrelLength = 5.87,
@@ -1688,7 +1689,7 @@ FirearmType:newCollection("Kahr_CT_Series", {
         --
         Groups = { Group_Kahr_CT_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrCT40",
+        soundProfile = "Pistol",      SwingSound = "ORGMKahrCT40",
 
         ammoType = "MagGroup_Kahr_CT_Series",
         Weight = 0.6,                         barrelLength = 4,
@@ -1713,7 +1714,7 @@ FirearmType:newCollection("Kahr_P_Series", {
         --
         Groups = { Group_Kahr_P_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMKahrP380",
+        soundProfile = "Pistol",      SwingSound = "ORGMKahrP380",
 
         ammoType = "MagGroup_Kahr_P_Series",
         Weight = 0.32,                         barrelLength = 2.53,
@@ -1738,7 +1739,7 @@ FirearmType:newCollection("KalTec_P32", {
         -- https://en.wikipedia.org/wiki/Kel-Tec_P-32
         Groups = { Group_KalTec_P32 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMKelTecP32",
+        soundProfile = "Pistol",      SwingSound = "ORGMKelTecP32",
 
         ammoType = "MagGroup_KalTec_P32",
         Weight = 0.186,                         barrelLength = 2.68,
@@ -1763,7 +1764,7 @@ FirearmType:newCollection("Ruger_MarkII", {
         --
         Groups = { Group_Ruger_MarkII = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMRugerMKII",
+        soundProfile = "Pistol",      SwingSound = "ORGMRugerMKII",
 
         ammoType = "MagGroup_Ruger_MarkII",
         Weight = 1.3,                           barrelLength = 6.875,
@@ -1785,7 +1786,7 @@ FirearmType:newCollection("Ruger_SR_Series", {
         -- https://en.wikipedia.org/wiki/Ruger_SR-Series
         Groups = { Group_Ruger_SR_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMRugerSR9",
+        soundProfile = "Pistol",      SwingSound = "ORGMRugerSR9",
 
         ammoType = "MagGroup_Ruger_SR_Series",
         Weight = 0.75,                           barrelLength = 4.14,
@@ -1810,7 +1811,7 @@ FirearmType:newCollection("SigSauer_P226", {
         -- https://en.wikipedia.org/wiki/Sig_226
         Groups = { Group_SigSauer_P226 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMSIGP226",
+        soundProfile = "Pistol",      SwingSound = "ORGMSIGP226",
 
         ammoType = "MagGroup_SigSauer_P226",
         Weight = 1,                           barrelLength = 4.4,
@@ -1832,7 +1833,7 @@ FirearmType:newCollection("Taurus_PT38S", {
         -- https://www.genitron.com/Handgun/Taurus/Pistol/PT-38S/38-Super/Variant-1
         Groups = { Group_Taurus_PT38S = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMTaurus38S",
+        soundProfile = "Pistol",      SwingSound = "ORGMTaurus38S",
 
         ammoType = "MagGroup_Taurus_PT38S",
         Weight = 0.9,                           barrelLength = 4.25,
@@ -1855,7 +1856,7 @@ FirearmType:newCollection("Taurus_Millennium", {
         -- http://www.imfdb.org/wiki/Taurus_Millennium_Pro
         Groups = { Group_Taurus_Millennium = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMTaurusP132",
+        soundProfile = "Pistol",      SwingSound = "ORGMTaurusP132",
 
         ammoType = "MagGroup_Taurus_Millennium_38Super",
         Weight = 0.56,                           barrelLength = 3.25,
@@ -1880,7 +1881,7 @@ FirearmType:newCollection("Walther_P22", {
         -- https://en.wikipedia.org/wiki/Walther_P22
         Groups = { Group_Walther_P22 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMWaltherP22",
+        soundProfile = "Pistol",      SwingSound = "ORGMWaltherP22",
 
         ammoType = "MagGroup_P22",
         Weight = 0.4,                           barrelLength = 3.42,
@@ -1902,7 +1903,7 @@ FirearmType:newCollection("Walther_PP_Series", {
         -- https://en.wikipedia.org/wiki/Walther_PP
         Groups = { Group_Walther_PP_Series = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMWaltherPPK",
+        soundProfile = "Pistol",      SwingSound = "ORGMWaltherPPK",
 
         ammoType = "MagGroup_P22",
         Weight = 0.65,                           barrelLength = 3.3,
@@ -1926,7 +1927,7 @@ FirearmType:newCollection("Springfield_XD", {
         -- https://en.wikipedia.org/wiki/Springfield_Armory_XDM
         Groups = { Group_Springfield_XD = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMSprXD",
+        soundProfile = "Pistol",      SwingSound = "ORGMSprXD",
 
         ammoType = "MagGroup_Springfield_XD",
         Weight = 0.7,                           barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
@@ -1951,7 +1952,7 @@ FirearmType:newCollection("Springfield_1911", {
         -- http://www.imfdb.org/wiki/Springfield_Armory_1911_Series
         Groups = { Group_Springfield_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMSpr19119",
+        soundProfile = "Pistol",      SwingSound = "ORGMSpr19119",
 
         ammoType = "MagGroup_1911",
         Weight = 1.1,                           barrelLength = 5,
@@ -1982,7 +1983,7 @@ FirearmType:newCollection("Springfield_1911", {
         category = ORGM.PISTOL,
         barrelLength = 8,
         isCivilian = ORGM.COMMON,
-        soundProfile = "Pistol-Small",
+        soundProfile = "Pistol",
 
         classification = "IGUI_Firearm_AirPistol",
         year = 2007, -- unknown, earliest reference i can find for this model dates to 2008
@@ -2027,7 +2028,7 @@ register("Ber93R", {
     barrelLength = 4.9,
     isCivilian = ORGM.VERYRARE,
     isMilitary = ORGM.VERYRARE,
-    soundProfile = "Pistol-Small",
+    soundProfile = "Pistol",
 
     classification = "IGUI_Firearm_MachinePistol",
     year = 1979,
@@ -2209,7 +2210,7 @@ register("Skorpion", {
     category = ORGM.SUBMACHINEGUN,
     barrelLength = 4.5,
     isCivilian = ORGM.VERYRARE,
-    soundProfile = "Pistol-Small",
+    soundProfile = "Pistol",
     selectFire = 1,
 
     classification = "IGUI_Firearm_MachinePistol",
@@ -2712,7 +2713,7 @@ register("Rug1022", {
     category = ORGM.RIFLE,
     barrelLength = 18.5,
     isCivilian = ORGM.COMMON,
-    soundProfile = "Pistol-Small",
+    soundProfile = "Pistol",
 
     classification = "IGUI_Firearm_SemiRifle",
     year = 1964,
