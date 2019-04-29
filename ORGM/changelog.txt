@@ -8,20 +8,58 @@ or use this [direct download](https://downloads.tekagis.ca/ProjectZomboidMods/OR
 
 ---------------------------------------------------------------------------------------
 
-## version 3.10
+## version 4.00
+
+* Redesigned Core logic using a new 'Group' system for storing and accessing data. Based
+on the 'alternate ammo system' which has been expanded on and refined, and is now the
+heart of ORGM's code, enabling many of the new features
+
+* Powerful new spawn system using the new 'Group' system. The old civilian/police/military
+common/rare/very rare concept has been tossed. Weapons are now sorted into groups with a tree
+based structure such as:
+manufacturers > colt > colt revolvers > colt anaconda > specific variant
+or
+classification > revolvers > colt revolvers > colt anaconda > specific variant
+This new structure allows flooding of specific areas with new models without effecting the
+spawn rates of items in other groups. 1000 new colt pistols could be added without making
+pistols any more common then rifles, or a 1000 new anaconda variants without making it more
+common then a python.
+
+* Spawn system room definition redesigned with map modder's needs in mind. All room callback
+functions are now stored in a table, adding new custom rooms into the table is a simple task.
+And with the new Group spawn system, its easier then ever to create totally custom rooms with
+just a few lua lines, like a large warehouse that only stocks colt firearms, or military
+surplus rounds.
+
+* Added multiple variants for each firearm, with specific attention paid to model/catalog
+numbers. Variants can be found in multiple barrel lengths and calibers, as well as support
+different features. Many rare and ultra rare collectibles with limited production runs
+included.
+
+* Added expanded/reduced capacity magazines (thanks to the new Group logic)
+
+* Added more calibers, including .22 Hornet, .327 Federal Magnum, .41 Magnum, .44 Special,
+.480 Ruger, 10gauge, 20 gauge and .410
 
 * Added manual safety for many firearms.
 
 * Added slide locking on last shot for some automatics.
 
-* Fixed BB's to proper caliber of .177
-
 * Removed all previous backwards compatibility. Previous saves are not compatible.
-Any 3rd party mods using depreciated functions and tables in ORGM's API will need 
+Any 3rd party mods using depreciated functions and tables in ORGM's API will need
 to be updated.
 
 * Switched to bitwise flags for tracking firearm design features and item status,
 reducing the number of variables in a weapons ModData.
+
+* Renamed All ammo groups to use the AmmoGroup_ prefix for clarity, and added new
+MagGroup_ prefix for magazine groups. All guns should now use AmmoGroup_ or MagGroup_
+for their AmmoType
+
+* Fixed typo in DefaultMagazineReloadTime setting (was DefaultMagazineReoadTime)
+
+* Merged DefaultHitChancePistol, DefaultHitChanceSMG, DefaultHitChanceRifle,
+DefaultHitChanceShotgun, and DefaultHitChanceOther into one setting DefaultHitChance
 
 ---------------------------------------------------------------------------------------
 
