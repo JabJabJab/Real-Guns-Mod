@@ -199,6 +199,7 @@ FirearmGroup:new("Group_HecklerKoch_Mark23",        { Groups = { Group_HecklerKo
 FirearmGroup:new("Group_Kahr_CT_Series",            { Groups = { Group_Kahr_Pistols         = 1, } })
 FirearmGroup:new("Group_Kahr_P_Series",             { Groups = { Group_Kahr_Pistols         = 1, } })
 FirearmGroup:new("Group_KalTec_P32",                { Groups = { Group_KalTec_Pistols       = 1, } })
+FirearmGroup:new("Group_KalTec_PLR16",              { Groups = { Group_KalTec_Pistols       = 1, } })
 FirearmGroup:new("Group_Ruger_MarkII",              { Groups = { Group_Ruger_Pistols        = 1, } })
 FirearmGroup:new("Group_Ruger_SR_Series",           { Groups = { Group_Ruger_Pistols        = 1, } })
 FirearmGroup:new("Group_SigSauer_P226",             { Groups = { Group_SigSauer_Pistols     = 1, } })
@@ -324,12 +325,15 @@ FirearmType:newCollection("Colt_Anaconda", {
         -- https://en.wikipedia.org/wiki/Colt_Anaconda
         -- https://www.coltforum.com/forums/colt-revolvers/73849-anaconda-bsts-3-print.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMColtAnac",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_44Magnum", speedLoader = 'SpeedLoader446',
-        Weight = 1.5,                   barrelLength = 6,
-        WeaponSprite = "coltanaconda",  Icon = "Colt_Anaconda",
+        ammoType = "AmmoGroup_44Magnum",
+        --speedLoader = 'SpeedLoader446',
+        Weight = 1.5,
+        barrelLength = 6,
+        WeaponSprite = "coltanaconda",
+        Icon = "Colt_Anaconda",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -450,15 +454,18 @@ FirearmType:newCollection("Colt_Python", {
         -- https://www.handgunsmag.com/editorial/colt_python_complete_history/138916
         -- https://www.coltforum.com/forums/python/71904-3-python-question-5.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMColtPyth",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_357Magnum", speedLoader = 'SpeedLoader3576',
-        Weight = 1.1,                   barrelLength = 6,
-        WeaponSprite = "coltpython",    Icon = "Colt_Python",
+        ammoType = "AmmoGroup_357Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,
+        barrelLength = 6,
+        WeaponSprite = "coltpython",
+        Icon = "Colt_Python",
         maxCapacity = 6,
         --38 ounces (1.1 kg) to 48 ounces (1.4 kg)
-        Groups = { Group_Colt_Python = 1 },
+
         classification = "IGUI_Firearm_Revolver",
         year = 1955,
         country = "IGUI_Firearm_Country_US",
@@ -467,6 +474,7 @@ FirearmType:newCollection("Colt_Python", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
+        Groups = { Group_Colt_Python = 1 }, -- TODO: Move to variants
     },{
 
         I1986 = { -- Double Diamond Python Model I1986
@@ -636,13 +644,16 @@ FirearmType:newCollection("Colt_SAA", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_SAA
         -- http://www.coltfever.com/Colt_Single_Action_Army.html
-        Groups = { Group_Colt_SAA = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMColtSAA",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_45Colt",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.1,                   barrelLength = 5.5,
-        WeaponSprite = "coltsaa",    Icon = "Colt_SAA",
+        ammoType = "AmmoGroup_45Colt",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,
+        barrelLength = 5.5,
+        --barrelLengthOpt = {5.5, 7.5 }
+        WeaponSprite = "coltsaa",
+        Icon = "Colt_SAA",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -653,7 +664,7 @@ FirearmType:newCollection("Colt_SAA", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = {5.5, 7.5 }
+        Groups = { Group_Colt_SAA = 1, }, -- TODO: Move to variants
     },{
         -- Colt SAA 3rd Gen .44 Special Model P-1770.... 997 Model P-1770’s produced in 1981 with a total production of 3917
 
@@ -693,13 +704,15 @@ FirearmType:newCollection("Ruger_Blackhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Blackhawk
         -- https://www.ruger.com/products/newModelBlackhawk/overview.html
-        Groups = { Group_Ruger_Blackhawk = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugBH",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.0,                   barrelLength = 4.62,
-        WeaponSprite = "rugblackhawk",    Icon = "Ruger_Blackhawk",
+        ammoType = "AmmoGroup_357Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.0,
+        barrelLength = 4.62,
+        WeaponSprite = "rugblackhawk",
+        Icon = "Ruger_Blackhawk",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -710,7 +723,7 @@ FirearmType:newCollection("Ruger_Blackhawk", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 4.65, 6.5, 7.5 },
+        Groups = { Group_Ruger_Blackhawk = 1, }, -- TODO: Move to variants
     },{
         -- New blackhawk models are 1973+
         -- Ruger Blackhawk Model M0306 .357 mag 4.62" blue
@@ -760,13 +773,15 @@ FirearmType:newCollection("Ruger_GP100", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_GP100
         -- https://www.ruger.com/products/gp100/overview.html
-        Groups = { Group_Ruger_GP100 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugGP100",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.1,                   barrelLength = 4.2,
-        WeaponSprite = "ruggp100",    Icon = "Ruger_GP100",
+        ammoType = "AmmoGroup_357Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.1,
+        barrelLength = 4.2,
+        WeaponSprite = "ruggp100",
+        Icon = "Ruger_GP100",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -777,7 +792,7 @@ FirearmType:newCollection("Ruger_GP100", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 3, 4.2, 6 },
+        Groups = { Group_Ruger_GP100 = 1, }, -- TODO: Move to variants
     },{
         -- Ruger GP100 Model 1702 .357 4.2" blue rubber
         M1702 = {},
@@ -825,13 +840,14 @@ FirearmType:newCollection("Ruger_Redhawk", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Redhawk
         -- https://ruger.com/products/redhawk/models.html
-        Groups = { Group_Ruger_Redhawk = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugRH",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
         ammoType = "AmmoGroup_44Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.4,                   barrelLength = 5.5,
-        WeaponSprite = "rugredhawk",    Icon = "Ruger_Redhawk",
+        Weight = 1.4,
+        barrelLength = 5.5,
+        WeaponSprite = "rugredhawk",
+        Icon = "Ruger_Redhawk",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -842,7 +858,7 @@ FirearmType:newCollection("Ruger_Redhawk", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 4, 5.5, 7.5 }
+        Groups = { Group_Ruger_Redhawk = 1, }, -- TODO: Move to variants
     },{
         -- Ruger Redhawk model 5041 .44 Mag SS 7.5"
         M5041 = {
@@ -904,13 +920,15 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
         -- https://www.ruger.com/products/superRedhawkStandard/models.html
         -- https://www.taloinc.com/ruger-firearms
         --
-        Groups = { Group_Ruger_SuperRedhawk = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugAlas",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.2,                   barrelLength = 7.5,
-        WeaponSprite = "rugalaskan",    Icon = "Ruger_SuperRedhawk",
+        ammoType = "AmmoGroup_454Casull",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,
+        barrelLength = 7.5,
+        WeaponSprite = "rugalaskan",
+        Icon = "Ruger_SuperRedhawk",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -921,7 +939,7 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 2.5, 7.5, 9.5 },
+        Groups = { Group_Ruger_SuperRedhawk = 1, }, -- TODO: Move to variants
     },{
 
         M5501 = { -- Ruger Super Redhawk Model 5501 -- .44 mag. 7.5" SS
@@ -983,13 +1001,16 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
 FirearmType:newCollection("Ruger_SecuritySix", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_Security_Six
-        Groups = { Group_Ruger_SecuritySix = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRugSec6",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 0.9,                   barrelLength = 4,
-        WeaponSprite = "rugsecsix",    Icon = "Ruger_SecuritySix",
+        ammoType = "AmmoGroup_357Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.9,
+        barrelLength = 4,
+        --barrelLengthOpt = {2.74, 3, 4, 6}
+        WeaponSprite = "rugsecsix",
+        Icon = "Ruger_SecuritySix",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1000,20 +1021,23 @@ FirearmType:newCollection("Ruger_SecuritySix", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = {2.74, 3, 4, 6}
+        Groups = { Group_Ruger_SecuritySix = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_10", {
         -- sources:
         -- https://en.wikipedia.org/wiki/S%26W_Model_10
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_1905
-        Groups = { Group_SmithWesson_Model_10 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM10",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_38Special",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 0.9,                   barrelLength = 4,
-        WeaponSprite = "swm10",    Icon = "SmithWesson_Model_10",
+        ammoType = "AmmoGroup_38Special",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.9,
+        barrelLength = 4,
+        -- barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
+        WeaponSprite = "swm10",
+        Icon = "SmithWesson_Model_10",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1024,19 +1048,22 @@ FirearmType:newCollection("SmithWesson_Model_10", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
+        Groups = { Group_SmithWesson_Model_10 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_19", {
         -- sources:
         -- https://en.wikipedia.org/wiki/S%26W_Model_19
-        Groups = { Group_SmithWesson_Model_19 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM19",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_357Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.0,                   barrelLength = 4,
-        WeaponSprite = "swm19",    Icon = "SmithWesson_Model_19",
+        ammoType = "AmmoGroup_357Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.0,
+        barrelLength = 4,
+        -- barrelLengthOpt = {2.5, 3, 4, 6},
+        WeaponSprite = "swm19",
+        Icon = "SmithWesson_Model_19",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1047,19 +1074,21 @@ FirearmType:newCollection("SmithWesson_Model_19", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = {2.5, 3, 4, 6},
+        Groups = { Group_SmithWesson_Model_19 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_22", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_22
-        Groups = { Group_SmithWesson_Model_22 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM252",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
         ammoType = "AmmoGroup_45ACP",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.0,                   barrelLength = 5.5,
-        WeaponSprite = "swm252",    Icon = "SmithWesson_Model_22",
+        Weight = 1.0,
+        barrelLength = 5.5,
+        -- barrelLengthOpt = {4, 5 (very rare!), 6, 6.5, 8.4},
+        WeaponSprite = "swm252",
+        Icon = "SmithWesson_Model_22",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1070,19 +1099,22 @@ FirearmType:newCollection("SmithWesson_Model_22", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = {4, 5 (very rare!), 6, 6.5, 8.4},
+        Groups = { Group_SmithWesson_Model_22 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_29", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_29
-        Groups = { Group_SmithWesson_Model_29 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM29",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_44Magnum",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.2,                   barrelLength = 6,
-        WeaponSprite = "swm29",         Icon = "SmithWesson_Model_29",
+        ammoType = "AmmoGroup_44Magnum",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.2,
+        barrelLength = 6,
+        -- barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
+        WeaponSprite = "swm29",
+        Icon = "SmithWesson_Model_29",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1093,19 +1125,22 @@ FirearmType:newCollection("SmithWesson_Model_29", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
+        Groups = { Group_SmithWesson_Model_29 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_36", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_36
-        Groups = { Group_SmithWesson_Model_36 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM36",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_38Special",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 0.5,                   barrelLength = 1.875,
-        WeaponSprite = "swm36",    Icon = "SmithWesson_Model_36",
+        ammoType = "AmmoGroup_38Special",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 0.5,
+        barrelLength = 1.875,
+        -- barrelLengthOpt = { 1.875, 2, 3 },
+        WeaponSprite = "swm36",
+        Icon = "SmithWesson_Model_36",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1116,7 +1151,7 @@ FirearmType:newCollection("SmithWesson_Model_36", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = { 1.875, 2, 3 },
+        Groups = { Group_SmithWesson_Model_36 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("SmithWesson_Model_610", {
@@ -1124,13 +1159,15 @@ FirearmType:newCollection("SmithWesson_Model_610", {
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_610
         -- https://www.thetruthaboutguns.com/2017/04/daniel-zimmerman/gun-review-smith-wesson-model-610-10mm-content-contest/
         -- https://www.smith-wesson.com/dealer-resources/sw-product-spec-sheets
-        Groups = { Group_SmithWesson_Model_610 = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMSWM610",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_10x25mm",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.4,                   barrelLength = 6.5,
-        WeaponSprite = "swm610",    Icon = "SmithWesson_Model_610",
+        ammoType = "AmmoGroup_10x25mm",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.4,
+        barrelLength = 6.5,
+        WeaponSprite = "swm610",
+        Icon = "SmithWesson_Model_610",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1141,6 +1178,7 @@ FirearmType:newCollection("SmithWesson_Model_610", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
+        Groups = { Group_SmithWesson_Model_610 = 1, }, -- TODO: Move to variants
     },{
         M103571 = { --610-2, drilled and tapped
             barrelLength = 4, Weight = 1.2,
@@ -1162,13 +1200,15 @@ FirearmType:newCollection("Taurus_RagingBull", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Taurus_Raging_Bull
         -- https://web.archive.org/web/20041228132350/http://www.taurususa.com/products/gunselector-results.cfm?series=RB2
-        Groups = { Group_Taurus_RagingBull = 1, },
-        lastChanged = 24,               category = ORGM.REVOLVER,
-        soundProfile = "Revolver",      SwingSound = "ORGMRagingBull",
+        category = ORGM.REVOLVER,
+        soundProfile = "Revolver",
 
-        ammoType = "AmmoGroup_454Casull",  -- speedLoader = 'SpeedLoader3576',
-        Weight = 1.5,                   barrelLength = 6.5,
-        WeaponSprite = "taurusraging",    Icon = "Taurus_RagingBull",
+        ammoType = "AmmoGroup_454Casull",
+        -- speedLoader = 'SpeedLoader3576',
+        Weight = 1.5,
+        barrelLength = 6.5,
+        WeaponSprite = "taurusraging",
+        Icon = "Taurus_RagingBull",
         maxCapacity = 5,
 
         classification = "IGUI_Firearm_Revolver",
@@ -1179,7 +1219,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        -- barrelLengthOpt = { 2.25, 3, 4, 5, 6, 6.5, 8.425, 10 },
+        Groups = { Group_Taurus_RagingBull = 1, }, -- TODO: Move to variants
     },{
         M22H = { -- Taurus Raging Hornet Model 22H
             ammoType = "AmmoGroup_22Hornet", barrelLength = 10, weight = 1.42,
@@ -1261,13 +1301,14 @@ FirearmType:newCollection("Taurus_RagingBull", {
 FirearmType:new("AMT_AutomagV", {
     -- sources:
     -- https://en.wikipedia.org/wiki/AMT_AutoMag_V
-    Groups = { Group_AMT_Automag = 1, Group_RareCollectables = 2000 },
-    lastChanged = 24,                   category = ORGM.PISTOL,
-    soundProfile = "Pistol-Large",      SwingSound = "ORGMAutomag",
+    category = ORGM.PISTOL,
+    soundProfile = "Pistol-Large",
 
     ammoType = "MagGroup_AutomagV",
-    Weight = 1.3,                   barrelLength = 6.5,
-    WeaponSprite = "automagv",      Icon = "AMT_AutomagV",
+    Weight = 1.3,
+    barrelLength = 6.5,
+    WeaponSprite = "automagv",
+    Icon = "AMT_AutomagV",
     maxCapacity = 5,
 
     classification = "IGUI_Firearm_SemiPistol",
@@ -1278,18 +1319,20 @@ FirearmType:new("AMT_AutomagV", {
 
     features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
     feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+    Groups = { Group_AMT_Automag = 1, Group_RareCollectables = 2000 },
 })
 FirearmType:newCollection("Beretta_92", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Beretta_92
         -- https://en.wikipedia.org/wiki/Beretta_M9
-        Groups = { Group_Beretta_92 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMBeretta",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Beretta_92",
-        Weight = 0.8,                   barrelLength = 4.9,
-        WeaponSprite = "Ber92Mag",      Icon = "Beretta_92",
+        Weight = 0.8,
+        barrelLength = 4.9,
+        WeaponSprite = "Ber92Mag",
+        Icon = "Beretta_92",
         maxCapacity = 15,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1300,6 +1343,7 @@ FirearmType:newCollection("Beretta_92", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Beretta_92 = 1, }, -- TODO: Move to variants
     },{
         M92 = { -- original. different mag group
             ammoType = "MagGroup_Beretta_92_early",
@@ -1332,13 +1376,14 @@ FirearmType:newCollection("Beretta_92", {
 })
 FirearmType:new("DornausDixon_BrenTen", {
     -- sources:
-    Groups = { Group_DornausDixon_BrenTen = 1, Group_RareCollectables = 1000 },
-    lastChanged = 24,                   category = ORGM.PISTOL,
-    soundProfile = "Pistol",      SwingSound = "ORGMBrenTen",
+    category = ORGM.PISTOL,
+    soundProfile = "Pistol",
 
     ammoType = "MagGroup_BrenTen",
-    Weight = 1.1,                   barrelLength = 5,
-    WeaponSprite = "brenten",      Icon = "DornausDixon_BrenTen",
+    Weight = 1.1,
+    barrelLength = 5,
+    WeaponSprite = "brenten",
+    Icon = "DornausDixon_BrenTen",
     maxCapacity = 12,
 
     classification = "IGUI_Firearm_SemiPistol",
@@ -1349,16 +1394,18 @@ FirearmType:new("DornausDixon_BrenTen", {
 
     features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
     feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    Groups = { Group_DornausDixon_BrenTen = 1, Group_RareCollectables = 1000 },
 })
 FirearmType:newCollection("Browning_HiPower", {
         -- sources:
-        Groups = { Group_Browning_HiPower = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMBrowningHP",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Browning_HiPower",
-        Weight = 1,                   barrelLength = 4.7,
-        WeaponSprite = "browninghp",      Icon = "Browning_HiPower",
+        Weight = 1,
+        barrelLength = 4.7,
+        WeaponSprite = "browninghp",
+        Icon = "Browning_HiPower",
         maxCapacity = 13,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1369,6 +1416,7 @@ FirearmType:newCollection("Browning_HiPower", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Browning_HiPower = 1, }, -- TODO: Move to variants
     },{
         P35 = { },
         Mark1 = { },
@@ -1376,13 +1424,14 @@ FirearmType:newCollection("Browning_HiPower", {
 FirearmType:newCollection("Colt_1911", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M1911
-        Groups = { Group_Colt_1911 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMM1911",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
-        ammoType = "MagGroup_1911", -- 9mm, .45acp
-        Weight = 1.1,                         barrelLength = 5.03,
-        WeaponSprite = "m1911",            Icon = "Colt_1911",
+        ammoType = "MagGroup_1911",
+        Weight = 1.1,
+        barrelLength = 5.03,
+        WeaponSprite = "m1911",
+        Icon = "Colt_1911",
         maxCapacity = 7,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1393,6 +1442,7 @@ FirearmType:newCollection("Colt_1911", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Colt_1911 = 1, }, -- TODO: Move to variants
     },{
         M1911 = {
 
@@ -1405,13 +1455,14 @@ FirearmType:newCollection("Colt_1911_Officers", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M1911
         -- https://en.wikipedia.org/wiki/Colt_Officer%27s_ACP
-        Groups = { Group_Colt_1911 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",            SwingSound = "ORGMM1911",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_1911",
-        Weight = 0.96,                         barrelLength = 3.5,
-        WeaponSprite = "m1911",            Icon = "Colt_1911",
+        Weight = 0.96,
+        barrelLength = 3.5,
+        WeaponSprite = "m1911",
+        Icon = "Colt_1911",
         maxCapacity = 7, -- or 6
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1422,6 +1473,7 @@ FirearmType:newCollection("Colt_1911_Officers", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Colt_1911 = 1, }, -- TODO: Move to variants
     },{
         M01986 = { -- Double diamond!
 
@@ -1430,13 +1482,14 @@ FirearmType:newCollection("Colt_1911_Officers", {
 FirearmType:newCollection("Colt_1911_Commander", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_Commander
-        Groups = { Group_Colt_1911 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMColtSuper38",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
-        ammoType = "MagGroup_1911_38Super", -- 9mm, .45acp
-        Weight = 1,                         barrelLength = 4.25,
-        WeaponSprite = "colt38s",           Icon = "Colt_1911_Commander",
+        ammoType = "MagGroup_1911_38Super",
+        Weight = 1,
+        barrelLength = 4.25,
+        WeaponSprite = "colt38s",
+        Icon = "Colt_1911_Commander",
         maxCapacity = 9, -- 7-8 for .45
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1447,19 +1500,21 @@ FirearmType:newCollection("Colt_1911_Commander", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Colt_1911 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("Colt_1911_DeltaElite", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Colt_Delta_Elite
-        Groups = { Group_Colt_1911 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMColtDelta",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
-        ammoType = "MagGroup_1911_10x25mm", -- 9mm, .45acp
-        Weight = 1.1,                         barrelLength = 5.03,
-        WeaponSprite = "coltdelta",           Icon = "Colt_1911_DeltaElite",
-        maxCapacity = 9, -- 7-8 for .45
+        ammoType = "MagGroup_1911_10x25mm",
+        Weight = 1.1,
+        barrelLength = 5.03,
+        WeaponSprite = "coltdelta",
+        Icon = "Colt_1911_DeltaElite",
+        maxCapacity = 9,
 
         classification = "IGUI_Firearm_SemiPistol",
         year = 1987,
@@ -1469,18 +1524,20 @@ FirearmType:newCollection("Colt_1911_DeltaElite", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Colt_1911 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("CZUB_CZ75", {
         -- sources:
         -- https://en.wikipedia.org/wiki/CZ75
-        Groups = { Group_CZUB_CZ75 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMCZ75",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "Mag_CZ75_9x19mm",
-        Weight = 1.1,                         barrelLength = 4.7,
-        WeaponSprite = "cz75",           Icon = "CZUB_CZ75",
+        Weight = 1.1,
+        barrelLength = 4.7,
+        WeaponSprite = "cz75",
+        Icon = "CZUB_CZ75",
         maxCapacity = 15,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1491,18 +1548,20 @@ FirearmType:newCollection("CZUB_CZ75", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_CZUB_CZ75 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("IMI_DesertEagle", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Desert_eagle
-        Groups = { Group_IMI_DesertEagle = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Large",      SwingSound = "ORGMDeagle44",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol-Large",
 
         ammoType = "MagGroup_DesertEagle_44Magnum",
-        Weight = 1.89,                         barrelLength = 10,
-        WeaponSprite = "deagle",              Icon = "IMI_DesertEagle",
+        Weight = 1.89,
+        barrelLength = 10,
+        WeaponSprite = "deagle",
+        Icon = "IMI_DesertEagle",
         maxCapacity = 8,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1513,18 +1572,24 @@ FirearmType:newCollection("IMI_DesertEagle", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTGAS,
+        Groups = { Group_IMI_DesertEagle = 1, }, -- TODO: Move to variants
     },{
         VII = { -- 44 mag
-            ammoType = "MagGroup_DesertEagle_44Magnum",             SwingSound = "ORGMDeagle44",
-            Weight = 1.89,                      barrelLength = 10,
-            WeaponSprite = "deagle",            Icon = "IMI_DesertEagle",
+            ammoType = "MagGroup_DesertEagle_44Magnum",
+            Weight = 1.89,
+            barrelLength = 10,
+            WeaponSprite = "deagle",
+            Icon = "IMI_DesertEagle",
             maxCapacity = 8,
         },
         XIX = {
-            ammoType = "MagGroup_DesertEagle_50AE",             SwingSound = "ORGMDeagle50",
-            Weight = 2.0,                         barrelLength = 10,
-            WeaponSprite = "deaglexix",              Icon = "IMI_DesertEagle_XIX",
+            ammoType = "MagGroup_DesertEagle_50AE",
+            Weight = 2.0,
+            barrelLength = 10,
+            WeaponSprite = "deaglexix",
+            Icon = "IMI_DesertEagle_XIX",
             maxCapacity = 7,
+
             classification = "IGUI_Firearm_SemiPistol",
             year = 1982,
             country = "IGUI_Firearm_Country_USIL",
@@ -1535,13 +1600,14 @@ FirearmType:newCollection("IMI_DesertEagle", {
 FirearmType:newCollection("FNHerstal_FN57", {
         -- sources:
         --
-        Groups = { Group_FNHerstal_FN57 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMFiveseven",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_FN57",
-        Weight = 0.6,                         barrelLength = 4.8,
-        WeaponSprite = "fn57",           Icon = "FNHerstal_FN57",
+        Weight = 0.6,
+        barrelLength = 4.8,
+        WeaponSprite = "fn57",
+        Icon = "FNHerstal_FN57",
         maxCapacity = 20,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1553,18 +1619,20 @@ FirearmType:newCollection("FNHerstal_FN57", {
         -- depending on model, this can be SA (FN57 Tactical)
         features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+        Groups = { Group_FNHerstal_FN57 = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("Glock_17", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_17 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMGlock17",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Glock_9x19mm",
-        Weight = 0.7,                         barrelLength = 4.48,
-        WeaponSprite = "glock17",             Icon = "Glock_17",
+        Weight = 0.7,
+        barrelLength = 4.48,
+        WeaponSprite = "glock17",
+        Icon = "Glock_17",
         maxCapacity = 17,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1576,6 +1644,7 @@ FirearmType:newCollection("Glock_17", {
         -- technically not quite DAO, but as close as its going to get
         features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Glock_17 = 1, }, -- TODO: Move to variants
     },{
         Gen1 = {
 
@@ -1584,13 +1653,14 @@ FirearmType:newCollection("Glock_17", {
 FirearmType:newCollection("Glock_20", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_20 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMGlock20",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Glock_10x25mm",
-        Weight = 0.9,                         barrelLength = 4.48,
-        WeaponSprite = "glock20",             Icon = "Glock_20",
+        Weight = 0.9,
+        barrelLength = 4.48,
+        WeaponSprite = "glock20",
+        Icon = "Glock_20",
         maxCapacity = 15,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1602,6 +1672,7 @@ FirearmType:newCollection("Glock_20", {
         -- technically not quite DAO, but as close as its going to get
         features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Glock_20 = 1, }, -- TODO: Move to variants
     },{
         Gen1 = {
 
@@ -1610,13 +1681,14 @@ FirearmType:newCollection("Glock_20", {
 FirearmType:newCollection("Glock_21", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_21 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMGlock21",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Glock_45ACP",
-        Weight = 0.8,                         barrelLength = 4.48,
-        WeaponSprite = "glock21",             Icon = "Glock_21",
+        Weight = 0.8,
+        barrelLength = 4.48,
+        WeaponSprite = "glock21",
+        Icon = "Glock_21",
         maxCapacity = 13,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1628,6 +1700,7 @@ FirearmType:newCollection("Glock_21", {
         -- technically not quite DAO, but as close as its going to get
         features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Glock_21 = 1, }, -- TODO: Move to variants
     },{
         Gen1 = {
 
@@ -1636,13 +1709,14 @@ FirearmType:newCollection("Glock_21", {
 FirearmType:newCollection("Glock_22", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Glock
-        Groups = { Group_Glock_22 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMGlock22",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Glock_40SW",
-        Weight = 0.7,                         barrelLength = 4.48,
-        WeaponSprite = "glock22",             Icon = "Glock_22",
+        Weight = 0.7,
+        barrelLength = 4.48,
+        WeaponSprite = "glock22",
+        Icon = "Glock_22",
         maxCapacity = 15,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1654,6 +1728,7 @@ FirearmType:newCollection("Glock_22", {
         -- technically not quite DAO, but as close as its going to get
         features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Glock_22 = 1, }, -- TODO: Move to variants
     },{
         Gen1 = {
 
@@ -1662,13 +1737,14 @@ FirearmType:newCollection("Glock_22", {
 FirearmType:newCollection("HecklerKoch_Mark23", {
         -- sources:
         -- https://en.wikipedia.org/wiki/HK_MK23
-        Groups = { Group_HecklerKoch_Mark23 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMGlock22",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Mark23",
-        Weight = 1.2,                         barrelLength = 5.87,
-        WeaponSprite = "hkmk23",             Icon = "HecklerKoch_Mark23",
+        Weight = 1.2,
+        barrelLength = 5.87,
+        WeaponSprite = "hkmk23",
+        Icon = "HecklerKoch_Mark23",
         maxCapacity = 12,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1679,6 +1755,7 @@ FirearmType:newCollection("HecklerKoch_Mark23", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_HecklerKoch_Mark23 = 1, }, -- TODO: Move to variants
     },{
         KG = {
 
@@ -1687,13 +1764,14 @@ FirearmType:newCollection("HecklerKoch_Mark23", {
 FirearmType:newCollection("Kahr_CT_Series", {
         -- sources:
         --
-        Groups = { Group_Kahr_CT_Series = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMKahrCT40",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Kahr_CT_Series",
-        Weight = 0.6,                         barrelLength = 4,
-        WeaponSprite = "kahrct40",             Icon = "Kahr_CT_Series",
+        Weight = 0.6,
+        barrelLength = 4,
+        WeaponSprite = "kahrct40",
+        Icon = "Kahr_CT_Series",
         maxCapacity = 7,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1704,6 +1782,7 @@ FirearmType:newCollection("Kahr_CT_Series", {
 
         features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Kahr_CT_Series = 1, }, -- TODO: Move to variants
     },{
         CT40 = {
 
@@ -1712,13 +1791,14 @@ FirearmType:newCollection("Kahr_CT_Series", {
 FirearmType:newCollection("Kahr_P_Series", {
         -- sources:
         --
-        Groups = { Group_Kahr_P_Series = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMKahrP380",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Kahr_P_Series",
-        Weight = 0.32,                         barrelLength = 2.53,
-        WeaponSprite = "kahrp380",             Icon = "Kahr_P_Series",
+        Weight = 0.32,
+        barrelLength = 2.53,
+        WeaponSprite = "kahrp380",
+        Icon = "Kahr_P_Series",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1729,6 +1809,7 @@ FirearmType:newCollection("Kahr_P_Series", {
 
         features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Kahr_P_Series = 1, }, -- TODO: Move to variants
     },{
         P380 = {
 
@@ -1737,13 +1818,14 @@ FirearmType:newCollection("Kahr_P_Series", {
 FirearmType:newCollection("KalTec_P32", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Kel-Tec_P-32
-        Groups = { Group_KalTec_P32 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMKelTecP32",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_KalTec_P32",
-        Weight = 0.186,                         barrelLength = 2.68,
-        WeaponSprite = "ktp32",             Icon = "KalTec_P32",
+        Weight = 0.186,
+        barrelLength = 2.68,
+        WeaponSprite = "ktp32",
+        Icon = "KalTec_P32",
         maxCapacity = 7, -- or 10
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1754,6 +1836,34 @@ FirearmType:newCollection("KalTec_P32", {
 
         features = Flags.DOUBLEACTION + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_KalTec_P32 = 1, }, -- TODO: Move to variants
+    },{
+        Gen1 = {
+
+        },
+})
+FirearmType:newCollection("KalTec_PLR16", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Kel-Tec_PLR-16
+        category = ORGM.PISTOL,
+        soundProfile = "Rifle-AR",
+
+        ammoType = "MagGroup_STANAG",
+        Weight = 1.55,
+        barrelLength = 2.68,
+        WeaponSprite = "ktplr",
+        Icon = "KalTec_PLR16",
+        maxCapacity = 30,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2006,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_KelTec",
+        description = "IGUI_Firearm_Desc_KTPLR",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+        feedSystem = Flags.AUTO + Flags.SHORTGAS,
+        Groups = { Group_KalTec_PLR16 = 1, }, -- TODO: Move to variants
     },{
         Gen1 = {
 
@@ -1762,13 +1872,14 @@ FirearmType:newCollection("KalTec_P32", {
 FirearmType:newCollection("Ruger_MarkII", {
         -- sources:
         --
-        Groups = { Group_Ruger_MarkII = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMRugerMKII",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Ruger_MarkII",
-        Weight = 1.3,                           barrelLength = 6.875,
-        WeaponSprite = "rugermkii",             Icon = "Ruger_MarkII",
+        Weight = 1.3,
+        barrelLength = 6.875,
+        WeaponSprite = "rugermkii",
+        Icon = "Ruger_MarkII",
         maxCapacity = 10,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1779,18 +1890,20 @@ FirearmType:newCollection("Ruger_MarkII", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_Ruger_MarkII = 1, }, -- TODO: Move to variants
     },{
 })
 FirearmType:newCollection("Ruger_SR_Series", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Ruger_SR-Series
-        Groups = { Group_Ruger_SR_Series = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMRugerSR9",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Ruger_SR_Series",
-        Weight = 0.75,                           barrelLength = 4.14,
-        WeaponSprite = "rugersr9",             Icon = "Ruger_SR_Series",
+        Weight = 0.75,
+        barrelLength = 4.14,
+        WeaponSprite = "rugersr9",
+        Icon = "Ruger_SR_Series",
         maxCapacity = 17,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1801,6 +1914,7 @@ FirearmType:newCollection("Ruger_SR_Series", {
 
         features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Ruger_SR_Series = 1, }, -- TODO: Move to variants
     },{
         SR9 = {
 
@@ -1809,13 +1923,14 @@ FirearmType:newCollection("Ruger_SR_Series", {
 FirearmType:newCollection("SigSauer_P226", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Sig_226
-        Groups = { Group_SigSauer_P226 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMSIGP226",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_SigSauer_P226",
-        Weight = 1,                           barrelLength = 4.4,
-        WeaponSprite = "sigp226",             Icon = "SigSauer_P226",
+        Weight = 1,
+        barrelLength = 4.4,
+        WeaponSprite = "sigp226",
+        Icon = "SigSauer_P226",
         maxCapacity = 12,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1826,112 +1941,21 @@ FirearmType:newCollection("SigSauer_P226", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_SigSauer_P226 = 1, }, -- TODO: Move to variants
     },{
-})
-FirearmType:newCollection("Taurus_PT38S", {
-        -- sources:
-        -- https://www.genitron.com/Handgun/Taurus/Pistol/PT-38S/38-Super/Variant-1
-        Groups = { Group_Taurus_PT38S = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMTaurus38S",
-
-        ammoType = "MagGroup_Taurus_PT38S",
-        Weight = 0.9,                           barrelLength = 4.25,
-        WeaponSprite = "taurus38",             Icon = "Taurus_PT38S",
-        maxCapacity = 10,
-
-        classification = "IGUI_Firearm_SemiPistol",
-        year = 2005,
-        country = "IGUI_Firearm_Country_BR",
-        manufacturer = "IGUI_Firearm_Manuf_Taurus",
-        description = "IGUI_Firearm_Desc_Taurus38",
-
-        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-    },{
-})
-FirearmType:newCollection("Taurus_Millennium", {
-        -- sources:
-        -- https://en.wikipedia.org/wiki/Taurus_Millennium_series
-        -- http://www.imfdb.org/wiki/Taurus_Millennium_Pro
-        Groups = { Group_Taurus_Millennium = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMTaurusP132",
-
-        ammoType = "MagGroup_Taurus_Millennium_38Super",
-        Weight = 0.56,                           barrelLength = 3.25,
-        WeaponSprite = "taurusp132",             Icon = "Taurus_Millennium",
-        maxCapacity = 10,
-
-        classification = "IGUI_Firearm_SemiPistol",
-        year = 2005,
-        country = "IGUI_Firearm_Country_BR",
-        manufacturer = "IGUI_Firearm_Manuf_Taurus",
-        description = "IGUI_Firearm_Desc_TaurusP132",
-
-        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-    },{
-        P132 = {
-
-        },
-})
-FirearmType:newCollection("Walther_P22", {
-        -- sources:
-        -- https://en.wikipedia.org/wiki/Walther_P22
-        Groups = { Group_Walther_P22 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMWaltherP22",
-
-        ammoType = "MagGroup_P22",
-        Weight = 0.4,                           barrelLength = 3.42,
-        WeaponSprite = "waltherp22",             Icon = "Walther_P22",
-        maxCapacity = 10,
-
-        classification = "IGUI_Firearm_SemiPistol",
-        year = 2002,
-        country = "IGUI_Firearm_Country_DE",
-        manufacturer = "IGUI_Firearm_Manuf_Walther",
-        description = "IGUI_Firearm_Desc_WaltherP22",
-
-        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-        feedSystem = Flags.AUTO + Flags.BLOWBACK,
-    },{
-})
-FirearmType:newCollection("Walther_PP_Series", {
-        -- sources:
-        -- https://en.wikipedia.org/wiki/Walther_PP
-        Groups = { Group_Walther_PP_Series = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMWaltherPPK",
-
-        ammoType = "MagGroup_P22",
-        Weight = 0.65,                           barrelLength = 3.3,
-        WeaponSprite = "waltherppk",             Icon = "Walther_PPK",
-        maxCapacity = 6,
-
-        classification = "IGUI_Firearm_SemiPistol",
-        year = 1935,
-        country = "IGUI_Firearm_Country_DE",
-        manufacturer = "IGUI_Firearm_Manuf_Walther",
-        description = "IGUI_Firearm_Desc_WaltherPPK",
-
-        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
-        feedSystem = Flags.AUTO + Flags.BLOWBACK,
-    },{
-        PPK = { },
 })
 FirearmType:newCollection("Springfield_XD", {
         -- sources:
         -- https://en.wikipedia.org/wiki/HS2000
         -- https://en.wikipedia.org/wiki/Springfield_Armory_XDM
-        Groups = { Group_Springfield_XD = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMSprXD",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_Springfield_XD",
-        Weight = 0.7,                           barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
-        WeaponSprite = "xd40",             Icon = "Springfield_XD",
+        Weight = 0.7,
+        barrelLength = 4, -- 3 (compact), 4 (service), or 5 (tactical)
+        WeaponSprite = "xd40",
+        Icon = "Springfield_XD",
         maxCapacity = 12,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1943,6 +1967,7 @@ FirearmType:newCollection("Springfield_XD", {
         -- striker trigger mechanism, DAO is close enough
         features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Springfield_XD = 1, }, -- TODO: Move to variants
     },{
         XD40 = { },
 })
@@ -1950,13 +1975,14 @@ FirearmType:newCollection("Springfield_1911", {
         -- sources:
         -- https://www.springfield-armory.com/1911-series/
         -- http://www.imfdb.org/wiki/Springfield_Armory_1911_Series
-        Groups = { Group_Springfield_1911 = 1, },
-        lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol",      SwingSound = "ORGMSpr19119",
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
 
         ammoType = "MagGroup_1911",
-        Weight = 1.1,                           barrelLength = 5,
-        WeaponSprite = "spr19119",              Icon = "Springfield_1911",
+        Weight = 1.1,
+        barrelLength = 5,
+        WeaponSprite = "spr19119",
+        Icon = "Springfield_1911",
         maxCapacity = 7,
 
         classification = "IGUI_Firearm_SemiPistol",
@@ -1967,10 +1993,154 @@ FirearmType:newCollection("Springfield_1911", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Springfield_1911 = 1, }, -- TODO: Move to variants
     },{
         PI9122L = {  -- 9mm SS match barrel
             ammoType = "MagGroup_1911_9x19mm", maxCapacity = 9,
         },
+})
+FirearmType:newCollection("Taurus_PT38S", {
+        -- sources:
+        -- https://www.genitron.com/Handgun/Taurus/Pistol/PT-38S/38-Super/Variant-1
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
+
+        ammoType = "MagGroup_Taurus_PT38S",
+        Weight = 0.9,
+        barrelLength = 4.25,
+        WeaponSprite = "taurus38",
+        Icon = "Taurus_PT38S",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2005,
+        country = "IGUI_Firearm_Country_BR",
+        manufacturer = "IGUI_Firearm_Manuf_Taurus",
+        description = "IGUI_Firearm_Desc_Taurus38",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Taurus_PT38S = 1, }, -- TODO: Move to variants
+    },{
+        PT38S = {}
+})
+FirearmType:newCollection("Taurus_Millennium", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Taurus_Millennium_series
+        -- http://www.imfdb.org/wiki/Taurus_Millennium_Pro
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
+
+        ammoType = "MagGroup_Taurus_Millennium_38Super",
+        Weight = 0.56,
+        barrelLength = 3.25,
+        WeaponSprite = "taurusp132",
+        Icon = "Taurus_Millennium",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2005,
+        country = "IGUI_Firearm_Country_BR",
+        manufacturer = "IGUI_Firearm_Manuf_Taurus",
+        description = "IGUI_Firearm_Desc_TaurusP132",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Taurus_Millennium = 1, }, -- TODO: Move to variants
+    },{
+        P132 = {
+
+        },
+})
+FirearmType:newCollection("Walther_P22", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Walther_P22
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
+
+        ammoType = "MagGroup_P22",
+        Weight = 0.4,
+        barrelLength = 3.42,
+        WeaponSprite = "waltherp22",
+        Icon = "Walther_P22",
+        maxCapacity = 10,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 2002,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_Walther",
+        description = "IGUI_Firearm_Desc_WaltherP22",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_Walther_P22 = 1, }, -- TODO: Move to variants
+    },{
+        P22 = {
+
+        }
+})
+FirearmType:newCollection("Walther_PP_Series", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Walther_PP
+        category = ORGM.PISTOL,
+        soundProfile = "Pistol",
+
+        ammoType = "MagGroup_P22",
+        Weight = 0.65,
+        barrelLength = 3.3,
+        WeaponSprite = "waltherppk",
+        Icon = "Walther_PPK",
+        maxCapacity = 6,
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1935,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_Walther",
+        description = "IGUI_Firearm_Desc_WaltherPPK",
+
+        features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_Walther_PP_Series = 1, }, -- TODO: Move to variants
+    },{
+        PPK = { },
+})
+
+
+
+--************************************************************************--
+-- smg/machine pistols
+--************************************************************************--
+
+
+FirearmType:newCollection("AmericanArms_AM180", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Am180
+        -- https://modernfirearms.net/en/submachine-guns/u-s-a-submachine-guns/american-180-eng/
+        -- less then 10,000 manufactured
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+        --ejectSound = 'ORGMSMG2Out',
+        --insertSound = 'ORGMSMG2In',
+
+        ammoType = "MagGroup_AM180",
+        -- weight is 4.7 full
+        Weight = 2.6,                           barrelLength = 18.5, -- or 9
+        WeaponSprite = "am180",             Icon = "AmericanArms_AM180",
+        maxCapacity = 177, -- 177, 165, 220 or 275
+
+        classification = "IGUI_Firearm_SMG",
+        year = 1972,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_AAI",
+        description = "IGUI_Firearm_Desc_AM180",
+
+        -- NOTE: problem: magazine blocks the default sights. we dont have a flag for this!
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.FULLAUTO + Flags.OPENBOLT,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_AmericanArms_AM180 = 1, }, -- TODO: Move to variants
+    },{
+        M1 = { },
+        M2 = { },
 })
 
 
@@ -1994,31 +2164,6 @@ FirearmType:newCollection("Springfield_1911", {
 ]]
 
 --[[
-    --************************************************************************--
-    -- smg/machine pistols
-    --************************************************************************--
-
-register("AM180", {
-    -- not really DAO, its closer to SA, but doesnt allow for manual decocking
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.FULLAUTO,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 9, -- 9 or 18.5
-    barrelLengthOpt = { 9, 18.5 },
-    isCivilian = ORGM.VERYRARE,
-    soundProfile = "SMG",
-    alwaysFullAuto = true,
-    ejectSound = 'ORGMSMG2Out',
-    insertSound = 'ORGMSMG2In',
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1972,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_AAI",
-    description = "IGUI_Firearm_Desc_AM180",
-})
 register("Ber93R", {
     features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
     feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
@@ -2135,22 +2280,6 @@ register("KrissA", {
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_Kriss",
     description = "IGUI_Firearm_Desc_KrissA",
-})
-register("KTPLR", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
-    feedSystem = Flags.AUTO + Flags.SHORTGAS,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 9.25,
-    isCivilian = ORGM.RARE,
-    soundProfile = "Rifle-AR",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 2006,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_KelTec",
-    description = "IGUI_Firearm_Desc_KTPLR",
 })
 register("M1A1", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
