@@ -448,7 +448,6 @@ FirearmType:newCollection("Colt_Python", {
         -- https://www.handgunsmag.com/editorial/colt_python_complete_history/138916
         -- https://www.coltforum.com/forums/python/71904-3-python-question-5.html
         -- https://www.coltforum.com/forums/colt-revolvers/46474-fyi-colt-model-numbers.html
-        Groups = { Group_Colt_Python = 1, },
         lastChanged = 24,               category = ORGM.REVOLVER,
         soundProfile = "Revolver",      SwingSound = "ORGMColtPyth",
 
@@ -457,7 +456,7 @@ FirearmType:newCollection("Colt_Python", {
         WeaponSprite = "coltpython",    Icon = "Colt_Python",
         maxCapacity = 6,
         --38 ounces (1.1 kg) to 48 ounces (1.4 kg)
-
+        Groups = { Group_Colt_Python = 1 },
         classification = "IGUI_Firearm_Revolver",
         year = 1955,
         country = "IGUI_Firearm_Country_US",
@@ -466,86 +465,108 @@ FirearmType:newCollection("Colt_Python", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        --barrelLengthOpt = { 2.5, 3, 4, 6, 8},
     },{
 
         I1986 = { -- Double Diamond Python Model I1986
+            Groups = { Group_Colt_Python = 0.1, Group_RareCollectables = 1000 },
             -- 6" Bright SS
             --A stainless steel Ultimate polish six inch Python and an Officer's Model ACP .45, smooth rosewood grips, presentation cased.
             year = 1986,
+            barrelLength = 6,
         },
         -- I3020 Python Revolver 357 Magnum 2-1/2" SS
         I3020 = {
+            barrelLength = 2.5,
         },
         -- I3021 Python Revolver 357 Magnum 2-1/2" Bright SS
         I3021 = {
+            barrelLength = 2.5,
         },
 
         I3030 = { -- Colt Combat Python Model I3030
+            Groups = { Group_Colt_Python = 0.03, Group_RareCollectables = 300 },
             -- 3" SS
             --2003 a handful? of 3" Stainless guns were produced by Colt for Carol Wilkerson.
             -- given colt reporting a total of 1100 3" inchers, 500 of which are "combat pythons"
             -- (I3630 and I3631) and 300 for the I3630CP, maybe 300 produced for this one as well?
+            barrelLength = 3,
             year = 2003,
         },
         -- I3040 Python Revolver 357 Magnum 4" SS
         I3040 = {
+            barrelLength = 4,
         },
 
         I3040CS = { -- Colt Python Elite Model I3040CS
             -- 4" SS
+            barrelLength = 4,
             year = 1997,
         },
         -- I3041 Python Revolver 357 Magnum 4" Bright SS
         I3041 = {
+            barrelLength = 4,
         },
         -- I3060 Python Revolver 357 Magnum 6" SS
         I3060 = {
+            barrelLength = 6,
         },
-
         I3060CS = { -- Colt Python Elite Model I3060CS
             -- 6" SS
+            barrelLength = 6,
             year = 1997,
         },
         I3060ESS = { -- Colt Python Silver Snake Model I3060ESS
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 250 },
+            barrelLength = 6,
             --   6" SS -- 250 produced
             year = 1983,
         },
         -- I3061 Python Revolver 357 Magnum 6" Bright SS
         I3061 = {
+            barrelLength = 6,
         },
         -- I3080 Python Revolver 357 Magnum 8" SS (1980?)
         I3080 = {
+            barrelLength = 8,
         },
         -- I3081 Python Revolver 357 Magnum 8" Bright SS (1980?)
         I3081 = {
+            barrelLength = 8,
         },
-
         -- I3620 Python Revolver 357 Magnum 2-1/2" Blue
         I3620 = {
+            barrelLength = 2.5,
         },
-
-
         I3620SE = { -- Colt Python Snake Eyes Model I3620SE
             -- 2-1/2" Blue
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 500 },
+            barrelLength = 2.5,
             year = 1989, -- 500 produced
         },
         I3621SE = { -- Colt Python Snake Eyes Model I3621SE
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 500 },
+            barrelLength = 2.5,
             -- 2-1/2" Bright SS
             year = 1989, -- 500 produced
         },
         I3630 = { -- Colt Combat Python Model I3630
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 700 },
+            barrelLength = 3,
             -- 3" Blue
             -- 200 produced by Pacific International. 8" Target model cut and rechambered
             -- 1983 colt used this model number themselves, 500 produced by colt (K serial number)
             year = 1980,
         },
         I3630CP = { -- Colt Combat Python Model I3630CP
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 300 },
+            barrelLength = 3,
             -- 3" Blue
             -- 1987-88 Colt produces 300 3" Combat Pythons for Lew Horton
             year = 1987,
         },
         I3631 = { -- Colt Combat Python Model I3631
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 73 },
+            barrelLength = 3,
             -- 3" Nickel
             -- 50 produced by Pacific International. 8" Target model cut and rechambered
             -- 1983 colt used this model number themselves, 23 produced by colt (K serial number)
@@ -553,25 +574,31 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3640 Python Revolver 357 Magnum 4" Blue
         I3640 = {
+            barrelLength = 4,
         },
         I3640CS = { -- Colt Python Elite Model I3640CS
             -- 4" Blued
+            barrelLength = 4,
             year = 1997,
         },
 
         -- I3660 Python Revolver 357 Magnum 6" Blue (1979?)
         I3660 = {
+            barrelLength = 6,
         },
         I3660CS = { -- Colt Python Elite Model I3660CS
             -- 6" Blue
+            barrelLength = 6,
             year = 1997,
         },
         I3660H = { -- Colt Custom Python Model I3660H
             -- 6" Blue - Custom Tuned with Elliason Sights
+            barrelLength = 6,
             year = 1980,
         },
         -- I3661 Python Revolver 357 Magnum 6" Nickel
         I3661 = {
+            barrelLength = 6,
         },
 
         I3680 = { -- Colt Python Hunter Model I3680
@@ -585,17 +612,20 @@ FirearmType:newCollection("Colt_Python", {
             barrelLength = 8,
         },
         I3682 = { -- Colt Python Target Model I3682
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 3489 },
             -- 38 Special 8" Blue -- 3,489 produced
             year = 1980,
             barrelLength = 8,
         },
         I3683 = { -- Colt Python Target Model I3683
+            Groups = { Group_Colt_Python = 1, Group_RareCollectables = 251 },
             -- 38 Special 8" Nickel -- 251 produced
             year = 1980,
             barrelLength = 8,
         },
         -- I3840 Python Revolver 357 Magnum 4" Electroless Nickel
         I3840 = {
+            barrelLength = 4,
         },
 
     }
@@ -1229,7 +1259,7 @@ FirearmType:newCollection("Taurus_RagingBull", {
 FirearmType:new("AMT_AutomagV", {
     -- sources:
     -- https://en.wikipedia.org/wiki/AMT_AutoMag_V
-    Groups = { Group_AMT_Automag = 1, },
+    Groups = { Group_AMT_Automag = 1, Group_RareCollectables = 2000 },
     lastChanged = 24,                   category = ORGM.PISTOL,
     soundProfile = "Pistol-Large",      SwingSound = "ORGMAutomag",
 
@@ -1300,7 +1330,7 @@ FirearmType:newCollection("Beretta_92", {
 })
 FirearmType:new("DornausDixon_BrenTen", {
     -- sources:
-    Groups = { Group_DornausDixon_BrenTen = 1, },
+    Groups = { Group_DornausDixon_BrenTen = 1, Group_RareCollectables = 1000 },
     lastChanged = 24,                   category = ORGM.PISTOL,
     soundProfile = "Pistol-Small",      SwingSound = "ORGMBrenTen",
 
@@ -1338,16 +1368,18 @@ FirearmType:newCollection("Browning_HiPower", {
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
     },{
+        P35 = { },
+        Mark1 = { },
 })
 FirearmType:newCollection("Colt_1911", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M1911
         Groups = { Group_Colt_1911 = 1, },
         lastChanged = 24,                   category = ORGM.PISTOL,
-        soundProfile = "Pistol-Small",      SwingSound = "ORGMColtSuper38",
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMM1911",
 
         ammoType = "MagGroup_1911", -- 9mm, .45acp
-        Weight = 1,                         barrelLength = 5.03,
+        Weight = 1.1,                         barrelLength = 5.03,
         WeaponSprite = "m1911",            Icon = "Colt_1911",
         maxCapacity = 7,
 
@@ -1360,6 +1392,39 @@ FirearmType:newCollection("Colt_1911", {
         features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
     },{
+        M1911 = {
+
+        },
+        M1911A1 = {
+            year = 1929,
+        },
+})
+FirearmType:newCollection("Colt_1911_Officers", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/M1911
+        -- https://en.wikipedia.org/wiki/Colt_Officer%27s_ACP
+        Groups = { Group_Colt_1911 = 1, },
+        lastChanged = 24,                   category = ORGM.PISTOL,
+        soundProfile = "Pistol-Small",      SwingSound = "ORGMM1911",
+
+        ammoType = "MagGroup_1911",
+        Weight = 0.96,                         barrelLength = 3.5,
+        WeaponSprite = "m1911",            Icon = "Colt_1911",
+        maxCapacity = 7, -- or 6
+
+        classification = "IGUI_Firearm_SemiPistol",
+        year = 1985,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_M1911",
+
+        features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    },{
+        M01986 = { -- Double diamond!
+
+    },
+
 })
 FirearmType:newCollection("Colt_1911_Commander", {
         -- sources:
@@ -1903,7 +1968,7 @@ FirearmType:newCollection("Springfield_1911", {
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
     },{
         PI9122L = {  -- 9mm SS match barrel
-            ammoType = "MagGroup_1911", maxCapacity = 9,
+            ammoType = "MagGroup_1911_9x19mm", maxCapacity = 9,
         },
 })
 

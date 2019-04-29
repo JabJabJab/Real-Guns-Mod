@@ -44,8 +44,9 @@ MagazineGroup:new("MagGroup_SigSauer_P226",         { Groups = { MagGroup_Pistol
 MagazineGroup:new("MagGroup_Taurus_PT38S",          { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Taurus_Millennium_38Super", { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_P22",                   { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_PP",                   { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_PP",                    { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_PPK",                   { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_Springfield_XD",        { Groups = { MagGroup_Pistols = 1 } })
 
 
 MagazineType:new("Mag_AutomagV_x5", {
