@@ -218,107 +218,6 @@ FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifl
 -- Revolvers
 --************************************************************************--
 
-FirearmType:newCollection("Colt_CAR15", {
-        -- sources:
-        -- https://en.wikipedia.org/wiki/M16_rifle
-        -- https://en.wikipedia.org/wiki/List_of_Colt_AR-15_%26_M16_rifle_variants
-        -- https://en.wikipedia.org/wiki/CAR-15
-        -- https://en.wikipedia.org/wiki/M4_carbine
-        -- https://en.wikipedia.org/wiki/ArmaLite_AR-15
-        -- https://en.wikipedia.org/wiki/Colt_AR-15
-        Groups = { Group_Colt_CAR15 = 1 },
-        lastChanged = 24,               category = ORGM.RIFLE,
-        soundProfile = "Rifle-AR",      SwingSound = "ORGMAR15",
-        ammoType = "MagGroup_STANAG",
-        Weight = 3.3,                   barrelLength = 20,
-        WeaponSprite = "m16",           Icon = "Colt_CAR15",
-
-        classification = "IGUI_Firearm_AssaultRifle",
-        country = "IGUI_Firearm_Country_US",
-        manufacturer = "IGUI_Firearm_Manuf_Colt",
-        description = "IGUI_Firearm_Desc_M16",
-        feedSystem = Flags.AUTO + Flags.DIRECTGAS,
-        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO,
-    }, {
-        M601 = { -- Colt AR-15 Model 601
-            year = 1959,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-
-        M604 = { -- Colt M16 Model 604
-            year = 1964,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-        M603 = { -- Colt M16A1 Model 603
-            year = 1967,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-        M605A = { -- Colt CAR-15 Carbine Model 605A
-            year = 1962,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            barrelLength = 15,
-            addFeatures = Flags.FULLAUTO,
-        },
-        M605B = { -- Colt CAR-15 Carbine Model 605B
-            year = 1966,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            barrelLength = 15,
-            addFeatures = Flags.FULLAUTO + Flags.BURST3,
-        },
-        M607 = { -- Colt CAR-15 SMG Model 607
-            year = 1966,
-            barrelLength = 10,
-            addFeatures = Flags.FULLAUTO,
-            addGroups = { Group_Colt_CAR15 = 1, Group_RareCollectables = 50, }, -- 50 manufactured
-        },
-        M645 = { -- M16A2 Colt Model 645
-            year = 1982,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.BURST3,
-        },
-        M646 = { -- M16A3 Colt Model 646
-            year = 1982,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-        M945 = { -- M16A4 Colt Model 945
-            year = 1998,
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.BURST3,
-        },
-        M920 = { -- M4 Model 920
-            barrelLength = 14.5,
-            Icon = "Colt_CAR15_M4",
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.BURST3,
-            --classification = "IGUI_Firearm_AssaultCarbine",
-            year = 1984,
-            --country = "IGUI_Firearm_Country_US",
-            --manufacturer = "IGUI_Firearm_Manuf_Colt",
-            --description = "IGUI_Firearm_Desc_M4C",
-        },
-        M921 = { -- M4A1 Model 921
-            barrelLength = 14.5,
-            Icon = "Colt_CAR15_M4",
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-        M933 = { -- M4 Commando Model 933
-            barrelLength = 11.5,
-            Icon = "Colt_CAR15_M4",
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.FULLAUTO,
-        },
-        M935 = { -- M4 Commando Model 935
-            barrelLength = 11.5,
-            Icon = "Colt_CAR15_M4",
-            addGroups = { Group_Colt_CAR15 = 1 },
-            addFeatures = Flags.BURST3,
-        },
-})
 FirearmType:newCollection("Colt_Anaconda", {
         -- sources:
         -- http://www.coltfever.com/Anaconda.html
@@ -2144,6 +2043,116 @@ FirearmType:newCollection("AmericanArms_AM180", {
 })
 
 
+
+--************************************************************************--
+-- rifles
+--************************************************************************--
+
+FirearmType:newCollection("Colt_CAR15", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/M16_rifle
+        -- https://en.wikipedia.org/wiki/List_of_Colt_AR-15_%26_M16_rifle_variants
+        -- https://en.wikipedia.org/wiki/CAR-15
+        -- https://en.wikipedia.org/wiki/M4_carbine
+        -- https://en.wikipedia.org/wiki/ArmaLite_AR-15
+        -- https://en.wikipedia.org/wiki/Colt_AR-15
+        category = ORGM.RIFLE,
+        soundProfile = "Rifle-AR",
+
+        ammoType = "MagGroup_STANAG",
+        Weight = 3.3,
+        barrelLength = 20,
+        WeaponSprite = "m16",
+        Icon = "Colt_CAR15",
+        maxCapacity = 30,
+
+        classification = "IGUI_Firearm_AssaultRifle",
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Colt",
+        description = "IGUI_Firearm_Desc_M16",
+        feedSystem = Flags.AUTO + Flags.DIRECTGAS,
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO,
+
+    }, {
+        M601 = { -- Colt AR-15 Model 601
+            year = 1959,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+
+        M604 = { -- Colt M16 Model 604
+            year = 1964,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M603 = { -- Colt M16A1 Model 603
+            year = 1967,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M605A = { -- Colt CAR-15 Carbine Model 605A
+            year = 1962,
+            Groups = { Group_Colt_CAR15 = 1 },
+            barrelLength = 15,
+            addFeatures = Flags.FULLAUTO,
+        },
+        M605B = { -- Colt CAR-15 Carbine Model 605B
+            year = 1966,
+            Groups = { Group_Colt_CAR15 = 1 },
+            barrelLength = 15,
+            addFeatures = Flags.FULLAUTO + Flags.BURST3,
+        },
+        M607 = { -- Colt CAR-15 SMG Model 607
+            year = 1966,
+            barrelLength = 10,
+            addFeatures = Flags.FULLAUTO,
+            Groups = { Group_Colt_CAR15 = 1, Group_RareCollectables = 50, }, -- 50 manufactured
+        },
+        M645 = { -- M16A2 Colt Model 645
+            year = 1982,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+        M646 = { -- M16A3 Colt Model 646
+            year = 1982,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M945 = { -- M16A4 Colt Model 945
+            year = 1998,
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+        M920 = { -- M4 Model 920
+            barrelLength = 14.5,
+            Icon = "Colt_CAR15_M4",
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+            --classification = "IGUI_Firearm_AssaultCarbine",
+            year = 1984,
+            --country = "IGUI_Firearm_Country_US",
+            --manufacturer = "IGUI_Firearm_Manuf_Colt",
+            --description = "IGUI_Firearm_Desc_M4C",
+        },
+        M921 = { -- M4A1 Model 921
+            barrelLength = 14.5,
+            Icon = "Colt_CAR15_M4",
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M933 = { -- M4 Commando Model 933
+            barrelLength = 11.5,
+            Icon = "Colt_CAR15_M4",
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.FULLAUTO,
+        },
+        M935 = { -- M4 Commando Model 935
+            barrelLength = 11.5,
+            Icon = "Colt_CAR15_M4",
+            Groups = { Group_Colt_CAR15 = 1 },
+            addFeatures = Flags.BURST3,
+        },
+})
 --[[
     register("BBPistol", {
         features = Flags.DOUBLEACTION + Flags.SAFETY,
