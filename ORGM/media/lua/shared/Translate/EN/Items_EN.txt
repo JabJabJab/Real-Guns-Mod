@@ -46,7 +46,7 @@ Items_EN = {
     DisplayName_Colt_Python_I3061               = "Colt Python Model I3061",
     DisplayName_Colt_Python_I3080               = "Colt Python Model I3080",
     DisplayName_Colt_Python_I3081               = "Colt Python Model I3081",
-    DisplayName_Colt_Python_I3630               = "Colt Combat Python Model I3630",
+    DisplayName_Colt_Python_I3620               = "Colt Combat Python Model I3620",
     DisplayName_Colt_Python_I3620SE             = "Colt Python Snake Eyes Model I3620SE",
     DisplayName_Colt_Python_I3621SE             = "Colt Python Snake Eyes Model I3621SE",
     DisplayName_Colt_Python_I3630               = "Colt Combat Python Model I3630",
@@ -64,7 +64,6 @@ Items_EN = {
     DisplayName_Colt_Python_I3682               = "Colt Python Target Model I3682",
     DisplayName_Colt_Python_I3683               = "Colt Python Target Model I3683",
     DisplayName_Colt_Python_I3840               = "Colt Python Model I3840",
-
 
     -- Colt Peacemaker
     DisplayName_GroupColt_SAA                   = "Colt Peacemaker SAA",
@@ -169,17 +168,80 @@ Items_EN = {
 
 
     -- Beretta 92
-    DisplayName_Group_Beretta_92                    = "Beretta 92",
-    DisplayName_Beretta_M92                         = "Beretta 92",
-    DisplayName_Beretta_M92S                        = "Beretta 92S",
-    DisplayName_Beretta_M92SB                       = "Beretta 92SB",
-    DisplayName_Beretta_M92SBCompact                = "Beretta 92SB Compact",
-    DisplayName_Beretta_M92F                        = "Beretta 92F",
-    DisplayName_Beretta_92FS                        = "Beretta 92FS",
-    DisplayName_Beretta_M9                          = "Beretta M9",
-    DisplayName_Beretta_M9A1                        = "Beretta M9A1",
-    DisplayName_Beretta_M9A3                        = "Beretta M9A3",
-    DisplayName_Beretta_M9_22                       = "Beretta M9 .22",
+    DisplayName_Group_Beretta_92                = "Beretta 92",
+    DisplayName_Beretta_92_M92                  = "Beretta 92",
+    DisplayName_Beretta_92_M92S                 = "Beretta 92S",
+    DisplayName_Beretta_92_M92SB                = "Beretta 92SB",
+    DisplayName_Beretta_92_M92SBCompact         = "Beretta 92SB Compact",
+    DisplayName_Beretta_92_M92F                 = "Beretta 92F",
+    DisplayName_Beretta_92_92FS                 = "Beretta 92FS",
+    DisplayName_Beretta_92_M9                   = "Beretta M9",
+    DisplayName_Beretta_92_M9A1                 = "Beretta M9A1",
+    DisplayName_Beretta_92_M9A3                 = "Beretta M9A3",
+    DisplayName_Beretta_92_M9_22                = "Beretta M9 .22",
+
+    -- BrenTen
+    DisplayName_Group_DornausDixon_BrenTen      = "BrenTen",
+    DisplayName_DornausDixon_BrenTen            = "BrenTen",
+
+
+    -- Desert Eagle
+    DisplayName_Group_IMI_DesertEagle           = "IMI Desert Eagle",
+    DisplayName_IMI_DesertEagle_VII             = "IMI Desert Eagle VII",
+    DisplayName_IMI_DesertEagle_XIX             = "IMI Desert Eagle XIX",
+
+    -- Glock 17
+    DisplayName_Group_Glock_17                  = "Glock-17",
+
+    -- Glock 20
+    DisplayName_Group_Glock_20                  = "Glock-20",
+
+    -- Glock 21
+    DisplayName_Group_Glock_21                  = "Glock-21",
+
+    -- Glock 22
+    DisplayName_Group_Glock_22                  = "Glock-22",
+
+    -- HecklerKoch Mark23
+    DisplayName_Group_HecklerKoch_Mark23        = "H&K Mark23",
+
+    -- Kahr CT-Series
+    DisplayName_Group_Kahr_CT_Series            = "Kahr CT-Series",
+
+    -- Kahr P-Series
+    DisplayName_Group_Kahr_P_Series             = "Kahr P-Series",
+
+    -- KalTec P32
+    DisplayName_Group_KalTec_P32                = "KalTec P32",
+
+    -- Ruger MarkII
+    DisplayName_Group_Ruger_MarkII              = "Ruger MarkII",
+
+    -- Ruger SR Series
+    DisplayName_Group_Ruger_SR_Series           = "Ruger SR Series",
+
+    -- SigSauer P226
+    DisplayName_Group_SigSauer_P226             = "SigSauer P226",
+
+    -- Taurus PT38S
+    DisplayName_Group_Taurus_PT38S              = "Taurus PT38S",
+
+    -- Taurus Millennium
+    DisplayName_Group_Taurus_Millennium         = "Taurus Millennium",
+
+    -- Walther P22
+    DisplayName_Group_Walther_P22               = "Walther P22",
+
+    -- Walther PP Series
+    DisplayName_Group_Walther_PP_Series         = "Walther PP Series",
+
+    -- Springfield XD Series (HS2000)
+    DisplayName_Group_Springfield_XD            = "Springfield XD Series",
+
+    -- Springfield 1911
+    DisplayName_Group_Springfield_1911          = "Springfield 1911",
+    DisplayName_Springfield_1911_PI9122L        = "Springfield 1911 Range Officer Model PI9122L",
+
 
 
     -- CAR15/M16 family, Military variants
@@ -232,16 +294,16 @@ Items_EN = {
 
 
     DisplayName_MagGroup_CZ75_9x19mm             = "CZ75 Magazine (9x19mm)",
-    DisplayName_Mag_CZ75_x15                     = "CZ75 Magazine x15 (9x19mm)",
+    DisplayName_Mag_CZ75_9x19mm_x15              = "CZ75 Magazine x15 (9x19mm)",
 
     DisplayName_MagGroup_DesertEagle_44Magnum    = "Desert Eagle Magazine (.44 Magnum)",
-    DisplayName_Mag_DesertEagle_44Magnum         = "Desert Eagle Magazine x8 (.44 Magnum)",
+    DisplayName_Mag_DesertEagle_44Magnum_x8      = "Desert Eagle Magazine x8 (.44 Magnum)",
 
     DisplayName_MagGroup_DesertEagle_50AE        = "Desert Eagle Magazine (.50AE)",
-    DisplayName_Mag_DesertEagle_50AE             = "Desert Eagle Magazine x7 (.50AE)",
+    DisplayName_Mag_DesertEagle_50AEx7           = "Desert Eagle Magazine x7 (.50AE)",
 
     DisplayName_MagGroup_FN57                    = "Desert Eagle Magazine (5.7x25mm)",
-    DisplayName_Mag_FN57                         = "FN57 Magazine x7 (5.7x25mm)",
+    DisplayName_Mag_FN57x7                       = "FN57 Magazine x7 (5.7x25mm)",
 
     DisplayName_MagGroup_Glock_9x19mm            = "Glock Magazine (9x19mm)",
     DisplayName_Mag_Glock_9x19mm_x10             = "Glock Magazine x10 (9x19mm)",
