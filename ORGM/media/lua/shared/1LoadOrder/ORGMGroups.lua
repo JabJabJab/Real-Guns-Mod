@@ -143,14 +143,18 @@ function Group:new(groupName, groupData)
     end
 
     -- add as a subgroup of specified groups
-    for group, weight in pairs(o.Groups or { }) do
-        group = o._GroupTable[group]
-        if group then group:add(groupName, weight) end
+    for gname, weight in pairs(o.Groups or { }) do
+        group = o._GroupTable[gname]
+        if group then
+            group:add(groupName, weight)
+        else
+            ORGM.log(ORGM.WARN,"Group: " .. groupName .. " requested to join invalid group "..gname)
+        end
     end
     o._GroupTable[groupName] = o
 
     o.members = { }
-    ORGM.log(ORGM.VERBOSE, "Group: Registered " .. groupName .. " (".. (o.instance and o.instance:getDisplayName() or "nil")..")")
+    ORGM.log(ORGM.VERBOSE, "Group: Registered " .. groupName .. " --- ".. (o.instance and o.instance:getDisplayName() or ""))
     return o
 end
 
@@ -424,16 +428,24 @@ function ItemType:new(itemName, itemData, template)
 
     o._ItemTable[itemName] = o
 
-    for group, weight in pairs(o.Groups or template.Groups) do
-        group = o._GroupTable[group]
-        if group then group:add(itemName, weight) end
+    for gname, weight in pairs(o.Groups or template.Groups) do
+        local group = o._GroupTable[gname]
+        if group then
+            group:add(itemName, weight)
+        else
+            ORGM.log(ORGM.WARN,"ItemType: " .. itemName .. " requested to join invalid group "..gname)
+        end
     end
-    for group, weight in pairs(o.addGroups or {}) do
-        group = o._GroupTable[group]
-        if group then group:add(itemName, weight) end
+    for gname, weight in pairs(o.addGroups or {}) do
+        group = o._GroupTable[gname]
+        if group then
+            group:add(itemName, weight)
+        else
+            ORGM.log(ORGM.WARN,"ItemType: " .. itemName .. " requested to join invalid group "..gname)
+        end
     end
 
-    ORGM.log(ORGM.DEBUG, "ItemType: Registered " .. itemName .. " (".. (o.instance and o.instance:getDisplayName() or "nil")..")")
+    ORGM.log(ORGM.DEBUG, "ItemType: Registered " .. itemName .. " --- ".. (o.instance and o.instance:getDisplayName() or ""))
     return o
 end
 
