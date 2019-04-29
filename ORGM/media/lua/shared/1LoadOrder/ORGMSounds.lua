@@ -35,125 +35,126 @@ local QueueTable = { }
 
 
 Sounds.Profiles["Revolver"] = {
-    clickSound = 'ORGMRevolverEmpty',
-    insertSound = 'ORGMMagLoad',
+    clickSound = 'Revolver_Click_1',
+    insertSound = 'Revolver_Load_1',
     ejectSound = nil,
-    rackSound = 'ORGMRevolverCock',
-    openSound = 'ORGMRevolverOpen',
-    closeSound = 'ORGMRevolverClose',
-    cockSound = 'ORGMRevolverCock'
+    rackSound = 'Revolver_Cock_1',
+    openSound = 'Revolver_Open_1',
+    closeSound = 'Revolver_Close_1',
+    cockSound = 'Revolver_Cock_1'
 }
-Sounds.Profiles["Pistol-Small"] = {
-    clickSound = 'ORGMSmallPistolEmpty',
-    insertSound = 'ORGMSmallPistolIn',
-    ejectSound = 'ORGMSmallPistolOut',
-    rackSound = 'ORGMSmallPistolRack',
+Sounds.Profiles["Pistol"] = {
+    clickSound = 'Pistol_Click_1',
+    insertSound = 'Mag_Insert_1',
+    ejectSound = 'Mag_Eject_1',
+    rackSound = 'Pistol_Rack_1',
     openSound = nil,
-    closeSound = 'ORGMPistolClose',
+    closeSound = 'Pistol_Close_1',
     cockSound = nil
 }
 Sounds.Profiles["Pistol-Large"] = {
-    clickSound = 'ORGMPistolEmpty',
-    insertSound = 'ORGMPistolIn',
-    ejectSound = 'ORGMPistolOut',
-    rackSound = 'ORGMPistolRack',
+    clickSound = 'Pistol_Click_1',
+    insertSound = 'Mag_Insert_6',
+    ejectSound = 'Mag_Eject_6',
+    rackSound = 'Pistol_Rack_1',
     openSound = nil,
-    closeSound = 'ORGMPistolClose',
+    closeSound = 'Pistol_Close_1',
     cockSound = nil
 }
 Sounds.Profiles["SMG"] = {
-    clickSound = 'ORGMSMGEmpty',
-    insertSound = 'ORGMSMGIn',
-    ejectSound = 'ORGMSMGOut',
-    rackSound = 'ORGMSMGRack',
+    clickSound = 'Pistol_Click_2',
+    insertSound = 'Mag_Insert_4',
+    ejectSound = 'Mag_Eject_4',
+    rackSound = 'Rifle_Rack_3',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
 }
-Sounds.Profiles["Rifle-Auto"] = {
-    clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMRifleIn',
-    ejectSound = 'ORGMRifleOut',
-    rackSound = 'ORGMRifleRack',
+Sounds.Profiles["Rifle-AR"] = {
+    clickSound = 'Rifle_Click_1',
+    insertSound = 'Mag_Insert_5',
+    ejectSound = 'Mag_Eject_5',
+    rackSound = 'Rifle_Rack_1',
     openSound = nil,
-    closeSound = nil,
+    closeSound = 'Pistol_Close_1',
+    cockSound = nil
+}
+
+Sounds.Profiles["Rifle-Auto"] = {
+    clickSound = 'Rifle_Click_1',
+    insertSound = 'Mag_Insert_3',
+    ejectSound = 'Mag_Eject_3',
+    rackSound = 'Rifle_Rack2',
+    openSound = nil,
+    closeSound = 'Pistol_Close_1',
     cockSound = nil
 }
 Sounds.Profiles["Rifle-Auto-IM"] = {
-    clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMMagLoad',
-    ejectSound = 'ORGMRifleOut',
-    rackSound = 'ORGMRifleRack',
+    clickSound = 'Rifle_Click_1',
+    insertSound = 'Mag_Load',
+    ejectSound = nil,
+    rackSound = 'Rifle_Rack_2',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
 }
 Sounds.Profiles["Rifle-Bolt"] = {
     clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMMagLoad',
-    ejectSound = 'ORGMRifleOut',
-    rackSound = 'ORGMRifleBolt',
+    insertSound = 'Mag_Insert_3',
+    ejectSound = 'Mag_Eject_3',
+    rackSound = 'Rifle_Rack_3',
     openSound = nil,
-    closeSound = nil,
+    closeSound = 'Pistol_Close_1',
     cockSound = nil
     --bulletOutSound = "ORGMRifleBolt"
 }
 Sounds.Profiles["Rifle-Bolt-IM"] = {
-    clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMRifleIn',
+    clickSound = 'Rifle_Click_1',
+    insertSound = 'Mag_Load',
     ejectSound = nil,
-    rackSound = 'ORGMRifleBolt',
+    rackSound = 'Rifle_Rack_3',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
     --bulletOutSound = "ORGMRifleBolt"
 }
 Sounds.Profiles["Rifle-Lever"] = {
-    clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMMagLoad',
+    clickSound = 'Rifle_Click_1',
+    insertSound = 'Mag_Load',
     ejectSound = nil,
-    rackSound = 'ORGMRifleLever',
+    rackSound = 'Lever_Rack_1',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
     --bulletOutSound = "ORGMRifleLever"
 }
-Sounds.Profiles["Rifle-AR"] = {
-    clickSound = 'ORGMRifleEmpty',
-    insertSound = 'ORGMARIn',
-    ejectSound = 'ORGMAROut',
-    rackSound = 'ORGMARRack',
-    openSound = nil,
-    closeSound = nil,
-    cockSound = nil
-}
 Sounds.Profiles["Shotgun"] = { -- Pump, auto, bolt
-    clickSound = 'ORGMShotgunEmpty',
-    insertSound = 'ORGMShotgunRoundIn',
+    clickSound = 'Shotgun_Click_1',
+    insertSound = 'Shotgun_Load_1',
     ejectSound = nil,
-    rackSound = 'ORGMShotgunRack',
+    rackSound = 'Shotgun_Rack_1',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
     --bulletOutSound = 'ORGMShotgunRack'
 }
 Sounds.Profiles["Shotgun-Lever"] = {
-    clickSound = 'ORGMShotgunEmpty',
-    insertSound = 'ORGMShotgunRoundIn',
+    clickSound = 'Shotgun_Click_1',
+    insertSound = 'Shotgun_Load_1',
     ejectSound = nil,
-    rackSound = 'ORGMRifleLever',
+    rackSound = 'Lever_Rack_1',
     openSound = nil,
     closeSound = nil,
     cockSound = nil
     --bulletOutSound = 'ORGMRifleLever'
 }
 Sounds.Profiles["Shotgun-Break"] = {
-    rackSound = 'ORGMShotgunDBRack',
-    clickSound = 'ORGMShotgunEmpty',
-    insertSound = 'ORGMShotgunRoundIn',
+    rackSound = 'Break_Close_1',
+    clickSound = 'Shotgun_Click_1',
+    insertSound = 'Break_Load',
     ejectSound = nil,
-    openSound = 'ORGMShotgunOpen',
-    closeSound = nil,
+    openSound = 'Break_Open_1',
+    closeSound = 'Break_Close_1',
     cockSound = nil
     --bulletOutSound = 'ORGMShotgunOpen'
 }
@@ -168,7 +169,7 @@ This is called in `ORGM.Firearm.register`.
 ]]
 Sounds.add = function(name, data)
     if QueueTable[name] then return end
-    ORGM.log(ORGM.DEBUG, "Sounds: Adding ".. name .. " to QueueTable")
+    ORGM.log(ORGM.VERBOSE, "Sounds: Adding ".. name .. " to QueueTable")
     if not data then data = {} end
     data.gain = data.gain or 1
     data.minrange = data.minrange or 0.001
