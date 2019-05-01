@@ -126,9 +126,10 @@ FirearmGroup:new("Group_Glock_MachinePistols",  { Groups = { Group_MachinePistol
 FirearmGroup:new("Group_CZUB_MachinePistols",   { Groups = { Group_MachinePistols = 1.5, Group_CZUB = 1 } })
 
 -- SubMachineguns
-FirearmGroup:new("Group_AmericanArms_SubMachineGuns",   { Groups = { Group_SubMachineGuns = 1.5, Group_Walther = 1 } })
+FirearmGroup:new("Group_AmericanArms_SubMachineGuns",   { Groups = { Group_SubMachineGuns = 0.5, Group_AmericanArms = 1 } })
 FirearmGroup:new("Group_FNHerstal_SubMachineGuns",      { Groups = { Group_SubMachineGuns = 1, Group_FNHerstal = 1 } })
 FirearmGroup:new("Group_HecklerKoch_SubMachineGuns",    { Groups = { Group_SubMachineGuns = 5, Group_HecklerKoch = 1 } })
+FirearmGroup:new("Group_Kriss_SubMachineGuns",          { Groups = { Group_SubMachineGuns = 3, Group_Kriss = 1 } })
 FirearmGroup:new("Group_AutoOrdnance_SubMachineGuns",   { Groups = { Group_SubMachineGuns = 3, Group_AutoOrdnance = 1 } })
 FirearmGroup:new("Group_MAC_SubMachineGuns",            { Groups = { Group_SubMachineGuns = 7, Group_MAC = 1 } })
 FirearmGroup:new("Group_IMI_SubMachineGuns",            { Groups = { Group_SubMachineGuns = 5, Group_IMI = 1 } })
@@ -220,8 +221,17 @@ FirearmGroup:new("Group_Taurus_Millennium",         { Groups = { Group_Taurus_Pi
 FirearmGroup:new("Group_Walther_P22",               { Groups = { Group_Walther_Pistols      = 1, } })
 FirearmGroup:new("Group_Walther_PP_Series",         { Groups = { Group_Walther_Pistols      = 1, } })
 
+-- Machine Pistols
+FirearmGroup:new("Group_Beretta_93R",               { Groups = { Group_Beretta_MachinePistols           = 1, } })
+FirearmGroup:new("Group_Glock_18",                  { Groups = { Group_Glock_MachinePistols             = 1, } })
 
-FirearmGroup:new("Group_Beretta_93R",               { Groups = { Group_Beretta_MachinePistols      = 1, } })
+-- SubMachine Guns
+FirearmGroup:new("Group_AmericanArms_AM180",        { Groups = { Group_AmericanArms_SubMachineGuns      = 1, } })
+FirearmGroup:new("Group_FNHerstal_P90",             { Groups = { Group_FNHerstal_SubMachineGuns         = 1, } })
+FirearmGroup:new("Group_HecklerKoch_MP5",           { Groups = { Group_HecklerKoch_SubMachineGuns       = 1, } })
+FirearmGroup:new("Group_HecklerKoch_UMP",           { Groups = { Group_HecklerKoch_SubMachineGuns       = 1, } })
+FirearmGroup:new("Group_Kriss_Vector",              { Groups = { Group_Kriss_SubMachineGuns             = 1, } })
+FirearmGroup:new("Group_AutoOrdnance_Thompson",     { Groups = { Group_AutoOrdnance_SubMachineGuns      = 1, } })
 
 
 FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifles = 1, } })
@@ -1112,7 +1122,6 @@ FirearmType:newCollection("SmithWesson_Model_19", {
             barrelLength = 6,
             year = 1990,
         },
-
 })
 FirearmType:newCollection("SmithWesson_Model_25", {
         -- sources:
@@ -1194,7 +1203,6 @@ FirearmType:newCollection("SmithWesson_Model_36", {
         -- speedLoader = 'SpeedLoader3576',
         Weight = 0.55,
         barrelLength = 2,
-        -- barrelLengthOpt = { 1.875, 2, 3 },
         WeaponSprite = "swm36",
         Icon = "SmithWesson_Model_36",
         maxCapacity = 5,
@@ -1209,28 +1217,28 @@ FirearmType:newCollection("SmithWesson_Model_36", {
         feedSystem = Flags.ROTARY,
     },{
         M361A = {
-            Groups = { Group_SmithWesson_Model_36 = 1, },
+            Groups = { Group_SmithWesson_Model_36 = 10, },
             barrelLength = 3,
             year = 1967,
         },
         US361 = {
-            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 2000 },
+            Groups = { Group_SmithWesson_Model_36 = 0.2, Group_RareCollectables = 2000 },
             barrelLength = 2,
             year = 1977,
 
         },
         M101549 = { -- 36-6 Target, 3" blue finish, 615 manufactured
-            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 615 },
+            Groups = { Group_SmithWesson_Model_36 = 0.06, Group_RareCollectables = 615 },
             barrelLength = 3,
             year = 1989,
         },
         M161491 = { -- Model 36 Gold
-            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 2000 }, -- unknown numbers
+            Groups = { Group_SmithWesson_Model_36 = 0.2, Group_RareCollectables = 2000 }, -- unknown numbers
             year = 2002,
 
         },
         M161492 = {
-            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 5100 },
+            Groups = { Group_SmithWesson_Model_36 = 0.51, Group_RareCollectables = 5100 },
             year = 2005,
             barrelLength = 2,
         }
@@ -2221,10 +2229,45 @@ FirearmType:new("Beretta_93R", {
     feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
     Groups = { Group_Beretta_93R = 1, },
 })
+FirearmType:newCollection("Glock_18", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Glock
+        -- https://www.all4shooters.com/en/shooting/pistols/glock-18-full-auto-test-and-video/
+        -- http://www.thefullwiki.org/Glock_18
+        category = ORGM.MACHINEPISTOL,
+        soundProfile = "Pistol",
 
+        ammoType = "MagGroup_Glock_9x19mm",
+        Weight = 0.62,
+        barrelLength = 4.48,
+        WeaponSprite = "glock18c",
+        Icon = "Glock_18",
+        maxCapacity = 17,
+
+        classification = "IGUI_Firearm_MachinePistol",
+        year = 1986,
+        country = "IGUI_Firearm_Country_AT",
+        manufacturer = "IGUI_Firearm_Manuf_Glock",
+        description = "IGUI_Firearm_Desc_Glock18",
+
+        -- technically not quite DAO, but as close as its going to get
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_Glock_17 = 1, }, -- TODO: Move to variants
+    },{
+        Gen1 = {
+
+        },
+        Gen2C = { -- comp
+
+        },
+        Gen3C = { -- rail and comp
+
+        },
+})
 
 --************************************************************************--
--- smg/machine pistols
+-- SubMachine Guns
 --************************************************************************--
 
 
@@ -2258,8 +2301,159 @@ FirearmType:newCollection("AmericanArms_AM180", {
         M1 = { },
         M2 = { },
 })
+FirearmType:newCollection("FNHerstal_P90", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/FN_P90
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
 
+        ammoType = "MagGroup_FNP90",
+        Weight = 2.6,                           barrelLength = 10.4,
+        WeaponSprite = "fnp90",                 Icon = "FNHerstal_P90",
+        maxCapacity = 50,
 
+        classification = "IGUI_Firearm_SMG",
+        year = 1990,
+        country = "IGUI_Firearm_Country_BE",
+        manufacturer = "IGUI_Firearm_Manuf_FN",
+        description = "IGUI_Firearm_Desc_FNP90",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BULLPUP,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+    },{
+        Ori = {
+            Groups = { Group_FNHerstal_P90 = 1, },
+        },
+        TR = {
+            -- "triple rail, aka flat top model"
+            Groups = { Group_FNHerstal_P90 = 1, },
+            year = 1999,
+        },
+})
+FirearmType:newCollection("HecklerKoch_MP5", {
+        -- sources:
+        --
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_MP5",
+        Weight = 2.9,
+        barrelLength = 8.6,
+        WeaponSprite = "hkmp5",
+        Icon = "HecklerKoch_MP5",
+        maxCapacity = 30,
+
+        classification = "IGUI_Firearm_SMG",
+        year = 1966,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_HK",
+        description = "IGUI_Firearm_Desc_HKMP5",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.FREEFLOAT,
+        feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+        Groups = { Group_HecklerKoch_MP5 = 1, },
+    },{
+})
+FirearmType:newCollection("HecklerKoch_UMP", {
+        -- sources:
+        --
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_UMP",
+        Weight = 2.5,
+        barrelLength = 8,
+        WeaponSprite = "hkump",
+        Icon = "HecklerKoch_UMP",
+        maxCapacity = 25,
+
+        classification = "IGUI_Firearm_SMG",
+        year = 1999,
+        country = "IGUI_Firearm_Country_DE",
+        manufacturer = "IGUI_Firearm_Manuf_HK",
+        description = "IGUI_Firearm_Desc_HKUMP",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2 + Flags.FREEFLOAT,
+        feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+        Groups = { Group_HecklerKoch_UMP = 1, },
+    },{
+})
+FirearmType:newCollection("Kriss_Vector", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Kriss_Vector
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_Glock_45ACP",
+        Weight = 2.5,
+        barrelLength = 5.5,
+        WeaponSprite = "kriss",
+        Icon = "Kriss_Vector",
+        maxCapacity = 13,
+
+        classification = "IGUI_Firearm_SMG",
+        year = 2009, -- gen2, 2015
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_Kriss",
+        description = "IGUI_Firearm_Desc_KrissA",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2,
+        feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+        Groups = { Group_Kriss_Vector = 1, },
+    },{
+        SMG1 = { --gen 1 smg
+            Weight = 3,
+        },
+        CRB1 = { -- gen 1
+            barrelLength = 16,
+            WeaponSprite = "krissciv",
+            Icon = "Kriss_Vector_CRB",
+            Weight = 3.2,
+            features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+            description = "IGUI_Firearm_Desc_Kriss",
+        }
+})
+FirearmType:newCollection("AutoOrdnance_Thompson", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Thompson_submachine_gun
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_Thompson",
+        Weight = 4.5,
+        barrelLength = 10.52,
+        WeaponSprite = "m1a1",
+        Icon = "AutoOrdnance_Thompson",
+        maxCapacity = 20,
+
+        classification = "IGUI_Firearm_SMG",
+        year = 1921,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_AOC",
+        description = "IGUI_Firearm_Desc_M1A1",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_AutoOrdnance_Thompson = 1, },
+    },{
+        M1928A1 = {
+            Weight = 4.9,
+            barrelLength = 12,
+            year = 1928,
+            feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
+            addFeatures = Flags.PORTED,
+        },
+        M1 = {
+            Weight = 4.5,
+            barrelLength = 10.52,
+            year = 1942,
+        },
+        M1A1 = {
+            Weight = 4.5,
+            barrelLength = 10.52,
+            year = 1944,
+        }
+})
 
 --************************************************************************--
 -- rifles
@@ -2390,124 +2584,6 @@ FirearmType:newCollection("Colt_CAR15", {
 ]]
 
 --[[
-register("FNP90", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BULLPUP,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 10.4,
-    isMilitary = ORGM.VERYRARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1990,
-    country = "IGUI_Firearm_Country_BE",
-    manufacturer = "IGUI_Firearm_Manuf_FN",
-    description = "IGUI_Firearm_Desc_FNP90",
-})
-register("Glock18", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 4.48,
-    isCivilian = ORGM.VERYRARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_MachinePistol",
-    year = 1986,
-    country = "IGUI_Firearm_Country_AT",
-    manufacturer = "IGUI_Firearm_Manuf_Glock",
-    description = "IGUI_Firearm_Desc_Glock18",
-})
-register("HKMP5", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.FREEFLOAT,
-    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 8.9,
-    barrelLengthOpt = { 4.5, 5.5, 5.7, 5.8, 8.9 },
-    isPolice = ORGM.VERYRARE,
-    isMilitary = ORGM.COMMON,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1966,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_HK",
-    description = "IGUI_Firearm_Desc_HKMP5",
-})
-register("HKUMP", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2 + Flags.FREEFLOAT,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 8,
-    isPolice = ORGM.VERYRARE,
-    isMilitary = ORGM.COMMON,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1999,
-    country = "IGUI_Firearm_Country_DE",
-    manufacturer = "IGUI_Firearm_Manuf_HK",
-    description = "IGUI_Firearm_Desc_HKUMP",
-})
-register("Kriss", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
-    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 16,
-    isCivilian = ORGM.RARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 2009,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Kriss",
-    description = "IGUI_Firearm_Desc_Kriss",
-})
-register("KrissA", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BURST2,
-    feedSystem = Flags.AUTO + Flags.DELAYEDBLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 5.5, -- 5.5 or 6.5
-    barrelLengthOpt = { 5.5, 6.5 },
-    isCivilian = ORGM.VERYRARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 2009,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Kriss",
-    description = "IGUI_Firearm_Desc_KrissA",
-})
-register("M1A1", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 10.52,
-    isCivilian = ORGM.VERYRARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1921,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_AOC",
-    description = "IGUI_Firearm_Desc_M1A1",
-
-    --skins = {'gold'},
-})
 register("Mac10", {
     features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
     feedSystem = Flags.AUTO + Flags.BLOWBACK,

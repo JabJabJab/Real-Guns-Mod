@@ -25,19 +25,19 @@ AmmoGroup:new("AmmoGroup_MatchGrade")
 
 
 AmmoGroup:new("AmmoGroup_177mm")
-AmmoGroup:new("AmmoGroup_22LR", { Groups = { AmmoGroup_Pistols = 1, AmmoGroup_Rimfires = 1 }})
+AmmoGroup:new("AmmoGroup_22LR", { Groups = { AmmoGroup_Pistols = 1, AmmoGroup_Rimfires = 1 }}) -- super sonic in long barrels or hot loads
 AmmoGroup:new("AmmoGroup_22Hornet", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_32ACP",  { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_32ACP",  { Groups = { AmmoGroup_Pistols = 1 }}) -- subsonic in short barrels
 AmmoGroup:new("AmmoGroup_357Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_38Special", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_38Super", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_380ACP", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_38Special", { Groups = { AmmoGroup_Pistols = 1 }}) -- subsonic in medium
+AmmoGroup:new("AmmoGroup_38Super", { Groups = { AmmoGroup_Pistols = 1 }}) -- 'might' go sub in a snub
+AmmoGroup:new("AmmoGroup_380ACP", { Groups = { AmmoGroup_Pistols = 1 }})    -- sub in a snub
 AmmoGroup:new("AmmoGroup_40SW", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_41Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_44Special", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_44Special", { Groups = { AmmoGroup_Pistols = 1 }}) -- subsonic
 AmmoGroup:new("AmmoGroup_44Magnum", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_45ACP", { Groups = { AmmoGroup_Pistols = 1 }})
-AmmoGroup:new("AmmoGroup_45Colt", { Groups = { AmmoGroup_Pistols = 1 }})
+AmmoGroup:new("AmmoGroup_45ACP", { Groups = { AmmoGroup_Pistols = 1 }})     -- subsonic
+AmmoGroup:new("AmmoGroup_45Colt", { Groups = { AmmoGroup_Pistols = 1 }})    -- subsonic
 AmmoGroup:new("AmmoGroup_454Casull", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_480Ruger", { Groups = { AmmoGroup_Pistols = 1 }})
 AmmoGroup:new("AmmoGroup_50AE", { Groups = { AmmoGroup_Pistols = 1 }})

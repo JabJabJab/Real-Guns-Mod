@@ -15,6 +15,7 @@ local Flags = Magazine.Flags
 
 MagazineGroup:new("MagGroup_STANAG")
 MagazineGroup:new("MagGroup_Pistols")
+MagazineGroup:new("MagGroup_SubMachineGuns")
 
 
 MagazineGroup:new("MagGroup_AutomagV",              { Groups = { MagGroup_Pistols = 1 } })
@@ -41,12 +42,17 @@ MagazineGroup:new("MagGroup_KalTec_P32",            { Groups = { MagGroup_Pistol
 MagazineGroup:new("MagGroup_Ruger_MarkII",          { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Ruger_SR_Series",       { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_SigSauer_P226",         { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_Springfield_XD",        { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Taurus_PT38S",          { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Taurus_Millennium_38Super", { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_P22",                   { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_PP",                    { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_PPK",                   { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Springfield_XD",        { Groups = { MagGroup_Pistols = 1 } })
+
+MagazineGroup:new("MagGroup_AM180",                 { Groups = { MagGroup_SubMachineGuns = 1 } })
+MagazineGroup:new("MagGroup_FNP90",                 { Groups = { MagGroup_SubMachineGuns = 1 } })
+MagazineGroup:new("MagGroup_Thompson",              { Groups = { MagGroup_SubMachineGuns = 1 } })
+
 
 
 MagazineType:new("Mag_AutomagV_x5", {
