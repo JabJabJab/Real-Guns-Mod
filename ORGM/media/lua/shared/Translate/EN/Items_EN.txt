@@ -37,6 +37,7 @@ Items_EN = {
 
     DisplayName_Colt_Python_I3020               = "Colt Python Model I3020",
     DisplayName_Colt_Python_I3021               = "Colt Python Model I3021",
+    DisplayName_Colt_Python_I3030               = "Colt Combat Python Model I3030",
     DisplayName_Colt_Python_I3040               = "Colt Python Model I3040",
     DisplayName_Colt_Python_I3040CS             = "Colt Python Elite Model I3040CS",
     DisplayName_Colt_Python_I3041               = "Colt Python Model I3041",
@@ -131,14 +132,55 @@ Items_EN = {
     DisplayName_Ruger_SuperRedhawk_M5303        = "Ruger Super Redhawk Alaskan Model 5303",
 
 
+    -- SmithWesson 10
+    DisplayName_GroupSmithWesson_Model_10           = "S&W Model 10",
+    DisplayName_SmithWesson_Model_10_M101A          = "S&W Model 10-1 Military & Police",
+    DisplayName_SmithWesson_Model_10_OHPC           = "S&W Model 10-6 Ohio Highway Patrol Commemorative",
+    DisplayName_SmithWesson_Model_10_NYSP           = "S&W Model 10-6 New York State Police",
+    DisplayName_SmithWesson_Model_10_MPDC           = "S&W Model 10-8 Washington Metropolitan Police Commemorative",
+    DisplayName_SmithWesson_Model_10_M100104        = "S&W Model 10-8 Military & Police 100104",
+    DisplayName_SmithWesson_Model_10_M100108        = "S&W Model 10-8 Military & Police 100108",
+    DisplayName_SmithWesson_Model_10_M100121        = "S&W Model 10-8 Military & Police 100121",
+    DisplayName_SmithWesson_Model_10_M100123        = "S&W Model 10-8 Military & Police 100123",
+    DisplayName_SmithWesson_Model_10_M100124        = "S&W Model 10-10 Fairfax County Police Commemorative 100124",
+    DisplayName_SmithWesson_Model_10_M100139        = "S&W Model 10-13 1899 Commemorative 100139",
+
+
+    -- SmithWesson 19
+    DisplayName_GroupSmithWesson_Model_19            = "S&W Model 19",
+    DisplayName_SmithWesson_Model_19_KYSP            = "S&W Model 19-4 Kentucky State Police Commemorative",
+    DisplayName_SmithWesson_Model_19_M100730         = "S&W Model 19-6 'Hands off' 100730",
+
+
+    -- SmithWesson 25
+    DisplayName_GroupSmithWesson_Model_25            = "S&W Model 25",
+    DisplayName_SmithWesson_Model_25_M100905         = "S&W Model 25-5 'The Horse Thief' 100905",
+
+
+    -- SmithWesson 29
+    DisplayName_GroupSmithWesson_Model_29            = "S&W Model 29",
+    DisplayName_SmithWesson_Model_29_M101264         = "S&W Model 29-5 Magna Classic 101264",
+    DisplayName_SmithWesson_Model_29_M101207         = "S&W Model 29-5 'The Hostiles' 101207",
+    DisplayName_SmithWesson_Model_29_M101207B         = "S&W Model 29-5 'The Attack' 101207",
+
+
+    -- SmithWesson 36
+    DisplayName_GroupSmithWesson_Model_36            = "S&W Model 36",
+    DisplayName_SmithWesson_Model_36_M361A           = "S&W Model 36-1 Chief's Special",
+    DisplayName_SmithWesson_Model_36_US361           = "S&W Model 36-1 U.S. Marked Chief's Special",
+    DisplayName_SmithWesson_Model_36_M101549         = "S&W Model 36 Target 101549",
+    DisplayName_SmithWesson_Model_36_M161491         = "S&W Model 36-10 Gold 161491",
+    DisplayName_SmithWesson_Model_36_M161492         = "S&W Model 36-10 Texas Hold'Em 161492",
+
+
 
     -- SmithWesson 610
-    DisplayName_GroupSmithWesson_Model_610            = "Smith&Wesson Model 610",
-    DisplayName_SmithWesson_Model_610_M103571         = "Smith&Wesson Model 610-2 103571",
-    DisplayName_SmithWesson_Model_610_M148120         = "Smith&Wesson Model 610-2 Lew Horton Edition 148120",
-    DisplayName_SmithWesson_Model_610_M12462          = "Smith&Wesson Model 610-4 12462",
-    DisplayName_SmithWesson_Model_610_M12463          = "Smith&Wesson Model 610-4 12463",
-    DisplayName_SmithWesson_Model_610_M163426         = "Smith&Wesson Model 310-4 Nightguard 163426",
+    DisplayName_GroupSmithWesson_Model_610            = "S&W Model 610",
+    DisplayName_SmithWesson_Model_610_M103571         = "S&W Model 610-2 103571",
+    DisplayName_SmithWesson_Model_610_M148120         = "S&W Model 610-2 Lew Horton Edition 148120",
+    DisplayName_SmithWesson_Model_610_M12462          = "S&W Model 610-4 12462",
+    DisplayName_SmithWesson_Model_610_M12463          = "S&W Model 610-4 12463",
+    DisplayName_SmithWesson_Model_610_M163426         = "S&W Model 310-4 Nightguard 163426",
 
 
     -- Taurus Raging Bull

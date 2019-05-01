@@ -8,6 +8,16 @@ All calls made by this script are to `ORGM.Firearm.register`. See the documentio
 @copyright 2018 **File:** shared/4DataFiles/ORGMData_Weapons.lua
 
 ]]
+
+
+--[[
+    general resources;
+http://www.imfdb.org/
+https://en.wikipedia.org/wiki/List_of_firearms
+https://www.genitron.com
+https://www.impactguns.com/
+https://modernfirearms.net/en
+]]
 local Firearm = ORGM.Firearm
 local FirearmGroup = Firearm.FirearmGroup
 local FirearmType = Firearm.FirearmType
@@ -203,13 +213,15 @@ FirearmGroup:new("Group_KalTec_PLR16",              { Groups = { Group_KalTec_Pi
 FirearmGroup:new("Group_Ruger_MarkII",              { Groups = { Group_Ruger_Pistols        = 1, } })
 FirearmGroup:new("Group_Ruger_SR_Series",           { Groups = { Group_Ruger_Pistols        = 1, } })
 FirearmGroup:new("Group_SigSauer_P226",             { Groups = { Group_SigSauer_Pistols     = 1, } })
+FirearmGroup:new("Group_Springfield_XD",            { Groups = { Group_Springfield_Pistols  = 1, } })
+FirearmGroup:new("Group_Springfield_1911",          { Groups = { Group_Springfield_Pistols  = 1, } })
 FirearmGroup:new("Group_Taurus_PT38S",              { Groups = { Group_Taurus_Pistols       = 1, } })
 FirearmGroup:new("Group_Taurus_Millennium",         { Groups = { Group_Taurus_Pistols       = 1, } })
 FirearmGroup:new("Group_Walther_P22",               { Groups = { Group_Walther_Pistols      = 1, } })
 FirearmGroup:new("Group_Walther_PP_Series",         { Groups = { Group_Walther_Pistols      = 1, } })
-FirearmGroup:new("Group_Springfield_XD",            { Groups = { Group_Springfield_Pistols  = 1, } })
-FirearmGroup:new("Group_Springfield_1911",          { Groups = { Group_Springfield_Pistols  = 1, } })
 
+
+FirearmGroup:new("Group_Beretta_93R",               { Groups = { Group_Beretta_MachinePistols      = 1, } })
 
 
 FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifles = 1, } })
@@ -373,7 +385,6 @@ FirearmType:newCollection("Colt_Python", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Colt_Python = 1 }, -- TODO: Move to variants
     },{
 
         I1986 = { -- Double Diamond Python Model I1986
@@ -385,10 +396,12 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3020 Python Revolver 357 Magnum 2-1/2" SS
         I3020 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 2.5,
         },
         -- I3021 Python Revolver 357 Magnum 2-1/2" Bright SS
         I3021 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 2.5,
         },
 
@@ -403,23 +416,28 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3040 Python Revolver 357 Magnum 4" SS
         I3040 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
         },
 
         I3040CS = { -- Colt Python Elite Model I3040CS
             -- 4" SS
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
             year = 1997,
         },
         -- I3041 Python Revolver 357 Magnum 4" Bright SS
         I3041 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
         },
         -- I3060 Python Revolver 357 Magnum 6" SS
         I3060 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 6,
         },
         I3060CS = { -- Colt Python Elite Model I3060CS
+            Groups = { Group_Colt_Python = 1 },
             -- 6" SS
             barrelLength = 6,
             year = 1997,
@@ -432,18 +450,22 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3061 Python Revolver 357 Magnum 6" Bright SS
         I3061 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 6,
         },
         -- I3080 Python Revolver 357 Magnum 8" SS (1980?)
         I3080 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 8,
         },
         -- I3081 Python Revolver 357 Magnum 8" Bright SS (1980?)
         I3081 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 8,
         },
         -- I3620 Python Revolver 357 Magnum 2-1/2" Blue
         I3620 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 2.5,
         },
         I3620SE = { -- Colt Python Snake Eyes Model I3620SE
@@ -483,9 +505,11 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3640 Python Revolver 357 Magnum 4" Blue
         I3640 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
         },
         I3640CS = { -- Colt Python Elite Model I3640CS
+            Groups = { Group_Colt_Python = 1 },
             -- 4" Blued
             barrelLength = 4,
             year = 1997,
@@ -493,29 +517,35 @@ FirearmType:newCollection("Colt_Python", {
 
         -- I3660 Python Revolver 357 Magnum 6" Blue (1979?)
         I3660 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 6,
         },
         I3660CS = { -- Colt Python Elite Model I3660CS
+            Groups = { Group_Colt_Python = 1 },
             -- 6" Blue
             barrelLength = 6,
             year = 1997,
         },
         I3660H = { -- Colt Custom Python Model I3660H
+            Groups = { Group_Colt_Python = 1 },
             -- 6" Blue - Custom Tuned with Elliason Sights
             barrelLength = 6,
             year = 1980,
         },
         -- I3661 Python Revolver 357 Magnum 6" Nickel
         I3661 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 6,
         },
 
         I3680 = { -- Colt Python Hunter Model I3680
+            Groups = { Group_Colt_Python = 1 },
             --  8" Blue (note: this might not be the  hunter, info is sketchy)
             year = 1981,
             barrelLength = 8,
         },
         I3681 = { -- Colt Python Silhouette Model I3681
+            Groups = { Group_Colt_Python = 1 },
             --  8" Blue (note: pure assumption here, i'm guesing the model number)
             year = 1983,
             barrelLength = 8,
@@ -534,9 +564,9 @@ FirearmType:newCollection("Colt_Python", {
         },
         -- I3840 Python Revolver 357 Magnum 4" Electroless Nickel
         I3840 = {
+            Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
         },
-
     }
 )
 FirearmType:newCollection("Colt_SAA", {
@@ -563,7 +593,6 @@ FirearmType:newCollection("Colt_SAA", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Colt_SAA = 1, }, -- TODO: Move to variants
     },{
         -- Colt SAA 3rd Gen .44 Special Model P-1770.... 997 Model P-1770’s produced in 1981 with a total production of 3917
 
@@ -577,16 +606,21 @@ FirearmType:newCollection("Colt_SAA", {
         -- P1640 Model P (SAA) Revolver .357 4-3/4" Colored Case / Blue
 
         P1840 = { -- Colt PeackMaker SAA Model P1840 --  45 Colt 4-3/4" Blue / Color Case
+            Groups = { Group_Colt_SAA = 1, },
             barrelLength = 4.75,
         },
         P1841 = { -- Colt PeackMaker SAA Model P1841 --  45 Colt 4-3/4" Nickel
+            Groups = { Group_Colt_SAA = 1, },
             barrelLength = 4.75,
         },
         P1850 = { -- Colt PeackMaker SAA Model P1850 --  45 Colt 5-1/2" Blue / Color Case
+            Groups = { Group_Colt_SAA = 1, },
         },
         P1856 = { -- Colt PeackMaker SAA Model P1856 --  45 Colt 5-1/2" Nickel
+            Groups = { Group_Colt_SAA = 1, },
         },
         P1870 = { -- Colt PeackMaker SAA Model P1870 --  45 Colt 7-1/2" Blue / Color Case
+            Groups = { Group_Colt_SAA = 1, },
             barrelLength = 7.5,
         },
 
@@ -622,49 +656,59 @@ FirearmType:newCollection("Ruger_Blackhawk", {
 
         features = Flags.SINGLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Ruger_Blackhawk = 1, }, -- TODO: Move to variants
     },{
         -- New blackhawk models are 1973+
         -- Ruger Blackhawk Model M0306 .357 mag 4.62" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
         },
         -- Ruger Blackhawk Model M0309 .357 mag 4.62" SS
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
         },
         -- Ruger Blackhawk Model M0316 .357 mag 6.5" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             barrelLength = 6.5,
         },
         -- Ruger Blackhawk Model M0319 .357 mag 6.5" SS
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             barrelLength = 6.5,
         },
         -- Ruger Blackhawk Model M0405 .41 mag 4.62" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_41Magnum",
         },
         -- Ruger Blackhawk Model M0406 .41 mag 6.5" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_41Magnum", barrelLength = 6.5,
         },
         -- Ruger Blackhawk Model M0445 .45 colt 4.62" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_45Colt",
         },
         -- Ruger Blackhawk Model M0455 .45 colt 7.5" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_45Colt", barrelLength = 7.5,
         },
         -- Ruger Blackhawk Model M0460 .45 colt 7.5" SS WILLIAMS
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_45Colt", barrelLength = 7.5,
         },
         -- Ruger Blackhawk Model M0465 .45 colt 5.5" blue
         M0306 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_45Colt", barrelLength = 5.5,
         },
         -- Ruger Blackhawk Model M0505 .30 carbine 7.5" blue
         M0505 = {
+            Groups = { Group_Ruger_Blackhawk = 1, },
             ammoType = "AmmoGroup_30Carbine", barrelLength = 7.5,
         },
 })
@@ -691,22 +735,28 @@ FirearmType:newCollection("Ruger_GP100", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Ruger_GP100 = 1, }, -- TODO: Move to variants
     },{
         -- Ruger GP100 Model 1702 .357 4.2" blue rubber
-        M1702 = {},
+        M1702 = {
+            Groups = { Group_Ruger_GP100 = 1, },
+        },
         -- Ruger GP100 Model 1704 .357 6" blue rubber
         M1704 = {
+            Groups = { Group_Ruger_GP100 = 1, },
             barrelLength = 6,
         },
         -- Ruger GP100 Model 1705 .357 4.2" SS rubber
-        M1705 = {},
+        M1705 = {
+            Groups = { Group_Ruger_GP100 = 1, },
+        },
         -- Ruger GP100 Model 1707 .357 6" SS rubber
         M1707 = {
+            Groups = { Group_Ruger_GP100 = 1, },
             barrelLength = 6,
         },
         -- Ruger GP100 Model 1715 .357 3" SS rubber
         M1715 = {
+            Groups = { Group_Ruger_GP100 = 1, },
             barrelLength = 3,
         },
         -- Ruger GP100 Model 1740 .357 5" SS rubber DAVIDSONS
@@ -757,59 +807,70 @@ FirearmType:newCollection("Ruger_Redhawk", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Ruger_Redhawk = 1, }, -- TODO: Move to variants
     },{
         -- Ruger Redhawk model 5041 .44 Mag SS 7.5"
         M5041 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 7.5,
         },
         -- Ruger Redhawk model 5043 .44 Mag SS 5.5"
         M5043 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 5.5,
         },
         -- Ruger Redhawk model 5044 .44 Mag SS 4.2" Rubber grips
         M5044 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 4.2,
         },
         -- Ruger Redhawk model 5050 .45ACP SS 4.2"
         M5050 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 4.2,
             ammoType = "AmmoGroup_45ACP",
         },
         -- Ruger Redhawk model 5051 .357 Mag SS 2.75" 8 rounds
         M5051 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 2.75,
             ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
         },
         -- Ruger Redhawk model 5059 .357 Mag SS 4.2" 8 rounds
         M5059 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 4.2,
             ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
         },
         -- Ruger Redhawk model 5060 .357 Mag SS 5.5" 8 rounds
         M5060 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 5.5,
             ammoType = "AmmoGroup_357Magnum", maxCapacity = 8,
         },
         -- Ruger Redhawk model 5014 .44 Mag SS 5.5" LEW HORTON
         M5014 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 5.5,
         },
         -- Ruger Redhawk model 5028 .44 Mag SS 2.75" TALO
         M5028 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 2.5,
         },
         -- Ruger Redhawk model 5030 .44 Mag SS 5.5" TALO
         M5030 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 5.5,
         },
         -- Ruger Redhawk model 5031 .41 Mag SS 4.2" DAVIDSONS
         M5031 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 7.5,
             ammoType = "AmmoGroup_41Magnum",
         },
         -- Ruger Redhawk model 5058 .44 Mag SS 4.2" TALO
         M5058 = {
+            Groups = { Group_Ruger_Redhawk = 1, },
             barrelLength = 7.5,
         },
 })
@@ -838,61 +899,72 @@ FirearmType:newCollection("Ruger_SuperRedhawk", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_Ruger_SuperRedhawk = 1, }, -- TODO: Move to variants
     },{
 
         M5501 = { -- Ruger Super Redhawk Model 5501 -- .44 mag. 7.5" SS
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_44Magnum",
         },
 
         M5502 = { -- Ruger Super Redhawk Model 5502 .44 mag. 9.5" SS
+        Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_44Magnum",
             barrelLength = 9.5,
         },
         -- Ruger Super Redhawk Model 5505 .454 7.5" SS
         M5505 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_454Casull",
         },
         -- Ruger Super Redhawk Model 5507 .480 ruger 7.5" SS
         M5507 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_480Ruger",
         },
         -- Ruger Super Redhawk Model 5525 10mm auto 6.5" SS
         M5525 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_10x25mm",
             barrelLength = 6.5,
         },
         -- Ruger Super Redhawk Model 5517 .454 5" SS TALO
         M5517 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_454Casull",
             barrelLength = 5,
         },
         -- Ruger Super Redhawk Hunter Model 5520 .44 Mag 7.5" SS TALO
         M5520 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_44Magnum",
         },
         -- Ruger Super Redhawk Model 5521 .41 Mag 7.5" SS DAVIDSONS
         M5521 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_41Magnum",
         },
         -- Ruger Super Redhawk Model 5522 10mm auto 7.5" SS TALO
         M5522 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_10x25mm",
         },
 
         -- Alaskans are 2005
         -- 5301 Alaskan .454 2.5" SS
         M5301 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_454Casull",
             barrelLength = 2.5,
         },
         -- 5302 Alaskan .480 Ruger 2.5" SS
         M5302 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_480Ruger",
             barrelLength = 2.5,
         },
         -- 5303 Alaskan .44 Mag 2.5" SS
         M5303 = {
+            Groups = { Group_Ruger_SuperRedhawk = 1, },
             ammoType = "AmmoGroup_44Magnum",
             barrelLength = 2.5,
         },
@@ -923,6 +995,12 @@ FirearmType:newCollection("Ruger_SecuritySix", {
         Groups = { Group_Ruger_SecuritySix = 1, }, -- TODO: Move to variants
     },{
 })
+
+
+-- S&W revolvers are a pain in the ass. Variants were not given specific product
+-- numbers until after 1984, and codes are sometimes reused. Prior to 1957, models used a different name.
+-- ie: pre-1957 its the '.38 M&P Military and Police', post-1957 its the 'Model 10'
+
 FirearmType:newCollection("SmithWesson_Model_10", {
         -- sources:
         -- https://en.wikipedia.org/wiki/S%26W_Model_10
@@ -934,7 +1012,6 @@ FirearmType:newCollection("SmithWesson_Model_10", {
         -- speedLoader = 'SpeedLoader3576',
         Weight = 0.9,
         barrelLength = 4,
-        -- barrelLengthOpt = {2, 2.5, 3, 4, 5, 6},
         WeaponSprite = "swm10",
         Icon = "SmithWesson_Model_10",
         maxCapacity = 6,
@@ -947,8 +1024,59 @@ FirearmType:newCollection("SmithWesson_Model_10", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_SmithWesson_Model_10 = 1, }, -- TODO: Move to variants
     },{
+        M101A = {
+            Groups = { Group_SmithWesson_Model_10 = 1, },
+            barrelLength = 4,
+            year = 1959,
+        },
+        OHPC = {
+            Groups = { Group_SmithWesson_Model_10 = 1, Group_RareCollectables = 2025, },
+            barrelLength = 4,
+            year = 1973,
+        },
+        NYSP = {
+            Groups = { Group_SmithWesson_Model_10 = 1, Group_RareCollectables = 1200, },
+            ammoType = "AmmoGroup_357Magnum",
+            barrelLength = 4,
+            year = 1972,
+        },
+        MPDC = {
+            Groups = { Group_SmithWesson_Model_10 = 1, Group_RareCollectables = 2000, },
+            ammoType = "AmmoGroup_357Magnum",
+            barrelLength = 4,
+            year = 1986,
+        },
+        M100104 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, },
+            barrelLength = 2,
+            year = 1984,
+        },
+        M100108 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, },
+            barrelLength = 4,
+            year = 1984,
+        },
+        M100121 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, },
+            barrelLength = 3,
+            year = 1984,
+        },
+        M100123 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, },
+            barrelLength = 4,
+            year = 1984,
+        },
+        M100124 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, Group_RareCollectables = 282, },
+            barrelLength = 4,
+            year = 1990,
+        },
+        M100139 = {
+            Groups = { Group_SmithWesson_Model_10 = 1, Group_RareCollectables = 34, },
+            barrelLength = 4,
+            year = 2003,
+    }
 })
 FirearmType:newCollection("SmithWesson_Model_19", {
         -- sources:
@@ -960,7 +1088,6 @@ FirearmType:newCollection("SmithWesson_Model_19", {
         -- speedLoader = 'SpeedLoader3576',
         Weight = 1.0,
         barrelLength = 4,
-        -- barrelLengthOpt = {2.5, 3, 4, 6},
         WeaponSprite = "swm19",
         Icon = "SmithWesson_Model_19",
         maxCapacity = 6,
@@ -975,8 +1102,19 @@ FirearmType:newCollection("SmithWesson_Model_19", {
         feedSystem = Flags.ROTARY,
         Groups = { Group_SmithWesson_Model_19 = 1, }, -- TODO: Move to variants
     },{
+        KYSP = {
+            Groups = { Group_SmithWesson_Model_19 = 1, Group_RareCollectables = 917 },
+            barrelLength = 4,
+            year = 1978,
+        },
+        M100730 = {
+            Groups = { Group_SmithWesson_Model_19 = 1, Group_RareCollectables = 500 },
+            barrelLength = 6,
+            year = 1990,
+        },
+
 })
-FirearmType:newCollection("SmithWesson_Model_22", {
+FirearmType:newCollection("SmithWesson_Model_25", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Smith_%26_Wesson_Model_22
         category = ORGM.REVOLVER,
@@ -985,13 +1123,12 @@ FirearmType:newCollection("SmithWesson_Model_22", {
         ammoType = "AmmoGroup_45ACP",  -- speedLoader = 'SpeedLoader3576',
         Weight = 1.0,
         barrelLength = 5.5,
-        -- barrelLengthOpt = {4, 5 (very rare!), 6, 6.5, 8.4},
         WeaponSprite = "swm252",
         Icon = "SmithWesson_Model_22",
         maxCapacity = 6,
 
         classification = "IGUI_Firearm_Revolver",
-        year = 1950, -- 1955 for model 25 target?
+        year = 1955,
         country = "IGUI_Firearm_Country_US",
         manufacturer = "IGUI_Firearm_Manuf_SW",
         description = "IGUI_Firearm_Desc_SWM252",
@@ -1000,6 +1137,12 @@ FirearmType:newCollection("SmithWesson_Model_22", {
         feedSystem = Flags.ROTARY,
         Groups = { Group_SmithWesson_Model_22 = 1, }, -- TODO: Move to variants
     },{
+        M100905 = {
+            -- The twelve Revolvers November Edition: “The Horse Thief”
+            Groups = { Group_SmithWesson_Model_22 = 1, Group_RareCollectables = 500, },
+            barrelLength = 8.375,
+            ammoType = "AmmoGroup_45Colt",
+        },
 })
 FirearmType:newCollection("SmithWesson_Model_29", {
         -- sources:
@@ -1011,7 +1154,6 @@ FirearmType:newCollection("SmithWesson_Model_29", {
         -- speedLoader = 'SpeedLoader3576',
         Weight = 1.2,
         barrelLength = 6,
-        -- barrelLengthOpt = { 4, 6, 6.5, 8.425, 10.63 },
         WeaponSprite = "swm29",
         Icon = "SmithWesson_Model_29",
         maxCapacity = 6,
@@ -1026,6 +1168,21 @@ FirearmType:newCollection("SmithWesson_Model_29", {
         feedSystem = Flags.ROTARY,
         Groups = { Group_SmithWesson_Model_29 = 1, }, -- TODO: Move to variants
     },{
+        M101264 = {
+            --The .44 Magna Classic
+            Groups = { Group_SmithWesson_Model_29 = 1, Group_RareCollectables = 1800 },
+            barrelLength = 7.5,
+        },
+        M101207 = {
+            -- The Twelve Revolvers, January Edition: “The Hostiles”
+            Groups = { Group_SmithWesson_Model_29 = 1, Group_RareCollectables = 500 },
+            barrelLength = 8.375,
+        },
+        M101207B = {
+            Groups = { Group_SmithWesson_Model_29 = 1, Group_RareCollectables = 500 },
+            barrelLength = 7.5,
+            -- The Twelve Revolvers, October Edition: “The Attack”
+        },
 })
 FirearmType:newCollection("SmithWesson_Model_36", {
         -- sources:
@@ -1035,12 +1192,12 @@ FirearmType:newCollection("SmithWesson_Model_36", {
 
         ammoType = "AmmoGroup_38Special",
         -- speedLoader = 'SpeedLoader3576',
-        Weight = 0.5,
-        barrelLength = 1.875,
+        Weight = 0.55,
+        barrelLength = 2,
         -- barrelLengthOpt = { 1.875, 2, 3 },
         WeaponSprite = "swm36",
         Icon = "SmithWesson_Model_36",
-        maxCapacity = 6,
+        maxCapacity = 5,
 
         classification = "IGUI_Firearm_Revolver",
         year = 1950,
@@ -1050,8 +1207,33 @@ FirearmType:newCollection("SmithWesson_Model_36", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_SmithWesson_Model_36 = 1, }, -- TODO: Move to variants
     },{
+        M361A = {
+            Groups = { Group_SmithWesson_Model_36 = 1, },
+            barrelLength = 3,
+            year = 1967,
+        },
+        US361 = {
+            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 2000 },
+            barrelLength = 2,
+            year = 1977,
+
+        },
+        M101549 = { -- 36-6 Target, 3" blue finish, 615 manufactured
+            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 615 },
+            barrelLength = 3,
+            year = 1989,
+        },
+        M161491 = { -- Model 36 Gold
+            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 2000 }, -- unknown numbers
+            year = 2002,
+
+        },
+        M161492 = {
+            Groups = { Group_SmithWesson_Model_36 = 1, Group_RareCollectables = 5100 },
+            year = 2005,
+            barrelLength = 2,
+        }
 })
 FirearmType:newCollection("SmithWesson_Model_610", {
         -- sources:
@@ -1077,21 +1259,26 @@ FirearmType:newCollection("SmithWesson_Model_610", {
 
         features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY,
         feedSystem = Flags.ROTARY,
-        Groups = { Group_SmithWesson_Model_610 = 1, }, -- TODO: Move to variants
     },{
         M103571 = { --610-2, drilled and tapped
+            Groups = { Group_SmithWesson_Model_610 = 1, },
             barrelLength = 4, Weight = 1.2,
             year = 1998,
         },
-        M148120 = { -- 610-2 Lew Horton Edition Model 148120 3" 300 produced
+        M148120 = { -- 610-2(-1?) Lew Horton Edition Model 148120 3" 300 produced
+            Groups = { Group_SmithWesson_Model_610 = 1, Group_RareCollectables = 300 },
             barrelLength = 3,
+            year = 1998,
         },
         M12462  = { -- rubber
+            Groups = { Group_SmithWesson_Model_610 = 1, },
         },
         M12463 = { -- rubber
+            Groups = { Group_SmithWesson_Model_610 = 1, },
             barrelLength = 4, Weight = 1.2,
         },
         M163426 = { -- 310 nightguard, 50oz rubber
+            Groups = { Group_SmithWesson_Model_610 = 1, },
             barrelLength = 2.75, Weight = 1.2,
         }
 })
@@ -1224,6 +1411,8 @@ FirearmType:newCollection("Beretta_92", {
         -- sources:
         -- https://en.wikipedia.org/wiki/Beretta_92
         -- https://en.wikipedia.org/wiki/Beretta_M9
+        -- https://en.wikipedia.org/wiki/List_of_Beretta_92_Models
+        -- https://modernfirearms.net/en/handguns/handguns-en/italy-semi-automatic-pistols/beretta-92-eng/
         category = ORGM.PISTOL,
         soundProfile = "Pistol",
 
@@ -1235,7 +1424,7 @@ FirearmType:newCollection("Beretta_92", {
         maxCapacity = 15,
 
         classification = "IGUI_Firearm_SemiPistol",
-        year = 1975,
+        year = 1976,
         country = "IGUI_Firearm_Country_IT",
         manufacturer = "IGUI_Firearm_Manuf_Beretta",
         description = "IGUI_Firearm_Desc_Ber92",
@@ -2005,6 +2194,34 @@ FirearmType:newCollection("Walther_PP_Series", {
 })
 
 
+--************************************************************************--
+-- Machine Pistols
+--************************************************************************--
+FirearmType:new("Beretta_93R", {
+    -- sources:
+    -- https://en.wikipedia.org/wiki/Beretta_93R
+    -- https://modernfirearms.net/en/handguns/handguns-en/italy-semi-automatic-pistols/beretta-92-eng/
+    category = ORGM.MACHINEPISTOL,
+    soundProfile = "Pistol",
+
+    ammoType = "MagGroup_Beretta_92",
+    Weight = 1.17,
+    barrelLength = 4.9,
+    WeaponSprite = "beretta93r",
+    Icon = "Beretta_93R",
+    maxCapacity = 20,
+
+    classification = "IGUI_Firearm_MachinePistol",
+    year = 1977,
+    country = "IGUI_Firearm_Country_IT",
+    manufacturer = "IGUI_Firearm_Manuf_Beretta",
+    description = "IGUI_Firearm_Desc_Ber93R",
+
+    features = Flags.SINGLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3 + Flags.PORTED,
+    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
+    Groups = { Group_Beretta_93R = 1, },
+})
+
 
 --************************************************************************--
 -- smg/machine pistols
@@ -2173,23 +2390,6 @@ FirearmType:newCollection("Colt_CAR15", {
 ]]
 
 --[[
-register("Ber93R", {
-    features = Flags.SINGLEACTION + Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.BURST3,
-    feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 4.9,
-    isCivilian = ORGM.VERYRARE,
-    isMilitary = ORGM.VERYRARE,
-    soundProfile = "Pistol",
-
-    classification = "IGUI_Firearm_MachinePistol",
-    year = 1979,
-    country = "IGUI_Firearm_Country_IT",
-    manufacturer = "IGUI_Firearm_Manuf_Beretta",
-    description = "IGUI_Firearm_Desc_Ber93R",
-})
 register("FNP90", {
     features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.BULLPUP,
     feedSystem = Flags.AUTO + Flags.BLOWBACK,
