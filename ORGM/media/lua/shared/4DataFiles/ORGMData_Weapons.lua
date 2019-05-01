@@ -137,6 +137,8 @@ FirearmGroup:new("Group_IMI_SubMachineGuns",            { Groups = { Group_SubMa
 -- Rifles
 FirearmGroup:new("Group_AccuracyIntl_Rifles",   { Groups = { Group_Rifles = 1, Group_AccuracyIntl   = 1 } })
 FirearmGroup:new("Group_Norinco_Rifles",        { Groups = { Group_Rifles = 1, Group_Norinco        = 1 } })
+FirearmGroup:new("Group_Kalashnikov_Rifles",    { Groups = { Group_Rifles = 1, Group_Kalashnikov    = 1 } })
+
 FirearmGroup:new("Group_Armalite_Rifles",       { Groups = { Group_Rifles = 1, Group_Armalite       = 1 } })
 FirearmGroup:new("Group_Colt_Rifles",           { Groups = { Group_Rifles = 1, Group_Colt           = 1 } })
 FirearmGroup:new("Group_Browning_Rifles",       { Groups = { Group_Rifles = 1, Group_Browning       = 1 } })
@@ -232,6 +234,9 @@ FirearmGroup:new("Group_HecklerKoch_MP5",           { Groups = { Group_HecklerKo
 FirearmGroup:new("Group_HecklerKoch_UMP",           { Groups = { Group_HecklerKoch_SubMachineGuns       = 1, } })
 FirearmGroup:new("Group_Kriss_Vector",              { Groups = { Group_Kriss_SubMachineGuns             = 1, } })
 FirearmGroup:new("Group_AutoOrdnance_Thompson",     { Groups = { Group_AutoOrdnance_SubMachineGuns      = 1, } })
+FirearmGroup:new("Group_MAC_Mac10",                 { Groups = { Group_MAC_SubMachineGuns               = 1, } })
+FirearmGroup:new("Group_MAC_Mac11",                 { Groups = { Group_MAC_SubMachineGuns               = 1, } })
+FirearmGroup:new("Group_IMI_Uzi",                   { Groups = { Group_MAC_SubMachineGuns               = 1, } })
 
 
 FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifles = 1, } })
@@ -1859,7 +1864,7 @@ FirearmType:newCollection("HecklerKoch_Mark23", {
 })
 FirearmType:newCollection("Kahr_CT_Series", {
         -- sources:
-        --
+        -- https://shopkahrfirearmsgroup.com/kahr-arms/pistols/ct-series/
         category = ORGM.PISTOL,
         soundProfile = "Pistol",
 
@@ -1880,13 +1885,33 @@ FirearmType:newCollection("Kahr_CT_Series", {
         feedSystem = Flags.AUTO + Flags.SHORTRECOIL,
         Groups = { Group_Kahr_CT_Series = 1, }, -- TODO: Move to variants
     },{
-        CT40 = {
-
+        CT3833 = { -- CT380 (CT3833) 3.0" Barrel 7 round, 11.44oz
+            ammoType = "MagGroup_Kahr_CT_Series_380ACP",
+            Weight = 0.32,
+            barrelLength = 3,
+        },
+        CT9093BCF = {
+            --  CT9, Black Carbon Fiber, 8 shot, 3.965", 18.5oz (2.1oz mag)
+            ammoType = "MagGroup_Kahr_CT_Series_9x19mm",
+            maxCapacity = 8,
+            Weight = 0.52,
+            barrelLength = 3.965,
+        },
+        CT4043 = { -- CT40 () 4.0", 7 round 21.8oz
+            ammoType = "MagGroup_Kahr_CT_Series_40SW",
+            Weight = 0.618,
+            barrelLength = 4,
+        },
+        CT4543 = { --CT4543 4.04" Barrel, 7 round, 24.7 oz,
+            ammoType = "MagGroup_Kahr_CT_Series_45ACP",
+            Weight = 0.7,
+            barrelLength = 4.04,
         },
 })
 FirearmType:newCollection("Kahr_P_Series", {
         -- sources:
-        --
+        -- https://en.wikipedia.org/wiki/Kahr_P_series
+        -- https://shopkahrfirearmsgroup.com/kahr-arms/pistols/p-series/
         category = ORGM.PISTOL,
         soundProfile = "Pistol",
 
@@ -2454,6 +2479,100 @@ FirearmType:newCollection("AutoOrdnance_Thompson", {
             year = 1944,
         }
 })
+FirearmType:newCollection("MAC_Mac10", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/MAC-10
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_Mac10_45ACP",
+        Weight = 2.8,
+        barrelLength = 4.9,
+        WeaponSprite = "mac10",
+        Icon = "MAC_Mac10",
+        maxCapacity = 30,
+
+        classification = "IGUI_Firearm_SMG",
+        year = 1970,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_MAC",
+        description = "IGUI_Firearm_Desc_Mac10",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_MAC_Mac10 = 1, },
+    },{
+        M1045 = {
+        },
+        M109 = {
+            ammoType = "MagGroup_Mac10_9x19mm",
+            maxCapacity = 32,
+        },
+})
+FirearmType:newCollection("MAC_Mac11", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/MAC-11
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_Mac11_380ACP",
+        Weight = 1.59,
+        barrelLength = 5.08,
+        WeaponSprite = "mac11",
+        Icon = "MAC_Mac11",
+        maxCapacity = 32,
+
+        classification = "IGUI_Firearm_MachinePistol",
+        year = 1972,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_MAC",
+        description = "IGUI_Firearm_Desc_Mac11",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_MAC_Mac11 = 1, },
+    },{
+        M11380 = {
+        },
+})
+FirearmType:newCollection("IMI_Uzi", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/Uzi
+        -- https://www.americanrifleman.org/articles/2019/4/29/an-essential-uzi-guide/
+        category = ORGM.SUBMACHINEGUN,
+        soundProfile = "SMG",
+
+        ammoType = "MagGroup_Uzi_9x19mm",
+        Weight = 3.5,
+        barrelLength = 10.2,
+        WeaponSprite = "uzi",
+        Icon = "IMI_Uzi",
+        maxCapacity = 32,
+        --•12-, 16-, or 22-round box (.45 ACP)
+        --•20-, 25-, 32-, 40-, or 50-round box
+        classification = "IGUI_Firearm_SMG",
+        year = 1950,
+        country = "IGUI_Firearm_Country_IL",
+        manufacturer = "IGUI_Firearm_Manuf_IMI",
+        description = "IGUI_Firearm_Desc_Uzi",
+
+        features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
+        feedSystem = Flags.AUTO + Flags.BLOWBACK,
+        Groups = { Group_IMI_Uzi = 1, },
+    },{
+        SMG45 = {
+            ammoType = "MagGroup_Uzi_45ACP",
+        },
+        SMG9 = {
+            ammoType = "MagGroup_Uzi_9x19mm",
+        },
+        MODELA9 = {
+            barrelLength = 16,
+            ammoType = "MagGroup_Uzi_45ACP",
+            features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.OPENBOLT,
+        },
+})
+
 
 --************************************************************************--
 -- rifles
@@ -2584,38 +2703,6 @@ FirearmType:newCollection("Colt_CAR15", {
 ]]
 
 --[[
-register("Mac10", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 4.49,
-    isCivilian = ORGM.RARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1970,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_MAC",
-    description = "IGUI_Firearm_Desc_Mac10",
-})
-register("Mac11", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 5.08,
-    isCivilian = ORGM.RARE,
-    soundProfile = "SMG",
-
-    classification = "IGUI_Firearm_MachinePistol",
-    year = 1972,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_MAC",
-    description = "IGUI_Firearm_Desc_Mac11",
-})
 register("Skorpion", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
     feedSystem = Flags.AUTO + Flags.BLOWBACK,
@@ -2633,23 +2720,6 @@ register("Skorpion", {
     --manufacturer = "Česká zbrojovka Uherský Brod",
     manufacturer = "IGUI_Firearm_Manuf_CZUB",
     description = "IGUI_Firearm_Desc_Skorpion",
-})
-register("Uzi", {
-    features = Flags.DOUBLEACTION + Flags.SAFETY + Flags.SEMIAUTO + Flags.FULLAUTO + Flags.OPENBOLT,
-    feedSystem = Flags.AUTO + Flags.BLOWBACK,
-
-    lastChanged = 24,
-    category = ORGM.SUBMACHINEGUN,
-    barrelLength = 10.2,
-    isCivilian = ORGM.RARE,
-    soundProfile = "SMG",
-    alwaysFullAuto = true,
-
-    classification = "IGUI_Firearm_SMG",
-    year = 1950,
-    country = "IGUI_Firearm_Country_IL",
-    manufacturer = "IGUI_Firearm_Manuf_IMI",
-    description = "IGUI_Firearm_Desc_Uzi",
 })
     --************************************************************************--
     -- rifles
