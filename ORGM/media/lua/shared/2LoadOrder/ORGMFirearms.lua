@@ -153,7 +153,7 @@ local ADJ_AUTOTYPERECOILDELAY ={
 local PropertiesTable = {
     Weight = {type='float', min=0, max=100, default=1, required=true},
     WeaponSprite = {type='string', default="", required=true},
-    SwingSound = {type='string', default="", required=true},
+    --SwingSound = {type='string', default="", required=true},
     Icon = {type='string', default="", required=true},
     ammoType = {type='string', default="", required=true},
     moduleName = {type='string', default='ORGM'},
@@ -175,7 +175,7 @@ local PropertiesTable = {
     maxCapacity = {type='integer', min=0, default=10},
 
     soundProfile = {type='string', default=nil},
-    lastChanged = {type='integer', min=0, defaullt=nil},
+    lastChanged = {type='integer', min=0, default=0},
 }
 setmetatable(FirearmGroup, { __index = ORGM.Group })
 setmetatable(FirearmType, { __index = ORGM.ItemType })
@@ -290,7 +290,7 @@ function FirearmType:createScriptItems()
         "\t\tRunAnim                = Run_Weapon2,",
         "\t\tIdleAnim               = "..(isTwoHanded and 'Idle_Weapon2' or 'Idle') ..",",
         "\t\tSwingAnim              = "..(isTwoHanded and 'Rifle' or 'Handgun') ..",",
-        "\t\tSwingSound             = " .. self.SwingSound .. ',',
+        "\t\tSwingSound             = none,", -- this needs to be set by ammo
         --"\t\tTwoHandedWeapon                = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
         "\t\tRequiresEquippedBothHands      = "..(isTwoHanded and 'TRUE' or 'FALSE') ..",",
 
