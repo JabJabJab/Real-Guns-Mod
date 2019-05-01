@@ -241,7 +241,7 @@ function FirearmType:validate()
         self.lastChanged = ORGM.BUILD_ID
     end
     -- TODO: fix this nastiness
-    if self.category ~= ORGM.REVOLVER and self.category ~= ORGM.PISTOL and self.category ~= ORGM.SUBMACHINEGUN and self.category ~= ORGM.RIFLE and self.category ~= ORGM.SHOTGUN then
+    if self.category ~= ORGM.REVOLVER and self.category ~= ORGM.PISTOL and self.category ~= ORGM.SUBMACHINEGUN and self.category ~= ORGM.RIFLE and self.category ~= ORGM.SHOTGUN and self.category ~= ORGM.MACHINEPISTOL then
         ORGM.log(ORGM.WARN, "FirearmType: category for " .. self.type .. " is set to "..self.category.." should be one of: ORGM.REVOLVER | ORGM.PISTOL | ORGM.SUBMACHINEGUN | ORGM.RIFLE | ORGM.SHOTGUN")
     end
 
