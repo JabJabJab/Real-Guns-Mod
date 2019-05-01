@@ -159,6 +159,31 @@ function Group:new(groupName, groupData)
 end
 
 
+function Group:len()
+    return self._size
+end
+
+function Group:count(recurse, ignore, depth)
+    local result = 0
+    depth = depth or 0
+    if depth > 20 then return nil end
+    depth = 1 + depth
+
+    for name, weight in pairs(self.members) do repeat
+        if ignore and weight == 0 then break end
+
+        -- check if our result is another Group object, and call recursively
+        local group = self._GroupTable[name]
+        if not group then
+            result = 1 + result
+        elseif recurse then
+            result = result + group:count(recurse, ignore, depth)
+        end
+
+    until true end
+    return result
+end
+
 --[[- Normalizes the weights of items in the group.
 
 This is generally called during `Group.random` and returns a new table instead of
