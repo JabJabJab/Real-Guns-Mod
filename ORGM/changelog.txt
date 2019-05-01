@@ -39,7 +39,7 @@ included.
 * Added expanded/reduced capacity magazines (thanks to the new Group logic)
 
 * Added more calibers, including .22 Hornet, .327 Federal Magnum, .41 Magnum, .44 Special,
-.480 Ruger, 10gauge, 20 gauge and .410
+.480 Ruger, .30 Carbine, 10gauge, 20 gauge and .410
 
 * Added manual safety for many firearms.
 
