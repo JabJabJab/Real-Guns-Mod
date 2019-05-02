@@ -1204,7 +1204,6 @@ Stats.set = function(weaponItem)
     -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
     statsTable.SwingTime = Settings.BaseSwingTime + (effectiveWgt * Settings.WeightSwingTimeModifier) -- needs to also be adjusted by trigger
 
-    --Stats.adjustByCategory(gunData.category, statsTable, effectiveWgt)
     Stats.adjustByBarrel(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
     statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * Settings.WeightRecoilDelayModifier)
 
@@ -1272,6 +1271,9 @@ Stats.initial = function(gunData, ammoData)
         MaxHitCount = ammoData.MaxHitCount or instance:getMaxHitCount(),
         HitChance = Settings.DefaultHitChance, -- dynamic setting below
 
+        SwingSound = ammoData.Sound or 'none',
+        SoundRadius = ammoData.Radius or 100,
+
         MinAngle = instance:getMinAngle(),
         MinRange = instance:getMinRangeRanged(), -- dynamic setting below
         AimingTime = instance:getAimingTime(), -- dynamic setting below
@@ -1283,35 +1285,6 @@ Stats.initial = function(gunData, ammoData)
     }
 end
 -- ORGM[3] = "\0686\070646"
-
-
---[[- Adjusts the values in the statsTable for HitChance and AimingTime based on values in the ORGM.Settings table.
-
-This function is called by `Stats.set`
-
-@tparam int category constant defined in ORGMCore.lua
-@tparam table statsTable table of the firearm stats.
-@tparam number effectiveWgt the weight of the firearm and all attachments excluding slings.
-
-]]
-Stats.adjustByCategory = function(category, statsTable, effectiveWgt)
-    if category == ORGM.PISTOL or category == ORGM.REVOLVER then
-        statsTable.HitChance = Settings.DefaultHitChancePistol
-        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
-    elseif category == ORGM.RIFLE then
-        statsTable.HitChance = Settings.DefaultHitChanceRifle
-        --statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
-    elseif category == ORGM.SMG then
-        statsTable.HitChance = Settings.DefaultHitChanceSMG
-        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
-    elseif category == ORGM.SHOTGUN then
-        statsTable.HitChance = Settings.DefaultHitChanceShotgun
-        --statsTable.AimingTime = 40 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
-    else
-        statsTable.HitChance = Settings.DefaultHitChanceOther
-        --statsTable.AimingTime = 25 + (effectiveWgt *MOD_WEIGHTAIMINGTIME)
-    end
-end
 
 
 --[[- Adjusts the values in the statsTable based on the items in the compTable.
@@ -1397,7 +1370,9 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     statsTable.RecoilDelay =  statsTable.RecoilDelay + statsTable.RecoilDelay * lenModifierRecoil
 
     -- now for the noise...
-    --statsTable.SoundRadius = ???
+    local radiusMod = ammoData.RadiusMod or 100
+    statsTable.SoundRadius = statsTable.SoundRadius * (((radiusMod-length)/radiusMod)^3)
+
 
     statsTable.AimingTime = 50 - (effectiveWgt *MOD_WEIGHTAIMINGTIME) - length
     if gunData:isBullpup() then
