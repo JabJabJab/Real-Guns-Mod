@@ -546,6 +546,9 @@ end
 function FirearmType:isFreeFloat()
     return self:isFeature(Flags.FREEFLOAT)
 end
+function FirearmType:isPorted()
+    return self:isFeature(Flags.PORTED)
+end
 
 function FirearmType:isSightless()
     return self:isFeature(Flags.NOSIGHTS)
@@ -1170,19 +1173,6 @@ Stats.set = function(weaponItem)
     ORGM.log(ORGM.DEBUG, "Setting "..weaponItem:getType() .. " ammo to "..tostring(ammoType))
     local ammoData = Ammo.getData(ammoType) or {}
     local compTable = Component.getAttached(weaponItem)
-    --[[
-
-    if gunData.skins then
-        local current = weaponItem:getWeaponSprite()
-        -- get default sprite
-        local expected = gunData.instance:getWeaponSprite()
-        if modData.skin then -- this gun uses a skin
-            expected = expected.."_"..modData.skin
-        end
-        if current ~= expected then weaponItem:setWeaponSprite(eSprite) end
-    end
-    ]]
-
 
     -- set inital values from defaults
     local statsTable = Stats.initial(gunData, ammoData)
@@ -1221,8 +1211,6 @@ Stats.set = function(weaponItem)
     -- set other relative ammoData adjustments
     statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0)
     statsTable.CriticalChance = statsTable.CriticalChance + (ammoData.CriticalChance or 0)
-    --statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0) - math.ceil(ORGM.PVAL-ORGM.NVAL)
-    --statsTable.CriticalChance = statsTable.CriticalChance - math.ceil(ORGM.PVAL-ORGM.NVAL)
 
     Stats.adjustByFeed(weaponItem, gunData, statsTable)
 
@@ -1230,7 +1218,7 @@ Stats.set = function(weaponItem)
     if statsTable.SwingTime < Settings.BaseSwingTime then statsTable.SwingTime = Settings.BaseSwingTime end
     statsTable.MinimumSwingTime = statsTable.SwingTime - 0.1
     if statsTable.RecoilDelay < Settings.RecoilDelayLimit then statsTable.RecoilDelay = Settings.RecoilDelayLimit end
-    if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end
+    if statsTable.AimingTime < 1 then statsTable.AimingTime = 1 end -- TODO: check if negative is ok
     statsTable.AimingTime = math.floor(statsTable.AimingTime) -- make sure to pass int
 
     if statsTable.MinRange then
@@ -1240,9 +1228,8 @@ Stats.set = function(weaponItem)
     for k,v in pairs(statsTable) do
         ORGM.log(ORGM.DEBUG, "Calling set"..tostring(k) .. "("..tostring(v)..")")
         -- treat the HandWeapon java class like a lua table, and call a function
-        -- based on strings. If we've got a bad key in the statsTable we deserve
-        -- to crash and burn. No error checking.
-        weaponItem["set"..k](weaponItem, v)
+        -- based on strings.
+        if weaponItem["set"..k] then weaponItem["set"..k](weaponItem, v) end
     end
 end
 
@@ -1363,16 +1350,24 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     -- the auto bolt helps absorb some impact
     local recoilActionAdj = isAuto and 6 or 0
     -- TODO: fix for bitflags
+    --[[
     if isAuto and gunData.autoType then
         recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[gunData.autoType] or 0)
     end
+    ]]
     local lenModifierRecoil = calcBarrelModifier(optimal + recoilActionAdj, length + recoilActionAdj)
     statsTable.RecoilDelay =  statsTable.RecoilDelay + statsTable.RecoilDelay * lenModifierRecoil
+    if statsTable.RecoilDelay > 0 and gunData:isPorted() then
+        statsTable.RecoilDelay = statsTable.RecoilDelay * 0.9
+    end
 
     -- now for the noise...
     local radiusMod = ammoData.RadiusMod or 100
     statsTable.SoundRadius = statsTable.SoundRadius * (((radiusMod-length)/radiusMod)^3)
 
+    if gunData:isFreeFloat() then
+        statsTable.HitChance = 2 + statsTable.HitChance
+    end
 
     statsTable.AimingTime = 50 - (effectiveWgt *MOD_WEIGHTAIMINGTIME) - length
     if gunData:isBullpup() then
@@ -1398,6 +1393,9 @@ Stats.adjustByFeed = function(weaponItem, gunData, statsTable)
     --if alwaysFullAuto then fireMode = ORGM.FULLAUTOMODE end
     if gunData:isAutomatic() then
         statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
+    end
+    if gunData.isOpenBolt() then
+        statsTable.HitChance = statsTable.HitChance - 2
     end
     if isFullAuto then -- full auto mode
         statsTable.HitChance = statsTable.HitChance + Settings.FullAutoHitChanceAdjustment
