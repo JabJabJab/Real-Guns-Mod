@@ -36,10 +36,10 @@ MagazineGroup:new("MagGroup_Glock_10x25mm",         { Groups = { MagGroup_Pistol
 MagazineGroup:new("MagGroup_Glock_45ACP",           { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Glock_40SW",            { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Mark23",                { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Kahr_CT_Series_45ACP",  { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Kahr_CT_Series_380ACP", { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Kahr_CT_Series_9x19mm", { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Kahr_CT_Series_40SW",   { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_CT45",                  { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_CT380",                 { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_CT9",                   { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_CT40",                  { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Kahr_P_Series",         { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_KalTec_P32",            { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Ruger_MarkII",          { Groups = { MagGroup_Pistols = 1 } })
@@ -322,36 +322,36 @@ MagazineType:newCollection("Mag_Mark23", {
         },
     }
 )
-MagazineType:new("Mag_Kahr_CT_Series_380ACP_x7", {
+MagazineType:new("Mag_CT380_x7", {
     Icon = "Mag_Kahr_CT_Series",
     features = Flags.BOX,
     ammoType = 'AmmoGroup_380ACP',
     maxCapacity = 7,
-    Groups = { MagGroup_Kahr_CT_Series_380ACP = 1 },
+    Groups = { MagGroup_CT380 = 1 },
     Weight = 0.2, -- 0.059534 empty
 })
-MagazineType:new("Mag_Kahr_CT_Series_40SW_x7", {
+MagazineType:new("Mag_CT40_x7", {
     Icon = "Mag_Kahr_CT_Series",
     features = Flags.BOX,
     ammoType = 'AmmoGroup_40SW',
     maxCapacity = 7,
-    Groups = { MagGroup_Kahr_CT_Series_40SW = 1 },
+    Groups = { MagGroup_CT40 = 1 },
     Weight = 0.2, -- 0.059534 empty
 })
-MagazineType:new("Mag_Kahr_CT_Series_9x19mm_x8", {
+MagazineType:new("Mag_CT9_x8", {
     Icon = "Mag_Kahr_CT_Series",
     features = Flags.BOX,
-    ammoType = 'AmmoGroup_9x199m',
+    ammoType = 'AmmoGroup_9x19mm',
     maxCapacity = 8,
-    Groups = { MagGroup_Kahr_CT_Series_45ACP = 1 },
+    Groups = { MagGroup_CT9 = 1 },
     Weight = 0.2, -- 0.059534 empty
 })
-MagazineType:new("Mag_Kahr_CT_Series_45ACP_x7", {
+MagazineType:new("Mag_CT45_x7", {
     Icon = "Mag_Kahr_CT_Series",
     features = Flags.BOX,
     ammoType = 'AmmoGroup_45ACP',
     maxCapacity = 7,
-    Groups = { MagGroup_Kahr_CT_Series_45ACP = 1 },
+    Groups = { MagGroup_CT45 = 1 },
     Weight = 0.2, -- 2.4oz mag (0.068) empty
 })
 
@@ -362,7 +362,7 @@ MagazineType:new("Mag_Kahr_CT_Series_45ACP_x7", {
 
 
 MagazineGroup:new("MagGroup_AIAW_308", {ammoType = 'AmmoGroup_308Winchester'})
-MagazineGroup:new("MagGroup_AIAW_300", {ammoType = 'AmmoGroup_308Winchester'})
+--MagazineGroup:new("MagGroup_AIAW_300", {ammoType = 'AmmoGroup_308Winchester'})
 
 MagazineType:newCollection("Mag_STANAG", {
         ammoType = 'AmmoGroup_556x45mm',

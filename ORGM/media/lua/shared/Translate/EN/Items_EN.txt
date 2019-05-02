@@ -204,6 +204,7 @@ Items_EN = {
     DisplayName_Taurus_RagingBull_M480SS8M      = "Taurus Raging Bull Model 480SS8M",
 
 
+    ----------------------------------------------------------------------------
     -- AMT AutomagV
     DisplayName_Group_AMT_Automag               = "AMT Automag",
     DisplayName_AMT_AutomagV                    = "AMT AutomagV",
@@ -216,15 +217,30 @@ Items_EN = {
     DisplayName_Beretta_92_M92SB                = "Beretta 92SB",
     DisplayName_Beretta_92_M92SBCompact         = "Beretta 92SB Compact",
     DisplayName_Beretta_92_M92F                 = "Beretta 92F",
-    DisplayName_Beretta_92_92FS                 = "Beretta 92FS",
+    DisplayName_Beretta_92_M92FS                = "Beretta 92FS",
     DisplayName_Beretta_92_M9                   = "Beretta M9",
     DisplayName_Beretta_92_M9A1                 = "Beretta M9A1",
     DisplayName_Beretta_92_M9A3                 = "Beretta M9A3",
     DisplayName_Beretta_92_M9_22                = "Beretta M9 .22",
 
+
     -- BrenTen
     DisplayName_Group_DornausDixon_BrenTen      = "BrenTen",
     DisplayName_DornausDixon_BrenTen            = "BrenTen",
+
+
+    -- Browning P-35 HiPower
+    DisplayName_Group_Browning_HiPower          = "Browning P-35 HiPower",
+    DisplayName_Browning_HiPower_Mark1          = "Browning P-35 Mk1 HiPower",
+    DisplayName_Browning_HiPower_P35            = "Browning P-35 HiPower",
+
+
+    -- Colt 1911
+    DisplayName_Group_Colt_1911                 = "Colt M1911",
+    DisplayName_Colt_1911_M1911                 = "Colt M1911",
+    DisplayName_Colt_1911_M1911A1               = "Colt M1911A1",
+
+    DisplayName_Colt_1911_Officers_M01986       = "Colt M1911 Double Diamond Officers Model 01986",
 
 
     -- Desert Eagle
@@ -232,63 +248,98 @@ Items_EN = {
     DisplayName_IMI_DesertEagle_VII             = "IMI Desert Eagle VII",
     DisplayName_IMI_DesertEagle_XIX             = "IMI Desert Eagle XIX",
 
+
     -- Glock 17
     DisplayName_Group_Glock_17                  = "Glock-17",
+
 
     -- Glock 20
     DisplayName_Group_Glock_20                  = "Glock-20",
 
+
     -- Glock 21
     DisplayName_Group_Glock_21                  = "Glock-21",
+
 
     -- Glock 22
     DisplayName_Group_Glock_22                  = "Glock-22",
 
+
     -- HecklerKoch Mark23
     DisplayName_Group_HecklerKoch_Mark23        = "H&K Mark23",
 
+
     -- Kahr CT-Series
     DisplayName_Group_Kahr_CT_Series            = "Kahr CT-Series",
+    DisplayName_Kahr_CT_Series_CT3833           = "Kahr CT380 CT-Series Model CT3833",
+    DisplayName_Kahr_CT_Series_CT9093BCF        = "Kahr CT9 CT-Series Model CT9093BCF",
+    DisplayName_Kahr_CT_Series_CT4043           = "Kahr CT40 CT-Series Model CT4043",
+    DisplayName_Kahr_CT_Series_CT4543           = "Kahr CT45 CT-Series Model CT4543",
+
 
     -- Kahr P-Series
     DisplayName_Group_Kahr_P_Series             = "Kahr P-Series",
 
+
     -- KalTec P32
     DisplayName_Group_KalTec_P32                = "KalTec P32",
+
 
     -- Ruger MarkII
     DisplayName_Group_Ruger_MarkII              = "Ruger MarkII",
 
+
     -- Ruger SR Series
     DisplayName_Group_Ruger_SR_Series           = "Ruger SR Series",
+
 
     -- SigSauer P226
     DisplayName_Group_SigSauer_P226             = "SigSauer P226",
 
+
     -- Taurus PT38S
     DisplayName_Group_Taurus_PT38S              = "Taurus PT38S",
+
 
     -- Taurus Millennium
     DisplayName_Group_Taurus_Millennium         = "Taurus Millennium",
 
+
     -- Walther P22
     DisplayName_Group_Walther_P22               = "Walther P22",
+
 
     -- Walther PP Series
     DisplayName_Group_Walther_PP_Series         = "Walther PP Series",
 
+
     -- Springfield XD Series (HS2000)
     DisplayName_Group_Springfield_XD            = "Springfield XD Series",
+
 
     -- Springfield 1911
     DisplayName_Group_Springfield_1911          = "Springfield 1911",
     DisplayName_Springfield_1911_PI9122L        = "Springfield 1911 Range Officer Model PI9122L",
 
 
+    ----------------------------------------------------------------------------
+    -- Beretta 93R
+    DisplayName_Group_Beretta_93R               = "Beretta 93R",
+    DisplayName_Beretta_93R                     = "Beretta 93R",
+
+
+    -- Glock 21
+    DisplayName_Group_Glock_18                  = "Glock-18",
+    DisplayName_Glock_18_Gen1                   = "Glock-18 1st Gen",
+    DisplayName_Glock_18_Gen2C                  = "Glock-18C 2nd Gen",
+    DisplayName_Glock_18_Gen3C                  = "Glock-18C 3rd Gen",
+
+
+    ----------------------------------------------------------------------------
 
     -- CAR15/M16 family, Military variants
     DisplayName_Armalite_AR15                   = "Armalite AR-15",
-    DisplayName_Colt_CAR15_M601                   = "Colt AR-15 Model 01",
+    DisplayName_Colt_CAR15_M601                 = "Colt AR-15 Model 01",
     DisplayName_Colt_CAR15_M604                   = "Colt M16 Model 604",
     DisplayName_Colt_CAR15_M603                   = "Colt M16A1 Model 603",
     DisplayName_Colt_CAR15_M605A                  = "Colt CAR-15 Carbine Model 605A",
@@ -300,8 +351,8 @@ Items_EN = {
     DisplayName_Colt_CAR15_M945                   = "Colt M16A4 Model 945",
     DisplayName_Colt_CAR15_M920                   = "Colt M4 Carbine Model 920",
     DisplayName_Colt_CAR15_M921                   = "Colt M4A1 Carbine Model 921",
-    DisplayName_Colt_CAR15_M933                   = "Colt M4 Commando Model 933",
-    DisplayName_Colt_CAR15_M935                   = "Colt M4 Commando Model 935",
+    DisplayName_Colt_CAR15_M933                  = "Colt M4 Commando Model 933",
+    DisplayName_Colt_CAR15_M935                  = "Colt M4 Commando Model 935",
 
 
 
@@ -342,10 +393,10 @@ Items_EN = {
     DisplayName_Mag_DesertEagle_44Magnum_x8      = "Desert Eagle Magazine x8 (.44 Magnum)",
 
     DisplayName_MagGroup_DesertEagle_50AE        = "Desert Eagle Magazine (.50AE)",
-    DisplayName_Mag_DesertEagle_50AEx7           = "Desert Eagle Magazine x7 (.50AE)",
+    DisplayName_Mag_DesertEagle_50AE_x7           = "Desert Eagle Magazine x7 (.50AE)",
 
-    DisplayName_MagGroup_FN57                    = "Desert Eagle Magazine (5.7x25mm)",
-    DisplayName_Mag_FN57x7                       = "FN57 Magazine x7 (5.7x25mm)",
+    DisplayName_MagGroup_FN57                    = "FN Magazine (5.7x25mm)",
+    DisplayName_Mag_FN57_x20                       = "FN57 Magazine x20 (5.7x25mm)",
 
     DisplayName_MagGroup_Glock_9x19mm            = "Glock Magazine (9x19mm)",
     DisplayName_Mag_Glock_9x19mm_x10             = "Glock Magazine x10 (9x19mm)",
@@ -362,6 +413,7 @@ Items_EN = {
     DisplayName_Mag_Glock_45ACP_x10             = "Glock Magazine x10 (.45ACP)",
     DisplayName_Mag_Glock_45ACP_x13             = "Glock Magazine x13 (.45ACP)",
     DisplayName_Mag_Glock_45ACP_Gen1_x13        = "Glock Magazine x13 (.45ACP)",
+    DisplayName_Mag_Glock_45ACP_x30             = "Glock Magazine x30 (.45ACP)",
 
     DisplayName_MagGroup_Glock_40SW            = "Glock Magazine (.40S&W)",
     DisplayName_Mag_Glock_40SW_x10             = "Glock Magazine x10 (.40S&W)",
@@ -371,8 +423,20 @@ Items_EN = {
     DisplayName_MagGroup_Mark23                 = "Mark23 Magazine (.45ACP)",
     DisplayName_Mag_Mark23_x12                  = "Mark23 Magazine x12 (.45ACP)",
 
+    DisplayName_MagGroup_Mark23                 = "Mark23 Magazine (.45ACP)",
+    DisplayName_Mag_Mark23_x12                  = "Mark23 Magazine x12 (.45ACP)",
 
+    DisplayName_MagGroup_CT380                  = "CT380 Magazine",
+    DisplayName_Mag_CT380_x7                    = "CT380 Magazine x7 (.380ACP)",
 
+    DisplayName_MagGroup_CT9                    = "CT9 Magazine",
+    DisplayName_Mag_CT9_x8                      = "CT9 Magazine x8 (9x19mm)",
+
+    DisplayName_MagGroup_CT40                   = "CT40 Magazine",
+    DisplayName_Mag_CT40_x7                     = "CT40 Magazine x7 (.40S&W)",
+
+    DisplayName_MagGroup_CT45                   = "CT45 Magazine",
+    DisplayName_Mag_CT45_x7                     = "CT45 Magazine x7 (.45ACP)",
 
 
     DisplayName_MagGroup_STANAG                  = "STANAG Magazine (5.56x45mm NATO)",

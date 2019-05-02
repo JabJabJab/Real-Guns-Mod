@@ -1886,24 +1886,24 @@ FirearmType:newCollection("Kahr_CT_Series", {
         Groups = { Group_Kahr_CT_Series = 1, }, -- TODO: Move to variants
     },{
         CT3833 = { -- CT380 (CT3833) 3.0" Barrel 7 round, 11.44oz
-            ammoType = "MagGroup_Kahr_CT_Series_380ACP",
+            ammoType = "MagGroup_CT380",
             Weight = 0.32,
             barrelLength = 3,
         },
         CT9093BCF = {
             --  CT9, Black Carbon Fiber, 8 shot, 3.965", 18.5oz (2.1oz mag)
-            ammoType = "MagGroup_Kahr_CT_Series_9x19mm",
+            ammoType = "MagGroup_CT9",
             maxCapacity = 8,
             Weight = 0.52,
             barrelLength = 3.965,
         },
         CT4043 = { -- CT40 () 4.0", 7 round 21.8oz
-            ammoType = "MagGroup_Kahr_CT_Series_40SW",
+            ammoType = "MagGroup_CT40",
             Weight = 0.618,
             barrelLength = 4,
         },
         CT4543 = { --CT4543 4.04" Barrel, 7 round, 24.7 oz,
-            ammoType = "MagGroup_Kahr_CT_Series_45ACP",
+            ammoType = "MagGroup_CT45",
             Weight = 0.7,
             barrelLength = 4.04,
         },
