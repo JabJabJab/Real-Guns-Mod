@@ -82,7 +82,7 @@ MagazineType:newCollection("Mag_Beretta_92", {
 ]]
 local Group = ORGM.Group
 local ItemType = ORGM.ItemType
-
+local Settings = ORGM.Settings
 -- setup empty tables for sanity. The sub-classes should override these.
 Group._GroupTable = {}
 Group._ItemTable = {}
@@ -206,12 +206,16 @@ function Group:normalize(typeModifiers, filter)
     -- need to loop through our members twice. once to calculate the sum of all values
     for itemName, weight in pairs(self.members) do
         local mod = (typeModifiers[itemName] or 1) + (filter and filter(self, itemName, weight) or 0)
+        local year = (self._ItemTable[itemName] and self._ItemTable[itemName].year) or (self._GroupTable[itemName] and self._GroupTable[itemName].year)
+        if Settings.LimitYear and Settings.LimitYear ~= 0 and year and year > Settings.LimitYear then mod = 0 end
         sum = sum + weight * mod
     end
     -- second time we can actually set the new values.
     local members = {}
     for itemName, weight in pairs(self.members) do
         local mod = ((typeModifiers[itemName] or 1) + (filter and filter(self, itemName, weight) or 0))
+        local year = (self._ItemTable[itemName] and self._ItemTable[itemName].year) or (self._GroupTable[itemName] and self._GroupTable[itemName].year)
+        if Settings.LimitYear and  Settings.LimitYear ~= 0 and year and year > Settings.LimitYear then mod = 0 end
         members[itemName] = weight * mod  / sum
     end
     return members
