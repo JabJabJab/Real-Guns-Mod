@@ -328,7 +328,7 @@ Items_EN = {
     DisplayName_Beretta_93R                     = "Beretta 93R",
 
 
-    -- Glock 21
+    -- Glock 18
     DisplayName_Group_Glock_18                  = "Glock-18",
     DisplayName_Glock_18_Gen1                   = "Glock-18 1st Gen",
     DisplayName_Glock_18_Gen2C                  = "Glock-18C 2nd Gen",
@@ -336,7 +336,78 @@ Items_EN = {
 
 
     ----------------------------------------------------------------------------
+    -- American-180
+    DisplayName_Group_AmericanArms_AM180        = "American-180",
+    DisplayName_AmericanArms_AM180_M1           = "American-180 M1",
+    DisplayName_AmericanArms_AM180_M2           = "American-180 M2",
 
+
+    ----------------------------------------------------------------------------
+    -- FN P90
+    DisplayName_Group_FNHerstal_P90             = "FN P90",
+    DisplayName_FNHerstal_P90_Ori               = "FN P90",
+    DisplayName_FNHerstal_P90_TR                = "FN P90 FlatTop",
+
+
+    ----------------------------------------------------------------------------
+    -- MP5
+    DisplayName_Group_HecklerKoch_MP5           = "H&K MP5",
+
+
+    ----------------------------------------------------------------------------
+    -- UMP
+    DisplayName_Group_HecklerKoch_UMP           = "H&K UMP",
+
+
+    ----------------------------------------------------------------------------
+    -- Kriss Vector
+    DisplayName_Group_Kriss_Vector              = "Kriss Vector",
+    DisplayName_Kriss_Vector_SMG1               = "Kriss Vector SMG",
+    DisplayName_Kriss_Vector_CRB1               = "Kriss Vector CRB",
+
+
+    ----------------------------------------------------------------------------
+    -- AutoOrdnance Thompson
+    DisplayName_Group_AutoOrdnance_Thompson     = "Thompson",
+    DisplayName_AutoOrdnance_Thompson_M1928A1   = "Thompson M1928A1",
+    DisplayName_AutoOrdnance_Thompson_M1        = "Thompson M1",
+    DisplayName_AutoOrdnance_Thompson_M1A1      = "Thompson M1A1",
+
+
+    ----------------------------------------------------------------------------
+    -- MAC-10
+    DisplayName_Group_MAC_Mac10                 = "MAC-10",
+    DisplayName_MAC_Mac10_M1045                 = "MAC-10/45",
+    DisplayName_MAC_Mac10_M109                  = "MAC-10/9",
+
+
+    ----------------------------------------------------------------------------
+    -- MAC-11
+    DisplayName_Group_MAC_Mac11                 = "MAC-11",
+    DisplayName_MAC_Mac10_M11380                = "MAC-11",
+
+
+    ----------------------------------------------------------------------------
+    -- IMI Uzi
+    DisplayName_Group_IMI_Uzi                   = "IMI Uzi",
+    DisplayName_IMI_Uzi_SMG45                   = "IMI Uzi SMG/45",
+    DisplayName_IMI_Uzi_SMG9                    = "IMI Uzi SMG/9",
+    DisplayName_IMI_Uzi_MODELA9                 = "IMI Uzi Model A",
+
+
+    ----------------------------------------------------------------------------
+    -- Armalite AR-10
+    DisplayName_Group_Armalite_AR10             = "Armalite AR-10",
+    DisplayName_Armalite_AR10_Hollywood         = "Armalite AR-10 Hollywood",
+    DisplayName_Armalite_AR10_Sudanese          = "Armalite AR-10 Sudanese",
+    DisplayName_Armalite_AR10_Sudanese_762x39mm = "Armalite AR-10 Sudanese 7.62x39mm Prototype",
+    DisplayName_Armalite_AR10_Sudanese_Carbine  = "Armalite AR-10 Sudanese Carbine",
+    DisplayName_Armalite_AR10_Portuguese        = "Armalite AR-10 Portuguese",
+    DisplayName_Armalite_AR10_ModelA            = "Armalite AR-10 Model A",
+
+
+
+    ----------------------------------------------------------------------------
     -- CAR15/M16 family, Military variants
     DisplayName_Armalite_AR15                   = "Armalite AR-15",
     DisplayName_Colt_CAR15_M601                 = "Colt AR-15 Model 01",
@@ -438,6 +509,11 @@ Items_EN = {
     DisplayName_MagGroup_CT45                   = "CT45 Magazine",
     DisplayName_Mag_CT45_x7                     = "CT45 Magazine x7 (.45ACP)",
 
+    DisplayName_MagGroup_AR10                   = "AR-10 Magazine (7.62x51mm)",
+    DisplayName_Mag_AR10_x20                    = "AR-10 Magazine x20 (7.62x51mm)",
+
+    DisplayName_MagGroup_AR10_762x39mm          = "AR-10 Magazine (7.62x39mm)",
+    DisplayName_Mag_AR10_762x39mm_x20           = "AR-10 Magazine x20 (7.62x39mm)",
 
     DisplayName_MagGroup_STANAG                  = "STANAG Magazine (5.56x45mm NATO)",
     DisplayName_Mag_STANAG_x5                    = "STANAG Magazine x5 (5.56x45mm NATO)",
