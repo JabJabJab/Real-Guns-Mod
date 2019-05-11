@@ -623,7 +623,7 @@ function FirearmType:getRichText()
             getText(gunData.classification),
             (gunData.year or getText("IGUI_Firearm_YearUnknown")),
             getText(gunData.country), getText(gunData.manufacturer)),
-        getText("IGUI_Firearm_InfoBackGround")
+        getText("IGUI_Firearm_InfoBackGround"),
         getText(gunData.description)
     }
     return table.concat(text, ' <LINE> ')
@@ -879,11 +879,9 @@ Firearm.replace = function(weaponItem, container)
             if ammoData then container:AddItem(ammoData.moduleName ..'.'.. value) end
         end
     end
-    if data.roundChambered ~= nil and data.roundChambered > 0 then
-        for i=1, data.roundChambered do
-            local ammoData = Ammo.getData(data.lastRound)
-            if ammoData then container:AddItem(ammoData.moduleName ..'.'.. data.lastRound) end
-        end
+    if data.chambered then
+        local ammoData = Ammo.getData(data.chambered)
+        if ammoData then container:AddItem(ammoData.moduleName ..'.'.. data.chambered) end
     end
     if data.containsClip ~= nil and newData.containsClip ~= nil then
         newData.containsClip = data.containsClip
@@ -1207,7 +1205,7 @@ ammo, weight, accessories attached, barrel length, action type, select fire type
 Stats.set = function(weaponItem)
     local gunData = Firearm.getData(weaponItem)
     local modData = weaponItem:getModData()
-    local ammoType = modData.lastRound
+    local ammoType = modData.chambered
     ORGM.log(ORGM.DEBUG, "Setting "..weaponItem:getType() .. " ammo to "..tostring(ammoType))
     local ammoData = Ammo.getData(ammoType) or {}
     local compTable = Component.getAttached(weaponItem)
@@ -1249,7 +1247,8 @@ Stats.set = function(weaponItem)
     -- set other relative ammoData adjustments
     statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0)
     statsTable.CriticalChance = statsTable.CriticalChance + (ammoData.CriticalChance or 0)
-    if not ammoData:isSubsonic() then
+    -- cheap check for the function, this maybe a empty table.
+    if ammoData.isSubsonic and not ammoData:isSubsonic() then
         statsTable.SoundRadius = 100 + statsTable.SoundRadius
     end
 
@@ -1435,7 +1434,7 @@ Stats.adjustByFeed = function(weaponItem, gunData, statsTable)
     if gunData:isAutomatic() then
         statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
     end
-    if gunData.isOpenBolt() then
+    if gunData:isOpenBolt() then
         statsTable.HitChance = statsTable.HitChance - 2
     end
     if isFullAuto then -- full auto mode

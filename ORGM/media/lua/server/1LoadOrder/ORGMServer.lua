@@ -148,7 +148,8 @@ Server.equipBestFirearm = function(playerObj, subCategory)
             item = item,
             dmg = (item:getMaxDamage() + item:getMinDamage()) / 2,
             ammo = false,
-            loaded = ((modData.currentCapacity or 0) + (modData.roundChambered or 0) > 0)
+            -- TODO: fix next line
+            loaded = ((modData.currentCapacity or 0) + (modData.chambered and 1 or 0) > 0)
         }
 
         if def then -- skip these checks if its not a orgm gun
