@@ -13,9 +13,9 @@ local MagazineGroup = Magazine.MagazineGroup
 local MagazineType = Magazine.MagazineType
 local Flags = Magazine.Flags
 
-MagazineGroup:new("MagGroup_STANAG")
 MagazineGroup:new("MagGroup_Pistols")
 MagazineGroup:new("MagGroup_SubMachineGuns")
+MagazineGroup:new("MagGroup_Rifles")
 
 
 MagazineGroup:new("MagGroup_AutomagV",              { Groups = { MagGroup_Pistols = 1 } })
@@ -58,9 +58,13 @@ MagazineGroup:new("MagGroup_Thompson",              { Groups = { MagGroup_SubMac
 MagazineGroup:new("MagGroup_Mac10_45ACP",           { Groups = { MagGroup_SubMachineGuns = 1 } })
 MagazineGroup:new("MagGroup_Mac10_9x19mm",          { Groups = { MagGroup_SubMachineGuns = 1 } })
 MagazineGroup:new("MagGroup_Mac11_380ACP",          { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Uzi_45ACP",            { Groups = { MagGroup_SubMachineGuns = 1 } })
+MagazineGroup:new("MagGroup_Uzi_45ACP",             { Groups = { MagGroup_SubMachineGuns = 1 } })
 MagazineGroup:new("MagGroup_Uzi_9x19mm",            { Groups = { MagGroup_SubMachineGuns = 1 } })
 
+
+MagazineGroup:new("MagGroup_AR10",                  { Groups = { MagGroup_Rifles = 1 } })
+MagazineGroup:new("MagGroup_AR10_762x39mm",         { Groups = { MagGroup_Rifles = 1 } })
+MagazineGroup:new("MagGroup_STANAG",                { Groups = { MagGroup_Rifles = 1 } })
 
 
 MagazineType:new("Mag_AutomagV_x5", {
@@ -358,15 +362,35 @@ MagazineType:new("Mag_CT45_x7", {
 
 --
 
+MagazineType:newCollection("Mag_AR10", {
+        ammoType = 'AmmoGroup_762x51mm',
+        Icon = "Mag_AR10",
+    },{
+        x20 = {
+            features = Flags.BOX,
+            maxCapacity = 20,
+            Weight = 0.2,
+            Groups = { MagGroup_AR10 = 1 },
+        },
+    }
+)
+MagazineType:newCollection("Mag_AR10_762x39mm", {
+        ammoType = 'AmmoGroup_762x39mm',
+        Icon = "Mag_AR10",
+    },{
+        x20 = {
+            features = Flags.BOX,
+            maxCapacity = 20,
+            Weight = 0.2,
+            Groups = { MagGroup_AR10 = 1 },
+        },
+    }
+)
 
-
-
-MagazineGroup:new("MagGroup_AIAW_308", {ammoType = 'AmmoGroup_308Winchester'})
---MagazineGroup:new("MagGroup_AIAW_300", {ammoType = 'AmmoGroup_308Winchester'})
 
 MagazineType:newCollection("Mag_STANAG", {
         ammoType = 'AmmoGroup_556x45mm',
-        Icon = "STANAGMag",
+        Icon = "Mag_STANAG",
     },{
         x5 = {
             features = Flags.BOX,

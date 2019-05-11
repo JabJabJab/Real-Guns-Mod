@@ -239,6 +239,7 @@ FirearmGroup:new("Group_MAC_Mac11",                 { Groups = { Group_MAC_SubMa
 FirearmGroup:new("Group_IMI_Uzi",                   { Groups = { Group_MAC_SubMachineGuns               = 1, } })
 
 
+FirearmGroup:new("Group_Armalite_AR10",             { Groups = { Group_Armalite_Rifles = 1, } })
 FirearmGroup:new("Group_Colt_CAR15",                { Groups = { Group_Colt_Rifles = 1, } })
 
 --************************************************************************--
@@ -2578,6 +2579,68 @@ FirearmType:newCollection("IMI_Uzi", {
 -- rifles
 --************************************************************************--
 
+FirearmType:newCollection("Armalite_AR10", {
+        -- sources:
+        -- https://en.wikipedia.org/wiki/AR-10
+        -- https://www.ammoland.com/2011/10/historical-review-of-armalite/
+        category = ORGM.RIFLE,
+        soundProfile = "Rifle-AR",
+
+        ammoType = "MagGroup_AR10",
+        Weight = 3.3,
+        barrelLength = 20.8,
+        WeaponSprite = "ar10",
+        Icon = "Armalite_AR10",
+        maxCapacity = 20,
+
+        classification = "IGUI_Firearm_BattleRifle",
+        year = 1956,
+        country = "IGUI_Firearm_Country_US",
+        manufacturer = "IGUI_Firearm_Manuf_ALCOLT",
+        description = "IGUI_Firearm_Desc_AR10",
+
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
+        feedSystem = Flags.AUTO + Flags.DIRECTGAS + Flags.GASVALVE,
+    }, {
+        Hollywood = {
+            year = 1957,
+            addFeatures = Flags.PORTED,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 50 },
+        },
+        Sudanese = {
+            Weight = 3.3,
+            year = 1958,
+            addFeatures = Flags.PORTED,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 2500 }, -- Most went to Sudan
+        },
+        Sudanese_762x39mm = {
+            Weight = 3.3,
+            year = 1958,
+            ammoGroup = "MagGroup_AR10_762x39mm",
+            -- TODO: special mag group
+            addFeatures = Flags.PORTED,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 10 }, -- unknown numbers, very small
+        },
+        Sudanese_Carbine = {
+            Weight = 3.3,
+            year = 1958,
+            barrelLength = 16,
+            addFeatures = Flags.PORTED,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 30 }, -- 30 produced
+        },
+        Portuguese = {
+            Weight = 3.3,
+            year = 1958,
+            barrelLength = 16,
+            addFeatures = Flags.PORTED,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 4500 }, -- 4000-5000 produced
+        },
+        ModelA = {
+            year = 1958,
+            Groups = { Group_Armalite_AR10 = 1, Group_RareCollectables = 3 }, -- "prototype numbers", some references say 3
+        },
+})
+
 FirearmType:newCollection("Colt_CAR15", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M16_rifle
@@ -2586,6 +2649,7 @@ FirearmType:newCollection("Colt_CAR15", {
         -- https://en.wikipedia.org/wiki/M4_carbine
         -- https://en.wikipedia.org/wiki/ArmaLite_AR-15
         -- https://en.wikipedia.org/wiki/Colt_AR-15
+        -- https://www.ammoland.com/2016/04/ar-15-rifle-historical-time-line/
         category = ORGM.RIFLE,
         soundProfile = "Rifle-AR",
 
@@ -2775,22 +2839,6 @@ register("AKMA", {
     manufacturer = "IGUI_Firearm_Manuf_Kal",
     description = "IGUI_Firearm_Desc_AKMA",
 })
-register("AR10", {
-    features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY + Flags.SELECTFIRE + Flags.SEMIAUTO + Flags.FULLAUTO,
-    feedSystem = Flags.AUTO + Flags.DIRECTGAS,
-
-    lastChanged = 24,
-    category = ORGM.RIFLE,
-    barrelLength = 20.8,
-    isCivilian = ORGM.VERYRARE,
-    soundProfile = "Rifle-AR",
-
-    classification = "IGUI_Firearm_BattleRifle",
-    year = 1956,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_ALCOLT",
-    description = "IGUI_Firearm_Desc_AR10",
-})
 register("AR15", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
     feedSystem = Flags.AUTO + Flags.DIRECTGAS,
@@ -2808,27 +2856,6 @@ register("AR15", {
     country = "IGUI_Firearm_Country_US",
     manufacturer = "IGUI_Firearm_Manuf_Colt",
     description = "IGUI_Firearm_Desc_AR15",
-})
-register("BBGun", {
-    features = Flags.DOUBLEACTION,
-    feedSystem = Flags.LEVER,
-
-    lastChanged = 24,
-    category = ORGM.RIFLE,
-    isCivilian = ORGM.COMMON,
-    -- TODO: Barrel Length
-    barrelLength = 11,
-    rackTime = 3,
-    soundProfile = "Rifle-Lever",
-    rackSound = 'ORGMBBLever',
-    clickSound = 'ORGMPistolEmpty',
-    insertSound = 'ORGMMagBBLoad',
-
-    classification = "IGUI_Firearm_AirRifle",
-    year = 1940,
-    country = "IGUI_Firearm_Country_US",
-    manufacturer = "IGUI_Firearm_Manuf_Daisy",
-    description = "IGUI_Firearm_Desc_BBGun",
 })
 register("BLR", {
     features = Flags.SINGLEACTION + Flags.SAFETY,
