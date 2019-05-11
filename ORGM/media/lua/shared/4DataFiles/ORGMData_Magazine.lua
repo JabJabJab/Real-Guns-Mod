@@ -18,34 +18,34 @@ MagazineGroup:new("MagGroup_SubMachineGuns")
 MagazineGroup:new("MagGroup_Rifles")
 
 
-MagazineGroup:new("MagGroup_AutomagV",              { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Beretta_92_early",      { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Beretta_92",            { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_BrenTen",               { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Browning_HiPower",      { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_1911",                  { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_1911_9x19mm",           { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_1911_10x25mm",          { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_1911_38Super",          { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_CZ75_9x19mm",           { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_DesertEagle_44Magnum",  { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_DesertEagle_50AE",      { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_FN57",                  { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Glock_9x19mm",          { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Glock_10x25mm",         { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Glock_45ACP",           { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Glock_40SW",            { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Mark23",                { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_CT45",                  { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_CT380",                 { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_CT9",                   { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_CT40",                  { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_AutomagV",              { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_50AE' })
+MagazineGroup:new("MagGroup_Beretta_92_early",      { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_Beretta_92",            { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_BrenTen",               { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_10x25mm' })
+MagazineGroup:new("MagGroup_Browning_HiPower",      { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_1911",                  { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_1911_9x19mm",           { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_1911_10x25mm",          { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_10x25mm' })
+MagazineGroup:new("MagGroup_1911_38Super",          { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_38Super' })
+MagazineGroup:new("MagGroup_CZ75_9x19mm",           { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_DesertEagle_44Magnum",  { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_44Magnum' })
+MagazineGroup:new("MagGroup_DesertEagle_50AE",      { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_50AE' })
+MagazineGroup:new("MagGroup_FN57",                  { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_57x28mm' })
+MagazineGroup:new("MagGroup_Glock_9x19mm",          { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_Glock_10x25mm",         { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_10x25mm' })
+MagazineGroup:new("MagGroup_Glock_45ACP",           { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_Glock_40SW",            { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_40SW' })
+MagazineGroup:new("MagGroup_Mark23",                { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_CT45",                  { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_CT380",                 { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_380ACP' })
+MagazineGroup:new("MagGroup_CT9",                   { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_CT40",                  { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_40SW' })
 MagazineGroup:new("MagGroup_Kahr_P_Series",         { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_KalTec_P32",            { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Ruger_MarkII",          { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Ruger_SR_Series",       { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_SigSauer_P226",         { Groups = { MagGroup_Pistols = 1 } })
-MagazineGroup:new("MagGroup_Springfield_XD",        { Groups = { MagGroup_Pistols = 1 } })
+MagazineGroup:new("MagGroup_Ruger_SR_Series",       { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_SigSauer_P226",         { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_40SW' })
+MagazineGroup:new("MagGroup_Springfield_XD",        { Groups = { MagGroup_Pistols = 1 }, ammoType = 'AmmoGroup_40SW' })
 MagazineGroup:new("MagGroup_Taurus_PT38S",          { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_Taurus_Millennium_38Super", { Groups = { MagGroup_Pistols = 1 } })
 MagazineGroup:new("MagGroup_P22",                   { Groups = { MagGroup_Pistols = 1 } })
@@ -54,17 +54,17 @@ MagazineGroup:new("MagGroup_PPK",                   { Groups = { MagGroup_Pistol
 
 MagazineGroup:new("MagGroup_AM180",                 { Groups = { MagGroup_SubMachineGuns = 1 } })
 MagazineGroup:new("MagGroup_FNP90",                 { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Thompson",              { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Mac10_45ACP",           { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Mac10_9x19mm",          { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Mac11_380ACP",          { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Uzi_45ACP",             { Groups = { MagGroup_SubMachineGuns = 1 } })
-MagazineGroup:new("MagGroup_Uzi_9x19mm",            { Groups = { MagGroup_SubMachineGuns = 1 } })
+MagazineGroup:new("MagGroup_Thompson",              { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_Mac10_45ACP",           { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_Mac10_9x19mm",          { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_9x19mm' })
+MagazineGroup:new("MagGroup_Mac11_380ACP",          { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_380ACP' })
+MagazineGroup:new("MagGroup_Uzi_45ACP",             { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_45ACP' })
+MagazineGroup:new("MagGroup_Uzi_9x19mm",            { Groups = { MagGroup_SubMachineGuns = 1 }, ammoType = 'AmmoGroup_9x19mm' })
 
 
-MagazineGroup:new("MagGroup_AR10",                  { Groups = { MagGroup_Rifles = 1 } })
-MagazineGroup:new("MagGroup_AR10_762x39mm",         { Groups = { MagGroup_Rifles = 1 } })
-MagazineGroup:new("MagGroup_STANAG",                { Groups = { MagGroup_Rifles = 1 } })
+MagazineGroup:new("MagGroup_AR10",                  { Groups = { MagGroup_Rifles = 1 }, ammoType = 'AmmoGroup_762x51mm' })
+MagazineGroup:new("MagGroup_AR10_762x39mm",         { Groups = { MagGroup_Rifles = 1 }, ammoType = 'AmmoGroup_762x39mm' })
+MagazineGroup:new("MagGroup_STANAG",                { Groups = { MagGroup_Rifles = 1 }, ammoType = 'AmmoGroup_556x45mm' })
 
 
 MagazineType:new("Mag_AutomagV_x5", {
@@ -361,6 +361,18 @@ MagazineType:new("Mag_CT45_x7", {
 
 
 --
+MagazineType:newCollection("Mag_Uzi_45ACP", {
+        ammoType = 'AmmoGroup_45ACP',
+        Icon = "Mag_Uzi",
+    },{
+        x20 = {
+            features = Flags.BOX,
+            maxCapacity = 30,
+            Weight = 0.2,
+            Groups = { MagGroup_Uzi_45ACP = 1 },
+        },
+    }
+)
 
 MagazineType:newCollection("Mag_AR10", {
         ammoType = 'AmmoGroup_762x51mm',
