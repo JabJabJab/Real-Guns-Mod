@@ -100,7 +100,13 @@ end
 ]]
 Fire.valid = function(this)
     -- cant fire with a open slide
-    if Bolt.isOpen(this) then return false end
+    if Bolt.isOpen(this) then
+        if Firearm.isOpenBolt(this.type) and this.currentCapacity > 0 then
+            return true
+        end
+
+        return false
+    end
     if Fire.isSafe(this) then return false end
     -- single action with hammer at rest cant fire
     --
@@ -144,6 +150,16 @@ Fire.pre = function(this, playerObj, weaponItem)
     -- check mechanical failures and malfunctions
     -- check squib
     -- check for dud, note dud should probably behave as fire empty
+    -- open bolt designs need to close and feed the round
+
+
+    -- SA already has hammer cocked by this point, but we dont need to check here.
+    Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
+    Hammer.release(this, playerObj, false)
+
+    if Firearm.isOpenBolt(this.type) then
+        Bolt.close(this, playerObj, false, weaponItem)
+    end
 
     -- set piercing bullets here.
     local ammoData = _Ammo.getData(this.setAmmoType)
@@ -162,10 +178,6 @@ end
 
 ]]
 Fire.post = function(this, playerObj, weaponItem)
-    -- SA already has hammer cocked by this point, but we dont need to check here.
-    Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
-    Hammer.release(this, playerObj, false)
-
     local ammoData = _Ammo.getData(this.magazineData[this.cylinderPosition])
     --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
     this.roundsFired = 1 + this.roundsFired
@@ -174,7 +186,7 @@ Fire.post = function(this, playerObj, weaponItem)
 
         this.chambered = ammoData and ammoData.Case or nil
         Bolt.open(this, playerObj, false, weaponItem)
-        if this.currentCapacity ~= 0 or not Firearm.hasSlideLock(weaponItem) then
+        if (this.currentCapacity ~= 0 or not Firearm.hasSlideLock(weaponItem)) and not Firearm.isOpenBolt(this.type) then
             Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
         end
 
@@ -440,7 +452,7 @@ end
 ]]
 Unload.valid = function(this, playerObj)
     if this.currentCapacity > 0 then return true end
-    if (this.roundChambered ~= nil and this.roundChambered > 0) then
+    if this.chambered then
         return true
     end
     return false
@@ -720,7 +732,7 @@ Used primarly with revolvers and break barrels on opening.
 
 ]]
 Ammo.ejectAll = function(this, playerObj, playSound)
-    if this.isOpen == 0 then return end
+    if not Cylinder.isOpen(this) then return end
     local square = playerObj:getCurrentSquare()
 
     for index = 1, this.maxCapacity do
@@ -785,7 +797,16 @@ Ammo.next = function(this, playerObj, weaponItem)
     end
     -- remove last entry from data table (Note: using #table to find the length is slow)
     -- TODO: check failure to feed jams here
-    this.chambered = ammoType
+
+    -- WARNING
+    -- WARNING
+    -- WARNING
+    -- WARNING
+    this.chambered = ammoType -- TODO: HEY! this is bad for revolvers! double check all instance of .chambered make sure we're not doing something stupid
+    -- WARNING
+    -- WARNING
+    -- WARNING
+    -- WARNING
     this.magazineData[this.currentCapacity] = nil
     this.currentCapacity = this.currentCapacity - 1
     -- a different round has been chambered, change the stats
@@ -825,12 +846,13 @@ Ammo.setCurrent = function(this, ammoType, weaponItem)
     local roundData = _Ammo.getData(ammoType)
     if roundData == nil then
         this.setAmmoType = nil
-        weaponItem:getModData().setAmmoType = nil -- NOTE: this seems redundant..left over junk?
+        --weaponItem:getModData().setAmmoType = nil -- NOTE: this seems redundant..left over junk?
         return
     end
     if ammoType ~= this.setAmmoType then
+        print("----->", ammoType, tostring(this.setAmmoType))
         this.setAmmoType = ammoType -- this is also used if the slide is cycled again before firing, so we know what to eject
-        weaponItem:getModData().setAmmoType = ammoType
+        --weaponItem:getModData().setAmmoType = ammoType
         _Stats.set(weaponItem)
     end
     -- NOTE: moved to Fire.pre
@@ -863,6 +885,11 @@ Rack.valid = function(this, playerObj)
     if ReloadManager[1]:getDifficulty() < 3 or playerObj:getJoypadBind() ~= -1 then
         -- TODO: proper jamming checks
         if this.isJammed then return true end
+
+        if Firearm.isOpenBolt(this.type) and Bolt.isOpen(this) then
+            return false
+        end
+
         if Bolt.isOpen(this) and isForceOpen(this) then
             return true
         end
@@ -910,7 +937,9 @@ Rack.perform = function(this, playerObj, weaponItem)
         local tData = Firearm.getData(this.type)
         playerObj:playSound(tData.rackSound, false)
         Bolt.open(this, playerObj, false, weaponItem)
-        Bolt.close(this, playerObj, false, weaponItem)
+        if not Firearm.isOpenBolt(this.type) then
+            Bolt.close(this, playerObj, false, weaponItem)
+        end
     end
 
     if not Hammer.isCocked(this) and Firearm.Trigger.isSAO(this.type) then
