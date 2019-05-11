@@ -106,6 +106,8 @@ Flags.DIRECTGAS = 1024
 Flags.LONGRECOIL = 2048
 --- gun is a short recoil automatic
 Flags.SHORTRECOIL = 4096
+--- gas fed system with adjustable value
+Flags.GASVALVE = 8192
 
 local FEEDTYPES = Flags.AUTO + Flags.BOLT + Flags.LEVER + Flags.PUMP + Flags.BREAK + Flags.ROTARY
 local AUTOFEEDTYPES = Flags.BLOWBACK + Flags.DELAYEDBLOWBACK + Flags.SHORTGAS + Flags.LONGGAS + Flags.DIRECTGAS + Flags.LONGRECOIL + Flags.SHORTRECOIL
@@ -590,6 +592,42 @@ function FirearmType:hasMagazine()
     return Magazine.isGroup(self.ammoType)
 end
 
+function FirearmType:describeFeedSystem()
+    local text = { }
+    if self:isAutomatic() then
+    end
+    if self:isBolt() then end
+    if self:isPump() then end
+    if self:isLever() then end
+    if self:isBreak() then end
+    return table.concat(text, ', ')
+end
+function FirearmType:describeFeatures()
+    local text = { }
+    if self:hasSafety() then table.insert(text, "Manual Safety") end
+    if self:isPorted() then table.insert(text, "Ported Barrel") end
+    if self:isFreeFloat() then table.insert(text, "Free-Float Barrel") end
+    if self:isSelectFire() then
+        if self:isSemiAuto() then end
+        if self:isFullAuto() then end
+        if self:is2ShotBurst() then end
+        if self:is3ShotBurst() then end
+    end
+    return table.concat(text, ', ')
+end
+
+function FirearmType:getRichText()
+    local text = {
+        " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT>",
+        getText("IGUI_Firearm_InfoPanel",
+            getText(gunData.classification),
+            (gunData.year or getText("IGUI_Firearm_YearUnknown")),
+            getText(gunData.country), getText(gunData.manufacturer)),
+        getText("IGUI_Firearm_InfoBackGround")
+        getText(gunData.description)
+    }
+    return table.concat(text, ' <LINE> ')
+end
 -- #############################################################################
 
 --- Data Functions
@@ -1211,6 +1249,9 @@ Stats.set = function(weaponItem)
     -- set other relative ammoData adjustments
     statsTable.HitChance = statsTable.HitChance + (ammoData.HitChance or 0)
     statsTable.CriticalChance = statsTable.CriticalChance + (ammoData.CriticalChance or 0)
+    if not ammoData:isSubsonic() then
+        statsTable.SoundRadius = 100 + statsTable.SoundRadius
+    end
 
     Stats.adjustByFeed(weaponItem, gunData, statsTable)
 
