@@ -26,6 +26,15 @@ local ZombRand = ZombRand
 local Flags = ORGM.Component.Flags
 Flags.FIXED = 1
 
+Flags.MATCHGRADE
+Flags.THREADED
+Flags.PORTED
+Flags.FOLDING
+Flags.EXTENDABLE
+
+
+
+
 -- pull this one into local namespace due to high volume of access
 local ComponentTable = { }
 -- cache of names used for random selection
