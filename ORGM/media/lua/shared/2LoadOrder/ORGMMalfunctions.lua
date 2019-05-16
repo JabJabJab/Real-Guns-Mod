@@ -16,10 +16,76 @@
 
 ]]
 local ORGM = ORGM
+local Settings = ORGM.Settings
 local Malfunctions = ORGM.Malfunctions
 local Ammo = ORGM.Malfunctions.Ammo
 local Mechanical = ORGM.Malfunctions.Mechanical
 local Failure = ORGM.Malfunctions.Failure
+
+local ipairs = ipairs
+--[[
+Flags.CaseHeadSeparation
+Flags.Dud
+Flags.HangFire
+Flags.Squib
+Flags.FailToFeed
+]]
+local check = function(this, playerObj, weaponItem, ...)
+    if not Settings.JammingEnabled then return false end
+    for i, failure in ipairs({select(1, ...)}) do
+        if failure.onCheck(this, playerObj, weaponItem) then -- this should probably be failure:onCheck
+            return true
+        end
+    end
+    return false
+end
+Malfunctions.checkFeed = function(this, playerObj, weaponItem)
+--[[ Crude. old mechanics.
+
+    if not Settings.JammingEnabled then return false end
+    --
+    -- TODO: chances need to be more dynamic, it assumes a max condition of 10
+    local chance = (weaponItem:getConditionMax() / weaponItem:getCondition()) *2
+    if playerObj:HasTrait("Lucky") then
+        chance = chance * 0.8
+    elseif playerObj:HasTrait("Unlucky") then
+        chance = chance * 1.2
+    end
+    local result = ZombRand(300 - math.ceil(chance)*2)+1
+    if result <= chance then
+        this.isJammed = true
+        weaponItem:getModData().isJammed = true
+        return true
+    end
+]]
+    return check(this, playerObj, weaponItem,
+        Ammo.FailToFeed, -- poorly shaped bullet or neck not properly clearing the ramp.
+        Mechanical.FailToFeed, -- worn ramp, worn magazine spring, dirt
+        Ammo.SlamFire, -- poorly seated primer
+        Mechanical.SlamFire -- faulty firing pin (too long)
+    )
+end
+Malfunctions.checkExtract = function(this, playerObj, weaponItem)
+    return check(this, playerObj, weaponItem,
+        Ammo.CaseHeadSeparation, -- the head of the case is stuck in the chamber and needs to be extracted with tools.
+        Ammo.FailToExtract, -- brass rim failure
+        Mechanical.FailToExtract -- broken/worn extractor hook, recoil spring problems, dirty chamber, leads to FailToFeed
+    )
+end
+Malfunctions.checkEject = function(this, playerObj, weaponItem)
+    return check(this, playerObj, weaponItem,
+        Ammo.FailToEject, -- not enough pressure to cycle the action in automatics.
+        Mechanical.FailToEject -- broken ejector, recoil spring problems, dirt, leads to FailToFeed
+    )
+end
+Malfunctions.checkFire = function(this, playerObj, weaponItem)
+    return check(this, playerObj, weaponItem,
+        Mechanical.FailToFire, -- faulty firing pin (too short/worn, or worn spring), dirt
+        Ammo.Dud, -- round in chamber refuses to fire.
+        Ammo.Squib, -- bullet will lodged in the barrel and needs to be cleared. Will not cycle automatics. (FailToEject)
+        Ammo.HangFire -- delay firing for a few seconds.
+    )
+end
 
 -- Fire.pre - depending on the failure, this might need a custom insertion of code in ISReloadManager.checkLoaded()
 --      it also might require a custom Fire.post method.
@@ -29,12 +95,14 @@ Ammo.CaseHeadSeparation = {
     -- the head of the case is stuck in the chamber and needs to be extracted with tools.
     -- the brass is now useless, this will only effect some bullets (ie: needs a neck)
     -- this should result in a constant failure to feed until fixed
-    onCheck = function(this, playerObj, weaponItem) end, -- called when checking if this malfunction should happen
+    onCheck = function(this, playerObj, weaponItem)
+        return false
+    end,
 }
 Ammo.Dud = {
     -- round in chamber refuses to fire. This ammoType needs to be replaced with a dud.
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:preFireShot()
+        return false
     end,
 }
 Ammo.HangFire = {
@@ -43,7 +111,7 @@ Ammo.HangFire = {
     -- If the hung round has been racked and cleared, this fires from the ground.
     -- If this is a revolver and the cylinder has been rotated, this can be disastrous
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:preFireShot()
+        return false
     end,
 }
 Ammo.Squib = {
@@ -52,30 +120,30 @@ Ammo.Squib = {
     onCheck = function(this, playerObj, weaponItem)
         -- triggered on reloadable:preFireShot(), this one actually occurs when the shot is fired but preFireShot()
         -- is used to stop the attack
+        return false
     end,
 }
 Ammo.FailToFeed = {
     -- poorly shaped bullet or neck not properly clearing the ramp. Not applicable to revolvers and break barrels.
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:closeSlide()
+        return false
     end,
 }
 Ammo.SlamFire = {
     -- poorly seated primer
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:closeSlide()
+        return false
     end,
 }
 Ammo.FailToExtract = {
     -- brass rim failure
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:openSlide()
     end,
 }
 Ammo.FailToEject = {
     -- not enough pressure to cycle the action in automatics.
     onCheck = function(this, playerObj, weaponItem)
-        -- triggered on reloadable:openSlide()
+        return false
     end,
 }
 
@@ -89,21 +157,33 @@ Ammo.FailToEject = {
 ]]
 Mechanical.FailToFeed = {
     -- worn ramp, worn magazine spring, dirt
-    onCheck = function(char, weapon, reloadable)
-        -- triggered on reloadable:closeSlide()
+    onCheck = function(this, playerObj, weaponItem)
+        return false
     end,
 }
 Mechanical.SlamFire = { -- (or hammer follow)
     -- faulty firing pin (too long)
+    onCheck = function(this, playerObj, weaponItem)
+        return false
+    end,
 }
 Mechanical.FailToFire = {
     -- faulty firing pin (too short/worn, or worn spring), dirt
+    onCheck = function(this, playerObj, weaponItem)
+        return false
+    end,
 }
 Mechanical.FailToExtract = {
     -- broken/worn extractor hook, recoil spring problems, dirty chamber, leads to FailToFeed
+    onCheck = function(this, playerObj, weaponItem)
+        return false
+    end,
 }
 Mechanical.FailToEject = { -- (or stovepipe)
     -- broken ejector, recoil spring problems, dirt, leads to FailToFeed
+    onCheck = function(this, playerObj, weaponItem)
+        return false
+    end,
 }
 
 --[[    ORGM.MechanicaFailureTable
