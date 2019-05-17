@@ -172,13 +172,14 @@ end
 
 ]]
 Fire.post = function(this, playerObj, weaponItem)
-    --this.roundsSinceCleaned = this.roundsSinceCleaned + 1
+    this.roundsSinceCleaned = this.roundsSinceCleaned + 1
     this.roundsFired = 1 + this.roundsFired
     Ammo.setEmptyCase(this)
     if Reloadable.isAuto(this) then
         Bolt.open(this, playerObj, false, weaponItem)
+        -- dont close open-bolt designs or ones with slide lock on the last shot
         if (this.currentCapacity ~= 0 or not Firearm.hasSlideLock(weaponItem)) and not Firearm.isOpenBolt(this.type) then
-            Bolt.close(this, playerObj, false, weaponItem) -- chambers next shot, cocks hammer for SA/DA
+            Bolt.close(this, playerObj, false, weaponItem)
         end
     elseif Reloadable.isBreak(this) then
         this.cylinderPosition = this.cylinderPosition + 1 -- this can bypass our maxCapacity limit
