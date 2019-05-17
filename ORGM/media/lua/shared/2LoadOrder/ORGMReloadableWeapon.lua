@@ -3,6 +3,36 @@
 It allows for the data its operating on be either a ISReloadableWeapon class object,
 or a HandWeapon/InventoryItem's modData.
 
+These variables exist in both reloadable objects, and ModData.
+type                = name of the weapon, without ORGM. prefix
+moduleName          = the "ORGM" prefix
+reloadClass         = alwayss "ISORGMWeapon"
+status              = current status flags of the weapon
+feedSystem          = the feed system currently used by the weapon
+cylinderPosition    = current position of the cylinder or barrel (double barrels)
+ammoType            = the default ammoType (or magazine) used by gun
+currentCapacity     = number of rounds remaining (not including chamber)
+maxCapacity         = maximum number of rounds
+chambered           = name of currently chambered ammo or case
+setAmmoType         = the ammo type the gun is currently set to. can be used to determine the last round fired
+setAmmoStatus       = status flags of the currently set ammo (if any)
+roundsSinceCleaned  = number of rounds fired since cleaned. this should be renamed "dirt"
+roundsFired         = total number of rounds fired
+magazineData        = table. list of current names of ammo or casings in the magazine or cylinder
+magazineDataStatus  = table. sparse list of status flags for each magazine position. 0's are not recorded.
+magazineType        = name of the current magazine inserted.
+speedLoader         = speedLoader used by the gun.
+loadedAmmoType      = abstracted name of all ammo loaded
+stictAmmoType       = only load this ammo type
+reloadTime
+rackTime
+
+isJammed -- TODO: find and remove
+
+ModData only:
+barrelLength        = length of the barrel
+BUILD_ID            = orgm build number this gun was last used in.
+
 @module ORGM.ReloadableWeapon
 @release v3.10
 @author Fenris_Wolf
@@ -152,7 +182,7 @@ Fire.pre = function(this, playerObj, weaponItem)
     -- SA already has hammer cocked by this point, but we dont need to check here.
     Hammer.cock(this, playerObj, false, weaponItem) -- chamber rotates here for revolvers
     Hammer.release(this, playerObj, false)
-    if Malfunctions.checkFire(this, playerObj, weaponItem) then
+    if Malfunctions.checkFire(this, playerObj, weaponItem, this.setAmmoType) then
         return false
     end
     -- set piercing bullets here.
@@ -652,6 +682,7 @@ This is a safety check performed to ensure we can properly get the ammo stats.
 ]]
 Ammo.convert = function(this, ammoType)
     local groupName = this.ammoType
+    -- TODO: outdated .containsClip but this function should be removed anyways....
     if this.containsClip ~= nil then -- get the mag's ammo type
         groupName = _Magazine.getData(this.ammoType).ammoType
     end
@@ -784,7 +815,7 @@ Ammo.next = function(this, playerObj, weaponItem)
         -- TODO: seems i missed filling out this part...
     end
     -- TODO: check failure to feed jams here
-    if Malfunctions.checkFeed(this, playerObj, weaponItem) then
+    if Malfunctions.checkFeed(this, playerObj, weaponItem, ammoType) then
 
     end
 
@@ -987,13 +1018,13 @@ Bolt.open = function(this, playerObj, playSound, weaponItem)
     local ammoItem  = nil
 
     -- TODO: finish jam handling.
-    if Malfunctions.checkExtract(this, playerObj, weaponItem) then
+    if Malfunctions.checkExtract(this, playerObj, weaponItem, ammoType) then
         return
     end
 
     this.chambered = nil
 
-    if Malfunctions.checkEject(this, playerObj, weaponItem) then
+    if Malfunctions.checkEject(this, playerObj, weaponItem, ammoType) then
         return
     end
 
