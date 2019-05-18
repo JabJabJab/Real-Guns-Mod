@@ -159,7 +159,7 @@ It called by `Spawn.firearm` and `Spawn.magazine`.
         if fill > 0 then
             if data.roundChambered ~= nil then
                 data.roundChambered = 1
-                data.lastRound = ammoType
+                data.chambered = ammoType
                 fill = fill - 1
 
                 if not Firearm.Trigger.isDAO(additem, itemOrgmData) then
@@ -225,14 +225,14 @@ end
         Spawn.reloadable(container, magType, ammoType, chance, max, isLoaded)
     end
 end
+]]
 
-Spawn.magazine2 = function(container, group, chance, minCount, maxCount, isLoaded)
+Spawn.magazine = function(container, group, chance, minCount, maxCount, isLoaded)
     chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
     group = Magazine.getGroup(group)
     if not group then return end
     return group:spawn(nil, nil, container, isLoaded)
 end
-]]
 
 
 --[[- Generic spawn function for non-reloadable items (ie: ammo or repair stuff).
