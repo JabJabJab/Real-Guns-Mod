@@ -44,7 +44,8 @@ ORGM = { }
 
 ORGM.Group = {}
 ORGM.ItemType = {}
-
+ORGM.Manager = {}
+ORGM.Actions = {}
 --- Modules
 -- @section Modules
 
