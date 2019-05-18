@@ -303,19 +303,20 @@ Mechanical.FailToEject2 = {
     lead to the mechanical malfunctions listed above.
 
 ]]
---[[
--- NOTE: Crude. old mechanics.
-local chance = (weaponItem:getConditionMax() / weaponItem:getCondition()) *2
-if playerObj:HasTrait("Lucky") then
-    chance = chance * 0.8
-elseif playerObj:HasTrait("Unlucky") then
-    chance = chance * 1.2
-end
-local result = ZombRand(300 - math.ceil(chance)*2)+1
-if result <= chance then
-    this.isJammed = true
-    weaponItem:getModData().isJammed = true
-    return true
-end
+
+--[[ The crude, old mechanics (see how far we've come?)
+
+    local chance = (weaponItem:getConditionMax() / weaponItem:getCondition()) *2
+    if playerObj:HasTrait("Lucky") then
+        chance = chance * 0.8
+    elseif playerObj:HasTrait("Unlucky") then
+        chance = chance * 1.2
+    end
+    local result = ZombRand(300 - math.ceil(chance)*2)+1
+    if result <= chance then
+        this.isJammed = true
+        weaponItem:getModData().isJammed = true
+        return true
+    end
 
 ]]
