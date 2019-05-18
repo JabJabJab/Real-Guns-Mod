@@ -102,3 +102,19 @@ This is triggered by Events.OnLoadSoundBanks.
 Callbacks.loadSoundBanks = function()
     ORGM.Sounds.setup()
 end
+
+
+Callbacks.loadOverWrites = function()
+    -- clear out the old reload manager hooks.
+    Events.OnPlayerUpdate.Remove(aaa.startRackingHook);
+    Events.OnPlayerUpdate.Remove(aaa.startReloadHook); -- no point adding 2 events OnPlayerUpdate, a single one will do :P
+    Events.OnWeaponSwingHitPoint.Remove(aaa.fireShotHook);
+    Hook.Attack.Remove(aaa.checkLoadedHook);
+
+    Hook.Attack.Add(function(playerObj, chargeDelta)
+        return Manager.attack(playerObj, chargeDelta)
+    end)
+    Events.OnWeaponSwingHitPoint.Add(function(playerObj, weapon)
+        return Manager.fire(playerObj, weapon)
+    end)
+end
