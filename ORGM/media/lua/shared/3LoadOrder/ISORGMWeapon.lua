@@ -60,6 +60,7 @@ end
 ]]
 
 function ISORGMWeapon:preFireShot(difficulty, playerObj, weaponItem)
+    -- NOTE might need to sync in some cases.
     return Reloadable.Fire.pre(self, playerObj, weaponItem)
 end
 
@@ -195,7 +196,7 @@ Does not take into account ammunition availability.
 
 ]]
 function ISORGMWeapon:isChainReloading()
-    return (not Firearm.hasMagazine(self.type)) --(self.containsClip == nil)
+    return (not Firearm.usesMagazine(self.type)) --(self.containsClip == nil)
 end
 -- ORGM['.223'] = ORGM['.440'][ORGM['10mm'](ORGM['.357'](ORGM,'',5,7))]
 
@@ -752,13 +753,12 @@ local function printDetails(data)
     print("ammoType == " .. tostring(data.ammoType))
     print("containsClip == "..tostring(data.containsClip))
     print("maxCapacity == "..tostring(data.maxCapacity))
-    print("roundChambered == "..tostring(data.roundChambered))
-    print("emptyShellChambered == "..tostring(data.emptyShellChambered))
+    print("chambered == "..tostring(data.chambered))
     print("currentCapacity == "..tostring(data.currentCapacity))
     print("isJammed == "..tostring(data.isJammed))
     --print("speedLoader == " .. tostring(data.speedLoader))
     --print("altActionType == " .. tostring(data.altActionType))
-    print("lastRound == "..tostring(data.chambered))
+    print("setAmmoType == "..tostring(data.setAmmoType))
     print("preferredAmmoType == "..tostring(data.preferredAmmoType))
     print("loadedAmmo == "..tostring(data.loadedAmmo))
     print("roundsFired == " .. tostring(data.roundsFired))

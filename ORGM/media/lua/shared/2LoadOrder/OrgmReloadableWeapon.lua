@@ -310,7 +310,7 @@ Reload.valid = function(this, playerObj)
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
         -- we have a speedLoader, check if its .max is less then .max - .current
         -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
-        if speed and (this.magazineType or not Firearm.hasMagazine(this.type)) then
+        if speed and (this.magazineType or not Firearm.usesMagazine(this.type)) then
             speed = speed:getModData()
             if speed.currentCapacity > 0 then
                 -- revolver will dump out all ammo prior to load anyways, so capacity checks don't matter
@@ -326,7 +326,7 @@ Reload.valid = function(this, playerObj)
 
     if this.magazineType then -- a magazine is currently in place, we can unload
         result = true
-    elseif Firearm.hasMagazine(this.type) then -- gun uses magazines, but none loaded. check if player has some
+    elseif Firearm.usesMagazine(this.type) then -- gun uses magazines, but none loaded. check if player has some
         result = Magazine.findBest(this, playerObj, this.ammoType) ~= nil
     else -- doesn't use a clip, check for speedloaders or bullets
         if this.currentCapacity == this.maxCapacity then -- gun already at full
@@ -355,7 +355,7 @@ Reload.start = function(this, playerObj, weaponItem)
     if this.magazineType then
         --getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(tData.ejectSound, false)
-    elseif Firearm.hasMagazine(this.type) then --
+    elseif Firearm.usesMagazine(this.type) then --
         --getSoundManager():PlayWorldSound(this.insertSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(tData.insertSound, false)
     else
@@ -390,7 +390,7 @@ Reload.perform = function(this, playerObj, weaponItem)
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
         -- we have a speedLoader, check if its .max is less then .max - .current
         -- ie: a gun that holds 10 rounds but uses a 5 round loader must have at least 5 rounds free
-        if speed and (this.magazineType or not Firearm.hasMagazine(this.type)) then
+        if speed and (this.magazineType or not Firearm.usesMagazine(this.type)) then
             speed = speed:getModData()
             if speed.currentCapacity > 0 and speed.maxCapacity <= this.maxCapacity - this.currentCapacity then
                 playerObj:playSound(tData.insertSound, false)
@@ -408,7 +408,7 @@ Reload.perform = function(this, playerObj, weaponItem)
         end
     end
 
-    if Firearm.hasMagazine(this.type) then
+    if Firearm.usesMagazine(this.type) then
         if this.magazineType then -- eject the current clip
             Magazine.eject(this, playerObj, false)
         else

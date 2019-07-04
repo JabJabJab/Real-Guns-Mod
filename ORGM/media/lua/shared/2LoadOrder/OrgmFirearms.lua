@@ -433,7 +433,7 @@ function FirearmType:setup(item)
     --modData.closeSound = self.closeSound -- TODO: doesnt need to be in modData
 
 
-    if self:hasMagazine() then
+    if self:usesMagazine() then
         -- TODO: this could be a issue when resetting to default. Need to check
         -- if we have a mag, and what type it is. Also there may not be a mag inserted
         local mag = Magazine.getGroup(self.ammoType):random()
@@ -585,10 +585,10 @@ function FirearmType:isLever()
     return self:isFeedType(Flags.LEVER)
 end
 function FirearmType:isBreak()
-    return self:isFeedType(Flags.BREAk)
+    return self:isFeedType(Flags.BREAK)
 end
 
-function FirearmType:hasMagazine()
+function FirearmType:usesMagazine()
     return Magazine.isGroup(self.ammoType)
 end
 
@@ -804,7 +804,7 @@ Firearm.isAutomatic = function(item)
     return Firearm.isFeedType(item, Flags.AUTO)
 end
 Firearm.isBolt = function(item)
-    return Firearm.isFeedType(item, Flags.Bolt)
+    return Firearm.isFeedType(item, Flags.BOLT)
 end
 Firearm.isPump = function(item)
     return Firearm.isFeedType(item, Flags.PUMP)
@@ -813,13 +813,13 @@ Firearm.isLever = function(item)
     return Firearm.isFeedType(item, Flags.LEVER)
 end
 Firearm.isBreak = function(item)
-    return Firearm.isFeedType(item, Flags.BREAk)
+    return Firearm.isFeedType(item, Flags.BREAK)
 end
 
-Firearm.hasMagazine = function(item)
+Firearm.usesMagazine = function(item)
     local data = Firearm.getData(item)
     if not data then return nil end
-    return data:hasMagazine()
+    return data:usesMagazine()
 end
 
 -- #############################################################################
