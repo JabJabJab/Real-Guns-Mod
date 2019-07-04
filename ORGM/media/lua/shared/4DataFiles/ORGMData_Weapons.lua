@@ -1972,7 +1972,7 @@ FirearmType:newCollection("KalTec_PLR16", {
 
         ammoType = "MagGroup_STANAG",
         Weight = 1.55,
-        barrelLength = 2.68,
+        barrelLength = 9.2,
         WeaponSprite = "ktplr",
         Icon = "KalTec_PLR16",
         maxCapacity = 30,
