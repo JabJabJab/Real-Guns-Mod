@@ -45,7 +45,7 @@ MagazineType._PropertiesTable = {
     shootSound = {type='string', default="none"},
     clickSound = {type='string', default="none"},
 }
--- create a group for all pistol rounds
+-- create a group for all pistol mags
 MagazineGroup:new("MagGroup_Pistols")
 
 -- Create a new group for beretta mags
@@ -109,7 +109,7 @@ types per gun. To be used in conjunction with the `ItemType` class
 --[[- Creates a new group.
 
 @tparam string groupName the name of the new group
-@tparam table groupData a table containing aditional information for this group.
+@tparam table groupData a table containing additional information for this group.
 
 @treturn table a new Group object
 
@@ -542,6 +542,6 @@ same tempate. Its primarly used to create multiple variants of the same item.
 function ItemType:newCollection(namePrefix, template, variants)
     ORGM.log(ORGM.VERBOSE, "ItemType: Starting Collection ".. namePrefix)
     for variant, variantData in pairs(variants) do
-        self:new(namePrefix .. "_" .. variant, variantData, template)
+        ItemType:new(namePrefix .. "_" .. variant, variantData, template)
     end
 end
