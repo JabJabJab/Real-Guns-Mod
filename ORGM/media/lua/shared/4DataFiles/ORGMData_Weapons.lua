@@ -414,11 +414,13 @@ FirearmType:newCollection("Colt_Python", {
         I3020 = {
             Groups = { Group_Colt_Python = 1 },
             barrelLength = 2.5,
+            year = 1988, -- this was the lowest year I could find on various auctioned guns of this model but per the year on the I3040, it might be 1983?
         },
         -- I3021 Python Revolver 357 Magnum 2-1/2" Bright SS
         I3021 = {
             Groups = { Group_Colt_Python = 1 },
             barrelLength = 2.5,
+            year = 1988, -- this was the lowest year I could find on various auctioned guns of this model but per the year on the I3040, it might be 1983?
         },
 
         I3030 = { -- Colt Combat Python Model I3030
@@ -428,12 +430,16 @@ FirearmType:newCollection("Colt_Python", {
             -- given colt reporting a total of 1100 3" inchers, 500 of which are "combat pythons"
             -- (I3630 and I3631) and 300 for the I3630CP, maybe 300 produced for this one as well?
             barrelLength = 3,
-            year = 2003,
+            year = 2003, -- Check the year on this one, I see 3040s listed as mfg in 1988
         },
         -- I3040 Python Revolver 357 Magnum 4" SS
         I3040 = {
             Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
+            year = 1983, --https://www.gunsamerica.com/920681247/Colt-Python-Stainless-4-357Mag-LNI.htm
+                         -- per the picture on the box the S/N (T01562) is from 1983 per this:
+                         -- https://pistolsmith.com/colt-revolvers/19430-python-serial-s-up-1985-look-them-up-here.html
+                         -- Now I am questioning the years on all of the "I" group above...
         },
 
         I3040CS = { -- Colt Python Elite Model I3040CS
@@ -446,6 +452,7 @@ FirearmType:newCollection("Colt_Python", {
         I3041 = {
             Groups = { Group_Colt_Python = 1 },
             barrelLength = 4,
+            year = 1994, -- The lowest year I could find... the serial numbers I could see were post 1985.
         },
         -- I3060 Python Revolver 357 Magnum 6" SS
         I3060 = {
