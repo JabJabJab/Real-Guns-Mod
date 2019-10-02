@@ -1,4 +1,4 @@
---[[ This file contains the Group and ItemType classes.
+--[[- This file contains the Group and ItemType classes.
 
 These 2 classes are the heart of many of ORGM's features, including the spawn system,
 multi-capacity magazines, multiple ammo types per gun, and the creation of ScriptItems.
@@ -542,6 +542,6 @@ same tempate. Its primarly used to create multiple variants of the same item.
 function ItemType:newCollection(namePrefix, template, variants)
     ORGM.log(ORGM.VERBOSE, "ItemType: Starting Collection ".. namePrefix)
     for variant, variantData in pairs(variants) do
-        ItemType:new(namePrefix .. "_" .. variant, variantData, template)
+        self:new(namePrefix .. "_" .. variant, variantData, template)
     end
 end
