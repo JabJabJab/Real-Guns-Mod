@@ -44,7 +44,7 @@ end
 
 function InfoPanel:updateFirearm(item)
     if not item then return end
-    local gunData = Firearm.getData(item)
+    local gunData = Firearm.getDesign(item)
     if not gunData then
         self.textPanel.text = ""
         self.textPanel:paginate()
@@ -81,7 +81,7 @@ function DetailsPanel:createChildren()
 end
 
 function DetailsPanel:updateFirearm(item)
-    local gunData = Firearm.getData(item)
+    local gunData = Firearm.getDesign(item)
     if not gunData then
         self.textPanel.text = ""
         self.textPanel:paginate()
@@ -227,7 +227,7 @@ end
 
 
 function StatPanel:updateFirearm(item)
-    local def = Firearm.getData(item)
+    local def = Firearm.getDesign(item)
     if not def then
         self.textPanel.text = ""
         self.textPanel:paginate()
@@ -257,7 +257,7 @@ function StatPanel:updateFirearm(item)
     end
     capacity = tostring(data.currentCapacity) .. capacity .. "/"..tostring(data.maxCapacity)
 
-    local lastRound = data.lastRound
+    local lastRound = data.chambered
     if lastRound then
         local ammoData = Ammo.getData(lastRound)
         if ammoData then lastRound = (ammoData.instance:getDisplayName() or lastRound) end
@@ -378,7 +378,7 @@ function DebugPanel:createChildren()
 end
 
 function DebugPanel:updateFirearm(item)
-    local def = Firearm.getData(item)
+    local def = Firearm.getDesign(item)
     if not def or not (Settings.Debug or isAdmin()) then
         self.textPanel.text = ""
         self.textPanel:paginate()
@@ -447,7 +447,7 @@ function DebugPanel:updateFirearm(item)
     text = text .. getText("IGUI_Firearm_DebugState2", tostring(data.hammerCocked == 1 or false), tostring(data.isOpen == 1 or false))
     text = text .. getText("IGUI_Firearm_DebugWeight", tostring(item:getWeight()), tostring(item:getActualWeight()))
     text = text .. getText("IGUI_Firearm_DebugCapacity", tostring(data.currentCapacity), tostring(data.maxCapacity), tostring(data.roundChambered), tostring(data.emptyShellChambered))
-    text = text .. getText("IGUI_Firearm_DebugAmmo", tostring(data.lastRound), tostring(data.preferredAmmoType), tostring(data.loadedAmmo), tostring(data.isJammed))
+    text = text .. getText("IGUI_Firearm_DebugAmmo", tostring(data.chambered), tostring(data.preferredAmmoType), tostring(data.loadedAmmo), tostring(data.isJammed))
     text = text .. getText("IGUI_Firearm_DebugAccuracy", tostring(item:getHitChance()), tostring(hitChanceMod), tostring(item:getAimingPerkHitChanceModifier() * aimingPerk), tostring(hitChancePenalty))
     text = text .. getText("IGUI_Firearm_DebugAccuracy2", tostring(item:getCriticalChance()), tostring(item:getCriticalChance() + item:getAimingPerkCritModifier() * (player:getPerkLevel(Perks.Aiming) / 2)))
     text = text .. getText("IGUI_Firearm_DebugRange", tostring(item:getMinRangeRanged()), tostring(item:getMaxRange()))

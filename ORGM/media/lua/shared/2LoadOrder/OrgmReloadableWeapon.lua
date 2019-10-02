@@ -83,35 +83,58 @@ Status.FORCEOPEN = 1024 -- user specifically requested gun should be open. To pr
 local FIREMODESTATES = Status.SINGLESHOT+Status.FULLAUTO+Status.BURST2+Status.BURST3
 
 
-Reloadable.isFeature = function(this, thisData, feature)
-    return Firearm.isFeature(this.type, thisData, feature)
+local _Cache = {
+    item = nil,
+    data = nil,
+    design = nil,
+}
+local function clearCache()
+    _Cache.item = nil
+    _Cache.data = nil
+    _Cache.design = nil
 end
-Reloadable.isStatus = function(this, status)
+local function setCache(item)
+    if _Cache.item == item then return true end
+    _Cache.design = Firearm.getDesign(item)
+    if not _Cache.design then
+        clearCache()
+        return false
+    end
+    _Cache.item = item
+    _Cache.data = item:getModData()
+end
+
+
+Reloadable.isFeature = function(this, thisData, feature)
+    return Firearm.isDesignFeature(this.type, thisData, feature)
+end
+
+Reloadable.isStatus = function(this, status) -- TODO: move to Firearm
     if not this.status then return end
     return Bit.band(this.status, status) ~= 0
 end
-local function isForceOpen(this)
+local function isForceOpen(this) -- TODO: move to Firearm
     return Reloadable.isStatus(this, Status.FORCEOPEN)
 end
 
 
-Reloadable.isFeed = function(this, feedType)
+Reloadable.isFeed = function(this, feedType) -- TODO: move to Firearm? conficts
     if not this.feedSystem then return end
     return Bit.band(this.feedSystem, feedType) ~= 0
 end
-Reloadable.isRotary = function(this)
+Reloadable.isRotary = function(this) -- TODO: move to Firearm? conficts
     return Reloadable.isFeed(this, Flags.ROTARY)
 end
-Reloadable.isBreak = function(this)
+Reloadable.isBreak = function(this) -- TODO: move to Firearm? conficts
     return Reloadable.isFeed(this, Flags.BREAK)
 end
-Reloadable.isAuto = function(this)
+Reloadable.isAuto = function(this) -- TODO: move to Firearm? conficts
     return Reloadable.isFeed(this, Flags.AUTO)
 end
-Reloadable.isPump = function(this)
+Reloadable.isPump = function(this) -- TODO: move to Firearm? conficts
     return Reloadable.isFeed(this, Flags.PUMP)
 end
-Reloadable.isLever = function(this)
+Reloadable.isLever = function(this) -- TODO: move to Firearm? conficts
     return Reloadable.isFeed(this, Flags.LEVER)
 end
 
@@ -152,14 +175,10 @@ Fire.valid = function(this)
             ammoType = Ammo.peek(this, true)
         end
         return ammoType and _Ammo.isAmmo(ammoType) or false
-        --if ammoType == nil or _Ammo.isCase(ammoType) then return false end
-        --return true
 
     elseif Reloadable.isBreak(this) then
         local ammoType = Ammo.get(this, this.cylinderPosition)
         return ammoType and _Ammo.isAmmo(ammoType) or false
-        --if ammoType == nil or _Ammo.isCase(ammoType) then return false end
-        --return true
     end
 
     -- anything else needs a live round chambered
@@ -246,7 +265,7 @@ end
 Fire.set = function(this, mode)
     if not mode then
         -- find all firing modes allowed
-        local thisData = Firearm.getData(this.type)
+        local thisData = Firearm.getDesign(this.type)
         local opt = {}
         if thisData:isSemiAuto() then table.insert(opt, Status.SINGLESHOT) end
         if thisData:isFullAuto() then table.insert(opt, Status.FULLAUTO) end
@@ -351,7 +370,7 @@ or revolver cylinder.
 ]]
 Reload.start = function(this, playerObj, weaponItem)
     -- NOTE: weaponItem is nil! not passed from ISORGMWeapon:reloadStart
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if this.magazineType then
         --getSoundManager():PlayWorldSound(this.ejectSound, playerObj:getSquare(), 0, 10, 1.0, false)
         playerObj:playSound(tData.ejectSound, false)
@@ -384,7 +403,7 @@ end
 
 ]]
 Reload.perform = function(this, playerObj, weaponItem)
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
 
     if this.speedLoader ~= nil then
         local speed = Magazine.findBest(this, playerObj, this.speedLoader)
@@ -527,7 +546,7 @@ Magazine.eject = function(this, playerObj, playSound)
     ISInventoryPage.dirtyUI()
     this.magazineType = nil
     this.loadedAmmoType = nil -- might still have a round in chamber, but this is only required for magazine setup anyways
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
 
     if (playSound and tData.ejectSound) then playerObj:playSound(tData.ejectSound, false) end
 end
@@ -570,7 +589,7 @@ Magazine.insert = function(this, playerObj, playSound)
     this.loadedAmmoType = modData.loadedAmmoType
     playerObj:getXp():AddXP(Perks.Reloading, 1)
 
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.insertSound) then playerObj:playSound(tData.insertSound, false) end
 end
 
@@ -927,7 +946,7 @@ Rack.perform = function(this, playerObj, weaponItem)
 
     else
         --getSoundManager():PlayWorldSound(this.rackSound, playerObj:getSquare(), 0, 10, 1.0, false)
-        local tData = Firearm.getData(this.type)
+        local tData = Firearm.getDesign(this.type)
         playerObj:playSound(tData.rackSound, false)
         Bolt.open(this, playerObj, false, weaponItem)
         if not Firearm.isOpenBolt(this.type) then
@@ -960,7 +979,7 @@ Hammer.cock = function(this, playerObj, playSound, weaponItem)
     if Reloadable.isRotary(this) and not Bolt.isOpen(this) then
         Cylinder.rotate(this, 1, playerObj, false, weaponItem)
     end
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.cockSound) then playerObj:playSound(tData.cockSound, false) end
     this.status = this.status + Status.COCKED
 end
@@ -1010,7 +1029,7 @@ Bolt.open = function(this, playerObj, playSound, weaponItem)
     -- first open the slide...
     this.status = this.status + Status.OPEN
     -- TODO: fix sound
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
 
     if (playSound and tData.openSound) then playerObj:playSound(tData.openSound, false) end
     local square = playerObj:getCurrentSquare()
@@ -1058,7 +1077,7 @@ Bolt.close = function(this, playerObj, playSound, weaponItem)
     if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
     this.status = this.status - Status.OPEN
     -- TODO: fix sound
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.closeSound) then playerObj:playSound(tData.closeSound, false) end
     -- TODO: load next shot, this isn't always true though:
     -- a pump action shotgun reloaded with slide open wont chamber a round, THIS NEEDS TO BE HANDLED
@@ -1116,7 +1135,7 @@ end
 Cylinder.open = function(this, playerObj, playSound, weaponItem)
     if Cylinder.isOpen(this) then return end
     this.status = this.status + Status.OPEN
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.openSound) then playerObj:playSound(tData.openSound, false) end
 end
 
@@ -1134,7 +1153,7 @@ Cylinder.close = function(this, playerObj, playSound, weaponItem)
     if isForceOpen(this) then this.status = this.status - Status.FORCEOPEN end
     this.status = this.status - Status.OPEN
     Ammo.setCurrent(this, this.magazineData[this.cylinderPosition], weaponItem)
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.closeSound) then playerObj:playSound(tData.closeSound, false) end
 end
 
@@ -1166,7 +1185,7 @@ Break.open = function(this, playerObj, playSound, weaponItem)
     if Break.isOpen(this) then return end
     this.status = this.status + Status.OPEN
     this.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire, set to 1 for reloading
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.openSound) then playerObj:playSound(tData.openSound, false) end
     Ammo.ejectAll(this, playerObj, false)
 end
@@ -1187,6 +1206,6 @@ Break.close = function(this, playerObj, playSound, weaponItem)
     this.status = this.status - Status.OPEN
     this.cylinderPosition = 1 -- use cylinder position variable for which barrel to fire
     Ammo.setCurrent(this, this.magazineData[1], weaponItem)
-    local tData = Firearm.getData(this.type)
+    local tData = Firearm.getDesign(this.type)
     if (playSound and tData.closeSound) then playerObj:playSound(tData.closeSound, false) end
 end

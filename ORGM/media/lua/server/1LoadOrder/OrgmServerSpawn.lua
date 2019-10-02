@@ -124,7 +124,7 @@ It called by `Spawn.firearm` and `Spawn.magazine`.
     local isFirearm = Firearm.isFirearm(itemType)
     --ORGM.log(ORGM.DEBUG, "Spawn.reloadable isFirearm (from data):"..tostring(isFirearm and true))
     if isFirearm then
-        itemOrgmData = Firearm.getData(itemType)
+        itemOrgmData = Firearm.getDesign(itemType)
     elseif Magazine.isMagazine(itemType) then
         itemOrgmData = Magazine.getData(itemType)
     else
@@ -138,7 +138,7 @@ It called by `Spawn.firearm` and `Spawn.magazine`.
         if not additem then return false end
         ORGM.log(ORGM.DEBUG, "Spawned " .. itemOrgmData.moduleName .. '.' .. itemType)
         if isFirearm then
-            Firearm.setup(Firearm.getData(itemType), additem)
+            Firearm.setup(Firearm.getDesign(itemType), additem)
             Spawn.generateSerialNumber(additem)
             if isLoaded then additem:setCondition(Rnd(additem:getConditionMax())) end
         else
@@ -214,7 +214,7 @@ end
 
 --[[Spawn.magazine = function(container, gunType, ammoType, chance, max, isLoaded)
     chance = chance * ZomboidGlobals.WeaponLootModifier * Settings.MagazineSpawnModifier
-    local weaponData = Firearm.getData(gunType)
+    local weaponData = Firearm.getDesign(gunType)
     local magType = weaponData.ammoType
     if Magazine.isMagazine(magType) then -- gun uses mags
         Spawn.reloadable(container, magType, ammoType, chance, max, isLoaded)
@@ -399,7 +399,7 @@ Spawn.select = function(civilian, police, military)
         return {gun = nil, ammo = nil}
     end
 
-    local weaponData = Firearm.getData(gunType)
+    local weaponData = Firearm.getDesign(gunType)
 
     local ammoType = weaponData.ammoType
     if Magazine.isMagazine(ammoType) then -- ammoType is a mag, get its default ammo

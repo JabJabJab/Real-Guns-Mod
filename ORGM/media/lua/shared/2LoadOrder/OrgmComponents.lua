@@ -115,7 +115,7 @@ end
 Component.getValid = function(item)
     -- TODO: this should use a cache system, maybe cleared when Components are deregistered
     local results = { }
-    local gunData = Firearm.getData(item)
+    local gunData = Firearm.getDesign(item)
     if not gunData then return results end
     for compName, compData in pairs(ComponentTable) do
         if compData.instance:getMountOn():contains(item:getDisplayName()) then

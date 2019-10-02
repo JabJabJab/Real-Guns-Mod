@@ -403,8 +403,7 @@ This should be called whenever a firearm is spawned.
 Basically the same as ReloadUtil:setupGun and ISORGMWeapon:setupReloadable but
 called without needing a player or reloadable object.
 
-@usage ORGM.Firearm.setup(Firearm.getData(weaponItem), weaponItem)
-@tparam table gunData return value of `ORGM.Firearm.getData`
+@usage ORGM.Firearm.setup(Firearm.getDesign(weaponItem), weaponItem)
 @tparam HandWeapon weaponItem
 
 ]]
@@ -620,11 +619,11 @@ function FirearmType:getRichText()
     local text = {
         " <RED> <CENTER> ".. item:getDisplayName() .. " <LINE> <LEFT> <TEXT>",
         getText("IGUI_Firearm_InfoPanel",
-            getText(gunData.classification),
-            (gunData.year or getText("IGUI_Firearm_YearUnknown")),
-            getText(gunData.country), getText(gunData.manufacturer)),
+            getText(design.classification),
+            (design.year or getText("IGUI_Firearm_YearUnknown")),
+            getText(design.country), getText(design.manufacturer)),
         getText("IGUI_Firearm_InfoBackGround"),
-        getText(gunData.description)
+        getText(design.description)
     }
     return table.concat(text, ' <LINE> ')
 end
@@ -641,13 +640,13 @@ end
 Firearm.getTable = function()
     return FirearmTable
 end
---[[- Returns the ammo group table for the specified groupName.
+--[[- Returns the firearm group table for the specified groupName.
 
-The table contains all the ammo types that can be used for this group.
+The table contains all the firearm types that can be used for this group.
 
-@tparam string groupName name of a ammo group
+@tparam string groupName name of a firearm group
 
-@treturn nil|table list of real ammo names
+@treturn nil|table list of names
 
 ]]
 Firearm.getGroup = function(groupName)
@@ -657,14 +656,14 @@ end
 
 --[[-  Gets the data of a registered firearm, supports module checking.
 
-@usage local gunData = ORGM.Firearm.getData('Ber92')
+@usage local design = ORGM.Firearm.getDesign('Ber92')
 @tparam string|HandWeapon itemType
 @tparam[opt] string moduleName module to compare
 
 @treturn nil|table data of a registered firearm setup by `ORGM.Firearm.register`
 
 ]]
-Firearm.getData = function(itemType, moduleName)
+Firearm.getDesign = function(itemType, moduleName)
     return getTableData(itemType, moduleName, "HandWeapon", FirearmTable)
 end
 
@@ -679,14 +678,13 @@ end
 
 ]]
 Firearm.isFirearm = function(itemType, moduleName)
-    if Firearm.getData(itemType, moduleName) then return true end
-    return false
+    return Firearm.getDesign(itemType, moduleName) and true or false
 end
 
 
 --[[- Filters results from ORGM.Firearm.getTable() based on the supplied function.
 
-@tparam function compareFunction, a function that takes 2 arguments: gunType and gunData, and returns a boolean
+@tparam function compareFunction, a function that takes 2 arguments: gunType and design, and returns a boolean
 @tparam table gunTable
 
 @treturn table
@@ -695,9 +693,9 @@ end
 Firearm.filter = function(compareFunction, gunTable)
     local resuts = { }
     gunTable = gunTable or FirearmTable
-    for gunName, gunData in pairs(gunTable) do
-        if compareFunction(gunName, gunData) then
-            results[gunName] = gunData
+    for gunName, design in pairs(gunTable) do
+        if compareFunction(gunName, design) then
+            results[gunName] = design
         end
     end
     return results
@@ -723,21 +721,35 @@ Firearm.modeFlag2Status = function(flag)
     if flag == Flag.BURST3 then return Status.BURST3 end
 end
 
-Firearm.isFeature = function(item, flags)
-    local data = Firearm.getData(item)
+
+
+Firearm.isDesignFeature = function(item, flags, design)
+    design = design or Firearm.getDesign(item)
+    if not design then return nil end
+    return design:isFeature(flags)
+end
+Firearm.isFeature = function(item, flags, data)
+    data = data or item:getModData()
     if not data then return nil end
-    return data:isFeature(flags)
+    return Bit.band(data.features, flags) ~= 0
 end
 
---[[- Checks if a firearm is select fire.
+Firearm.isStatus = function(item, status, data)
+    data = data or item:getModData()
+    if not data or not data.status then return end
+    return Bit.band(data.status, status) ~= 0
+end
+
+
+--[[- Checks if a firearm design is select fire.
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table design return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn nil|bool nil if not a firearm, else true or false.
 ]]
-Firearm.isSelectFire = function(item)
-    return Firearm.isFeature(item, Flags.SELECTFIRE)
+Firearm.isSelectFire = function(item, design)
+    return Firearm.isDesignFeature(item, Flags.SELECTFIRE, design)
 end
 
 --[[- Returns if the firearm is capable of full-auto fire.
@@ -745,57 +757,66 @@ end
 Not to be confused with `ORGM.ReloadableWeapon.isFullAuto`
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table itemData return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @return boolean or nil
 
 ]]
-Firearm.isFullAuto = function(item)
-    return Firearm.isFeature(item, Flags.FULLAUTO)
+Firearm.isFullAuto = function(item, design)
+    return Firearm.isDesignFeature(item, Flags.FULLAUTO, design)
 end
 
-Firearm.isSemiAuto = function(item)
-    return Firearm.isFeature(item, Flags.SEMIAUTO)
+Firearm.isSemiAuto = function(item, design)
+    return Firearm.isDesignFeature(item, Flags.SEMIAUTO, design)
 end
 
-Firearm.is2ShotBurst = function(item)
-    return Firearm.isFeature(item, Flags.BURST2)
+Firearm.is2ShotBurst = function(item, design)
+    return Firearm.isDesignFeature(item, Flags.BURST2)
 end
 
-Firearm.is3ShotBurst = function(item)
-    return Firearm.isFeature(item, Flags.BURST3)
+Firearm.is3ShotBurst = function(item, design)
+    return Firearm.isDesignFeature(item, Flags.BURST3)
 end
+
+
+
 
 Firearm.isOpenBolt = function(item)
-    return Firearm.isFeature(item, Flags.OPENBOLT)
+    return Firearm.isDesignFeature(item, Flags.OPENBOLT)
 end
 
 Firearm.isBullpup = function(item)
-    return Firearm.isFeature(item, Flags.BULLPUP)
+    return Firearm.isDesignFeature(item, Flags.BULLPUP)
 end
 
 Firearm.isFreeFloat = function(item)
-    return Firearm.isFeature(item, Flags.FREEFLOAT)
+    return Firearm.isDesignFeature(item, Flags.FREEFLOAT)
 end
 
 Firearm.isSightless = function(item)
-    return Firearm.isFeature(item, Flags.NOSIGHTS)
+    return Firearm.isDesignFeature(item, Flags.NOSIGHTS)
 end
 
 Firearm.hasSafety = function(item)
-    return Firearm.isFeature(item, Flags.SAFETY)
+    return Firearm.isDesignFeature(item, Flags.SAFETY)
 end
 
 Firearm.hasSlideLock = function(item)
-    return Firearm.isFeature(item, Flags.SLIDELOCK)
+    return Firearm.isDesignFeature(item, Flags.SLIDELOCK)
 end
 
 Firearm.hasChamberIndicator = function(item)
-    return Firearm.isFeature(item, Flags.CHAMBERINDICATOR)
+    return Firearm.isDesignFeature(item, Flags.CHAMBERINDICATOR)
 end
 
+
+
+
 Firearm.isFeedType = function(item, value)
-    return Firearm.isFeedType(item, value)
+    local data = Firearm.getDesign(item)
+    if not data then return nil end
+    return data:isFeedType(value)
+    -- return Firearm.isFeedType(item, value) -- TODO: huh?
 end
 Firearm.isRotary = function(item)
     return Firearm.isFeedType(item, Flags.ROTARY)
@@ -817,7 +838,7 @@ Firearm.isBreak = function(item)
 end
 
 Firearm.usesMagazine = function(item)
-    local data = Firearm.getData(item)
+    local data = Firearm.getDesign(item)
     if not data then return nil end
     return data:usesMagazine()
 end
@@ -844,7 +865,7 @@ Firearm.replace = function(weaponItem, container)
     if weaponItem == nil then return end
 
     local newItem = InventoryItemFactory.CreateItem(weaponItem:getModule()..'.' .. weaponItem:getType())
-    Firearm.setup(Firearm.getData(newItem), newItem)
+    Firearm.setup(Firearm.getDesign(newItem), newItem)
     local data = weaponItem:getModData()
     local newData = newItem:getModData()
 
@@ -918,13 +939,13 @@ This should be called whenever a firearm is spawned.
 Basically the same as ReloadUtil:setupGun and ISORGMWeapon:setupReloadable but
 called without needing a player or reloadable object.
 
-@usage ORGM.Firearm.setup(Firearm.getData(weaponItem), weaponItem)
-@tparam table gunData return value of `ORGM.Firearm.getData`
+@usage ORGM.Firearm.setup(Firearm.getDesign(weaponItem), weaponItem)
+@tparam table design return value of `ORGM.Firearm.getDesign`
 @tparam HandWeapon weaponItem
 
 ]]
-Firearm.setup = function(gunData, weaponItem)
-    gunData:setup(weaponItem)
+Firearm.setup = function(design, weaponItem)
+    design:setup(weaponItem)
 end
 
 
@@ -945,10 +966,10 @@ This nomally called OnEquipPrimary event.
 Firearm.needsUpdate = function(weaponItem)
     if weaponItem == nil then return nil end
     local data = weaponItem:getModData()
-    local gunData = Firearm.getData(weaponItem)
-    if not gunData then return nil end
+    local design = Firearm.getDesign(weaponItem)
+    if not design then return nil end
 
-    if gunData.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < gunData.lastChanged) then
+    if design.lastChanged and (data.BUILD_ID == nil or data.BUILD_ID < design.lastChanged) then
         ORGM.log(ORGM.INFO, "Obsolete firearm detected (" .. weaponItem:getType() .."). Running update function.")
         -- this gun has changed. reset it.
         return true
@@ -973,19 +994,19 @@ end
 
 ]]
 Firearm.toggleFireMode = function(item, mode, playerObj)
-    local itemData = Firearm.getData(item)
+    local itemData = Firearm.getDesign(item)
     if not itemData then return end
     if not Firearm.isSelectFire(item, itemData) then return end -- not select fire
     if Reloadable.isStatus(item:getModData(), mode) then -- already in this mode
         mode = Status.SINGLESHOT
     end
-    if not Firearm.isFeature(itemData, Firearm.modeStatus2Flag(mode)) then return end -- invalid mode
+    if not Firearm.isDesignFeature(itemData, Firearm.modeStatus2Flag(mode)) then return end -- invalid mode
     Firearm.setFireMode(item, mode, playerObj)
 end
 
 
 Firearm.toggleSafety = function(item, engage, playerObj)
-    local itemData = Firearm.getData(item)
+    local itemData = Firearm.getDesign(item)
     if not itemData then return end
     if not Firearm.hasSafety(item, itemData) then return end -- not select fire
 end
@@ -1015,13 +1036,13 @@ end
 --[[- Returns the trigger type of the firearm.
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table itemData return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn nil|bool nil if not a firearm, else true or false.
 
 ]]
 Trigger.type = function(item, itemData, value)
-    itemData = itemData or Firearm.getData(item)
+    itemData = itemData or Firearm.getDesign(item)
     if not itemData then return nil end
     if not value then value = Flags.SINGLEACTION + Flags.DOUBLEACTION end
     return Bit.band(itemData.features, value)
@@ -1030,7 +1051,7 @@ end
 --[[- Checks if the hammer/trigger is single-action.
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table itemData return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn bool
 
@@ -1042,7 +1063,7 @@ end
 --[[- Checks if the hammer/trigger is double-action.
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table itemData return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn bool
 
@@ -1054,7 +1075,7 @@ end
 --[[- Checks if the hammer/trigger is double-action-only.
 
 @tparam HandWeapon item
-@tparam[opt] table itemData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table itemData return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn bool
 
@@ -1087,31 +1108,31 @@ end
 
 @usage local length = ORGM.Firearm.Barrel.getLength(weaponItem)
 @tparam HandWeapon weaponItem
-@tparam[opt] table gunData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table design return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn nil|number length of the barrel
 
 ]]
-Barrel.getLength = function(weaponItem, gunData)
-    gunData = gunData or Firearm.getData(weaponItem)
-    if not gunData then return nil end
-    return weaponItem:getModData().barrelLength or gunData.barrelLength
+Barrel.getLength = function(weaponItem, design)
+    design = design or Firearm.getDesign(weaponItem)
+    if not design then return nil end
+    return weaponItem:getModData().barrelLength or design.barrelLength
 end
 
 --[[- Gets the weight modifier for the firearm based on its barrel length.
 
 @usage local wgtAdj = ORGM.Firearm.Barrel.getWeight(weaponItem)
 @tparam HandWeapon weaponItem
-@tparam[opt] table gunData return value of `ORGM.Firearm.getData`, auto detected if nil.
+@tparam[opt] table design return value of `ORGM.Firearm.getDesign`, auto detected if nil.
 
 @treturn nil|number
 
 ]]
-Barrel.getWeight = function(weaponItem, gunData)
-    gunData = gunData or Firearm.getData(weaponItem)
-    if not gunData then return nil end
+Barrel.getWeight = function(weaponItem, design)
+    design = design or Firearm.getDesign(weaponItem)
+    if not design then return nil end
 
-    return ((weaponItem:getModData().barrelLength or gunData.barrelLength) - gunData.barrelLength) * ADJ_WEIGHTBARRELLEN
+    return ((weaponItem:getModData().barrelLength or design.barrelLength) - design.barrelLength) * ADJ_WEIGHTBARRELLEN
 end
 
 --[[ calcBarrelModifier(optimal, barrel)
@@ -1203,7 +1224,7 @@ ammo, weight, accessories attached, barrel length, action type, select fire type
 
 ]]
 Stats.set = function(weaponItem)
-    local gunData = Firearm.getData(weaponItem)
+    local design = Firearm.getDesign(weaponItem)
     local modData = weaponItem:getModData()
     local ammoType = modData.chambered
     ORGM.log(ORGM.DEBUG, "Setting "..weaponItem:getType() .. " ammo to "..tostring(ammoType))
@@ -1211,11 +1232,11 @@ Stats.set = function(weaponItem)
     local compTable = Component.getAttached(weaponItem)
 
     -- set inital values from defaults
-    local statsTable = Stats.initial(gunData, ammoData)
+    local statsTable = Stats.initial(design, ammoData)
 
     -- adjust weight first
-    statsTable.ActualWeight = statsTable.ActualWeight + Barrel.getWeight(weaponItem, gunData)
-    statsTable.Weight = statsTable.Weight + Barrel.getWeight(weaponItem, gunData)
+    statsTable.ActualWeight = statsTable.ActualWeight + Barrel.getWeight(weaponItem, design)
+    statsTable.Weight = statsTable.Weight + Barrel.getWeight(weaponItem, design)
 
     for _, mod in pairs(compTable) do
         -- TODO: WeightModifier should be in the compData, and add Unique value for InventoryItem.ModData
@@ -1230,7 +1251,7 @@ Stats.set = function(weaponItem)
     -- note full auto swingtime is used as a min value. Increasing this increases all swingtimes
     statsTable.SwingTime = Settings.BaseSwingTime + (effectiveWgt * Settings.WeightSwingTimeModifier) -- needs to also be adjusted by trigger
 
-    Stats.adjustByBarrel(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
+    Stats.adjustByBarrel(weaponItem, design, ammoData, statsTable, effectiveWgt)
     statsTable.RecoilDelay = statsTable.RecoilDelay / (effectiveWgt * Settings.WeightRecoilDelayModifier)
 
     -- adjust recoil by player strength
@@ -1252,7 +1273,7 @@ Stats.set = function(weaponItem)
         statsTable.SoundRadius = 100 + statsTable.SoundRadius
     end
 
-    Stats.adjustByFeed(weaponItem, gunData, statsTable)
+    Stats.adjustByFeed(weaponItem, design, statsTable)
 
     -- finalize any limits
     if statsTable.SwingTime < Settings.BaseSwingTime then statsTable.SwingTime = Settings.BaseSwingTime end
@@ -1278,14 +1299,14 @@ end
 
 This function is called by `Stats.set`
 
-@tparam table gunData return value of `ORGM.Firearm.getData`
+@tparam table design return value of `ORGM.Firearm.getDesign`
 @tparam table ammoData return value of `ORGM.Ammo.getData`
 
 @treturn table initial values
 
 ]]
-Stats.initial = function(gunData, ammoData)
-    local instance = gunData.instance
+Stats.initial = function(design, ammoData)
+    local instance = design.instance
     return {
         Weight = instance:getWeight(),
         ActualWeight = instance:getActualWeight(),
@@ -1351,13 +1372,13 @@ Adjustments to compensate for automatic feed systems are also done here.
 This function is called by `Stats.set`
 
 @tparam HandWeapon weaponItem
-@tparam table gunData return value of `ORGM.Firearm.getData`
+@tparam table design return value of `ORGM.Firearm.getDesign`
 @tparam table ammoData return value of `ORGM.Ammo.getData`
 @tparam table statsTable table of the firearm stats
 @tparam number effectiveWgt weight of the firearm and all attachments excluding slings.
 
 ]]
-Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effectiveWgt)
+Stats.adjustByBarrel = function(weaponItem, design, ammoData, statsTable, effectiveWgt)
     -- adjust recoil relative to ammo, weight, barrel
     --if not Settings.UseBarrelLengthModifiers then return end
     local length = Barrel.getLength(weaponItem) or 10 -- set to a default for safety
@@ -1374,7 +1395,7 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     end
 
     -- TODO: check reloadable
-    local isAuto = gunData:isAutomatic()
+    local isAuto = design:isAutomatic()
     -- if its not a automatic, increase barrel/optimal +2 for autos, or +4 non-autos
     -- for damage to help balance those damn snub barrels
     local dmgActionAdj = not isAuto and 4 or 2
@@ -1391,13 +1412,13 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     local recoilActionAdj = isAuto and 6 or 0
     -- TODO: fix for bitflags
     --[[
-    if isAuto and gunData.autoType then
-        recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[gunData.autoType] or 0)
+    if isAuto and design.autoType then
+        recoilActionAdj = recoilActionAdj + (ADJ_AUTOTYPERECOILDELAY[design.autoType] or 0)
     end
     ]]
     local lenModifierRecoil = calcBarrelModifier(optimal + recoilActionAdj, length + recoilActionAdj)
     statsTable.RecoilDelay =  statsTable.RecoilDelay + statsTable.RecoilDelay * lenModifierRecoil
-    if statsTable.RecoilDelay > 0 and gunData:isPorted() then
+    if statsTable.RecoilDelay > 0 and design:isPorted() then
         statsTable.RecoilDelay = statsTable.RecoilDelay * 0.9
     end
 
@@ -1405,12 +1426,12 @@ Stats.adjustByBarrel = function(weaponItem, gunData, ammoData, statsTable, effec
     local radiusMod = ammoData.RadiusMod or 100
     statsTable.SoundRadius = statsTable.SoundRadius * (((radiusMod-length)/radiusMod)^3)
 
-    if gunData:isFreeFloat() then
+    if design:isFreeFloat() then
         statsTable.HitChance = 2 + statsTable.HitChance
     end
 
     statsTable.AimingTime = 50 - (effectiveWgt *MOD_WEIGHTAIMINGTIME) - length
-    if gunData:isBullpup() then
+    if design:isBullpup() then
         statsTable.AimingTime = statsTable.AimingTime + 6
     end
 end
@@ -1424,17 +1445,17 @@ The bulk of full auto behavior is defined in the function.
 This function is called by `Stats.set`
 
 @tparam HandWeapon weaponItem
-@tparam table gunData return value of `ORGM.Firearm.getData`
+@tparam table design return value of `ORGM.Firearm.getDesign`
 @tparam table statsTable table of the firearm stats
 
 ]]
-Stats.adjustByFeed = function(weaponItem, gunData, statsTable)
+Stats.adjustByFeed = function(weaponItem, design, statsTable)
     local isFullAuto = Reloadable.Fire.isFullAuto(weaponItem:getModData())
     --if alwaysFullAuto then fireMode = ORGM.FULLAUTOMODE end
-    if gunData:isAutomatic() then
+    if design:isAutomatic() then
         statsTable.SwingTime = statsTable.SwingTime + ADJ_AUTOSWINGTIME
     end
-    if gunData:isOpenBolt() then
+    if design:isOpenBolt() then
         statsTable.HitChance = statsTable.HitChance - 2
     end
     if isFullAuto then -- full auto mode

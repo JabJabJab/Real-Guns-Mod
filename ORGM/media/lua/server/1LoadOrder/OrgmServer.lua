@@ -117,7 +117,7 @@ Server.equipBestFirearm = function(playerObj, subCategory)
             table.insert(choices, item)
             break
         end
-        local def = ORGM.Firearm.getData(item:getType())
+        local def = ORGM.Firearm.getDesign(item:getType())
         if not def then break end -- not a orgm gun
         local category = def.category
         if subCategory == "Pistol" then
@@ -137,11 +137,11 @@ Server.equipBestFirearm = function(playerObj, subCategory)
     ------------------------------------------------------------------------------------------------
     for _, item in pairs(choices) do
         -- TODO: this needs proper handling for non-orgm guns too!
-        local def = ORGM.Firearm.getData(item:getType())
+        local def = ORGM.Firearm.getDesign(item:getType())
         local modData = item:getModData()
         if def and modData.currentCapacity == nil then
             -- necroforge spawned gun? detect if its orgm, and call ORGM.Firearm.setup
-            ORGM.Firearm.setup(ORGM.Firearm.getData(item), item)
+            ORGM.Firearm.setup(ORGM.Firearm.getDesign(item), item)
         end
 
         local current = {

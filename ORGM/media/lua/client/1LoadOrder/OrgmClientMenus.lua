@@ -101,7 +101,7 @@ Menu.firearm = function()
     if playerObj:getPrimaryHandItem() ~= thisItem then return end
 
     local thisData = thisItem:getModData()
-    local gunData = Firearm.getData(thisItem)
+    local gunData = Firearm.getDesign(thisItem)
 
     local reloadable = ReloadUtil:getReloadableWeapon(thisItem, playerID)
     reloadable.playerObj = player -- not sure where this is actually set in the code, but apparently sometimes its not...
@@ -244,7 +244,7 @@ Menu.firearm = function()
         subMenuBarrel:addOption(getText(text, 24), thisItem, Menu.onBarrelEdit, playerObj, thisData, 24)
         subMenuBarrel:addOption(getText(text, 26), thisItem, Menu.onBarrelEdit, playerObj, thisData, 26)
 
-        local bLengths = Firearm.getData(thisItem).barrelLengthOpt
+        local bLengths = Firearm.getDesign(thisItem).barrelLengthOpt
         if bLengths then
             local barrelMenu = subMenuDebug:addOption(getText("ContextMenu_ORGM_AdminBarrelLen") .. " (factory)", thisItem, nil)
             local subMenuBarrel = subMenuDebug:getNew(subMenuDebug)
@@ -257,7 +257,7 @@ Menu.firearm = function()
         --[[
 
         -- skins support
-        local skins = Firearm.getData(thisItem).skins
+        local skins = Firearm.getDesign(thisItem).skins
         if skins then
             local skinMenu = subMenuDebug:addOption("Skins", thisItem, nil)
             local subMenuSkins = subMenuDebug:getNew(subMenuDebug)
@@ -420,7 +420,7 @@ end
 Menu.onBackwardsTestFunction = function(item, player, itemData)
     itemData.BUILD_ID = 1
 
-    if not Firearm.getData(item).lastChanged then
+    if not Firearm.getDesign(item).lastChanged then
         player:Say('No listed changes for item, but setting BUILD_ID to 1 anyways.')
         return
     end
@@ -443,7 +443,7 @@ end
 
 -- reset weapon to defaults
 Menu.onResetWeapon = function(item, player, itemData)
-    Firearm.setup(Firearm.getData(item), item)
+    Firearm.setup(Firearm.getDesign(item), item)
     player:Say("weapon reset")
 end
 

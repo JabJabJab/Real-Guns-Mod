@@ -98,7 +98,7 @@ end
 
 ### Internal function.
 
-Used by the various ORGM.*.getData() (ie: `ORGM.Firearm.getData`, `ORGM.Ammo.getData`, etc) functions.
+Used by the various ORGM.*.getData() (ie: `ORGM.Firearm.getDesign`, `ORGM.Ammo.getData`, etc) functions.
 
 It is not advised to call directly, use one of the wrapper functions.
 

@@ -179,7 +179,7 @@ end
 
 ]]
 Ammo.itemGroup = function(item, asTable)
-    local gun = Firearm.getData(item)
+    local gun = Firearm.getDesign(item)
     local mag = Magazine.getData(item)
     local ammoType = gun and gun.ammoType or nil
     if ammoType and Magazine.isGroup(ammoType) then

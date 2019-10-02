@@ -3397,11 +3397,11 @@ register("BenelliM3SO", {
     barrelLength = 18, -- cant saw off much with that magazine tube, the connecting brace is very forward
     soundProfile = "Shotgun",
 
-    classification = ORGM.Firearm.getData("BenelliM3").classification,
-    year = ORGM.Firearm.getData("BenelliM3").year,
-    country = ORGM.Firearm.getData("BenelliM3").country,
-    manufacturer = ORGM.Firearm.getData("BenelliM3").manufacturer,
-    description = ORGM.Firearm.getData("BenelliM3").description,
+    classification = ORGM.Firearm.getDesign("BenelliM3").classification,
+    year = ORGM.Firearm.getDesign("BenelliM3").year,
+    country = ORGM.Firearm.getDesign("BenelliM3").country,
+    manufacturer = ORGM.Firearm.getDesign("BenelliM3").manufacturer,
+    description = ORGM.Firearm.getDesign("BenelliM3").description,
 })
 register("BenelliXM1014", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
@@ -3463,11 +3463,11 @@ register("Ithaca37SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.Firearm.getData("Ithaca37").classification,
-    year = ORGM.Firearm.getData("Ithaca37").year,
-    country = ORGM.Firearm.getData("Ithaca37").country,
-    manufacturer = ORGM.Firearm.getData("Ithaca37").manufacturer,
-    description = ORGM.Firearm.getData("Ithaca37").description,
+    classification = ORGM.Firearm.getDesign("Ithaca37").classification,
+    year = ORGM.Firearm.getDesign("Ithaca37").year,
+    country = ORGM.Firearm.getDesign("Ithaca37").country,
+    manufacturer = ORGM.Firearm.getDesign("Ithaca37").manufacturer,
+    description = ORGM.Firearm.getDesign("Ithaca37").description,
 })
 register("M1216", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
@@ -3511,11 +3511,11 @@ register("Moss590SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.Firearm.getData("Moss590").classification,
-    year = ORGM.Firearm.getData("Moss590").year,
-    country = ORGM.Firearm.getData("Moss590").country,
-    manufacturer = ORGM.Firearm.getData("Moss590").manufacturer,
-    description = ORGM.Firearm.getData("Moss590").description,
+    classification = ORGM.Firearm.getDesign("Moss590").classification,
+    year = ORGM.Firearm.getDesign("Moss590").year,
+    country = ORGM.Firearm.getDesign("Moss590").country,
+    manufacturer = ORGM.Firearm.getDesign("Moss590").manufacturer,
+    description = ORGM.Firearm.getDesign("Moss590").description,
 })
 register("Rem870", {
     features = Flags.DOUBLEACTION + Flags.SAFETY,
@@ -3545,11 +3545,11 @@ register("Rem870SO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun",
 
-    classification = ORGM.Firearm.getData("Rem870").classification,
-    year = ORGM.Firearm.getData("Rem870").year,
-    country = ORGM.Firearm.getData("Rem870").country,
-    manufacturer = ORGM.Firearm.getData("Rem870").manufacturer,
-    description = ORGM.Firearm.getData("Rem870").description,
+    classification = ORGM.Firearm.getDesign("Rem870").classification,
+    year = ORGM.Firearm.getDesign("Rem870").year,
+    country = ORGM.Firearm.getDesign("Rem870").country,
+    manufacturer = ORGM.Firearm.getDesign("Rem870").manufacturer,
+    description = ORGM.Firearm.getDesign("Rem870").description,
 })
 register("Silverhawk", {
     features = Flags.SINGLEACTION + Flags.SAFETY,
@@ -3577,11 +3577,11 @@ register("SilverHawkSO", {
     isCivilian = ORGM.COMMON,
     soundProfile = "Shotgun-Break",
 
-    classification = ORGM.Firearm.getData("Silverhawk").classification,
-    year = ORGM.Firearm.getData("Silverhawk").year,
-    country = ORGM.Firearm.getData("Silverhawk").country,
-    manufacturer = ORGM.Firearm.getData("Silverhawk").manufacturer,
-    description = ORGM.Firearm.getData("Silverhawk").description
+    classification = ORGM.Firearm.getDesign("Silverhawk").classification,
+    year = ORGM.Firearm.getDesign("Silverhawk").year,
+    country = ORGM.Firearm.getDesign("Silverhawk").country,
+    manufacturer = ORGM.Firearm.getDesign("Silverhawk").manufacturer,
+    description = ORGM.Firearm.getDesign("Silverhawk").description
 })
 register("Spas12", {
     features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
@@ -3680,11 +3680,11 @@ register("Win1887SO", {
     barrelLength = 14,
     soundProfile = "Shotgun-Lever",
 
-    classification = ORGM.Firearm.getData("Win1887").classification,
-    year = ORGM.Firearm.getData("Win1887").year,
-    country = ORGM.Firearm.getData("Win1887").country,
-    manufacturer = ORGM.Firearm.getData("Win1887").manufacturer,
-    description = ORGM.Firearm.getData("Win1887").description,
+    classification = ORGM.Firearm.getDesign("Win1887").classification,
+    year = ORGM.Firearm.getDesign("Win1887").year,
+    country = ORGM.Firearm.getDesign("Win1887").country,
+    manufacturer = ORGM.Firearm.getDesign("Win1887").manufacturer,
+    description = ORGM.Firearm.getDesign("Win1887").description,
 })
 ]]
 -- ORGM[15] = "138363034"

@@ -289,7 +289,7 @@ end
 
 TipHandler[ORGM.FIREARM] = function(self)
     local item = self.item
-    local gunData = Firearm.getData(item)
+    local gunData = Firearm.getDesign(item)
     local modData = item:getModData()
     --if not modData.status then
     --    gunData:setup(item)
