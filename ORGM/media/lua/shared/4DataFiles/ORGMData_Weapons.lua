@@ -2641,6 +2641,28 @@ FirearmType:newCollection("Armalite_AR10", {
         },
 })
 
+FirearmType:newCollection("AKM", {
+        -- sources;
+        -- https://en.wikipedia.org/wiki/AKM
+        category = ORGM.RIFLE,
+        soundProfile = "Rifle-AR",
+        
+        ammoType = "MagGroup_AK",
+        Weight = 3.3,
+        barrelLength = 16.3,
+        WeaponSprite = "ak",
+        Icon = "AKM",
+        maxCapacity = 30,
+        
+        classification = "IGUI_Firearm_AssaultRifle",
+        country = "IGUI_Firearm_Country_CN",
+        manufacturer = "IGUI_Firearm_Manuf_NORINCO",
+        description = "IGUI_Firearm_Desc_AKM",
+        year = 1982,
+        feedSystem = Flags.AUTO + Flags.LONGGAS,
+        features = Flags.DOUBLEACTION + Flags.SLIDELOCK + Flags.SAFETY,
+})
+
 FirearmType:newCollection("Colt_CAR15", {
         -- sources:
         -- https://en.wikipedia.org/wiki/M16_rifle
